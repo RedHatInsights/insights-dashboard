@@ -6,9 +6,12 @@ if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
     exit 0;
 fi
 
-# If current branch is master, push to ___
+# If current dev branch is master, push to build repo master
 if [ "${TRAVIS_BRANCH}" = "master" ]; then
     .travis/release.sh
 fi
 
-# If current branch has stable, push to ___
+# If current branch dev branch is stable/foo, push to build repo stable
+if [[ ${TRAVIS_BRANCH} =~ stable\/* ]]; then
+    .travis/release_stable.sh
+fi
