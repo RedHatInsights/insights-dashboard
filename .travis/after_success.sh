@@ -11,4 +11,4 @@ if [ "${TRAVIS_BRANCH}" = "master" ]; then
     .travis/release.sh
 fi
 
-# If current branch has stable, push to ___
+# If current dev branch is stable/foo, push to build repo stable

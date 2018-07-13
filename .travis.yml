@@ -12,15 +12,10 @@ install:
 script:
 - npm run travis:verify
 before_install:
-- openssl aes-256-cbc -K $encrypted_8e579b44016d_key -iv $encrypted_8e579b44016d_iv -in deploy_key.enc -out deploy_key -d
-
+# add ssh key for pushing build files to build repo
+- openssl aes-256-cbc -K $encrypted_8e579b44016d_key -iv $encrypted_8e579b44016d_iv -in deploy_key.enc -out ~\/.ssh/deploy_key -d
 - chmod 600 deploy_key
 - eval `ssh-agent -s`
 - ssh-add deploy_key
 after_success:
 - .travis/after_success.sh
-env:
-  global:
-  - REPO="git@github.com:RedHatInsights/insights-deployment-test-build"
-  - FILES="dist/index.html"
-  - GH_REPO="https://github.com/RedHatInsights/insights-deployment-test"
