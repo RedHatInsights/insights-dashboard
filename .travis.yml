@@ -8,11 +8,12 @@ notifications:
 node_js:
 - '10'
 install:
-  - npm ci
+- npm ci
 script:
-  - npm run travis:verify
+- npm run travis:verify
 before_install:
-- openssl aes-256-cbc -K $encrypted_2eeb7a4fa1ff_key -iv $encrypted_2eeb7a4fa1ff_iv -in deploy_key.enc -out deploy_key -d
+- openssl aes-256-cbc -K $encrypted_8e579b44016d_key -iv $encrypted_8e579b44016d_iv -in deploy_key.enc -out ~\/.ssh/deploy_key -d
+
 - chmod 600 deploy_key
 - eval `ssh-agent -s`
 - ssh-add deploy_key
