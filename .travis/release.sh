@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
+cp Jenkinsfile dist/Jenkinsfile
 cd dist
 git init
 git config --global user.name $COMMIT_AUTHOR_USERNAME
