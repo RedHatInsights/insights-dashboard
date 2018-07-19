@@ -11,7 +11,7 @@ import App from './App';
  */
 ReactDOM.render(
     <Provider store={ReducerRegistry.getStore()}>
-        <Router basename='/insights/platform/dashboard'>
+        <Router basename='/insightsplatform'>
             <App />
         </Router>
     </Provider>,
