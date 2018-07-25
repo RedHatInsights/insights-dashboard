@@ -2,6 +2,7 @@
 
 MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
 cp Jenkinsfile dist/Jenkinsfile
+cp src/404.html dist/404.html
 cd dist
 git init
 git config --global user.name $COMMIT_AUTHOR_USERNAME
