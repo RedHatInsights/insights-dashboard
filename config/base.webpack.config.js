@@ -15,7 +15,7 @@ const webpackConfig = {
                 vendors: false,
                 commons: {
                     test: /[\\/]node_modules[\\/]/,
-                    name: 'Vendor',
+                    name: 'vendor',
                     chunks: 'initial'
                 }
             }
