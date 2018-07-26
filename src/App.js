@@ -8,6 +8,7 @@ import './App.scss';
 class App extends Component {
 
     componentDidMount () {
+        console.log('componentDidMount');
         insights.chrome.init();
         insights.chrome.identifyApp('advisor');
         insights.chrome.navigation(buildNavigation());
