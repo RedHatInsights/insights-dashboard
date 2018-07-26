@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ReducerRegistry from './Utilities/ReducerRegistry';
 import App from './App';
@@ -11,7 +11,7 @@ import App from './App';
  */
 ReactDOM.render(
     <Provider store={ReducerRegistry.getStore()}>
-        <Router basename='/insights/platform/dashboard'>
+        <Router>
             <App />
         </Router>
     </Provider>,
