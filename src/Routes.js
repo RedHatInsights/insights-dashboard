@@ -22,8 +22,8 @@ const Rules = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './Pre
 const SamplePage = asyncComponent(() => import(
     /* webpackChunkName: "SamplePage" */ './SmartComponents/SamplePage/SamplePage'));
 const paths = {
-    sample: './advisor/samplepage',
-    rules: './advisor/rules'
+    sample: '/advisor/samplepage',
+    rules: '/advisor/rules'
 };
 
 type Props = {
