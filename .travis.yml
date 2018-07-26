@@ -13,4 +13,3 @@ after_success:
 env:
   global:
   - REPO="git@github.com:RedHatInsights/insights-dashboard-build"
-  - NODE_ENV="production"
