@@ -5,6 +5,7 @@ const ListRules = () => {
     return (
         <Section type='content'>
             <h1> Rule List </h1>
+            <p> Specific Rules Here </p>
         </Section>
     );
 };
