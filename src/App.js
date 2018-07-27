@@ -40,7 +40,7 @@ App.propTypes = {
 export default withRouter (connect()(App));
 
 function buildNavigation () {
-    const currentPath = 'advisor' + '/' + window.location.hash.split('/').slice(-1)[0];
+    const currentPath = 'advisor' + '/' + window.location.pathname.split('/').slice(-1)[0];
     return [{
         title: 'Sample App',
         id: 'advisor/samplepage'
