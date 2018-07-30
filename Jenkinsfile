@@ -9,7 +9,7 @@ def wrapStep(String stepName, Closure step) {
 }
 
 node('insights-frontend-slave') {
-  if (env.BRANCH_NAME.startsWith('stable')) {
+  if (env.BRANCH_NAME =~ /stable\/*/) {
     wrapStep('clone', { name -> stage(name) { checkout scm } })
     wrapStep('deploy_dashboard', { name -> stage(name) { sh 'rsync -arv -e "ssh -2" * sshacs@unprotected.upload.akamai.com:/114034/insights/platform/dashboard/' } })
   }
