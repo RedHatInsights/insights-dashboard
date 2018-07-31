@@ -12,5 +12,4 @@ git branch -v -a
 git checkout -b stable
 git add .
 git commit -m 'Build Stable by Travis'
-git config --list
 git push --force --set-upstream travis-build stable:stable
