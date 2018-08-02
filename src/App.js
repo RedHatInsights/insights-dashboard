@@ -9,7 +9,7 @@ class App extends Component {
 
     componentDidMount () {
         insights.chrome.init();
-        insights.chrome.identifyApp('advisor');
+        insights.chrome.identifyApp('dashboard');
         insights.chrome.navigation(buildNavigation());
 
         this.appNav = insights.chrome.on('APP_NAVIGATION', event => this.props.history.push(`/${event.navId}`));
@@ -40,13 +40,13 @@ App.propTypes = {
 export default withRouter (connect()(App));
 
 function buildNavigation () {
-    const currentPath = 'advisor' + '/' + window.location.pathname.split('/').slice(-1)[0];
+    const currentPath = 'dashboard' + '/' + window.location.pathname.split('/').slice(-1)[0];
     return [{
         title: 'Sample App',
-        id: 'advisor/samplepage'
+        id: 'dashboard/samplepage'
     }, {
         title: 'Rules',
-        id: 'advisor/rules'
+        id: 'dashboard/rules'
     }].map(item => ({
         ...item,
         active: item.id === currentPath
