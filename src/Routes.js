@@ -22,8 +22,8 @@ const Rules = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './Pre
 const SamplePage = asyncComponent(() => import(
     /* webpackChunkName: "SamplePage" */ './SmartComponents/SamplePage/SamplePage'));
 const paths = {
-    sample: '/advisor/samplepage',
-    rules: '/advisor/rules'
+    sample: '/dashboard/samplepage',
+    rules: '/dashboard/rules'
 };
 
 type Props = {
@@ -48,7 +48,7 @@ InsightsRoute.propTypes = {
  *
  * Route properties:
  *      exact - path must match exactly,
- *      path - https://prod.foo.redhat.com:1337/insights/advisor/rules
+ *      path - https://prod.foo.redhat.com:1337/insights/dashboard/rules
  *      component - component to be rendered when a route has been chosen.
  */
 export const Routes = (props: Props) => {
