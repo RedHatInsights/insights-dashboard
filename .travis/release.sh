@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
-cp Jenkinsfile dist/Jenkinsfile
-cd dist
-git init
+git clone ${REPO}
+cd ${REPO_DIR}
+rm -rf dist
+cp ../dist .
 git config --global user.name $COMMIT_AUTHOR_USERNAME
 git config --global user.email $COMMIT_AUTHOR_EMAIL
 git remote add travis-build ${REPO}.git
