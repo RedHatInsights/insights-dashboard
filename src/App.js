@@ -40,13 +40,13 @@ App.propTypes = {
 export default withRouter (connect()(App));
 
 function buildNavigation () {
-    const currentPath = 'dashboard' + '/' + window.location.pathname.split('/').slice(-1)[0];
+    const currentPath = window.location.pathname.split('/').slice(-1)[0];
     return [{
         title: 'Sample App',
-        id: 'dashboard/samplepage'
+        id: 'samplepage'
     }, {
         title: 'Rules',
-        id: 'dashboard/rules'
+        id: 'rules'
     }].map(item => ({
         ...item,
         active: item.id === currentPath
