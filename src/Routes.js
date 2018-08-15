@@ -18,12 +18,10 @@ import some from 'lodash/some';
  *         see the difference with DashboardMap and InventoryDeployments.
  *
  */
-const Rules = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './PresentationalComponents/Rules/Rules'));
-const SamplePage = asyncComponent(() => import(
-    /* webpackChunkName: "SamplePage" */ './SmartComponents/SamplePage/SamplePage'));
+const Dashboard = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './SmartComponents/Dashboard/Dashboard'));
+
 const paths = {
-    sample: '/samplepage',
-    rules: '/rules'
+    dashboard: '/dashboard'
 };
 
 type Props = {
@@ -56,11 +54,10 @@ export const Routes = (props: Props) => {
 
     return (
         <Switch>
-            <InsightsRoute exact path={paths.sample} component={SamplePage} rootClass='sample' />
-            <InsightsRoute path={paths.rules} component={Rules} rootClass='rules' />
+            <InsightsRoute exact path={paths.dashboard} component={Dashboard} rootClass='dashboard' />
 
             {/* Finally, catch all unmatched routes */}
-            <Route render={() => some(paths, p => p === path) ? null : (<Redirect to={paths.sample} />)} />
+            <Route render={() => some(paths, p => p === path) ? null : (<Redirect to={paths.dashboard} />)} />
         </Switch>
     );
 };
