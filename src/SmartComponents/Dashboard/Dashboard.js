@@ -14,52 +14,46 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <Section type='content'>
-                    <Grid gutter='md'>
-                        <GridItem span={4}>
-                            <Card>
-                                <CardHeader>Advisor</CardHeader>
-                                <CardBody>Chart Stuff</CardBody>
-                            </Card>
-                        </GridItem>
-                        <GridItem span={4}>
-                            <Card>
-                                <CardHeader>Security</CardHeader>
-                                <CardBody>Chart Stuff</CardBody>
-                            </Card>
-                        </GridItem>
-                        <GridItem span={4}>
-                            <Card>
-                                <CardHeader>Compliance</CardHeader>
-                                <CardBody>Chart Stuff</CardBody>
-                            </Card>
-                        </GridItem>
-                    </Grid>
-                </Section>
-                <Section type='content'>
-                    <Grid gutter='md'>
-                        <GridItem span={4}>
-                            <Card>
-                                <CardHeader>CMaaS</CardHeader>
-                                <CardBody>Chart Stuff</CardBody>
-                            </Card>
-                        </GridItem>
-                        <GridItem span={4}>
-                            <Card>
-                                <CardHeader>Inventory</CardHeader>
-                                <CardBody>Chart Stuff</CardBody>
-                            </Card>
-                        </GridItem>
-                        <GridItem span={4}>
-                            <Card>
-                                <CardHeader>Reports</CardHeader>
-                                <CardBody>Chart Stuff</CardBody>
-                            </Card>
-                        </GridItem>
-                    </Grid>
-                </Section>
-            </React.Fragment>
+            <Section type='content'>
+                <Grid gutter='md' sm={6} lg={4}>
+                    <GridItem>
+                        <Card>
+                            <CardHeader>Advisor</CardHeader>
+                            <CardBody>Chart Stuff</CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem>
+                        <Card>
+                            <CardHeader>Security</CardHeader>
+                            <CardBody>Chart Stuff</CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem>
+                        <Card>
+                            <CardHeader>Compliance</CardHeader>
+                            <CardBody>Chart Stuff</CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem>
+                        <Card>
+                            <CardHeader>CMaaS</CardHeader>
+                            <CardBody>Chart Stuff</CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem>
+                        <Card>
+                            <CardHeader>Inventory</CardHeader>
+                            <CardBody>Chart Stuff</CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem>
+                        <Card>
+                            <CardHeader>Reports</CardHeader>
+                            <CardBody>Chart Stuff</CardBody>
+                        </Card>
+                    </GridItem>
+                </Grid>
+            </Section>
         );
     }
 }
