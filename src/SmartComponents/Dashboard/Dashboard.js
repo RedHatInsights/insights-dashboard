@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Grid, GridItem } from '@patternfly/react-core';
+import { Card, CardHeader, CardBody, Grid, GridItem } from '@patternfly/react-core';
 import { Section } from '@red-hat-insights/insights-frontend-components';
 
 /**
@@ -16,14 +16,44 @@ class Dashboard extends Component {
         return (
             <Section>
                 <Grid>
-                    <GridItem span={4}>Advisor</GridItem>
-                    <GridItem span={4}>Security</GridItem>
-                    <GridItem span={4}>Compliance</GridItem>
+                    <GridItem span={4}>
+                        <Card>
+                            <CardHeader>Advisor</CardHeader>
+                            <CardBody>Chart Stuff</CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem span={4}>
+                        <Card>
+                            <CardHeader>Security</CardHeader>
+                            <CardBody>Chart Stuff</CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem span={4}>
+                        <Card>
+                            <CardHeader>Compliance</CardHeader>
+                            <CardBody>Chart Stuff</CardBody>
+                        </Card>
+                    </GridItem>
                 </Grid>
                 <Grid>
-                    <GridItem span={4}>CMaaS</GridItem>
-                    <GridItem span={4}>Inventory</GridItem>
-                    <GridItem span={4}>Reports</GridItem>
+                    <GridItem span={4}>
+                        <Card>
+                            <CardHeader>CMaaS</CardHeader>
+                            <CardBody>Chart Stuff</CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem span={4}>
+                        <Card>
+                            <CardHeader>Inventory</CardHeader>
+                            <CardBody>Chart Stuff</CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem span={4}>
+                        <Card>
+                            <CardHeader>Reports</CardHeader>
+                            <CardBody>Chart Stuff</CardBody>
+                        </Card>
+                    </GridItem>
                 </Grid>
             </Section>
         );
