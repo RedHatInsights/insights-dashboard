@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Card, CardHeader, CardBody, Grid, GridItem } from '@patternfly/react-core';
-import { Section } from '@red-hat-insights/insights-frontend-components';
+import { Gauge, Section } from '@red-hat-insights/insights-frontend-components';
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -20,6 +20,7 @@ class Dashboard extends Component {
                         <Card>
                             <CardHeader>Advisor</CardHeader>
                             <CardBody>Chart Stuff</CardBody>
+                            <Gauge label='advisor' value={45} identifier='advisor-gauge'></Gauge>
                         </Card>
                     </GridItem>
                     <GridItem>

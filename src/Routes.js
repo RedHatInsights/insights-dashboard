@@ -1,8 +1,7 @@
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 import asyncComponent from './Utilities/asyncComponent';
-import some from 'lodash/some';
 
 /**
  * Aysnc imports of components
@@ -19,14 +18,6 @@ import some from 'lodash/some';
  *
  */
 const Dashboard = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './SmartComponents/Dashboard/Dashboard'));
-
-const paths = {
-    dashboard: '/dashboard'
-};
-
-type Props = {
-    childProps: any
-};
 
 const InsightsRoute = ({ component: Component, rootClass, ...rest }) => {
     const root = document.getElementById('root');
@@ -49,15 +40,13 @@ InsightsRoute.propTypes = {
  *      path - https://prod.foo.redhat.com:1337/insights/dashboard/rules
  *      component - component to be rendered when a route has been chosen.
  */
-export const Routes = (props: Props) => {
-    const path = props.childProps.location.pathname;
-
+export const Routes = () => {
     return (
         <Switch>
-            <InsightsRoute exact path={paths.dashboard} component={Dashboard} rootClass='dashboard' />
+            <InsightsRoute exact path='/' component={Dashboard} rootClass='dashboard' />
 
             {/* Finally, catch all unmatched routes */}
-            <Route render={() => some(paths, p => p === path) ? null : (<Redirect to={paths.dashboard} />)} />
+            <Redirect to='/' />
         </Switch>
     );
 };

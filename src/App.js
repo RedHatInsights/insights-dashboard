@@ -10,13 +10,6 @@ class App extends Component {
     componentDidMount () {
         insights.chrome.init();
         insights.chrome.identifyApp('dashboard');
-
-        this.appNav = insights.chrome.on('APP_NAVIGATION', event => this.props.history.push(`/${event.navId}`));
-    }
-
-    componentWillUnmount () {
-        this.appNav();
-        // this.buildNav();
     }
 
     render () {
