@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Card, CardHeader, CardBody, Grid, GridItem } from '@patternfly/react-core';
-import { Gauge, Section } from '@red-hat-insights/insights-frontend-components';
+import { Section } from '@red-hat-insights/insights-frontend-components';
+import asyncComponent from '../../Utilities/asyncComponent';
+
+const GaugeSection = asyncComponent(() => import ('../../PresentationalComponents/GaugeSection/GaugeSection.js'));
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -20,7 +23,14 @@ class Dashboard extends Component {
                         <Card>
                             <CardHeader>Advisor</CardHeader>
                             <CardBody>
-                                <Gauge label='advisor' value={75} identifier='advisor-gauge'></Gauge>
+                                <GaugeSection label='advisor' value={75} identifier='advisor-gauge'>
+                                    <ul>
+                                        <li>10 New</li>
+                                        <li>7 Critical</li>
+                                        <li>3 Warning</li>
+                                        <li>View All</li>
+                                    </ul>
+                                </GaugeSection>
                             </CardBody>
                         </Card>
                     </GridItem>
@@ -28,7 +38,14 @@ class Dashboard extends Component {
                         <Card>
                             <CardHeader>Security</CardHeader>
                             <CardBody>
-                                <Gauge label='security' value={15} identifier='security-gauge'></Gauge>
+                                <GaugeSection label='security' value={15} identifier='security-gauge'>
+                                    <ul>
+                                        <li>10 New</li>
+                                        <li>7 Critical</li>
+                                        <li>3 Warning</li>
+                                        <li>View All</li>
+                                    </ul>
+                                </GaugeSection>
                             </CardBody>
                         </Card>
                     </GridItem>
@@ -36,7 +53,14 @@ class Dashboard extends Component {
                         <Card>
                             <CardHeader>Compliance</CardHeader>
                             <CardBody>
-                                <Gauge label='compliance' value={85} identifier='compliance-gauge'></Gauge>
+                                <GaugeSection label='compliance' value={85} identifier='compliance-gauge'>
+                                    <ul>
+                                        <li>10 New</li>
+                                        <li>7 Critical</li>
+                                        <li>3 Warning</li>
+                                        <li>View All</li>
+                                    </ul>
+                                </GaugeSection>
                             </CardBody>
                         </Card>
                     </GridItem>
@@ -44,7 +68,14 @@ class Dashboard extends Component {
                         <Card>
                             <CardHeader>CMaaS</CardHeader>
                             <CardBody>
-                                <Gauge label='cmaas' value={45} identifier='cmaas-gauge'></Gauge>
+                                <GaugeSection label='cmaas' value={45} identifier='cmaas-gauge'>
+                                    <ul>
+                                        <li>10 New</li>
+                                        <li>7 Critical</li>
+                                        <li>3 Warning</li>
+                                        <li>View All</li>
+                                    </ul>
+                                </GaugeSection>
                             </CardBody>
                         </Card>
                     </GridItem>
@@ -52,7 +83,14 @@ class Dashboard extends Component {
                         <Card>
                             <CardHeader>Inventory</CardHeader>
                             <CardBody>
-                                <Gauge label='inventory' value={67} identifier='inventory-gauge'></Gauge>
+                                <GaugeSection label='inventory' value={67} identifier='inventory-gauge'>
+                                    <ul>
+                                        <li>10 New</li>
+                                        <li>7 Critical</li>
+                                        <li>3 Warning</li>
+                                        <li>View All</li>
+                                    </ul>
+                                </GaugeSection>
                             </CardBody>
                         </Card>
                     </GridItem>
@@ -60,7 +98,14 @@ class Dashboard extends Component {
                         <Card>
                             <CardHeader>Reports</CardHeader>
                             <CardBody>
-                                <Gauge label='reports' value={95} identifier='reports-gauge'></Gauge>
+                                <GaugeSection label='reports' value={95} identifier='reports-gauge'>
+                                    <ul>
+                                        <li>10 New</li>
+                                        <li>7 Critical</li>
+                                        <li>3 Warning</li>
+                                        <li>View All</li>
+                                    </ul>
+                                </GaugeSection>
                             </CardBody>
                         </Card>
                     </GridItem>
