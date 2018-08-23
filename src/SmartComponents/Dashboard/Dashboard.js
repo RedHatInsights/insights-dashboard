@@ -40,7 +40,7 @@ class Dashboard extends Component {
                                             <span>Warning</span>
                                         </li>
                                         <li className='link--view-all'>
-                                            <a>
+                                            <a href={`/insights/platform/actions/`}>
                                                 View All
                                                 <i className='fas fa-external-link-alt'/>
                                             </a>
