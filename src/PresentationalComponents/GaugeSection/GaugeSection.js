@@ -15,7 +15,8 @@ class GaugeSection extends Component {
 
     render () {
         const gaugeSectionClasses = classNames(
-            this.props.className
+            this.props.className,
+            'gauge-with-legend'
         );
 
         return (
@@ -23,7 +24,7 @@ class GaugeSection extends Component {
                 <SplitItem>
                     <Gauge label={this.props.label} value={this.props.value} identifier={this.props.identifier}></Gauge>
                 </SplitItem>
-                <SplitItem>
+                <SplitItem className='gauge-with-legend__items'>
                     {this.props.children}
                 </SplitItem>
             </Split>

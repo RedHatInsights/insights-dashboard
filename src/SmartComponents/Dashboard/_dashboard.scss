@@ -1,0 +1,46 @@
+@import '~@red-hat-insights/insights-frontend-components/Utilities/_variables';
+@import '~@red-hat-insights/insights-frontend-components/Utilities/_mixins';
+
+.card-gauge .gauge-with-legend{
+    justify-content: center;
+
+    div:nth-of-type(2) {
+        display: flex;
+        align-items: center;
+    }
+    .gauge-with-legend__items {
+        strong {
+            @include rem('margin-right', 5px);
+            font-weight: 500;
+        }
+
+        span { 
+            @include rem('font-size', 14px);
+        }
+    }
+    .link--view-all { 
+        @include rem('margin-top', 5px);
+        @include rem('font-size', 14px);
+        i {
+            @include rem('margin-left', 5px);
+            @include rem('font-size', 12px);
+        }
+    }
+
+    .li-emphasis {
+        @include rem('margin-bottom', 5px);
+        strong { @include rem('font-size', 22px); }
+    }
+}
+
+.block { display: block; }
+
+
+// Temporary, move to components later
+.ins-c-gauge {
+    .c3-target text {
+        font-size: 25px !important;
+        font-weight: 500;
+        margin-top: 10px;
+    }
+}

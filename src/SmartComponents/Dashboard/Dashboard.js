@@ -4,6 +4,8 @@ import { Card, CardHeader, CardBody, Grid, GridItem } from '@patternfly/react-co
 import { Section } from '@red-hat-insights/insights-frontend-components';
 import asyncComponent from '../../Utilities/asyncComponent';
 
+import './_dashboard.scss';
+
 const GaugeSection = asyncComponent(() => import ('../../PresentationalComponents/GaugeSection/GaugeSection.js'));
 
 /**
@@ -20,90 +22,125 @@ class Dashboard extends Component {
             <Section type='content'>
                 <Grid gutter='md' sm={6} lg={4}>
                     <GridItem>
-                        <Card>
+                        <Card className='card-gauge'>
                             <CardHeader>Advisor</CardHeader>
                             <CardBody>
                                 <GaugeSection label='advisor' value={75} identifier='advisor-gauge'>
                                     <ul>
-                                        <li>10 New</li>
-                                        <li>7 Critical</li>
-                                        <li>3 Warning</li>
-                                        <li>View All</li>
+                                        <li className='li-emphasis'>
+                                            <strong>10</strong>
+                                            <span>New</span>
+                                        </li>
+                                        <li>
+                                            <strong>7</strong>
+                                            <span>Critical</span>
+                                        </li>
+                                        <li>
+                                            <strong>3</strong>
+                                            <span>Warning</span>
+                                        </li>
+                                        <li className='link--view-all'>
+                                            <a>
+                                                View All
+                                                <i className='fas fa-external-link-alt'/>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </GaugeSection>
                             </CardBody>
                         </Card>
                     </GridItem>
                     <GridItem>
-                        <Card>
-                            <CardHeader>Security</CardHeader>
-                            <CardBody>
-                                <GaugeSection label='security' value={15} identifier='security-gauge'>
-                                    <ul>
-                                        <li>10 New</li>
-                                        <li>7 Critical</li>
-                                        <li>3 Warning</li>
-                                        <li>View All</li>
-                                    </ul>
-                                </GaugeSection>
-                            </CardBody>
-                        </Card>
-                    </GridItem>
-                    <GridItem>
-                        <Card>
+                        <Card className='card-gauge'>
                             <CardHeader>Compliance</CardHeader>
                             <CardBody>
-                                <GaugeSection label='compliance' value={85} identifier='compliance-gauge'>
+                                <GaugeSection label='compliance' value={100} identifier='compliance-gauge'>
                                     <ul>
-                                        <li>10 New</li>
-                                        <li>7 Critical</li>
-                                        <li>3 Warning</li>
-                                        <li>View All</li>
+                                        <li className='li-emphasis'>
+                                            <strong className='block'>0</strong>
+                                            <span>Noncompliant Systems</span>
+                                        </li>
+                                        <li className='link--view-all'>
+                                            <a>
+                                                View All
+                                                <i className='fas fa-external-link-alt'/>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </GaugeSection>
                             </CardBody>
                         </Card>
                     </GridItem>
                     <GridItem>
-                        <Card>
-                            <CardHeader>CMaaS</CardHeader>
+                        <Card className='card-gauge'>
+                            <CardHeader>Subscriptions</CardHeader>
                             <CardBody>
-                                <GaugeSection label='cmaas' value={45} identifier='cmaas-gauge'>
+                                <GaugeSection label='subscriptions' value={25} identifier='subscriptions-gauge'>
                                     <ul>
-                                        <li>10 New</li>
-                                        <li>7 Critical</li>
-                                        <li>3 Warning</li>
-                                        <li>View All</li>
+                                        <li>
+                                            <strong>7</strong>
+                                            <span>Expired Licenses</span>
+                                        </li>
+                                        <li>
+                                            <strong>2</strong>
+                                            <span>Unused Subscriptions</span>
+                                        </li>
+                                        <li className='link--view-all'>
+                                            <a>
+                                                View All
+                                                <i className='fas fa-external-link-alt'/>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </GaugeSection>
                             </CardBody>
                         </Card>
                     </GridItem>
                     <GridItem>
-                        <Card>
-                            <CardHeader>Inventory</CardHeader>
+                        <Card className='card-gauge'>
+                            <CardHeader>Vulnerabilities</CardHeader>
                             <CardBody>
-                                <GaugeSection label='inventory' value={67} identifier='inventory-gauge'>
+                                <GaugeSection label='vulnerabilities' value={67} identifier='vulnerabilities-gauge'>
                                     <ul>
-                                        <li>10 New</li>
-                                        <li>7 Critical</li>
-                                        <li>3 Warning</li>
-                                        <li>View All</li>
+                                        <li className='li-emphasis'>
+                                            <strong>10</strong>
+                                            <span>New</span>
+                                        </li>
+                                        <li>
+                                            <strong>5</strong>
+                                            <span>High Impact</span>
+                                        </li>
+                                        <li>
+                                            <strong>5</strong>
+                                            <span>Medium Impact</span>
+                                        </li>
+                                        <li className='link--view-all'>
+                                            <a>
+                                                View All
+                                                <i className='fas fa-external-link-alt'/>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </GaugeSection>
                             </CardBody>
                         </Card>
                     </GridItem>
                     <GridItem>
-                        <Card>
-                            <CardHeader>Reports</CardHeader>
+                        <Card className='card-gauge'>
+                            <CardHeader>Costing</CardHeader>
                             <CardBody>
-                                <GaugeSection label='reports' value={95} identifier='reports-gauge'>
+                                <GaugeSection label='costing' value={92} identifier='costing-gauge'>
                                     <ul>
-                                        <li>10 New</li>
-                                        <li>7 Critical</li>
-                                        <li>3 Warning</li>
-                                        <li>View All</li>
+                                        <li className='li-emphasis'>
+                                            <strong className='block'>$15,778.00</strong>
+                                            <span>All AWS Accounts</span>
+                                        </li>
+                                        <li className='link--view-all'>
+                                            <a>
+                                                View All
+                                                <i className='fas fa-external-link-alt'/>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </GaugeSection>
                             </CardBody>
