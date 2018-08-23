@@ -7,19 +7,19 @@ import './App.scss';
 
 class App extends Component {
 
-    componentDidMount () {
-        insights.chrome.init();
-        insights.chrome.identifyApp('dashboard');
-        insights.chrome.navigation(buildNavigation());
+    // componentDidMount () {
+    //     insights.chrome.init();
+    //     insights.chrome.identifyApp('dashboard');
+    //     insights.chrome.navigation(buildNavigation());
 
-        this.appNav = insights.chrome.on('APP_NAVIGATION', event => this.props.history.push(`/${event.navId}`));
-        this.buildNav = this.props.history.listen(() => insights.chrome.navigation(buildNavigation()));
-    }
+    //     this.appNav = insights.chrome.on('APP_NAVIGATION', event => this.props.history.push(`/${event.navId}`));
+    //     this.buildNav = this.props.history.listen(() => insights.chrome.navigation(buildNavigation()));
+    // }
 
-    componentWillUnmount () {
-        this.appNav();
-        this.buildNav();
-    }
+    // componentWillUnmount () {
+    //     this.appNav();
+    //     this.buildNav();
+    // }
 
     render () {
         return (
@@ -39,16 +39,16 @@ App.propTypes = {
  */
 export default withRouter (connect()(App));
 
-function buildNavigation () {
-    const currentPath = window.location.pathname.split('/').slice(-1)[0];
-    return [{
-        title: 'Sample App',
-        id: 'samplepage'
-    }, {
-        title: 'Rules',
-        id: 'rules'
-    }].map(item => ({
-        ...item,
-        active: item.id === currentPath
-    }));
-}
+// function buildNavigation () {
+//     const currentPath = window.location.pathname.split('/').slice(-1)[0];
+//     return [{
+//         title: 'Sample App',
+//         id: 'samplepage'
+//     }, {
+//         title: 'Rules',
+//         id: 'rules'
+//     }].map(item => ({
+//         ...item,
+//         active: item.id === currentPath
+//     }));
+// }
