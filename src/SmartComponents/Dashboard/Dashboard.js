@@ -19,43 +19,49 @@ class Dashboard extends Component {
                     <GridItem>
                         <Card>
                             <CardHeader>Advisor</CardHeader>
-                            <CardBody>Chart Stuff</CardBody>
-                            <Gauge label='advisor' value={75} identifier='advisor-gauge'></Gauge>
+                            <CardBody>
+                                <Gauge label='advisor' value={75} identifier='advisor-gauge'></Gauge>
+                            </CardBody>
                         </Card>
                     </GridItem>
                     <GridItem>
                         <Card>
                             <CardHeader>Security</CardHeader>
-                            <CardBody>Chart Stuff</CardBody>
-                            <Gauge label='security' value={15} identifier='security-gauge'></Gauge>
+                            <CardBody>
+                                <Gauge label='security' value={15} identifier='security-gauge'></Gauge>
+                            </CardBody>
                         </Card>
                     </GridItem>
                     <GridItem>
                         <Card>
                             <CardHeader>Compliance</CardHeader>
-                            <CardBody>Chart Stuff</CardBody>
-                            <Gauge label='compliance' value={85} identifier='compliance-gauge'></Gauge>
+                            <CardBody>
+                                <Gauge label='compliance' value={85} identifier='compliance-gauge'></Gauge>
+                            </CardBody>
                         </Card>
                     </GridItem>
                     <GridItem>
                         <Card>
                             <CardHeader>CMaaS</CardHeader>
-                            <CardBody>Chart Stuff</CardBody>
-                            <Gauge label='cmaas' value={45} identifier='cmaas-gauge'></Gauge>
+                            <CardBody>
+                                <Gauge label='cmaas' value={45} identifier='cmaas-gauge'></Gauge>
+                            </CardBody>
                         </Card>
                     </GridItem>
                     <GridItem>
                         <Card>
                             <CardHeader>Inventory</CardHeader>
-                            <CardBody>Chart Stuff</CardBody>
-                            <Gauge label='inventory' value={67} identifier='inventory-gauge'></Gauge>
+                            <CardBody>
+                                <Gauge label='inventory' value={67} identifier='inventory-gauge'></Gauge>
+                            </CardBody>
                         </Card>
                     </GridItem>
                     <GridItem>
                         <Card>
                             <CardHeader>Reports</CardHeader>
-                            <CardBody>Chart Stuff</CardBody>
-                            <Gauge label='reports' value={95} identifier='reports-gauge'></Gauge>
+                            <CardBody>
+                                <Gauge label='reports' value={95} identifier='reports-gauge'></Gauge>
+                            </CardBody>
                         </Card>
                     </GridItem>
                 </Grid>
