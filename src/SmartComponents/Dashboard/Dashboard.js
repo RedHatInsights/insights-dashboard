@@ -40,7 +40,7 @@ class Dashboard extends Component {
                                             <span>Warning</span>
                                         </li>
                                         <li className='link--view-all'>
-                                            <a href={`/insights/platform/actions/`}>
+                                            <a href={`/insights/platform/advisor/`}>
                                                 View All
                                                 <i className='fas fa-external-link-alt'/>
                                             </a>
@@ -61,7 +61,7 @@ class Dashboard extends Component {
                                             <span>Noncompliant Systems</span>
                                         </li>
                                         <li className='link--view-all'>
-                                            <a>
+                                            <a href={`/insights/platform/compliance/`}>
                                                 View All
                                                 <i className='fas fa-external-link-alt'/>
                                             </a>
@@ -86,7 +86,7 @@ class Dashboard extends Component {
                                             <span>Unused Subscriptions</span>
                                         </li>
                                         <li className='link--view-all'>
-                                            <a>
+                                            <a href={`/insights/platform/subscriptions/`}>
                                                 View All
                                                 <i className='fas fa-external-link-alt'/>
                                             </a>
@@ -115,7 +115,7 @@ class Dashboard extends Component {
                                             <span>Medium Impact</span>
                                         </li>
                                         <li className='link--view-all'>
-                                            <a>
+                                            <a href={`/insights/platform/vulnerability/`}>
                                                 View All
                                                 <i className='fas fa-external-link-alt'/>
                                             </a>
@@ -136,7 +136,7 @@ class Dashboard extends Component {
                                             <span>All AWS Accounts</span>
                                         </li>
                                         <li className='link--view-all'>
-                                            <a>
+                                            <a href={`/insights/platform/cmaas/`}>
                                                 View All
                                                 <i className='fas fa-external-link-alt'/>
                                             </a>
