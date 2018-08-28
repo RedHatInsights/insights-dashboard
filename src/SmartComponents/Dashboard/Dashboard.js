@@ -19,7 +19,7 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <Section type='content'>
+            <Section className='pf-l-page__main-section'>
                 <Grid gutter='md' sm={6} lg={4}>
                     <GridItem>
                         <Card className='card-gauge'>
