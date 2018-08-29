@@ -1,0 +1,37 @@
+@import '~@patternfly/patternfly-next/sass-utilities/_all';
+
+$ins-l-gauge-widget--legend--FlexBasis--sm: 140px;
+$ins-l-gauge-widget--legend--FlexBasis: 160px;
+
+// Gauge widget layout
+.ins-l-gauge-widget {
+  --ins-l-gauge-widget--first-child--MarginRight: var(--pf-global--spacer--md);
+
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.ins-l-gauge-widget > *:first-child {
+  flex: none;
+  justify-self: center;
+  margin-right: var(--pf-global--spacer--md);
+
+  @media screen and (min-width: $pf-global--breakpoint--sm) {
+    justify-self: left;
+    width: 200px;
+  }
+
+  svg {
+    margin-top: -16px;
+    margin-left: -25px;
+  }
+}
+
+.ins-l-gauge-widget > *:last-child {
+  flex: 1 0 pf-size-prem($ins-l-gauge-widget--legend--FlexBasis--sm);
+  align-self: center;
+
+  @media screen and (min-width: $pf-global--breakpoint--md) {
+    flex-basis:  pf-size-prem($ins-l-gauge-widget--legend--FlexBasis);
+  }
+}

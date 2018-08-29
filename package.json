@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "private": false,
   "dependencies": {
+    "@patternfly/patternfly-next": "^1.0.32",
     "@patternfly/react-core": "1.7.0",
     "@red-hat-insights/insights-frontend-components": "^3.6.0",
     "classnames": "^2.2.5",
