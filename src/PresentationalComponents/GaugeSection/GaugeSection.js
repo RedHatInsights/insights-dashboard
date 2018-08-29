@@ -3,8 +3,7 @@ import { Gauge } from '@red-hat-insights/insights-frontend-components';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
 
-import './_ins-l-gauge-widget.scss';
-import './_ins-c-gauge.scss';
+import './_ins-c-gauge-widget.scss';
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -18,13 +17,13 @@ class GaugeSection extends Component {
     render () {
         const gaugeSectionClasses = classNames(
             this.props.className,
-            'ins-l-gauge-widget'
+            'ins-c-gauge-widget'
         );
 
         const changeClasses = classNames(
-            'pf-m-' + this.props.change,
-            'pf-m-' + this.props.affect,
-            'ins-c-gauge__metrics-change',
+            'ins-m-' + this.props.change,
+            'ins-m-' + this.props.affect,
+            'ins-c-gauge-widget__metrics-change',
         );
 
         let changeHtml = '';
@@ -36,23 +35,19 @@ class GaugeSection extends Component {
         }
 
         return (
-            // <div className={gaugeSectionClasses}>
-
-            //     <Gauge label={this.props.label} value={this.props.value}
-            //         width={this.props.width} height={this.props.height} identifier={this.props.identifier}></Gauge>
-            //     <div className='ins-gauge__legend'>
-            //         {this.props.children}
-            //     </div>
-            // </div>
             <div className={gaugeSectionClasses} id={this.props.id}>
-                <div className='ins-c-gauge pf-u-text-align-center'>
-                    <div className='ins-c-gauge__metrics'>
-                        <div className='ins-c-gauge__metrics-percentage'>
+                <div className='ins-c-gauge-widget__graph pf-u-text-align-center'>
+                    <div className='ins-c-gauge-widget__metrics'>
+                        <div className='ins-c-gauge-widget__metrics-percentage'>
                             {this.props.value}%
                         </div>
                         <div className={changeClasses}>
-                            <span className='ins-c-gauge__metrics-change-text'>{this.props.changeValue}% {changeHtml}</span>
-                            <span className='ins-c-gauge__metrics-change-timeframe'>Last {this.props.timeframe} days</span>
+                            <span className='ins-c-gauge-widget__metrics-change-text'>
+                                {this.props.changeValue}% {changeHtml}
+                            </span>
+                            <span className='ins-c-gauge-widget__metrics-change-timeframe'>
+                                Last {this.props.timeframe} days
+                            </span>
                         </div>
                     </div>
                     <Gauge
@@ -60,7 +55,7 @@ class GaugeSection extends Component {
                         height={this.props.height} identifier={this.props.identifier} change={this.props.change}>
                     </Gauge>
                 </div>
-                <div className='ins-c-gauge__legend'>
+                <div className='ins-c-gauge-widget__legend'>
                     {this.props.children}
                 </div>
             </div>

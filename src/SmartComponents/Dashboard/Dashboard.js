@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Card, CardHeader, CardBody, Title, Stack, StackItem } from '@patternfly/react-core';
+import { Card, CardHeader, CardBody, Title } from '@patternfly/react-core';
 import { Section } from '@red-hat-insights/insights-frontend-components';
 import asyncComponent from '../../Utilities/asyncComponent';
 
@@ -30,26 +30,26 @@ class Dashboard extends Component {
                         </CardHeader>
                         <CardBody>
                             <GaugeSection label='advisor' width={250} height={250} value={42}
-                                identifier='advisor-gauge' change='increase' affect='positive'
+                                identifier='advisor-gauge' change='increase' affect='negative'
                                 changeValue='4' timeframe='30' className='pf-m-gutter'>
-                                <Stack gutter='sm'>
-                                    <StackItem>
-                                        <dl className='ins-definition-list pf-l-stack__item'>
-                                            <dd className='dd-emphasis'>10</dd>
-                                            <dt>New</dt>
-                                            <dd>7</dd>
-                                            <dt>Critical</dt>
-                                            <dd>3</dd>
-                                            <dt>Warning</dt>
-                                        </dl>
-                                    </StackItem>
-                                    <StackItem>
-                                        <a className='link--view-all pf-l-stack__item' href={`/insights/platform/advisor/`}>
-                                            View All
-                                            <i className='fas fa-external-link-alt'/>
-                                        </a>
-                                    </StackItem>
-                                </Stack>
+                                <ul className='ins-c-gauge-widget__legend-list'>
+                                    <li className='ins-c-gauge-widget__legend-list-item ins-m-special'>
+                                        <span className='ins-c-gauge-widget__legend-list-count ins-m-emphasis'>10</span>
+                                        <span className='ins-c-gauge-widget__legend-list-type ins-m-dark'>New</span>
+                                    </li>
+                                    <li className='ins-c-gauge-widget__legend-list-item'>
+                                        <span className='ins-c-gauge-widget__legend-list-count'>7</span>
+                                        <span className='ins-c-gauge-widget__legend-list-type'>Critical</span>
+                                    </li>
+                                    <li className='ins-c-gauge-widget__legend-list-item'>
+                                        <span className='ins-c-gauge-widget__legend-list-count'>3</span>
+                                        <span className='ins-c-gauge-widget__legend-list-type'>Warning</span>
+                                    </li>
+                                </ul>
+                                <a className='ins-c-icon-inline' href={`/insights/platform/advisor/`}>
+                                    <span>View All</span>
+                                    <i className='fas fa-external-link-alt'/>
+                                </a>
                             </GaugeSection>
                         </CardBody>
                     </Card>
@@ -61,18 +61,17 @@ class Dashboard extends Component {
                             <GaugeSection label='compliance' width={250} height={250}
                                 value={100} identifier='compliance-gauge' change='decrease' affect='positive'
                                 changeValue='11' timeframe='30'>
-                                <ul>
-                                    <li className='li-emphasis'>
-                                        <strong className='block'>0</strong>
-                                        <span>Noncompliant Systems</span>
-                                    </li>
-                                    <li className='link--view-all'>
-                                        <a href={`/insights/platform/compliance/`}>
-                                            View All
-                                            <i className='fas fa-external-link-alt'/>
-                                        </a>
+                                <ul className='ins-c-gauge-widget__legend-list'>
+                                    <li className='ins-c-gauge-widget__legend-list-item'>
+                                        <span className='ins-c-gauge-widget__legend-list-count ins-m-emphasis'>0</span>
+                                        <span className='ins-c-gauge-widget__legend-list-type
+                                            ins-m-dark'>Noncompliant systems</span>
                                     </li>
                                 </ul>
+                                <a className='ins-c-icon-inline' href={`/insights/platform/compliance/`}>
+                                    <span>View All</span>
+                                    <i className='fas fa-external-link-alt'/>
+                                </a>
                             </GaugeSection>
                         </CardBody>
                     </Card>

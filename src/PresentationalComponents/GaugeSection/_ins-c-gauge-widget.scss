@@ -1,0 +1,184 @@
+@import '~@patternfly/patternfly-next/sass-utilities/_all';
+
+// Gauge widget layout
+.ins-c-gauge-widget {
+  --ins-c-gauge--Width:                                       #{pf-size-prem(200px)};
+  --ins-c-gauge--Height:                                      #{pf-size-prem(200px)};
+
+  // Gauge widget first-child
+  --ins-c-gauge-widget__graph--Width:                         #{pf-size-prem(200px)};
+  --ins-c-gauge-widget__graph--MarginRight:                   var(--pf-global--spacer--md);
+
+  // Legend
+  --ins-c-gauge-widget__legend--FlexBasis--sm:                #{pf-size-prem(140px)};
+  --ins-c-gauge-widget__legend--FlexBasis:                    #{pf-size-prem(160px)};
+
+  // Legend list
+  --ins-c-gauge-widget__legend-list--MarginTop:               var(--pf-global--spacer--sm);
+  --ins-c-gauge-widget__legend-list--MarginBottom:            var(--pf-global--spacer--sm);
+
+  // Count
+  --ins-c-gauge-widget__legend-list-count--Color:             var(--pf-global--Color--100);
+  --ins-c-gauge-widget__legend-list-count--MarginRight:       var(--pf-global--spacer--sm);
+  --ins-c-gauge-widget__legend-list-count--FlexBasis:         auto;
+
+  // Legend items
+  --ins-c-gauge-widget__legend-item--MarginTop:               var(--pf-global--spacer--md);
+
+  // Percentage
+  --ins-c-gauge-widget__metrics-percentage:                   var(--pf-global--FontSize--4xl);
+
+  // Change items
+  --ins-c-gauge-widget__metrics-change-text--MarginRight:     var(--pf-global--spacer--sm);
+
+  // Timeframe
+  --ins-c-gauge-widget__metrics-change-timeframe--Color:      #{$pf-color-black-500};
+
+
+
+  // ==================================================================
+  // Modifiers
+  // ==================================================================
+
+  // Affect - positive
+  --ins-c-guage-widget__metrics-change--m-positive:           var(--pf-global--success-color--100);
+
+  // Affect - negative
+  --ins-c-guage-widget__metrics-change--m-negative:           var(--pf-global--danger-color--100);
+
+  // Legend - emphasis
+  --ins-c-gauge-widget__legend--m-emphasis--FontSize:         var(--pf-global--FontSize--2xl);
+
+  // Legend - dark text
+  --ins-c-gauge-widget__legend--m-dark--Color:                #{$pf-color-black-500};
+
+  // Legend - list item padding
+  --ins-c-gauge-widget__legend-list-item--m-special--MarginBottom: var(--pf-global--spacer--md);
+
+  // Base styling
+  display: flex;
+  flex-flow: row wrap;
+
+  // @mobile only
+  @media screen and (max-width: $pf-global--breakpoint--sm) {
+    justify-content: center;
+  }
+
+  @media screen and (min-width: $pf-global--breakpoint--lg) {
+    flex-wrap: nowrap;
+  }
+}
+
+// Graph container
+.ins-c-gauge-widget__graph {
+  display: grid;
+  flex: none;
+  justify-self: center;
+  margin-right: var(--ins-c-gauge-widget__graph--MarginRight);
+
+  // @desktop
+  @media screen and (min-width: $pf-global--breakpoint--sm) {
+    justify-self: left;
+    width: var(--ins-c-gauge-widget__graph--Width);
+  }
+
+  // not sure why gauge container is larger than the gauge itself,
+  // would like to figure that out
+  svg {
+    margin-top: -16px;
+    margin-left: -25px;
+  }
+}
+
+// Metrics
+.ins-c-gauge-widget__metrics {
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: center;
+
+  // Percentage
+  &-percentage {
+    font-size: var(--ins-c-gauge-widget__metrics-percentage);
+  }
+
+  // Change
+  &-change {
+
+    &-text {
+      margin-right: var(--ins-c-gauge-widget__metrics-change-text--MarginRight);
+    }
+
+    &.ins-m-negative {
+      color: var(--ins-c-guage-widget__metrics-change--m-negative);
+    }
+
+    &.ins-m-positive {
+      color: var(--ins-c-guage-widget__metrics-change--m-positive);
+    }
+  }
+
+  &-timeframe {
+    color: var(--ins-c-gauge-widget__metrics-change-timeframe--Color);
+  }
+}
+
+// Legend
+.ins-c-gauge-widget__legend {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 0 var(--ins-c-gauge-widget__legend--FlexBasis--sm);
+  align-self: center;
+
+  @media screen and (min-width: $pf-global--breakpoint--md) {
+    flex-basis:  var(--ins-c-gauge-widget__legend--FlexBasis);
+  }
+
+  > * + * {
+    margin-top: var(--ins-c-gauge-widget__legend-item--MarginTop);
+  }
+
+  // Modifier - emphasis, large text
+  .ins-m-emphasis {
+    font-size: var(--ins-c-gauge-widget__legend--m-emphasis--FontSize);
+  }
+
+  // Modifier - dark text
+  .ins-m-dark {
+    color: var(--ins-c-gauge-widget__legend--m-dark--Color);
+  }
+}
+
+// Legend ul
+.ins-c-gauge-widget__legend-list {
+
+  // Li
+  &-item {
+    display: flex;
+    align-items: baseline;
+    margin-top: var(--ins-c-gauge-widget__legend-list--MarginTop);
+    margin-bottom: var(--ins-c-gauge-widget__legend-list--MarginBottom);
+  }
+
+  // count
+  &-count {
+    margin-right: var(--ins-c-gauge-widget__legend-list-count--MarginRight);
+  }
+
+  // type
+  &-type {
+    color: var(--ins-c-gauge-widget__legend-list-type--Color);
+  }
+
+  // special cell, add bottom separation
+  .ins-m-special {
+    margin-bottom: var(--ins-c-gauge-widget__legend-list-item--m-special--MarginBottom);
+  }  
+}
+
+// Donut - move this to the component
+.ins-c-gauge {
+  grid-area: 1 / 1;
+  width: var(--ins-c-gauge--Width);
+  height: var(--ins-c-gauge--Height);
+  overflow: hidden;
+}
