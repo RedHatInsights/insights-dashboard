@@ -21,7 +21,7 @@ class Dashboard extends Component {
         return (
             <React.Fragment>
                 <Section className='pf-l-page__main-section pf-m-dark'>
-                    <Title className="pf-u-mt-0 pf-u-mb-0" size={'2xl'}>Health of Your Infrastructure</Title>
+                    <Title className="pf-u-mt-0 pf-u-mb-0" size={'2xl'}>Health of Your Infrastructure test</Title>
                 </Section>
                 <Section className='pf-l-page__main-section ins-l-dashboard pf-m-dark'>
                     <Card className='pf-m-dark'>

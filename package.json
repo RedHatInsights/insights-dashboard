@@ -8,7 +8,9 @@
     "@red-hat-insights/insights-frontend-components": "^3.6.0",
     "classnames": "^2.2.5",
     "create-react-class": "^15.6.3",
-    "eslint-loader": "^2.1.0"
+    "eslint-config-standard-jsx": "^6.0.2",
+    "eslint-loader": "^2.1.0",
+    "installing": "^1.0.0"
   },
   "sassIncludes": {
     "patternfly": "node_modules/patternfly/dist/sass",
@@ -55,7 +57,6 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
     "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-react": "^7.9.1",
     "file-loader": "^1.1.11",
     "glob": "^7.1.2",

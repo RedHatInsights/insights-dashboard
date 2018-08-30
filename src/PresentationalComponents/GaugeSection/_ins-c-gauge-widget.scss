@@ -1,4 +1,4 @@
-@import '~@patternfly/patternfly-next/sass-utilities/_all';
+@import '~@patternfly/patternfly-next/sass-utilities/all';
 
 // Gauge widget layout
 .ins-c-gauge-widget {
@@ -115,11 +115,12 @@
     &.ins-m-positive {
       color: var(--ins-c-guage-widget__metrics-change--m-positive);
     }
+
+    &-timeframe {
+      color: var(--ins-c-gauge-widget__metrics-change-timeframe--Color);
+    }
   }
 
-  &-timeframe {
-    color: var(--ins-c-gauge-widget__metrics-change-timeframe--Color);
-  }
 }
 
 // Legend
