@@ -21,9 +21,9 @@ class GaugeSection extends Component {
         );
 
         const changeClasses = classNames(
-            'ins-m-' + this.props.change,
-            'ins-m-' + this.props.affect,
             'ins-c-gauge-widget__metrics-change',
+            'ins-m-' + this.props.change,
+            'ins-m-' + this.props.changeAffect
         );
 
         let changeHtml = '';
@@ -52,7 +52,8 @@ class GaugeSection extends Component {
                     </div>
                     <Gauge
                         label={this.props.label} value={this.props.value} width={this.props.width}
-                        height={this.props.height} identifier={this.props.identifier} change={this.props.change}>
+                        gaugeFullCondition={this.props.gaugeFullCondition} height={this.props.height}
+                        identifier={this.props.identifier} change={this.props.change}>
                     </Gauge>
                 </div>
                 <div className='ins-c-gauge-widget__legend'>
@@ -76,6 +77,7 @@ GaugeSection.propTypes = {
     width: propTypes.number,
     change: propTypes.string,
     changeValue: propTypes.string,
-    affect: propTypes.string,
+    changeAffect: propTypes.string,
+    gaugeFullCondition: propTypes.string,
     timeframe: propTypes.string
 };

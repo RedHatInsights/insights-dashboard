@@ -2,6 +2,7 @@
 @import '~@red-hat-insights/insights-frontend-components/Utilities/_mixins';
 @import '~@patternfly/patternfly-next/sass-utilities/all';
 @import '~@patternfly/patternfly-next/utilities/Alignment/styles.scss';
+@import '~@patternfly/patternfly-next/utilities/Flex/styles.scss';
 
 // open an issue for this
 .pf-u-sr-only {
@@ -10,55 +11,18 @@
 
 // Dashboard
 .ins-l-dashboard {
-    $ins-l-dashboard--Min--sm: 320px;
-    $ins-l-dashboard--Min--md: 360px;
-    $ins-l-dashboard--Min--xl: 420px;
+    --ins-l-dashboard--Min--sm: #{pf-size-prem(320px)};
+    --ins-l-dashboard--Min--md: #{pf-size-prem(376px)};
+    --ins-l-dashboard--Min--xl: #{pf-size-prem(420px)};
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(pf-size-prem($ins-l-dashboard--Min--sm), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--ins-l-dashboard--Min--sm), auto));
 
     @media screen and (min-width: $pf-global--breakpoint--md) {
-      grid-template-columns: repeat(auto-fit, minmax(pf-size-prem($ins-l-dashboard--Min--md), 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(var(--ins-l-dashboard--Min--md), auto));
     }
 
     @media screen and (min-width: $pf-global--breakpoint--xl) {
-      grid-template-columns: repeat(auto-fit, minmax(pf-size-prem($ins-l-dashboard--Min--xl), 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(var(--ins-l-dashboard--Min--xl), auto));
     }
-
-    &:first-child {}
 }
-
-// .card-gauge .gauge-with-legend{
-//     justify-content: center;
-
-//     div:nth-of-type(2) {
-//         display: flex;
-//         align-items: center;
-//     }
-//     .gauge-with-legend__items {
-//         strong {
-//             @include rem('margin-right', 5px);
-//             font-weight: 500;
-//         }
-
-//         span { 
-//             @include rem('font-size', 14px);
-//         }
-//     }
-//     .link--view-all { 
-//         @include rem('margin-top', 5px);
-//         @include rem('font-size', 14px);
-//         i {
-//             @include rem('margin-left', 5px);
-//             @include rem('font-size', 12px);
-//         }
-//     }
-
-//     .li-emphasis {
-//         @include rem('margin-bottom', 5px);
-//         strong { @include rem('font-size', 22px); }
-//     }
-// }
-
-// .block { display: block; }
-
