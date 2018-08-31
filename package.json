@@ -3,8 +3,8 @@
   "version": "0.2.0",
   "private": false,
   "dependencies": {
-    "@patternfly/react-core": "1.7.0",
-    "@red-hat-insights/insights-frontend-components": "^3.6.0",
+    "@patternfly/react-core": "1.11.0",
+    "@red-hat-insights/insights-frontend-components": "^3.8.0",
     "classnames": "^2.2.5",
     "create-react-class": "^15.6.3",
     "eslint-loader": "^2.1.0"
