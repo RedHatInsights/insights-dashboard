@@ -12,10 +12,10 @@ import './_ins-c-gauge-widget.scss';
  * https://reactjs.org/docs/components-and-props.html
  * https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43
  */
-class GaugeSection extends Component {
+class GaugeWidget extends Component {
 
     render () {
-        const gaugeSectionClasses = classNames(
+        const gaugeWidgetClasses = classNames(
             this.props.className,
             'ins-c-gauge-widget'
         );
@@ -35,7 +35,7 @@ class GaugeSection extends Component {
         }
 
         return (
-            <div className={gaugeSectionClasses} id={this.props.id}>
+            <div className={gaugeWidgetClasses} id={this.props.id}>
                 <div className='ins-c-gauge-widget__graph pf-u-text-align-center'>
                     <div className='ins-c-gauge-widget__metrics'>
                         <div className='ins-c-gauge-widget__metrics-percentage'>
@@ -64,9 +64,9 @@ class GaugeSection extends Component {
     }
 }
 
-export default GaugeSection;
+export default GaugeWidget;
 
-GaugeSection.propTypes = {
+GaugeWidget.propTypes = {
     children: propTypes.any.isRequired,
     className: propTypes.string,
     id: propTypes.string,

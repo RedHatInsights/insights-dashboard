@@ -6,7 +6,7 @@ import asyncComponent from '../../Utilities/asyncComponent';
 
 import './_dashboard.scss';
 
-const GaugeSection = asyncComponent(() => import ('../../PresentationalComponents/GaugeSection/GaugeSection.js'));
+const GaugeWidget = asyncComponent(() => import ('../../PresentationalComponents/GaugeWidget/GaugeWidget.js'));
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -29,7 +29,7 @@ class Dashboard extends Component {
                             <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Configuration Assessments</Title>
                         </CardHeader>
                         <CardBody>
-                            <GaugeSection label='advisor' width={250} height={250} value={42}
+                            <GaugeWidget label='advisor' width={250} height={250} value={42}
                                 identifier='advisor-gauge' change='increase' changeAffect='negative' gaugeFullCondition='negative'
                                 changeValue='4' timeframe='30' className='pf-m-gutter'>
                                 <ul className='ins-c-gauge-widget__legend-list'>
@@ -50,7 +50,7 @@ class Dashboard extends Component {
                                     <span>View All</span>
                                     <i className='fas fa-external-link-alt'/>
                                 </a>
-                            </GaugeSection>
+                            </GaugeWidget>
                         </CardBody>
                     </Card>
                     <Card className='card-gauge pf-m-dark'>
@@ -58,7 +58,7 @@ class Dashboard extends Component {
                             <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Compliance</Title>
                         </CardHeader>
                         <CardBody>
-                            <GaugeSection label='compliance' width={250} height={250}
+                            <GaugeWidget label='compliance' width={250} height={250}
                                 value={100} identifier='compliance-gauge' change='increase' changeAffect='positive'
                                 gaugeFullCondition='positive' changeValue='11' timeframe='30'>
                                 <ul className='ins-c-gauge-widget__legend-list'>
@@ -72,7 +72,7 @@ class Dashboard extends Component {
                                     <span>View All</span>
                                     <i className='fas fa-external-link-alt'/>
                                 </a>
-                            </GaugeSection>
+                            </GaugeWidget>
                         </CardBody>
                     </Card>
                     <Card className='card-gauge pf-m-dark'>
@@ -80,7 +80,7 @@ class Dashboard extends Component {
                             <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Subscriptions</Title>
                         </CardHeader>
                         <CardBody>
-                            <GaugeSection label='subscriptions' width={250} height={250}
+                            <GaugeWidget label='subscriptions' width={250} height={250}
                                 value={25} identifier='subscriptions-gauge' change='decrease' changeAffect='positive'
                                 gaugeFullCondition='negative' changeValue='15' timeframe='30'>
                                 <ul className='ins-c-gauge-widget__legend-list'>
@@ -97,7 +97,7 @@ class Dashboard extends Component {
                                     <span>View All</span>
                                     <i className='fas fa-external-link-alt'/>
                                 </a>
-                            </GaugeSection>
+                            </GaugeWidget>
                         </CardBody>
                     </Card>
                     <Card className='card-gauge pf-m-dark'>
@@ -105,7 +105,7 @@ class Dashboard extends Component {
                             <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Vulnerabilities</Title>
                         </CardHeader>
                         <CardBody>
-                            <GaugeSection label='vulnerabilities' width={250} height={250}
+                            <GaugeWidget label='vulnerabilities' width={250} height={250}
                                 value={67} identifier='vulnerabilities-gauge' change='increase'
                                 changeAffect='negative' gaugeFullCondition='negative'
                                 changeValue='23' timeframe='30'>
@@ -127,7 +127,7 @@ class Dashboard extends Component {
                                     <span>View All</span>
                                     <i className='fas fa-external-link-alt'/>
                                 </a>
-                            </GaugeSection>
+                            </GaugeWidget>
                         </CardBody>
                     </Card>
                     <Card className='card-gauge pf-m-dark'>
@@ -135,7 +135,7 @@ class Dashboard extends Component {
                             <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Costing</Title>
                         </CardHeader>
                         <CardBody>
-                            <GaugeSection label='costing' width={250} height={250} value={92}
+                            <GaugeWidget label='costing' width={250} height={250} value={92}
                                 identifier='costing-gauge' gaugeFullCondition='positive'
                                 change='increase' changeAffect='positive' changeValue='25' timeframe='30'>
                                 <ul className='ins-c-gauge-widget__legend-list'>
@@ -148,7 +148,7 @@ class Dashboard extends Component {
                                     <span>View All</span>
                                     <i className='fas fa-external-link-alt'/>
                                 </a>
-                            </GaugeSection>
+                            </GaugeWidget>
                         </CardBody>
                     </Card>
                 </Section>
