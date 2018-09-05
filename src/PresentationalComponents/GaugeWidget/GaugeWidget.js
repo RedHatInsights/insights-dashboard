@@ -15,6 +15,8 @@ import './_ins-c-gauge-widget.scss';
 class GaugeWidget extends Component {
 
     render () {
+        let effect = this.props.negative ? 'ins-m-negative' : '';
+
         const gaugeWidgetClasses = classNames(
             this.props.className,
             'ins-c-gauge-widget'
@@ -22,17 +24,10 @@ class GaugeWidget extends Component {
 
         const changeClasses = classNames(
             'ins-c-gauge-widget__metrics-change',
-            'ins-m-' + this.props.change,
-            'ins-m-' + this.props.changeAffect
+            effect
         );
 
-        let changeHtml = '';
-
-        if (this.props.change === 'increase') {
-            changeHtml = <i className='fas fa-caret-up'></i>;
-        } else if (this.props.change === 'decrease') {
-            changeHtml = <i className='fas fa-caret-down'></i>;
-        }
+        let changeIndicator = this.props.decrease ? 'down' : 'up';
 
         return (
             <div className={gaugeWidgetClasses} id={this.props.id}>
@@ -43,7 +38,7 @@ class GaugeWidget extends Component {
                         </div>
                         <div className={changeClasses}>
                             <span className='ins-c-gauge-widget__metrics-change-text'>
-                                {this.props.changeValue}% {changeHtml}
+                                {this.props.changeValue}% <i className={`fas fa-caret-${changeIndicator}`}></i>
                             </span>
                             <span className='ins-c-gauge-widget__metrics-change-timeframe'>
                                 Last {this.props.timeframe} days
@@ -52,8 +47,8 @@ class GaugeWidget extends Component {
                     </div>
                     <Gauge
                         label={this.props.label} value={this.props.value} width={this.props.width}
-                        gaugeFullCondition={this.props.gaugeFullCondition} height={this.props.height}
-                        identifier={this.props.identifier} change={this.props.change}>
+                        flipFullColors={this.props.flipFullColors} height={this.props.height}
+                        identifier={this.props.identifier}>
                     </Gauge>
                 </div>
                 <div className='ins-c-gauge-widget__legend'>
@@ -75,9 +70,9 @@ GaugeWidget.propTypes = {
     label: propTypes.string,
     value: propTypes.number,
     width: propTypes.number,
-    change: propTypes.string,
+    negative: propTypes.bool,
     changeValue: propTypes.string,
-    changeAffect: propTypes.string,
-    gaugeFullCondition: propTypes.string,
+    decrease: propTypes.bool,
+    flipFullColors: propTypes.bool,
     timeframe: propTypes.string
 };

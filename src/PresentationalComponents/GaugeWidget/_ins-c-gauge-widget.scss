@@ -112,15 +112,12 @@
 
 // Change
 .ins-c-gauge-widget__metrics-change {
+  // Positive change
+  color: var(--ins-c-guage-widget__metrics-change--m-positive);
 
   // Negative change
   &.ins-m-negative {
     color: var(--ins-c-guage-widget__metrics-change--m-negative);
-  }
-
-  // Positive change
-  &.ins-m-positive {
-    color: var(--ins-c-guage-widget__metrics-change--m-positive);
   }
 }
 
