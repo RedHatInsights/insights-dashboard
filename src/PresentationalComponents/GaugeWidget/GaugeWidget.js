@@ -15,7 +15,12 @@ import './_ins-c-gauge-widget.scss';
 class GaugeWidget extends Component {
 
     render () {
+        // set the change to positive by default, unless defined as negative
+        // effect sets color on metrics, eg. negative = red, otherwise default = green
         let effect = this.props.negative ? 'ins-m-negative' : '';
+        // set change arrow icon set to increase by default, unless defined as decrease
+        // changeIndicator sets icon to `up` or `down`, eg. default = up, decrease = down
+        let changeIndicator = this.props.decrease ? 'down' : 'up';
 
         const gaugeWidgetClasses = classNames(
             this.props.className,
@@ -27,7 +32,6 @@ class GaugeWidget extends Component {
             effect
         );
 
-        let changeIndicator = this.props.decrease ? 'down' : 'up';
 
         return (
             <div className={gaugeWidgetClasses} id={this.props.id}>
