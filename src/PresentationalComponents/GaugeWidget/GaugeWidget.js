@@ -32,7 +32,6 @@ class GaugeWidget extends Component {
             effect
         );
 
-
         return (
             <div className={gaugeWidgetClasses} id={this.props.id}>
                 <div className='ins-c-gauge-widget__graph pf-u-text-align-center'>
