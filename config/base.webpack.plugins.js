@@ -22,7 +22,7 @@ plugins.push(WriteFileWebpackPlugin);
  * @type {var}
  */
 const HtmlWebpackPlugin = new (require('html-webpack-plugin'))({
-    title: 'My App',
+    title: 'Insights Dashboard',
     filename: 'index.html',
     template: path.resolve(__dirname, '../src/index.html')
 });
@@ -81,5 +81,13 @@ const CopyFilesWebpackPlugin = new (require('copy-webpack-plugin'))([
     { from: path.resolve(__dirname, '../static/images'), to: 'images' }
 ]);
 plugins.push(CopyFilesWebpackPlugin);
+
+/**
+ * sets release to insights
+ */
+const Release = new webpack.DefinePlugin({
+    RELEASE: JSON.stringify('insights')
+});
+plugins.push(Release);
 
 module.exports = { plugins };

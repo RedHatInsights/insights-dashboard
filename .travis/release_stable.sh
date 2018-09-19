@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
+npm run verify
 git clone ${REPO}.git
 cd ${REPO_DIR}
 cp Jenkinsfile ../dist/Jenkinsfile

@@ -7,9 +7,7 @@ node_js:
 install:
 - npm ci
 script:
-- npm run travis:verify
-after_success:
-- .travis/after_success.sh
+- .travis/deploy.sh
 env:
   global:
   - REPO="git@github.com:RedHatInsights/insights-dashboard-build"
