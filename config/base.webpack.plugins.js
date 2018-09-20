@@ -82,5 +82,4 @@ const CopyFilesWebpackPlugin = new (require('copy-webpack-plugin'))([
 ]);
 plugins.push(CopyFilesWebpackPlugin);
 
-
 module.exports = { plugins };
