@@ -6,6 +6,8 @@ const config = require('./webpack.common.js');
 const history = require('connect-history-api-fallback');
 const convert = require('koa-connect');
 
+webpackConfig.output.publicPath = '/insightsbeta/platform/dashboard/';
+
 webpackConfig.serve = {
     content: config.paths.public,
     dev: {
