@@ -2,6 +2,8 @@
 /* eslint-disable space-unary-ops */
 
 const { plugins } = require('./base.webpack.plugins');
+const path = require('path');
+const webpack = require('webpack');
 
 /**
  * sets release to insights

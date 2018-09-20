@@ -17,5 +17,5 @@ webpackConfig.serve = {
 
 module.exports = _.merge({},
     webpackConfig,
-    require('./dev.webpack.plugins.js')
+    require('./beta.webpack.plugins.js')
 );
