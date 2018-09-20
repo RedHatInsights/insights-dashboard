@@ -1,4 +1,4 @@
-/* global require, module */
+/* global require, module, __dirname */
 /* eslint-disable space-unary-ops */
 
 const { plugins } = require('./base.webpack.plugins');
