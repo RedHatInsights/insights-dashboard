@@ -1,7 +1,7 @@
 /* global require, module */
 
 const _ = require('lodash');
-const webpackConfig = require('./base.webpack.config');
+const webpackConfig = _.cloneDeep(require('./base.webpack.config'));
 const config = require('./webpack.common.js');
 const history = require('connect-history-api-fallback');
 const convert = require('koa-connect');
