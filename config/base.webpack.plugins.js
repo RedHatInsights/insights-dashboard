@@ -82,12 +82,5 @@ const CopyFilesWebpackPlugin = new (require('copy-webpack-plugin'))([
 ]);
 plugins.push(CopyFilesWebpackPlugin);
 
-/**
- * sets release to insights
- */
-const Release = new webpack.DefinePlugin({
-    RELEASE: JSON.stringify('insights')
-});
-plugins.push(Release);
 
 module.exports = { plugins };
