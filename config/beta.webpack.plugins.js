@@ -6,7 +6,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 /**
- * sets release to insights
+ * sets release to insightsbeta
  */
 const Release = new webpack.DefinePlugin({
     RELEASE: JSON.stringify('insightsbeta')

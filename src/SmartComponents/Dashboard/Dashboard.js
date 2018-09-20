@@ -8,6 +8,11 @@ import './_dashboard.scss';
 
 const GaugeWidget = asyncComponent(() => import ('../../PresentationalComponents/GaugeWidget/GaugeWidget.js'));
 
+// makes eslint exception for webpack variable RELEASE
+/*global RELEASE:true*/
+/*eslint no-undef: "error"*/
+const release = RELEASE;
+
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
  * Smart components are usually classes.
@@ -46,7 +51,7 @@ class Dashboard extends Component {
                                         <span className='ins-c-gauge-widget__legend-list-type'>Warning</span>
                                     </li>
                                 </ul>
-                                <a className='ins-c-icon-inline' href={`/insights/platform/advisor/`}>
+                                <a className='ins-c-icon-inline' href={'/' + release + 'insights/platform/advisor/'}>
                                     <span>View All</span>
                                     <i className='fas fa-external-link-alt'/>
                                 </a>
