@@ -7,7 +7,7 @@ const webpack = require('webpack');
  * sets release to insightsbeta
  */
 const Release = new webpack.DefinePlugin({
-    RELEASE: JSON.stringify('insightsbeta')
+    RELEASE: JSON.stringify('insights')
 });
 plugins.push(Release);
 
