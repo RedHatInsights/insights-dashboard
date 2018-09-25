@@ -26,3 +26,7 @@
       grid-template-columns: repeat(auto-fit, minmax(var(--ins-l-dashboard--Min--xl), auto));
     }
 }
+
+// .page__dashboard.pf-l-page__main .pf-l-page__main-section:not(:first-child) {
+//   background: var(--pf-global--BackgroundColor--dark-transparent-100);
+// }
