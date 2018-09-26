@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Card, CardHeader, CardBody, Title } from '@patternfly/react-core';
-import { Section } from '@red-hat-insights/insights-frontend-components';
+import { Dark, PageHeader, PageHeaderTitle, Main } from '@red-hat-insights/insights-frontend-components';
 import asyncComponent from '../../Utilities/asyncComponent';
 
 import './_dashboard.scss';
@@ -24,11 +24,11 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <Section className='pf-l-page__main-section pf-m-dark'>
-                    <Title className="pf-u-mt-0 pf-u-mb-0" size={'2xl'}>Health of Your Infrastructure</Title>
-                </Section>
-                <Section className='pf-l-page__main-section ins-l-dashboard pf-m-dark'>
+            <Dark>
+                <PageHeader>
+                    <PageHeaderTitle title='Health of Your Infrastructure'/>
+                </PageHeader>
+                <Main className='ins-l-dashboard'>
                     <Card className='pf-m-dark'>
                         <CardHeader>
                             <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Configuration Assessments</Title>
@@ -154,8 +154,8 @@ class Dashboard extends Component {
                             </GaugeWidget>
                         </CardBody>
                     </Card>
-                </Section>
-            </React.Fragment>
+                </Main>
+            </Dark>
         );
     }
 }
