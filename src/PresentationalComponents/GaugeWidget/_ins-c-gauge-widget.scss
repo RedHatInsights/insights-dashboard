@@ -198,3 +198,22 @@
   height: var(--ins-c-gauge--Height);
   overflow: hidden;
 }
+
+
+// Not entitled
+.ins-c-gauge-widget--disabled {
+
+  .ins-c-gauge .c3-chart-arcs-background {
+    fill: #343435;
+  }
+
+  .ins-c-gauge-widget__metrics {
+    color: #343435;
+  }
+
+  .ins-c-gauge-widget__disabled--legend .pf-l-stack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
