@@ -34,8 +34,8 @@ class Dashboard extends Component {
                             <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Configuration Assessments</Title>
                         </CardHeader>
                         <CardBody>
-                            <GaugeWidget label='advisor' width={250} height={250} value={25}
-                                identifier='advisor-gauge' negative flipFullColors variant='notEntitled'
+                            <GaugeWidget label='advisor' width={250} height={250} value={42}
+                                identifier='advisor-gauge' negative flipFullColors
                                 changeValue='4' timeframe='30' className='pf-m-gutter'>
                                 <ul className='ins-c-gauge-widget__legend-list'>
                                     <li className='ins-c-gauge-widget__legend-list-item ins-m-special'>
@@ -87,7 +87,7 @@ class Dashboard extends Component {
                         <CardBody>
                             <GaugeWidget label='subscriptions' width={250} height={250}
                                 value={25} identifier='subscriptions-gauge' decrease
-                                flipFullColors changeValue='15' timeframe='30'>
+                                flipFullColors changeValue='15' timeframe='30' variant='notEntitled'>
                                 <ul className='ins-c-gauge-widget__legend-list'>
                                     <li className='ins-c-gauge-widget__legend-list-item'>
                                         <span className='ins-c-gauge-widget__legend-list-count'>7</span>
@@ -111,7 +111,7 @@ class Dashboard extends Component {
                         </CardHeader>
                         <CardBody>
                             <GaugeWidget label='vulnerabilities' width={250} height={250}
-                                value={67} identifier='vulnerabilities-gauge'
+                                value={68} identifier='vulnerabilities-gauge'
                                 negative flipFullColors changeValue='23' timeframe='30'>
                                 <ul className='ins-c-gauge-widget__legend-list'>
                                     <li className='ins-c-gauge-widget__legend-list-item ins-m-special'>
