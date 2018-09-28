@@ -47,7 +47,10 @@ class GaugeWidget extends Component {
                         <React.Fragment>
                             <StackItem> { capitalize(this.props.label) } Is not entitled </StackItem>
                             <StackItem> <Button> Start Evaluation </Button> </StackItem>
-                            <StackItem> <Button variant='secondary'> Find out more </Button> </StackItem>
+                            <StackItem> 
+                                <a href={'#'}>
+                                    <span>Find out more</span>
+                                </a> </StackItem>
                         </React.Fragment>
                     );
                     variantType = 'not entitled';
