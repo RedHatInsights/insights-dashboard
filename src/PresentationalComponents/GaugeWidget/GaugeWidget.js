@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Stack, StackItem } from '@patternfly/react-core';
 import { Gauge } from '@red-hat-insights/insights-frontend-components';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
@@ -24,7 +25,8 @@ class GaugeWidget extends Component {
 
         const gaugeWidgetClasses = classNames(
             this.props.className,
-            'ins-c-gauge-widget'
+            'ins-c-gauge-widget',
+            { [`ins-c-gauge-widget--disabled ins-c-gauge-widget-disabled__${this.props.variant}`]: this.props.variant }
         );
 
         const changeClasses = classNames(
@@ -32,33 +34,87 @@ class GaugeWidget extends Component {
             effect
         );
 
-        return (
-            <div className={gaugeWidgetClasses} id={this.props.id}>
-                <div className='ins-c-gauge-widget__graph pf-u-text-align-center'>
-                    <div className='ins-c-gauge-widget__metrics'>
-                        <div className='ins-c-gauge-widget__metrics-percentage'>
-                            {this.props.value}%
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        let variantLegend;
+        let variantType;
+        if (this.props.variant) {
+            switch (this.props.variant) {
+                case 'notEntitled':
+                    variantLegend = (
+                        <React.Fragment>
+                            <StackItem> { capitalize(this.props.label) } Is not entitled </StackItem>
+                            <StackItem> <Button> Start Evaluation </Button> </StackItem>
+                            <StackItem> 
+                                <a href={'#'}>
+                                    <span>Find out more</span>
+                                </a> </StackItem>
+                        </React.Fragment>
+                    );
+                    variantType = 'not entitled';
+                    break;
+                case 'notSetUp':
+                    variantLegend = (
+                        <React.Fragment>
+                            <StackItem> { capitalize(this.props.label) } Is not set up </StackItem>
+                            <StackItem> <Button> Get Started </Button> </StackItem>
+                        </React.Fragment>
+                    );
+                    variantType = 'not set up';
+            }
+        }
+
+        if (this.props.variant) {
+            return (
+                <div className={gaugeWidgetClasses} id={this.props.id} aria-label={ `${this.props.label} is ${variantType}` }>
+                    <div className='ins-c-gauge-widget__graph pf-u-text-align-center'>
+                        <div className='ins-c-gauge-widget__metrics'>
+                            <div className='ins-c-gauge-widget__metrics-percentage'> 0% </div>
                         </div>
-                        <div className={changeClasses}>
-                            <span className='ins-c-gauge-widget__metrics-change-text'>
-                                {this.props.changeValue}% <i className={`fas fa-caret-${changeIndicator}`}></i>
-                            </span>
-                            <span className='ins-c-gauge-widget__metrics-change-timeframe'>
-                                Last {this.props.timeframe} days
-                            </span>
-                        </div>
+                        <Gauge
+                            label={this.props.label} value={0} width={this.props.width}
+                            flipFullColors={this.props.flipFullColors} height={this.props.height}
+                            identifier={this.props.identifier}>
+                        </Gauge>
                     </div>
-                    <Gauge
-                        label={this.props.label} value={this.props.value} width={this.props.width}
-                        flipFullColors={this.props.flipFullColors} height={this.props.height}
-                        identifier={this.props.identifier}>
-                    </Gauge>
+                    <div className='ins-c-gauge-widget__disabled--legend'>
+                        <Stack gutter='sm'>
+                            { variantLegend }
+                        </Stack>
+                    </div>
                 </div>
-                <div className='ins-c-gauge-widget__legend'>
-                    {this.props.children}
+            );
+        } else {
+            return (
+                <div className={gaugeWidgetClasses} id={this.props.id}>
+                    <div className='ins-c-gauge-widget__graph pf-u-text-align-center'>
+                        <div className='ins-c-gauge-widget__metrics'>
+                            <div className='ins-c-gauge-widget__metrics-percentage'>
+                                {this.props.value}%
+                            </div>
+                            <div className={changeClasses}>
+                                <span className='ins-c-gauge-widget__metrics-change-text'>
+                                    {this.props.changeValue}% <i className={`fas fa-caret-${changeIndicator}`}></i>
+                                </span>
+                                <span className='ins-c-gauge-widget__metrics-change-timeframe'>
+                                    Last {this.props.timeframe} days
+                                </span>
+                            </div>
+                        </div>
+                        <Gauge
+                            label={this.props.label} value={this.props.value} width={this.props.width}
+                            flipFullColors={this.props.flipFullColors} height={this.props.height}
+                            identifier={this.props.identifier}>
+                        </Gauge>
+                    </div>
+                    <div className='ins-c-gauge-widget__legend'>
+                        {this.props.children}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 
@@ -77,5 +133,6 @@ GaugeWidget.propTypes = {
     changeValue: propTypes.string,
     decrease: propTypes.bool,
     flipFullColors: propTypes.bool,
-    timeframe: propTypes.string
+    timeframe: propTypes.string,
+    variant: propTypes.oneOf(['notEntitled', 'notSetUp'])
 };

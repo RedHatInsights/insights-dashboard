@@ -65,7 +65,7 @@ class Dashboard extends Component {
                         <CardBody>
                             <GaugeWidget label='compliance' width={250} height={250}
                                 value={100} identifier='compliance-gauge'
-                                changeValue='11' timeframe='30'>
+                                changeValue='11' timeframe='30' variant='notSetUp'>
                                 <ul className='ins-c-gauge-widget__legend-list'>
                                     <li className='ins-c-gauge-widget__legend-list-item pf-u-flex-column'>
                                         <span className='ins-c-gauge-widget__legend-list-count ins-m-emphasis'>0</span>
@@ -87,7 +87,7 @@ class Dashboard extends Component {
                         <CardBody>
                             <GaugeWidget label='subscriptions' width={250} height={250}
                                 value={25} identifier='subscriptions-gauge' decrease
-                                flipFullColors changeValue='15' timeframe='30'>
+                                flipFullColors changeValue='15' timeframe='30' variant='notEntitled'>
                                 <ul className='ins-c-gauge-widget__legend-list'>
                                     <li className='ins-c-gauge-widget__legend-list-item'>
                                         <span className='ins-c-gauge-widget__legend-list-count'>7</span>
@@ -111,7 +111,7 @@ class Dashboard extends Component {
                         </CardHeader>
                         <CardBody>
                             <GaugeWidget label='vulnerabilities' width={250} height={250}
-                                value={67} identifier='vulnerabilities-gauge'
+                                value={68} identifier='vulnerabilities-gauge'
                                 negative flipFullColors changeValue='23' timeframe='30'>
                                 <ul className='ins-c-gauge-widget__legend-list'>
                                     <li className='ins-c-gauge-widget__legend-list-item ins-m-special'>
