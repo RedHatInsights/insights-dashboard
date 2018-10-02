@@ -13,11 +13,12 @@ import classNames from 'classnames';
 const ModalContent = ({ app, variant, className, ...props }) => {
 
     const modalClasses = classNames (
-        'test',
+        'ins-c-modal__content',
         className
     );
 
     switch (variant) {
+        // TODO: Expand these later with more information when provided
         case 'notEntitled':
             return (
                 <p className ={ modalClasses } { ...props }> { app } is not entitled </p>
