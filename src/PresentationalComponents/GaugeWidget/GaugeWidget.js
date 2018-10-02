@@ -20,12 +20,23 @@ class GaugeWidget extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isModalOpen: false
+            isModalOpen: false,
+            variant: this.props.variant
         };
         this.handleModalToggle = this.handleModalToggle.bind(this);
+        this.entitleToggle = this.entitleToggle.bind(this);
     };
 
     handleModalToggle() {
+        this.setState(({ isModalOpen }) => ({
+            isModalOpen: !isModalOpen
+        }));
+    };
+
+    entitleToggle() {
+        this.setState({
+            variant: 'active'
+        });
         this.setState(({ isModalOpen }) => ({
             isModalOpen: !isModalOpen
         }));
@@ -46,7 +57,7 @@ class GaugeWidget extends Component {
         const gaugeWidgetClasses = classNames(
             this.props.className,
             'ins-c-gauge-widget',
-            { [`ins-c-gauge-widget--disabled ins-c-gauge-widget-disabled__${this.props.variant}`]: this.props.variant }
+            { [`ins-c-gauge-widget--disabled ins-c-gauge-widget-disabled__${this.state.variant}`]: this.state.variant }
         );
 
         const changeClasses = classNames(
@@ -68,18 +79,18 @@ class GaugeWidget extends Component {
                     <Button key="cancel" variant="secondary" onClick={this.handleModalToggle}>
                     Cancel
                     </Button>,
-                    <Button key="confirm" variant="primary" onClick={this.handleModalToggle}>
+                    <Button key="confirm" variant="primary" onClick={this.entitleToggle}>
                     Confirm
                     </Button>
                 ]}>
-                <ModalContent variant={this.props.variant} app={this.props.label}/>
+                <ModalContent variant={this.state.variant} app={this.props.label}/>
             </Modal>
         );
 
         let variantLegend;
         let variantType;
-        if (this.props.variant) {
-            switch (this.props.variant) {
+        if (this.state.variant === 'notSetUp' || this.state.variant === 'notEntitled') {
+            switch (this.state.variant) {
                 case 'notEntitled':
                     variantLegend = (
                         <React.Fragment>
@@ -110,7 +121,7 @@ class GaugeWidget extends Component {
             }
         }
 
-        if (this.props.variant) {
+        if (this.state.variant === 'notSetUp' || this.state.variant === 'notEntitled') {
             return (
                 <div className={gaugeWidgetClasses} id={this.props.id} aria-label={ `${this.props.label} is ${variantType}` }>
                     <div className='ins-c-gauge-widget__graph pf-u-text-align-center'>
@@ -178,5 +189,9 @@ GaugeWidget.propTypes = {
     decrease: propTypes.bool,
     flipFullColors: propTypes.bool,
     timeframe: propTypes.string,
-    variant: propTypes.oneOf(['notEntitled', 'notSetUp'])
+    variant: propTypes.oneOf(['active', 'notEntitled', 'notSetUp'])
+};
+
+GaugeWidget.defaultProps = {
+    variant: 'active'
 };

@@ -21,11 +21,11 @@ const ModalContent = ({ app, variant, className, ...props }) => {
         // TODO: Expand these later with more information when provided
         case 'notEntitled':
             return (
-                <p className ={ modalClasses } { ...props }> { app } is not entitled </p>
+                <p className ={ modalClasses } { ...props }> { app } is not entitled. Would you like to active this app? </p>
             );
         case 'notSetUp':
             return (
-                <p className ={ modalClasses } { ...props }> { app } has not been set up </p>
+                <p className ={ modalClasses } { ...props }> { app } has not been set up. Would you like to set up? </p>
             );
     }
 };
