@@ -47,7 +47,7 @@ class GaugeWidget extends Component {
                         <React.Fragment>
                             <StackItem> { capitalize(this.props.label) } Is not entitled </StackItem>
                             <StackItem> <Button> Start Evaluation </Button> </StackItem>
-                            <StackItem> 
+                            <StackItem>
                                 <a href={'#'}>
                                     <span>Find out more</span>
                                 </a> </StackItem>
