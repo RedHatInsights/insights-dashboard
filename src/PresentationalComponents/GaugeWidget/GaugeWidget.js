@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Button, Stack, StackItem } from '@patternfly/react-core';
+import { Button, Stack, StackItem, Modal } from '@patternfly/react-core';
 import { Gauge } from '@red-hat-insights/insights-frontend-components';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
+import asyncComponent from '../../Utilities/asyncComponent';
 
 import './_ins-c-gauge-widget.scss';
+const ModalContent = asyncComponent(() => import ('../Modal/ModalContent.js'));
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -15,7 +17,36 @@ import './_ins-c-gauge-widget.scss';
  */
 class GaugeWidget extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            isModalOpen: false,
+            variant: this.props.variant
+        };
+        this.handleModalToggle = this.handleModalToggle.bind(this);
+        this.entitleToggle = this.entitleToggle.bind(this);
+    };
+
+    handleModalToggle() {
+        this.setState(({ isModalOpen }) => ({
+            isModalOpen: !isModalOpen
+        }));
+    };
+
+    entitleToggle() {
+        this.setState({
+            variant: 'active'
+        });
+        this.setState(({ isModalOpen }) => ({
+            isModalOpen: !isModalOpen
+        }));
+    };
+
     render () {
+
+        // Set the check isModalOpen to false
+        const { isModalOpen } = this.state;
+
         // set the change to positive by default, unless defined as negative
         // effect sets color on metrics, eg. negative = red, otherwise default = green
         let effect = this.props.negative ? 'ins-m-negative' : '';
@@ -26,7 +57,8 @@ class GaugeWidget extends Component {
         const gaugeWidgetClasses = classNames(
             this.props.className,
             'ins-c-gauge-widget',
-            { [`ins-c-gauge-widget--disabled ins-c-gauge-widget-disabled__${this.props.variant}`]: this.props.variant }
+            { [`ins-c-gauge-widget-${this.state.variant}`]: this.state.variant },
+            { [`ins-c-gauge-widget--disabled ins-c-gauge-widget-disabled__${this.state.variant}`]: this.state.variant !== 'active' }
         );
 
         const changeClasses = classNames(
@@ -38,15 +70,36 @@ class GaugeWidget extends Component {
             return str.charAt(0).toUpperCase() + str.slice(1);
         }
 
+        let renderModal = (
+            <Modal
+                isLarge
+                title={capitalize(this.props.label)}
+                isOpen={isModalOpen}
+                onClose={this.handleModalToggle}
+                actions={[
+                    <Button key="cancel" variant="secondary" onClick={this.handleModalToggle}>
+                    Cancel
+                    </Button>,
+                    <Button key="confirm" variant="primary" onClick={this.entitleToggle}>
+                    Confirm
+                    </Button>
+                ]}>
+                <ModalContent variant={this.state.variant} app={this.props.label}/>
+            </Modal>
+        );
+
         let variantLegend;
         let variantType;
-        if (this.props.variant) {
-            switch (this.props.variant) {
+        if (this.state.variant === 'notSetUp' || this.state.variant === 'notEntitled') {
+            switch (this.state.variant) {
                 case 'notEntitled':
                     variantLegend = (
                         <React.Fragment>
                             <StackItem> { capitalize(this.props.label) } Is not entitled </StackItem>
-                            <StackItem> <Button> Start Evaluation </Button> </StackItem>
+                            <StackItem>
+                                <Button onClick={this.handleModalToggle}> Start Evaluation </Button>
+                                { renderModal }
+                            </StackItem>
                             <StackItem>
                                 <a href={'#'}>
                                     <span>Find out more</span>
@@ -56,17 +109,20 @@ class GaugeWidget extends Component {
                     variantType = 'not entitled';
                     break;
                 case 'notSetUp':
+                    variantType = 'not set up';
                     variantLegend = (
                         <React.Fragment>
                             <StackItem> { capitalize(this.props.label) } Is not set up </StackItem>
-                            <StackItem> <Button> Get Started </Button> </StackItem>
+                            <StackItem>
+                                <Button onClick={this.handleModalToggle}> Get Started </Button>
+                                { renderModal }
+                            </StackItem>
                         </React.Fragment>
                     );
-                    variantType = 'not set up';
             }
         }
 
-        if (this.props.variant) {
+        if (this.state.variant === 'notSetUp' || this.state.variant === 'notEntitled') {
             return (
                 <div className={gaugeWidgetClasses} id={this.props.id} aria-label={ `${this.props.label} is ${variantType}` }>
                     <div className='ins-c-gauge-widget__graph pf-u-text-align-center'>
@@ -134,5 +190,9 @@ GaugeWidget.propTypes = {
     decrease: propTypes.bool,
     flipFullColors: propTypes.bool,
     timeframe: propTypes.string,
-    variant: propTypes.oneOf(['notEntitled', 'notSetUp'])
+    variant: propTypes.oneOf(['active', 'notEntitled', 'notSetUp'])
+};
+
+GaugeWidget.defaultProps = {
+    variant: 'active'
 };
