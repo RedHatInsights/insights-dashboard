@@ -44,7 +44,7 @@ class GaugeWidget extends Component {
 
     render () {
 
-        // Set modal close
+        // Set the check isModalOpen to false
         const { isModalOpen } = this.state;
 
         // set the change to positive by default, unless defined as negative
