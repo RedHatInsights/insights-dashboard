@@ -57,7 +57,8 @@ class GaugeWidget extends Component {
         const gaugeWidgetClasses = classNames(
             this.props.className,
             'ins-c-gauge-widget',
-            { [`ins-c-gauge-widget--disabled ins-c-gauge-widget-disabled__${this.state.variant}`]: this.state.variant }
+            { [`ins-c-gauge-widget-${this.state.variant}`]: this.state.variant },
+            { [`ins-c-gauge-widget--disabled ins-c-gauge-widget-disabled__${this.state.variant}`]: this.state.variant !== 'active' }
         );
 
         const changeClasses = classNames(

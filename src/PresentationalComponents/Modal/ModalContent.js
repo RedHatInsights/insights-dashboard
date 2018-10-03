@@ -17,17 +17,14 @@ const ModalContent = ({ app, variant, className, ...props }) => {
         className
     );
 
-    switch (variant) {
-        // TODO: Expand these later with more information when provided
-        case 'notEntitled':
-            return (
-                <p className ={ modalClasses } { ...props }> { app } is not entitled. Would you like to active this app? </p>
-            );
-        case 'notSetUp':
-            return (
-                <p className ={ modalClasses } { ...props }> { app } has not been set up. Would you like to set up? </p>
-            );
+    function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
     }
+
+    return {
+        notEntitled: <p className ={ modalClasses } { ...props }> {capitalize(app)} is not entitled. Would you like to activate? </p>,
+        notSetUp: <p className ={ modalClasses } { ...props }> {capitalize(app)} has not been set up. Would you like to finish setup? </p>
+    } [variant];
 };
 
 export default ModalContent;
