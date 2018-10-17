@@ -12,3 +12,4 @@ env:
   global:
   - REPO="git@github.com:RedHatInsights/insights-dashboard-build"
   - REPO_DIR="insights-dashboard-build"
+  - BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
