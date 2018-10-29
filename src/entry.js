@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import ReducerRegistry from './Utilities/ReducerRegistry';
 import App from './App';
 
-// makes eslint exception for webpack variable RELEASE
+// exposes webpack variable RELEASE
 /*global RELEASE:true*/
 /*eslint no-undef: "error"*/
 
@@ -15,7 +15,7 @@ import App from './App';
  */
 ReactDOM.render(
     <Provider store={ReducerRegistry.getStore()}>
-        <Router basename={'/' + RELEASE + '/platform/dashboard'}>
+        <Router basename={ `/${RELEASE}/platform/advisor` }>
             <App />
         </Router>
     </Provider>,
