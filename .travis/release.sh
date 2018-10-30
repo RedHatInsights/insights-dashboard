@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
-echo $TRAVIS_COMMIT_MESSAGE
+echo '$TRAVIS_COMMIT_MESSAGE'
 npm run verify:beta
 git clone ${REPO}.git
 cd ${REPO_DIR}
