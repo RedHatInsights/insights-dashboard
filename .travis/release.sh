@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
+echo $TRAVIS_COMMIT_MESSAGE
 npm run verify:beta
 git clone ${REPO}.git
 cd ${REPO_DIR}
@@ -11,5 +12,5 @@ git config --global user.name $COMMIT_AUTHOR_USERNAME
 git config --global user.email $COMMIT_AUTHOR_EMAIL
 git remote add travis-build ${REPO}.git
 git add .
-git commit -m ${TRAVIS_COMMIT_MESSAGE}
+git commit -m '$TRAVIS_COMMIT_MESSAGE'
 git push --force --set-upstream travis-build master
