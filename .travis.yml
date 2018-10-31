@@ -7,6 +7,8 @@ node_js:
 install:
 - npm ci
 script:
+- npm run verify
+after_success:
 - .travis/deploy.sh
 env:
   global:
