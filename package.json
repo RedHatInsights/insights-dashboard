@@ -1,6 +1,9 @@
 {
   "name": "insights-dashboard",
   "version": "0.2.0",
+  "insights": {
+    "appname": "dashboard"
+  },
   "private": false,
   "dependencies": {
     "@patternfly/patternfly-next": "^1.0.52",
