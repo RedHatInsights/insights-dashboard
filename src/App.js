@@ -7,6 +7,7 @@ import './App.scss';
 
 class App extends Component {
 
+    // registers dashboard with chrome
     componentDidMount () {
         insights.chrome.init();
         insights.chrome.identifyApp('dashboard');
