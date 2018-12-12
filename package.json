@@ -6,10 +6,10 @@
   },
   "private": false,
   "dependencies": {
-    "@patternfly/patternfly-next": "^1.0.52",
-    "@patternfly/react-core": "1.14.0",
-    "@red-hat-insights/insights-frontend-components": "^3.19.4",
-    "classnames": "^2.2.5",
+    "@patternfly/patternfly-next": "1.0.52",
+    "@patternfly/react-core": "1.39.1",
+    "@red-hat-insights/insights-frontend-components": "3.25.1",
+    "classnames": "2.2.6",
     "create-react-class": "^15.6.3"
   },
   "sassIncludes": {
@@ -34,6 +34,7 @@
     }
   },
   "devDependencies": {
+    "axios": "^0.18.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",
@@ -81,6 +82,7 @@
     "redux": "^3.7.2",
     "redux-promise-middleware": "^5.1.1",
     "sass-loader": "^7.0.1",
+    "seamless-immutable": "^7.1.4",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.21.0",
     "stylelint": "^9.3.0",

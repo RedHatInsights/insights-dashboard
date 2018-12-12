@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardBody, Title } from '@patternfly/react-core';
-import { Dark, PageHeader, PageHeaderTitle, Main } from '@red-hat-insights/insights-frontend-components';
-import asyncComponent from '../../Utilities/asyncComponent';
+import { Dark, PageHeader, PageHeaderTitle, Main, routerParams } from '@red-hat-insights/insights-frontend-components';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import asyncComponent from '../../Utilities/asyncComponent';
+import * as AppActions from '../../AppActions';
 import './_dashboard.scss';
 
+const ComplianceCard = asyncComponent(() => import ('../Cards/ComplianceCard'));
 const GaugeWidget = asyncComponent(() => import ('../../PresentationalComponents/GaugeWidget/GaugeWidget.js'));
 
 // makes eslint exception for webpack variable RELEASE
@@ -21,6 +25,32 @@ const release = RELEASE;
  * https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43
  */
 class Dashboard extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            summary: '',
+            itemsPerPage: 10,
+            page: 1,
+            cards: []
+        };
+        this.setPage = this.setPage.bind(this);
+        this.setPerPage = this.setPerPage.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.fetchRules({ page_size: this.state.itemsPerPage }); // eslint-disable-line camelcase
+    }
+
+    setPage(page) {
+        this.setState(() => ({ page }));
+        this.props.fetchRules({ page, page_size: this.state.itemsPerPage }); // eslint-disable-line camelcase
+    }
+
+    setPerPage(itemsPerPage) {
+        this.setState(() => ({ itemsPerPage }));
+        this.props.fetchRules({ page_size: itemsPerPage  }); // eslint-disable-line camelcase
+    }
 
     render() {
         return (
@@ -58,28 +88,7 @@ class Dashboard extends Component {
                             </GaugeWidget>
                         </CardBody>
                     </Card>
-                    <Card className='card-gauge pf-m-dark'>
-                        <CardHeader>
-                            <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Compliance</Title>
-                        </CardHeader>
-                        <CardBody>
-                            <GaugeWidget label='compliance' width={250} height={250}
-                                value={99} identifier='compliance-gauge'
-                                changeValue='11' timeframe='30' variant='notSetUp'>
-                                <ul className='ins-c-gauge-widget__legend-list'>
-                                    <li className='ins-c-gauge-widget__legend-list-item pf-u-flex-column'>
-                                        <span className='ins-c-gauge-widget__legend-list-count ins-m-emphasis'>0</span>
-                                        <span className='ins-c-gauge-widget__legend-list-type
-                                            ins-m-dark'>Noncompliant systems</span>
-                                    </li>
-                                </ul>
-                                <a className='ins-c-icon-inline' href={`/insights/platform/compliance/`}>
-                                    <span>View All</span>
-                                    <i className='fas fa-external-link-alt'/>
-                                </a>
-                            </GaugeWidget>
-                        </CardBody>
-                    </Card>
+                    <ComplianceCard/>
                     <Card className='card-gauge pf-m-dark'>
                         <CardHeader>
                             <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Subscriptions</Title>
@@ -160,4 +169,22 @@ class Dashboard extends Component {
     }
 }
 
-export default withRouter(Dashboard);
+Dashboard.propTypes = {
+    fetchRules: PropTypes.func
+};
+
+const mapStateToProps = (state, ownProps) => ({
+    rules: state.DashboardStore.rules,
+    rulesFetchStatus: state.DashboardStore.rulesFetchStatus,
+    ...ownProps
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    fetchRules: (url) => AppActions.fetchRules(url),
+    setBreadcrumbs: (obj) => AppActions.setBreadcrumbs(obj)
+}, dispatch);
+
+export default routerParams(connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Dashboard));
