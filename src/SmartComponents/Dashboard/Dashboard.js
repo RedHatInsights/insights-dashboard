@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { Card, CardHeader, CardBody, Title } from '@patternfly/react-core';
-import { Dark, PageHeader, PageHeaderTitle, Main, routerParams } from '@red-hat-insights/insights-frontend-components';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { Dark, PageHeader, PageHeaderTitle, Main } from '@red-hat-insights/insights-frontend-components';
 
 import asyncComponent from '../../Utilities/asyncComponent';
-import * as AppActions from '../../AppActions';
 import './_dashboard.scss';
 
 const ComplianceCard = asyncComponent(() => import ('../Cards/ComplianceCard'));
@@ -25,32 +22,6 @@ const release = RELEASE;
  * https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43
  */
 class Dashboard extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            summary: '',
-            itemsPerPage: 10,
-            page: 1,
-            cards: []
-        };
-        this.setPage = this.setPage.bind(this);
-        this.setPerPage = this.setPerPage.bind(this);
-    }
-
-    componentDidMount() {
-        this.props.fetchRules({ page_size: this.state.itemsPerPage }); // eslint-disable-line camelcase
-    }
-
-    setPage(page) {
-        this.setState(() => ({ page }));
-        this.props.fetchRules({ page, page_size: this.state.itemsPerPage }); // eslint-disable-line camelcase
-    }
-
-    setPerPage(itemsPerPage) {
-        this.setState(() => ({ itemsPerPage }));
-        this.props.fetchRules({ page_size: itemsPerPage  }); // eslint-disable-line camelcase
-    }
 
     render() {
         return (
@@ -169,22 +140,4 @@ class Dashboard extends Component {
     }
 }
 
-Dashboard.propTypes = {
-    fetchRules: PropTypes.func
-};
-
-const mapStateToProps = (state, ownProps) => ({
-    rules: state.DashboardStore.rules,
-    rulesFetchStatus: state.DashboardStore.rulesFetchStatus,
-    ...ownProps
-});
-
-const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchRules: (url) => AppActions.fetchRules(url),
-    setBreadcrumbs: (obj) => AppActions.setBreadcrumbs(obj)
-}, dispatch);
-
-export default routerParams(connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Dashboard));
+export default withRouter(Dashboard);

@@ -12,26 +12,6 @@ const initialState = Immutable({
 
 export const DashboardStore = (state = initialState, action) => {
     switch (action.type) {
-        case `${ActionTypes.RULE_FETCH}_PENDING`:
-            return state.set('ruleFetchStatus', 'pending');
-        case `${ActionTypes.RULE_FETCH}_FULFILLED`:
-            return Immutable.merge(state, {
-                rule: action.payload,
-                ruleFetchStatus: 'fulfilled'
-            });
-        case `${ActionTypes.RULE_FETCH}_REJECTED`:
-            return state.set('ruleFetchStatus', 'rejected');
-
-        case `${ActionTypes.RULES_FETCH}_PENDING`:
-            return state.set('rulesFetchStatus', 'pending');
-        case `${ActionTypes.RULES_FETCH}_FULFILLED`:
-            return Immutable.merge(state, {
-                rules: action.payload,
-                rulesFetchStatus: 'fulfilled'
-            });
-        case `${ActionTypes.RULES_FETCH}_REJECTED`:
-            return state.set('complianceFetchStatus', 'rejected');
-
         case `${ActionTypes.COMPLIANCE_FETCH}_PENDING`:
             return state.set('complianceFetchStatus', 'pending');
         case `${ActionTypes.COMPLIANCE_FETCH}_FULFILLED`:
