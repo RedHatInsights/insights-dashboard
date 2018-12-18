@@ -1,8 +1,8 @@
 @import '~@red-hat-insights/insights-frontend-components/Utilities/_variables';
 @import '~@red-hat-insights/insights-frontend-components/Utilities/_mixins';
 @import '~@patternfly/patternfly-next/sass-utilities/all';
-@import '~@patternfly/patternfly-next/utilities/Alignment/styles.scss';
-@import '~@patternfly/patternfly-next/utilities/Flex/styles.scss';
+@import '~@patternfly/patternfly-next/utilities/Alignment/alignment.scss';
+@import '~@patternfly/patternfly-next/utilities/Flex/flex.scss';
 
 // open an issue for this
 .pf-u-sr-only {

@@ -5,16 +5,8 @@ import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import asyncComponent from '../../Utilities/asyncComponent';
 import * as AppActions from '../../AppActions';
 import './_cards.scss';
-
-const GaugeWidget = asyncComponent(() => import ('../../PresentationalComponents/GaugeWidget/GaugeWidget.js'));
-
-// makes eslint exception for webpack variable RELEASE
-/*global RELEASE:true*/
-/*eslint no-undef: "error"*/
-const release = RELEASE;
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -35,10 +27,6 @@ class ComplianceCard extends Component {
     }
 
     render() {
-        const {
-            complianceFetchStatus,
-            complianceSummary
-        } = this.props;
 
         return (
             <Card className='pf-m-dark'>
@@ -47,36 +35,6 @@ class ComplianceCard extends Component {
                 </CardHeader>
                 <CardBody>
 
-                    { complianceFetchStatus === 'fulfilled' && (
-                        <ul>
-                            { complianceSummary.map((profile, key) => <li> {profile.attributes.name}: {score * 100}% compliance</li> ) }
-                    ) }
-
-                    { complianceFetchStatus === 'pending' && (<Loading /> ) }
-                    
-
-                    // <GaugeWidget label='compliance' width={250} height={250} value={42}
-                    //     identifier='compliance-gauge' negative flipFullColors
-                    //     changeValue='4' timeframe='30' className='pf-m-gutter'>
-                    //     <ul className='ins-c-gauge-widget__legend-list'>
-                    //         <li className='ins-c-gauge-widget__legend-list-item ins-m-special'>
-                    //             <span className='ins-c-gauge-widget__legend-list-count ins-m-emphasis'>10</span>
-                    //             <span className='ins-c-gauge-widget__legend-list-type ins-m-dark'>New</span>
-                    //         </li>
-                    //         <li className='ins-c-gauge-widget__legend-list-item'>
-                    //             <span className='ins-c-gauge-widget__legend-list-count'>7</span>
-                    //             <span className='ins-c-gauge-widget__legend-list-type'>Critical</span>
-                    //         </li>
-                    //         <li className='ins-c-gauge-widget__legend-list-item'>
-                    //             <span className='ins-c-gauge-widget__legend-list-count'>3</span>
-                    //             <span className='ins-c-gauge-widget__legend-list-type'>Warning</span>
-                    //         </li>
-                    //     </ul>
-                    //     <a className='ins-c-icon-inline' href={'/' + release + 'insights/platform/compliance/'}>
-                    //         <span>View All</span>
-                    //         <i className='fas fa-external-link-alt'/>
-                    //     </a>
-                    // </GaugeWidget>
                 </CardBody>
             </Card>
         );
@@ -84,7 +42,9 @@ class ComplianceCard extends Component {
 }
 
 ComplianceCard.propTypes = {
-    fetchCompliance: PropTypes.func
+    fetchCompliance: PropTypes.func,
+    complianceSummary: PropTypes.object,
+    complianceFetchStatus: PropTypes.string
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -96,6 +56,20 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
     fetchCompliance: (url) => AppActions.fetchComplianceSummary(url)
 }, dispatch);
+
+function SummaryItem (props) {
+    const name = props.profile.name;
+    const score = props.profile.score;
+    return (
+        <React.Fragment>
+            <li> {name}: {score * 100}% compliance </li>
+        </React.Fragment>
+    );
+}
+
+SummaryItem.propTypes = {
+    profile: PropTypes.object
+};
 
 export default routerParams(connect(
     mapStateToProps,
