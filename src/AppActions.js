@@ -7,3 +7,8 @@ export const fetchComplianceSummary = (options) => ({
     type: ActionTypes.COMPLIANCE_FETCH,
     payload: fetchData(ActionTypes.COMPLIANCE_FETCH_URL, {}, options)
 });
+
+export const fetchOcpSummary = (options) => ({
+    type: ActionTypes.OCP_SUMMARY_FETCH,
+    payload: fetchData(ActionTypes.OCP_SUMMARY_FETCH_URL, {}, options)
+});

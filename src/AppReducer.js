@@ -4,10 +4,11 @@ import { applyReducerHash } from '@red-hat-insights/insights-frontend-components
 
 // eslint-disable-next-line new-cap
 const initialState = Immutable({
-    rule: {},
-    ruleFetchStatus: '',
-    rules: {},
-    rulesFetchStatus: ''
+    complianceSummary: {},
+    complianceFetchStatus: '',
+    ocpSummary: {},
+    ocpSummaryFetchStatus: ''
+
 });
 
 export const DashboardStore = (state = initialState, action) => {
@@ -21,6 +22,16 @@ export const DashboardStore = (state = initialState, action) => {
             });
         case `${ActionTypes.COMPLIANCE_FETCH}_REJECTED`:
             return state.set('complianceFetchStatus', 'rejected');
+
+        case `${ActionTypes.OCP_SUMMARY_FETCH}_PENDING`:
+            return state.set('ocpSummaryFetchStatus', 'pending');
+        case `${ActionTypes.OCP_SUMMARY_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                ocpSummary: action.payload,
+                ocpSummaryFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.OCP_SUMMARY_FETCH}_REJECTED`:
+            return state.set('ocpSummaryFetchStatus', 'rejected');
 
         default:
             return state;

@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
-import { Card, CardHeader, CardBody, Title } from '@patternfly/react-core';
+import PropTypes from 'prop-types';
+import { routerParams } from '@red-hat-insights/insights-frontend-components';
+import { connect } from 'react-redux';
+
+import {
+    Card, CardBody, CardHeader,
+    Grid, GridItem,
+    Stack, StackItem,
+    Title
+} from '@patternfly/react-core';
+
+import * as AppActions from '../../AppActions';
 
 import './_cards.scss';
 
@@ -12,14 +23,56 @@ import './_cards.scss';
  */
 class CostManagementCard extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    componentDidMount() {
+        this.props.fetchOcpSummary(); // eslint-disable-line camelcase
+    }
+
     render() {
 
         return (
-            <Card className='pf-m-dark'>
+            <Card>
                 <CardHeader>
-                    <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Configuration Assessments</Title>
+                    <Title className='pf-u-mt-0 pf-u-mb-0' size={'lg'}>Cost Management</Title>
                 </CardHeader>
                 <CardBody>
+                    <Grid gutter='md' span={6}>
+                        <GridItem>
+                            <Stack>
+                                <StackItem gutter='md'>OpenShift Total Charges</StackItem>
+                                <StackItem>$39.88</StackItem>
+                                <StackItem>December 1st - 12th</StackItem>
+                            </Stack>
+                        </GridItem>
+                        <GridItem>
+                            <Stack>
+                                <StackItem gutter='md'> </StackItem>
+                                <StackItem>%10</StackItem>
+                                <StackItem>Compared to last month</StackItem>
+                            </Stack>
+                        </GridItem>
+                    </Grid>
+                    <Grid gutter='md' span={6}>
+                        <GridItem>
+                            <Stack>
+                                <StackItem gutter='md'>AWS Total Cost</StackItem>
+                                <StackItem>$15,196.28</StackItem>
+                                <StackItem>December 1st - 12th</StackItem>
+                            </Stack>
+                        </GridItem>
+                        <GridItem>
+                            <Stack>
+                                <StackItem gutter='md'> </StackItem>
+                                <StackItem>%10</StackItem>
+                                <StackItem>Compared to last month</StackItem>
+                            </Stack>
+                        </GridItem>
+                        <GridItem span={12}>View All Costs/Charges</GridItem>
+                    </Grid>
 
                 </CardBody>
             </Card>
@@ -27,4 +80,23 @@ class CostManagementCard extends Component {
     }
 }
 
-export default CostManagementCard;
+CostManagementCard.propTypes = {
+    fetchOcpSummary: PropTypes.func,
+    ocpSummary: PropTypes.object,
+    ocpSummaryFetchStatus: PropTypes.string
+};
+
+const mapStateToProps = (state, ownProps) => ({
+    ocpSummary: state.DashboardStore.ocpSummary,
+    ocpSummaryFetchStatus: state.DashboardStore.ocpSummaryFetchStatus,
+    ...ownProps
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchOcpSummary: (url) => dispatch(AppActions.fetchOcpSummary(url))
+});
+
+export default routerParams(connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CostManagementCard));

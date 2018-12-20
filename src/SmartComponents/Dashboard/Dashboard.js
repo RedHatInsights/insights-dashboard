@@ -8,7 +8,7 @@ import './_dashboard.scss';
 
 const ComplianceCard = asyncComponent(() => import ('../Cards/ComplianceCard'));
 // const ConfigAssessmentsCard = asyncComponent(() => import ('../Cards/ConfigAssessmentsCard'));
-// const CostManagementCard = asyncComponent(() => import ('../Cards/CostManagementCard'));
+const CostManagementCard = asyncComponent(() => import ('../Cards/CostManagementCard'));
 // const VulnerabilitiesCard = asyncComponent(() => import ('../Cards/VulnerabilitiesCard'));
 
 // makes eslint exception for webpack variable RELEASE
@@ -43,7 +43,7 @@ class Dashboard extends Component {
                             <ComplianceCard />
                         </GalleryItem>
                         <GalleryItem>
-                            <ComplianceCard />
+                            <CostManagementCard />
                         </GalleryItem>
                     </Gallery>
                 </Main>
