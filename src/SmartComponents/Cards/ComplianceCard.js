@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardHeader, CardBody, Title } from '@patternfly/react-core';
-import { routerParams } from '@red-hat-insights/insights-frontend-components';
+import { routerParams, Gauge } from '@red-hat-insights/insights-frontend-components';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+
+import {
+    Card, CardBody, CardHeader,
+    Grid, GridItem,
+    Stack, StackItem,
+    Title
+} from '@patternfly/react-core';
 
 import * as AppActions from '../../AppActions';
+
 import './_cards.scss';
 
 /**
@@ -34,7 +40,29 @@ class ComplianceCard extends Component {
                     <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Compliance</Title>
                 </CardHeader>
                 <CardBody>
-
+                    <Grid gutter='md' span={6} rowSpan={2}>
+                        <GridItem>
+                            <Gauge label='PCI' value={ 650 / 1000 } identifier='pci-gauge' />
+                        </GridItem>
+                        <GridItem>
+                            <Stack>
+                                <StackItem>PCI DSS v3</StackItem>
+                                <StackItem>650 of 1000 systems</StackItem>
+                            </Stack>
+                        </GridItem>
+                    </Grid>
+                    <Grid gutter='md' span={6} rowSpan={2}>
+                        <GridItem>
+                            <Gauge label='HIPAA' value={ 432 / 432 } identifier='hipaa-gauge' />
+                        </GridItem>
+                        <GridItem>
+                            <Stack>
+                                <StackItem>HIPAA</StackItem>
+                                <StackItem>432 of 432 systems</StackItem>
+                            </Stack>
+                        </GridItem>
+                        <GridItem span={12}>View All 4 Compliance Policies</GridItem>
+                    </Grid>
                 </CardBody>
             </Card>
         );
@@ -53,9 +81,9 @@ const mapStateToProps = (state, ownProps) => ({
     ...ownProps
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchCompliance: (url) => AppActions.fetchComplianceSummary(url)
-}, dispatch);
+const mapDispatchToProps = dispatch => ({
+    fetchCompliance: (url) => dispatch(AppActions.fetchComplianceSummary(url))
+});
 
 function SummaryItem (props) {
     const name = props.profile.name;

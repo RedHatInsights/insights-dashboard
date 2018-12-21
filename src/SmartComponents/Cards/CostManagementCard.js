@@ -34,6 +34,10 @@ class CostManagementCard extends Component {
 
     render() {
 
+        const { ocpSummary } = this.props;
+        const ocpDate = Date.parse(ocpSummary.data[0].date);
+        const options = { month: 'long', year: 'numberic' };
+
         return (
             <Card>
                 <CardHeader>
@@ -44,8 +48,8 @@ class CostManagementCard extends Component {
                         <GridItem>
                             <Stack>
                                 <StackItem gutter='md'>OpenShift Total Charges</StackItem>
-                                <StackItem>$39.88</StackItem>
-                                <StackItem>December 1st - 12th</StackItem>
+                                <StackItem>${ ocpSummary.total.value }</StackItem>
+                                <StackItem>{ ocpDate.toLocaleDateString('ca-iso8601', options) }</StackItem>
                             </Stack>
                         </GridItem>
                         <GridItem>
@@ -73,7 +77,6 @@ class CostManagementCard extends Component {
                         </GridItem>
                         <GridItem span={12}>View All Costs/Charges</GridItem>
                     </Grid>
-
                 </CardBody>
             </Card>
         );
