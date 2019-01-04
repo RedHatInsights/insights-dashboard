@@ -10,6 +10,7 @@ import {
 } from '@patternfly/react-core';
 
 import * as AppActions from '../../AppActions';
+import Loading from '../../PresentationalComponents/Loading/Loading';
 
 import './_cards.scss';
 
@@ -22,16 +23,35 @@ import './_cards.scss';
  */
 class ConfigAssessmentCard extends Component {
 
-    constructor(props) {
+    constructor (props) {
         super(props);
-        this.state = {};
+        this.state = {
+            severity: [],
+            total: 0,
+            category: [],
+            sevNames: ['Low', 'Medium', 'High', 'Critical']
+        };
     }
 
-    componentDidMount() {
-        this.props.fetchConfigAssessment({ per_page: 3 }); // eslint-disable-line camelcase
+    componentDidMount () {
+        this.props.fetchConfigAssessment();
+    }
+
+    componentDidUpdate (prevProps) {
+        if (this.props.configAssessment !== prevProps.configAssessment) {
+            const rules = this.props.configAssessment.rules;
+            this.setState({ severity: [rules.severity.Info, rules.severity.Warn, rules.severity.Error, rules.severity.Critical] });
+            this.setState({
+                category: [rules.category.Availability, rules.category.Security, rules.category.Stability, rules.category.Performance]
+            });
+            this.setState({ total: rules.total });
+        }
     }
 
     render() {
+        const {
+            configAssessmentFetchStatus
+        } = this.props;
 
         return (
             <Card>
@@ -39,18 +59,26 @@ class ConfigAssessmentCard extends Component {
                     <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Configuration Assessment</Title>
                 </CardHeader>
                 <CardBody>
-                    <Grid gutter='md' span={6} rowSpan={2}>
-                        <GridItem><p>icon</p></GridItem>
-                        <GridItem>6</GridItem>
-                        <GridItem>Critical Rule Hits</GridItem>
-                    </Grid>
-                    <Grid gutter='md' span={6} rowSpan={2}>
-                        <GridItem><p>icon</p></GridItem>
-                        <GridItem>6</GridItem>
-                        <GridItem>Critical Rule Hits</GridItem>
-                    </Grid>
+                    { configAssessmentFetchStatus === 'fulfilled' && (
+                        <React.Fragment>
+                            <Grid gutter='md' span={6} rowSpan={2}>
+                                <GridItem><p>icon</p></GridItem>
+                                <GridItem>{ this.state.severity[3] }</GridItem>
+                                <GridItem>Critical Rule Hits</GridItem>
+                            </Grid>
+                            <Grid gutter='md' span={6} rowSpan={2}>
+                                <GridItem><p>icon</p></GridItem>
+                                <GridItem>{ this.state.severity[2] }</GridItem>
+                                <GridItem>Critical Rule Hits</GridItem>
+                            </Grid>
+                        </React.Fragment>
+                    ) }
+                    { configAssessmentFetchStatus === 'pending' && (<Loading/>) }
                 </CardBody>
-                <CardFooter>View All 101 Rule Hits</CardFooter>
+                { configAssessmentFetchStatus === 'fulfilled' && (
+                    <CardFooter>View All { this.state.total } Rule Hits</CardFooter>
+                ) }
+                { configAssessmentFetchStatus === 'pending' && (<Loading/>) }
             </Card>
         );
     }
