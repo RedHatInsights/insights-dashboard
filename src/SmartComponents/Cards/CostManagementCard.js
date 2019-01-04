@@ -34,7 +34,7 @@ class CostManagementCard extends Component {
         if (this.props.ocpSummary !== prevProps.ocpSummary) {
             const ocpProps = this.props.ocpSummary;
             this.setState({ delta: Math.round(ocpProps.delta.percent) });
-            this.setState({ total: Math.round(ocpProps.total.charge * 100) / 100 });
+            this.setState({ total: Math.round(ocpProps.total.value * 100) / 100 });
             this.setState({ totalUnits: ocpProps.total.units });
             this.setState({ date: ocpProps.data.date });
             this.setState({ filter: (-1 * ocpProps.time_scope_value) + ' ' + ocpProps.time_scope_units });
