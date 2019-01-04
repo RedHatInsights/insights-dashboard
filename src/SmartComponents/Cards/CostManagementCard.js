@@ -12,15 +12,12 @@ import {
 } from '@patternfly/react-core';
 
 import * as AppActions from '../../AppActions';
+import Loading from '../../PresentationalComponents/Loading/Loading';
 
 import './_cards.scss';
 
 /**
- * A smart component that handles all the api calls and data needed by the dumb components.
- * Smart components are usually classes.
- *
- * https://reactjs.org/docs/components-and-props.html
- * https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43
+ * Cost Management Summary
  */
 class CostManagementCard extends Component {
 
@@ -33,13 +30,21 @@ class CostManagementCard extends Component {
         this.props.fetchOcpSummary(); // eslint-disable-line camelcase
     }
 
-    render() {
+    componentDidUpdate (prevProps) {
+        if (this.props.ocpSummary !== prevProps.ocpSummary) {
+            const ocpProps = this.props.ocpSummary;
+            this.setState({ delta: Math.round(ocpProps.delta.percent) });
+            this.setState({ total: Math.round(ocpProps.total.charge * 100) / 100 });
+            this.setState({ totalUnits: ocpProps.total.units });
+            this.setState({ date: ocpProps.data.date });
+            this.setState({ filter: (-1 * ocpProps.time_scope_value) + ' ' + ocpProps.time_scope_units });
+        }
+    }
 
-        const { ocpSummary } = this.props;
-        let ocpDate = '2019-01-02T15:17:31.002Z';
-        // if (ocpSummary !== undefined && Array.isArray(ocpSummary.data)) {
-        //     ocpDate = ocpSummary.data[0].date;
-        // )
+    render() {
+        const {
+            ocpSummaryFetchStatus
+        } = this.props;
 
         return (
             <Card>
@@ -47,28 +52,30 @@ class CostManagementCard extends Component {
                     <Title className='pf-u-mt-0 pf-u-mb-0' size={'lg'}>Cost Management</Title>
                 </CardHeader>
                 <CardBody>
-                    <Grid gutter='md' span={6}>
-                        <GridItem>
-                            <Stack>
-                                <StackItem gutter='md'>OpenShift Total Charges</StackItem>
-                                <StackItem>${ ocpSummary.total !== undefined ? ocpSummary.total.value : 'No Data'}</StackItem>
-                                <StackItem>{ moment(ocpDate).format('LL') }</StackItem>
-                            </Stack>
-                        </GridItem>
-                        <GridItem>
-                            <Stack>
-                                <StackItem gutter='md'> </StackItem>
-                                <StackItem>%10</StackItem>
-                                <StackItem>Compared to last month</StackItem>
-                            </Stack>
-                        </GridItem>
-                    </Grid>
+                    { ocpSummaryFetchStatus === 'fulfilled' && (
+                        <Grid gutter='md' span={6}>
+                            <GridItem>
+                                <Stack>
+                                    <StackItem gutter='md'>OpenShift Total Charges</StackItem>
+                                    <StackItem>${ this.state.total }</StackItem>
+                                    <StackItem>{ moment(this.state.date).format('LL') }</StackItem>
+                                </Stack>
+                            </GridItem>
+                            <GridItem>
+                                <Stack>
+                                    <StackItem gutter='md'> </StackItem>
+                                    <StackItem>{ this.state.delta }</StackItem>
+                                    <StackItem>Compared to { this.state.filter } ago</StackItem>
+                                </Stack>
+                            </GridItem>
+                        </Grid>
+                    ) } { ocpSummaryFetchStatus === 'pending' && (<Loading/>) }
                     <Grid gutter='md' span={6}>
                         <GridItem>
                             <Stack>
                                 <StackItem gutter='md'>AWS Total Cost</StackItem>
                                 <StackItem>$15,196.28</StackItem>
-                                <StackItem>{ moment(ocpDate).format('LL') }</StackItem>
+                                <StackItem></StackItem>
                             </Stack>
                         </GridItem>
                         <GridItem>
