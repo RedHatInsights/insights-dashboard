@@ -4,7 +4,7 @@ import { routerParams, Gauge } from '@red-hat-insights/insights-frontend-compone
 import { connect } from 'react-redux';
 
 import {
-    Card, CardBody, CardHeader,
+    Card, CardBody, CardFooter, CardHeader,
     Grid, GridItem,
     Stack, StackItem,
     Title
@@ -35,7 +35,7 @@ class ComplianceCard extends Component {
     render() {
 
         return (
-            <Card className='pf-m-dark'>
+            <Card>
                 <CardHeader>
                     <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Compliance</Title>
                 </CardHeader>
@@ -61,9 +61,9 @@ class ComplianceCard extends Component {
                                 <StackItem>432 of 432 systems</StackItem>
                             </Stack>
                         </GridItem>
-                        <GridItem span={12}>View All 4 Compliance Policies</GridItem>
                     </Grid>
                 </CardBody>
+                <CardFooter>View All 4 Compliance Policies</CardFooter>
             </Card>
         );
     }

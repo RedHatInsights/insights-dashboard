@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import { connect } from 'react-redux';
 
 import {
-    Card, CardBody, CardHeader,
+    Card, CardBody, CardFooter, CardHeader,
     Grid, GridItem,
     Stack, StackItem,
     Title
@@ -35,8 +36,10 @@ class CostManagementCard extends Component {
     render() {
 
         const { ocpSummary } = this.props;
-        const ocpDate = Date.parse(ocpSummary.data[0].date);
-        const options = { month: 'long', year: 'numberic' };
+        let ocpDate = '2019-01-02T15:17:31.002Z';
+        // if (ocpSummary !== undefined && Array.isArray(ocpSummary.data)) {
+        //     ocpDate = ocpSummary.data[0].date;
+        // )
 
         return (
             <Card>
@@ -48,8 +51,8 @@ class CostManagementCard extends Component {
                         <GridItem>
                             <Stack>
                                 <StackItem gutter='md'>OpenShift Total Charges</StackItem>
-                                <StackItem>${ ocpSummary.total.value }</StackItem>
-                                <StackItem>{ ocpDate.toLocaleDateString('ca-iso8601', options) }</StackItem>
+                                <StackItem>${ ocpSummary.total !== undefined ? ocpSummary.total.value : 'No Data'}</StackItem>
+                                <StackItem>{ moment(ocpDate).format('LL') }</StackItem>
                             </Stack>
                         </GridItem>
                         <GridItem>
@@ -65,7 +68,7 @@ class CostManagementCard extends Component {
                             <Stack>
                                 <StackItem gutter='md'>AWS Total Cost</StackItem>
                                 <StackItem>$15,196.28</StackItem>
-                                <StackItem>December 1st - 12th</StackItem>
+                                <StackItem>{ moment(ocpDate).format('LL') }</StackItem>
                             </Stack>
                         </GridItem>
                         <GridItem>
@@ -75,9 +78,9 @@ class CostManagementCard extends Component {
                                 <StackItem>Compared to last month</StackItem>
                             </Stack>
                         </GridItem>
-                        <GridItem span={12}>View All Costs/Charges</GridItem>
                     </Grid>
                 </CardBody>
+                <CardFooter>View All Cost/Charges</CardFooter>
             </Card>
         );
     }

@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { Card, CardHeader, CardBody, Title } from '@patternfly/react-core';
+import PropTypes from 'prop-types';
+import { routerParams } from '@red-hat-insights/insights-frontend-components';
+import { connect } from 'react-redux';
+
+import {
+    Card, CardBody, CardFooter, CardHeader,
+    Grid, GridItem,
+    Title
+} from '@patternfly/react-core';
+
+import * as AppActions from '../../AppActions';
 
 import './_cards.scss';
 
@@ -12,19 +22,57 @@ import './_cards.scss';
  */
 class VulnerabilitiesCard extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    componentDidMount() {
+        this.props.fetchVulnerabilities({ per_page: 3 }); // eslint-disable-line camelcase
+    }
+
     render() {
 
         return (
-            <Card className='pf-m-dark'>
+            <Card>
                 <CardHeader>
-                    <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Configuration Assessments</Title>
+                    <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Vulnerabilities</Title>
                 </CardHeader>
                 <CardBody>
-
+                    <Grid gutter='md' span={6} rowSpan={2}>
+                        <GridItem><p>icon</p></GridItem>
+                        <GridItem>6</GridItem>
+                        <GridItem>Critical</GridItem>
+                    </Grid>
+                    <Grid gutter='md' span={6} rowSpan={2}>
+                        <GridItem><p>icon</p></GridItem>
+                        <GridItem>40</GridItem>
+                        <GridItem>CVEs added in the last 7 days</GridItem>
+                    </Grid>
                 </CardBody>
+                <CardFooter>View All 56 Vulnerabilities</CardFooter>
             </Card>
         );
     }
 }
 
-export default VulnerabilitiesCard;
+VulnerabilitiesCard.propTypes = {
+    fetchVulnerabilities: PropTypes.func,
+    vulnerabilities: PropTypes.object,
+    vulnerabilitiesFetchStatus: PropTypes.string
+};
+
+const mapStateToProps = (state, ownProps) => ({
+    vulnerabilities: state.DashboardStore.vulnerabilities,
+    vulnerabilitiesFetchStatus: state.DashboardStore.vulnerabilitiesFetchStatus,
+    ...ownProps
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchVulnerabilities: (url) => dispatch(AppActions.fetchVulnerabilities(url))
+});
+
+export default routerParams(connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(VulnerabilitiesCard));
