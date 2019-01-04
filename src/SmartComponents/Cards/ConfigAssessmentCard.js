@@ -40,10 +40,23 @@ class ConfigAssessmentCard extends Component {
     componentDidUpdate (prevProps) {
         if (this.props.configAssessment !== prevProps.configAssessment) {
             const rules = this.props.configAssessment.rules;
-            this.setState({ severity: [rules.severity.Info, rules.severity.Warn, rules.severity.Error, rules.severity.Critical] });
-            this.setState({
-                category: [rules.category.Availability, rules.category.Security, rules.category.Stability, rules.category.Performance]
+
+            // iterate over rules.severities and push to topSeverities if value > 0 in order of greatest to least
+            // break after 2 items have been added
+            let topTwoSeverities = [];
+            ['Critical', 'Error', 'Warn', 'Info'].some(element => {
+                if (rules.severity[element] > 0) {
+                    topTwoSeverities.push({
+                        label: element,
+                        value: rules.severity[element]
+                    });
+                    if (topTwoSeverities.length > 1) {
+                        return true;
+                    }
+                }
             });
+
+            this.setState({ severity: topTwoSeverities });
             this.setState({ total: rules.total });
         }
     }
@@ -61,22 +74,23 @@ class ConfigAssessmentCard extends Component {
                 <CardBody>
                     { configAssessmentFetchStatus === 'fulfilled' && (
                         <React.Fragment>
-                            <Grid gutter='md' span={6} rowSpan={2}>
-                                <GridItem><p>icon</p></GridItem>
-                                <GridItem>{ this.state.severity[3] }</GridItem>
-                                <GridItem>Critical Rule Hits</GridItem>
-                            </Grid>
-                            <Grid gutter='md' span={6} rowSpan={2}>
-                                <GridItem><p>icon</p></GridItem>
-                                <GridItem>{ this.state.severity[2] }</GridItem>
-                                <GridItem>Critical Rule Hits</GridItem>
-                            </Grid>
+                            { this.state.severity.length === 0 ? (
+                                <Grid gutter='md' span={6} rowSpan={2}> You have no critical rule hits</Grid>
+                            ) : (
+                                this.state.severity.forEach(element => {
+                                    return (<Grid gutter='md' span={6} rowSpan={2}>
+                                        <GridItem><p>icon</p></GridItem>
+                                        <GridItem>{ element.value }</GridItem>
+                                        <GridItem>{ element.label } Rule Hits</GridItem>
+                                    </Grid>);
+                                })
+                            )}
                         </React.Fragment>
                     ) }
                     { configAssessmentFetchStatus === 'pending' && (<Loading/>) }
                 </CardBody>
                 { configAssessmentFetchStatus === 'fulfilled' && (
-                    <CardFooter>View All { this.state.total } Rule Hits</CardFooter>
+                    <CardFooter>View All { this.state.total > 0 ? this.state.total : ''} Rule Hits</CardFooter>
                 ) }
                 { configAssessmentFetchStatus === 'pending' && (<Loading/>) }
             </Card>
