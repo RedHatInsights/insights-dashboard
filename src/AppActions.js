@@ -3,6 +3,11 @@ import API from './Utilities/Api';
 
 const fetchData = async (url, headers, options) => (await API.get(url, headers, options)).data;
 
+export const fetchAwsSummary = (options) => ({
+    type: ActionTypes.AWS_SUMMARY_FETCH,
+    payload: fetchData(ActionTypes.AWS_SUMMARY_FETCH_URL, {}, options)
+});
+
 export const fetchComplianceSummary = (options) => ({
     type: ActionTypes.COMPLIANCE_FETCH,
     payload: fetchData(ActionTypes.COMPLIANCE_FETCH_URL, {}, options)

@@ -4,6 +4,8 @@ import { applyReducerHash } from '@red-hat-insights/insights-frontend-components
 
 // eslint-disable-next-line new-cap
 const initialState = Immutable({
+    awsSummary: {},
+    awsSummaryFetchStatus: '',
     complianceSummary: {},
     complianceFetchStatus: '',
     configAssessment: {},
@@ -15,6 +17,16 @@ const initialState = Immutable({
 
 export const DashboardStore = (state = initialState, action) => {
     switch (action.type) {
+        case `${ActionTypes.AWS_SUMMARY_FETCH}_PENDING`:
+            return state.set('awsSummaryFetchStatus', 'pending');
+        case `${ActionTypes.AWS_SUMMARY_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                awsSummary: action.payload,
+                awsSummaryFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.AWS_SUMMARY_FETCH}_REJECTED`:
+            return state.set('awsSummaryFetchStatus', 'rejected');
+
         case `${ActionTypes.COMPLIANCE_FETCH}_PENDING`:
             return state.set('complianceFetchStatus', 'pending');
         case `${ActionTypes.COMPLIANCE_FETCH}_FULFILLED`:
