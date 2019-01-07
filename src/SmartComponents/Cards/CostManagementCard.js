@@ -27,7 +27,7 @@ class CostManagementCard extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchOcpSummary(); // eslint-disable-line camelcase
+        this.props.fetchOcpSummary();
         this.props.fetchAwsSummary();
     }
 

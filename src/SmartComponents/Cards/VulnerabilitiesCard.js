@@ -10,6 +10,7 @@ import {
 } from '@patternfly/react-core';
 
 import * as AppActions from '../../AppActions';
+import Loading from '../../PresentationalComponents/Loading/Loading';
 
 import './_cards.scss';
 
@@ -24,10 +25,20 @@ class VulnerabilitiesCard extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchVulnerabilities({ per_page: 3 }); // eslint-disable-line camelcase
+        this.props.fetchVulnerabilities();
+    }
+
+    componentDidUpdate (prevProps) {
+        if (this.props.vulnerabilities !== prevProps.vulnerabilities) {
+            const vulnProps = this.props.vulnerabilities;
+            this.setState({ total: vulnProps.meta.total_items });
+        }
     }
 
     render() {
+        const {
+            vulnerabilitiesFetchStatus
+        } = this.props;
 
         return (
             <Card>
@@ -36,9 +47,15 @@ class VulnerabilitiesCard extends Component {
                 </CardHeader>
                 <CardBody>
                     <Grid gutter='md' span={6} rowSpan={2}>
-                        <GridItem><p>icon</p></GridItem>
-                        <GridItem>6</GridItem>
-                        <GridItem>Critical</GridItem>
+                        { vulnerabilitiesFetchStatus === 'fulfilled' ? (
+                            <React.Fragment>
+                                <GridItem><p>icon</p></GridItem>
+                                <GridItem>{ this.state.total }</GridItem>
+                                <GridItem>Critical</GridItem>
+                            </React.Fragment>
+                        ) : (
+                            <Loading />
+                        ) }
                     </Grid>
                     <Grid gutter='md' span={6} rowSpan={2}>
                         <GridItem><p>icon</p></GridItem>
