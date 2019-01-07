@@ -47,15 +47,13 @@ class VulnerabilitiesCard extends Component {
                 </CardHeader>
                 <CardBody>
                     <Grid gutter='md' span={6} rowSpan={2}>
-                        { vulnerabilitiesFetchStatus === 'fulfilled' ? (
+                        { vulnerabilitiesFetchStatus === 'fulfilled' && (
                             <React.Fragment>
                                 <GridItem><p>icon</p></GridItem>
                                 <GridItem>{ this.state.total }</GridItem>
                                 <GridItem>Critical</GridItem>
                             </React.Fragment>
-                        ) : (
-                            <Loading />
-                        ) }
+                        ) } { vulnerabilitiesFetchStatus === 'pending' && ( <Loading /> ) }
                     </Grid>
                     <Grid gutter='md' span={6} rowSpan={2}>
                         <GridItem><p>icon</p></GridItem>
