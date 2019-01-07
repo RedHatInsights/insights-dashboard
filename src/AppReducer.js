@@ -11,8 +11,11 @@ const initialState = Immutable({
     configAssessment: {},
     configAssessmentFetchStatus: '',
     ocpSummary: {},
-    ocpSummaryFetchStatus: ''
-
+    ocpSummaryFetchStatus: '',
+    criticalVulnerabilities: {},
+    criticalVulnerabilitiesFetchStatus: '',
+    latestVulnerabilities: {},
+    latestVulnerabilitiesFetchStatus: ''
 });
 
 export const DashboardStore = (state = initialState, action) => {
@@ -57,15 +60,25 @@ export const DashboardStore = (state = initialState, action) => {
         case `${ActionTypes.OCP_SUMMARY_FETCH}_REJECTED`:
             return state.set('ocpSummaryFetchStatus', 'rejected');
 
-        case `${ActionTypes.VULNERABILITIES_FETCH}_PENDING`:
-            return state.set('vulnerabilitiesFetchStatus', 'pending');
-        case `${ActionTypes.VULNERABILITIES_FETCH}_FULFILLED`:
+        case `${ActionTypes.CRITICAL_VULNERABILITIES_FETCH}_PENDING`:
+            return state.set('criticalVulnerabilitiesFetchStatus', 'pending');
+        case `${ActionTypes.CRITICAL_VULNERABILITIES_FETCH}_FULFILLED`:
             return Immutable.merge(state, {
-                vulnerabilitiesSummary: action.payload,
-                vulnerabilitiesFetchStatus: 'fulfilled'
+                criticalVulnerabilitiesSummary: action.payload,
+                criticalVulnerabilitiesFetchStatus: 'fulfilled'
             });
-        case `${ActionTypes.VULNERABILITIES_FETCH}_REJECTED`:
-            return state.set('vulnerabilitiesFetchStatus', 'rejected');
+        case `${ActionTypes.CRITICAL_VULNERABILITIES_FETCH}_REJECTED`:
+            return state.set('criticalVulnerabilitiesFetchStatus', 'rejected');
+
+        case `${ActionTypes.LATEST_VULNERABILITIES_FETCH}_PENDING`:
+            return state.set('latestVulnerabilitiesFetchStatus', 'pending');
+        case `${ActionTypes.LATEST_VULNERABILITIES_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                latestVulnerabilitiesSummary: action.payload,
+                latestVulnerabilitiesFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.LATEST_VULNERABILITIES_FETCH}_REJECTED`:
+            return state.set('latestVulnerabilitiesFetchStatus', 'rejected');
 
         default:
             return state;

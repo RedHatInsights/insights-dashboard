@@ -25,19 +25,26 @@ class VulnerabilitiesCard extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchVulnerabilities();
+        this.props.fetchCriticalVulnerabilities();
+        this.props.fetchLatestVulnerabilities();
     }
 
     componentDidUpdate (prevProps) {
-        if (this.props.vulnerabilities !== prevProps.vulnerabilities) {
-            const vulnProps = this.props.vulnerabilities;
+        if (this.props.criticalVulnerabilities !== prevProps.criticalVulnerabilities) {
+            const vulnProps = this.props.criticalVulnerabilities;
             this.setState({ total: vulnProps.meta.total_items });
+        }
+
+        if (this.props.latestVulnerabilities !== prevProps.latestVulnerabilities) {
+            const latestProps = this.props.latestVulnerabilities;
+            this.setState({ latestCount: latestProps.meta.total_items });
         }
     }
 
     render() {
         const {
-            vulnerabilitiesFetchStatus
+            criticalVulnerabilitiesFetchStatus,
+            latestVulnerabilitiesFetchStatus
         } = this.props;
 
         return (
@@ -47,18 +54,22 @@ class VulnerabilitiesCard extends Component {
                 </CardHeader>
                 <CardBody>
                     <Grid gutter='md' span={6} rowSpan={2}>
-                        { vulnerabilitiesFetchStatus === 'fulfilled' && (
+                        { criticalVulnerabilitiesFetchStatus === 'fulfilled' && (
                             <React.Fragment>
                                 <GridItem><p>icon</p></GridItem>
                                 <GridItem>{ this.state.total }</GridItem>
                                 <GridItem>Critical</GridItem>
                             </React.Fragment>
-                        ) } { vulnerabilitiesFetchStatus === 'pending' && ( <Loading /> ) }
+                        ) } { criticalVulnerabilitiesFetchStatus === 'pending' && (<Loading />) }
                     </Grid>
                     <Grid gutter='md' span={6} rowSpan={2}>
-                        <GridItem><p>icon</p></GridItem>
-                        <GridItem>40</GridItem>
-                        <GridItem>CVEs added in the last 7 days</GridItem>
+                        { latestVulnerabilitiesFetchStatus === 'fulfilled' && (
+                            <React.Fragment>
+                                <GridItem><p>icon</p></GridItem>
+                                <GridItem>{ this.state.latestCount }</GridItem>
+                                <GridItem>CVEs added in the last 7 days</GridItem>
+                            </React.Fragment>
+                        ) } { latestVulnerabilitiesFetchStatus === 'pending' && (<Loading />) }
                     </Grid>
                 </CardBody>
                 <CardFooter>View All 56 Vulnerabilities</CardFooter>
@@ -68,19 +79,25 @@ class VulnerabilitiesCard extends Component {
 }
 
 VulnerabilitiesCard.propTypes = {
-    fetchVulnerabilities: PropTypes.func,
-    vulnerabilities: PropTypes.object,
-    vulnerabilitiesFetchStatus: PropTypes.string
+    fetchCriticalVulnerabilities: PropTypes.func,
+    criticalVulnerabilities: PropTypes.object,
+    criticalVulnerabilitiesFetchStatus: PropTypes.string,
+    fetchLatestVulnerabilities: PropTypes.func,
+    latestVulnerabilities: PropTypes.object,
+    latestVulnerabilitiesFetchStatus: PropTypes.string
 };
 
 const mapStateToProps = (state, ownProps) => ({
-    vulnerabilities: state.DashboardStore.vulnerabilities,
-    vulnerabilitiesFetchStatus: state.DashboardStore.vulnerabilitiesFetchStatus,
+    criticalVulnerabilities: state.DashboardStore.criticalVulnerabilities,
+    criticalVulnerabilitiesFetchStatus: state.DashboardStore.criticalVulnerabilitiesFetchStatus,
+    latestVulnerabilities: state.DashboardStore.latestVulnerabilities,
+    latestVulnerabilitiesFetchStatus: state.DashboardStore.latestVulnerabilitiesFetchStatus,
     ...ownProps
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchVulnerabilities: (url) => dispatch(AppActions.fetchVulnerabilities(url))
+    fetchCriticalVulnerabilities: (url) => dispatch(AppActions.fetchCriticalVulnerabilities(url)),
+    fetchLatestVulnerabilities: (url) => dispatch(AppActions.fetchLatestVulnerabilities(url))
 });
 
 export default routerParams(connect(
