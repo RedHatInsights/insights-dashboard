@@ -26,24 +26,16 @@ class ComplianceCard extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
     }
 
     componentDidMount() {
         this.props.fetchCompliance();
     }
 
-    componentDidUpdate (prevProps) {
-        if (this.props.complianceSummary !== prevProps.complianceSummary) {
-            const topPolicies = this.props.complianceSummary;
-            this.setState({ topPolicies });
-        }
-    }
-
     render() {
-
         const {
-            complianceFetchStatus
+            complianceFetchStatus,
+            complianceSummary
         } = this.props;
 
         return (
@@ -53,10 +45,10 @@ class ComplianceCard extends Component {
                 </CardHeader>
                 <CardBody>
                     { complianceFetchStatus === 'fulfilled' && (
-                        Array.isArray(this.state.topSeverities) && this.state.topSeverities.length && (
+                        Array.isArray(complianceSummary) && complianceSummary.length && (
                             <React.Fragment>
-                                { this.state.topSeverities.forEach(element => {
-                                    return (<Grid gutter='md' span={6} rowSpan={2}>
+                                {complianceSummary.map(element =>
+                                    <Grid gutter='md' span={6} rowSpan={2} key={ element.profile }>
                                         <GridItem>
                                             <Gauge label={ element.attributes.name } value={ element.this.score } />
                                         </GridItem>
@@ -67,8 +59,8 @@ class ComplianceCard extends Component {
                                                     { element.attributes.total_host_count } systems</StackItem>
                                             </Stack>
                                         </GridItem>
-                                    </Grid>);
-                                })}
+                                    </Grid>
+                                )}
                             </React.Fragment>
                         )
                     ) }

@@ -23,18 +23,6 @@ class CostManagementCard extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            ocpDelta: 0,
-            ocpTotal: 0,
-            ocpTotalUnits: '',
-            ocpDate: '',
-            ocpFilter: '',
-            awsDelta: 0,
-            awsTotal: 0,
-            awsTotalUnits: '',
-            awsDate: '',
-            awsFilter: ''
-        };
     }
 
     componentDidMount() {
@@ -42,31 +30,32 @@ class CostManagementCard extends Component {
         this.props.fetchAwsSummary();
     }
 
-    componentDidUpdate (prevProps) {
-        if (this.props.ocpSummary !== prevProps.ocpSummary) {
-            const ocpProps = this.props.ocpSummary;
-            this.setState({ ocpDelta: Math.round(ocpProps.delta.percent) });
-            this.setState({ ocpTotal: Math.round(ocpProps.total.value * 100) / 100 });
-            this.setState({ ocpTotalUnits: ocpProps.total.units });
-            this.setState({ ocpDate: ocpProps.data.date });
-            this.setState({ ocpFilter: (-1 * ocpProps.time_scope_value) + ' ' + ocpProps.time_scope_units });
-        }
-
-        if (this.props.awsSummary !== prevProps.awsSummary) {
-            const awsProps = this.props.awsSummary;
-            this.setState({ delta: Math.round(awsProps.delta.percent) });
-            this.setState({ total: Math.round(awsProps.total.value * 100) / 100 });
-            this.setState({ totalUnits: awsProps.total.units });
-            this.setState({ date: awsProps.data.date });
-            this.setState({ filter: (-1 * awsProps.time_scope_value) + ' ' + awsProps.time_scope_units });
-        }
-    }
-
     render() {
         const {
             ocpSummaryFetchStatus,
-            awsSummaryFetchStatus
+            awsSummaryFetchStatus,
+            ocpSummary,
+            awsSummary
         } = this.props;
+
+        let ocpStats = {};
+        let awsStats = {};
+
+        if (ocpSummaryFetchStatus === 'fulfilled') {
+            ocpStats.delta = Math.round(ocpSummary.delta.percent);
+            ocpStats.total = Math.round(ocpSummary.total.value * 100) / 100;
+            // ocpStats.totalUnits = ocpSummary.total.units;
+            ocpStats.date = ocpSummary.data.date;
+            ocpStats.filter = (-1 * ocpSummary.time_scope_value) + ' ' + ocpSummary.time_scope_units;
+        }
+
+        if (awsSummaryFetchStatus === 'fulfilled') {
+            awsStats.delta = Math.round(awsSummary.delta.percent);
+            awsStats.total = Math.round(awsSummary.total.value * 100) / 100;
+            // awsStats.totalUnits = awsSummary.total.units;
+            awsStats.date = awsSummary.data.date;
+            awsStats.filter = (-1 * awsSummary.time_scope_value) + ' ' + awsSummary.time_scope_units;
+        }
 
         return (
             <Card>
@@ -79,15 +68,15 @@ class CostManagementCard extends Component {
                             <GridItem>
                                 <Stack>
                                     <StackItem gutter='md'>OpenShift Total Charges</StackItem>
-                                    <StackItem>${ this.state.ocpTotal }</StackItem>
-                                    <StackItem>{ moment(this.state.ocpDate).format('LL') }</StackItem>
+                                    <StackItem>${ ocpStats.total }</StackItem>
+                                    <StackItem>{ moment(ocpStats.date).format('LL') }</StackItem>
                                 </Stack>
                             </GridItem>
                             <GridItem>
                                 <Stack>
                                     <StackItem gutter='md'> </StackItem>
-                                    <StackItem>{ this.state.ocpDelta }</StackItem>
-                                    <StackItem>Compared to { this.state.ocpFilter } ago</StackItem>
+                                    <StackItem>{ ocpStats.delta }</StackItem>
+                                    <StackItem>Compared to { ocpStats.filter } ago</StackItem>
                                 </Stack>
                             </GridItem>
                         </Grid>
@@ -97,15 +86,15 @@ class CostManagementCard extends Component {
                             <GridItem>
                                 <Stack>
                                     <StackItem gutter='md'>AWS Total Cost</StackItem>
-                                    <StackItem>${ this.state.awsDelta }</StackItem>
-                                    <StackItem>{ moment(this.state.awsDate).format('LL') }</StackItem>
+                                    <StackItem>${ awsStats.delta }</StackItem>
+                                    <StackItem>{ moment(awsStats.date).format('LL') }</StackItem>
                                 </Stack>
                             </GridItem>
                             <GridItem>
                                 <Stack>
                                     <StackItem gutter='md'> </StackItem>
-                                    <StackItem>{ this.state.awsDelta }</StackItem>
-                                    <StackItem>Compared to { this.state.awsFilter } ago</StackItem>
+                                    <StackItem>{ awsStats.delta }</StackItem>
+                                    <StackItem>Compared to { awsStats.filter } ago</StackItem>
                                 </Stack>
                             </GridItem>
                         </Grid>
