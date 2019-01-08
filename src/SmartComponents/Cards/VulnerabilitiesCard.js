@@ -21,35 +21,26 @@ class VulnerabilitiesCard extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.props = {};
     }
 
-    componentDidMount() {
+    componentDidMount () {
         this.props.fetchCriticalVulnerabilities();
         this.props.fetchLatestVulnerabilities();
-    }
-
-    componentDidUpdate (prevProps) {
-        if (this.props.criticalVulnerabilities !== prevProps.criticalVulnerabilities) {
-            const vulnProps = this.props.criticalVulnerabilities;
-
-            // eslint-disable-next-line no-console
-            console.log(vulnProps);
-
-            this.setState({ total: vulnProps.meta.total_items });
-        }
-
-        if (this.props.latestVulnerabilities !== prevProps.latestVulnerabilities) {
-            const latestProps = this.props.latestVulnerabilities;
-            this.setState({ latestCount: latestProps.meta.total_items });
-        }
     }
 
     render() {
         const {
             criticalVulnerabilitiesFetchStatus,
-            latestVulnerabilitiesFetchStatus
+            latestVulnerabilitiesFetchStatus,
+            criticalVulnerabilities,
+            latestVulnerabilities
         } = this.props;
+
+        if (criticalVulnerabilitiesFetchStatus === 'fulfilled') {
+            // eslint-disable-next-line no-console
+            console.log(criticalVulnerabilities);
+        }
 
         return (
             <Card>
@@ -61,7 +52,7 @@ class VulnerabilitiesCard extends Component {
                         { criticalVulnerabilitiesFetchStatus === 'fulfilled' && (
                             <React.Fragment>
                                 <GridItem><p>icon</p></GridItem>
-                                <GridItem>{ this.state.total }</GridItem>
+                                <GridItem>{ criticalVulnerabilities.meta.total_items }</GridItem>
                                 <GridItem>Critical</GridItem>
                             </React.Fragment>
                         ) } { criticalVulnerabilitiesFetchStatus === 'pending' && (<Loading />) }
@@ -70,13 +61,13 @@ class VulnerabilitiesCard extends Component {
                         { latestVulnerabilitiesFetchStatus === 'fulfilled' && (
                             <React.Fragment>
                                 <GridItem><p>icon</p></GridItem>
-                                <GridItem>{ this.state.latestCount }</GridItem>
+                                <GridItem>{ latestVulnerabilities.meta.total_items }</GridItem>
                                 <GridItem>CVEs added in the last 7 days</GridItem>
                             </React.Fragment>
                         ) } { latestVulnerabilitiesFetchStatus === 'pending' && (<Loading />) }
                     </Grid>
                 </CardBody>
-                <CardFooter>View All 56 Vulnerabilities</CardFooter>
+                <CardFooter>View All Vulnerabilities</CardFooter>
             </Card>
         );
     }

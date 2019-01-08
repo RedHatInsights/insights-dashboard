@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 import { init } from './Store';
+import logger from 'redux-logger';
 
 // exposes webpack variable RELEASE
 /*global RELEASE:true*/
@@ -14,7 +15,7 @@ import { init } from './Store';
  *  https://redux.js.org/advanced/usage-with-react-router
  */
 ReactDOM.render(
-    <Provider store={ init().getStore() }>
+    <Provider store={ init(logger).getStore() }>
         <Router basename={ `/${RELEASE}/platform/dashboard` }>
             <App />
         </Router>

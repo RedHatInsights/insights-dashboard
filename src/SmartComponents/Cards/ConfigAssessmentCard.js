@@ -21,16 +21,9 @@ class ConfigAssessmentCard extends Component {
 
     constructor (props) {
         super(props);
-        this.state = {
-            severity: [],
-            total: 0
-        };
     }
 
     componentDidMount () {
-        // eslint-disable-next-line no-console
-        console.log('componentDidMount');
-
         this.props.fetchConfigAssessment();
     }
 
@@ -40,27 +33,23 @@ class ConfigAssessmentCard extends Component {
             configAssessment
         } = this.props;
 
+        let severities = new Array();
+
         if (configAssessmentFetchStatus === 'fulfilled') {
             // iterate over rules.severities and push to topSeverities if value > 0 in order of greatest to least
             // break after 2 items have been added
-            let topTwoSeverities = [];
             ['Critical', 'Error', 'Warn', 'Info'].some(element => {
                 if (configAssessment.rules.severity[element] > 0) {
-                    topTwoSeverities.push({
+                    severities.push({
                         label: element,
                         value: configAssessment.rules.severity[element]
                     });
-                    if (topTwoSeverities.length > 1) {
+                    if (severities.length > 1) {
                         return true;
                     }
                 }
             });
-
-            this.props.configAssessment.topTwoSeverities = topTwoSeverities;
         }
-
-        // eslint-disable-next-line no-console
-        console.log(configAssessmentFetchStatus);
 
         return (
             <Card>
@@ -68,21 +57,14 @@ class ConfigAssessmentCard extends Component {
                     <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Configuration Assessment</Title>
                 </CardHeader>
                 <CardBody>
-                    { configAssessmentFetchStatus === 'fulfilled' && (
-                        <React.Fragment>
-                            <h1> { configAssessment.topTwoSeverities } severity</h1>
-                            { configAssessment.topTwoSeverities.length === 0 ? (
-                                <Grid gutter='md' span={6} rowSpan={2}> You have no critical rule hits</Grid>
-                            ) : (
-                                configAssessment.topTwoSeverities.forEach(element => {
-                                    return (<Grid gutter='md' span={6} rowSpan={2}>
-                                        <GridItem><p>icon</p></GridItem>
-                                        <GridItem>{ element.value }</GridItem>
-                                        <GridItem>{ element.label } Rule Hits</GridItem>
-                                    </Grid>);
-                                })
-                            )}
-                        </React.Fragment>
+                    { configAssessmentFetchStatus === 'fulfilled' && Array.isArray(severities) && severities.length > 0 && (
+                        severities.map(element =>
+                            <Grid gutter='md' span={6} rowSpan={2} key={ element.label }>
+                                <GridItem><p>icon</p></GridItem>
+                                <GridItem>{ element.value }</GridItem>
+                                <GridItem>{ element.label } Rule Hits</GridItem>
+                            </Grid>
+                        )
                     ) }
                     { configAssessmentFetchStatus === 'pending' && (<Loading/>) }
                 </CardBody>

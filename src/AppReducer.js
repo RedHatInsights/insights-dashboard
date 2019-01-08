@@ -63,7 +63,7 @@ export const DashboardStore = (state = initialState, action) => {
             return state.set('criticalVulnerabilitiesFetchStatus', 'pending');
         case `${ActionTypes.CRITICAL_VULNERABILITIES_FETCH}_FULFILLED`:
             return Immutable.merge(state, {
-                criticalVulnerabilitiesSummary: action.payload,
+                criticalVulnerabilities: action.payload,
                 criticalVulnerabilitiesFetchStatus: 'fulfilled'
             });
         case `${ActionTypes.CRITICAL_VULNERABILITIES_FETCH}_REJECTED`:
@@ -73,7 +73,7 @@ export const DashboardStore = (state = initialState, action) => {
             return state.set('latestVulnerabilitiesFetchStatus', 'pending');
         case `${ActionTypes.LATEST_VULNERABILITIES_FETCH}_FULFILLED`:
             return Immutable.merge(state, {
-                latestVulnerabilitiesSummary: action.payload,
+                latestVulnerabilities: action.payload,
                 latestVulnerabilitiesFetchStatus: 'fulfilled'
             });
         case `${ActionTypes.LATEST_VULNERABILITIES_FETCH}_REJECTED`:
