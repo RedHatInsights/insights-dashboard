@@ -23,7 +23,18 @@ class CostManagementCard extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            ocpDelta: 0,
+            ocpTotal: 0,
+            ocpTotalUnits: '',
+            ocpDate: '',
+            ocpFilter: '',
+            awsDelta: 0,
+            awsTotal: 0,
+            awsTotalUnits: '',
+            awsDate: '',
+            awsFilter: ''
+        };
     }
 
     componentDidMount() {

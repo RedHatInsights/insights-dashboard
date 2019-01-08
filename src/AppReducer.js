@@ -1,6 +1,5 @@
 import Immutable from 'seamless-immutable';
 import * as ActionTypes from './AppConstants';
-import { applyReducerHash } from '@red-hat-insights/insights-frontend-components/Utilities/ReducerRegistry';
 
 // eslint-disable-next-line new-cap
 const initialState = Immutable({
@@ -44,7 +43,7 @@ export const DashboardStore = (state = initialState, action) => {
             return state.set('configAssessmentFetchStatus', 'pending');
         case `${ActionTypes.CONFIG_ASSESSMENT_FETCH}_FULFILLED`:
             return Immutable.merge(state, {
-                configAssessmentSummary: action.payload,
+                configAssessment: action.payload,
                 configAssessmentFetchStatus: 'fulfilled'
             });
         case `${ActionTypes.CONFIG_ASSESSMENT_FETCH}_REJECTED`:
@@ -84,23 +83,3 @@ export const DashboardStore = (state = initialState, action) => {
             return state;
     }
 };
-
-export function entitiesDetailsReducer (ActionTypes) {
-    return applyReducerHash(
-        {
-            [`${ActionTypes.LOAD_ENTITY}_FULFILLED`]: enableApplications
-        },
-        {}
-    );
-}
-
-function enableApplications (state) {
-    return {
-        ...state,
-        loaded: true,
-        activeApps: [
-            { title: 'Configuration Assessment', name: 'configuration_assessment' }
-
-        ]
-    };
-}

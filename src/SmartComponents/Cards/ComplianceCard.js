@@ -11,6 +11,7 @@ import {
 } from '@patternfly/react-core';
 
 import * as AppActions from '../../AppActions';
+import Loading from '../../PresentationalComponents/Loading/Loading';
 
 import './_cards.scss';
 
@@ -71,6 +72,7 @@ class ComplianceCard extends Component {
                             </React.Fragment>
                         )
                     ) }
+                    { complianceFetchStatus === 'pending' && (<Loading/>) }
                 </CardBody>
                 <CardFooter>View All Compliance Policies</CardFooter>
             </Card>

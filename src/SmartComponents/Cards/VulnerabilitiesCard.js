@@ -32,6 +32,10 @@ class VulnerabilitiesCard extends Component {
     componentDidUpdate (prevProps) {
         if (this.props.criticalVulnerabilities !== prevProps.criticalVulnerabilities) {
             const vulnProps = this.props.criticalVulnerabilities;
+
+            // eslint-disable-next-line no-console
+            console.log(vulnProps);
+
             this.setState({ total: vulnProps.meta.total_items });
         }
 
