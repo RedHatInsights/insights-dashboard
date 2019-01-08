@@ -29,10 +29,21 @@ class ComplianceCard extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchCompliance({ per_page: 3 }); // eslint-disable-line camelcase
+        this.props.fetchCompliance();
+    }
+
+    componentDidUpdate (prevProps) {
+        if (this.props.complianceSummary !== prevProps.complianceSummary) {
+            const topPolicies = this.props.complianceSummary;
+            this.setState({ topPolicies });
+        }
     }
 
     render() {
+
+        const {
+            complianceFetchStatus
+        } = this.props;
 
         return (
             <Card>
@@ -40,30 +51,28 @@ class ComplianceCard extends Component {
                     <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Compliance</Title>
                 </CardHeader>
                 <CardBody>
-                    <Grid gutter='md' span={6} rowSpan={2}>
-                        <GridItem>
-                            <Gauge label='PCI' value={ 650 / 1000 } identifier='pci-gauge' />
-                        </GridItem>
-                        <GridItem>
-                            <Stack>
-                                <StackItem>PCI DSS v3</StackItem>
-                                <StackItem>650 of 1000 systems</StackItem>
-                            </Stack>
-                        </GridItem>
-                    </Grid>
-                    <Grid gutter='md' span={6} rowSpan={2}>
-                        <GridItem>
-                            <Gauge label='HIPAA' value={ 432 / 432 } identifier='hipaa-gauge' />
-                        </GridItem>
-                        <GridItem>
-                            <Stack>
-                                <StackItem>HIPAA</StackItem>
-                                <StackItem>432 of 432 systems</StackItem>
-                            </Stack>
-                        </GridItem>
-                    </Grid>
+                    { complianceFetchStatus === 'fulfilled' && (
+                        Array.isArray(this.state.topSeverities) && this.state.topSeverities.length && (
+                            <React.Fragment>
+                                { this.state.topSeverities.forEach(element => {
+                                    return (<Grid gutter='md' span={6} rowSpan={2}>
+                                        <GridItem>
+                                            <Gauge label={ element.attributes.name } value={ element.this.score } />
+                                        </GridItem>
+                                        <GridItem>
+                                            <Stack>
+                                                <StackItem>{ element.attributes.name }</StackItem>
+                                                <StackItem>{ element.attributes.compliant_host_count } of
+                                                    { element.attributes.total_host_count } systems</StackItem>
+                                            </Stack>
+                                        </GridItem>
+                                    </Grid>);
+                                })}
+                            </React.Fragment>
+                        )
+                    ) }
                 </CardBody>
-                <CardFooter>View All 4 Compliance Policies</CardFooter>
+                <CardFooter>View All Compliance Policies</CardFooter>
             </Card>
         );
     }
@@ -84,20 +93,6 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
     fetchCompliance: (url) => dispatch(AppActions.fetchComplianceSummary(url))
 });
-
-function SummaryItem (props) {
-    const name = props.profile.name;
-    const score = props.profile.score;
-    return (
-        <React.Fragment>
-            <li> {name}: {score * 100}% compliance </li>
-        </React.Fragment>
-    );
-}
-
-SummaryItem.propTypes = {
-    profile: PropTypes.object
-};
 
 export default routerParams(connect(
     mapStateToProps,
