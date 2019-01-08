@@ -50,7 +50,7 @@ class ComplianceCard extends Component {
                                 {complianceSummary.map(element =>
                                     <Grid gutter='md' span={6} rowSpan={2} key={ element.profile }>
                                         <GridItem>
-                                            <Gauge label={ element.attributes.name } value={ element.this.score } />
+                                            <Gauge label={ element.attributes.name } value={ element.attributes.score } />
                                         </GridItem>
                                         <GridItem>
                                             <Stack>

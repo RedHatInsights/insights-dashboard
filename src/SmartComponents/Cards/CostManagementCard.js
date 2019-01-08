@@ -43,18 +43,18 @@ class CostManagementCard extends Component {
 
         if (ocpSummaryFetchStatus === 'fulfilled') {
             ocpStats.delta = Math.round(ocpSummary.delta.percent);
-            ocpStats.total = Math.round(ocpSummary.total.value * 100) / 100;
+            ocpStats.total = Math.round(ocpSummary.total.charge * 100) / 100;
             // ocpStats.totalUnits = ocpSummary.total.units;
-            ocpStats.date = ocpSummary.data.date;
-            ocpStats.filter = (-1 * ocpSummary.time_scope_value) + ' ' + ocpSummary.time_scope_units;
+            ocpStats.date = moment(ocpSummary.data.date).format('MMMM Do YYYY');
+            ocpStats.filter = (-1 * ocpSummary.filter.time_scope_value) + ' ' + ocpSummary.filter.time_scope_units;
         }
 
         if (awsSummaryFetchStatus === 'fulfilled') {
             awsStats.delta = Math.round(awsSummary.delta.percent);
-            awsStats.total = Math.round(awsSummary.total.value * 100) / 100;
+            awsStats.total = Math.round(awsSummary.total.charge * 100) / 100;
             // awsStats.totalUnits = awsSummary.total.units;
-            awsStats.date = awsSummary.data.date;
-            awsStats.filter = (-1 * awsSummary.time_scope_value) + ' ' + awsSummary.time_scope_units;
+            awsStats.date = moment(awsSummary.data.date).format('MMMM Do YYYY');
+            awsStats.filter = (-1 * awsSummary.filter.time_scope_value) + ' ' + awsSummary.filter.time_scope_units;
         }
 
         return (
@@ -69,7 +69,7 @@ class CostManagementCard extends Component {
                                 <Stack>
                                     <StackItem gutter='md'>OpenShift Total Charges</StackItem>
                                     <StackItem>${ ocpStats.total }</StackItem>
-                                    <StackItem>{ moment(ocpStats.date).format('LL') }</StackItem>
+                                    <StackItem>{ ocpStats.date }</StackItem>
                                 </Stack>
                             </GridItem>
                             <GridItem>
@@ -87,7 +87,7 @@ class CostManagementCard extends Component {
                                 <Stack>
                                     <StackItem gutter='md'>AWS Total Cost</StackItem>
                                     <StackItem>${ awsStats.delta }</StackItem>
-                                    <StackItem>{ moment(awsStats.date).format('LL') }</StackItem>
+                                    <StackItem>{ awsStats.date }</StackItem>
                                 </Stack>
                             </GridItem>
                             <GridItem>
