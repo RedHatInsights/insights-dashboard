@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import { connect } from 'react-redux';
+import { ExclamationCircleIcon, ExclamationTriangleIcon, ExclamationIcon } from '@patternfly/react-icons';
 
 import {
     Card, CardBody, CardFooter, CardHeader,
-    Grid, GridItem,
     Title
 } from '@patternfly/react-core';
 
@@ -51,19 +51,32 @@ class ConfigAssessmentCard extends Component {
             });
         }
 
+        function getIcon (label) {
+            switch (label) {
+                case 'Critical':
+                    return <ExclamationCircleIcon className='ins-c-summary__icon ins-c-summary__icon-critical' />;
+                case 'Error':
+                    return <ExclamationTriangleIcon className='ins-c-summary__icon ins-c-summary__icon-error' />;
+                case 'Warn':
+                    return <ExclamationTriangleIcon className='ins-c-summary__icon ins-c-summary__icon-warn' />;
+                case 'Info':
+                    return <ExclamationIcon className='ins-c-summary__icon ins-c-summary__icon-info' />;
+            }
+        }
+
         return (
-            <Card>
+            <Card className='ins-c-card__config-assessment'>
                 <CardHeader>
                     <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Configuration Assessment</Title>
                 </CardHeader>
                 <CardBody>
                     { configAssessmentFetchStatus === 'fulfilled' && Array.isArray(severities) && severities.length > 0 && (
                         severities.map(element =>
-                            <Grid gutter='md' span={6} rowSpan={2} key={ element.label }>
-                                <GridItem><p>icon</p></GridItem>
-                                <GridItem>{ element.value }</GridItem>
-                                <GridItem>{ element.label } Rule Hits</GridItem>
-                            </Grid>
+                            <div className='ins-c-summary' key={ element.label }>
+                                { getIcon(element.label) }
+                                <span className='ins-c-summary__emphasis'>{ element.value }</span>
+                                <span className='ins-c-summary__label'>{ element.label }</span>
+                            </div>
                         )
                     ) }
                     { configAssessmentFetchStatus === 'pending' && (<Loading/>) }
@@ -71,7 +84,6 @@ class ConfigAssessmentCard extends Component {
                 { configAssessmentFetchStatus === 'fulfilled' && (
                     <CardFooter>View All { configAssessment.rules.total > 0 ? configAssessment.rules.total : ''} Rule Hits</CardFooter>
                 ) }
-                { configAssessmentFetchStatus === 'pending' && (<Loading/>) }
             </Card>
         );
     }

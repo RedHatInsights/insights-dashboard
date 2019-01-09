@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import { connect } from 'react-redux';
+import { ExclamationCircleIcon, FlagIcon } from '@patternfly/react-icons';
 
 import {
     Card, CardBody, CardFooter, CardHeader,
-    Grid, GridItem,
     Title
 } from '@patternfly/react-core';
 
@@ -43,29 +43,25 @@ class VulnerabilitiesCard extends Component {
         }
 
         return (
-            <Card>
+            <Card className='ins-c-card__vulnerabilities'>
                 <CardHeader>
                     <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Vulnerabilities</Title>
                 </CardHeader>
                 <CardBody>
-                    <Grid gutter='md' span={6} rowSpan={2}>
-                        { criticalVulnerabilitiesFetchStatus === 'fulfilled' && (
-                            <React.Fragment>
-                                <GridItem><p>icon</p></GridItem>
-                                <GridItem>{ criticalVulnerabilities.meta.total_items }</GridItem>
-                                <GridItem>Critical</GridItem>
-                            </React.Fragment>
-                        ) } { criticalVulnerabilitiesFetchStatus === 'pending' && (<Loading />) }
-                    </Grid>
-                    <Grid gutter='md' span={6} rowSpan={2}>
-                        { latestVulnerabilitiesFetchStatus === 'fulfilled' && (
-                            <React.Fragment>
-                                <GridItem><p>icon</p></GridItem>
-                                <GridItem>{ latestVulnerabilities.meta.total_items }</GridItem>
-                                <GridItem>CVEs added in the last 7 days</GridItem>
-                            </React.Fragment>
-                        ) } { latestVulnerabilitiesFetchStatus === 'pending' && (<Loading />) }
-                    </Grid>
+                    { criticalVulnerabilitiesFetchStatus === 'fulfilled' && (
+                        <div className='ins-c-summary'>
+                            <ExclamationCircleIcon className='ins-c-summary__icon ins-c-summary__icon-critical' />
+                            <span className='ins-c-summary__emphasis'>{ criticalVulnerabilities.meta.total_items }</span>
+                            <span className='ins-c-summary__label'>Critical</span>
+                        </div>
+                    ) } { criticalVulnerabilitiesFetchStatus === 'pending' && (<Loading />) }
+                    { latestVulnerabilitiesFetchStatus === 'fulfilled' && (
+                        <div className='ins-c-summary'>
+                            <FlagIcon className='ins-c-summary__icon ins-c-summary__icon-flag' />
+                            <span className='ins-c-summary__emphasis'>{ latestVulnerabilities.meta.total_items }</span>
+                            <span className='ins-c-summary__label'>CVEs added in the last 7 days</span>
+                        </div>
+                    ) }
                 </CardBody>
                 <CardFooter>View All Vulnerabilities</CardFooter>
             </Card>

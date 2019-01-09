@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import { connect } from 'react-redux';
+import { CaretUpIcon, CaretDownIcon } from '@patternfly/react-icons';
 
 import {
     Card, CardBody, CardFooter, CardHeader,
-    Grid, GridItem,
+    // Grid, GridItem,
+    Split, SplitItem,
     Stack, StackItem,
     Title
 } from '@patternfly/react-core';
@@ -42,7 +44,9 @@ class CostManagementCard extends Component {
         let awsStats = {};
 
         if (ocpSummaryFetchStatus === 'fulfilled') {
-            ocpStats.delta = Math.round(ocpSummary.delta.percent);
+            ocpStats.delta = Math.abs(Math.round(ocpSummary.delta.percent));
+            ocpStats.deltaColor = ocpSummary.delta.percent > 0 ? 'green' :
+                ocpSummary.delta.percent < 0 ? 'red' : 'black';
             ocpStats.total = Math.round(ocpSummary.total.charge * 100) / 100;
             // ocpStats.totalUnits = ocpSummary.total.units;
             ocpStats.date = moment(ocpSummary.data.date).format('MMMM Do YYYY');
@@ -57,31 +61,48 @@ class CostManagementCard extends Component {
             awsStats.filter = (-1 * awsSummary.filter.time_scope_value) + ' ' + awsSummary.filter.time_scope_units;
         }
 
+        function getCaret (deltaColor) {
+            switch (deltaColor) {
+                case 'green':
+                    return <CaretUpIcon />;
+                case 'red':
+                    return <CaretDownIcon />;
+                default:
+                    return;
+            }
+        }
+
         return (
-            <Card>
+            <Card className='ins-c-card__cost-management'>
                 <CardHeader>
                     <Title className='pf-u-mt-0 pf-u-mb-0' size={'lg'}>Cost Management</Title>
                 </CardHeader>
                 <CardBody>
                     { ocpSummaryFetchStatus === 'fulfilled' && (
-                        <Grid gutter='md' span={6}>
-                            <GridItem>
-                                <Stack>
-                                    <StackItem gutter='md'>OpenShift Total Charges</StackItem>
-                                    <StackItem>${ ocpStats.total }</StackItem>
-                                    <StackItem>{ ocpStats.date }</StackItem>
-                                </Stack>
-                            </GridItem>
-                            <GridItem>
-                                <Stack>
-                                    <StackItem gutter='md'> </StackItem>
-                                    <StackItem>{ ocpStats.delta }</StackItem>
-                                    <StackItem>Compared to { ocpStats.filter } ago</StackItem>
-                                </Stack>
-                            </GridItem>
-                        </Grid>
+                        <Stack span={6} className='ins-c-summary'>
+                            <StackItem>OpenShift Total Charges</StackItem>
+                            <StackItem>
+                                <Split gutter='sm'>
+                                    <SplitItem>
+                                        <Stack>
+                                            <StackItem className='ins-c-summary__emphasis'>${ ocpStats.total }</StackItem>
+                                            <StackItem className='ins-c-summary__accent'>{ ocpStats.date }</StackItem>
+                                        </Stack>
+                                    </SplitItem>
+                                    <SplitItem>
+                                        <Stack>
+                                            <StackItem className= {`ins-c-summary__emphasis ins-m-${ocpStats.deltaColor}` }>
+                                                { ocpStats.delta }%
+                                                { getCaret(ocpStats.deltaColor) }
+                                            </StackItem>
+                                            <StackItem className='ins-c-summary__accent'>Compared to { ocpStats.filter } ago</StackItem>
+                                        </Stack>
+                                    </SplitItem>
+                                </Split>
+                            </StackItem>
+                        </Stack>
                     ) } { ocpSummaryFetchStatus === 'pending' && (<Loading/>) }
-                    { awsSummaryFetchStatus === 'fulfilled' && (
+                    {/* { awsSummaryFetchStatus === 'fulfilled' && (
                         <Grid gutter='md' span={6}>
                             <GridItem>
                                 <Stack>
@@ -98,7 +119,7 @@ class CostManagementCard extends Component {
                                 </Stack>
                             </GridItem>
                         </Grid>
-                    ) } { awsSummaryFetchStatus === 'pending' && (<Loading/>) }
+                    ) } { awsSummaryFetchStatus === 'pending' && (<Loading/>) } */}
                 </CardBody>
                 <CardFooter>View All Cost/Charges</CardFooter>
             </Card>

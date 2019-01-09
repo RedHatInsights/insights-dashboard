@@ -1,5 +1,34 @@
-@import '~@red-hat-insights/insights-frontend-components/Utilities/_variables';
 @import '~@red-hat-insights/insights-frontend-components/Utilities/_mixins';
-@import '~@patternfly/patternfly-next/sass-utilities/all';
-@import '~@patternfly/patternfly-next/utilities/Alignment/alignment.scss';
-@import '~@patternfly/patternfly-next/utilities/Flex/flex.scss';
+@import '@patternfly/patternfly-next/sass-utilities/colors.scss';
+
+.ins-c-summary {
+    &__accent {
+        color: $pf-color-black-500;
+    }
+
+    &__emphasis {
+        @include rem("font-size", 32px);
+    }
+
+    &__icon {
+        &-critical {fill: $pf-color-red-100;}
+        &-error {fill: $pf-color-orange-300;}
+        &-warn {fill: $pf-color-gold-300;}
+        &-info {fill: $pf-color-blue-300;}
+
+        &-flag {fill: $pf-color-blue-500;}
+    }
+
+    .ins-c-summary__icon + .ins-c-summary__emphasis {
+        @include rem("margin-left", 10px);
+        @include rem("margin-right", 10px);
+    }
+
+    .ins-m-green {
+        color: $pf-color-green-400;
+    }
+
+    .ins-m-red {
+        color: $pf-color-red-100;
+    }
+}

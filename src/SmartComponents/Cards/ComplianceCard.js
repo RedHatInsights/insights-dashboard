@@ -39,7 +39,7 @@ class ComplianceCard extends Component {
         } = this.props;
 
         return (
-            <Card>
+            <Card className='ins-c-card__compliance'>
                 <CardHeader>
                     <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Compliance</Title>
                 </CardHeader>
