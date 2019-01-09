@@ -41,13 +41,13 @@ class ComplianceCard extends Component {
         return (
             <Card className='ins-c-card__compliance'>
                 <CardHeader>
-                    <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Compliance</Title>
+                    <Title size={'lg'}>Compliance</Title>
                 </CardHeader>
                 <CardBody>
                     { complianceFetchStatus === 'fulfilled' && (
-                        Array.isArray(complianceSummary) && complianceSummary.length && (
+                        Array.isArray(complianceSummary.data) && complianceSummary.data.length && (
                             <React.Fragment>
-                                {complianceSummary.map(element =>
+                                {complianceSummary.data.map(element =>
                                     <Grid gutter='md' span={6} rowSpan={2} key={ element.profile }>
                                         <GridItem>
                                             <Gauge label={ element.attributes.name } value={ element.attributes.score } />
