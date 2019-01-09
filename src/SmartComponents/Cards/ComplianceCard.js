@@ -15,6 +15,10 @@ import Loading from '../../PresentationalComponents/Loading/Loading';
 
 import './_cards.scss';
 
+// makes eslint exception for webpack variable RELEASE
+/*global RELEASE:true*/
+const release = RELEASE;
+
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
  * Smart components are usually classes.
@@ -69,7 +73,7 @@ class ComplianceCard extends Component {
                         { complianceFetchStatus === 'pending' && (<Loading/>) }
                     </Stack>
                 </CardBody>
-                <CardFooter>View All Compliance Policies</CardFooter>
+                <CardFooter><a href={ `/${release}/platform/security/compliance/` }>View All Compliance Policies</a></CardFooter>
             </Card>
         );
     }

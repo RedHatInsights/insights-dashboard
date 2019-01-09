@@ -14,6 +14,10 @@ import Loading from '../../PresentationalComponents/Loading/Loading';
 
 import './_cards.scss';
 
+// makes eslint exception for webpack variable RELEASE
+/*global RELEASE:true*/
+const release = RELEASE;
+
 /**
  * Vulnerabilities Card
  */
@@ -52,7 +56,9 @@ class VulnerabilitiesCard extends Component {
                         <div className='ins-c-summary'>
                             <ExclamationCircleIcon className='ins-c-summary__icon ins-c-summary__icon-critical' />
                             <span className='ins-c-summary__emphasis'>{ criticalVulnerabilities.meta.total_items }</span>
-                            <span className='ins-c-summary__label'>Critical</span>
+                            <span className='ins-c-summary__label'>
+                                <a href={ `/${release}/platform/security/vulnerability/` }>Critical</a>
+                            </span>
                         </div>
                     ) } { criticalVulnerabilitiesFetchStatus === 'pending' && (<Loading />) }
                     { latestVulnerabilitiesFetchStatus === 'fulfilled' && (
@@ -63,7 +69,9 @@ class VulnerabilitiesCard extends Component {
                         </div>
                     ) }
                 </CardBody>
-                <CardFooter>View All Vulnerabilities</CardFooter>
+                <CardFooter>
+                    <a href={ `/${release}/platform/security/vulnerability/` }>View All Vulnerabilities</a>
+                </CardFooter>
             </Card>
         );
     }

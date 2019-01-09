@@ -18,6 +18,10 @@ import Loading from '../../PresentationalComponents/Loading/Loading';
 
 import './_cards.scss';
 
+// makes eslint exception for webpack variable RELEASE
+/*global RELEASE:true*/
+const release = RELEASE;
+
 /**
  * Cost Management Summary
  */
@@ -121,7 +125,7 @@ class CostManagementCard extends Component {
                         </Grid>
                     ) } { awsSummaryFetchStatus === 'pending' && (<Loading/>) } */}
                 </CardBody>
-                <CardFooter>View All Cost/Charges</CardFooter>
+                <CardFooter><a href={ `/${release}/platform/cost-management/` }>View All Cost/Charges</a></CardFooter>
             </Card>
         );
     }

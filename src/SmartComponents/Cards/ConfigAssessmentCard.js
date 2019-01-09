@@ -14,6 +14,10 @@ import Loading from '../../PresentationalComponents/Loading/Loading';
 
 import './_cards.scss';
 
+// makes eslint exception for webpack variable RELEASE
+/*global RELEASE:true*/
+const release = RELEASE;
+
 /**
  * Configuration Assessment Card
  */
@@ -82,7 +86,11 @@ class ConfigAssessmentCard extends Component {
                     { configAssessmentFetchStatus === 'pending' && (<Loading/>) }
                 </CardBody>
                 { configAssessmentFetchStatus === 'fulfilled' && (
-                    <CardFooter>View All { configAssessment.rules.total > 0 ? configAssessment.rules.total : ''} Rule Hits</CardFooter>
+                    <CardFooter>
+                        <a href={ '/' + release + '/platform/advisor/' }>
+                            View All{ configAssessment.rules.total > 0 ? ` ${configAssessment.rules.total} ` : ''} Rule Hits
+                        </a>
+                    </CardFooter>
                 ) }
             </Card>
         );
