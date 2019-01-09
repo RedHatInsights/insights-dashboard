@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import {
     Card, CardBody, CardFooter, CardHeader,
-    Grid, GridItem,
+    Split, SplitItem,
     Stack, StackItem,
     Title
 } from '@patternfly/react-core';
@@ -44,27 +44,30 @@ class ComplianceCard extends Component {
                     <Title size={'lg'}>Compliance</Title>
                 </CardHeader>
                 <CardBody>
-                    { complianceFetchStatus === 'fulfilled' && (
-                        Array.isArray(complianceSummary.data) && complianceSummary.data.length && (
-                            <React.Fragment>
-                                {complianceSummary.data.map(element =>
-                                    <Grid gutter='md' span={6} rowSpan={2} key={ element.profile }>
-                                        <GridItem>
-                                            <Gauge label={ element.attributes.name } value={ element.attributes.score } />
-                                        </GridItem>
-                                        <GridItem>
-                                            <Stack>
-                                                <StackItem>{ element.attributes.name }</StackItem>
-                                                <StackItem>{ element.attributes.compliant_host_count } of
-                                                    { element.attributes.total_host_count } systems</StackItem>
-                                            </Stack>
-                                        </GridItem>
-                                    </Grid>
-                                )}
-                            </React.Fragment>
-                        )
-                    ) }
-                    { complianceFetchStatus === 'pending' && (<Loading/>) }
+                    <Stack>
+                        { complianceFetchStatus === 'fulfilled' && (
+                            Array.isArray(complianceSummary.data) && complianceSummary.data.length && (
+                                <StackItem>
+                                    {complianceSummary.data.map(element =>
+                                        <Split gutter='md' key={ element.profile }>
+                                            <SplitItem>
+                                                <Gauge label={ element.attributes.name } value={ element.attributes.score } />
+                                            </SplitItem>
+                                            <SplitItem>
+                                                <Stack>
+                                                    <StackItem>{ element.attributes.name }</StackItem>
+                                                    <StackItem>
+                                                        { element.attributes.compliant_host_count } of
+                                                        &nbsp;{ element.attributes.total_host_count } systems</StackItem>
+                                                </Stack>
+                                            </SplitItem>
+                                        </Split>
+                                    )}
+                                </StackItem>
+                            )
+                        ) }
+                        { complianceFetchStatus === 'pending' && (<Loading/>) }
+                    </Stack>
                 </CardBody>
                 <CardFooter>View All Compliance Policies</CardFooter>
             </Card>

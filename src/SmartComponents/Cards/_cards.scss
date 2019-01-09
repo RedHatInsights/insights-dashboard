@@ -1,34 +1,54 @@
 @import '~@red-hat-insights/insights-frontend-components/Utilities/_mixins';
 @import '@patternfly/patternfly-next/sass-utilities/colors.scss';
+@import '~@patternfly/patternfly-next/sass-utilities/scss-variables.scss';
+// @import '~@patternfly/patternfly-next/sass-utilities/all';
 
 .ins-c-summary {
-    &__accent {
-        color: $pf-color-black-500;
-    }
+    &__accent { color: $pf-color-black-500; }
 
-    &__emphasis {
-        @include rem("font-size", 32px);
-    }
+    &__emphasis { @include rem("font-size", 32px); }
 
     &__icon {
-        &-critical {fill: $pf-color-red-100;}
-        &-error {fill: $pf-color-orange-300;}
-        &-warn {fill: $pf-color-gold-300;}
-        &-info {fill: $pf-color-blue-300;}
+        &-critical { fill: $pf-color-red-100; }
+        &-error { fill: $pf-color-orange-300; }
+        &-warn { fill: $pf-color-gold-300; }
+        &-info { fill: $pf-color-blue-300; }
 
-        &-flag {fill: $pf-color-blue-500;}
+        &-flag { fill: $pf-color-blue-500; }
     }
+
+    &__title { @include rem("margin-bottom", 10px); }
 
     .ins-c-summary__icon + .ins-c-summary__emphasis {
         @include rem("margin-left", 10px);
         @include rem("margin-right", 10px);
     }
 
-    .ins-m-green {
-        color: $pf-color-green-400;
-    }
+    .ins-m-green { color: $pf-color-green-400; }
 
-    .ins-m-red {
-        color: $pf-color-red-100;
+    .ins-m-red { color: $pf-color-red-100; }
+}
+
+// ==================================================================
+// Gauge
+// ==================================================================
+
+.ins-c-gauge-widget__graph {
+    display: grid;
+    flex: none;
+    justify-self: center;
+    margin-right: var(--ins-c-gauge-widget__graph--MarginRight);
+  
+    // @desktop
+    @media screen and (min-width: $pf-global--breakpoint--sm) {
+        justify-self: left;
+        width: var(--ins-c-gauge-widget__graph--Width);
+    }
+  
+    // not sure why gauge container is larger than the gauge itself,
+    // would like to figure that out
+    svg {
+        margin-top: -16px;
+        margin-left: -25px;
     }
 }

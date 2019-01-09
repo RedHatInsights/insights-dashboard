@@ -80,7 +80,7 @@ class CostManagementCard extends Component {
                 <CardBody>
                     { ocpSummaryFetchStatus === 'fulfilled' && (
                         <Stack span={6} className='ins-c-summary'>
-                            <StackItem>OpenShift Total Charges</StackItem>
+                            <StackItem className='ins-c-summary__title'>OpenShift Total Charges</StackItem>
                             <StackItem>
                                 <Split gutter='sm'>
                                     <SplitItem>
