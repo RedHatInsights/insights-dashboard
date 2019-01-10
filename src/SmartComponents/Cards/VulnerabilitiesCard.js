@@ -41,11 +41,6 @@ class VulnerabilitiesCard extends Component {
             latestVulnerabilities
         } = this.props;
 
-        if (criticalVulnerabilitiesFetchStatus === 'fulfilled') {
-            // eslint-disable-next-line no-console
-            console.log(criticalVulnerabilities);
-        }
-
         return (
             <Card className='ins-c-card__vulnerabilities'>
                 <CardHeader>
