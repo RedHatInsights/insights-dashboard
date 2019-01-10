@@ -61,7 +61,7 @@ class ComplianceCard extends Component {
                                                     </div>
                                                 </div>
                                                 <Gauge label={ element.attributes.name }
-                                                    value={ element.attributes.score * 100 } width={ 72 } height={ 72 } />
+                                                    value={ element.attributes.score * 100 } width={ 79 } height={ 79 } />
                                             </SplitItem>
                                             <SplitItem>
                                                 <Stack>

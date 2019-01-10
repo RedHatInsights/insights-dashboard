@@ -2,6 +2,8 @@
 @import '@patternfly/patternfly-next/sass-utilities/colors.scss';
 @import '~@patternfly/patternfly-next/sass-utilities/scss-variables.scss';
 
+.pf-l-page__main .pf-c-card { min-height: 100%; }
+
 .ins-c-summary {
     &__accent { color: $pf-color-black-500; }
 
@@ -35,7 +37,7 @@
 
 .ins-c-gauge {
     svg {
-        margin-top: -40px;
+        margin-top: -43px;
         margin-left: -3px;
     }
 
