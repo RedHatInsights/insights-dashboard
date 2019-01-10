@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import { connect } from 'react-redux';
-import { ExclamationCircleIcon, ExclamationTriangleIcon, ExclamationIcon } from '@patternfly/react-icons';
+
+import {
+    CheckCircleIcon,
+    ExclamationCircleIcon, ExclamationTriangleIcon, ExclamationIcon
+} from '@patternfly/react-icons';
 
 import {
     Card, CardBody, CardFooter, CardHeader,
@@ -84,6 +88,12 @@ class ConfigAssessmentCard extends Component {
                         )
                     ) }
                     { configAssessmentFetchStatus === 'pending' && (<Loading/>) }
+                    { configAssessmentFetchStatus === 'fulfilled' && (!Array.isArray(severities) || severities.length === 0) && (
+                        <div className='ins-c-summary'>
+                            <CheckCircleIcon className='ins-c-summary__icon ins-c-summary__icon-check' />
+                            <span className='ins-c-summary__label'>You have no issues</span>
+                        </div>
+                    ) }
                 </CardBody>
                 { configAssessmentFetchStatus === 'fulfilled' && (
                     <CardFooter>
