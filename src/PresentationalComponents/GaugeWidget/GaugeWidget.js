@@ -145,7 +145,7 @@ class GaugeWidget extends Component {
         } else {
             return (
                 <div className={gaugeWidgetClasses} id={this.props.id}>
-                    <div className='ins-c-gauge-widget__graph pf-u-text-align-center'>
+                    <div className='pf-u-text-align-center'>
                         <div className='ins-c-gauge-widget__metrics'>
                             <div className='ins-c-gauge-widget__metrics-percentage'>
                                 {this.props.value}%

@@ -95,13 +95,12 @@ class ConfigAssessmentCard extends Component {
                         </div>
                     ) }
                 </CardBody>
-                { configAssessmentFetchStatus === 'fulfilled' && (
-                    <CardFooter>
-                        <a href={ '/' + release + '/platform/advisor/' }>
-                            View All{ configAssessment.rules.total > 0 ? ` ${configAssessment.rules.total} ` : ''} Rule Hits
-                        </a>
-                    </CardFooter>
-                ) }
+                <CardFooter>
+                    <a href={ '/' + release + '/platform/advisor/' }>
+                        View All{ configAssessment.rules && configAssessment.rules.total > 0 ?
+                            ` ${configAssessment.rules.total} ` : ''} Rule Hits
+                    </a>
+                </CardFooter>
             </Card>
         );
     }

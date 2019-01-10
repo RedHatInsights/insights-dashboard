@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import { connect } from 'react-redux';
-import { CaretUpIcon, CaretDownIcon } from '@patternfly/react-icons';
+import { CaretUpIcon, CaretDownIcon, DollarSignIcon } from '@patternfly/react-icons';
 
 import {
     Card, CardBody, CardFooter, CardHeader,
@@ -48,21 +48,25 @@ class CostManagementCard extends Component {
         let awsStats = {};
 
         if (ocpSummaryFetchStatus === 'fulfilled') {
-            ocpStats.delta = Math.abs(Math.round(ocpSummary.delta.percent));
-            ocpStats.deltaColor = ocpSummary.delta.percent > 0 ? 'green' :
-                ocpSummary.delta.percent < 0 ? 'red' : 'black';
-            ocpStats.total = Math.round(ocpSummary.total.charge * 100) / 100;
-            // ocpStats.totalUnits = ocpSummary.total.units;
-            ocpStats.date = moment(ocpSummary.data.date).format('MMMM Do YYYY');
-            ocpStats.filter = (-1 * ocpSummary.filter.time_scope_value) + ' ' + ocpSummary.filter.time_scope_units;
+            if (ocpSummary.total > 0) {
+                ocpStats.delta = Math.abs(Math.round(ocpSummary.delta.percent));
+                ocpStats.deltaColor = ocpSummary.delta.percent > 0 ? 'green' :
+                    ocpSummary.delta.percent < 0 ? 'red' : 'black';
+                ocpStats.total = Math.round(ocpSummary.total.charge * 100) / 100;
+                // ocpStats.totalUnits = ocpSummary.total.units;
+                ocpStats.date = moment(ocpSummary.data.date).format('MMMM Do YYYY');
+                ocpStats.filter = (-1 * ocpSummary.filter.time_scope_value) + ' ' + ocpSummary.filter.time_scope_units;
+            }
         }
 
         if (awsSummaryFetchStatus === 'fulfilled') {
-            awsStats.delta = Math.round(awsSummary.delta.percent);
-            awsStats.total = Math.round(awsSummary.total.charge * 100) / 100;
-            // awsStats.totalUnits = awsSummary.total.units;
-            awsStats.date = moment(awsSummary.data.date).format('MMMM Do YYYY');
-            awsStats.filter = (-1 * awsSummary.filter.time_scope_value) + ' ' + awsSummary.filter.time_scope_units;
+            if (awsSummary.total > 0) {
+                awsStats.delta = Math.round(awsSummary.delta.percent);
+                awsStats.total = Math.round(awsSummary.total.charge * 100) / 100;
+                // awsStats.totalUnits = awsSummary.total.units;
+                awsStats.date = moment(awsSummary.data.date).format('MMMM Do YYYY');
+                awsStats.filter = (-1 * awsSummary.filter.time_scope_value) + ' ' + awsSummary.filter.time_scope_units;
+            }
         }
 
         function getCaret (deltaColor) {
@@ -82,7 +86,7 @@ class CostManagementCard extends Component {
                     <Title className='pf-u-mt-0 pf-u-mb-0' size={'lg'}>Cost Management</Title>
                 </CardHeader>
                 <CardBody>
-                    { ocpSummaryFetchStatus === 'fulfilled' && (
+                    { ocpSummaryFetchStatus === 'fulfilled' && Object.keys(ocpStats).length > 0 && (
                         <Stack span={6} className='ins-c-summary'>
                             <StackItem className='ins-c-summary__title'>OpenShift Total Charges</StackItem>
                             <StackItem>
@@ -106,24 +110,12 @@ class CostManagementCard extends Component {
                             </StackItem>
                         </Stack>
                     ) } { ocpSummaryFetchStatus === 'pending' && (<Loading/>) }
-                    {/* { awsSummaryFetchStatus === 'fulfilled' && (
-                        <Grid gutter='md' span={6}>
-                            <GridItem>
-                                <Stack>
-                                    <StackItem gutter='md'>AWS Total Cost</StackItem>
-                                    <StackItem>${ awsStats.delta }</StackItem>
-                                    <StackItem>{ awsStats.date }</StackItem>
-                                </Stack>
-                            </GridItem>
-                            <GridItem>
-                                <Stack>
-                                    <StackItem gutter='md'> </StackItem>
-                                    <StackItem>{ awsStats.delta }</StackItem>
-                                    <StackItem>Compared to { awsStats.filter } ago</StackItem>
-                                </Stack>
-                            </GridItem>
-                        </Grid>
-                    ) } { awsSummaryFetchStatus === 'pending' && (<Loading/>) } */}
+                    { ocpSummaryFetchStatus === 'fulfilled' && !ocpStats.total && (
+                        <center className='ins-c-summary'>
+                            <DollarSignIcon className='ins-c-summary__icon ins-c-summary__icon-dollar' />
+                            <div className='ins-c-summary__label'>No Money, No Problems!</div>
+                        </center>
+                    )}
                 </CardBody>
                 <CardFooter><a href={ `/${release}/platform/cost-management/` }>View All Cost/Charges</a></CardFooter>
             </Card>

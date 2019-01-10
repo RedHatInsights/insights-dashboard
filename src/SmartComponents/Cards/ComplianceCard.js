@@ -54,14 +54,13 @@ class ComplianceCard extends Component {
                                 <StackItem>
                                     {complianceSummary.data.map(element =>
                                         <Split gutter='md' key={ element.type }>
-                                            <SplitItem className='ins-c-gauge__graph pf-u-text-align-center'>
-                                                <div className='ins-c-gauge__metrics'>
-                                                    <div className='ins-c-gauge__metrics-percentage'>
-                                                        { element.attributes.score * 100 }%
-                                                    </div>
+                                            <SplitItem className='ins-c-gauge pf-u-text-align-center'>
+                                                <div className='ins-c-gauge__metrics-percentage'>
+                                                    { element.attributes.score * 100 }%
                                                 </div>
                                                 <Gauge label={ element.attributes.name }
-                                                    value={ element.attributes.score * 100 } width={ 79 } height={ 79 } />
+                                                    value={ element.attributes.score * 100 } width={ 79 } height={ 79 }
+                                                    timeframe='30' />
                                             </SplitItem>
                                             <SplitItem>
                                                 <Stack>
