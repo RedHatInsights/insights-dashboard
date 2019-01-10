@@ -14,7 +14,7 @@ import Loading from '../../PresentationalComponents/Loading/Loading';
 
 import './_cards.scss';
 
-// makes eslint exception for webpack variable RELEASE
+// expose RELEASE
 /*global RELEASE:true*/
 const release = RELEASE;
 

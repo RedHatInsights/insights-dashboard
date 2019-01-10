@@ -15,7 +15,7 @@ import Loading from '../../PresentationalComponents/Loading/Loading';
 
 import './_cards.scss';
 
-// makes eslint exception for webpack variable RELEASE
+// expose RELEASE
 /*global RELEASE:true*/
 const release = RELEASE;
 
@@ -53,13 +53,21 @@ class ComplianceCard extends Component {
                             Array.isArray(complianceSummary.data) && complianceSummary.data.length && (
                                 <StackItem>
                                     {complianceSummary.data.map(element =>
-                                        <Split gutter='md' key={ element.profile }>
-                                            <SplitItem>
-                                                <Gauge label={ element.attributes.name } value={ element.attributes.score } />
+                                        <Split gutter='md' key={ element.type }>
+                                            <SplitItem className='ins-c-gauge__graph pf-u-text-align-center'>
+                                                <div className='ins-c-gauge__metrics'>
+                                                    <div className='ins-c-gauge__metrics-percentage'>
+                                                        { element.attributes.score * 100 }%
+                                                    </div>
+                                                </div>
+                                                <Gauge label={ element.attributes.name }
+                                                    value={ element.attributes.score * 100 } width={ 72 } height={ 72 } />
                                             </SplitItem>
                                             <SplitItem>
                                                 <Stack>
-                                                    <StackItem>{ element.attributes.name }</StackItem>
+                                                    <StackItem>
+                                                        <a href={ `/${release}/platform/security/compliance` }>{ element.attributes.name }</a>
+                                                    </StackItem>
                                                     <StackItem>
                                                         { element.attributes.compliant_host_count } of
                                                         &nbsp;{ element.attributes.total_host_count } systems</StackItem>

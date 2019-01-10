@@ -1,7 +1,6 @@
 @import '~@red-hat-insights/insights-frontend-components/Utilities/_mixins';
 @import '@patternfly/patternfly-next/sass-utilities/colors.scss';
 @import '~@patternfly/patternfly-next/sass-utilities/scss-variables.scss';
-// @import '~@patternfly/patternfly-next/sass-utilities/all';
 
 .ins-c-summary {
     &__accent { color: $pf-color-black-500; }
@@ -34,22 +33,13 @@
 // Gauge
 // ==================================================================
 
-.ins-c-gauge-widget__graph {
-    display: grid;
-    flex: none;
-    justify-self: center;
-    margin-right: var(--ins-c-gauge-widget__graph--MarginRight);
-  
-    // @desktop
-    @media screen and (min-width: $pf-global--breakpoint--sm) {
-        justify-self: left;
-        width: var(--ins-c-gauge-widget__graph--Width);
-    }
-  
-    // not sure why gauge container is larger than the gauge itself,
-    // would like to figure that out
+.ins-c-gauge {
     svg {
-        margin-top: -16px;
-        margin-left: -25px;
+        margin-top: -40px;
+        margin-left: -3px;
+    }
+
+    &__metrics-percentage {
+        margin-top: 10px;
     }
 }
