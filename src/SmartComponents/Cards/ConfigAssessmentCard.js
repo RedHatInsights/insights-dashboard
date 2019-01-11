@@ -23,7 +23,7 @@ import './_cards.scss';
 const release = RELEASE;
 
 /**
- * Configuration Assessment Card
+ * Configuration Assessment for showing 2 highest categories with rule hits
  */
 class ConfigAssessmentCard extends Component {
 

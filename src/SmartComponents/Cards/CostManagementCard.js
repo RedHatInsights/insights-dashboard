@@ -23,7 +23,7 @@ import './_cards.scss';
 const release = RELEASE;
 
 /**
- * Cost Management Summary
+ * Cost Management Summary card for showing costs and monthly delta for AWS
  */
 class CostManagementCard extends Component {
 

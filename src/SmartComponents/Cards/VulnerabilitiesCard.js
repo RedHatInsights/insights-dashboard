@@ -19,7 +19,7 @@ import './_cards.scss';
 const release = RELEASE;
 
 /**
- * Vulnerabilities Card
+ * Vulnerabilities Card for showing number of critical vulnerabilities
  */
 class VulnerabilitiesCard extends Component {
 
@@ -52,7 +52,7 @@ class VulnerabilitiesCard extends Component {
                             <ExclamationCircleIcon className='ins-c-summary__icon ins-c-summary__icon-critical' />
                             <span className='ins-c-summary__emphasis'>{ criticalVulnerabilities.meta.total_items }</span>
                             <span className='ins-c-summary__label'>
-                                <a href={ `/${release}/platform/security/vulnerability/` }>Critical</a>
+                                <a href={ `/${release}/platform/vulnerability/` }>Critical</a>
                             </span>
                         </div>
                     ) } { criticalVulnerabilitiesFetchStatus === 'pending' && (<Loading />) }
@@ -65,7 +65,7 @@ class VulnerabilitiesCard extends Component {
                     ) }
                 </CardBody>
                 <CardFooter>
-                    <a href={ `/${release}/platform/security/vulnerability/` }>View All Vulnerabilities</a>
+                    <a href={ `/${release}/platform/vulnerability/` }>View All Vulnerabilities</a>
                 </CardFooter>
             </Card>
         );
