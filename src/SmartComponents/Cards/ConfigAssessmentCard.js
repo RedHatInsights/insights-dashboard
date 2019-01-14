@@ -83,7 +83,9 @@ class ConfigAssessmentCard extends Component {
                             <div className='ins-c-summary' key={ element.label }>
                                 { getIcon(element.label) }
                                 <span className='ins-c-summary__emphasis'>{ element.value }</span>
-                                <span className='ins-c-summary__label'>{ element.label }</span>
+                                <span className='ins-c-summary__label'>
+                                    <a href={ '/' + release + '/platform/advisor/' }>{ element.label } Rule Hits</a>
+                                </span>
                             </div>
                         )
                     ) }
