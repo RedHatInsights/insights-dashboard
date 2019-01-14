@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Grid, GridItem } from '@patternfly/react-core';
-import { Dark, PageHeader, PageHeaderTitle, Main } from '@red-hat-insights/insights-frontend-components';
+import { PageHeader, PageHeaderTitle, Main } from '@red-hat-insights/insights-frontend-components';
 
 import asyncComponent from '../../Utilities/asyncComponent';
 import './_dashboard.scss';
 
-const ComplianceCard = asyncComponent(() => import ('../Cards/ComplianceCard'));
-const ConfigAssessmentCard = asyncComponent(() => import ('../Cards/ConfigAssessmentCard'));
-const CostManagementCard = asyncComponent(() => import ('../Cards/CostManagementCard'));
-const VulnerabilitiesCard = asyncComponent(() => import ('../Cards/VulnerabilitiesCard'));
+const ComplianceCard = asyncComponent(() => import ('../../SmartComponents/Cards/ComplianceCard'));
+const ConfigAssessmentCard = asyncComponent(() => import ('../../SmartComponents/Cards/ConfigAssessmentCard'));
+const CostManagementCard = asyncComponent(() => import ('../../SmartComponents/Cards/CostManagementCard'));
+const VulnerabilitiesCard = asyncComponent(() => import ('../../SmartComponents/Cards/VulnerabilitiesCard'));
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -22,7 +22,7 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <Dark>
+            <React.Fragment>
                 <PageHeader>
                     <PageHeaderTitle title='Health of Your Infrastructure'/>
                 </PageHeader>
@@ -42,7 +42,7 @@ class Dashboard extends Component {
                         </GridItem>
                     </Grid>
                 </Main>
-            </Dark>
+            </React.Fragment>
         );
     }
 }

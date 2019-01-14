@@ -17,7 +17,7 @@ import asyncComponent from './Utilities/asyncComponent';
  *         see the difference with DashboardMap and InventoryDeployments.
  *
  */
-const Dashboard = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './SmartComponents/Dashboard/Dashboard'));
+const Dashboard = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './PresentationalComponents/Dashboard/Dashboard'));
 
 const InsightsRoute = ({ component: Component, rootClass, ...rest }) => {
     const root = document.getElementById('root');
