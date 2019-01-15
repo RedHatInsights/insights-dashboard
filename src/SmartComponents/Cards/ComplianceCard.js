@@ -65,7 +65,7 @@ class ComplianceCard extends Component {
                                             <SplitItem>
                                                 <Stack>
                                                     <StackItem>
-                                                        <a href={ `/${release}/platform/security/compliance` }>{ element.attributes.name }</a>
+                                                        <a href={ `/${release}/platform/compliance/policies/` }>{ element.attributes.name }</a>
                                                     </StackItem>
                                                     <StackItem>
                                                         { element.attributes.compliant_host_count } of
@@ -80,7 +80,7 @@ class ComplianceCard extends Component {
                         { complianceFetchStatus === 'pending' && (<Loading/>) }
                     </Stack>
                 </CardBody>
-                <CardFooter><a href={ `/${release}/platform/security/compliance/` }>View All Compliance Policies</a></CardFooter>
+                <CardFooter><a href={ `/${release}/platform/compliance/policies/` }>View All Compliance Policies</a></CardFooter>
             </Card>
         );
     }
