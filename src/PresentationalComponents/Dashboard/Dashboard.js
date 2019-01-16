@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Grid, GridItem } from '@patternfly/react-core';
 import { PageHeader, PageHeaderTitle, Main } from '@red-hat-insights/insights-frontend-components';
 
-import asyncComponent from '../../Utilities/asyncComponent';
+import asyncComponent from '../../Utilities/skeletonAsyncCard';
 import './_dashboard.scss';
 
 const ComplianceCard = asyncComponent(() => import ('../../SmartComponents/Cards/ComplianceCard'));

@@ -4,11 +4,6 @@
 @import '~@patternfly/patternfly-next/utilities/Alignment/alignment.scss';
 @import '~@patternfly/patternfly-next/utilities/Flex/flex.scss';
 
-// open an issue for this
-.pf-u-sr-only {
-    // position: fixed;
-}
-
 // Dashboard
 .ins-l-dashboard {
     --ins-l-dashboard--Min--sm: #{pf-size-prem(320px)};
