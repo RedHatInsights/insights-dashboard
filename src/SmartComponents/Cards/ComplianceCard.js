@@ -50,7 +50,7 @@ class ComplianceCard extends Component {
                 <CardBody>
                     <Stack>
                         { complianceFetchStatus === 'fulfilled' && (
-                            Array.isArray(complianceSummary.data) && complianceSummary.data.length && (
+                            Array.isArray(complianceSummary.data) && complianceSummary.data.length > 0 && (
                                 <StackItem>
                                     {complianceSummary.data.map(element =>
                                         <Split gutter='md' key={ element.type }>
