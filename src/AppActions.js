@@ -1,7 +1,10 @@
 import * as ActionTypes from './AppConstants';
 import API from './Utilities/Api';
 
-const fetchData = async (url, headers, options) => (await API.get(url, headers, options)).data;
+const fetchData = async (url, headers, options) => {
+    await window.insights.chrome.auth.getUser();
+    return (await API.get(url, headers, options)).data;
+};
 
 export const fetchAwsSummary = (options) => ({
     type: ActionTypes.AWS_SUMMARY_FETCH,
