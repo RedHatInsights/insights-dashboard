@@ -47,15 +47,16 @@ class ConfigAssessmentCard extends Component {
             // iterate over rules.severities and push to topSeverities if value > 0 in order of greatest to least
             // break after 2 items have been added
             [
-                { severity: 'Critical', label: 'Critical' },
-                { severity: 'Error', label: 'High' },
-                { severity: 'Warn', label: 'Medium' },
-                { severity: 'Info', label: 'Low' }
+                { severity: 'Critical', label: 'Critical', link: 'critical-risk/' },
+                { severity: 'Error', label: 'High', link: 'high-risk/' },
+                { severity: 'Warn', label: 'Medium', link: 'medium-risk/' },
+                { severity: 'Info', label: 'Low', link: 'low-risk/' }
             ].some(element => {
                 if (configAssessment.rules.severity[element.severity] > 0) {
                     severities.push({
                         label: element.label,
-                        value: configAssessment.rules.severity[element.severity]
+                        value: configAssessment.rules.severity[element.severity],
+                        link: element.link
                     });
                     if (severities.length > 1) {
                         return true;
@@ -89,7 +90,7 @@ class ConfigAssessmentCard extends Component {
                                 { getIcon(element.label) }
                                 <span className='ins-c-summary__emphasis'>{ element.value }</span>
                                 <span className='ins-c-summary__label'>
-                                    <a href={ '/' + release + '/platform/advisor/' }>{ element.label } Rule Hits</a>
+                                    <a href={ `/${ release }/platform/advisor/${ element.link }` }>{ element.label } Rule Hits</a>
                                 </span>
                             </div>
                         )
@@ -103,7 +104,7 @@ class ConfigAssessmentCard extends Component {
                     ) }
                 </CardBody>
                 <CardFooter>
-                    <a href={ '/' + release + '/platform/advisor/' }>
+                    <a href={ `/${ release }/platform/advisor/` }>
                         View All{ configAssessment.rules && configAssessment.rules.total > 0 ?
                             ` ${configAssessment.rules.total} ` : ''} Rule Hits
                     </a>
