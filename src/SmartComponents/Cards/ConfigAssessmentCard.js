@@ -46,11 +46,16 @@ class ConfigAssessmentCard extends Component {
         if (configAssessmentFetchStatus === 'fulfilled') {
             // iterate over rules.severities and push to topSeverities if value > 0 in order of greatest to least
             // break after 2 items have been added
-            ['Critical', 'Error', 'Warn', 'Info'].some(element => {
-                if (configAssessment.rules.severity[element] > 0) {
+            [
+                { severity: 'Critical', label: 'Critical' },
+                { severity: 'Error', label: 'High' },
+                { severity: 'Warn', label: 'Medium' },
+                { severity: 'Info', label: 'Low' }
+            ].some(element => {
+                if (configAssessment.rules.severity[element.severity] > 0) {
                     severities.push({
-                        label: element,
-                        value: configAssessment.rules.severity[element]
+                        label: element.label,
+                        value: configAssessment.rules.severity[element.severity]
                     });
                     if (severities.length > 1) {
                         return true;
@@ -63,12 +68,12 @@ class ConfigAssessmentCard extends Component {
             switch (label) {
                 case 'Critical':
                     return <ExclamationCircleIcon className='ins-c-summary__icon ins-c-summary__icon-critical' />;
-                case 'Error':
-                    return <ExclamationTriangleIcon className='ins-c-summary__icon ins-c-summary__icon-error' />;
-                case 'Warn':
-                    return <ExclamationTriangleIcon className='ins-c-summary__icon ins-c-summary__icon-warn' />;
-                case 'Info':
-                    return <ExclamationIcon className='ins-c-summary__icon ins-c-summary__icon-info' />;
+                case 'High':
+                    return <ExclamationTriangleIcon className='ins-c-summary__icon ins-c-summary__icon-high' />;
+                case 'Medium':
+                    return <ExclamationTriangleIcon className='ins-c-summary__icon ins-c-summary__icon-medium' />;
+                case 'Low':
+                    return <ExclamationIcon className='ins-c-summary__icon ins-c-summary__icon-low' />;
             }
         }
 

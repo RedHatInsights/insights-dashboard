@@ -11,9 +11,9 @@
 
     &__icon {
         &-critical { fill: $pf-color-red-100; }
-        &-error { fill: $pf-color-orange-300; }
-        &-warn { fill: $pf-color-gold-300; }
-        &-info { fill: $pf-color-blue-300; }
+        &-high { fill: $pf-color-orange-300; }
+        &-medium { fill: $pf-color-gold-300; }
+        &-low { fill: $pf-color-blue-300; }
 
         &-flag { fill: $pf-color-blue-500; }
         &-check { fill: $pf-color-green-300; }
