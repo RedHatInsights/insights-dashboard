@@ -17,10 +17,6 @@
 
         &-flag { fill: $pf-color-blue-500; }
         &-check { fill: $pf-color-green-300; }
-        &-dollar {
-            @include rem("height", 32px);
-            @include rem("width", 32px);
-        }
     }
 
     &__title { @include rem("margin-bottom", 10px); }

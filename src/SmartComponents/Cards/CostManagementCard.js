@@ -112,7 +112,7 @@ class CostManagementCard extends Component {
                     ) } { ocpSummaryFetchStatus === 'pending' && (<Loading/>) }
                     { ocpSummaryFetchStatus === 'fulfilled' && !ocpStats.total && (
                         <center className='ins-c-summary'>
-                            <DollarSignIcon className='ins-c-summary__icon ins-c-summary__icon-dollar' />
+                            <DollarSignIcon className='ins-c-summary__icon' size='lg' />
                             <div className='ins-c-summary__label'>No Money, No Problems!</div>
                         </center>
                     )}
