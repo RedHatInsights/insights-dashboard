@@ -35,3 +35,8 @@ export const fetchLatestVulnerabilities = (options) => ({
     type: ActionTypes.LATEST_VULNERABILITIES_FETCH,
     payload: fetchData(ActionTypes.LATEST_VULNERABILITIES_FETCH_URL, {}, options)
 });
+
+export const fetchVulnerabilities = (options) => ({
+    type: ActionTypes.VULNERABILITIES_FETCH,
+    payload: fetchData(ActionTypes.VULNERABILITIES_FETCH_URL, {}, options)
+});

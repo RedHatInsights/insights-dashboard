@@ -79,6 +79,16 @@ export const DashboardStore = (state = initialState, action) => {
         case `${ActionTypes.LATEST_VULNERABILITIES_FETCH}_REJECTED`:
             return state.set('latestVulnerabilitiesFetchStatus', 'rejected');
 
+        case `${ActionTypes.VULNERABILITIES_FETCH}_PENDING`:
+            return state.set('vulnerabilitiesFetchStatus', 'pending');
+        case `${ActionTypes.VULNERABILITIES_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                vulnerabilities: action.payload,
+                vulnerabilitiesFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.VULNERABILITIES_FETCH}_REJECTED`:
+            return state.set('vulnerabilitiesFetchStatus', 'rejected');
+
         default:
             return state;
     }

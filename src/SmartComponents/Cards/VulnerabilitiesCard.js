@@ -31,6 +31,7 @@ class VulnerabilitiesCard extends Component {
     componentDidMount () {
         this.props.fetchCriticalVulnerabilities();
         this.props.fetchLatestVulnerabilities();
+        this.props.fetchVulnerabilities();
     }
 
     render() {
@@ -38,7 +39,9 @@ class VulnerabilitiesCard extends Component {
             criticalVulnerabilitiesFetchStatus,
             latestVulnerabilitiesFetchStatus,
             criticalVulnerabilities,
-            latestVulnerabilities
+            latestVulnerabilities,
+            vulnerabilitiesFetchStatus,
+            vulnerabilities
         } = this.props;
 
         return (
@@ -65,7 +68,10 @@ class VulnerabilitiesCard extends Component {
                     ) }
                 </CardBody>
                 <CardFooter>
-                    <a href={ `/${release}/platform/vulnerability/` }>View All Vulnerabilities</a>
+                    <a href={ `/${release}/platform/vulnerability/` }>
+                        View All{ vulnerabilitiesFetchStatus === 'fulfilled' && vulnerabilities.meta.total_items > 0 ?
+                            ` ${vulnerabilities.meta.total_items} ` : ''} Vulnerabilities
+                    </a>
                 </CardFooter>
             </Card>
         );
@@ -78,7 +84,10 @@ VulnerabilitiesCard.propTypes = {
     criticalVulnerabilitiesFetchStatus: PropTypes.string,
     fetchLatestVulnerabilities: PropTypes.func,
     latestVulnerabilities: PropTypes.object,
-    latestVulnerabilitiesFetchStatus: PropTypes.string
+    latestVulnerabilitiesFetchStatus: PropTypes.string,
+    fetchVulnerabilities: PropTypes.func,
+    vulnerabilities: PropTypes.object,
+    vulnerabilitiesFetchStatus: PropTypes.string
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -86,12 +95,15 @@ const mapStateToProps = (state, ownProps) => ({
     criticalVulnerabilitiesFetchStatus: state.DashboardStore.criticalVulnerabilitiesFetchStatus,
     latestVulnerabilities: state.DashboardStore.latestVulnerabilities,
     latestVulnerabilitiesFetchStatus: state.DashboardStore.latestVulnerabilitiesFetchStatus,
+    vulnerabilities: state.DashboardStore.vulnerabilities,
+    vulnerabilitiesFetchStatus: state.DashboardStore.vulnerabilitiesFetchStatus,
     ...ownProps
 });
 
 const mapDispatchToProps = dispatch => ({
     fetchCriticalVulnerabilities: (url) => dispatch(AppActions.fetchCriticalVulnerabilities(url)),
-    fetchLatestVulnerabilities: (url) => dispatch(AppActions.fetchLatestVulnerabilities(url))
+    fetchLatestVulnerabilities: (url) => dispatch(AppActions.fetchLatestVulnerabilities(url)),
+    fetchVulnerabilities: (url) => dispatch(AppActions.fetchVulnerabilities(url))
 });
 
 export default routerParams(connect(

@@ -6,6 +6,7 @@ export const CONFIG_ASSESSMENT_FETCH = 'CONFIG_ASSESSMENT_SUMMARY_FETCH';
 export const OCP_SUMMARY_FETCH = 'OCP_SUMMARY_FETCH';
 export const CRITICAL_VULNERABILITIES_FETCH = 'CRITICAL_VULNERABILITIES_FETCH';
 export const LATEST_VULNERABILITIES_FETCH = 'LATEST_VULNERABILITIES_FETCH';
+export const VULNERABILITIES_FETCH = 'VULNERABILITIES_FETCH';
 
 const BASE_URL = '/r/insights/platform';
 const COST = '/cost-management/api/v1/reports';
@@ -20,3 +21,4 @@ export const OCP_SUMMARY_FETCH_URL = `${BASE_URL}${COST}/charges/ocp/?filter[tim
 export const CRITICAL_VULNERABILITIES_FETCH_URL = `${BASE_URL}${VULN_CVES}?cvss_from=5`;
 export const LATEST_VULNERABILITIES_FETCH_URL = `${BASE_URL}${VULN_CVES}?public_from=
 									${moment().subtract(7, 'days').format('YYYY-MM-DD') }`;
+export const VULNERABILITIES_FETCH_URL = `${BASE_URL}${VULN_CVES}?page_size=1`;
