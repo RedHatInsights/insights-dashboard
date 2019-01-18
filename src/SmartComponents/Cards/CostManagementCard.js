@@ -60,9 +60,9 @@ class CostManagementCard extends Component {
         }
 
         if (awsSummaryFetchStatus === 'fulfilled') {
-            if (awsSummary.total > 0) {
+            if (awsSummary.total.value > 0) {
                 awsStats.delta = Math.round(awsSummary.delta.percent);
-                awsStats.total = Math.round(awsSummary.total.charge * 100) / 100;
+                awsStats.total = Math.round(awsSummary.total.value * 100) / 100;
                 // awsStats.totalUnits = awsSummary.total.units;
                 awsStats.date = moment(awsSummary.data.date).format('MMMM Do YYYY');
                 awsStats.filter = (-1 * awsSummary.filter.time_scope_value) + ' ' + awsSummary.filter.time_scope_units;
@@ -80,6 +80,33 @@ class CostManagementCard extends Component {
             }
         }
 
+        function getCostStack (costSummary) {
+            return (
+                <Stack span={6} className='ins-c-summary'>
+                    <StackItem className='ins-c-summary__title'>OpenShift Total Charges</StackItem>
+                    <StackItem>
+                        <Split gutter='sm'>
+                            <SplitItem>
+                                <Stack>
+                                    <StackItem className='ins-c-summary__emphasis'>${ costSummary.total }</StackItem>
+                                    <StackItem className='ins-c-summary__accent'>{ costSummary.date }</StackItem>
+                                </Stack>
+                            </SplitItem>
+                            <SplitItem>
+                                <Stack>
+                                    <StackItem className= {`ins-c-summary__emphasis ins-m-${costSummary.deltaColor}` }>
+                                        { costSummary.delta }%
+                                        { getCaret(costSummary.deltaColor) }
+                                    </StackItem>
+                                    <StackItem className='ins-c-summary__accent'>Compared to { costSummary.filter } ago</StackItem>
+                                </Stack>
+                            </SplitItem>
+                        </Split>
+                    </StackItem>
+                </Stack>
+            );
+        }
+
         return (
             <Card className='ins-c-card__cost-management'>
                 <CardHeader>
@@ -87,30 +114,12 @@ class CostManagementCard extends Component {
                 </CardHeader>
                 <CardBody>
                     { ocpSummaryFetchStatus === 'fulfilled' && Object.keys(ocpStats).length > 0 && (
-                        <Stack span={6} className='ins-c-summary'>
-                            <StackItem className='ins-c-summary__title'>OpenShift Total Charges</StackItem>
-                            <StackItem>
-                                <Split gutter='sm'>
-                                    <SplitItem>
-                                        <Stack>
-                                            <StackItem className='ins-c-summary__emphasis'>${ ocpStats.total }</StackItem>
-                                            <StackItem className='ins-c-summary__accent'>{ ocpStats.date }</StackItem>
-                                        </Stack>
-                                    </SplitItem>
-                                    <SplitItem>
-                                        <Stack>
-                                            <StackItem className= {`ins-c-summary__emphasis ins-m-${ocpStats.deltaColor}` }>
-                                                { ocpStats.delta }%
-                                                { getCaret(ocpStats.deltaColor) }
-                                            </StackItem>
-                                            <StackItem className='ins-c-summary__accent'>Compared to { ocpStats.filter } ago</StackItem>
-                                        </Stack>
-                                    </SplitItem>
-                                </Split>
-                            </StackItem>
-                        </Stack>
+                        getCostStack(ocpStats)
+                    ) } { awsSummaryFetchStatus === 'fulfilled' && Object.keys(awsSummary).length > 0 && (
+                        getCostStack(awsStats)
                     ) } { ocpSummaryFetchStatus === 'pending' && (<Loading/>) }
-                    { ocpSummaryFetchStatus === 'fulfilled' && !ocpStats.total && (
+                    { ocpSummaryFetchStatus === 'fulfilled' && awsSummaryFetchStatus === 'fulfilled' && !ocpStats.total
+                        && !awsStats.total && (
                         <center className='ins-c-summary'>
                             <DollarSignIcon className='ins-c-summary__icon' size='lg' />
                             <div className='ins-c-summary__label'>No Money, No Problems!</div>
