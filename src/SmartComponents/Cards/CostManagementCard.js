@@ -8,7 +8,7 @@ import { CaretUpIcon, CaretDownIcon, DollarSignIcon } from '@patternfly/react-ic
 import {
     Card, CardBody, CardFooter, CardHeader,
     // Grid, GridItem,
-    Split, SplitItem,
+    Level, LevelItem,
     Stack, StackItem,
     Title
 } from '@patternfly/react-core';
@@ -49,6 +49,7 @@ class CostManagementCard extends Component {
 
         if (ocpSummaryFetchStatus === 'fulfilled') {
             if (ocpSummary.total > 0) {
+                ocpStats.title = 'OpenShift Total Charges';
                 ocpStats.delta = Math.abs(Math.round(ocpSummary.delta.percent));
                 ocpStats.deltaColor = ocpSummary.delta.percent > 0 ? 'green' :
                     ocpSummary.delta.percent < 0 ? 'red' : 'black';
@@ -61,8 +62,11 @@ class CostManagementCard extends Component {
 
         if (awsSummaryFetchStatus === 'fulfilled') {
             if (awsSummary.total.value > 0) {
+                awsStats.title = 'AWS Total Cost';
                 awsStats.delta = Math.round(awsSummary.delta.percent);
                 awsStats.total = Math.round(awsSummary.total.value * 100) / 100;
+                awsStats.deltaColor = awsSummary.delta.percent > 0 ? 'green' :
+                    awsSummary.delta.percent < 0 ? 'red' : 'black';
                 // awsStats.totalUnits = awsSummary.total.units;
                 awsStats.date = moment(awsSummary.data.date).format('MMMM Do YYYY');
                 awsStats.filter = (-1 * awsSummary.filter.time_scope_value) + ' ' + awsSummary.filter.time_scope_units;
@@ -85,14 +89,14 @@ class CostManagementCard extends Component {
                 <Stack span={6} className='ins-c-summary'>
                     <StackItem className='ins-c-summary__title'>OpenShift Total Charges</StackItem>
                     <StackItem>
-                        <Split gutter='sm'>
-                            <SplitItem>
+                        <Level gutter='sm'>
+                            <LevelItem>
                                 <Stack>
                                     <StackItem className='ins-c-summary__emphasis'>${ costSummary.total }</StackItem>
                                     <StackItem className='ins-c-summary__accent'>{ costSummary.date }</StackItem>
                                 </Stack>
-                            </SplitItem>
-                            <SplitItem>
+                            </LevelItem>
+                            <LevelItem>
                                 <Stack>
                                     <StackItem className= {`ins-c-summary__emphasis ins-m-${costSummary.deltaColor}` }>
                                         { costSummary.delta }%
@@ -100,8 +104,8 @@ class CostManagementCard extends Component {
                                     </StackItem>
                                     <StackItem className='ins-c-summary__accent'>Compared to { costSummary.filter } ago</StackItem>
                                 </Stack>
-                            </SplitItem>
-                        </Split>
+                            </LevelItem>
+                        </Level>
                     </StackItem>
                 </Stack>
             );
@@ -113,9 +117,9 @@ class CostManagementCard extends Component {
                     <Title className='pf-u-mt-0 pf-u-mb-0' size={'lg'}>Cost Management</Title>
                 </CardHeader>
                 <CardBody>
-                    { ocpSummaryFetchStatus === 'fulfilled' && Object.keys(ocpStats).length > 0 && (
+                    { ocpSummaryFetchStatus === 'fulfilled' && ocpStats.total > 0 && (
                         getCostStack(ocpStats)
-                    ) } { awsSummaryFetchStatus === 'fulfilled' && Object.keys(awsSummary).length > 0 && (
+                    ) } { awsSummaryFetchStatus === 'fulfilled' && awsStats.total > 0 && (
                         getCostStack(awsStats)
                     ) } { ocpSummaryFetchStatus === 'pending' && (<Loading/>) }
                     { ocpSummaryFetchStatus === 'fulfilled' && awsSummaryFetchStatus === 'fulfilled' && !ocpStats.total
