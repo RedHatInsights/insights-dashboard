@@ -47,10 +47,10 @@ class ConfigAssessmentCard extends Component {
             // iterate over rules.severities and push to topSeverities if value > 0 in order of greatest to least
             // break after 2 items have been added
             [
-                { severity: 'Critical', label: 'Critical', link: 'critical-risk/' },
-                { severity: 'Error', label: 'High', link: 'high-risk/' },
-                { severity: 'Warn', label: 'Medium', link: 'medium-risk/' },
-                { severity: 'Info', label: 'Low', link: 'low-risk/' }
+                { severity: 'Critical', label: 'Critical', link: 'critical-risk' },
+                { severity: 'Error', label: 'High', link: 'high-risk' },
+                { severity: 'Warn', label: 'Medium', link: 'medium-risk' },
+                { severity: 'Info', label: 'Low', link: 'low-risk' }
             ].some(element => {
                 if (configAssessment.rules.severity[element.severity] > 0) {
                     severities.push({
