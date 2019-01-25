@@ -28,16 +28,16 @@ class Dashboard extends Component {
                 </PageHeader>
                 <Main className='ins-l-dashboard'>
                     <Grid gutter='md'>
-                        <GridItem span={4}>
+                        <GridItem lg={4} md={6} sm={12}>
                             <ConfigAssessmentCard />
                         </GridItem>
-                        <GridItem span={4}>
+                        <GridItem lg={4} md={6} sm={12}>
                             <VulnerabilitiesCard />
                         </GridItem>
-                        <GridItem span={4}>
+                        <GridItem lg={4} md={6} sm={12}>
                             <ComplianceCard />
                         </GridItem>
-                        <GridItem span={4}>
+                        <GridItem lg={4} md={6} sm={12}>
                             <CostManagementCard />
                         </GridItem>
                     </Grid>
