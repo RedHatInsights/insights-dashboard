@@ -55,7 +55,7 @@ class VulnerabilitiesCard extends Component {
                             <ExclamationCircleIcon className='ins-c-summary__icon ins-c-summary__icon-critical' />
                             <span className='ins-c-summary__emphasis'>{ criticalVulnerabilities.meta.total_items }</span>
                             <span className='ins-c-summary__label'>
-                                <a href={ `/${release}/platform/vulnerability/` }>Critical</a>
+                                <a href={ `/${release}/platform/vulnerability/` }>CVEs with CVSS Score &gt; 6</a>
                             </span>
                         </div>
                     ) } { criticalVulnerabilitiesFetchStatus === 'pending' && (<Loading />) }
