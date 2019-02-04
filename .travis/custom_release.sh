@@ -2,7 +2,7 @@
 set -e
 set -x
 
-# for now in chrome... push everywhere when master updates
+# for now... push everywhere when master updates
 if [ "${TRAVIS_BRANCH}" = "master" ]; then
     for env in ci qa prod
     do
