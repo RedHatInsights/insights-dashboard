@@ -9,7 +9,7 @@ if [ "${TRAVIS_BRANCH}" = "master" ]; then
         echo
         echo
         echo "PUSHING ${env}-beta"
-        rm -rf ./build/.git
+        rm -rf ./dist/.git
         .travis/release.sh "${env}-beta"
     done
 fi
@@ -20,7 +20,7 @@ if [ "${TRAVIS_BRANCH}" = "master-stable" ]; then
         echo
         echo
         echo "PUSHING ${env}-beta"
-        rm -rf ./build/.git
+        rm -rf ./dist/.git
         .travis/release.sh "${env}-stable"
     done
 fi
