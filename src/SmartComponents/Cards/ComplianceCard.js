@@ -59,7 +59,7 @@ class ComplianceCard extends Component {
                                                     { element.attributes.score * 100 }%
                                                 </div>
                                                 <Gauge label={ element.attributes.name }
-                                                    value={ element.attributes.score * 100 } width={ 79 } height={ 79 }
+                                                    value={ element.attributes.score * 100 } width={ 82 } height={ 82 }
                                                     timeframe='30'
                                                     identifier={ `compliance-gauge-${ element.id }` } />
                                             </SplitItem>
