@@ -7,7 +7,7 @@ import asyncComponent from '../../Utilities/skeletonAsyncCard';
 import './_dashboard.scss';
 
 const ComplianceCard = asyncComponent(() => import ('../../SmartComponents/Cards/ComplianceCard'));
-const ConfigAssessmentCard = asyncComponent(() => import ('../../SmartComponents/Cards/ConfigAssessmentCard'));
+const InsightsCard = asyncComponent(() => import ('../../SmartComponents/Cards/InsightsCard'));
 const CostManagementCard = asyncComponent(() => import ('../../SmartComponents/Cards/CostManagementCard'));
 const VulnerabilitiesCard = asyncComponent(() => import ('../../SmartComponents/Cards/VulnerabilitiesCard'));
 
@@ -29,7 +29,7 @@ class Dashboard extends Component {
                 <Main className='ins-l-dashboard'>
                     <Grid gutter='md'>
                         <GridItem lg={4} md={6} sm={12}>
-                            <ConfigAssessmentCard />
+                            <InsightsCard />
                         </GridItem>
                         <GridItem lg={4} md={6} sm={12}>
                             <VulnerabilitiesCard />

@@ -87,7 +87,7 @@ class CostManagementCard extends Component {
         function getCostStack (costSummary) {
             return (
                 <Stack span={6} className='ins-c-summary'>
-                    <StackItem className='ins-c-summary__title'>OpenShift Total Charges</StackItem>
+                    <StackItem className='ins-c-summary__title'>{ costSummary.title }</StackItem>
                     <StackItem>
                         <Level gutter='sm'>
                             <LevelItem>

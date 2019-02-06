@@ -23,27 +23,27 @@ import './_cards.scss';
 const release = RELEASE;
 
 /**
- * Configuration Assessment for showing 2 highest categories with rule hits
+ * Insights for showing 2 highest categories with rule hits
  */
-class ConfigAssessmentCard extends Component {
+class InsightsCard extends Component {
 
     constructor (props) {
         super(props);
     }
 
     componentDidMount () {
-        this.props.fetchConfigAssessment();
+        this.props.fetchInsights();
     }
 
     render() {
         const {
-            configAssessmentFetchStatus,
-            configAssessment
+            insightsFetchStatus,
+            insights
         } = this.props;
 
         let severities = new Array();
 
-        if (configAssessmentFetchStatus === 'fulfilled') {
+        if (insightsFetchStatus === 'fulfilled') {
             // iterate over rules.severities and push to topSeverities if value > 0 in order of greatest to least
             // break after 2 items have been added
             [
@@ -52,10 +52,10 @@ class ConfigAssessmentCard extends Component {
                 { severity: 'Warn', label: 'Medium', link: 'medium-risk/' },
                 { severity: 'Info', label: 'Low', link: 'low-risk/' }
             ].some(element => {
-                if (configAssessment.rules.severity[element.severity] > 0) {
+                if (insights.rules.severity[element.severity] > 0) {
                     severities.push({
                         label: element.label,
-                        value: configAssessment.rules.severity[element.severity],
+                        value: insights.rules.severity[element.severity],
                         link: element.link
                     });
                     if (severities.length > 1) {
@@ -79,12 +79,12 @@ class ConfigAssessmentCard extends Component {
         }
 
         return (
-            <Card className='ins-c-card__config-assessment'>
+            <Card className='ins-c-card__insights'>
                 <CardHeader>
-                    <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Configuration Assessment</Title>
+                    <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Insights</Title>
                 </CardHeader>
                 <CardBody>
-                    { configAssessmentFetchStatus === 'fulfilled' && Array.isArray(severities) && severities.length > 0 && (
+                    { insightsFetchStatus === 'fulfilled' && Array.isArray(severities) && severities.length > 0 && (
                         severities.map(element =>
                             <div className='ins-c-summary' key={ element.label }>
                                 { getIcon(element.label) }
@@ -95,8 +95,8 @@ class ConfigAssessmentCard extends Component {
                             </div>
                         )
                     ) }
-                    { configAssessmentFetchStatus === 'pending' && (<Loading/>) }
-                    { configAssessmentFetchStatus === 'fulfilled' && (!Array.isArray(severities) || severities.length === 0) && (
+                    { insightsFetchStatus === 'pending' && (<Loading/>) }
+                    { insightsFetchStatus === 'fulfilled' && (!Array.isArray(severities) || severities.length === 0) && (
                         <div className='ins-c-summary'>
                             <CheckCircleIcon className='ins-c-summary__icon ins-c-summary__icon-check' />
                             <span className='ins-c-summary__label'>You have no issues</span>
@@ -105,8 +105,8 @@ class ConfigAssessmentCard extends Component {
                 </CardBody>
                 <CardFooter>
                     <a href={ `/${ release }/platform/advisor/` }>
-                        View All{ configAssessment.rules && configAssessment.rules.total > 0 ?
-                            ` ${configAssessment.rules.total} ` : ''} Rule Hits
+                        View All{ insights.rules && insights.rules.total > 0 ?
+                            ` ${insights.rules.total} ` : ''} Rule Hits
                     </a>
                 </CardFooter>
             </Card>
@@ -114,23 +114,23 @@ class ConfigAssessmentCard extends Component {
     }
 }
 
-ConfigAssessmentCard.propTypes = {
-    fetchConfigAssessment: PropTypes.func,
-    configAssessment: PropTypes.object,
-    configAssessmentFetchStatus: PropTypes.string
+InsightsCard.propTypes = {
+    fetchInsights: PropTypes.func,
+    insights: PropTypes.object,
+    insightsFetchStatus: PropTypes.string
 };
 
 const mapStateToProps = (state, ownProps) => ({
-    configAssessment: state.DashboardStore.configAssessment,
-    configAssessmentFetchStatus: state.DashboardStore.configAssessmentFetchStatus,
+    insights: state.DashboardStore.insights,
+    insightsFetchStatus: state.DashboardStore.insightsFetchStatus,
     ...ownProps
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchConfigAssessment: (url) => dispatch(AppActions.fetchConfigAssessment(url))
+    fetchInsights: (url) => dispatch(AppActions.fetchInsights(url))
 });
 
 export default routerParams(connect(
     mapStateToProps,
     mapDispatchToProps
-)(ConfigAssessmentCard));
+)(InsightsCard));

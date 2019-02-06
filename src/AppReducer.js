@@ -7,8 +7,8 @@ const initialState = Immutable({
     awsSummaryFetchStatus: '',
     complianceSummary: {},
     complianceFetchStatus: '',
-    configAssessment: {},
-    configAssessmentFetchStatus: '',
+    insights: {},
+    insightsFetchStatus: '',
     ocpSummary: {},
     ocpSummaryFetchStatus: '',
     criticalVulnerabilities: {},
@@ -39,15 +39,15 @@ export const DashboardStore = (state = initialState, action) => {
         case `${ActionTypes.COMPLIANCE_FETCH}_REJECTED`:
             return state.set('complianceFetchStatus', 'rejected');
 
-        case `${ActionTypes.CONFIG_ASSESSMENT_FETCH}_PENDING`:
-            return state.set('configAssessmentFetchStatus', 'pending');
-        case `${ActionTypes.CONFIG_ASSESSMENT_FETCH}_FULFILLED`:
+        case `${ActionTypes.INSIGHTS_FETCH}_PENDING`:
+            return state.set('insightsFetchStatus', 'pending');
+        case `${ActionTypes.INSIGHTS_FETCH}_FULFILLED`:
             return Immutable.merge(state, {
-                configAssessment: action.payload,
-                configAssessmentFetchStatus: 'fulfilled'
+                insights: action.payload,
+                insightsFetchStatus: 'fulfilled'
             });
-        case `${ActionTypes.CONFIG_ASSESSMENT_FETCH}_REJECTED`:
-            return state.set('configAssessmentFetchStatus', 'rejected');
+        case `${ActionTypes.INSIGHTS_FETCH}_REJECTED`:
+            return state.set('insightsFetchStatus', 'rejected');
 
         case `${ActionTypes.OCP_SUMMARY_FETCH}_PENDING`:
             return state.set('ocpSummaryFetchStatus', 'pending');

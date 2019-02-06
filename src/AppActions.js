@@ -16,9 +16,9 @@ export const fetchComplianceSummary = (options) => ({
     payload: fetchData(ActionTypes.COMPLIANCE_FETCH_URL, {}, options)
 });
 
-export const fetchConfigAssessment = (options) => ({
-    type: ActionTypes.CONFIG_ASSESSMENT_FETCH,
-    payload: fetchData(ActionTypes.CONFIG_ASSESSMENT_FETCH_URL, {}, options)
+export const fetchInsights = (options) => ({
+    type: ActionTypes.INSIGHTS_FETCH,
+    payload: fetchData(ActionTypes.INSIGHTS_FETCH_URL, {}, options)
 });
 
 export const fetchOcpSummary = (options) => ({
