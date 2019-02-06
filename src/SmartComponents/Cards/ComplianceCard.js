@@ -52,15 +52,16 @@ class ComplianceCard extends Component {
                         { complianceFetchStatus === 'fulfilled' && (
                             Array.isArray(complianceSummary.data) && complianceSummary.data.length > 0 && (
                                 complianceSummary.data.map(element =>
-                                    <StackItem gutter='sm' key={ element.type }>
-                                        <Split gutter='md' key={ element.type }>
+                                    <StackItem gutter='sm' key={ element.id }>
+                                        <Split gutter='md' key={ element.id }>
                                             <SplitItem className='ins-c-gauge pf-u-text-align-center'>
                                                 <div className='ins-c-gauge__metrics-percentage'>
                                                     { element.attributes.score * 100 }%
                                                 </div>
                                                 <Gauge label={ element.attributes.name }
                                                     value={ element.attributes.score * 100 } width={ 79 } height={ 79 }
-                                                    timeframe='30' />
+                                                    timeframe='30'
+                                                    identifier={ `compliance-gauge-${ element.id }` } />
                                             </SplitItem>
                                             <SplitItem>
                                                 <Stack>
