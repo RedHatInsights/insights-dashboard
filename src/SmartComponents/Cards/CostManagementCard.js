@@ -63,7 +63,7 @@ class CostManagementCard extends Component {
         if (awsSummaryFetchStatus === 'fulfilled') {
             if (awsSummary.total.value > 0) {
                 awsStats.title = 'Cloud (AWS) Cost';
-                awsStats.delta = Math.round(awsSummary.delta.percent);
+                awsStats.delta = Math.round(awsSummary.delta.percent * 100) / 100;
                 awsStats.total = Math.round(awsSummary.total.value * 100) / 100;
                 awsStats.deltaColor = awsSummary.delta.percent > 0 ? 'green' :
                     awsSummary.delta.percent < 0 ? 'red' : 'black';
@@ -76,9 +76,9 @@ class CostManagementCard extends Component {
         function getCaret (deltaColor) {
             switch (deltaColor) {
                 case 'green':
-                    return <CaretUpIcon />;
-                case 'red':
                     return <CaretDownIcon />;
+                case 'red':
+                    return <CaretUpIcon />;
                 default:
                     return;
             }
