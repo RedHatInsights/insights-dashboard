@@ -51,8 +51,8 @@ class ComplianceCard extends Component {
                     <Stack>
                         { complianceFetchStatus === 'fulfilled' && (
                             Array.isArray(complianceSummary.data) && complianceSummary.data.length > 0 && (
-                                <StackItem>
-                                    {complianceSummary.data.map(element =>
+                                complianceSummary.data.map(element =>
+                                    <StackItem gutter='sm' key={ element.type }>
                                         <Split gutter='md' key={ element.type }>
                                             <SplitItem className='ins-c-gauge pf-u-text-align-center'>
                                                 <div className='ins-c-gauge__metrics-percentage'>
@@ -73,8 +73,8 @@ class ComplianceCard extends Component {
                                                 </Stack>
                                             </SplitItem>
                                         </Split>
-                                    )}
-                                </StackItem>
+                                    </StackItem>
+                                )
                             )
                         ) }
                         { complianceFetchStatus === 'pending' && (<Loading/>) }
