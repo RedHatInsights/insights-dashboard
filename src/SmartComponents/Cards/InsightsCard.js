@@ -25,7 +25,7 @@ const release = RELEASE;
 /**
  * Configuration Assessment for showing 2 highest categories with rule hits
  */
-class ConfigAssessmentCard extends Component {
+class InsightsCard extends Component {
 
     constructor (props) {
         super(props);
@@ -79,9 +79,9 @@ class ConfigAssessmentCard extends Component {
         }
 
         return (
-            <Card className='ins-c-card__config-assessment'>
+            <Card className='ins-c-card__insights'>
                 <CardHeader>
-                    <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Configuration Assessment</Title>
+                    <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Insights</Title>
                 </CardHeader>
                 <CardBody>
                     { configAssessmentFetchStatus === 'fulfilled' && Array.isArray(severities) && severities.length > 0 && (
@@ -114,7 +114,7 @@ class ConfigAssessmentCard extends Component {
     }
 }
 
-ConfigAssessmentCard.propTypes = {
+InsightsCard.propTypes = {
     fetchConfigAssessment: PropTypes.func,
     configAssessment: PropTypes.object,
     configAssessmentFetchStatus: PropTypes.string
@@ -133,4 +133,4 @@ const mapDispatchToProps = dispatch => ({
 export default routerParams(connect(
     mapStateToProps,
     mapDispatchToProps
-)(ConfigAssessmentCard));
+)(InsightsCard));
