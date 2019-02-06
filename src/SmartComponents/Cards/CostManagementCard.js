@@ -62,7 +62,7 @@ class CostManagementCard extends Component {
 
         if (awsSummaryFetchStatus === 'fulfilled') {
             if (awsSummary.total.value > 0) {
-                awsStats.title = 'AWS Total Cost';
+                awsStats.title = 'Cloud (AWS) Cost';
                 awsStats.delta = Math.round(awsSummary.delta.percent);
                 awsStats.total = Math.round(awsSummary.total.value * 100) / 100;
                 awsStats.deltaColor = awsSummary.delta.percent > 0 ? 'green' :
