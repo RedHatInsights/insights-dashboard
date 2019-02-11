@@ -9,7 +9,7 @@ import './_dashboard.scss';
 const ComplianceCard = asyncComponent(() => import ('../../SmartComponents/Cards/ComplianceCard'));
 const InsightsCard = asyncComponent(() => import ('../../SmartComponents/Cards/InsightsCard'));
 const CostManagementCard = asyncComponent(() => import ('../../SmartComponents/Cards/CostManagementCard'));
-const VulnerabilitiesCard = asyncComponent(() => import ('../../SmartComponents/Cards/VulnerabilitiesCard'));
+const VulnerabilityCard = asyncComponent(() => import ('../../SmartComponents/Cards/VulnerabilityCard'));
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -32,7 +32,7 @@ class Dashboard extends Component {
                             <InsightsCard />
                         </GridItem>
                         <GridItem lg={4} md={6} sm={12}>
-                            <VulnerabilitiesCard />
+                            <VulnerabilityCard />
                         </GridItem>
                         <GridItem lg={4} md={6} sm={12}>
                             <ComplianceCard />
