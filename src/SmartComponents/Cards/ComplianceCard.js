@@ -37,6 +37,18 @@ class ComplianceCard extends Component {
     }
 
     render() {
+
+        /*
+         * Returns the first two -- if there are at least two entries -- items as a shallow copy of
+         * complianceSummary
+         */
+        const getTopTwoPolicies = function (compliance) {
+            const complianceTopTwo = compliance.data.length > 1 ? compliance.slice(0, 2) :
+                compliance.data.slice();
+
+            return complianceTopTwo;
+        };
+
         const {
             complianceFetchStatus,
             complianceSummary
@@ -51,7 +63,7 @@ class ComplianceCard extends Component {
                     <Stack>
                         { complianceFetchStatus === 'fulfilled' && (
                             Array.isArray(complianceSummary.data) && complianceSummary.data.length > 0 && (
-                                complianceSummary.data.map(element =>
+                                getTopTwoPolicies(complianceSummary).map(element =>
                                     <StackItem gutter='sm' key={ element.id }>
                                         <Split gutter='md' key={ element.id }>
                                             <SplitItem className='ins-c-gauge pf-u-text-align-center'>
@@ -81,7 +93,13 @@ class ComplianceCard extends Component {
                         { complianceFetchStatus === 'pending' && (<Loading/>) }
                     </Stack>
                 </CardBody>
-                <CardFooter><a href={ `/${release}/platform/compliance/policies/` }>View All Compliance Policies</a></CardFooter>
+                <CardFooter>
+                    <a href={ `/${release}/platform/compliance/policies/` }>
+                        View All{ complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
+                            complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
+                            Compliance Policies
+                    </a>
+                </CardFooter>
             </Card>
         );
     }
