@@ -47,15 +47,15 @@ class InsightsCard extends Component {
             // iterate over rules.severities and push to topSeverities if value > 0 in order of greatest to least
             // break after 2 items have been added
             [
-                { severity: 'Critical', label: 'Critical', link: 'critical-risk/' },
-                { severity: 'Error', label: 'High', link: 'high-risk/' },
-                { severity: 'Warn', label: 'Medium', link: 'medium-risk/' },
-                { severity: 'Info', label: 'Low', link: 'low-risk/' }
+                { id: 1, label: 'critical-risk', link: 'critical-risk/' },
+                { id: 2, label: 'high-risk', link: 'high-risk/' },
+                { id: 3, label: 'medium-risk', link: 'medium-risk/' },
+                { id: 4, label: 'low-risk', link: 'low-risk/' }
             ].some(element => {
-                if (insights.rules.severity[element.severity] > 0) {
+                if (insights.rules.total_risk[element.id] > 0) {
                     severities.push({
                         label: element.label,
-                        value: insights.rules.severity[element.severity],
+                        value: insights.rules.total_risk[element.id],
                         link: element.link
                     });
                     if (severities.length > 1) {
