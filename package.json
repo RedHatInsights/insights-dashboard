@@ -9,10 +9,10 @@
     "url": "https://github.com/RedHatInsights/insights-dashboard"
   },
   "dependencies": {
-    "@patternfly/patternfly-next": "1.0.101",
-    "@patternfly/react-core": "1.40.0",
+    "@patternfly/patternfly-next": "1.0.175",
+    "@patternfly/react-core": "1.51.6",
     "@patternfly/react-icons": "^2.9.3",
-    "@red-hat-insights/insights-frontend-components": "3.33.0",
+    "@red-hat-insights/insights-frontend-components": "3.33.63",
     "classnames": "2.2.6",
     "create-react-class": "^15.6.3"
   },
