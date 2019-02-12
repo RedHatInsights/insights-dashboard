@@ -90,7 +90,7 @@ class InsightsCard extends Component {
                                 { getIcon(element.label) }
                                 <span className='ins-c-summary__emphasis'>{ element.value }</span>
                                 <span className='ins-c-summary__label'>
-                                    <a href={ `/${ release }/platform/advisor/actions/${ element.link }` }>{ element.label } Risk Rule Hits</a>
+                                    <a href={ `/${ release }/platform/advisor/actions/${ element.link }` }>{ element.label } Risk Rules Hit</a>
                                 </span>
                             </div>
                         )
@@ -106,7 +106,7 @@ class InsightsCard extends Component {
                 <CardFooter>
                     <a href={ `/${ release }/platform/advisor/` }>
                         View All{ insights.rules && insights.rules.total > 0 ?
-                            ` ${insights.rules.total} ` : ''} Rule Hits
+                            ` ${insights.rules.total} ` : ''} Rules Hit
                     </a>
                 </CardFooter>
             </Card>
