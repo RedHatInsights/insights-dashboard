@@ -43,7 +43,7 @@ class ComplianceCard extends Component {
          * complianceSummary
          */
         const getTopTwoPolicies = function (compliance) {
-            const complianceTopTwo = compliance.data.length > 1 ? compliance.slice(0, 2) :
+            const complianceTopTwo = compliance.data.length > 1 ? compliance.data.slice(0, 2) :
                 compliance.data.slice();
 
             return complianceTopTwo;
