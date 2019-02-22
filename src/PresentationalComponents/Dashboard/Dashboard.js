@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Grid, GridItem } from '@patternfly/react-core';
+import { Gallery, GalleryItem } from '@patternfly/react-core';
 import { PageHeader, PageHeaderTitle, Main } from '@red-hat-insights/insights-frontend-components';
 
 import asyncComponent from '../../Utilities/skeletonAsyncCard';
@@ -27,20 +27,20 @@ class Dashboard extends Component {
                     <PageHeaderTitle title='Health of Your Infrastructure'/>
                 </PageHeader>
                 <Main className='ins-l-dashboard'>
-                    <Grid gutter='md'>
-                        <GridItem lg={4} md={6} sm={12}>
+                    <Gallery gutter='md'>
+                        <GalleryItem>
                             <InsightsCard />
-                        </GridItem>
-                        <GridItem lg={4} md={6} sm={12}>
+                        </GalleryItem>
+                        <GalleryItem>
                             <VulnerabilityCard />
-                        </GridItem>
-                        <GridItem lg={4} md={6} sm={12}>
+                        </GalleryItem>
+                        <GalleryItem>
                             <ComplianceCard />
-                        </GridItem>
-                        <GridItem lg={4} md={6} sm={12}>
+                        </GalleryItem>
+                        <GalleryItem>
                             <CostManagementCard />
-                        </GridItem>
-                    </Grid>
+                        </GalleryItem>
+                    </Gallery>
                 </Main>
             </React.Fragment>
         );

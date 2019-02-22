@@ -1,23 +1,6 @@
-@import '~@red-hat-insights/insights-frontend-components/Utilities/_variables';
-@import '~@red-hat-insights/insights-frontend-components/Utilities/_mixins';
-@import '~@patternfly/patternfly-next/sass-utilities/all';
-@import '~@patternfly/patternfly-next/utilities/Alignment/alignment.scss';
-@import '~@patternfly/patternfly-next/utilities/Flex/flex.scss';
-
 // Dashboard
 .ins-l-dashboard {
-    --ins-l-dashboard--Min--sm: #{pf-size-prem(320px)};
-    --ins-l-dashboard--Min--md: #{pf-size-prem(376px)};
-    --ins-l-dashboard--Min--xl: #{pf-size-prem(420px)};
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--ins-l-dashboard--Min--sm), auto));
-
-    @media screen and (min-width: $pf-global--breakpoint--md) {
-      grid-template-columns: repeat(auto-fit, minmax(var(--ins-l-dashboard--Min--md), auto));
-    }
-
-    @media screen and (min-width: $pf-global--breakpoint--xl) {
-      grid-template-columns: repeat(auto-fit, minmax(var(--ins-l-dashboard--Min--xl), auto));
-    }
+	.pf-l-gallery {
+		--pf-l-gallery--GridTemplateColumns: repeat(auto-fill,minmax(350px,1fr));
+	}
 }
