@@ -48,28 +48,28 @@ class CostManagementCard extends Component {
         let awsStats = {};
 
         if (ocpSummaryFetchStatus === 'fulfilled') {
-            if (ocpSummary.total > 0) {
-                ocpStats.title = 'OpenShift Total Charges';
-                ocpStats.delta = Math.abs(Math.round(ocpSummary.delta.percent));
-                ocpStats.deltaColor = ocpSummary.delta.percent > 0 ? 'green' :
-                    ocpSummary.delta.percent < 0 ? 'red' : 'black';
-                ocpStats.total = Math.round(ocpSummary.total.charge * 100) / 100;
+            if (ocpSummary.meta.total.cost.value > 0) {
+                ocpStats.title = 'OpenShift Total Cost';
+                ocpStats.delta = Math.abs(Math.round(ocpSummary.meta.delta.percent));
+                ocpStats.deltaColor = ocpSummary.meta.delta.percent > 0 ? 'green' :
+                    ocpSummary.meta.delta.percent < 0 ? 'red' : 'black';
+                ocpStats.total = Math.round(ocpSummary.meta.total.cost.value * 100) / 100;
                 // ocpStats.totalUnits = ocpSummary.total.units;
                 ocpStats.date = moment(ocpSummary.data.date).format('MMMM Do YYYY');
-                ocpStats.filter = (-1 * ocpSummary.filter.time_scope_value) + ' ' + ocpSummary.filter.time_scope_units;
+                ocpStats.filter = (-1 * ocpSummary.meta.filter.time_scope_value) + ' ' + ocpSummary.meta.filter.time_scope_units;
             }
         }
 
         if (awsSummaryFetchStatus === 'fulfilled') {
-            if (awsSummary.total.value > 0) {
+            if (awsSummary.meta.total.cost.value > 0) {
                 awsStats.title = 'Cloud (AWS) Cost';
-                awsStats.delta = Math.round(awsSummary.delta.percent * 100) / 100;
-                awsStats.total = Math.round(awsSummary.total.value * 100) / 100;
-                awsStats.deltaColor = awsSummary.delta.percent > 0 ? 'green' :
-                    awsSummary.delta.percent < 0 ? 'red' : 'black';
+                awsStats.delta = Math.round(awsSummary.meta.delta.percent * 100) / 100;
+                awsStats.total = Math.round(awsSummary.meta.total.cost.value * 100) / 100;
+                awsStats.deltaColor = awsSummary.meta.delta.percent > 0 ? 'green' :
+                    awsSummary.meta.delta.percent < 0 ? 'red' : 'black';
                 // awsStats.totalUnits = awsSummary.total.units;
                 awsStats.date = moment(awsSummary.data.date).format('MMMM Do YYYY');
-                awsStats.filter = (-1 * awsSummary.filter.time_scope_value) + ' ' + awsSummary.filter.time_scope_units;
+                awsStats.filter = (-1 * awsSummary.meta.filter.time_scope_value) + ' ' + awsSummary.meta.filter.time_scope_units;
             }
         }
 
@@ -130,7 +130,7 @@ class CostManagementCard extends Component {
                         </center>
                     )}
                 </CardBody>
-                <CardFooter><a href={ `/${release}/platform/cost-management/` }>View All Cost/Charges</a></CardFooter>
+                <CardFooter><a href={ `/${release}/platform/cost-management/` }>View All Cost</a></CardFooter>
             </Card>
         );
     }
