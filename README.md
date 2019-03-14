@@ -22,6 +22,13 @@ Note: You will need to set up the Insights environment if you want to develop wi
 
   - `npm run test` will run linters and tests
 
+## Running locally
+Have [insights-proxy](https://github.com/RedHatInsights/insights-proxy) installed under PROXY_PATH
+
+```shell
+SPANDX_CONFIG="./config/spandx.config.js" bash $PROXY_PATH/scripts/run.sh
+```
+
 ## Deploying
 
 ### How it works
