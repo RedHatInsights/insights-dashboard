@@ -15,7 +15,7 @@ import { init } from './Store';
  */
 ReactDOM.render(
     <Provider store={ init().getStore() }>
-        <Router basename={ `/${RELEASE}/dashboard` }>
+        <Router basename={ `/rhcs/dashboard` }>
             <App />
         </Router>
     </Provider>,

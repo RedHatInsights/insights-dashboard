@@ -16,7 +16,7 @@ import logger from 'redux-logger';
  */
 ReactDOM.render(
     <Provider store={ init(logger).getStore() }>
-        <Router basename={ `/${RELEASE}/dashboard` }>
+        <Router basename={ `/rhcs/dashboard` }>
             <App />
         </Router>
     </Provider>,
