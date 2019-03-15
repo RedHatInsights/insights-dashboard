@@ -6,10 +6,7 @@ import App from './App';
 import { init } from './Store';
 import logger from 'redux-logger';
 
-// exposes webpack variable RELEASE
-/*global RELEASE:true*/
 /*eslint no-undef: "error"*/
-
 // TODO Router base name needs to support /beta/rhcs and /rhcs
 
 /**

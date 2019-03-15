@@ -5,11 +5,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import { init } from './Store';
 
-// exposes webpack variable RELEASE
-/*global RELEASE:true*/
 /*eslint no-undef: "error"*/
-
-
 // TODO Router base name needs to support /beta/rhcs and /rhcs
 
 /**
