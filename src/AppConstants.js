@@ -8,7 +8,7 @@ export const CRITICAL_VULNERABILITIES_FETCH = 'CRITICAL_VULNERABILITIES_FETCH';
 export const LATEST_VULNERABILITIES_FETCH = 'LATEST_VULNERABILITIES_FETCH';
 export const VULNERABILITIES_FETCH = 'VULNERABILITIES_FETCH';
 
-const BASE_URL = '/r/insights/platform';
+const BASE_URL = '/api';
 const COST = '/cost-management/v1/reports';
 const VULN_CVES = '/vulnerability/v1/vulnerabilities/cves';
 

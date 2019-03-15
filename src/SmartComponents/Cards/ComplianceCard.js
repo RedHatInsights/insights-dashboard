@@ -78,7 +78,7 @@ class ComplianceCard extends Component {
                                             <SplitItem>
                                                 <Stack>
                                                     <StackItem>
-                                                        <a href={ `/${release}/platform/compliance/policies/` }>{ element.attributes.name }</a>
+                                                        <a href={ `/${release}/compliance/policies/` }>{ element.attributes.name }</a>
                                                     </StackItem>
                                                     <StackItem>
                                                         { element.attributes.compliant_host_count } of
@@ -94,7 +94,7 @@ class ComplianceCard extends Component {
                     </Stack>
                 </CardBody>
                 <CardFooter>
-                    <a href={ `/${release}/platform/compliance/policies/` }>
+                    <a href={ `/${release}/compliance/policies/` }>
                         View All{ complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                             complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
                             Compliance Policies

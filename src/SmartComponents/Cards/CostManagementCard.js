@@ -130,7 +130,7 @@ class CostManagementCard extends Component {
                         </center>
                     )}
                 </CardBody>
-                <CardFooter><a href={ `/${release}/platform/cost-management/` }>View All Cost</a></CardFooter>
+                <CardFooter><a href={ `/${release}/cost-management/` }>View All Cost</a></CardFooter>
             </Card>
         );
     }
