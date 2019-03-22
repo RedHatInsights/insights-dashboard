@@ -5,16 +5,17 @@ import { Provider } from 'react-redux';
 import App from './App';
 import { init } from './Store';
 
-/*eslint no-undef: "error"*/
-// TODO Router base name needs to support /beta/rhcs and /rhcs
+const pathName = window.location.pathname.split('/');
+pathName.shift();
 
-/**
- * Hooks up redux to app.
- *  https://redux.js.org/advanced/usage-with-react-router
- */
+let release = '/';
+if (pathName[0] === 'beta') {
+    release = `/${pathName.shift()}/`;
+}
+
 ReactDOM.render(
     <Provider store={ init().getStore() }>
-        <Router basename={ `/${document.location.pathname.split('/')[1]}/dashboard` }>
+        <Router basename={`${release}${pathName[0]}/${pathName[1]}`}>
             <App />
         </Router>
     </Provider>,
