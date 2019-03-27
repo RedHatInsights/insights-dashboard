@@ -7,8 +7,13 @@ import {
     Card, CardBody, CardFooter, CardHeader,
     Split, SplitItem,
     Stack, StackItem,
-    Title
+    Title,
+    EmptyState,
+    EmptyStateBody,
+    EmptyStateIcon
 } from '@patternfly/react-core';
+
+import { ClipboardCheckIcon } from '@patternfly/react-icons';
 
 import * as AppActions from '../../AppActions';
 import Loading from '../../PresentationalComponents/Loading/Loading';
@@ -61,40 +66,47 @@ class ComplianceCard extends Component {
                 </CardHeader>
                 <CardBody>
                     <Stack>
-                        { complianceFetchStatus === 'fulfilled' && (
-                            Array.isArray(complianceSummary.data) && complianceSummary.data.length > 0 && (
-                                getTopTwoPolicies(complianceSummary).map(element =>
-                                    <StackItem gutter='sm' key={ element.id }>
-                                        <Split gutter='md' key={ element.id }>
-                                            <SplitItem className='ins-c-gauge pf-u-text-align-center'>
-                                                <div className='ins-c-gauge__metrics-percentage'>
-                                                    { element.attributes.score * 100 }%
-                                                </div>
-                                                <Gauge label={ element.attributes.name }
-                                                    value={ element.attributes.score * 100 } width={ 82 } height={ 82 }
-                                                    timeframe='30'
-                                                    identifier={ `compliance-gauge-${ element.id }` } />
-                                            </SplitItem>
-                                            <SplitItem>
-                                                <Stack>
-                                                    <StackItem>
-                                                        <a href={ `/${release}/compliance/policies/` }>{ element.attributes.name }</a>
-                                                    </StackItem>
-                                                    <StackItem>
-                                                        { element.attributes.compliant_host_count } of
-                                                        &nbsp;{ element.attributes.total_host_count } systems</StackItem>
-                                                </Stack>
-                                            </SplitItem>
-                                        </Split>
-                                    </StackItem>
-                                )
+                        { complianceFetchStatus === 'fulfilled' &&
+                            (Array.isArray(complianceSummary.data) &&
+                                (complianceSummary.data.length > 0 ? (
+                                    getTopTwoPolicies(complianceSummary).map(element =>
+                                        <StackItem gutter='sm' key={ element.id }>
+                                            <Split gutter='md' key={ element.id }>
+                                                <SplitItem className='ins-c-gauge pf-u-text-align-center'>
+                                                    <div className='ins-c-gauge__metrics-percentage'>
+                                                        { element.attributes.score * 100 }%
+                                                    </div>
+                                                    <Gauge label={ element.attributes.name }
+                                                        value={ element.attributes.score * 100 } width={ 82 } height={ 82 }
+                                                        timeframe='30'
+                                                        identifier={ `compliance-gauge-${ element.id }` } />
+                                                </SplitItem>
+                                                <SplitItem>
+                                                    <Stack>
+                                                        <StackItem>
+                                                            <a href={ `/${release}/compliance/policies/` }>{ element.attributes.name }</a>
+                                                        </StackItem>
+                                                        <StackItem>
+                                                            { element.attributes.compliant_host_count } of
+                                                            &nbsp;{ element.attributes.total_host_count } systems</StackItem>
+                                                    </Stack>
+                                                </SplitItem>
+                                            </Split>
+                                        </StackItem>
+                                    )
+                                ) : (
+                                    <EmptyState>
+                                        <EmptyStateIcon icon={ClipboardCheckIcon}/>
+                                        <EmptyStateBody> You have not uploaded any reports yet </EmptyStateBody>
+                                    </EmptyState>
+                                ))
                             )
-                        ) }
+                        }
                         { complianceFetchStatus === 'pending' && (<Loading/>) }
                     </Stack>
                 </CardBody>
                 <CardFooter>
-                    <a href={ `/${release}/compliance/policies/` }>
+                    <a href={ `${release}/compliance/policies/` }>
                         View All{ complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                             complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
                             Compliance Policies

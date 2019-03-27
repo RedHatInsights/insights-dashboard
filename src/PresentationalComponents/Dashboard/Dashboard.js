@@ -7,8 +7,6 @@ import asyncComponent from '../../Utilities/skeletonAsyncCard';
 import './_dashboard.scss';
 
 const ComplianceCard = asyncComponent(() => import ('../../SmartComponents/Cards/ComplianceCard'));
-const InsightsCard = asyncComponent(() => import ('../../SmartComponents/Cards/InsightsCard'));
-const CostManagementCard = asyncComponent(() => import ('../../SmartComponents/Cards/CostManagementCard'));
 const VulnerabilityCard = asyncComponent(() => import ('../../SmartComponents/Cards/VulnerabilityCard'));
 
 /**
@@ -29,16 +27,10 @@ class Dashboard extends Component {
                 <Main className='ins-l-dashboard'>
                     <Gallery gutter='md'>
                         <GalleryItem>
-                            <InsightsCard />
-                        </GalleryItem>
-                        <GalleryItem>
                             <VulnerabilityCard />
                         </GalleryItem>
                         <GalleryItem>
                             <ComplianceCard />
-                        </GalleryItem>
-                        <GalleryItem>
-                            <CostManagementCard />
                         </GalleryItem>
                     </Gallery>
                 </Main>
