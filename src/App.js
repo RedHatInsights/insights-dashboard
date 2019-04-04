@@ -12,11 +12,6 @@ class App extends Component {
         insights.chrome.identifyApp('dashboard');
     }
 
-    componentWillUnmount () {
-        this.appNav();
-        this.buildNav();
-    }
-
     render () {
         return (
             <Routes childProps={ this.props } />
