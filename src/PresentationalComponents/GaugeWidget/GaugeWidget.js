@@ -73,18 +73,18 @@ class GaugeWidget extends Component {
         let renderModal = (
             <Modal
                 isLarge
-                title={capitalize(this.props.label)}
-                isOpen={isModalOpen}
-                onClose={this.handleModalToggle}
-                actions={[
-                    <Button key="cancel" variant="secondary" onClick={this.handleModalToggle}>
+                title={ capitalize(this.props.label) }
+                isOpen={ isModalOpen }
+                onClose={ this.handleModalToggle }
+                actions={ [
+                    <Button key="cancel" variant="secondary" onClick={ this.handleModalToggle }>
                     Cancel
                     </Button>,
-                    <Button key="confirm" variant="primary" onClick={this.entitleToggle}>
+                    <Button key="confirm" variant="primary" onClick={ this.entitleToggle }>
                     Confirm
                     </Button>
-                ]}>
-                <ModalContent variant={this.state.variant} app={this.props.label}/>
+                ] }>
+                <ModalContent variant={ this.state.variant } app={ this.props.label }/>
             </Modal>
         );
 
@@ -97,11 +97,11 @@ class GaugeWidget extends Component {
                         <React.Fragment>
                             <StackItem> { capitalize(this.props.label) } Is not entitled </StackItem>
                             <StackItem>
-                                <Button onClick={this.handleModalToggle}> Start Evaluation </Button>
+                                <Button onClick={ this.handleModalToggle }> Start Evaluation </Button>
                                 { renderModal }
                             </StackItem>
                             <StackItem>
-                                <a href={'#'}>
+                                <a href={ '#' }>
                                     <span>Find out more</span>
                                 </a> </StackItem>
                         </React.Fragment>
@@ -114,7 +114,7 @@ class GaugeWidget extends Component {
                         <React.Fragment>
                             <StackItem> { capitalize(this.props.label) } Is not set up </StackItem>
                             <StackItem>
-                                <Button onClick={this.handleModalToggle}> Get Started </Button>
+                                <Button onClick={ this.handleModalToggle }> Get Started </Button>
                                 { renderModal }
                             </StackItem>
                         </React.Fragment>
@@ -124,15 +124,15 @@ class GaugeWidget extends Component {
 
         if (this.state.variant === 'notSetUp' || this.state.variant === 'notEntitled') {
             return (
-                <div className={gaugeWidgetClasses} id={this.props.id} aria-label={ `${this.props.label} is ${variantType}` }>
+                <div className={ gaugeWidgetClasses } id={ this.props.id } aria-label={ `${this.props.label} is ${variantType}` }>
                     <div className='ins-c-gauge-widget__graph pf-u-text-align-center'>
                         <div className='ins-c-gauge-widget__metrics'>
                             <div className='ins-c-gauge-widget__metrics-percentage'> 0% </div>
                         </div>
                         <Gauge
-                            label={this.props.label} value={0} width={this.props.width}
-                            flipFullColors={this.props.flipFullColors} height={this.props.height}
-                            identifier={this.props.identifier}>
+                            label={ this.props.label } value={ 0 } width={ this.props.width }
+                            flipFullColors={ this.props.flipFullColors } height={ this.props.height }
+                            identifier={ this.props.identifier }>
                         </Gauge>
                     </div>
                     <div className='ins-c-gauge-widget__disabled--legend'>
@@ -144,29 +144,29 @@ class GaugeWidget extends Component {
             );
         } else {
             return (
-                <div className={gaugeWidgetClasses} id={this.props.id}>
+                <div className={ gaugeWidgetClasses } id={ this.props.id }>
                     <div className='pf-u-text-align-center'>
                         <div className='ins-c-gauge-widget__metrics'>
                             <div className='ins-c-gauge-widget__metrics-percentage'>
-                                {this.props.value}%
+                                { this.props.value }%
                             </div>
-                            <div className={changeClasses}>
+                            <div className={ changeClasses }>
                                 <span className='ins-c-gauge-widget__metrics-change-text'>
-                                    {this.props.changeValue}% <i className={`fas fa-caret-${changeIndicator}`}></i>
+                                    { this.props.changeValue }% <i className={ `fas fa-caret-${changeIndicator}` }></i>
                                 </span>
                                 <span className='ins-c-gauge-widget__metrics-change-timeframe'>
-                                    Last {this.props.timeframe} days
+                                    Last { this.props.timeframe } days
                                 </span>
                             </div>
                         </div>
                         <Gauge
-                            label={this.props.label} value={this.props.value} width={this.props.width}
-                            flipFullColors={this.props.flipFullColors} height={this.props.height}
-                            identifier={this.props.identifier}>
+                            label={ this.props.label } value={ this.props.value } width={ this.props.width }
+                            flipFullColors={ this.props.flipFullColors } height={ this.props.height }
+                            identifier={ this.props.identifier }>
                         </Gauge>
                     </div>
                     <div className='ins-c-gauge-widget__legend'>
-                        {this.props.children}
+                        { this.props.children }
                     </div>
                 </div>
             );
@@ -190,7 +190,7 @@ GaugeWidget.propTypes = {
     decrease: propTypes.bool,
     flipFullColors: propTypes.bool,
     timeframe: propTypes.string,
-    variant: propTypes.oneOf(['active', 'notEntitled', 'notSetUp'])
+    variant: propTypes.oneOf([ 'active', 'notEntitled', 'notSetUp' ])
 };
 
 GaugeWidget.defaultProps = {

@@ -62,7 +62,7 @@ class ComplianceCard extends Component {
         return (
             <Card className='ins-c-card__compliance'>
                 <CardHeader>
-                    <Title size={'lg'}>Compliance</Title>
+                    <Title size={ 'lg' }>Compliance</Title>
                 </CardHeader>
                 <CardBody>
                     <Stack>
@@ -96,7 +96,7 @@ class ComplianceCard extends Component {
                                     )
                                 ) : (
                                     <EmptyState>
-                                        <EmptyStateIcon icon={ClipboardCheckIcon}/>
+                                        <EmptyStateIcon icon={ ClipboardCheckIcon }/>
                                         <EmptyStateBody> You have not uploaded any reports yet </EmptyStateBody>
                                     </EmptyState>
                                 ))
@@ -108,7 +108,7 @@ class ComplianceCard extends Component {
                 <CardFooter>
                     <a href={ `${release}/compliance/policies/` }>
                         View All{ complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
-                            complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
+                            complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' ' }
                             Compliance Policies
                     </a>
                 </CardFooter>

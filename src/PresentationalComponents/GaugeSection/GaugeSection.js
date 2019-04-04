@@ -20,12 +20,12 @@ class GaugeSection extends Component {
         );
 
         return (
-            <Split className={gaugeSectionClasses}>
+            <Split className={ gaugeSectionClasses }>
                 <SplitItem>
-                    <Gauge label={this.props.label} value={this.props.value} identifier={this.props.identifier}></Gauge>
+                    <Gauge label={ this.props.label } value={ this.props.value } identifier={ this.props.identifier }></Gauge>
                 </SplitItem>
                 <SplitItem className='gauge-with-legend__items'>
-                    {this.props.children}
+                    { this.props.children }
                 </SplitItem>
             </Split>
         );

@@ -86,7 +86,7 @@ class CostManagementCard extends Component {
 
         function getCostStack (costSummary) {
             return (
-                <Stack span={6} className='ins-c-summary'>
+                <Stack span={ 6 } className='ins-c-summary'>
                     <StackItem className='ins-c-summary__title'>{ costSummary.title }</StackItem>
                     <StackItem>
                         <Level gutter='sm'>
@@ -98,7 +98,7 @@ class CostManagementCard extends Component {
                             </LevelItem>
                             <LevelItem>
                                 <Stack>
-                                    <StackItem className= {`ins-c-summary__emphasis ins-m-${costSummary.deltaColor}` }>
+                                    <StackItem className= { `ins-c-summary__emphasis ins-m-${costSummary.deltaColor}` }>
                                         { costSummary.delta }%
                                         { getCaret(costSummary.deltaColor) }
                                     </StackItem>
@@ -114,7 +114,7 @@ class CostManagementCard extends Component {
         return (
             <Card className='ins-c-card__cost-management'>
                 <CardHeader>
-                    <Title className='pf-u-mt-0 pf-u-mb-0' size={'lg'}>Cost Management</Title>
+                    <Title className='pf-u-mt-0 pf-u-mb-0' size={ 'lg' }>Cost Management</Title>
                 </CardHeader>
                 <CardBody>
                     { ocpSummaryFetchStatus === 'fulfilled' && ocpStats.total > 0 && (
@@ -128,7 +128,7 @@ class CostManagementCard extends Component {
                             <DollarSignIcon className='ins-c-summary__icon' size='lg' />
                             <div className='ins-c-summary__label'>No Money, No Problems!</div>
                         </center>
-                    )}
+                    ) }
                 </CardBody>
                 <CardFooter><a href={ `/${release}/cost-management/` }>View All Cost</a></CardFooter>
             </Card>

@@ -5,7 +5,7 @@ describe('GaugeSection', () => {
 
         const wrapper = shallow(
             <div>
-                {children}
+                { children }
             </div>
         );
 

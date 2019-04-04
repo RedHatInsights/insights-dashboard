@@ -44,7 +44,7 @@ plugins.push(SourceMapsPlugin);
  * Cleans distribution folder.
  * @type {[type]}
  */
-const CleanWebpackPlugin = new (require('clean-webpack-plugin'))(['dist']);
+const CleanWebpackPlugin = new (require('clean-webpack-plugin'))([ 'dist' ]);
 plugins.push(CleanWebpackPlugin);
 
 /**
@@ -84,13 +84,19 @@ const CopyFilesWebpackPlugin = new (require('copy-webpack-plugin'))([
 plugins.push(CopyFilesWebpackPlugin);
 
 /**
- * Replaces any @@env in the html files with config.appDeployment value.
- * This handles the path being either insights or insightsbeta in the esi:include.
+ * Replaces any @@env in the html files with config.deploymentEnv value.
+ * This handles the path being either / or /beta in the esi:include.
  */
 const HtmlReplaceWebpackPlugin = new(require('html-replace-webpack-plugin'))([{
     pattern: '@@env',
-    replacement: config.appDeployment
+    replacement: config.deploymentEnv
 }]);
 plugins.push(HtmlReplaceWebpackPlugin);
+
+/**
+ * HMR
+ */
+const HotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
+plugins.push(HotModuleReplacementPlugin);
 
 module.exports = { plugins };

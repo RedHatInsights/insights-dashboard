@@ -81,7 +81,7 @@ class InsightsCard extends Component {
         return (
             <Card className='ins-c-card__insights'>
                 <CardHeader>
-                    <Title className="pf-u-mt-0 pf-u-mb-0" size={'lg'}>Insights</Title>
+                    <Title className="pf-u-mt-0 pf-u-mb-0" size={ 'lg' }>Insights</Title>
                 </CardHeader>
                 <CardBody>
                     { insightsFetchStatus === 'fulfilled' && Array.isArray(severities) && severities.length > 0 && (
@@ -106,7 +106,7 @@ class InsightsCard extends Component {
                 <CardFooter>
                     <a href={ `/${ release }/advisor/` }>
                         View All{ insights.rules && insights.rules.total > 0 ?
-                            ` ${insights.rules.total} ` : ''} Rules Hit
+                            ` ${insights.rules.total} ` : '' } Rules Hit
                     </a>
                 </CardFooter>
             </Card>

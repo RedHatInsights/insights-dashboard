@@ -1,6 +1,7 @@
-/* global require, module, __dirname */
+/* global require, module, __dirname, process */
 
 const path = require('path');
+const appName = require('../package.json').insights.appname;
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const gitRevisionPlugin = new GitRevisionPlugin({
     branch: true
@@ -8,15 +9,19 @@ const gitRevisionPlugin = new GitRevisionPlugin({
 const entry = process.env.NODE_ENV === 'production' ?
     path.resolve(__dirname, '../src/entry.js') :
     path.resolve(__dirname, '../src/entry-dev.js');
-const { insights } = require('../package.json');
 
-const gitBranch = process.env.TRAVIS_BRANCH || process.env.BRANCH || gitRevisionPlugin.branch();
-const betaBranhces = ['master', 'qa-beta', 'ci-beta', 'prod-beta'];
-const appDeployment = (process.env.NODE_ENV === 'production' && betaBranhces.includes(gitBranch)) ?
-    '/beta/apps' :
-    '/apps';
+let deploymentEnv = '/apps';
+const gitBranch = process.env.BRANCH || gitRevisionPlugin.branch();
+const betaBranch =
+    gitBranch === 'master' ||
+    gitBranch === 'qa-beta' ||
+    gitBranch === 'prod-beta';
 
-const publicPath = `${appDeployment}/${insights.appname}/`;
+if ((process.env.NODE_ENV === 'production' && betaBranch) || process.env.BUILD_BETA === 'true') {
+    deploymentEnv = '/beta/apps';
+}
+
+const publicPath = `${deploymentEnv}/${appName}/`;
 
 module.exports = {
     paths: {
@@ -29,5 +34,5 @@ module.exports = {
         static: path.resolve(__dirname, '../static'),
         publicPath
     },
-    appDeployment
+    deploymentEnv
 };

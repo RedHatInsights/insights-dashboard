@@ -23,7 +23,7 @@ const ModalContent = ({ app, variant, className, ...props }) => {
 
     return {
         notEntitled: <p className ={ modalClasses } { ...props }> Would you like to activate an evaluation? </p>,
-        notSetUp: <p className ={ modalClasses } { ...props }> Would you like to set up {capitalize(app)}? </p>
+        notSetUp: <p className ={ modalClasses } { ...props }> Would you like to set up { capitalize(app) }? </p>
     } [variant];
 };
 
