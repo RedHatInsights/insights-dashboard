@@ -5,19 +5,12 @@ import { Provider } from 'react-redux';
 import App from './App';
 import { init } from './Store';
 import logger from 'redux-logger';
-
-const pathName = window.location.pathname.split('/');
-pathName.shift();
-
-let release = '/';
-if (pathName[0] === 'beta') {
-    release = `/${pathName.shift()}/`;
-}
+import getBaseName from './Utilities/getBaseName';
 
 ReactDOM.render(
-    <Provider store={init(logger).getStore()}>
-        <Router basename={`${release}${pathName[0]}/${pathName[1]}`}>
-            <App />
+    <Provider store={ init(logger).getStore() }>
+        <Router basename={ getBaseName(window.location.pathname) }>
+            <App/>
         </Router>
     </Provider>,
 

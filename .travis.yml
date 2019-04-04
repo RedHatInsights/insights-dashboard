@@ -5,9 +5,10 @@ notifications:
 node_js:
 - '10'
 install:
-- npm ci
+  - npm ci
 script:
-- npm run verify
+  - npm run travis:verify
+  - npx codecov
 after_success:
 - curl -sSL https://raw.githubusercontent.com/RedHatInsights/insights-frontend-builder-common/master/src/bootstrap.sh | bash -s
 env:
@@ -15,6 +16,7 @@ env:
   - REPO="git@github.com:RedHatInsights/insights-dashboard-build"
   - REPO_DIR="insights-dashboard-build"
   - BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
+  - NODE_OPTIONS="--max-old-space-size=4096 --max_old_space_size=4096"
 cache:
   directories:
     - "$HOME/.npm"

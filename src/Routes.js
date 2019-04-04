@@ -1,4 +1,4 @@
-import { Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 import asyncComponent from './Utilities/asyncComponent';
@@ -17,15 +17,15 @@ import asyncComponent from './Utilities/asyncComponent';
  *         see the difference with DashboardMap and InventoryDeployments.
  *
  */
-const Dashboard = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './PresentationalComponents/Dashboard/Dashboard'));
+const Dashboard = asyncComponent(() => import(/* webpackChunkName: "Dashboard" */ './PresentationalComponents/Dashboard/Dashboard'));
 
 const InsightsRoute = ({ component: Component, rootClass, ...rest }) => {
     const root = document.getElementById('root');
     root.removeAttribute('class');
-    root.classList.add(`page__${rootClass}`, 'pf-l-page__main', 'pf-c-page__main');
+    root.classList.add(`page__${rootClass}`, 'pf-c-page__main');
     root.setAttribute('role', 'main');
 
-    return (<Component {...rest} />);
+    return (<Route { ...rest } component={ Component } />);
 };
 
 InsightsRoute.propTypes = {
@@ -38,16 +38,13 @@ InsightsRoute.propTypes = {
  *
  * Route properties:
  *      exact - path must match exactly,
- *      path - https://prod.foo.redhat.com:1337/rhcs/dashboard
+ *      path - https://prod.foo.redhat.com:1337/rhel/dashboard
  *      component - component to be rendered when a route has been chosen.
  */
 export const Routes = () => {
     return (
         <Switch>
-            <InsightsRoute exact path='/' component={Dashboard} rootClass='dashboard' />
-
-            {/* Finally, catch all unmatched routes */}
-            <Redirect to='/' />
+            <InsightsRoute exact path='/' component={ Dashboard } rootClass='dashboard' />
         </Switch>
     );
 };

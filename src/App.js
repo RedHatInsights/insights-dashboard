@@ -7,7 +7,6 @@ import './App.scss';
 
 class App extends Component {
 
-    // init chrome
     componentDidMount () {
         insights.chrome.init();
         insights.chrome.identifyApp('dashboard');
@@ -15,7 +14,7 @@ class App extends Component {
 
     render () {
         return (
-            <Routes childProps={this.props} />
+            <Routes childProps={ this.props } />
         );
     }
 }
