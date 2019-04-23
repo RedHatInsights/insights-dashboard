@@ -6,24 +6,9 @@ const fetchData = async (url, headers, options) => {
     return (await API.get(url, headers, options)).data;
 };
 
-export const fetchAwsSummary = (options) => ({
-    type: ActionTypes.AWS_SUMMARY_FETCH,
-    payload: fetchData(ActionTypes.AWS_SUMMARY_FETCH_URL, {}, options)
-});
-
 export const fetchComplianceSummary = (options) => ({
     type: ActionTypes.COMPLIANCE_FETCH,
     payload: fetchData(ActionTypes.COMPLIANCE_FETCH_URL, {}, options)
-});
-
-export const fetchInsights = (options) => ({
-    type: ActionTypes.INSIGHTS_FETCH,
-    payload: fetchData(ActionTypes.INSIGHTS_FETCH_URL, {}, options)
-});
-
-export const fetchOcpSummary = (options) => ({
-    type: ActionTypes.OCP_SUMMARY_FETCH,
-    payload: fetchData(ActionTypes.OCP_SUMMARY_FETCH_URL, {}, options)
 });
 
 export const fetchCriticalVulnerabilities = (options) => ({
