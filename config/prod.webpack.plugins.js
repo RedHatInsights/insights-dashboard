@@ -10,6 +10,7 @@ const webpack = require('webpack');
 const Release = new webpack.DefinePlugin({
     RELEASE: JSON.stringify('insights')
 });
+
 plugins.push(Release);
 
 module.exports = { plugins };

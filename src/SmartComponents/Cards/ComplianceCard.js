@@ -14,15 +14,10 @@ import {
 } from '@patternfly/react-core';
 
 import { ClipboardCheckIcon } from '@patternfly/react-icons';
-
 import * as AppActions from '../../AppActions';
 import Loading from '../../PresentationalComponents/Loading/Loading';
-
 import './_cards.scss';
-
-// expose RELEASE
-/*global RELEASE:true*/
-const release = RELEASE;
+import { UI_BASE } from '../../AppConstants';
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -84,7 +79,7 @@ class ComplianceCard extends Component {
                                                 <SplitItem>
                                                     <Stack>
                                                         <StackItem>
-                                                            <a href={ `/${release}/compliance/policies/` }>{ element.attributes.name }</a>
+                                                            <a href={ `/${UI_BASE}/compliance/policies/` }>{ element.attributes.name }</a>
                                                         </StackItem>
                                                         <StackItem>
                                                             { element.attributes.compliant_host_count } of
@@ -106,7 +101,7 @@ class ComplianceCard extends Component {
                     </Stack>
                 </CardBody>
                 <CardFooter>
-                    <a href={ `${release}/compliance/policies/` }>
+                    <a href={ `${UI_BASE}/compliance/policies/` }>
                         View All{ complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                             complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' ' }
                             Compliance Policies
