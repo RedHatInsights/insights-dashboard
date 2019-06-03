@@ -69,10 +69,10 @@ class ComplianceCard extends Component {
                                             <Split gutter='md' key={ element.id }>
                                                 <SplitItem className='ins-c-gauge pf-u-text-align-center'>
                                                     <div className='ins-c-gauge__metrics-percentage'>
-                                                        { element.attributes.score * 100 }%
+                                                        { Math.trunc(element.attributes.score * 100) }%
                                                     </div>
                                                     <Gauge label={ element.attributes.name }
-                                                        value={ element.attributes.score * 100 } width={ 82 } height={ 82 }
+                                                        value={ Math.trunc(element.attributes.score * 100) } width={ 82 } height={ 82 }
                                                         timeframe='30'
                                                         identifier={ `compliance-gauge-${ element.id }` } />
                                                 </SplitItem>
