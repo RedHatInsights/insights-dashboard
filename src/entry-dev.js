@@ -7,6 +7,8 @@ import { init } from './Store';
 import logger from 'redux-logger';
 import getBaseName from './Utilities/getBaseName';
 
+const rootEl = document.getElementById('root');
+
 ReactDOM.render(
     <Provider store={ init(logger).getStore() }>
         <Router basename={ getBaseName(window.location.pathname) }>
@@ -14,5 +16,6 @@ ReactDOM.render(
         </Router>
     </Provider>,
 
-    document.getElementById('root')
+    rootEl,
+    () => rootEl.setAttribute('data-ouia-safe', true)
 );
