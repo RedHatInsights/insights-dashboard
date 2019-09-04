@@ -13,7 +13,7 @@ const VULN_CVES = '/vulnerability/v1/vulnerabilities/cves';
 export const COMPLIANCE_FETCH_URL = `${BASE_URL}/compliance/profiles`;
 
 export const CRITICAL_VULNERABILITIES_FETCH_URL = urijs(`${BASE_URL}${VULN_CVES}`)
-.addSearch('cvss_from', 8)
+.addSearch('cvss_from', 7)
 .toString();
 
 export const LATEST_VULNERABILITIES_FETCH_URL = urijs(`${BASE_URL}${VULN_CVES}`)
