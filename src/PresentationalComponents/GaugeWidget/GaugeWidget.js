@@ -97,7 +97,7 @@ class GaugeWidget extends Component {
                         <React.Fragment>
                             <StackItem> { capitalize(this.props.label) } Is not entitled </StackItem>
                             <StackItem>
-                                <Button onClick={ this.handleModalToggle }> Start Evaluation </Button>
+                                <Button onClick={ this.handleModalToggle }> Start evaluation </Button>
                                 { renderModal }
                             </StackItem>
                             <StackItem>
@@ -114,7 +114,7 @@ class GaugeWidget extends Component {
                         <React.Fragment>
                             <StackItem> { capitalize(this.props.label) } Is not set up </StackItem>
                             <StackItem>
-                                <Button onClick={ this.handleModalToggle }> Get Started </Button>
+                                <Button onClick={ this.handleModalToggle }> Get started </Button>
                                 { renderModal }
                             </StackItem>
                         </React.Fragment>

@@ -106,9 +106,9 @@ class ComplianceCard extends Component {
                 </CardBody>
                 <CardFooter>
                     <a href={ `${UI_BASE}/compliance/policies/` }>
-                        View All{ complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
+                        View all{ complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                             complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' ' }
-                            Compliance Policies
+                            compliance policies
                     </a>
                 </CardFooter>
             </Card>
