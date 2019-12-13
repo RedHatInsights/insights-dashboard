@@ -22,7 +22,7 @@ class Dashboard extends Component {
         return (
             <React.Fragment>
                 <PageHeader>
-                    <PageHeaderTitle title='Health of Your Infrastructure'/>
+                    <PageHeaderTitle title='Health of your infrastructure'/>
                 </PageHeader>
                 <Main className='ins-l-dashboard'>
                     <Gallery gutter='md'>
