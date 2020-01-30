@@ -6,6 +6,8 @@ import App from './App';
 import getBaseName from './Utilities/getBaseName';
 import { init } from './Store';
 
+const rootEl = document.getElementById('root');
+
 ReactDOM.render(
     <Provider store={ init().getStore() }>
         <Router basename={ getBaseName(window.location.pathname) }>
@@ -13,5 +15,6 @@ ReactDOM.render(
         </Router>
     </Provider>,
 
-    document.getElementById('root')
+    rootEl,
+    () => rootEl.setAttribute('data-ouia-safe', true)
 );

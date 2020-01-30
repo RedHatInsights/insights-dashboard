@@ -55,7 +55,11 @@ class ComplianceCard extends Component {
         } = this.props;
 
         return (
-            <Card className='ins-c-card__compliance'>
+            <Card className='ins-c-card__compliance'
+                { ...complianceFetchStatus !== 'pending' ? {
+                    'data-ouia-safe': true
+                } : { 'data-ouia-safe': false } }
+            >
                 <CardHeader>
                     <Title size={ 'lg' }>Compliance</Title>
                 </CardHeader>
@@ -69,10 +73,10 @@ class ComplianceCard extends Component {
                                             <Split gutter='md' key={ element.id }>
                                                 <SplitItem className='ins-c-gauge pf-u-text-align-center'>
                                                     <div className='ins-c-gauge__metrics-percentage'>
-                                                        { element.attributes.score * 100 }%
+                                                        { Math.trunc(element.attributes.score * 100) }%
                                                     </div>
                                                     <Gauge label={ element.attributes.name }
-                                                        value={ element.attributes.score * 100 } width={ 82 } height={ 82 }
+                                                        value={ Math.trunc(element.attributes.score * 100) } width={ 82 } height={ 82 }
                                                         timeframe='30'
                                                         identifier={ `compliance-gauge-${ element.id }` } />
                                                 </SplitItem>
@@ -102,9 +106,9 @@ class ComplianceCard extends Component {
                 </CardBody>
                 <CardFooter>
                     <a href={ `${UI_BASE}/compliance/policies/` }>
-                        View All{ complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
+                        View all{ complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                             complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' ' }
-                            Compliance Policies
+                            compliance policies
                     </a>
                 </CardFooter>
             </Card>

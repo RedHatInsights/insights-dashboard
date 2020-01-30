@@ -4,7 +4,7 @@ set -x
 
 # for now... push everywhere when master updates
 if [ "${TRAVIS_BRANCH}" = "master" ]; then
-    for env in ci qa
+    for env in ci qa prod
     do
         echo
         echo
@@ -15,7 +15,7 @@ if [ "${TRAVIS_BRANCH}" = "master" ]; then
 fi
 
 if [ "${TRAVIS_BRANCH}" = "master-stable" ]; then
-    for env in ci qa
+    for env in ci qa prod
     do
         echo
         echo
@@ -23,8 +23,4 @@ if [ "${TRAVIS_BRANCH}" = "master-stable" ]; then
         rm -rf ./dist/.git
         .travis/release.sh "${env}-stable"
     done
-fi
-
-if [[ "${TRAVIS_BRANCH}" = "prod-beta" || "${TRAVIS_BRANCH}" = "prod-stable" ]]; then
-    .travis/release.sh "${TRAVIS_BRANCH}"
 fi
