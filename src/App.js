@@ -1,31 +1,21 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Routes } from './Routes';
 import './App.scss';
 
-class App extends Component {
+import React, { useEffect } from 'react';
 
-    componentDidMount () {
+import PropTypes from 'prop-types';
+import { Routes } from './Routes';
+
+const App = (props) => {
+    useEffect(() => {
         insights.chrome.init();
         insights.chrome.identifyApp('dashboard');
-    }
+    }, []);
 
-    render () {
-        return (
-            <Routes childProps={ this.props } />
-        );
-    }
-}
+    return <Routes childProps={ props } />;
+};
 
 App.propTypes = {
     history: PropTypes.object
 };
 
-/**
- * withRouter: https://reacttraining.com/react-router/web/api/withRouter
- * connect: https://github.com/reactjs/react-redux/blob/master/docs/api.md
- *          https://reactjs.org/docs/higher-order-components.html
- */
-export default withRouter (connect()(App));
+export default App;

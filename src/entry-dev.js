@@ -1,18 +1,22 @@
+import App from './App';
+import { NotificationsPortal } from '@redhat-cloud-services/frontend-components-notifications';
+import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import App from './App';
+import { getBaseName } from '@redhat-cloud-services/frontend-components-utilities/files/helpers';
 import { init } from './Store';
 import logger from 'redux-logger';
-import getBaseName from './Utilities/getBaseName';
 
 const rootEl = document.getElementById('root');
 
 ReactDOM.render(
     <Provider store={ init(logger).getStore() }>
         <Router basename={ getBaseName(window.location.pathname) }>
-            <App/>
+            <React.Fragment>
+                <NotificationsPortal />
+                <App />
+            </React.Fragment>
         </Router>
     </Provider>,
 
