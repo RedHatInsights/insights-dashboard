@@ -1,12 +1,14 @@
+import './_ins-c-gauge-widget.scss';
+
+import { Button, Modal, Stack, StackItem } from '@patternfly/react-core';
 import React, { Component } from 'react';
-import { Button, Stack, StackItem, Modal } from '@patternfly/react-core';
+
 import { Gauge } from '@red-hat-insights/insights-frontend-components';
+import asyncComponent from '../../Utilities/asyncComponent';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
-import asyncComponent from '../../Utilities/asyncComponent';
 
-import './_ins-c-gauge-widget.scss';
-const ModalContent = asyncComponent(() => import ('../Modal/ModalContent.js'));
+const ModalContent = asyncComponent(() => import('../Modal/ModalContent.js'));
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -42,7 +44,7 @@ class GaugeWidget extends Component {
         }));
     };
 
-    render () {
+    render() {
 
         // Set the check isModalOpen to false
         const { isModalOpen } = this.state;
@@ -78,13 +80,13 @@ class GaugeWidget extends Component {
                 onClose={ this.handleModalToggle }
                 actions={ [
                     <Button key="cancel" variant="secondary" onClick={ this.handleModalToggle }>
-                    Cancel
+                        Cancel
                     </Button>,
                     <Button key="confirm" variant="primary" onClick={ this.entitleToggle }>
-                    Confirm
+                        Confirm
                     </Button>
                 ] }>
-                <ModalContent variant={ this.state.variant } app={ this.props.label }/>
+                <ModalContent variant={ this.state.variant } app={ this.props.label } />
             </Modal>
         );
 
@@ -95,10 +97,10 @@ class GaugeWidget extends Component {
                 case 'notEntitled':
                     variantLegend = (
                         <React.Fragment>
-                            <StackItem> { capitalize(this.props.label) } Is not entitled </StackItem>
+                            <StackItem> {capitalize(this.props.label)} Is not entitled </StackItem>
                             <StackItem>
                                 <Button onClick={ this.handleModalToggle }> Start evaluation </Button>
-                                { renderModal }
+                                {renderModal}
                             </StackItem>
                             <StackItem>
                                 <a href={ '#' }>
@@ -112,10 +114,10 @@ class GaugeWidget extends Component {
                     variantType = 'not set up';
                     variantLegend = (
                         <React.Fragment>
-                            <StackItem> { capitalize(this.props.label) } Is not set up </StackItem>
+                            <StackItem> {capitalize(this.props.label)} Is not set up </StackItem>
                             <StackItem>
                                 <Button onClick={ this.handleModalToggle }> Get started </Button>
-                                { renderModal }
+                                {renderModal}
                             </StackItem>
                         </React.Fragment>
                     );
@@ -137,7 +139,7 @@ class GaugeWidget extends Component {
                     </div>
                     <div className='ins-c-gauge-widget__disabled--legend'>
                         <Stack gutter='sm'>
-                            { variantLegend }
+                            {variantLegend}
                         </Stack>
                     </div>
                 </div>
@@ -148,14 +150,14 @@ class GaugeWidget extends Component {
                     <div className='pf-u-text-align-center'>
                         <div className='ins-c-gauge-widget__metrics'>
                             <div className='ins-c-gauge-widget__metrics-percentage'>
-                                { this.props.value }%
+                                {this.props.value}%
                             </div>
                             <div className={ changeClasses }>
                                 <span className='ins-c-gauge-widget__metrics-change-text'>
-                                    { this.props.changeValue }% <i className={ `fas fa-caret-${changeIndicator}` }></i>
+                                    {this.props.changeValue}% <i className={ `fas fa-caret-${changeIndicator}` }></i>
                                 </span>
                                 <span className='ins-c-gauge-widget__metrics-change-timeframe'>
-                                    Last { this.props.timeframe } days
+                                    Last {this.props.timeframe} days
                                 </span>
                             </div>
                         </div>
@@ -166,7 +168,7 @@ class GaugeWidget extends Component {
                         </Gauge>
                     </div>
                     <div className='ins-c-gauge-widget__legend'>
-                        { this.props.children }
+                        {this.props.children}
                     </div>
                 </div>
             );
@@ -190,7 +192,7 @@ GaugeWidget.propTypes = {
     decrease: propTypes.bool,
     flipFullColors: propTypes.bool,
     timeframe: propTypes.string,
-    variant: propTypes.oneOf([ 'active', 'notEntitled', 'notSetUp' ])
+    variant: propTypes.oneOf(['active', 'notEntitled', 'notSetUp'])
 };
 
 GaugeWidget.defaultProps = {

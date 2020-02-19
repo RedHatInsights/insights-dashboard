@@ -1,11 +1,12 @@
 parser: babel-eslint
-env:
-  browser: true
-  node: true
-  es6: true
 settings:
   react:
     version: '16.0'
+env:
+  browser: true
+  es6: true
+plugins:
+  - 'react-hooks'
 extends:
   - 'eslint:recommended'
   - 'prettier'
@@ -26,10 +27,8 @@ globals:
   shallow: true
   React: true
 rules:
-  array-bracket-spacing:
-    - error
-    - always
-    - objectsInArrays: false
+  no-console: 1
+  array-bracket-spacing: 2
   comma-dangle: 2
   comma-spacing:
     - 2
@@ -55,11 +54,11 @@ rules:
   react/jsx-curly-spacing:
     - error
     - always
-    - children: true
     - allowMultiline: false
     - spacing:
       - objectLiterals:
         - never
+    - children: true
   key-spacing: 2
   keyword-spacing: 2
   linebreak-style:
@@ -71,7 +70,6 @@ rules:
   new-cap: 2
   no-bitwise: 2
   no-caller: 2
-  no-console: 1
   no-mixed-spaces-and-tabs: 2
   no-multiple-empty-lines:
     - error
@@ -88,8 +86,6 @@ rules:
   object-curly-spacing:
     - error
     - always
-    - objectsInObjects: false
-      arraysInObjects: false
   one-var:
     - error
     - never
@@ -120,3 +116,7 @@ rules:
   yoda:
     - error
     - never
+  react-hooks/rules-of-hooks:
+    - error
+  react-hooks/exhaustive-deps:
+    - warn
