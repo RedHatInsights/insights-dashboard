@@ -1,6 +1,121 @@
+// Main section
 // Dashboard
 .ins-l-dashboard {
-	.pf-l-gallery {
-		--pf-l-gallery--GridTemplateColumns: repeat(auto-fill,minmax(350px,1fr));
-	}
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+
+  .dashboard-card-group {
+    display: grid;
+
+    .dashboard-card-system-inventory {
+      grid-column: 1 / span 2;
+    }
+  
+    .dashboard-card-entitlements {
+      grid-column: 1 / span 2;
+      grid-row: 2;
+    }
+  
+    .dashboard-card-operating-systems {
+      grid-column: 1 / span 2;
+      grid-row: 3;
+    }
+  }
+
+  .dashboard-card-rules {
+    grid-column: 1 / span 2;
+    grid-row: 4;
+  }
+
+  .dashboard-card-vulnerabilities {
+    grid-column: 1 / span 2;
+    grid-row: 5;
+  }
+
+  .dashboard-card-custom-policies {
+    grid-column: 1 / span 2;
+    grid-row: 6;
+  }
+
+  .dashboard-card-compliance-remediations {
+    display: flex;
+    flex-direction: row;
+    grid-column: 1 / span 2;
+    grid-row: 7;
+  }
+
+  @media screen and (min-width: 992px) {
+    grid-template-columns: 1fr 1fr 1fr;
+
+    .dashboard-card-group {
+      grid-column: 1 / span 3;
+      grid-gap: 24px;
+
+      .dashboard-card-system-inventory {
+        grid-column: 1 / span 1;
+        grid-row: 1;
+      }
+  
+      .dashboard-card-entitlements {
+        grid-column: 2 / span 1;
+        grid-row: 1;
+      }
+  
+      .dashboard-card-operating-systems {
+        grid-column: 3 / span 1;
+        grid-row: 1;
+      }
+    }
+
+    .dashboard-card-rules {
+      grid-column: 1 / span 2;
+      grid-row: 2;
+    }
+
+    .dashboard-card-vulnerabilities {
+      grid-column: 1 / span 2;
+      grid-row: 3;
+    }
+
+    .dashboard-card-custom-policies {
+      grid-column: 1 / span 2;
+      grid-row: 4;
+    }
+
+    .dashboard-card-compliance-remediations {
+      flex-direction: column;
+      grid-column: 3;
+      grid-row: 2 / span 3;
+
+      .pf-c-card {
+        height: 50%;
+      }
+    }
+
+    div:not(.dashboard-card-compliance-remediations) > .pf-c-card {
+      height: 100%;
+    }
+  }
 }
+
+@media screen and (max-width: 576px) {
+  // .ins-l-dashboard {
+  //   grid-gap: 0px;
+  // }
+
+  .pf-c-page__main-section {
+    padding: 0px;
+  }
+
+  .dashboard-card-compliance-remediations {
+    flex-direction: column;
+  }
+}
+
+// .pf-c-page__main-section {
+//   @media screen and (max-width: 768px) {
+//     padding: 0px;
+//   }
+// }
