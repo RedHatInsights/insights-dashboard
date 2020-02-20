@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
 import './_dashboard.scss';
 
-import { PageHeader, PageHeaderTitle } from '@red-hat-insights/insights-frontend-components/components/PageHeader';
-import { Card, CardHeader, CardBody, Divider } from '@patternfly/react-core';
+import { Card, CardHeader, CardBody, Divider, PageSection, Title } from '@patternfly/react-core';
 
 import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
 import React from 'react';
@@ -13,97 +12,102 @@ import React from 'react';
 
 const Dashboard = () =>
     <React.Fragment>
-        <PageHeader>
-            <PageHeaderTitle title='Health of your infrastructure' />
-        </PageHeader>
+        <PageSection>
+            <Title headingLevel="h1" size="2xl">
+                Overview
+            </Title>
+            <div className="ins-timestamp">
+                Time stamp goes here
+            </div>
+        </PageSection>
         <Main className='ins-l-dashboard'>
-        <div className="dashboard-card-group">
-            <div className="dashboard-card-system-inventory">
+            <div className="dashboard-card-group">
+                <div className="dashboard-card-system-inventory">
+                    <Card>
+                        <CardHeader>
+                            System inventory and status
+                        </CardHeader>
+                        <CardBody>
+                            Here is a lot of test content to see how the card behaves.
+                        </CardBody>
+                    </Card>
+                </div>
+                <div className="dashboard-card-entitlements">
+                    <Card>
+                        <CardHeader>
+                            Entitlements utilized
+                        </CardHeader>
+                        <CardBody>
+                            Here is a lot of test content to see how the card behaves.
+                        </CardBody>
+                    </Card>
+                </div>
+                <div className="dashboard-card-operating-systems">
+                    <Card>
+                        <CardHeader>
+                            Operating systems
+                        </CardHeader>
+                        <CardBody>
+                            Here is a lot of test content to see how the card behaves.
+                        </CardBody>
+                    </Card>
+                </div>
+            </div>
+            <div className="dashboard-card-rules">
                 <Card>
                     <CardHeader>
-                        System inventory and status
+                        Rules
+                    </CardHeader>
+                    <CardBody>
+                        Here is a lot of test content to see how the card behaves. Here is a lot of test content to see how the card behaves.
+                    </CardBody>
+                </Card>
+            </div>
+            <div className="dashboard-card-vulnerabilities">
+                <Card>
+                    <CardHeader>
+                        Vulnerabilities
+                    </CardHeader>
+                    <CardBody>
+                        Here is a lot of test content to see how the card behaves.
+                    </CardBody>
+                    <CardBody>
+                        Here is a lot of test content to see how the card behaves.
+                    </CardBody>
+                    <CardBody>
+                        Here is a lot of test content to see how the card behaves.
+                    </CardBody>
+                </Card>
+            </div>
+            <div className="dashboard-card-compliance-remediations">
+                <Card>
+                    <CardHeader>
+                        Compliance
+                    </CardHeader>
+                    <CardBody>
+                        Here is a lot of test content to see how the card behaves.
+                    </CardBody>
+                </Card>
+                <Divider></Divider>
+                <Card>
+                    <CardHeader>
+                        Remediations
                     </CardHeader>
                     <CardBody>
                         Here is a lot of test content to see how the card behaves.
                     </CardBody>
                 </Card>
             </div>
-            <div className="dashboard-card-entitlements">
+            <div className="dashboard-card-custom-policies">
                 <Card>
                     <CardHeader>
-                        Entitlements utilized
+                        Custom policies
                     </CardHeader>
                     <CardBody>
                         Here is a lot of test content to see how the card behaves.
                     </CardBody>
                 </Card>
             </div>
-            <div className="dashboard-card-operating-systems">
-                <Card>
-                    <CardHeader>
-                        Operating systems
-                    </CardHeader>
-                    <CardBody>
-                        Here is a lot of test content to see how the card behaves.
-                    </CardBody>
-                </Card>
-            </div>
-        </div>
-        <div className="dashboard-card-rules">
-            <Card>
-                <CardHeader>
-                    Rules
-                </CardHeader>
-                <CardBody>
-                    Here is a lot of test content to see how the card behaves. Here is a lot of test content to see how the card behaves.
-                </CardBody>
-            </Card>
-        </div>
-        <div className="dashboard-card-vulnerabilities">
-            <Card>
-                <CardHeader>
-                    Vulnerabilities
-                </CardHeader>
-                <CardBody>
-                    Here is a lot of test content to see how the card behaves.
-                </CardBody>
-                <CardBody>
-                    Here is a lot of test content to see how the card behaves.
-                </CardBody>
-                <CardBody>
-                    Here is a lot of test content to see how the card behaves.
-                </CardBody>
-            </Card>
-        </div>
-        <div className="dashboard-card-compliance-remediations">
-            <Card>
-                <CardHeader>
-                    Compliance
-                </CardHeader>
-                <CardBody>
-                    Here is a lot of test content to see how the card behaves.
-                </CardBody>
-            </Card>
-            <Divider></Divider>
-            <Card>
-                <CardHeader>
-                    Remediations
-                </CardHeader>
-                <CardBody>
-                    Here is a lot of test content to see how the card behaves.
-                </CardBody>
-            </Card>
-        </div>
-        <div className="dashboard-card-custom-policies">
-            <Card>
-                <CardHeader>
-                    Custom policies
-                </CardHeader>
-                <CardBody>
-                    Here is a lot of test content to see how the card behaves.
-                </CardBody>
-            </Card>
-        </div>
         </Main>
     </React.Fragment>;
 export default Dashboard;
