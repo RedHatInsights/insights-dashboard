@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 import './_dashboard.scss';
-import { Card } from '@patternfly/react-core';
-import { CardHeader } from '@patternfly/react-core';
-import { CardBody } from '@patternfly/react-core';
-import { Divider } from '@patternfly/react-core';
-import { PageSection } from '@patternfly/react-core';
-import { Title } from '@patternfly/react-core';
+import { Card } from '@patternfly/react-core/dist/js/components/Card/Card';
+import { CardHeader } from '@patternfly/react-core/dist/js/components/Card/CardHeader';
+import { CardBody } from '@patternfly/react-core/dist/js/components/Card/CardBody';
+import { Divider } from '@patternfly/react-core/dist/js/components/Divider/Divider';
+import { PageSection } from '@patternfly/react-core/dist/js/components/Page/PageSection';
+import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
 import PropTypes from 'prop-types';
 import React from 'react';
