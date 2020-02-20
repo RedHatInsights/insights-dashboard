@@ -15,15 +15,12 @@ const Dashboard = ({ intl }) =>
     <React.Fragment>
         <PageSection>
             <Title headingLevel="h1" size="2xl">
-                Overview
+                {intl.formatMessage(messages.dashboardTitle)}
             </Title>
             <div className="ins-timestamp">
                 Time stamp goes here
             </div>
         </PageSection>
-        <PageHeader>
-            <PageHeaderTitle title={ intl.formatMessage(messages.dashboardTitle) } />
-        </PageHeader>
         <Main className='ins-l-dashboard'>
             <div className="dashboard-card-group">
                 <div className="dashboard-card-system-inventory">
@@ -68,30 +65,10 @@ const Dashboard = ({ intl }) =>
                 </Card>
             </div>
             <div className="dashboard-card-vulnerabilities">
-                <Card>
-                    <CardHeader>
-                        Vulnerabilities
-                    </CardHeader>
-                    <CardBody>
-                        Here is a lot of test content to see how the card behaves.
-                    </CardBody>
-                    <CardBody>
-                        Here is a lot of test content to see how the card behaves.
-                    </CardBody>
-                    <CardBody>
-                        Here is a lot of test content to see how the card behaves.
-                    </CardBody>
-                </Card>
+                <VulnerabilityCard/>
             </div>
             <div className="dashboard-card-compliance-remediations">
-                <Card>
-                    <CardHeader>
-                        Compliance
-                    </CardHeader>
-                    <CardBody>
-                        Here is a lot of test content to see how the card behaves.
-                    </CardBody>
-                </Card>
+                <ComplianceCard/>
                 <Divider></Divider>
                 <Card>
                     <CardHeader>

@@ -93,11 +93,13 @@
     }
 
     .dashboard-card-compliance-remediations {
+      display: flex;
+      flex-direction: column;
       grid-column: 3;
       grid-row: 2 / span 3;
 
       .pf-c-card {
-        height: 50%;
+        flex-grow: 1;
       }
     }
 
