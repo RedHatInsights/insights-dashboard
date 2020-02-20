@@ -1,6 +1,129 @@
 // Dashboard
 .ins-l-dashboard {
-	.pf-l-gallery {
-		--pf-l-gallery--GridTemplateColumns: repeat(auto-fill,minmax(350px,1fr));
-	}
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+
+  .dashboard-card-group {
+    display: grid;
+    grid-row: 1;
+
+    > *:not(:last-child) {
+      border-bottom: 1px solid var(--pf-global--BorderColor--100);
+    }
+
+    .dashboard-card-system-inventory {
+      grid-column: 1;
+    }
+  
+    .dashboard-card-entitlements {
+      grid-column: 1;
+      grid-row: 2;
+    }
+  
+    .dashboard-card-operating-systems {
+      grid-column: 1;
+      grid-row: 3;
+    }
+  }
+
+  .dashboard-card-rules {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .dashboard-card-vulnerabilities {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .dashboard-card-custom-policies {
+    grid-column: 1;
+    grid-row: 5;
+  }
+
+  .dashboard-card-compliance-remediations {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  @media screen and (min-width: 992px) {
+    grid-template-columns: 1fr 1fr 1fr;
+
+    .dashboard-card-group {
+      grid-column: 1 / span 3;
+      grid-row: 1;
+      column-gap: 24px;
+      grid-template-columns: 1fr 1fr 1fr;
+
+      > *:not(:last-child) {
+        border-bottom: initial;
+      }
+
+      .dashboard-card-system-inventory {
+        grid-column: 1 / span 1;
+        grid-row: 1;
+      }
+  
+      .dashboard-card-entitlements {
+        grid-column: 2 / span 1;
+        grid-row: 1;
+      }
+  
+      .dashboard-card-operating-systems {
+        grid-column: 3 / span 1;
+        grid-row: 1;
+      }
+    }
+
+    .dashboard-card-rules {
+      grid-column: 1 / span 2;
+      grid-row: 2;
+    }
+
+    .dashboard-card-vulnerabilities {
+      grid-column: 1 / span 2;
+      grid-row: 3;
+    }
+
+    .dashboard-card-custom-policies {
+      grid-column: 1 / span 2;
+      grid-row: 4;
+    }
+
+    .dashboard-card-compliance-remediations {
+      display: flex;
+      flex-direction: column;
+      grid-column: 3;
+      grid-row: 2 / span 3;
+
+      .pf-c-card {
+        flex-grow: 1;
+      }
+    }
+
+    div:not(.dashboard-card-compliance-remediations) > .pf-c-card {
+      height: 100%;
+    }
+  }
+}
+
+.pf-c-page__main-section {
+  &:first-child {
+    @media screen and (min-width: 576px) {
+      padding-bottom: 0px;
+    }
+  }
+
+  &:last-child {
+    @media screen and (max-width: 576px) {
+      padding: 0px;
+    }
+  }
+}
+
+.ins-timestamp {
+  color: var(--pf-global--secondary-color--100);
+  font-size: var(--pf-global--FontSize--sm);
 }
