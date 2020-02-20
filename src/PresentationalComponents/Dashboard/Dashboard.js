@@ -2,12 +2,16 @@
 import './_dashboard.scss';
 import { Card, CardHeader, CardBody, Divider, PageSection, Title } from '@patternfly/react-core';
 import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
+import PropTypes from 'prop-types';
 import React from 'react';
-// import asyncComponent from '../../Utilities/skeletonAsyncCard';
-// const ComplianceCard = asyncComponent(() => import('../../SmartComponents/Compliance/ComplianceCard'));
-// const VulnerabilityCard = asyncComponent(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
+import asyncComponent from '../../Utilities/skeletonAsyncCard';
+import { injectIntl } from 'react-intl';
+import messages from '../../Messages';
 
-const Dashboard = () =>
+const ComplianceCard = asyncComponent(() => import('../../SmartComponents/Compliance/ComplianceCard'));
+const VulnerabilityCard = asyncComponent(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
+
+const Dashboard = ({ intl }) =>
     <React.Fragment>
         <PageSection>
             <Title headingLevel="h1" size="2xl">
@@ -17,6 +21,9 @@ const Dashboard = () =>
                 Time stamp goes here
             </div>
         </PageSection>
+        <PageHeader>
+            <PageHeaderTitle title={ intl.formatMessage(messages.dashboardTitle) } />
+        </PageHeader>
         <Main className='ins-l-dashboard'>
             <div className="dashboard-card-group">
                 <div className="dashboard-card-system-inventory">
@@ -107,4 +114,7 @@ const Dashboard = () =>
             </div>
         </Main>
     </React.Fragment>;
-export default Dashboard;
+
+Dashboard.propTypes = { intl: PropTypes.any };
+
+export default injectIntl(Dashboard);
