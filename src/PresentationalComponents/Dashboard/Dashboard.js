@@ -1,12 +1,9 @@
 /* eslint-disable no-console */
 import './_dashboard.scss';
-
 import { Card, CardHeader, CardBody, Divider, PageSection, Title } from '@patternfly/react-core';
-
 import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
 import React from 'react';
 // import asyncComponent from '../../Utilities/skeletonAsyncCard';
-
 // const ComplianceCard = asyncComponent(() => import('../../SmartComponents/Compliance/ComplianceCard'));
 // const VulnerabilityCard = asyncComponent(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
 
