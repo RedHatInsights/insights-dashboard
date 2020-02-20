@@ -5,16 +5,19 @@ import { Gallery, GalleryItem } from '@patternfly/react-core/dist/js/layouts/Gal
 import { PageHeader, PageHeaderTitle } from '@red-hat-insights/insights-frontend-components/components/PageHeader';
 
 import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
+import PropTypes from 'prop-types';
 import React from 'react';
 import asyncComponent from '../../Utilities/skeletonAsyncCard';
+import { injectIntl } from 'react-intl';
+import messages from '../../Messages';
 
 const ComplianceCard = asyncComponent(() => import('../../SmartComponents/Compliance/ComplianceCard'));
 const VulnerabilityCard = asyncComponent(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
 
-const Dashboard = () =>
+const Dashboard = ({ intl }) =>
     <React.Fragment>
         <PageHeader>
-            <PageHeaderTitle title='Health of your infrastructure' />
+            <PageHeaderTitle title={ intl.formatMessage(messages.dashboardTitle) } />
         </PageHeader>
         <Main className='ins-l-dashboard'>
             <Gallery gutter='md'>
@@ -28,4 +31,6 @@ const Dashboard = () =>
         </Main>
     </React.Fragment>;
 
-export default Dashboard;
+Dashboard.propTypes = { intl: PropTypes.any };
+
+export default injectIntl(Dashboard);

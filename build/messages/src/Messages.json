@@ -1,0 +1,7 @@
+[
+  {
+    "id": "dashboardTitle",
+    "description": "Title of the dashboard",
+    "defaultMessage": "Overview"
+  }
+]
