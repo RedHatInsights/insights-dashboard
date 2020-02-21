@@ -15,6 +15,7 @@ import messages from '../../Messages';
 
 const ComplianceCard = asyncComponent(() => import('../../SmartComponents/Compliance/ComplianceCard'));
 const VulnerabilityCard = asyncComponent(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
+const SystemInventoryCard = asyncComponent(() => import('../../SmartComponents/SystemInventory/SystemInventory'));
 
 const Dashboard = ({ intl }) =>
     <React.Fragment>
@@ -29,14 +30,7 @@ const Dashboard = ({ intl }) =>
         <Main className='ins-l-dashboard'>
             <div className="dashboard-card-group">
                 <div className="dashboard-card-system-inventory">
-                    <Card>
-                        <CardHeader>
-                            System inventory and status
-                        </CardHeader>
-                        <CardBody>
-                            Here is a lot of test content to see how the card behaves.
-                        </CardBody>
-                    </Card>
+                    <SystemInventoryCard/>
                 </div>
                 <div className="dashboard-card-entitlements">
                     <Card>
