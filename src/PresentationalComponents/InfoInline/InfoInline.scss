@@ -1,0 +1,22 @@
+.pf-c-button.pf-m-link {
+    font-size: var(--pf-global--FontSize--sm);
+}
+
+.pf-c-button__icon {
+    color: var(--pf-global--Color--100);
+}
+
+.insights-dashboard__info-inline {
+    display: flex;
+    flex-direction: row;
+
+    svg {
+        color: var(--pf-global--active-color--300);
+    }
+
+    p {
+        font-size: var(--pf-global--FontSize--sm);
+        margin-left: var(--pf-global--spacer--sm);
+        color: var(--pf-global--primary-color--100);
+    }
+}

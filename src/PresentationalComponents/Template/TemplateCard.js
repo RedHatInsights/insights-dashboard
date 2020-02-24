@@ -4,6 +4,7 @@ import { Button, Card, CardActions, CardBody, CardHead, CardHeader, CardFooter, 
 import { DownloadIcon } from '@patternfly/react-icons';
 import './TemplateCard.scss';
 import DownloadReport from '../../PresentationalComponents/DownloadReport/DownloadReport';
+import InfoInline from '../../PresentationalComponents/InfoInline/InfoInline';
 
 export const TemplateCard = ({ appName, children, ...props }) => {
     return (
@@ -30,9 +31,12 @@ TemplateCardHead.propTypes = {
     children: propTypes.any
 };
 
-export const TemplateCardActions = ({ children, downloadReport, ...props }) => {
+export const TemplateCardActions = ({ children, downloadReport, infoInlineMessage, ...props }) => {
     return (
         <CardActions { ...props }>
+            { infoInlineMessage &&
+                <InfoInline message={ infoInlineMessage }/>
+            }
             { downloadReport &&
                 <DownloadReport/>
             }
@@ -43,7 +47,8 @@ export const TemplateCardActions = ({ children, downloadReport, ...props }) => {
 
 TemplateCardActions.propTypes = {
     children: propTypes.any,
-    downloadReport: propTypes.any
+    downloadReport: propTypes.any,
+    infoInlineMessage: propTypes.string
 };
 
 export const TemplateCardHeader = ({ title, subtitle, onDownload, children, ...props }) => {
@@ -78,15 +83,22 @@ TemplateCardHeader.propTypes = {
     onDownload: propTypes.func
 };
 
-export const TemplateCardBody = ({ children, ...props }) => {
+export const TemplateCardBody = ({ children, isHorizontalLayout, ...props }) => {
     return (
         <CardBody className='ins-c-dashboard__card--body' { ...props }>
-            { children }
+            { isHorizontalLayout ?
+                <div className="">
+                    { children }
+                </div>
+                :
+                { children }
+            }
         </CardBody>
     );
 };
 
 TemplateCardBody.propTypes = {
+    isHorizontalLayout: propTypes.any,
     children: propTypes.any
 };
 
