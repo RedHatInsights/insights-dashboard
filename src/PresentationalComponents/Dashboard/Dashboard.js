@@ -15,7 +15,11 @@ import messages from '../../Messages';
 
 const ComplianceCard = asyncComponent(() => import('../../SmartComponents/Compliance/ComplianceCard'));
 const VulnerabilityCard = asyncComponent(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
-const SystemInventoryCard = asyncComponent(() => import('../../SmartComponents/SystemInventory/SystemInventory'));
+const SystemInventoryCard = asyncComponent(() => import('../../SmartComponents/SystemInventory/SystemInventoryCard'));
+const EntitlementsUtilizedCard = asyncComponent(() => import('../../SmartComponents/EntitlementsUtilized/EntitlementsUtilizedCard'));
+const OperatingSystemsCard = asyncComponent(() => import('../../SmartComponents/OperatingSystems/OperatingSystemsCard'));
+const CustomPoliciesCard = asyncComponent(() => import('../../SmartComponents/CustomPolicies/CustomPoliciesCard'));
+const RemediationsCard = asyncComponent(() => import('../../SmartComponents/Remediations/RemediationsCard'));
 
 const Dashboard = ({ intl }) =>
     <React.Fragment>
@@ -33,24 +37,10 @@ const Dashboard = ({ intl }) =>
                     <SystemInventoryCard/>
                 </div>
                 <div className="dashboard-card-entitlements">
-                    <Card>
-                        <CardHeader>
-                            Entitlements utilized
-                        </CardHeader>
-                        <CardBody>
-                            Here is a lot of test content to see how the card behaves.
-                        </CardBody>
-                    </Card>
+                    <EntitlementsUtilizedCard/>
                 </div>
                 <div className="dashboard-card-operating-systems">
-                    <Card>
-                        <CardHeader>
-                            Operating systems
-                        </CardHeader>
-                        <CardBody>
-                            Here is a lot of test content to see how the card behaves.
-                        </CardBody>
-                    </Card>
+                    <OperatingSystemsCard/>
                 </div>
             </div>
             <div className="dashboard-card-rules">
@@ -69,24 +59,10 @@ const Dashboard = ({ intl }) =>
             <div className="dashboard-card-compliance-remediations">
                 <ComplianceCard/>
                 <Divider></Divider>
-                <Card>
-                    <CardHeader>
-                        Remediations
-                    </CardHeader>
-                    <CardBody>
-                        Here is a lot of test content to see how the card behaves.
-                    </CardBody>
-                </Card>
+                <RemediationsCard/>
             </div>
             <div className="dashboard-card-custom-policies">
-                <Card>
-                    <CardHeader>
-                        Custom policies
-                    </CardHeader>
-                    <CardBody>
-                        Here is a lot of test content to see how the card behaves.
-                    </CardBody>
-                </Card>
+                <CustomPoliciesCard/>
             </div>
         </Main>
     </React.Fragment>;

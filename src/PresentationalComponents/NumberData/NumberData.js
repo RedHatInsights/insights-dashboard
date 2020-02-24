@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import '../../../src/PresentationalComponents/NumberData/NumberData';
+import '../../../src/PresentationalComponents/NumberData/NumberData.scss';
 
 export const NumberData = ({ data, dataSize }) => {
     return (

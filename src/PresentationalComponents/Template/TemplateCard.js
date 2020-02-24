@@ -1,8 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Button, Card, CardBody, CardHeader, CardFooter, Level, LevelItem, Title } from '@patternfly/react-core';
+import { Button, Card, CardActions, CardBody, CardHead, CardHeader, CardFooter, Level, LevelItem, Title } from '@patternfly/react-core';
 import { DownloadIcon } from '@patternfly/react-icons';
-// import './TemplateCard.scss';
+import './TemplateCard.scss';
+import DownloadReport from '../../PresentationalComponents/DownloadReport/DownloadReport';
 
 export const TemplateCard = ({ appName, children, ...props }) => {
     return (
@@ -15,6 +16,34 @@ export const TemplateCard = ({ appName, children, ...props }) => {
 TemplateCard.propTypes = {
     appName: propTypes.string,
     children: propTypes.any
+};
+
+export const TemplateCardHead = ({ children, ...props }) => {
+    return (
+        <CardHead { ...props }>
+            {children}
+        </CardHead>
+    );
+};
+
+TemplateCardHead.propTypes = {
+    children: propTypes.any
+};
+
+export const TemplateCardActions = ({ children, downloadReport, ...props }) => {
+    return (
+        <CardActions { ...props }>
+            { downloadReport &&
+                <DownloadReport/>
+            }
+            {children}
+        </CardActions>
+    );
+};
+
+TemplateCardActions.propTypes = {
+    children: propTypes.any,
+    downloadReport: propTypes.any
 };
 
 export const TemplateCardHeader = ({ title, subtitle, onDownload, children, ...props }) => {
