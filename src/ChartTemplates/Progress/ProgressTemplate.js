@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Progress, ProgressSize, ProgressVariant } from '@patternfly/react-core';
+import './ProgressTemplate.scss';
 
 export const ProgressTemplate = ({ value, title, variant }) => {
     return (
@@ -8,7 +9,7 @@ export const ProgressTemplate = ({ value, title, variant }) => {
             value={ value }
             title={ title }
             size={ ProgressSize.sm }
-            variant={ ProgressVariant + '.' + variant }
+            variant={ variant === 'danger' && ProgressVariant.danger }
         />
     );
 };

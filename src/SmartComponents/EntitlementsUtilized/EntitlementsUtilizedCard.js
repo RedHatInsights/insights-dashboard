@@ -1,6 +1,6 @@
 import React from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
-import { ProgressTemplate } from '../../../../insights-dashboard/src/PresentationalComponents/Progress/ProgressTemplate';
+import { ProgressTemplate } from '../../../../insights-dashboard/src/ChartTemplates/Progress/ProgressTemplate';
 
 /**
  * Entitlements utilized card for showing the portion of entitlements used.

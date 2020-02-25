@@ -17,4 +17,8 @@
             padding-left: 16px;
         }
     }
+
+    .pf-c-progress + .pf-c-progress {
+        padding-top: 16px;
+    }
 }
