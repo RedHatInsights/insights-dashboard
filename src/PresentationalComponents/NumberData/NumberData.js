@@ -5,7 +5,7 @@ import '../../../src/PresentationalComponents/NumberData/NumberData.scss';
 export const NumberData = ({ data, dataSize }) => {
     return (
         <React.Fragment>
-            <p className={ `insight-dashboard__number-data--${dataSize}` }>
+            <p className={ `ins-c-dashboard__number-data--${dataSize}` }>
                 {data}
             </p>
         </React.Fragment>

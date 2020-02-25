@@ -1,3 +1,20 @@
 .ins-c-dashboard__card--header-subtitle {
     font-size: var(--pf-global--FontSize--sm);
 }
+
+.ins-c-dashboard__card--body {
+    display: flex;
+    flex-direction: column;
+    
+    &.pf-m-horizontal {
+        flex-direction: row;
+        padding-top: 24px;
+        align-items: flex-end;
+    }
+
+    > .ins-c-dashboard__number-description {
+        &:not(:first-child) {
+            padding-left: 16px;
+        }
+    }
+}

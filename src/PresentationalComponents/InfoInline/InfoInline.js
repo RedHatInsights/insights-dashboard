@@ -5,7 +5,7 @@ import './InfoInline.scss';
 
 export const InfoInline = ({ message }) => {
     return (
-        <div className="insights-dashboard__info-inline">
+        <div className="ins-c-dashboard__info-inline">
             <InfoCircleIcon/>
             <p>{ message }</p>
         </div>

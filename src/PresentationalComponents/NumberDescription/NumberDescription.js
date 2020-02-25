@@ -8,7 +8,7 @@ import { NumberData } from '../../PresentationalComponents/NumberData/NumberData
 export const NumberDescription = ({ data, dataSize, linkDescription }) => {
     return (
         <React.Fragment>
-            <div className="ins-dashboard__number-description">
+            <div className="ins-c-dashboard__number-description">
                 <NumberData data={ data } dataSize={ dataSize }/>
                 <Button variant="link">
                     { linkDescription }

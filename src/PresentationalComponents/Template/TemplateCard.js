@@ -85,14 +85,8 @@ TemplateCardHeader.propTypes = {
 
 export const TemplateCardBody = ({ children, isHorizontalLayout, ...props }) => {
     return (
-        <CardBody className='ins-c-dashboard__card--body' { ...props }>
-            { isHorizontalLayout ?
-                <div className="">
-                    { children }
-                </div>
-                :
-                { children }
-            }
+        <CardBody className={ 'ins-c-dashboard__card--body' + (isHorizontalLayout ? ' pf-m-horizontal' : '') } { ...props }>
+            { children }
         </CardBody>
     );
 };
