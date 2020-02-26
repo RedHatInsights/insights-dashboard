@@ -1,0 +1,9 @@
+.ins-m-remediation-status {
+    display: flex;
+    flex-direction: row;
+
+    > p {
+        margin-left: var(--pf-global--spacer--sm);
+        font-size: var(--pf-global--FontSize--sm);
+    }
+}

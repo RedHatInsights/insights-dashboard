@@ -12,6 +12,7 @@ import React from 'react';
 import asyncComponent from '../../Utilities/skeletonAsyncCard';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
+import { TimeStamp } from './../TimeStamp/TimeStamp';
 
 const ComplianceCard = asyncComponent(() => import('../../SmartComponents/Compliance/ComplianceCard'));
 const VulnerabilityCard = asyncComponent(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
@@ -27,9 +28,7 @@ const Dashboard = ({ intl }) =>
             <Title headingLevel="h1" size="2xl">
                 {intl.formatMessage(messages.dashboardTitle)}
             </Title>
-            <div className="ins-timestamp">
-                Time stamp goes here
-            </div>
+            <TimeStamp timestamp="Timestamp goes here" />
         </PageSection>
         <Main className='ins-l-dashboard'>
             <div className="dashboard-card-group">
