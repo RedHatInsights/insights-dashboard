@@ -8,17 +8,21 @@
     
     &.ins-m-horizontal {
         flex-direction: row;
-        padding-top: 24px;
+        padding-top: var(--pf-global--spacer--lg);
         align-items: flex-end;
     }
 
     > .ins-c-dashboard__number-description {
         &:not(:first-child) {
-            padding-left: 16px;
+            padding-left: var(--pf-global--spacer--md);
         }
     }
 
     .pf-c-progress + .pf-c-progress {
-        padding-top: 16px;
+        padding-top: var(--pf-global--spacer--md);
+    }
+
+    > .pf-c-progress + .pf-c-progress {
+        margin-top: var(--pf-global--spacer--xs);
     }
 }

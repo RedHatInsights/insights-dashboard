@@ -15,23 +15,23 @@ import TimeStamp from './../../PresentationalComponents/TimeStamp/TimeStamp';
 const mockData = [
     {
         status: 'Running',
-        name: 'custom_playbook A',
-        timestamp: 'Started, Jan 20 2020 08:44:42'
+        name: 'Name',
+        timestamp: 'Timestamp'
     },
     {
         status: 'Running',
-        name: 'custom_playbook B',
-        timestamp: 'Started, Jan 20 2020 08:44:42'
+        name: 'Name',
+        timestamp: 'Timestamp'
     },
     {
         status: 'Running',
-        name: 'custom_playbook C',
-        timestamp: 'Started, Jan 20 2020 08:44:42'
+        name: 'Name',
+        timestamp: 'Timestamp'
     },
     {
         status: 'Finished',
-        name: 'custom_playbook A',
-        timestamp: 'Started, Jan 20 2020 08:44:42'
+        name: 'Name',
+        timestamp: 'Timestamp'
     }
 ];
 

@@ -1,5 +1,5 @@
 .ins-c-dashboard__number-data--xl {
-    font-size: 48px;
+    font-size: calc(var(--pf-global--FontSize--2xl) * 2);
     line-height: 40px;
 }
 
@@ -9,6 +9,6 @@
 }
 
 .ins-c-dashboard__number-data--md {
-    font-size: 20px;
-    line-height: 20px;
+    font-size: var(--pf-global--FontSize--xl);
+    line-height: var(--pf-global--FontSize--xl);
 }

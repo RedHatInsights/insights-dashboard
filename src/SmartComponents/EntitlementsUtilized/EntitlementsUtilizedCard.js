@@ -12,11 +12,11 @@ const EntitlementsUtilizedCard = () => {
         <TemplateCardBody>
             <ProgressTemplate
                 title="Red Hat JBoss"
-                value="72"
+                value="0"
             />
             <ProgressTemplate
                 title="Red Hat Openshift"
-                value="212"
+                value="0"
                 variant="danger"
             />
         </TemplateCardBody>

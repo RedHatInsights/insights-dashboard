@@ -19,7 +19,7 @@ const CustomPoliciesCard = () => {
             </TemplateCardHeader>
         </TemplateCardHead>
         <TemplateCardBody>
-            Table goes here
+            This is where the table goes.
         </TemplateCardBody>
     </TemplateCard>;
 };

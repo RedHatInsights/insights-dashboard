@@ -1,5 +1,5 @@
 .pf-c-divider.pf-m-vertical {
-    height: 48px;
+    height: var(--pf-global--spacer--2xl);
     width: 1px;
     align-self: flex-start;
 }
