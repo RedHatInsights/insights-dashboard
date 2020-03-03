@@ -1,14 +1,17 @@
 .ins-c-dashboard__number-data--xl {
     font-size: calc(var(--pf-global--FontSize--2xl) * 2);
     line-height: 40px;
+    font-family: var(--pf-global--FontFamily--redhatfont--heading--sans-serif);
 }
 
 .ins-c-dashboard__number-data--lg {
     font-size: 30px;
     line-height: 30px;
+    font-family: var(--pf-global--FontFamily--redhatfont--heading--sans-serif);
 }
 
 .ins-c-dashboard__number-data--md {
-    font-size: var(--pf-global--FontSize--xl);
-    line-height: var(--pf-global--FontSize--xl);
+    font-size: var(--pf-global--FontSize--lg);
+    line-height: var(--pf-global--FontSize--lg);
+    font-family: var(--pf-global--FontFamily--redhatfont--heading--sans-serif);
 }

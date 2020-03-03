@@ -6,7 +6,6 @@ import {
     TemplateCardHead,
     TemplateCardActions
 } from '../../PresentationalComponents/Template/TemplateCard';
-import { TemplateGrid, TemplateGridItem } from './../../PresentationalComponents/TemplateGrid/TemplateGrid';
 import { Button } from '@patternfly/react-core';
 import FinishedIcon from './../../Icons/FinishedIcon';
 import RunningIcon from './../../Icons/RunningIcon';
@@ -41,22 +40,24 @@ const mockData = [
 const RemediationsCard = () => {
     const remediationsList = mockData.map((remediation, index) =>
         <React.Fragment key={ index }>
-            <TemplateGridItem isRemediationStatus="true" span={ 4 }>
-                <React.Fragment>
-                    { remediation.status === 'Running' ? (
-                        <RunningIcon/>
-                    ) : (
-                        <FinishedIcon/>
-                    )}
-                    <p>{remediation.status}</p>
-                </React.Fragment>
-            </TemplateGridItem>
-            <TemplateGridItem span={ 8 }>
-                <Button component="a" variant="link" isInline>
-                    {remediation.name}
-                </Button>
-                <TimeStamp timestamp={ remediation.timestamp }/>
-            </TemplateGridItem>
+            <div className="ins-c-remediations-container">
+                <div className="ins-c-remediation-status" span={ 4 }>
+                    <React.Fragment>
+                        { remediation.status === 'Running' ? (
+                            <RunningIcon/>
+                        ) : (
+                            <FinishedIcon/>
+                        )}
+                        <p>{remediation.status}</p>
+                    </React.Fragment>
+                </div>
+                <div span={ 8 }>
+                    <Button component="a" variant="link" isInline>
+                        {remediation.name}
+                    </Button>
+                    <TimeStamp timestamp={ remediation.timestamp }/>
+                </div>
+            </div>
         </React.Fragment>
     );
 
@@ -66,9 +67,9 @@ const RemediationsCard = () => {
             <TemplateCardHeader title='Remediations'></TemplateCardHeader>
         </TemplateCardHead>
         <TemplateCardBody>
-            <TemplateGrid gutter="sm">
+            <div>
                 {remediationsList}
-            </TemplateGrid>
+            </div>
         </TemplateCardBody>
     </TemplateCard>;
 };

@@ -57,7 +57,7 @@ export const TemplateCardHeader = ({ title, subtitle, onDownload, children, ...p
             <Level>
                 { title &&
                     <LevelItem>
-                        <Title headingLevel="h2" size="xl"> { title } </Title>
+                        <Title headingLevel="h2" size="lg"> { title } </Title>
                     </LevelItem>
                 }
                 { subtitle &&
