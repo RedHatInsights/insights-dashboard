@@ -1,9 +1,15 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { ChartPie } from '@patternfly/react-charts';
+// import './PieChartTemplate.scss';
 
 export const PieChart = ({ ...props }) => {
+    // const paddingObject = Object.keys(props.padding).map(function(key, index) {
+    //     return { bottom: value[index], left: value[index], right: value[index], top: value[index] }
+    // )};
+
     return (
+        console.log(props.padding);
         <ChartPie
             ariaDesc={ props.ariaDesc }
             ariaTitle={ props.ariaTitle }
@@ -14,12 +20,7 @@ export const PieChart = ({ ...props }) => {
             legendData={ [{ name: 'Red Hat Enterprise Linux 8' }, { name: 'Red Hat Enterprise Linux 7' }, { name: 'Other' }] }
             legendOrientation={ props.legendOrientation }
             legendPosition={ props.legendPosition }
-            padding={ [
-                { bottom: 20 },
-                { left: 20 },
-                { right: 140 },
-                { top: 20 }
-            ] }
+            padding={ props.padding }
             width={ props.width }
         />
     );
