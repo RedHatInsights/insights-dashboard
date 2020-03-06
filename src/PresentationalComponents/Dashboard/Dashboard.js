@@ -57,7 +57,7 @@ const Dashboard = ({ intl }) =>
             </div>
             <div className="dashboard-card-compliance-remediations">
                 <ComplianceCard/>
-                <Divider></Divider>
+                <Divider/>
                 <RemediationsCard/>
             </div>
             <div className="dashboard-card-custom-policies">

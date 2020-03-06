@@ -1,6 +1,15 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Button, Card, CardActions, CardBody, CardHead, CardHeader, CardFooter, Level, LevelItem, Title } from '@patternfly/react-core';
+import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
+import { Card } from '@patternfly/react-core/dist/js/components/Card/Card';
+import { CardActions } from '@patternfly/react-core/dist/js/components/Card/CardActions';
+import { CardBody } from '@patternfly/react-core/dist/js/components/Card/CardBody';
+import { CardHead } from '@patternfly/react-core/dist/js/components/Card/CardHead';
+import { CardHeader } from '@patternfly/react-core/dist/js/components/Card/CardHeader';
+import { CardFooter } from '@patternfly/react-core/dist/js/components/Card/CardFooter';
+import { Level } from '@patternfly/react-core/dist/js/layouts/Level/Level';
+import { LevelItem } from '@patternfly/react-core/dist/js/layouts/Level/LevelItem';
+import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import { DownloadIcon } from '@patternfly/react-icons';
 import './TemplateCard.scss';
 import DownloadReport from '../../PresentationalComponents/DownloadReport/DownloadReport';

@@ -6,7 +6,7 @@ import {
     TemplateCardHead,
     TemplateCardActions
 } from '../../PresentationalComponents/Template/TemplateCard';
-import { Button } from '@patternfly/react-core';
+import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import FinishedIcon from './../../Icons/FinishedIcon';
 import RunningIcon from './../../Icons/RunningIcon';
 import TimeStamp from './../../PresentationalComponents/TimeStamp/TimeStamp';

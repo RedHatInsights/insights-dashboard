@@ -1,15 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { ChartPie } from '@patternfly/react-charts';
+import { ChartPie } from '@patternfly/react-charts/dist/js/components/ChartPie/ChartPie';
 // import './PieChartTemplate.scss';
 
 export const PieChart = ({ ...props }) => {
-    // const paddingObject = Object.keys(props.padding).map(function(key, index) {
-    //     return { bottom: value[index], left: value[index], right: value[index], top: value[index] }
-    // )};
-
     return (
-        console.log(props.padding);
         <ChartPie
             ariaDesc={ props.ariaDesc }
             ariaTitle={ props.ariaTitle }

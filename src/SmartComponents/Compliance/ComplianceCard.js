@@ -1,13 +1,11 @@
 import * as AppActions from '../../AppActions';
-import {
-    EmptyState,
-    EmptyStateBody,
-    EmptyStateIcon,
-    Split,
-    SplitItem,
-    Stack,
-    StackItem
-} from '@patternfly/react-core';
+import { EmptyState } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
+import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateBody';
+import { EmptyStateIcon } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateIcon';
+import { Split } from '@patternfly/react-core/dist/js/layouts/Split/SplitItem';
+import { SplitItem } from '@patternfly/react-core/dist/js/layouts/Split/SplitItem';
+import { Stack } from '@patternfly/react-core/dist/js/layouts/Stack/Stack';
+import { StackItem } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
 import {
     TemplateCard,
     TemplateCardBody,
