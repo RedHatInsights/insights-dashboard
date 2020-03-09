@@ -1,20 +1,21 @@
 import * as AppActions from '../../AppActions';
-import { EmptyState } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
-import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateBody';
-import { EmptyStateIcon } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateIcon';
-import { Split } from '@patternfly/react-core/dist/js/layouts/Split/SplitItem';
-import { SplitItem } from '@patternfly/react-core/dist/js/layouts/Split/SplitItem';
-import { Stack } from '@patternfly/react-core/dist/js/layouts/Stack/Stack';
-import { StackItem } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
+
 import {
-    TemplateCard,
-    TemplateCardBody,
-    TemplateCardHeader,
-    TemplateCardHead,
-    TemplateCardActions,
-    TemplateCardFooter
-} from '../../PresentationalComponents/Template/TemplateCard';
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    EmptyState,
+    EmptyStateBody,
+    EmptyStateIcon,
+    Split,
+    SplitItem,
+    Stack,
+    StackItem,
+    Title
+} from '@patternfly/react-core';
 import React, { Component } from 'react';
+
 import { ClipboardCheckIcon } from '@patternfly/react-icons';
 import { Gauge } from '@red-hat-insights/insights-frontend-components';
 import Loading from '../../PresentationalComponents/Loading/Loading';
@@ -59,16 +60,15 @@ class ComplianceCard extends Component {
         } = this.props;
 
         return (
-            <TemplateCard className='ins-c-card__compliance'
+            <Card className='ins-c-card__compliance'
                 { ...complianceFetchStatus !== 'pending' ? {
                     'data-ouia-safe': true
                 } : { 'data-ouia-safe': false } }
             >
-                <TemplateCardHead>
-                    <TemplateCardActions downloadReport="true"/>
-                    <TemplateCardHeader title="Compliance"/>
-                </TemplateCardHead>
-                <TemplateCardBody>
+                <CardHeader>
+                    <Title size={ 'lg' }>Compliance</Title>
+                </CardHeader>
+                <CardBody>
                     <Stack>
                         {complianceFetchStatus === 'fulfilled' &&
                             (Array.isArray(complianceSummary.data) &&
@@ -107,15 +107,15 @@ class ComplianceCard extends Component {
                         }
                         {complianceFetchStatus === 'pending' && (<Loading />)}
                     </Stack>
-                </TemplateCardBody>
-                <TemplateCardFooter>
+                </CardBody>
+                <CardFooter>
                     <a href={ `${UI_BASE}/compliance/policies/` }>
                         View all{complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                             complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
                         compliance policies
                     </a>
-                </TemplateCardFooter>
-            </TemplateCard>
+                </CardFooter>
+            </Card>
         );
     }
 }
