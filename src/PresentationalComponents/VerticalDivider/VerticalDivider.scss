@@ -25,17 +25,17 @@
     }
 
     &.pf-m-vertical {
-        display: inline-flex;
-        flex-direction: column;
-        margin-left: 24px;
-        width: auto;
-        height: inherit;
-        min-height: 100%;
-        max-height: 100%;
-    }
+      display: inline-flex;
+      flex-direction: column;
+      margin-left: 24px;
+      width: auto;
+      height: inherit;
+      min-height: 100%;
+      max-height: 100%;
 
-    &::after {
-      flex-basis: calc(var(--pf-c-divider--m-vertical--after--FlexBasis) - var(--pf-c-divider--after--Inset));
-      width: var(--pf-c-divider--m-vertical--after--Width);
+      &::after {
+        flex-basis: calc(var(--pf-c-divider--m-vertical--after--FlexBasis) - var(--pf-c-divider--after--Inset));
+        width: var(--pf-c-divider--m-vertical--after--Width);
+      }
     }
   }
