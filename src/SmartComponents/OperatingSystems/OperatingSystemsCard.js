@@ -6,26 +6,34 @@ import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
  * Operating systems card for showing the ratio of operating systems used.
  */
 const OperatingSystemsCard = () => {
+    const pieChartData = [
+        { x: 'Red Hat Enterprise Linux 8', y: 20, fill: '#002f5d' },
+        { x: 'Red Hat Enterprise Linux 7', y: 20, fill: '#06c' },
+        { x: 'Other', y: 60, fill: '#8bc1f7' }
+    ];
+    const pieChartLegendData = [
+        { name: 'Red Hat Enterprise Linux 8', symbol: { fill: '#002f5d', type: 'circle' } },
+        { name: 'Red Hat Enterprise Linux 7', symbol: { fill: '#06c', type: 'circle' } },
+        { name: 'Other', symbol: { fill: '#8bc1f7', type: 'circle' } }
+    ];
+    const pieChartPadding = { bottom: 10, left: 10, right: 220, top: 10 };
     return <TemplateCard appName='OperatingSystems'>
-        <TemplateCardHeader subtitle='Operating systems'>
-        </TemplateCardHeader>
+        <TemplateCardHeader subtitle='Operating systems'/>
         <TemplateCardBody>
             <PieChart
+                containerWidth={ 290 }
+                containerHeight={ 90 }
                 ariaDesc="Operating systems used"
                 ariaTitle="Pie chart operating systems"
                 constrainToVisibleArea={ true }
-                data={ [
-                    { x: 'Red Hat Enterprise Linux 8', y: 20 },
-                    { x: 'Red Hat Enterprise Linux 7', y: 20 },
-                    { x: 'Other', y: 60 }
-                ] }
+                data={ pieChartData }
                 height={ 150 }
                 labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
-                legendData={ [{ name: 'Red Hat Enterprise Linux 8' }, { name: 'Red Hat Enterprise Linux 7' }, { name: 'Other' }] }
+                legendData={ pieChartLegendData }
                 legendOrientation="vertical"
                 legendPosition="right"
-                padding={ { top: '20' }, { right: '20' }, { bottom: '120' }, { left: '20' } }
-                width={ 350 }
+                padding={ pieChartPadding }
+                width={ 310 }
             />
         </TemplateCardBody>
     </TemplateCard>;

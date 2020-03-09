@@ -63,13 +63,11 @@ const RemediationsCard = () => {
 
     return <TemplateCard appName='Remediations'>
         <TemplateCardHead>
-            <TemplateCardActions downloadReport="true"></TemplateCardActions>
-            <TemplateCardHeader title='Remediations'></TemplateCardHeader>
+            <TemplateCardActions downloadReport="true"/>
+            <TemplateCardHeader title='Remediations'/>
         </TemplateCardHead>
         <TemplateCardBody>
-            <div>
-                {remediationsList}
-            </div>
+            {remediationsList}
         </TemplateCardBody>
     </TemplateCard>;
 };

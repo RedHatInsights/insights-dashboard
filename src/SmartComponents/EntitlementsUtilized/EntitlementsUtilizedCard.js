@@ -7,8 +7,7 @@ import { ProgressTemplate } from '../../../../insights-dashboard/src/ChartTempla
  */
 const EntitlementsUtilizedCard = () => {
     return <TemplateCard appName='EntitlementsUtilized'>
-        <TemplateCardHeader subtitle='Entitlements utilized'>
-        </TemplateCardHeader>
+        <TemplateCardHeader subtitle='Entitlements utilized'/>
         <TemplateCardBody>
             <ProgressTemplate
                 title="Red Hat JBoss"

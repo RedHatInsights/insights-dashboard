@@ -13,10 +13,8 @@ import {
 const CustomPoliciesCard = () => {
     return <TemplateCard appName='CustomPolicies'>
         <TemplateCardHead>
-            <TemplateCardActions downloadReport="true">
-            </TemplateCardActions>
-            <TemplateCardHeader title='Custom policies'>
-            </TemplateCardHeader>
+            <TemplateCardActions downloadReport="true"/>
+            <TemplateCardHeader title='Custom policies'/>
         </TemplateCardHead>
         <TemplateCardBody>
             This is where the table goes.

@@ -65,10 +65,8 @@ class ComplianceCard extends Component {
                 } : { 'data-ouia-safe': false } }
             >
                 <TemplateCardHead>
-                    <TemplateCardActions downloadReport="true">
-                    </TemplateCardActions>
-                    <TemplateCardHeader title="Compliance">
-                    </TemplateCardHeader>
+                    <TemplateCardActions downloadReport="true"/>
+                    <TemplateCardHeader title="Compliance"/>
                 </TemplateCardHead>
                 <TemplateCardBody>
                     <Stack>

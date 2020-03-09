@@ -8,19 +8,19 @@ import { PageSection } from '@patternfly/react-core/dist/js/components/Page/Page
 import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
 import PropTypes from 'prop-types';
-import React from 'react';
-import asyncComponent from '../../Utilities/skeletonAsyncCard';
+import Loading from '../../PresentationalComponents/Loading/Loading';
+import React, { Suspense, lazy } from 'react';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
 import { TimeStamp } from './../TimeStamp/TimeStamp';
 
-const ComplianceCard = asyncComponent(() => import('../../SmartComponents/Compliance/ComplianceCard'));
-const VulnerabilityCard = asyncComponent(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
-const SystemInventoryCard = asyncComponent(() => import('../../SmartComponents/SystemInventory/SystemInventoryCard'));
-const EntitlementsUtilizedCard = asyncComponent(() => import('../../SmartComponents/EntitlementsUtilized/EntitlementsUtilizedCard'));
-const OperatingSystemsCard = asyncComponent(() => import('../../SmartComponents/OperatingSystems/OperatingSystemsCard'));
-const CustomPoliciesCard = asyncComponent(() => import('../../SmartComponents/CustomPolicies/CustomPoliciesCard'));
-const RemediationsCard = asyncComponent(() => import('../../SmartComponents/Remediations/RemediationsCard'));
+const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
+const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
+const SystemInventoryCard = lazy(() => import('../../SmartComponents/SystemInventory/SystemInventoryCard'));
+const EntitlementsUtilizedCard = lazy(() => import('../../SmartComponents/EntitlementsUtilized/EntitlementsUtilizedCard'));
+const OperatingSystemsCard = lazy(() => import('../../SmartComponents/OperatingSystems/OperatingSystemsCard'));
+const CustomPoliciesCard = lazy(() => import('../../SmartComponents/CustomPolicies/CustomPoliciesCard'));
+const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
 
 const Dashboard = ({ intl }) =>
     <React.Fragment>
@@ -33,13 +33,19 @@ const Dashboard = ({ intl }) =>
         <Main className='ins-l-dashboard'>
             <div className="dashboard-card-group">
                 <div className="dashboard-card-system-inventory">
-                    <SystemInventoryCard/>
+                    <Suspense fallback={ <Loading /> }>
+                        <SystemInventoryCard/>
+                    </Suspense>
                 </div>
                 <div className="dashboard-card-entitlements">
-                    <EntitlementsUtilizedCard/>
+                    <Suspense fallback={ <Loading /> }>
+                        <EntitlementsUtilizedCard/>
+                    </Suspense>
                 </div>
                 <div className="dashboard-card-operating-systems">
-                    <OperatingSystemsCard/>
+                    <Suspense fallback={ <Loading /> }>
+                        <OperatingSystemsCard/>
+                    </Suspense>
                 </div>
             </div>
             <div className="dashboard-card-rules">
@@ -53,15 +59,23 @@ const Dashboard = ({ intl }) =>
                 </Card>
             </div>
             <div className="dashboard-card-vulnerabilities">
-                <VulnerabilityCard/>
+                <Suspense fallback={ <Loading /> }>
+                    <VulnerabilityCard/>
+                </Suspense>
             </div>
             <div className="dashboard-card-compliance-remediations">
-                <ComplianceCard/>
+                <Suspense fallback={ <Loading /> }>
+                    <ComplianceCard/>
+                </Suspense>
                 <Divider/>
-                <RemediationsCard/>
+                <Suspense fallback={ <Loading /> }>
+                    <RemediationsCard/>
+                </Suspense>
             </div>
             <div className="dashboard-card-custom-policies">
-                <CustomPoliciesCard/>
+                <Suspense fallback={ <Loading /> }>
+                    <CustomPoliciesCard/>
+                </Suspense>
             </div>
         </Main>
     </React.Fragment>;

@@ -7,9 +7,8 @@ import { NumberDescription } from '../../../../insights-dashboard/src/Presentati
  */
 const SystemInventoryCard = () => {
     return <TemplateCard appName='SystemInventory'>
-        <TemplateCardHeader subtitle='System inventory and status'>
-        </TemplateCardHeader>
-        <TemplateCardBody isHorizontalLayout="true">
+        <TemplateCardHeader subtitle='System inventory and status'/>
+        <TemplateCardBody isHorizontalLayout="true" isFilled={ false }>
             <NumberDescription
                 data="NA"
                 dataSize="xl"
