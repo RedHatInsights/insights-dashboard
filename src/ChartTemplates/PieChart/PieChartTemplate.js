@@ -18,6 +18,7 @@ export const PieChart = ({ ...props }) => {
                 legendPosition={ props.legendPosition }
                 padding={ props.padding }
                 width={ props.width }
+                colorScale={ props.colorScale }
             />
         </div>
     );
@@ -35,7 +36,8 @@ PieChart.propTypes = {
     height: propTypes.number,
     legendOrientation: propTypes.boolean,
     legendPosition: propTypes.boolean,
-    width: propTypes.number
+    width: propTypes.number,
+    colorScale: propTypes.array
 };
 
 export default PieChart;

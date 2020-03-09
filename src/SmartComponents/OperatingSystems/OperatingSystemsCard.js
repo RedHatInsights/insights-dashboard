@@ -7,9 +7,9 @@ import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
  */
 const OperatingSystemsCard = () => {
     const pieChartData = [
-        { x: 'Red Hat Enterprise Linux 8', y: 20, fill: '#002f5d' },
-        { x: 'Red Hat Enterprise Linux 7', y: 20, fill: '#06c' },
-        { x: 'Other', y: 60, fill: '#8bc1f7' }
+        { x: 'Red Hat Enterprise Linux 8', y: 20 },
+        { x: 'Red Hat Enterprise Linux 7', y: 20 },
+        { x: 'Other', y: 60 }
     ];
     const pieChartLegendData = [
         { name: 'Red Hat Enterprise Linux 8', symbol: { fill: '#002f5d', type: 'circle' } },
@@ -34,6 +34,7 @@ const OperatingSystemsCard = () => {
                 legendPosition="right"
                 padding={ pieChartPadding }
                 width={ 310 }
+                colorScale={ ['#002f5d', '#06c', '#8bc1f7'] }
             />
         </TemplateCardBody>
     </TemplateCard>;
