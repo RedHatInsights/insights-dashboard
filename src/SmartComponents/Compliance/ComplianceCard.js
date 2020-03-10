@@ -8,7 +8,9 @@ import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyS
 import { EmptyStateIcon } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateIcon';
 import { Split } from '@patternfly/react-core/dist/js/layouts/Split/Split';
 import { SplitItem } from '@patternfly/react-core/dist/js/layouts/Split/SplitItem';
-import { Title } from '@patternfly/react-core/dist/js/layouts/Title/Title';
+import { Stack } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
+import { StackItem } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
+import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import React, { Component } from 'react';
 import { ClipboardCheckIcon } from '@patternfly/react-icons';
 import { Gauge } from '@red-hat-insights/insights-frontend-components';
