@@ -1,21 +1,15 @@
 import * as AppActions from '../../AppActions';
-
-import {
-    Card,
-    CardBody,
-    CardFooter,
-    CardHeader,
-    EmptyState,
-    EmptyStateBody,
-    EmptyStateIcon,
-    Split,
-    SplitItem,
-    Stack,
-    StackItem,
-    Title
-} from '@patternfly/react-core';
+import { Card } from '@patternfly/react-core/dist/js/components/Card/Card';
+import { CardBody } from '@patternfly/react-core/dist/js/components/Card/CardBody';
+import { CardFooter } from '@patternfly/react-core/dist/js/components/Card/CardFooter';
+import { CardHeader } from '@patternfly/react-core/dist/js/components/Card/CardHeader';
+import { EmptyState } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
+import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateBody';
+import { EmptyStateIcon } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateIcon';
+import { Split } from '@patternfly/react-core/dist/js/layouts/Split/Split';
+import { SplitItem } from '@patternfly/react-core/dist/js/layouts/Split/SplitItem';
+import { Title } from '@patternfly/react-core/dist/js/layouts/Title/Title';
 import React, { Component } from 'react';
-
 import { ClipboardCheckIcon } from '@patternfly/react-icons';
 import { Gauge } from '@red-hat-insights/insights-frontend-components';
 import Loading from '../../PresentationalComponents/Loading/Loading';
