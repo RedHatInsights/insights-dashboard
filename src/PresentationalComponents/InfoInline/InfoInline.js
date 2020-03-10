@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { InfoCircleIcon } from '@patternfly/react-icons';
+import InfoCircleIcon from '@patternfly/react-icons/dist/js/icons/info-circle-icon';
 import './InfoInline.scss';
 
 export const InfoInline = ({ message }) => (

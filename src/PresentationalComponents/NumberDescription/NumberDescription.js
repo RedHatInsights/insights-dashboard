@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@patternfly/react-core';
+import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import propTypes from 'prop-types';
 import '../../../src/PresentationalComponents/NumberDescription/NumberDescription.scss';
 import { NumberData } from '../../PresentationalComponents/NumberData/NumberData';

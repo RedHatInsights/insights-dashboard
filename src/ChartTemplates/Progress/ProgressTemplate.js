@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Progress, ProgressSize, ProgressVariant } from '@patternfly/react-core';
+import { Progress, ProgressSize, ProgressVariant } from '@patternfly/react-core/dist/js/components/Progress';
 import './ProgressTemplate.scss';
 
 export const ProgressTemplate = ({ value, title, variant }) => {
