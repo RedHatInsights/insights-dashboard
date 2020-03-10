@@ -167,3 +167,25 @@
       font-size: var(--pf-global--FontSize--sm);
   }
 }
+
+.ins-c-custom-policies__table {
+  thead tr th:first-child,
+  tbody tr th:first-child {
+    padding-left: 0;
+  }
+
+  thead tr th:last-child,
+  tbody tr td:last-child {
+    padding-right: 0;
+  }
+}
+
+.ins-c-custom-policies__icon-group >*:not(:last-child) {
+  margin-right: var(--pf-global--spacer--md);
+}
+
+.ins-c-custom-policies__card-body {
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
+}

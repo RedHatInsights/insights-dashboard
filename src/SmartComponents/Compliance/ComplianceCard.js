@@ -1,17 +1,21 @@
 import * as AppActions from '../../AppActions';
-import { Card } from '@patternfly/react-core/dist/js/components/Card/Card';
-import { CardBody } from '@patternfly/react-core/dist/js/components/Card/CardBody';
-import { CardFooter } from '@patternfly/react-core/dist/js/components/Card/CardFooter';
-import { CardHeader } from '@patternfly/react-core/dist/js/components/Card/CardHeader';
-import { EmptyState } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
-import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateBody';
-import { EmptyStateIcon } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateIcon';
-import { Split } from '@patternfly/react-core/dist/js/layouts/Split/Split';
-import { SplitItem } from '@patternfly/react-core/dist/js/layouts/Split/SplitItem';
-import { Stack } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
-import { StackItem } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
-import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
+
+import {
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    EmptyState,
+    EmptyStateBody,
+    EmptyStateIcon,
+    Split,
+    SplitItem,
+    Stack,
+    StackItem,
+    Title
+} from '@patternfly/react-core';
 import React, { Component } from 'react';
+
 import { ClipboardCheckIcon } from '@patternfly/react-icons';
 import { Gauge } from '@red-hat-insights/insights-frontend-components';
 import Loading from '../../PresentationalComponents/Loading/Loading';
@@ -38,7 +42,6 @@ class ComplianceCard extends Component {
     }
 
     render() {
-
         /*
          * Returns the first two -- if there are at least two entries -- items as a shallow copy of
          * complianceSummary
