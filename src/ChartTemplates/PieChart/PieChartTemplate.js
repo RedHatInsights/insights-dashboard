@@ -5,7 +5,7 @@ import './PieChartTemplate.scss';
 
 export const PieChart = ({ ...props }) => {
     return (
-        <div className="ins-c-pie-chart" style={ { maxWidth: props.containerWidth, height: props.containerHeight } }>
+        <div className={ props.className } style={ { maxWidth: props.containerWidth, height: props.containerHeight } }>
             <ChartPie
                 ariaDesc={ props.ariaDesc }
                 ariaTitle={ props.ariaTitle }
@@ -25,6 +25,7 @@ export const PieChart = ({ ...props }) => {
 };
 
 PieChart.propTypes = {
+    className: propTypes.string,
     containerWidth: propTypes.number,
     containerHeight: propTypes.number,
     ariaDesc: propTypes.string,

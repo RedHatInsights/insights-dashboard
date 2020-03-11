@@ -9,6 +9,34 @@
   }
 }
 
+// Compliance
+.ins-c-compliance__policy-link {
+  white-space: pre-wrap;
+  text-align: left;
+}
+
+.ins-c-compliance__row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.pf-l-stack .pf-l-stack__item:not(:last-child) {
+  padding-bottom: var(--pf-global--spacer--sm);
+}
+
+.ins-c-compliance__row-item:first-child {
+  width: 30%;
+}
+
+.ins-c-compliance__row-item:last-child {
+  width: 70%;
+
+  > .pf-l-stack .pf-l-stack__item .pf-l-split .pf-l-split__item {
+    font-size: 14px;
+  }
+}
+
 // Dashboard
 .ins-l-dashboard {
   display: grid;

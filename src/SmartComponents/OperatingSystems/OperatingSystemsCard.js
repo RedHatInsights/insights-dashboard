@@ -21,6 +21,7 @@ const OperatingSystemsCard = () => {
         <TemplateCardHeader subtitle='Operating systems'/>
         <TemplateCardBody>
             <PieChart
+                className="ins-c-pie-chart"
                 containerWidth={ 290 }
                 containerHeight={ 90 }
                 ariaDesc="Operating systems used"

@@ -8,16 +8,17 @@ import {
     EmptyState,
     EmptyStateBody,
     EmptyStateIcon,
-    Split,
-    SplitItem,
     Stack,
     StackItem,
+    Split,
+    SplitItem,
     Title
 } from '@patternfly/react-core';
 import React, { Component } from 'react';
-
+import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
+import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import { ClipboardCheckIcon } from '@patternfly/react-icons';
-import { Gauge } from '@red-hat-insights/insights-frontend-components';
+// import { Gauge } from '@red-hat-insights/insights-frontend-components';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import PropTypes from 'prop-types';
 import { UI_BASE } from '../../AppConstants';
@@ -46,17 +47,19 @@ class ComplianceCard extends Component {
          * Returns the first two -- if there are at least two entries -- items as a shallow copy of
          * complianceSummary
          */
-        const getTopTwoPolicies = function (compliance) {
-            const complianceTopTwo = compliance.data.length > 1 ? compliance.data.slice(0, 2) :
+        const getTopThreePolicies = function (compliance) {
+            const complianceTopThree = compliance.data.length > 1 ? compliance.data.slice(0, 3) :
                 compliance.data.slice();
 
-            return complianceTopTwo;
+            return complianceTopThree;
         };
 
         const {
             complianceFetchStatus,
             complianceSummary
         } = this.props;
+
+        const pieChartPadding = { bottom: 10, left: 10, right: 220, top: 10 };
 
         return (
             <Card className='ins-c-card__compliance'
@@ -72,28 +75,55 @@ class ComplianceCard extends Component {
                         {complianceFetchStatus === 'fulfilled' &&
                             (Array.isArray(complianceSummary.data) &&
                                 (complianceSummary.data.length > 0 ? (
-                                    getTopTwoPolicies(complianceSummary).map(element =>
+                                    getTopThreePolicies(complianceSummary).map(element =>
                                         <StackItem gutter='sm' key={ element.id }>
-                                            <Split gutter='md' key={ element.id }>
-                                                <SplitItem className='ins-c-gauge pf-u-text-align-center'>
-                                                    <div className='ins-c-gauge__metrics-percentage'>
-                                                        {Math.trunc(element.attributes.score * 100)}%</div>
-                                                    <Gauge label={ element.attributes.name }
-                                                        value={ Math.trunc(element.attributes.score * 100) } width={ 82 } height={ 82 }
-                                                        timeframe='30'
-                                                        identifier={ `compliance-gauge-${element.id}` } />
-                                                </SplitItem>
-                                                <SplitItem>
+                                            <div className="ins-c-compliance__row">
+                                                <div className="ins-c-compliance__row-item">
+                                                    <PieChart
+                                                        containerWidth={ 290 }
+                                                        containerHeight={ 90 }
+                                                        ariaDesc="Operating systems used"
+                                                        ariaTitle="Pie chart operating systems"
+                                                        constrainToVisibleArea={ true }
+                                                        data={ [
+                                                            { x: element.attributes.name, y: element.attributes.score * 100 },
+                                                            { x: 'empty', y: 100 }
+                                                        ] }
+                                                        height={ 600 }
+                                                        labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
+                                                        legendOrientation="vertical"
+                                                        legendPosition="right"
+                                                        padding={ pieChartPadding }
+                                                        width={ 600 }
+                                                        colorScale={ ['#002f5d', '#06c', '#8bc1f7'] }
+                                                    />
+                                                </div>
+                                                <div className="ins-c-compliance__row-item">
                                                     <Stack>
                                                         <StackItem>
-                                                            <a href={ `/${UI_BASE}/compliance/policies/` }>{element.attributes.name}</a>
+                                                            <Button
+                                                                className="ins-c-compliance__policy-link"
+                                                                component="a"
+                                                                href={ `/${UI_BASE}/compliance/policies/` }
+                                                                variant="link"
+                                                                isInline
+                                                            >
+                                                                {element.attributes.name}
+                                                            </Button>
                                                         </StackItem>
                                                         <StackItem>
-                                                            {element.attributes.compliant_host_count} of
-                                        &nbsp;{element.attributes.total_host_count} systems</StackItem>
+                                                            <Split gutter='sm'>
+                                                                <SplitItem>
+                                                                    {element.attributes.compliant_host_count} systems
+                                                                </SplitItem>
+                                                                <SplitItem>
+                                                                    {Math.trunc(element.attributes.score * 100)}% passes
+                                                                </SplitItem>
+                                                            </Split>
+                                                        </StackItem>
                                                     </Stack>
-                                                </SplitItem>
-                                            </Split>
+                                                </div>
+                                            </div>
                                         </StackItem>
                                     )
                                 ) : (
@@ -108,11 +138,30 @@ class ComplianceCard extends Component {
                     </Stack>
                 </CardBody>
                 <CardFooter>
-                    <a href={ `${UI_BASE}/compliance/policies/` }>
+                    <StackItem>
+                        <div className="ins-c-compliance__row">
+                            <div className="ins-c-compliance__row-item">
+                            </div>
+                            <div className="ins-c-compliance__row-item">
+                                <Button
+                                    className="ins-c-compliance__policy-link"
+                                    component="a"
+                                    href={ `/${UI_BASE}/compliance/policies/` }
+                                    variant="link"
+                                    isInline
+                                >
+                                    View all{complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
+                                    complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
+                                    compliance policies
+                                </Button>
+                            </div>
+                        </div>
+                    </StackItem>
+                    {/* <a href={ `${UI_BASE}/compliance/policies/` }>
                         View all{complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                             complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
                         compliance policies
-                    </a>
+                    </a> */}
                 </CardFooter>
             </Card>
         );
