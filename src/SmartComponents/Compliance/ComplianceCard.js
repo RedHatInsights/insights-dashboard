@@ -42,7 +42,6 @@ class ComplianceCard extends Component {
     }
 
     render() {
-
         /*
          * Returns the first two -- if there are at least two entries -- items as a shallow copy of
          * complianceSummary

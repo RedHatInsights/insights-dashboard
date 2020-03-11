@@ -1,7 +1,8 @@
 import React from 'react';
-
-import { Card, CardBody, CardFooter, CardHeader } from '@patternfly/react-core';
-
+import { Card } from '@patternfly/react-core/dist/js/components/Card/Card';
+import { CardBody } from '@patternfly/react-core/dist/js/components/Card/CardBody';
+import { CardFooter } from '@patternfly/react-core/dist/js/components/Card/CardFooter';
+import { CardHeader } from '@patternfly/react-core/dist/js/components/Card/CardHeader';
 import { Skeleton } from '@red-hat-insights/insights-frontend-components';
 
 import './_Skeleton.scss';

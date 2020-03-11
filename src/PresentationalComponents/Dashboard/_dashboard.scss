@@ -1,3 +1,14 @@
+// Custom policies
+.ins-c-custom-policies__icon-group >*:not(:last-child) {
+  margin-right: var(--pf-global--spacer--md);
+}
+
+.ins-c-custom-policies__card-body {
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
+}
+
 // Dashboard
 .ins-l-dashboard {
   display: grid;
@@ -26,6 +37,26 @@
       grid-column: 1;
       grid-row: 3;
     }
+    
+    > * > .pf-c-card {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-top: 0px;
+      }
+    }
+
+    > *:first-child {
+      .pf-c-card::before {
+        border-top: 3px solid var(--pf-global--primary-color--100);
+      }
+    }
   }
 
   .dashboard-card-rules {
@@ -48,14 +79,14 @@
     grid-row: 4;
   }
 
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: 1200px) {
     grid-template-columns: 1fr 1fr 1fr;
 
     .dashboard-card-group {
       grid-column: 1 / span 3;
       grid-row: 1;
       column-gap: 24px;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
 
       > *:not(:last-child) {
         border-bottom: initial;
@@ -75,6 +106,13 @@
         grid-column: 3 / span 1;
         grid-row: 1;
       }
+
+      > * > .pf-c-card {
+      &::before {
+        border-top: 3px solid var(--pf-global--primary-color--100);
+      }
+    }
+
     }
 
     .dashboard-card-rules {
@@ -123,7 +161,32 @@
   }
 }
 
-.ins-timestamp {
-  color: var(--pf-global--secondary-color--100);
-  font-size: var(--pf-global--FontSize--sm);
+.ins-c-remediations-container {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 16px;
+}
+
+.ins-c-remediation-status {
+  display: flex;
+  flex-direction: row;
+  padding-top: 2px;
+  padding-right: 16px;
+
+  > p {
+      margin-left: var(--pf-global--spacer--sm);
+      font-size: var(--pf-global--FontSize--sm);
+  }
+}
+
+.ins-c-custom-policies__table {
+  thead tr th:first-child,
+  tbody tr th:first-child {
+    padding-left: 0;
+  }
+
+  thead tr th:last-child,
+  tbody tr td:last-child {
+    padding-right: 0;
+  }
 }

@@ -1,0 +1,28 @@
+.ins-c-dashboard__card--header-subtitle {
+    font-size: var(--pf-global--FontSize--sm);
+}
+
+.ins-c-dashboard__card--body {
+    display: flex;
+    flex-direction: column;
+    
+    &.ins-m-horizontal {
+        flex-direction: row;
+        padding-top: var(--pf-global--spacer--lg);
+        align-items: flex-end;
+    }
+
+    > .ins-c-dashboard__number-description {
+        &:not(:first-child) {
+            padding-left: var(--pf-global--spacer--md);
+        }
+    }
+
+    .pf-c-progress + .pf-c-progress {
+        padding-top: var(--pf-global--spacer--md);
+    }
+
+    > .pf-c-progress + .pf-c-progress {
+        margin-top: var(--pf-global--spacer--xs);
+    }
+}
