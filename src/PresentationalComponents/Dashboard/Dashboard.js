@@ -1,20 +1,18 @@
-/* eslint-disable no-console */
 import './_dashboard.scss';
-import { Card } from '@patternfly/react-core/dist/js/components/Card/Card';
-import { CardHeader } from '@patternfly/react-core/dist/js/components/Card/CardHeader';
-import { CardBody } from '@patternfly/react-core/dist/js/components/Card/CardBody';
-import { Divider } from '@patternfly/react-core/dist/js/components/Divider/Divider';
-import { PageSection } from '@patternfly/react-core/dist/js/components/Page/PageSection';
-import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
-import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
-import PropTypes from 'prop-types';
-import Loading from '../../PresentationalComponents/Loading/Loading';
+
 import React, { Suspense, lazy } from 'react';
-// import asyncComponent from '../../Utilities/skeletonAsyncCard';
+
+import { Divider } from '@patternfly/react-core/dist/js/components/Divider/Divider';
+import Loading from '../../PresentationalComponents/Loading/Loading';
+import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
+import { PageSection } from '@patternfly/react-core/dist/js/components/Page/PageSection';
+import PropTypes from 'prop-types';
+import { TimeStamp } from './../TimeStamp/TimeStamp';
+import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
-import { TimeStamp } from './../TimeStamp/TimeStamp';
 
+const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
 const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
 const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
 const SystemInventoryCard = lazy(() => import('../../SmartComponents/SystemInventory/SystemInventoryCard'));
@@ -35,47 +33,42 @@ const Dashboard = ({ intl }) =>
             <div className="dashboard-card-group">
                 <div className="dashboard-card-system-inventory">
                     <Suspense fallback={ <Loading /> }>
-                        <SystemInventoryCard/>
+                        <SystemInventoryCard />
                     </Suspense>
                 </div>
                 <div className="dashboard-card-entitlements">
                     <Suspense fallback={ <Loading /> }>
-                        <EntitlementsUtilizedCard/>
+                        <EntitlementsUtilizedCard />
                     </Suspense>
                 </div>
                 <div className="dashboard-card-operating-systems">
                     <Suspense fallback={ <Loading /> }>
-                        <OperatingSystemsCard/>
+                        <OperatingSystemsCard />
                     </Suspense>
                 </div>
             </div>
             <div className="dashboard-card-rules">
-                <Card>
-                    <CardHeader>
-                        Rules
-                    </CardHeader>
-                    <CardBody>
-                        Here is a lot of test content to see how the card behaves. Here is a lot of test content to see how the card behaves.
-                    </CardBody>
-                </Card>
+                <Suspense fallback={ <Loading /> }>
+                    <AdvisorCard />
+                </Suspense>
             </div>
             <div className="dashboard-card-vulnerabilities">
                 <Suspense fallback={ <Loading /> }>
-                    <VulnerabilityCard/>
+                    <VulnerabilityCard />
                 </Suspense>
             </div>
             <div className="dashboard-card-compliance-remediations">
                 <Suspense fallback={ <Loading /> }>
-                    <ComplianceCard/>
+                    <ComplianceCard />
                 </Suspense>
-                <Divider/>
+                <Divider />
                 <Suspense fallback={ <Loading /> }>
-                    <RemediationsCard/>
+                    <RemediationsCard />
                 </Suspense>
             </div>
             <div className="dashboard-card-custom-policies">
                 <Suspense fallback={ <Loading /> }>
-                    <CustomPoliciesCard/>
+                    <CustomPoliciesCard />
                 </Suspense>
             </div>
         </Main>

@@ -1,3 +1,9 @@
 {
-  "dashboardTitle": "Overview"
+  "dashboardTitle": "Overview",
+  "recsImpactingSystems": "{totalRecs, plural, one {# recommendation} other {# recommendations}}  impacting {systems, plural, one {# system} other {# systems}}",
+  "incidentsDetected": "{incidents, plural, one {incident} other {incidents}} detected",
+  "critical": "Critical",
+  "important": "important",
+  "moderate": "moderate",
+  "low": "low"
 }
