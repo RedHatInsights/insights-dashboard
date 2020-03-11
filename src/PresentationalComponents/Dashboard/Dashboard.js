@@ -10,7 +10,6 @@ import { Main } from '@red-hat-insights/insights-frontend-components/components/
 import PropTypes from 'prop-types';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import React, { Suspense, lazy } from 'react';
-// import asyncComponent from '../../Utilities/skeletonAsyncCard';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
 import { TimeStamp } from './../TimeStamp/TimeStamp';

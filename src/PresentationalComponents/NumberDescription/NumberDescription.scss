@@ -15,5 +15,15 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    &.pf-m-horizontal {
+        flex-direction: row;
+        align-items: center;
+
+        .pf-c-button.pf-m-link {
+            padding-left: var(--pf-global--spacer--sm);
+            padding-bottom: 2px;
+        }
+    }
 }
 
