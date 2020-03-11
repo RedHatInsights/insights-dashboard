@@ -4,36 +4,34 @@ import { Chart, ChartBar, ChartAxis, ChartStack, ChartThemeColor, ChartTooltip }
 
 export const StackChart = ({ ...props }) => {
     return (
-        <div style={ { width: '100%' } }>
-            <Chart
-                ariaDesc={ props.ariaDesc }
-                ariaTitle={ props.ariaTitle }
-                legendData={ props.legendData }
-                legendPosition={ props.legendPosition }
-                height={ props.height }
-                padding={ props.padding }
-                width={ props.width }
-                colorScale={ props.colorScale }
-                themeColor={ ChartThemeColor.multiOrdered }
-            >
-                <ChartAxis />
-                <ChartAxis />
-                <ChartStack horizontal>
-                    <ChartBar
-                        data={ props.data1 }
-                        labelComponent={ <ChartTooltip constrainToVisibleArea /> }
-                    />
-                    <ChartBar
-                        data={ props.data2 }
-                        labelComponent={ <ChartTooltip constrainToVisibleArea /> }
-                    />
-                    <ChartBar
-                        data={ props.data3 }
-                        labelComponent={ <ChartTooltip constrainToVisibleArea /> }
-                    />
-                </ChartStack>
-            </Chart>
-        </div>
+        <Chart
+            ariaDesc={ props.ariaDesc }
+            ariaTitle={ props.ariaTitle }
+            legendData={ props.legendData }
+            legendPosition={ props.legendPosition }
+            height={ props.height }
+            padding={ props.padding }
+            width={ props.width }
+            colorScale={ props.colorScale }
+            themeColor={ ChartThemeColor.multiOrdered }
+        >
+            <ChartAxis />
+            <ChartAxis />
+            <ChartStack horizontal>
+                <ChartBar
+                    data={ props.data1 }
+                    labelComponent={ <ChartTooltip constrainToVisibleArea /> }
+                />
+                <ChartBar
+                    data={ props.data2 }
+                    labelComponent={ <ChartTooltip constrainToVisibleArea /> }
+                />
+                <ChartBar
+                    data={ props.data3 }
+                    labelComponent={ <ChartTooltip constrainToVisibleArea /> }
+                />
+            </ChartStack>
+        </Chart>
     );
 };
 
