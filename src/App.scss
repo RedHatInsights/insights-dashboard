@@ -20,6 +20,8 @@
 
         &-flag { fill: $pf-color-blue-500; }
         &-check { fill: $pf-color-green-300; }
+
+        &-info { fill: $pf-color-blue-200; }
     }
 
     &__title { @include rem("margin-bottom", 10px); }
