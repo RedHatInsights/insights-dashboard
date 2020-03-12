@@ -34,44 +34,45 @@ const StackChart = ({ data, intl }) => {
     const labelComponent = () => <ChartTooltip text={ ({ datum }) => `${datum.name}: ${datum.y}` } constrainToVisibleArea />;
 
     return <React.Fragment>
-        <Chart
-            ariaDesc='Advisor recommendations by severity'
-            ariaTitle='Advisor recommendations by severity'
-            padding={ { left: 0, right: 0, bottom: 56, top: 20 } }
-            width={ 500 }
-            legendPosition='bottom-left'
-            height={ 110 }
-            maxWidth={ 600 }
-            legendComponent={ <ChartLegend
-                data={ legendData }
-                width={ 400 }
-                events={ [{
-                    target: 'labels', eventHandlers: {
-                        onClick: legendClick,
-                        onMouseOver: () => {
-                            return [{
-                                mutation: (data) => {
-                                    return {
-                                        style: Object.assign({}, data.style, { cursor: 'pointer' })
-                                    };
-                                }
-                            }];
+        <div style={ { maxWidth: 600 } }>
+            <Chart
+                ariaDesc='Advisor recommendations by severity'
+                ariaTitle='Advisor recommendations by severity'
+                padding={ { left: 0, right: 0, bottom: 80, top: 25 } }
+                width={ 700 }
+                legendPosition='bottom-left'
+                height={ 100 }
+                legendComponent={ <ChartLegend
+                    data={ legendData }
+                    width={ 400 }
+                    events={ [{
+                        target: 'labels', eventHandlers: {
+                            onClick: legendClick,
+                            onMouseOver: () => {
+                                return [{
+                                    mutation: (data) => {
+                                        return {
+                                            style: Object.assign({}, data.style, { cursor: 'pointer' })
+                                        };
+                                    }
+                                }];
+                            }
                         }
-                    }
-                }] }
-                orientation='horizontal'
-                colorScale={ colorScale }
-            /> }
-        >
-            <ChartAxis axisComponent={ <React.Fragment /> } />
-            <ChartStack horizontal
-                colorScale={ colorScale }>
-                {chartData.map(item => <ChartBar key={ item }
-                    barWidth={ barWidth } labelComponent={ labelComponent() }
-                    data={ [{ name: item.name, y: item.y, x: 1, label: item.name }] }
-                />)}
-            </ChartStack>
-        </Chart>
+                    }] }
+                    orientation='horizontal'
+                    colorScale={ colorScale }
+                /> }
+            >
+                <ChartAxis axisComponent={ <React.Fragment /> } />
+                <ChartStack horizontal
+                    colorScale={ colorScale }>
+                    {chartData.map(item => <ChartBar key={ item }
+                        barWidth={ barWidth } labelComponent={ labelComponent() }
+                        data={ [{ name: item.name, y: item.y, x: 1, label: item.name }] }
+                    />)}
+                </ChartStack>
+            </Chart>
+        </div>
     </React.Fragment>;
 };
 

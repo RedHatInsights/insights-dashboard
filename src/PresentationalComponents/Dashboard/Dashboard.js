@@ -1,14 +1,10 @@
 import './_dashboard.scss';
-
 import React, { Suspense, lazy } from 'react';
-
 import { Divider } from '@patternfly/react-core/dist/js/components/Divider/Divider';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
 import { PageSection } from '@patternfly/react-core/dist/js/components/Page/PageSection';
 import PropTypes from 'prop-types';
-import Loading from '../../PresentationalComponents/Loading/Loading';
-import React, { Suspense, lazy } from 'react';
 import { TimeStamp } from './../TimeStamp/TimeStamp';
 import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import { injectIntl } from 'react-intl';

@@ -3,7 +3,6 @@ import * as AppActions from '../../AppActions';
 import {
     Card,
     CardBody,
-    CardFooter,
     CardHeader,
     EmptyState,
     EmptyStateBody,
@@ -59,7 +58,7 @@ class ComplianceCard extends Component {
             complianceSummary
         } = this.props;
 
-        const pieChartPadding = { bottom: 10, left: 10, right: 220, top: 10 };
+        const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
 
         return (
             <Card className='ins-c-card__compliance'
@@ -75,56 +74,52 @@ class ComplianceCard extends Component {
                         {complianceFetchStatus === 'fulfilled' &&
                             (Array.isArray(complianceSummary.data) &&
                                 (complianceSummary.data.length > 0 ? (
-                                    getTopThreePolicies(complianceSummary).map(element =>
-                                        <StackItem gutter='sm' key={ element.id }>
-                                            <div className="ins-c-compliance__row">
-                                                <div className="ins-c-compliance__row-item">
-                                                    <PieChart
-                                                        containerWidth={ 290 }
-                                                        containerHeight={ 90 }
-                                                        ariaDesc="Operating systems used"
-                                                        ariaTitle="Pie chart operating systems"
-                                                        constrainToVisibleArea={ true }
-                                                        data={ [
-                                                            { x: element.attributes.name, y: element.attributes.score * 100 },
-                                                            { x: 'empty', y: 100 }
-                                                        ] }
-                                                        height={ 600 }
-                                                        labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
-                                                        legendOrientation="vertical"
-                                                        legendPosition="right"
-                                                        padding={ pieChartPadding }
-                                                        width={ 600 }
-                                                        colorScale={ ['#002f5d', '#06c', '#8bc1f7'] }
-                                                    />
-                                                </div>
-                                                <div className="ins-c-compliance__row-item">
-                                                    <Stack>
-                                                        <StackItem>
-                                                            <Button
-                                                                className="ins-c-compliance__policy-link"
-                                                                component="a"
-                                                                href={ `/${UI_BASE}/compliance/policies/` }
-                                                                variant="link"
-                                                                isInline
-                                                            >
-                                                                {element.attributes.name}
-                                                            </Button>
-                                                        </StackItem>
-                                                        <StackItem>
-                                                            <Split gutter='sm'>
-                                                                <SplitItem>
-                                                                    {element.attributes.compliant_host_count} systems
-                                                                </SplitItem>
-                                                                <SplitItem>
-                                                                    {Math.trunc(element.attributes.score * 100)}% passes
-                                                                </SplitItem>
-                                                            </Split>
-                                                        </StackItem>
-                                                    </Stack>
-                                                </div>
+                                    getTopThreePolicies(complianceSummary).map((element, index) =>
+                                        <div className="ins-c-compliance__row" key={ index }>
+                                            <div className="ins-c-compliance__row-item">
+                                                <PieChart
+                                                    containerWidth={ 75 }
+                                                    containerHeight={ 75 }
+                                                    ariaDesc="Operating systems used"
+                                                    ariaTitle="Pie chart operating systems"
+                                                    constrainToVisibleArea={ true }
+                                                    data={ [
+                                                        { x: element.attributes.name, y: element.attributes.score * 100 },
+                                                        { x: 'empty', y: 100 }
+                                                    ] }
+                                                    height={ 100 }
+                                                    labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
+                                                    padding={ pieChartPadding }
+                                                    width={ 100 }
+                                                    colorScale={ ['#002f5d', '#06c', '#8bc1f7'] }
+                                                />
                                             </div>
-                                        </StackItem>
+                                            <div className="ins-c-compliance__row-item">
+                                                <Stack>
+                                                    <StackItem>
+                                                        <Button
+                                                            className="ins-c-compliance__policy-link"
+                                                            component="a"
+                                                            href={ `/${UI_BASE}/compliance/policies/` }
+                                                            variant="link"
+                                                            isInline
+                                                        >
+                                                            {element.attributes.name}
+                                                        </Button>
+                                                    </StackItem>
+                                                    <StackItem>
+                                                        <Split gutter='sm'>
+                                                            <SplitItem>
+                                                                {element.attributes.compliant_host_count} systems
+                                                            </SplitItem>
+                                                            <SplitItem>
+                                                                {Math.trunc(element.attributes.score * 100)}% passes
+                                                            </SplitItem>
+                                                        </Split>
+                                                    </StackItem>
+                                                </Stack>
+                                            </div>
+                                        </div>
                                     )
                                 ) : (
                                     <EmptyState>
@@ -135,10 +130,6 @@ class ComplianceCard extends Component {
                             )
                         }
                         {complianceFetchStatus === 'pending' && (<Loading />)}
-                    </Stack>
-                </CardBody>
-                <CardFooter>
-                    <StackItem>
                         <div className="ins-c-compliance__row">
                             <div className="ins-c-compliance__row-item">
                             </div>
@@ -150,19 +141,14 @@ class ComplianceCard extends Component {
                                     variant="link"
                                     isInline
                                 >
-                                    View all{complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
+                                    {complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                                     complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
-                                    compliance policies
+                                    more compliance policies
                                 </Button>
                             </div>
                         </div>
-                    </StackItem>
-                    {/* <a href={ `${UI_BASE}/compliance/policies/` }>
-                        View all{complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
-                            complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
-                        compliance policies
-                    </a> */}
-                </CardFooter>
+                    </Stack>
+                </CardBody>
             </Card>
         );
     }

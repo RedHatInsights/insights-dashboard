@@ -5,7 +5,7 @@ import './PieChartTemplate.scss';
 
 export const PieChart = ({ ...props }) => {
     return (
-        <div className={ props.className } style={ { maxWidth: props.containerWidth, height: props.containerHeight } }>
+        <div className={ props.className } style={ { width: props.containerWidth, height: props.containerHeight } }>
             <ChartPie
                 ariaDesc={ props.ariaDesc }
                 ariaTitle={ props.ariaTitle }
@@ -19,6 +19,8 @@ export const PieChart = ({ ...props }) => {
                 padding={ props.padding }
                 width={ props.width }
                 colorScale={ props.colorScale }
+                style={ { width: 'initial' } }
+                maxWidth={ props.maxWidth }
             />
         </div>
     );
@@ -38,7 +40,8 @@ PieChart.propTypes = {
     legendOrientation: propTypes.boolean,
     legendPosition: propTypes.boolean,
     width: propTypes.number,
-    colorScale: propTypes.array
+    colorScale: propTypes.array,
+    maxWidth: propTypes.number
 };
 
 export default PieChart;

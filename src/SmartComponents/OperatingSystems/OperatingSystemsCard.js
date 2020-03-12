@@ -16,7 +16,7 @@ const OperatingSystemsCard = () => {
         { name: 'Red Hat Enterprise Linux 7', symbol: { fill: '#06c', type: 'circle' } },
         { name: 'Other', symbol: { fill: '#8bc1f7', type: 'circle' } }
     ];
-    const pieChartPadding = { bottom: 10, left: 10, right: 220, top: 10 };
+    const pieChartPadding = { bottom: 0, left: 0, right: 220, top: 0 };
     return <TemplateCard appName='OperatingSystems'>
         <TemplateCardHeader subtitle='Operating systems'/>
         <TemplateCardBody>
