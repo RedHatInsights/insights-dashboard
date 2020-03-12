@@ -5,14 +5,13 @@ import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../Presen
 
 import ExclamationCircleIcon from '@patternfly/react-icons/dist/js/icons/exclamation-circle-icon';
 import { INCIDENT_URL } from './Constants';
-import { Link } from 'react-router-dom';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import PropTypes from 'prop-types';
 import StackChart from './StackChart';
+import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 
 /**
  * Advisor Card for showing count/severity of rec hits
@@ -27,16 +26,16 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
     }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems]);
 
     return <TemplateCard appName='Advisor'>
-        <TemplateCardHeader title='Advisor recommendations'/>
+        <TemplateCardHeader title='Advisor recommendations' />
         <TemplateCardBody>
             {advisorIncidentsStatus !== 'fulfilled' ? <Loading /> :
                 <div className='ins-c-summary'>
                     <ExclamationCircleIcon className='ins-c-summary__icon ins-c-summary__icon-critical' />
                     <span className='ins-c-summary__emphasis'>{advisorIncidents.meta.count}</span>
                     <span className='ins-c-summary__label'>
-                        <Link to={ `${INCIDENT_URL}` }>
+                        <a href={ `${UI_BASE}${INCIDENT_URL}` }>
                             {intl.formatMessage(messages.incidentsDetected, { incidents: advisorIncidents.meta.count })}
-                        </Link>
+                        </a>
                     </span>
                 </div>
             }
@@ -58,7 +57,7 @@ Advisor.propTypes = {
     intl: PropTypes.any
 };
 
-export default injectIntl(routerParams(connect(
+export default injectIntl(connect(
     ({ DashboardStore }) => ({
         recStats: DashboardStore.advisorStatsRecs,
         recStatsStatus: DashboardStore.advisorStatsRecsStatus,
@@ -72,4 +71,4 @@ export default injectIntl(routerParams(connect(
         advisorFetchStatsSystems: (url) => dispatch(AppActions.advisorFetchStatsSystems(url)),
         advisorFetchIncidents: (url) => dispatch(AppActions.advisorFetchIncidents(url))
     })
-)(Advisor)));
+)(Advisor));
