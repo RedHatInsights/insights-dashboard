@@ -5,11 +5,11 @@ import { global_palette_gold_300, global_palette_gold_400, global_palette_orange
 import PropTypes from 'prop-types';
 import React from 'react';
 import { SEVERITY_MAP } from './Constants';
+import { UI_BASE } from '../../AppConstants';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 
-const StackChart = ({ history, data, intl }) => {
+const StackChart = ({ data, intl }) => {
     const chartData = [
         { name: intl.formatMessage(messages.critical), y: data[SEVERITY_MAP.critical] },
         { name: intl.formatMessage(messages.important), y: data[SEVERITY_MAP.important] },
@@ -27,7 +27,8 @@ const StackChart = ({ history, data, intl }) => {
         target: 'labels',
         mutation: (data) => {
             const risk = data.datum.name.split(' ')[1].toLowerCase();
-            history.push(`/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10`);
+            window.location.href =
+                `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10`;
         }
     }];
     const labelComponent = () => <ChartTooltip text={ ({ datum }) => `${datum.name}: ${datum.y}` } constrainToVisibleArea />;
@@ -38,10 +39,12 @@ const StackChart = ({ history, data, intl }) => {
             ariaTitle='Advisor recommendations by severity'
             padding={ { left: 0, right: 0, bottom: 56, top: 20 } }
             width={ 500 }
-            legendPosition="bottom-left"
+            legendPosition='bottom-left'
             height={ 110 }
+            maxWidth={ 600 }
             legendComponent={ <ChartLegend
                 data={ legendData }
+                width={ 400 }
                 events={ [{
                     target: 'labels', eventHandlers: {
                         onClick: legendClick,
@@ -63,31 +66,18 @@ const StackChart = ({ history, data, intl }) => {
             <ChartAxis axisComponent={ <React.Fragment /> } />
             <ChartStack horizontal
                 colorScale={ colorScale }>
-                <ChartBar
+                {chartData.map(item => <ChartBar key={ item }
                     barWidth={ barWidth } labelComponent={ labelComponent() }
-                    data={ [{ name: chartData[0].name, y: chartData[0].y, x: 1, label: chartData[0].name }] }
-                />
-                <ChartBar
-                    barWidth={ barWidth } labelComponent={ labelComponent() }
-                    data={ [{ name: chartData[1].name, y: chartData[1].y, x: 1, label: chartData[1].name }] }
-                />
-                <ChartBar
-                    barWidth={ barWidth } labelComponent={ labelComponent() }
-                    data={ [{ name: chartData[2].name, y: chartData[2].y, x: 1, label: chartData[2].name }] }
-                />
-                <ChartBar
-                    barWidth={ barWidth } labelComponent={ labelComponent() }
-                    data={ [{ name: chartData[3].name, y: chartData[3].y, x: 1, label: chartData[3].name }] }
-                />
+                    data={ [{ name: item.name, y: item.y, x: 1, label: item.name }] }
+                />)}
             </ChartStack>
         </Chart>
     </React.Fragment>;
 };
 
 StackChart.propTypes = {
-    history: PropTypes.object,
     data: PropTypes.object,
     intl: PropTypes.any
 };
 
-export default injectIntl(routerParams(StackChart));
+export default injectIntl(StackChart);
