@@ -1,4 +1,6 @@
 /* eslint-disable camelcase */
+import './_Advisor.scss';
+
 import { Chart, ChartAxis, ChartBar, ChartLegend, ChartStack, ChartTooltip } from '@patternfly/react-charts';
 import { global_palette_gold_300, global_palette_gold_400, global_palette_orange_300, global_palette_red_200 } from '@patternfly/react-tokens';
 
@@ -34,17 +36,27 @@ const StackChart = ({ data, intl }) => {
     const labelComponent = () => <ChartTooltip text={ ({ datum }) => `${datum.name}: ${datum.y}` } constrainToVisibleArea />;
 
     return <React.Fragment>
-        <Chart
-            ariaDesc='Advisor recommendations by severity'
-            ariaTitle='Advisor recommendations by severity'
-            padding={ { left: 0, right: 0, bottom: 56, top: 20 } }
-            width={ 500 }
-            legendPosition='bottom-left'
-            height={ 110 }
-            maxWidth={ 600 }
-            legendComponent={ <ChartLegend
+        <Chart ariaDesc='Advisor recommendations by severity' ariaTitle='Advisor recommendations by severity'
+            padding={ { left: 0, right: 0, bottom: 0, top: 0 } }
+            width={ 600 }
+            height={ 40 }
+            maxWidth={ 600 }>
+            <ChartAxis axisComponent={ <React.Fragment /> } />
+            <ChartStack horizontal
+                colorScale={ colorScale }>
+                {chartData.map(item => <ChartBar key={ item }
+                    barWidth={ barWidth } labelComponent={ labelComponent() }
+                    data={ [{ name: item.name, y: item.y, x: 1, label: item.name }] }
+                />)}
+            </ChartStack>
+        </Chart>
+        <span className='stackChartLegend'>
+            <ChartLegend
                 data={ legendData }
-                width={ 400 }
+                responsive={ false }
+                height={ 36 }
+                width={ 600 }
+                fontSize={ 14 }
                 events={ [{
                     target: 'labels', eventHandlers: {
                         onClick: legendClick,
@@ -60,18 +72,8 @@ const StackChart = ({ data, intl }) => {
                     }
                 }] }
                 orientation='horizontal'
-                colorScale={ colorScale }
-            /> }
-        >
-            <ChartAxis axisComponent={ <React.Fragment /> } />
-            <ChartStack horizontal
-                colorScale={ colorScale }>
-                {chartData.map(item => <ChartBar key={ item }
-                    barWidth={ barWidth } labelComponent={ labelComponent() }
-                    data={ [{ name: item.name, y: item.y, x: 1, label: item.name }] }
-                />)}
-            </ChartStack>
-        </Chart>
+                colorScale={ colorScale } />
+        </span>
     </React.Fragment>;
 };
 
