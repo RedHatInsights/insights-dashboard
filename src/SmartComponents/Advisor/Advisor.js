@@ -1,10 +1,12 @@
+import './_Advisor.scss';
+
 import * as AppActions from '../../AppActions';
 
+import { INCIDENT_URL, NEW_REC_URL } from './Constants';
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 
 import ExclamationCircleIcon from '@patternfly/react-icons/dist/js/icons/exclamation-circle-icon';
-import { INCIDENT_URL } from './Constants';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import PropTypes from 'prop-types';
 import StackChart from './StackChart';
@@ -17,7 +19,7 @@ import messages from '../../Messages';
  * Advisor Card for showing count/severity of rec hits
  */
 const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
-    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, intl }) => {
+    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, systemsStats, systemsStatsStatus, intl }) => {
 
     useEffect(() => {
         advisorFetchStatsRecs();
@@ -40,6 +42,12 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                 </div>
             }
             {recStatsStatus !== 'fulfilled' ? <Loading /> : <StackChart data={ recStats.total_risk } />}
+            {systemsStatsStatus !== 'fulfilled' ? null :
+                <React.Fragment>
+                    <a to={ `${UI_BASE}${NEW_REC_URL}` }>
+                        {intl.formatMessage(messages.recsImpactingSystems, { totalRecs: recStats.total, systems: systemsStats.total })}
+                    </a>
+                </React.Fragment>}
         </TemplateCardBody>
     </TemplateCard>;
 };
