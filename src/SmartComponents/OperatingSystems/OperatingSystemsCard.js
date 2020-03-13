@@ -34,7 +34,7 @@ const OperatingSystemsCard = () => {
                 legendOrientation="vertical"
                 legendPosition="right"
                 padding={ pieChartPadding }
-                width={ 310 }
+                width={ 290 }
                 colorScale={ ['#002f5d', '#06c', '#8bc1f7'] }
             />
         </TemplateCardBody>

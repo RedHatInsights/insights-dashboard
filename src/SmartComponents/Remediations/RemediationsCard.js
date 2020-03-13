@@ -41,7 +41,7 @@ const RemediationsCard = () => {
     const remediationsList = mockData.map((remediation, index) =>
         <React.Fragment key={ index }>
             <div className="ins-c-remediations-container">
-                <div className="ins-c-remediation__status" span={ 4 }>
+                <div className="ins-c-remediation__status">
                     <React.Fragment>
                         { remediation.status === 'Running' ? (
                             <RunningIcon/>
@@ -68,17 +68,19 @@ const RemediationsCard = () => {
         </TemplateCardHead>
         <TemplateCardBody>
             {remediationsList}
-            <div className="ins-c-remediation__status">
-            </div>
-            <div className="ins-c-remediation__timestamp">
-                <Button
-                    component="a"
-                    href=""
-                    variant="link"
-                    isInline
-                >
-                    more remediations
-                </Button>
+            <div className="ins-c-remediations-container">
+                <div className="ins-c-remediation__status">
+                </div>
+                <div className="ins-c-remediation__timestamp">
+                    <Button
+                        component="a"
+                        href=""
+                        variant="link"
+                        isInline
+                    >
+                        more remediations
+                    </Button>
+                </div>
             </div>
         </TemplateCardBody>
     </TemplateCard>;

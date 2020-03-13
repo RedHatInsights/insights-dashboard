@@ -194,15 +194,18 @@
 .ins-c-remediations-container {
   display: flex;
   flex-direction: row;
-  padding-bottom: 16px;
+
+  &:not(:last-child) {
+    padding-bottom: var(--pf-global--spacer--md);
+  }
 }
 
-.ins-c-remediation-status {
+.ins-c-remediation__status {
   display: flex;
   flex-direction: row;
   padding-top: 2px;
   padding-right: 16px;
-  width: 100px;
+  min-width: 100px;
 
   > p {
       margin-left: var(--pf-global--spacer--sm);
