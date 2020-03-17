@@ -36,5 +36,20 @@ export default defineMessages({
         id: 'low',
         description: 'low',
         defaultMessage: 'low'
+    },
+    compliantHostCount: {
+        id: 'compliantHostCount',
+        description: 'Compliance - compliant host count',
+        defaultMessage: '{count, plural, one {#} other {#}} systems'
+    },
+    compliantScore: {
+        id: 'compliantScore',
+        description: 'Compliance - compliant score',
+        defaultMessage: '{score}% passes'
+    },
+    remediationsTotal: {
+        id: 'remediationsTotal',
+        description: 'Remediations - remediations total',
+        defaultMessage: '{total} more remediations'
     }
 });

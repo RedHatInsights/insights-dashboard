@@ -1,28 +1,35 @@
 import React from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
+import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 
 /**
  * Operating systems card for showing the ratio of operating systems used.
  */
-const OperatingSystemsCard = () => {
+const PatchManagerCard = () => {
     const pieChartData = [
-        { x: 'Red Hat Enterprise Linux 8', y: 20 },
-        { x: 'Red Hat Enterprise Linux 7', y: 20 },
-        { x: 'Other', y: 60 }
+        { x: 'security advisories', y: 254, fill: '#004b95' },
+        { x: 'bug fixes', y: 400, fill: '#06c' },
+        { x: 'enhancements', y: 100, fill: '#519de9' }
     ];
-    const pieChartLegendData = [
-        { name: 'Red Hat Enterprise Linux 8', symbol: { fill: '#002f5d', type: 'circle' } },
-        { name: 'Red Hat Enterprise Linux 7', symbol: { fill: '#06c', type: 'circle' } },
-        { name: 'Other', symbol: { fill: '#8bc1f7', type: 'circle' } }
-    ];
+    const pieChartLegendData = pieChartData.map(item => ({ name: `${item.y} ${item.x}`, symbol: { fill: `${item.fill}`, type: 'circle' } }));
+    const colorScale = ['#004b95', '#06c', '#519de9'];
     const pieChartPadding = { bottom: 0, left: 0, right: 220, top: 0 };
-    return <TemplateCard appName='OperatingSystems'>
-        <TemplateCardHeader subtitle='Operating systems'/>
+    return <TemplateCard appName='PatchManager'>
+        <TemplateCardHeader subtitle='Patch manager'/>
         <TemplateCardBody>
+            <Button
+                component="a"
+                href=""
+                variant="link"
+                isInline
+                style={ { textAlign: 'left' } }
+            >
+                0 systems affected
+            </Button>
             <PieChart
                 className="ins-c-pie-chart"
-                containerWidth={ 290 }
+                containerWidth={ 275 }
                 containerHeight={ 90 }
                 ariaDesc="Operating systems used"
                 ariaTitle="Pie chart operating systems"
@@ -35,10 +42,10 @@ const OperatingSystemsCard = () => {
                 legendPosition="right"
                 padding={ pieChartPadding }
                 width={ 290 }
-                colorScale={ ['#002f5d', '#06c', '#8bc1f7'] }
+                colorScale={ colorScale }
             />
         </TemplateCardBody>
     </TemplateCard>;
 };
 
-export default OperatingSystemsCard;
+export default PatchManagerCard;

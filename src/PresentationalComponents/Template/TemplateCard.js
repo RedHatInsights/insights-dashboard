@@ -55,7 +55,7 @@ TemplateCardActions.propTypes = {
 };
 
 export const TemplateCardHeader = ({ title, subtitle, onDownload, children, ...props }) => (
-    <CardHeader className='ins-c-dashboard__card--header'  { ...props }>
+    <CardHeader className={ 'ins-c-dashboard__card--header' + (subtitle ? ' ins-m-padding-small ' : '') }  { ...props }>
         <Level>
             { title &&
                 <LevelItem>

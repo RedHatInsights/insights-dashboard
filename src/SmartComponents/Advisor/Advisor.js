@@ -28,18 +28,16 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         <TemplateCardHeader title='Advisor recommendations' />
         <TemplateCardBody>
             { advisorIncidentsStatus !== 'fulfilled' ? <Loading /> :
-                <React.Fragment>
-                    <NumberDescription
-                        data={ advisorIncidents.meta.count }
-                        dataSize="lg"
-                        layout="horizontal"
-                        linkDescription={ intl.formatMessage(messages.incidentsDetected, { incidents: advisorIncidents.meta.count }) }
-                        link={ `${UI_BASE}${INCIDENT_URL}` }
-                        critical="true"
-                    />
-                </React.Fragment>
+                <NumberDescription
+                    data={ advisorIncidents.meta.count }
+                    dataSize="lg"
+                    layout="horizontal"
+                    linkDescription={ intl.formatMessage(messages.incidentsDetected, { incidents: advisorIncidents.meta.count }) }
+                    link={ `${UI_BASE}${INCIDENT_URL}` }
+                    critical="true"
+                />
             }
-            { recStatsStatus !== 'fulfilled' ? <Loading /> : <StackChart data={ recStats.total_risk } /> }
+            {recStatsStatus !== 'fulfilled' ? <Loading /> : <StackChart data={ recStats.total_risk } />}
         </TemplateCardBody>
     </TemplateCard>;
 };

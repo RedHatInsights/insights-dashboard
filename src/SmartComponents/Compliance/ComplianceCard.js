@@ -1,27 +1,27 @@
 import * as AppActions from '../../AppActions';
-
-import {
-    Card,
-    CardBody,
-    CardHeader,
-    EmptyState,
-    EmptyStateBody,
-    EmptyStateIcon,
-    Stack,
-    StackItem,
-    Split,
-    SplitItem,
-    Title
-} from '@patternfly/react-core';
 import React, { Component } from 'react';
+import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
+import { Stack } from '@patternfly/react-core/dist/js/layouts/Stack/Stack';
+import { StackItem } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
+import { Split } from '@patternfly/react-core/dist/js/layouts/Split/Split';
+import { SplitItem } from '@patternfly/react-core/dist/js/layouts/Split/SplitItem';
+import { TextContent } from '@patternfly/react-core/dist/js/components/Text/TextContent';
+import { Text, TextVariants } from '@patternfly/react-core/dist/js/components/Text/Text';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
-import { ClipboardCheckIcon } from '@patternfly/react-icons';
-// import { Gauge } from '@red-hat-insights/insights-frontend-components';
+import {
+    TemplateCard,
+    TemplateCardBody,
+    TemplateCardHeader,
+    TemplateCardHead,
+    TemplateCardActions
+} from '../../PresentationalComponents/Template/TemplateCard';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import PropTypes from 'prop-types';
 import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
+import messages from '../../Messages';
+import { injectIntl } from 'react-intl';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 
 /**
@@ -55,21 +55,23 @@ class ComplianceCard extends Component {
 
         const {
             complianceFetchStatus,
-            complianceSummary
+            complianceSummary,
+            intl
         } = this.props;
 
         const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
 
         return (
-            <Card className='ins-c-card__compliance'
+            <TemplateCard appName='Compliance' className='ins-c-card__compliance'
                 { ...complianceFetchStatus !== 'pending' ? {
                     'data-ouia-safe': true
                 } : { 'data-ouia-safe': false } }
             >
-                <CardHeader>
-                    <Title size={ 'lg' }>Compliance</Title>
-                </CardHeader>
-                <CardBody>
+                <TemplateCardHead>
+                    <TemplateCardActions downloadReport="true"/>
+                    <TemplateCardHeader title='Compliance'/>
+                </TemplateCardHead>
+                <TemplateCardBody>
                     <Stack>
                         {complianceFetchStatus === 'fulfilled' &&
                             (Array.isArray(complianceSummary.data) &&
@@ -110,10 +112,14 @@ class ComplianceCard extends Component {
                                                     <StackItem>
                                                         <Split gutter='sm'>
                                                             <SplitItem>
-                                                                {element.attributes.compliant_host_count} systems
+                                                                { intl.formatMessage(messages.compliantHostCount,
+                                                                    { count: element.attributes.compliant_host_count }
+                                                                ) }
                                                             </SplitItem>
                                                             <SplitItem>
-                                                                {Math.trunc(element.attributes.score * 100)}% passes
+                                                                { intl.formatMessage(messages.compliantScore,
+                                                                    { score: Math.trunc(element.attributes.score * 100) }
+                                                                ) }
                                                             </SplitItem>
                                                         </Split>
                                                     </StackItem>
@@ -121,35 +127,47 @@ class ComplianceCard extends Component {
                                             </div>
                                         </div>
                                     )
+                                    (
+                                        <div className="ins-c-compliance__row">
+                                            <div className="ins-c-compliance__row-item">
+                                            </div>
+                                            <div className="ins-c-compliance__row-item">
+                                                <Button
+                                                    className="ins-c-compliance__policy-link"
+                                                    component="a"
+                                                    href={ `/${UI_BASE}/compliance/policies/` }
+                                                    variant="link"
+                                                    isInline
+                                                >
+                                                    {complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
+                                                    complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
+                                                    more compliance policies
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    )
                                 ) : (
-                                    <EmptyState>
-                                        <EmptyStateIcon icon={ ClipboardCheckIcon } />
-                                        <EmptyStateBody> You have not uploaded any reports yet </EmptyStateBody>
+                                    <EmptyState className="ins-c-compliance__empty-state" variant={ EmptyStateVariant.full }>
+                                        <TextContent>
+                                            <Text component={ TextVariants.p }>
+                                                No policies are reporting
+                                            </Text>
+                                            <Text component={ TextVariants.small }>
+                                                The compliance service uses SCAP policies to track your organization&apos;s
+                                                adherence to compliance requirements.
+                                            </Text>
+                                            <Text component={ TextVariants.small }>
+                                                <a href={ `${UI_BASE}/compliance/policies/` }>Learn about OpenSCAP and Compliance</a>
+                                            </Text>
+                                        </TextContent>
                                     </EmptyState>
                                 ))
                             )
                         }
                         {complianceFetchStatus === 'pending' && (<Loading />)}
-                        <div className="ins-c-compliance__row">
-                            <div className="ins-c-compliance__row-item">
-                            </div>
-                            <div className="ins-c-compliance__row-item">
-                                <Button
-                                    className="ins-c-compliance__policy-link"
-                                    component="a"
-                                    href={ `/${UI_BASE}/compliance/policies/` }
-                                    variant="link"
-                                    isInline
-                                >
-                                    {complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
-                                    complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
-                                    more compliance policies
-                                </Button>
-                            </div>
-                        </div>
                     </Stack>
-                </CardBody>
-            </Card>
+                </TemplateCardBody>
+            </TemplateCard>
         );
     }
 }
@@ -157,7 +175,8 @@ class ComplianceCard extends Component {
 ComplianceCard.propTypes = {
     fetchCompliance: PropTypes.func,
     complianceSummary: PropTypes.object,
-    complianceFetchStatus: PropTypes.string
+    complianceFetchStatus: PropTypes.string,
+    intl: PropTypes.any
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -170,7 +189,7 @@ const mapDispatchToProps = dispatch => ({
     fetchCompliance: (url) => dispatch(AppActions.fetchComplianceSummary(url))
 });
 
-export default routerParams(connect(
+export default injectIntl(routerParams(connect(
     mapStateToProps,
     mapDispatchToProps
-)(ComplianceCard));
+)(ComplianceCard)));

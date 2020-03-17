@@ -15,6 +15,11 @@
   text-align: left;
 }
 
+.ins-c-compliance__empty-state {
+  padding: 0;
+  padding-top: var(--pf-global--spacer--sm);
+}
+
 .ins-c-compliance__row {
   display: flex;
   flex-direction: row;

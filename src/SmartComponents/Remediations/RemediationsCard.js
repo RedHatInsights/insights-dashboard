@@ -10,6 +10,9 @@ import { Button } from '@patternfly/react-core/dist/js/components/Button/Button'
 import FinishedIcon from './../../Icons/FinishedIcon';
 import RunningIcon from './../../Icons/RunningIcon';
 import TimeStamp from './../../PresentationalComponents/TimeStamp/TimeStamp';
+import messages from '../../Messages';
+import { injectIntl } from 'react-intl';
+import PropTypes from 'prop-types';
 
 const mockData = [
     {
@@ -37,7 +40,7 @@ const mockData = [
 /**
  * Remediations card.
  */
-const RemediationsCard = () => {
+const RemediationsCard = ({ intl }) => {
     const remediationsList = mockData.map((remediation, index) =>
         <React.Fragment key={ index }>
             <div className="ins-c-remediations-container">
@@ -78,7 +81,9 @@ const RemediationsCard = () => {
                         variant="link"
                         isInline
                     >
-                        more remediations
+                        { intl.formatMessage(messages.remediationsTotal,
+                            { total: 5 }
+                        ) }
                     </Button>
                 </div>
             </div>
@@ -86,4 +91,8 @@ const RemediationsCard = () => {
     </TemplateCard>;
 };
 
-export default RemediationsCard;
+RemediationsCard.propTypes = {
+    intl: PropTypes.any
+};
+
+export default injectIntl(RemediationsCard);

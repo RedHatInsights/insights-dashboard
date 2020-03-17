@@ -5,5 +5,8 @@
   "critical": "Critical",
   "important": "important",
   "moderate": "moderate",
-  "low": "low"
+  "low": "low",
+  "compliantHostCount": "{count, plural, one {#} other {#}} systems",
+  "compliantScore": "{score}% passes",
+  "remediationsTotal": "{total} more remediations"
 }

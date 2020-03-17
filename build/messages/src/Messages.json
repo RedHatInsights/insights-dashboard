@@ -33,5 +33,20 @@
     "id": "low",
     "description": "low",
     "defaultMessage": "low"
+  },
+  {
+    "id": "compliantHostCount",
+    "description": "Compliance - compliant host count",
+    "defaultMessage": "{count, plural, one {#} other {#}} systems"
+  },
+  {
+    "id": "compliantScore",
+    "description": "Compliance - compliant score",
+    "defaultMessage": "{score}% passes"
+  },
+  {
+    "id": "remediationsTotal",
+    "description": "Remediations - remediations total",
+    "defaultMessage": "{total} more remediations"
   }
 ]

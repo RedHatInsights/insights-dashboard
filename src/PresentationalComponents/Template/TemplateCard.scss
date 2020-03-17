@@ -2,6 +2,10 @@
     font-size: var(--pf-global--FontSize--sm);
 }
 
+.ins-c-dashboard__card--header.ins-m-padding-small {
+    padding-bottom: 6px;
+}
+
 .ins-c-dashboard__card--body {
     display: flex;
     flex-direction: column;
