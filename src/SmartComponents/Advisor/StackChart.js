@@ -25,7 +25,7 @@ const StackChart = ({ data, intl }) => {
         global_palette_gold_300.value
     ];
     const barWidth = 22;
-    const legendData = chartData.map(item => ({ name: `${item.y} ${item.name}`, symbol: { type: null } }));
+    const legendData = chartData.map(item => ({ name: `${item.y} ${capitalize(item.name)}`, symbol: { type: null } }));
     const legendClick = () => [{
         target: 'labels',
         mutation: (data) => {

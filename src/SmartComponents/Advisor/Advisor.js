@@ -42,7 +42,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                 </div>
             }
             {recStatsStatus !== 'fulfilled' ? <Loading /> : <StackChart data={ recStats.total_risk } />}
-            {systemsStatsStatus !== 'fulfilled' ? null :
+            {systemsStatsStatus !== 'fulfilled' ? <Loading /> :
                 <React.Fragment>
                     <a href={ `${UI_BASE}${NEW_REC_URL}` }>
                         {intl.formatMessage(messages.recsImpactingSystems, { totalRecs: recStats.total, systems: systemsStats.total })}
