@@ -1,3 +1,5 @@
+import './_Advisor.scss';
+
 import * as AppActions from '../../AppActions';
 
 import { INCIDENT_URL, NEW_REC_URL } from './Constants';

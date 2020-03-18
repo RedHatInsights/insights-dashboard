@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 
 import { Gauge } from '@red-hat-insights/insights-frontend-components';
 import asyncComponent from '../../Utilities/asyncComponent';
+import { capitalize } from '../../Utilities/Common';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
 
@@ -67,10 +68,6 @@ class GaugeWidget extends Component {
             'ins-c-gauge-widget__metrics-change',
             effect
         );
-
-        function capitalize(str) {
-            return str.charAt(0).toUpperCase() + str.slice(1);
-        }
 
         let renderModal = (
             <Modal

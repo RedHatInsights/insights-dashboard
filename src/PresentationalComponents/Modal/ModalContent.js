@@ -1,7 +1,7 @@
 import React from 'react';
-import propTypes from 'prop-types';
-
+import { capitalize } from '../../Utilities/Common/';
 import classNames from 'classnames';
+import propTypes from 'prop-types';
 
 /**
  * This is a dumb component that only recieves properties from a smart component.
@@ -16,10 +16,6 @@ const ModalContent = ({ app, variant, className, ...props }) => {
         'ins-c-modal__content',
         className
     );
-
-    function capitalize(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
 
     return {
         notEntitled: <p className ={ modalClasses } { ...props }> Would you like to activate an evaluation? </p>,

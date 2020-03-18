@@ -1,4 +1,6 @@
 /* eslint-disable camelcase */
+import './_Advisor.scss';
+
 import { Chart, ChartAxis, ChartBar, ChartLegend, ChartStack, ChartTooltip } from '@patternfly/react-charts';
 import { global_palette_gold_300, global_palette_gold_400, global_palette_orange_300, global_palette_red_200 } from '@patternfly/react-tokens';
 
