@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { SEVERITY_MAP } from './Constants';
 import { UI_BASE } from '../../AppConstants';
+import { capitalize } from '../../Utilities/Common';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
 
@@ -33,7 +34,7 @@ const StackChart = ({ data, intl }) => {
                 `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10`;
         }
     }];
-    const labelComponent = () => <ChartTooltip text={ ({ datum }) => `${datum.name}: ${datum.y}` } constrainToVisibleArea />;
+    const labelComponent = () => <ChartTooltip text={ ({ datum }) => `${capitalize(datum.name)}: ${datum.y}` } constrainToVisibleArea />;
 
     return <React.Fragment>
         <Chart ariaDesc='Advisor recommendations by severity' ariaTitle='Advisor recommendations by severity'
