@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { ChartPie } from '@patternfly/react-charts/dist/js/components/ChartPie/ChartPie';
+import { ChartLegend } from '@patternfly/react-charts/dist/js/components/ChartLegend/ChartLegend';
 import './PieChartTemplate.scss';
 
 export const PieChart = ({ ...props }) => {
@@ -13,14 +14,15 @@ export const PieChart = ({ ...props }) => {
                 data={ props.data }
                 height={ props.height }
                 labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
-                legendData={ props.legendData }
+                legendComponent={ <ChartLegend
+                    data={ props.legendData }
+                    rowGutter={ 1 }
+                /> }
                 legendOrientation={ props.legendOrientation }
                 legendPosition={ props.legendPosition }
                 padding={ props.padding }
                 width={ props.width }
                 colorScale={ props.colorScale }
-                style={ { width: 'initial' } }
-                maxWidth={ props.maxWidth }
             />
         </div>
     );

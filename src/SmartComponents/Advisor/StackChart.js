@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { SEVERITY_MAP } from './Constants';
 import { UI_BASE } from '../../AppConstants';
+import { capitalize } from '../../Utilities/Common';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
 
@@ -22,7 +23,7 @@ const StackChart = ({ data, intl }) => {
         global_palette_gold_300.value
     ];
     const barWidth = 22;
-    const legendData = chartData.map(item => ({ name: `${item.y} ${item.name}`, symbol: { type: null } }));
+    const legendData = chartData.map(item => ({ name: `${item.y} ${capitalize(item.name)}`, symbol: { type: null } }));
     const legendClick = () => [{
         target: 'labels',
         mutation: (data) => {
@@ -31,48 +32,47 @@ const StackChart = ({ data, intl }) => {
                 `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10`;
         }
     }];
-    const labelComponent = () => <ChartTooltip text={ ({ datum }) => `${datum.name}: ${datum.y}` } constrainToVisibleArea />;
+    const labelComponent = () => <ChartTooltip text={ ({ datum }) => `${capitalize(datum.name)}: ${datum.y}` } constrainToVisibleArea />;
 
     return <React.Fragment>
-        <div style={ { maxWidth: 600 } }>
-            <Chart
-                ariaDesc='Advisor recommendations by severity'
-                ariaTitle='Advisor recommendations by severity'
-                padding={ { left: 0, right: 0, bottom: 80, top: 25 } }
-                width={ 700 }
-                legendPosition='bottom-left'
-                height={ 100 }
-                legendComponent={ <ChartLegend
-                    data={ legendData }
-                    width={ 400 }
-                    events={ [{
-                        target: 'labels', eventHandlers: {
-                            onClick: legendClick,
-                            onMouseOver: () => {
-                                return [{
-                                    mutation: (data) => {
-                                        return {
-                                            style: Object.assign({}, data.style, { cursor: 'pointer' })
-                                        };
-                                    }
-                                }];
-                            }
+        <Chart ariaDesc='Advisor recommendations by severity' ariaTitle='Advisor recommendations by severity'
+            padding={ { left: 0, right: 0, bottom: 0, top: 0 } }
+            width={ 600 }
+            height={ 40 }
+            maxWidth={ 600 }>
+            <ChartAxis axisComponent={ <React.Fragment /> } />
+            <ChartStack horizontal
+                colorScale={ colorScale }>
+                {chartData.map(item => <ChartBar key={ item }
+                    barWidth={ barWidth } labelComponent={ labelComponent() }
+                    data={ [{ name: item.name, y: item.y, x: 1, label: item.name }] }
+                />)}
+            </ChartStack>
+        </Chart>
+        <span className='stackChartLegend'>
+            <ChartLegend
+                data={ legendData }
+                responsive={ false }
+                height={ 36 }
+                width={ 600 }
+                fontSize={ 14 }
+                events={ [{
+                    target: 'labels', eventHandlers: {
+                        onClick: legendClick,
+                        onMouseOver: () => {
+                            return [{
+                                mutation: (data) => {
+                                    return {
+                                        style: Object.assign({}, data.style, { cursor: 'pointer' })
+                                    };
+                                }
+                            }];
                         }
-                    }] }
-                    orientation='horizontal'
-                    colorScale={ colorScale }
-                /> }
-            >
-                <ChartAxis axisComponent={ <React.Fragment /> } />
-                <ChartStack horizontal
-                    colorScale={ colorScale }>
-                    {chartData.map(item => <ChartBar key={ item }
-                        barWidth={ barWidth } labelComponent={ labelComponent() }
-                        data={ [{ name: item.name, y: item.y, x: 1, label: item.name }] }
-                    />)}
-                </ChartStack>
-            </Chart>
-        </div>
+                    }
+                }] }
+                orientation='horizontal'
+                colorScale={ colorScale } />
+        </span>
     </React.Fragment>;
 };
 

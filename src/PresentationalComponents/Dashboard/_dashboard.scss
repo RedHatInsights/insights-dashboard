@@ -51,9 +51,17 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto;
 
+  > *:not(.dashboard-card-group) {
+    background-color: #fff; // sets the background for the lazy loading state
+  }
+
   .dashboard-card-group {
     display: grid;
     grid-row: 1;
+
+    > * {
+      background-color: #fff; // sets the background for the lazy loading state
+    }
 
     > *:not(:last-child) {
       border-bottom: 1px solid var(--pf-global--BorderColor--100);

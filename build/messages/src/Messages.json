@@ -48,5 +48,15 @@
     "id": "remediationsTotal",
     "description": "Remediations - remediations total",
     "defaultMessage": "{total} more remediations"
+  },
+  {
+    "id": "vulnerabilitiesTotalItems",
+    "description": "Vulnerabilities - vulnerability total",
+    "defaultMessage": "{total}"
+  },
+  {
+    "id": "latestVulnerabilitiesTotal",
+    "description": "Vulnerabilities - latest vulnerabilities",
+    "defaultMessage": "{totalLatest}"
   }
 ]

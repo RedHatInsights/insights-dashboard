@@ -9,6 +9,8 @@
     "low": "low",
     "compliantHostCount": "{count, plural, one {#} other {#}} systems",
     "compliantScore": "{score}% passes",
-    "remediationsTotal": "{total} more remediations"
+    "remediationsTotal": "{total} more remediations",
+    "vulnerabilitiesTotalItems": "{total}",
+    "latestVulnerabilitiesTotal": "{totalLatest}"
   }
 }

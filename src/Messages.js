@@ -51,5 +51,15 @@ export default defineMessages({
         id: 'remediationsTotal',
         description: 'Remediations - remediations total',
         defaultMessage: '{total} more remediations'
+    },
+    vulnerabilitiesTotalItems: {
+        id: 'vulnerabilitiesTotalItems',
+        description: 'Vulnerabilities - vulnerability total',
+        defaultMessage: '{total}'
+    },
+    latestVulnerabilitiesTotal: {
+        id: 'latestVulnerabilitiesTotal',
+        description: 'Vulnerabilities - latest vulnerabilities',
+        defaultMessage: '{totalLatest}'
     }
 });

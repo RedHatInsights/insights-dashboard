@@ -1,8 +1,10 @@
 import * as AppActions from '../../AppActions';
 
+import { INCIDENT_URL, NEW_REC_URL } from './Constants';
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
-import { INCIDENT_URL } from './Constants';
+
+import ExclamationCircleIcon from '@patternfly/react-icons/dist/js/icons/exclamation-circle-icon';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import PropTypes from 'prop-types';
 import StackChart from './StackChart';
@@ -10,13 +12,12 @@ import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
-import { NumberDescription } from '../../../../insights-dashboard/src/PresentationalComponents/NumberDescription/NumberDescription';
 
 /**
  * Advisor Card for showing count/severity of rec hits
  */
 const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
-    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, intl }) => {
+    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, systemsStats, systemsStatsStatus, intl }) => {
 
     useEffect(() => {
         advisorFetchStatsRecs();
@@ -27,17 +28,24 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
     return <TemplateCard appName='Advisor'>
         <TemplateCardHeader title='Advisor recommendations' />
         <TemplateCardBody>
-            { advisorIncidentsStatus !== 'fulfilled' ? <Loading /> :
-                <NumberDescription
-                    data={ advisorIncidents.meta.count }
-                    dataSize="lg"
-                    layout="horizontal"
-                    linkDescription={ intl.formatMessage(messages.incidentsDetected, { incidents: advisorIncidents.meta.count }) }
-                    link={ `${UI_BASE}${INCIDENT_URL}` }
-                    critical="true"
-                />
+            {advisorIncidentsStatus !== 'fulfilled' ? <Loading /> :
+                <div className='ins-c-summary'>
+                    <ExclamationCircleIcon className='ins-c-summary__icon ins-c-summary__icon-critical' />
+                    <span className='ins-c-summary__emphasis'>{advisorIncidents.meta.count}</span>
+                    <span className='ins-c-summary__label'>
+                        <a href={ `${UI_BASE}${INCIDENT_URL}` }>
+                            {intl.formatMessage(messages.incidentsDetected, { incidents: advisorIncidents.meta.count })}
+                        </a>
+                    </span>
+                </div>
             }
             {recStatsStatus !== 'fulfilled' ? <Loading /> : <StackChart data={ recStats.total_risk } />}
+            {systemsStatsStatus !== 'fulfilled' ? <Loading /> :
+                <React.Fragment>
+                    <a href={ `${UI_BASE}${NEW_REC_URL}` }>
+                        {intl.formatMessage(messages.recsImpactingSystems, { totalRecs: recStats.total, systems: systemsStats.total })}
+                    </a>
+                </React.Fragment>}
         </TemplateCardBody>
     </TemplateCard>;
 };
