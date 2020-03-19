@@ -6,10 +6,8 @@ import Immutable from 'seamless-immutable';
 const initialState = Immutable({
     complianceSummary: {},
     complianceFetchStatus: '',
-    criticalVulnerabilities: {},
-    criticalVulnerabilitiesFetchStatus: '',
-    latestVulnerabilities: {},
-    latestVulnerabilitiesFetchStatus: '',
+    vulnerabilities: {},
+    vulnerabilitiesFetchStatus: '',
     advisorStatsRecs: {},
     advisorStatsRecsStatus: '',
     advisorStatsSystems: {},
@@ -40,26 +38,6 @@ export const DashboardStore = (state = initialState, action) => {
             return state.set('complianceFetchStatus', 'rejected');
 
         // VULN
-        case `${ActionTypes.CRITICAL_VULNERABILITIES_FETCH}_PENDING`:
-            return state.set('criticalVulnerabilitiesFetchStatus', 'pending');
-        case `${ActionTypes.CRITICAL_VULNERABILITIES_FETCH}_FULFILLED`:
-            return Immutable.merge(state, {
-                criticalVulnerabilities: action.payload,
-                criticalVulnerabilitiesFetchStatus: 'fulfilled'
-            });
-        case `${ActionTypes.CRITICAL_VULNERABILITIES_FETCH}_REJECTED`:
-            return state.set('criticalVulnerabilitiesFetchStatus', 'rejected');
-
-        case `${ActionTypes.LATEST_VULNERABILITIES_FETCH}_PENDING`:
-            return state.set('latestVulnerabilitiesFetchStatus', 'pending');
-        case `${ActionTypes.LATEST_VULNERABILITIES_FETCH}_FULFILLED`:
-            return Immutable.merge(state, {
-                latestVulnerabilities: action.payload,
-                latestVulnerabilitiesFetchStatus: 'fulfilled'
-            });
-        case `${ActionTypes.LATEST_VULNERABILITIES_FETCH}_REJECTED`:
-            return state.set('latestVulnerabilitiesFetchStatus', 'rejected');
-
         case `${ActionTypes.VULNERABILITIES_FETCH}_PENDING`:
             return state.set('vulnerabilitiesFetchStatus', 'pending');
         case `${ActionTypes.VULNERABILITIES_FETCH}_FULFILLED`:
