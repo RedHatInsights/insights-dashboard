@@ -1,6 +1,6 @@
 /*global module*/
 
-const SECTION = 'rhel';
+const SECTION = 'insights';
 const APP_ID = 'dashboard';
 const routes = {};
 
