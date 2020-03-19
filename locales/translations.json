@@ -1,9 +1,15 @@
 {
   "dashboardTitle": "Overview",
+  "subscriptionsUtilized": "Subscriptions utilized",
   "recsImpactingSystems": "{totalRecs, plural, one {# recommendation} other {# recommendations}}  impacting {systems, plural, one {# system} other {# systems}}",
   "incidentsDetected": "{incidents, plural, one {incident} other {incidents}} detected",
   "critical": "Critical",
   "important": "important",
   "moderate": "moderate",
-  "low": "low"
+  "low": "low",
+  "compliantHostCount": "{count, plural, one {#} other {#}} systems",
+  "compliantScore": "{score}% passes",
+  "remediationsTotal": "{total} more remediations",
+  "vulnerabilitiesTotalItems": "{total}",
+  "latestVulnerabilitiesTotal": "{totalLatest}"
 }

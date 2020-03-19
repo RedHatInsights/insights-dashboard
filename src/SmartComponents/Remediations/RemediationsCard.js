@@ -10,6 +10,9 @@ import { Button } from '@patternfly/react-core/dist/js/components/Button/Button'
 import FinishedIcon from './../../Icons/FinishedIcon';
 import RunningIcon from './../../Icons/RunningIcon';
 import TimeStamp from './../../PresentationalComponents/TimeStamp/TimeStamp';
+import messages from '../../Messages';
+import { injectIntl } from 'react-intl';
+import PropTypes from 'prop-types';
 
 const mockData = [
     {
@@ -37,11 +40,11 @@ const mockData = [
 /**
  * Remediations card.
  */
-const RemediationsCard = () => {
+const RemediationsCard = ({ intl }) => {
     const remediationsList = mockData.map((remediation, index) =>
         <React.Fragment key={ index }>
             <div className="ins-c-remediations-container">
-                <div className="ins-c-remediation-status" span={ 4 }>
+                <div className="ins-c-remediation__status">
                     <React.Fragment>
                         { remediation.status === 'Running' ? (
                             <RunningIcon/>
@@ -51,7 +54,7 @@ const RemediationsCard = () => {
                         <p>{remediation.status}</p>
                     </React.Fragment>
                 </div>
-                <div span={ 8 }>
+                <div className="ins-c-remediation__timestamp">
                     <Button component="a" variant="link" isInline>
                         {remediation.name}
                     </Button>
@@ -68,8 +71,28 @@ const RemediationsCard = () => {
         </TemplateCardHead>
         <TemplateCardBody>
             {remediationsList}
+            <div className="ins-c-remediations-container">
+                <div className="ins-c-remediation__status">
+                </div>
+                <div className="ins-c-remediation__timestamp">
+                    <Button
+                        component="a"
+                        href=""
+                        variant="link"
+                        isInline
+                    >
+                        { intl.formatMessage(messages.remediationsTotal,
+                            { total: 5 }
+                        ) }
+                    </Button>
+                </div>
+            </div>
         </TemplateCardBody>
     </TemplateCard>;
 };
 
-export default RemediationsCard;
+RemediationsCard.propTypes = {
+    intl: PropTypes.any
+};
+
+export default injectIntl(RemediationsCard);

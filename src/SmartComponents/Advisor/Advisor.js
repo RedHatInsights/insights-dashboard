@@ -5,8 +5,6 @@ import * as AppActions from '../../AppActions';
 import { INCIDENT_URL, NEW_REC_URL } from './Constants';
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
-
-import ExclamationCircleIcon from '@patternfly/react-icons/dist/js/icons/exclamation-circle-icon';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import PropTypes from 'prop-types';
 import StackChart from './StackChart';
@@ -14,6 +12,7 @@ import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
+import { NumberDescription } from '../../PresentationalComponents/NumberDescription/NumberDescription';
 
 /**
  * Advisor Card for showing count/severity of rec hits
@@ -31,15 +30,14 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         <TemplateCardHeader title='Advisor recommendations' />
         <TemplateCardBody>
             {advisorIncidentsStatus !== 'fulfilled' ? <Loading /> :
-                <div className='ins-c-summary'>
-                    <ExclamationCircleIcon className='ins-c-summary__icon ins-c-summary__icon-critical' />
-                    <span className='ins-c-summary__emphasis'>{advisorIncidents.meta.count}</span>
-                    <span className='ins-c-summary__label'>
-                        <a href={ `${UI_BASE}${INCIDENT_URL}` }>
-                            {intl.formatMessage(messages.incidentsDetected, { incidents: advisorIncidents.meta.count })}
-                        </a>
-                    </span>
-                </div>
+                <NumberDescription
+                    data={ advisorIncidents.meta.count }
+                    dataSize="md"
+                    layout="horizontal"
+                    linkDescription={ intl.formatMessage(messages.incidentsDetected, { incidents: advisorIncidents.meta.count }) }
+                    critical={ advisorIncidents.meta.count > 50 ? 'true' : 'false' }
+                    link={ `${UI_BASE}${INCIDENT_URL}` }
+                />
             }
             {recStatsStatus !== 'fulfilled' ? <Loading /> : <StackChart data={ recStats.total_risk } />}
             {systemsStatsStatus !== 'fulfilled' ? <Loading /> :

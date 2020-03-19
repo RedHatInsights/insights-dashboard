@@ -7,6 +7,11 @@ export default defineMessages({
         description: 'Title of the dashboard',
         defaultMessage: 'Overview'
     },
+    subscriptionsUtilized: {
+        id: 'subscriptionsUtilized',
+        description: 'Title of the subscriptions utilized card',
+        defaultMessage: 'Subscriptions utilized'
+    },
     recsImpactingSystems: {
         id: 'recsImpactingSystems',
         description: 'Advisor - recs impacting systems',
@@ -36,5 +41,30 @@ export default defineMessages({
         id: 'low',
         description: 'low',
         defaultMessage: 'low'
+    },
+    compliantHostCount: {
+        id: 'compliantHostCount',
+        description: 'Compliance - compliant host count',
+        defaultMessage: '{count, plural, one {# system} other {# systems}}'
+    },
+    compliantScore: {
+        id: 'compliantScore',
+        description: 'Compliance - compliant score',
+        defaultMessage: '{score}% passes'
+    },
+    remediationsTotal: {
+        id: 'remediationsTotal',
+        description: 'Remediations - remediations total',
+        defaultMessage: '{total} more remediations'
+    },
+    vulnerabilitiesTotalItems: {
+        id: 'vulnerabilitiesTotalItems',
+        description: 'Vulnerabilities - vulnerability total',
+        defaultMessage: '{total}'
+    },
+    latestVulnerabilitiesTotal: {
+        id: 'latestVulnerabilitiesTotal',
+        description: 'Vulnerabilities - latest vulnerabilities',
+        defaultMessage: '{totalLatest}'
     }
 });

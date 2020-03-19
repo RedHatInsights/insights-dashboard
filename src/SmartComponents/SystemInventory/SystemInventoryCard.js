@@ -10,12 +10,12 @@ const SystemInventoryCard = () => {
         <TemplateCardHeader subtitle='System inventory and status'/>
         <TemplateCardBody isHorizontalLayout="true" isFilled={ false }>
             <NumberDescription
-                data="NA"
+                data="0"
                 dataSize="xl"
                 linkDescription="Connected systems"
             />
             <NumberDescription
-                data="NA"
+                data="0"
                 dataSize="lg"
                 linkDescription="Not checked-in last 7 days"
             />

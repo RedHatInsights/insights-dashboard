@@ -14,6 +14,20 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        line-height: var(--pf-global--FontSize--sm);
+    }
+
+    &.pf-m-horizontal {
+        flex-direction: row;
+        align-items: baseline;
+
+        svg {
+            margin-right: var(--pf-global--spacer--sm);
+        }
+
+        .pf-c-button.pf-m-link {
+            padding-left: var(--pf-global--spacer--sm);
+        }
     }
 }
 

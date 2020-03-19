@@ -1,11 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { ChartPie } from '@patternfly/react-charts/dist/js/components/ChartPie/ChartPie';
+import { ChartLegend } from '@patternfly/react-charts/dist/js/components/ChartLegend/ChartLegend';
 import './PieChartTemplate.scss';
 
 export const PieChart = ({ ...props }) => {
     return (
-        <div style={ { maxWidth: props.containerWidth, height: props.containerHeight } }>
+        <div className={ props.className } style={ { width: props.containerWidth, height: props.containerHeight } }>
             <ChartPie
                 ariaDesc={ props.ariaDesc }
                 ariaTitle={ props.ariaTitle }
@@ -13,7 +14,10 @@ export const PieChart = ({ ...props }) => {
                 data={ props.data }
                 height={ props.height }
                 labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
-                legendData={ props.legendData }
+                legendComponent={ <ChartLegend
+                    data={ props.legendData }
+                    rowGutter={ 0.5 }
+                /> }
                 legendOrientation={ props.legendOrientation }
                 legendPosition={ props.legendPosition }
                 padding={ props.padding }
@@ -25,6 +29,7 @@ export const PieChart = ({ ...props }) => {
 };
 
 PieChart.propTypes = {
+    className: propTypes.string,
     containerWidth: propTypes.number,
     containerHeight: propTypes.number,
     ariaDesc: propTypes.string,
@@ -37,7 +42,8 @@ PieChart.propTypes = {
     legendOrientation: propTypes.boolean,
     legendPosition: propTypes.boolean,
     width: propTypes.number,
-    colorScale: propTypes.array
+    colorScale: propTypes.array,
+    maxWidth: propTypes.number
 };
 
 export default PieChart;
