@@ -1,6 +1,7 @@
 {
   "en": {
     "dashboardTitle": "Overview",
+    "subscriptionsUtilized": "Subscriptions utilized",
     "recsImpactingSystems": "{totalRecs, plural, one {# recommendation} other {# recommendations}}  impacting {systems, plural, one {# system} other {# systems}}",
     "incidentsDetected": "{incidents, plural, one {incident} other {incidents}} detected",
     "critical": "Critical",

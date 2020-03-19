@@ -14,7 +14,7 @@ const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
 const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
 const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
 const SystemInventoryCard = lazy(() => import('../../SmartComponents/SystemInventory/SystemInventoryCard'));
-const EntitlementsUtilizedCard = lazy(() => import('../../SmartComponents/EntitlementsUtilized/EntitlementsUtilizedCard'));
+const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedCard'));
 const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
 const CustomPoliciesCard = lazy(() => import('../../SmartComponents/CustomPolicies/CustomPoliciesCard'));
 const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
@@ -36,7 +36,7 @@ const Dashboard = ({ intl }) =>
                 </div>
                 <div className="dashboard-card-entitlements">
                     <Suspense fallback={ <Loading /> }>
-                        <EntitlementsUtilizedCard />
+                        <SubscriptionsUtilizedCard />
                     </Suspense>
                 </div>
                 <div className="dashboard-card-operating-systems">

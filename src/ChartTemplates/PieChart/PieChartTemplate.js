@@ -16,7 +16,7 @@ export const PieChart = ({ ...props }) => {
                 labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
                 legendComponent={ <ChartLegend
                     data={ props.legendData }
-                    rowGutter={ 1 }
+                    rowGutter={ 0.5 }
                 /> }
                 legendOrientation={ props.legendOrientation }
                 legendPosition={ props.legendPosition }

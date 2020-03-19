@@ -7,6 +7,11 @@ export default defineMessages({
         description: 'Title of the dashboard',
         defaultMessage: 'Overview'
     },
+    subscriptionsUtilized: {
+        id: 'subscriptionsUtilized',
+        description: 'Title of the subscriptions utilized card',
+        defaultMessage: 'Subscriptions utilized'
+    },
     recsImpactingSystems: {
         id: 'recsImpactingSystems',
         description: 'Advisor - recs impacting systems',
@@ -40,7 +45,7 @@ export default defineMessages({
     compliantHostCount: {
         id: 'compliantHostCount',
         description: 'Compliance - compliant host count',
-        defaultMessage: '{count, plural, one {#} other {#}} systems'
+        defaultMessage: '{count, plural, one {# system} other {# systems}}'
     },
     compliantScore: {
         id: 'compliantScore',

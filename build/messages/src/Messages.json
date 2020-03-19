@@ -5,6 +5,11 @@
     "defaultMessage": "Overview"
   },
   {
+    "id": "subscriptionsUtilized",
+    "description": "Title of the subscriptions utilized card",
+    "defaultMessage": "Subscriptions utilized"
+  },
+  {
     "id": "recsImpactingSystems",
     "description": "Advisor - recs impacting systems",
     "defaultMessage": "{totalRecs, plural, one {# recommendation} other {# recommendations}}  impacting {systems, plural, one {# system} other {# systems}}"
@@ -37,7 +42,7 @@
   {
     "id": "compliantHostCount",
     "description": "Compliance - compliant host count",
-    "defaultMessage": "{count, plural, one {#} other {#}} systems"
+    "defaultMessage": "{count, plural, one {# system} other {# systems}}"
   },
   {
     "id": "compliantScore",

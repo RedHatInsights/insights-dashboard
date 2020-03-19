@@ -1,13 +1,16 @@
 import React from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { ProgressTemplate } from '../../../../insights-dashboard/src/ChartTemplates/Progress/ProgressTemplate';
+import { injectIntl } from 'react-intl';
+import messages from '../../Messages';
+import PropTypes from 'prop-types';
 
 /**
- * Entitlements utilized card for showing the portion of entitlements used.
+ * Subscriptions utilized card for showing the portion of Subscriptions used.
  */
-const EntitlementsUtilizedCard = () => {
-    return <TemplateCard appName='EntitlementsUtilized'>
-        <TemplateCardHeader subtitle='Subscriptions utilized'/>
+const SubscriptionsUtilizedCard = ({ intl }) => {
+    return <TemplateCard appName='SubscriptionsUtilized'>
+        <TemplateCardHeader subtitle={ intl.formatMessage(messages.subscriptionsUtilized) }/>
         <TemplateCardBody>
             <ProgressTemplate
                 title="Red Hat JBoss"
@@ -22,4 +25,8 @@ const EntitlementsUtilizedCard = () => {
     </TemplateCard>;
 };
 
-export default EntitlementsUtilizedCard;
+SubscriptionsUtilizedCard.propTypes = {
+    intl: PropTypes.any
+};
+
+export default injectIntl(SubscriptionsUtilizedCard);
