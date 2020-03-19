@@ -2,26 +2,24 @@
 @import '~@red-hat-insights/insights-frontend-components/Utilities/_all';
 @import '~@red-hat-insights/insights-frontend-components/index.css';
 @import '~@red-hat-insights/insights-frontend-components/Utilities/_mixins';
-@import '@patternfly/patternfly/sass-utilities/colors.scss';
-@import '~@patternfly/patternfly/sass-utilities/scss-variables.scss';
 
 .pf-l-page__main .pf-c-card { min-height: 100%; }
 
 .ins-c-summary {
-    &__accent { color: $pf-color-black-500; }
+    &__accent { color: var(--pf-global--palette--black-500); }
 
     &__emphasis { @include rem("font-size", 32px); }
 
     &__icon {
-        &-critical { fill: $pf-color-red-100; }
-        &-high { fill: $pf-color-orange-300; }
-        &-medium { fill: $pf-color-gold-300; }
-        &-low { fill: $pf-color-blue-300; }
+        &-critical { fill: var(--pf-global--palette--red-100); }
+        &-high { fill: var(--pf-global--palette--orange-300); }
+        &-medium { fill: var(--pf-global--palette--gold-300); }
+        &-low { fill: var(--pf-global--palette--blue-300); }
 
-        &-flag { fill: $pf-color-blue-500; }
-        &-check { fill: $pf-color-green-300; }
+        &-flag { fill: var(--pf-global--palette--blue-500); }
+        &-check { fill: var(--pf-global--palette--green-300); }
 
-        &-info { fill: $pf-color-blue-200; }
+        &-info { fill: var(--pf-global--palette--blue-200); }
     }
 
     &__title { @include rem("margin-bottom", 10px); }
@@ -31,9 +29,9 @@
         @include rem("margin-right", 10px);
     }
 
-    .ins-m-green { color: $pf-color-green-400; }
+    .ins-m-green { color: var(--pf-global--palette--green-400); }
 
-    .ins-m-red { color: $pf-color-red-100; }
+    .ins-m-red { color: var(--pf-global--palette--red-100); }
 }
 
 // ==================================================================
