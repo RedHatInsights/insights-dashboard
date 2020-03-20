@@ -63,5 +63,10 @@
     "id": "latestVulnerabilitiesTotal",
     "description": "Vulnerabilities - latest vulnerabilities",
     "defaultMessage": "{totalLatest}"
+  },
+  {
+    "id": "complianceEmptyStateTitle",
+    "description": "Compliance - empty state title",
+    "defaultMessage": "No policies"
   }
 ]

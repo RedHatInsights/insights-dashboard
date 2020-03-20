@@ -11,5 +11,6 @@
   "compliantScore": "{score}% passes",
   "remediationsTotal": "{total} more remediations",
   "vulnerabilitiesTotalItems": "{total}",
-  "latestVulnerabilitiesTotal": "{totalLatest}"
+  "latestVulnerabilitiesTotal": "{totalLatest}",
+  "complianceEmptyStateTitle": "No policies"
 }

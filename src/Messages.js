@@ -66,5 +66,10 @@ export default defineMessages({
         id: 'latestVulnerabilitiesTotal',
         description: 'Vulnerabilities - latest vulnerabilities',
         defaultMessage: '{totalLatest}'
+    },
+    complianceEmptyStateTitle: {
+        id: 'complianceEmptyStateTitle',
+        description: 'Compliance - empty state title',
+        defaultMessage: 'No policies'
     }
 });

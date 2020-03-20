@@ -151,21 +151,23 @@ class ComplianceCard extends Component {
                                     <EmptyState className="ins-c-compliance__empty-state" variant={ EmptyStateVariant.full }>
                                         <TextContent>
                                             <Text component={ TextVariants.p }>
-                                                No policies
+                                                { intl.formatMessage(messages.complianceEmptyStateTitle) }
                                             </Text>
                                             <Text component={ TextVariants.small }>
                                                 The compliance service uses OpenSCAP policies to track your organization&apos;s
                                                 adherence to compliance requirements
                                             </Text>
-                                            <EmptyStateSecondaryActions>
+                                            <EmptyStateSecondaryActions className="ins-c-compliance__empty-state-actions">
                                                 <Button
-                                                    variant="link"
+                                                    variant='link'
                                                     href={ `${UI_BASE}/compliance/policies/` }
+                                                    component='a'
                                                 >
                                                     Create a policy
                                                 </Button>
                                                 <Button
-                                                    variant="link"
+                                                    variant='link'
+                                                    component='a'
                                                     href="https://www.open-scap.org/getting-started/"
                                                 >
                                                     Learn about OpenSCAP
