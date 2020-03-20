@@ -27,7 +27,17 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         advisorFetchIncidents();
     }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems]);
 
-    const stackChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
+    let chartData = [];
+    if (recStatsStatus === 'fulfilled') {
+        let data = recStats.total_risk;
+        chartData = [
+            { name: intl.formatMessage(messages.critical), y: data[SEVERITY_MAP.critical] },
+            { name: intl.formatMessage(messages.important), y: data[SEVERITY_MAP.important] },
+            { name: intl.formatMessage(messages.moderate), y: data[SEVERITY_MAP.moderate] },
+            { name: intl.formatMessage(messages.low), y: data[SEVERITY_MAP.low] }
+        ];
+    }
+
     const legendClick = () => [{
         target: 'labels',
         mutation: (data) => {
@@ -54,14 +64,12 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                 <StackChartTemplate
                     ariaDesc="CVEs impacting your systems"
                     ariaTitle="Vulnerabilities chart"
-                    padding={ stackChartPadding }
-                    legendPosition="bottom-left"
                     height={ 40 }
                     width={ 600 }
                     maxWidth={ 600 }
                     legendHeight={ 36 }
                     legendWidth={ 600 }
-                    data={ recStats.total_risk }
+                    data={ chartData }
                     legendClick={ legendClick }
                 />
             }
