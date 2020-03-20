@@ -7,9 +7,11 @@
   "important": "important",
   "moderate": "moderate",
   "low": "low",
-  "compliantHostCount": "{count, plural, one {#} other {#}} systems",
+  "compliantHostCount": "{count, plural, one {# system} other {# systems}}",
   "compliantScore": "{score}% passes",
   "remediationsTotal": "{total} more remediations",
   "vulnerabilitiesTotalItems": "{total}",
-  "latestVulnerabilitiesTotal": "{totalLatest}"
+  "latestVulnerabilitiesTotal": "{totalLatest}",
+  "deniedStateTitle": "You do not have access to {appName}",
+  "deniedStateBody": "Contact your organization administrator(s) for more information"
 }

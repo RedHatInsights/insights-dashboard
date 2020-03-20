@@ -63,5 +63,15 @@
     "id": "latestVulnerabilitiesTotal",
     "description": "Vulnerabilities - latest vulnerabilities",
     "defaultMessage": "{totalLatest}"
+  },
+  {
+    "id": "deniedStateTitle",
+    "description": "Denied state title",
+    "defaultMessage": "You do not have access to {appName}"
+  },
+  {
+    "id": "deniedStateBody",
+    "description": "Denied access body",
+    "defaultMessage": "Contact your organization administrator(s) for more information"
   }
 ]
