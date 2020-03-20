@@ -14,7 +14,6 @@ import messages from '../../Messages';
 import { NumberDescription } from '../../PresentationalComponents/NumberDescription/NumberDescription';
 import StackChartTemplate from '../../ChartTemplates/StackChart/StackChartTemplate';
 import { SEVERITY_MAP } from './Constants';
-import { capitalize } from '../../Utilities/Common';
 
 /**
  * Advisor Card for showing count/severity of rec hits
