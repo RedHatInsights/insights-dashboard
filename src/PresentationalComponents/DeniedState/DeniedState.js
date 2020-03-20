@@ -22,8 +22,8 @@ const DeniedState = ({ appName, intl }) => {
         <Card className='ins-c-dashboard__card'>
             <EmptyState variant={ EmptyStateVariant.full } className='ins-c-dashboard__denied-state'>
                 <EmptyStateIcon icon={ LockIcon }/>
-                <Title headingLevel="h5" size="md"> {intl.formatMessage(messages.deniedStateTitle, { appName })} </Title>
-                <EmptyStateBody>
+                <Title headingLevel="h2" size="md"> {intl.formatMessage(messages.deniedStateTitle, { appName })} </Title>
+                <EmptyStateBody className='ins-c-dashboard__denied-state--body'>
                     {intl.formatMessage(messages.deniedStateBody)}
                 </EmptyStateBody>
             </EmptyState>
