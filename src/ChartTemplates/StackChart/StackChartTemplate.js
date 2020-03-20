@@ -69,12 +69,9 @@ StackChart.propTypes = {
     maxWidth: propTypes.number,
     ariaDesc: propTypes.string,
     ariaTitle: propTypes.string,
-    domainPadding: propTypes.array,
     data: propTypes.array,
-    legendData: propTypes.array,
     height: propTypes.number,
     width: propTypes.number,
-    colorScale: propTypes.array,
     legendHeight: propTypes.number,
     legendWidth: propTypes.number,
     legendClick: propTypes.any
