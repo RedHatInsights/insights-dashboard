@@ -25,9 +25,11 @@ const App = (props) => {
     useEffect(() => {
         insights.chrome.init();
         insights.chrome.identifyApp('dashboard');
+
+        // TODO: Update this function to query multiple apps instead of empty request (limited by API)
         insights.chrome.getUserPermissions().then(
-            insightsPermissions => {
-                const permissionList = insightsPermissions.map(permissions => permissions.permission);
+            dashboardPermissions => {
+                const permissionList = dashboardPermissions.map(permissions => permissions.permission);
                 setPermissions({
                     customPolicies: permissionList.includes('custom-policies:*:*'),
                     compliance: permissionList.includes('compliance:*:*'),
