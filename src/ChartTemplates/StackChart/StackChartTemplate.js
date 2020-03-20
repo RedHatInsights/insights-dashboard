@@ -15,15 +15,16 @@ export const StackChart = ({ ...props }) => {
     ];
     const barWidth = 25;
     const chartLegendFontSize = 14;
-
     const labelComponent = () => <ChartTooltip text={ ({ datum }) => `${capitalize(datum.name)}: ${datum.y}` } constrainToVisibleArea />;
+    const legendData = props.data.map(item => ({ name: `${item.y} ${capitalize(item.name)}`, symbol: { type: null } }));
+    const stackChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
 
     return (
         <React.Fragment>
             <Chart
                 ariaDesc={ props.ariaDesc }
                 ariaTitle={ props.ariaTitle }
-                padding={ props.padding }
+                padding={ stackChartPadding }
                 width={ props.width }
                 height={ props.height }
                 maxWidth={ props.maxWidth }>
@@ -38,7 +39,7 @@ export const StackChart = ({ ...props }) => {
             </Chart>
             <span className='stackChartLegend'>
                 <ChartLegend
-                    data={ props.data.map(item => ({ name: `${item.y} ${capitalize(item.name)}`, symbol: { type: null } })) }
+                    data={ legendData }
                     responsive={ false }
                     height={ props.legendHeight }
                     width={ props.legendWidth }
@@ -71,8 +72,6 @@ StackChart.propTypes = {
     domainPadding: propTypes.array,
     data: propTypes.array,
     legendData: propTypes.array,
-    legendPosition: propTypes.array,
-    padding: propTypes.object,
     height: propTypes.number,
     width: propTypes.number,
     colorScale: propTypes.array,
