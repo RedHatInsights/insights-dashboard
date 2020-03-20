@@ -163,14 +163,14 @@ class ComplianceCard extends Component {
                                                     href={ `${UI_BASE}/compliance/policies/` }
                                                     component='a'
                                                 >
-                                                    Create a policy
+                                                    { intl.formatMessage(messages.complianceEmptyStateAction1) }
                                                 </Button>
                                                 <Button
                                                     variant='link'
                                                     component='a'
                                                     href="https://www.open-scap.org/getting-started/"
                                                 >
-                                                    Learn about OpenSCAP
+                                                    { intl.formatMessage(messages.complianceEmptyStateAction2) }
                                                 </Button>
                                             </EmptyStateSecondaryActions>
                                         </TextContent>
