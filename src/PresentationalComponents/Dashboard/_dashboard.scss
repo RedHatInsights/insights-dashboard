@@ -20,6 +20,16 @@
   padding-top: var(--pf-global--spacer--sm);
 }
 
+.ins-c-compliance__empty-state-actions {
+  margin-right: 0;
+  margin-top: var(--pf-global--spacer--sm);
+
+  > .pf-c-button {
+    padding-left: var(--pf-global--spacer--sm);
+    margin-right: var(--pf-global--spacer--sm);
+  }
+}
+
 .ins-c-compliance__row {
   display: flex;
   flex-direction: row;
