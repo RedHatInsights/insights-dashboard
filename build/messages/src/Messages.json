@@ -73,5 +73,20 @@
     "id": "deniedStateBody",
     "description": "Denied access body",
     "defaultMessage": "Contact your organization administrator(s) for more information"
+  },
+  {
+    "id": "complianceEmptyStateTitle",
+    "description": "Compliance - empty state title",
+    "defaultMessage": "No policies"
+  },
+  {
+    "id": "complianceEmptyStateAction1",
+    "description": "Compliance - empty state action 1",
+    "defaultMessage": "Create a policy"
+  },
+  {
+    "id": "complianceEmptyStateAction2",
+    "description": "Compliance - empty state action 2",
+    "defaultMessage": "Learn about OpenSCAP"
   }
 ]
