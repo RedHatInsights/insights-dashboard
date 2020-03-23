@@ -18,3 +18,7 @@ yarn-error.log*
 
 .DS_Store
 coverage
+
+## build stuff
+build
+!build/messags/src/Messages.json
