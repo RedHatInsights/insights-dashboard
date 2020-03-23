@@ -63,5 +63,20 @@
     "id": "latestVulnerabilitiesTotal",
     "description": "Vulnerabilities - latest vulnerabilities",
     "defaultMessage": "{totalLatest}"
+  },
+  {
+    "id": "complianceEmptyStateTitle",
+    "description": "Compliance - empty state title",
+    "defaultMessage": "No policies"
+  },
+  {
+    "id": "complianceEmptyStateAction1",
+    "description": "Compliance - empty state action 1",
+    "defaultMessage": "Create a policy"
+  },
+  {
+    "id": "complianceEmptyStateAction2",
+    "description": "Compliance - empty state action 2",
+    "defaultMessage": "Learn about OpenSCAP"
   }
 ]
