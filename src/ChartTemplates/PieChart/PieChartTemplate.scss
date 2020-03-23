@@ -1,7 +1,17 @@
 .ins-c-pie-chart .pf-c-chart {
-    top: -20px;
+    margin-top: 10px;
 }
 
 .ins-c-pie-chart__small .pf-c-chart {
     top: -10px;
+}
+
+.ins-c-pie-chart__row {
+    display: flex;
+    flex-direction: row;
+}
+
+.ins-c-pie-chart__legend {
+    padding-top: 12px;
+    padding-left: 15px;
 }
