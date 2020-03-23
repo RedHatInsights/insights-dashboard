@@ -15,7 +15,7 @@ const App = (props) => {
         customPolicies: false,
         compliance: false,
         drift: false,
-        insights: false,
+        advisor: false,
         remediations: false,
         patch: false,
         vulnerability: false
@@ -54,7 +54,7 @@ const App = (props) => {
                     customPolicies: permissions.customPolicies,
                     compliance: permissions.compliance,
                     drift: permissions.drift,
-                    insights: permissions.insights,
+                    advisor: permissions.advisor,
                     remediations: permissions.remediations,
                     patch: permissions.patch,
                     vulnerability: permissions.vulnerability
