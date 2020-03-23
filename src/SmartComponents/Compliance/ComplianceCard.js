@@ -80,6 +80,8 @@ class ComplianceCard extends Component {
                                         <div className="ins-c-compliance__row" key={ index }>
                                             <div className="ins-c-compliance__row-item">
                                                 <PieChart
+                                                    containerWidth={ 75 }
+                                                    containerHeight={ 75 }
                                                     ariaDesc="Operating systems used"
                                                     ariaTitle="Pie chart operating systems"
                                                     constrainToVisibleArea={ true }
@@ -87,10 +89,10 @@ class ComplianceCard extends Component {
                                                         { x: element.attributes.name, y: element.attributes.score * 100 },
                                                         { x: 'empty', y: 100 }
                                                     ] }
-                                                    height={ 75 }
+                                                    height={ 100 }
                                                     labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
                                                     padding={ pieChartPadding }
-                                                    width={ 75 }
+                                                    width={ 100 }
                                                     colorScale={ ['#002f5d', '#06c', '#8bc1f7'] }
                                                 />
                                             </div>

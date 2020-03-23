@@ -6,37 +6,32 @@ import './PieChartTemplate.scss';
 
 export const PieChart = ({ ...props }) => {
     return (
-        <div className="ins-c-pie-chart__row">
-            <div className="ins-c-pie-chart" style={ { width: props.width, height: props.height } }>
-                <ChartPie
-                    ariaDesc={ props.ariaDesc }
-                    ariaTitle={ props.ariaTitle }
-                    constrainToVisibleArea={ props.constrainToVisibleArea }
-                    data={ props.data }
-                    height={ props.height }
-                    labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
-                    padding={ props.padding }
-                    width={ props.width }
-                    colorScale={ props.colorScale }
-                />
-            </div>
-            { props.legend === 'true' &&
-                <div className="ins-c-pie-chart__legend" style={ { width: props.legendWidth, height: props.legendHeight } }>
-                    <ChartLegend
-                        height={ props.legendHeight }
-                        width={ props.legendWidth }
-                        fontSize={ 14 }
-                        data={ props.legendData }
-                        rowGutter={ { top: -5, bottom: -5 } }
-                        orientation={ props.legendOrientation }
-                    />
-                </div>
-            }
+        <div className={ props.className } style={ { width: props.containerWidth, height: props.containerHeight } }>
+            <ChartPie
+                ariaDesc={ props.ariaDesc }
+                ariaTitle={ props.ariaTitle }
+                constrainToVisibleArea={ props.constrainToVisibleArea }
+                data={ props.data }
+                height={ props.height }
+                labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
+                legendComponent={ <ChartLegend
+                    data={ props.legendData }
+                    rowGutter={ 0.5 }
+                /> }
+                legendOrientation={ props.legendOrientation }
+                legendPosition={ props.legendPosition }
+                padding={ props.padding }
+                width={ props.width }
+                colorScale={ props.colorScale }
+            />
         </div>
     );
 };
 
 PieChart.propTypes = {
+    className: propTypes.string,
+    containerWidth: propTypes.number,
+    containerHeight: propTypes.number,
     ariaDesc: propTypes.string,
     ariaTitle: propTypes.string,
     constrainToVisibleArea: propTypes.boolean,
@@ -44,12 +39,11 @@ PieChart.propTypes = {
     legendData: propTypes.array,
     padding: propTypes.object,
     height: propTypes.number,
-    width: propTypes.number,
     legendOrientation: propTypes.boolean,
+    legendPosition: propTypes.boolean,
+    width: propTypes.number,
     colorScale: propTypes.array,
-    legend: propTypes.boolean,
-    legendWidth: propTypes.number,
-    legendHeight: propTypes.number
+    maxWidth: propTypes.number
 };
 
 export default PieChart;
