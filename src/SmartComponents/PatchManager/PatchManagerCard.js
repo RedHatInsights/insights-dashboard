@@ -1,18 +1,21 @@
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { patchmanFetchBugs, patchmanFetchEnhancements, patchmanFetchSecurity, patchmanFetchSystems } from '../../AppActions';
 import { PATCHMAN_ID, UI_BASE } from '../../AppConstants';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
+import messages from '../../Messages';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
+import './PatchManagerCard.scss';
 
 /**
  * Operating systems card for showing the ratio of operating systems used.
  */
 const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity, securityStatus,
-    security, bugs, fetchBugs, bugsStatus, enhancements, fetchEnhancements, enhancementsStatus }) => {
+    security, bugs, fetchBugs, bugsStatus, enhancements, fetchEnhancements, enhancementsStatus, intl }) => {
 
     React.useEffect(() => {
         fetchSystems();
@@ -24,14 +27,14 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
     const isLoaded = [systemsStatus, securityStatus, bugsStatus, enhancementsStatus].every(item => item === 'fulfilled');
 
     const pieChartData = [
-        { x: 'security advisories', y: security, fill: '#004b95' },
-        { x: 'bug fixes', y: bugs, fill: '#06c' },
-        { x: 'enhancements', y: enhancements, fill: '#519de9' }
+        { x: intl.formatMessage(messages.securityAdvisories, { count: security }), y: security, fill: '#004b95' },
+        { x: intl.formatMessage(messages.bugfixAdvisories, { count: bugs }), y: bugs, fill: '#06c' },
+        { x: intl.formatMessage(messages.enhancementAdvisories, { count: enhancements }), y: enhancements, fill: '#519de9' }
     ];
     const pieChartLegendData = pieChartData.map(item => ({ name: `${item.y} ${item.x}`, symbol: { fill: `${item.fill}`, type: 'circle' } }));
     const colorScale = ['#004b95', '#06c', '#519de9'];
     const pieChartPadding = { bottom: 0, left: 0, right: 220, top: 0 };
-    return <TemplateCard appName='PatchManager'>
+    return <TemplateCard appName='PatchManager' className={ 'ins-c-dashboard__card--Patch' }>
         <TemplateCardHeader subtitle='Patch manager'/>
         <TemplateCardBody>
             {!isLoaded ? <Loading/> :
@@ -41,9 +44,8 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                         href={ `${UI_BASE}/${PATCHMAN_ID}/systems` }
                         variant="link"
                         isInline
-                        style={ { textAlign: 'left', zIndex: 3 } }
                     >
-                        <span>{systems} systems affected</span>
+                        <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
                     </Button>
                     <PieChart
                         className="ins-c-pie-chart"
@@ -80,10 +82,11 @@ PatchManagerCard.propTypes = {
     bugsStatus: PropTypes.string,
     fetchEnhancements: PropTypes.func,
     enhancements: PropTypes.number,
-    enhancementsStatus: PropTypes.string
+    enhancementsStatus: PropTypes.string,
+    intl: PropTypes.any
 };
 
-export default connect(
+export default injectIntl(connect(
     ({ DashboardStore }) => ({
         systems: DashboardStore.patchmanSystems,
         systemsStatus: DashboardStore.patchmanSystemsStatus,
@@ -100,4 +103,4 @@ export default connect(
         fetchBugs: (url) => dispatch(patchmanFetchBugs(url)),
         fetchEnhancements: (url) => dispatch(patchmanFetchEnhancements(url))
     })
-)(PatchManagerCard);
+)(PatchManagerCard));
