@@ -10,7 +10,7 @@ import {
     EmptyStateBody
 } from '@patternfly/react-core/dist/js/components/EmptyState';
 
-import { LockIcon } from '@patternfly/react-icons';
+import { LockIcon } from '@patternfly/react-icons/dist/js/icons/lock-icon';
 
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';

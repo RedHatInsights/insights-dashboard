@@ -51,7 +51,7 @@ const Dashboard = ({ intl }) => {
                 </div>
                 <div className="dashboard-card-rules">
                     <Suspense fallback={ <Loading /> }>
-                        { permission.insights ? <AdvisorCard /> : <DeniedState appName='Advisor'/> }
+                        { permission.advisor ? <AdvisorCard /> : <DeniedState appName='Advisor'/> }
                     </Suspense>
                 </div>
                 <div className="dashboard-card-vulnerabilities">

@@ -34,7 +34,7 @@ const App = (props) => {
                     customPolicies: permissionList.includes('custom-policies:*:*'),
                     compliance: permissionList.includes('compliance:*:*'),
                     drift: permissionList.includes('drift:*:*'),
-                    insights: permissionList.includes('insights:*:*'),
+                    advisor: permissionList.includes('insights:*:*'),
                     remediations: permissionList.includes('remediations:*:*') ||
                         permissionList.includes('remediations:remediation:*') ||
                         permissionList.includes('remediations:remediation:read') ||
