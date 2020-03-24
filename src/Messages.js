@@ -91,5 +91,25 @@ export default defineMessages({
         id: 'complianceEmptyStateAction2',
         description: 'Compliance - empty state action 2',
         defaultMessage: 'Learn about OpenSCAP'
+    },
+    securityAdvisories: {
+        id: 'securityAdvisories',
+        description: 'Patch - security advisories',
+        defaultMessage: '{count, plural, one {security advisory} other {security advisories}}'
+    },
+    bugfixAdvisories: {
+        id: 'bugfixAdvisories',
+        description: 'Patch - bugfix advisories',
+        defaultMessage: '{count, plural, one {bug fix} other {bug fixes}}'
+    },
+    enhancementAdvisories: {
+        id: 'enhancementAdvisories',
+        description: 'Patch - enhancement advisories',
+        defaultMessage: '{count, plural, one {enhancement} other {enhancements}}'
+    },
+    systemsAffected: {
+        id: 'systemsAffected',
+        description: 'Patch - systems affected',
+        defaultMessage: '{count, plural, one {# system} other {# systems}} affected'
     }
 });

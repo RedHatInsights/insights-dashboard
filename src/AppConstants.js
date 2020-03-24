@@ -34,3 +34,15 @@ export const ADVISOR_STATS_SYSTEMS_FETCH_URL = `${BASE_URL}${ADV_BASE}/stats/sys
 export const ADVISOR_STATS_SYSTEMS_FETCH = 'ADVISOR_STATS_SYSTEMS_FETCH';
 export const ADVISOR_INCIDENTS_FETCH = 'ADVISOR_INCIDENTS_FETCH';
 export const ADVISOR_INCIDENTS_FETCH_URL = `${BASE_URL}/insights/v1/rule/?impacting=true&reports_shown=true&sort=-publish_date&offset=0&limit=10&incident=true`;
+
+// Patchman App Constants
+export const PATCHMAN_ID = 'patch';
+export const PATCHMAN_VER = 'v1';
+export const PATCHMAN_SYSTEMS_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCHMAN_VER}/systems`;
+export const PATCHMAN_SYSTEMS_FETCH = 'PATCHMAN_SYSTEMS_FETCH';
+export const PATCHMAN_SECURITY_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCHMAN_VER}/advisories?filter[advisory_type]=3`;
+export const PATCHMAN_SECURITY_FETCH = 'PATCHMAN_SECURITY_FETCH';
+export const PATCHMAN_BUGS_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCHMAN_VER}/advisories?filter[advisory_type]=2`;
+export const PATCHMAN_BUGS_FETCH = 'PATCHMAN_BUGS_FETCH';
+export const PATCHMAN_ENHANCEMENTS_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCHMAN_VER}/advisories/?filter[advisory_type]=1`;
+export const PATCHMAN_ENHANCEMENTS_FETCH = 'PATCHMAN_ENHANCEMENTS_FETCH';
