@@ -22,10 +22,11 @@ const App = (props) => {
     });
     const [arePermissionsReady, setArePermissionReady] = useState(false);
 
-    useEffect(() => {
+    async function initChrome () {
         insights.chrome.init();
         insights.chrome.identifyApp('dashboard');
-
+        // wait for auth first, otherwise the call to RBAC may 401
+        await window.insights.chrome.auth.getUser();
         // TODO: Update this function to query multiple apps instead of empty request (limited by API)
         insights.chrome.getUserPermissions().then(
             dashboardPermissions => {
@@ -45,6 +46,10 @@ const App = (props) => {
                 setArePermissionReady(true);
             }
         );
+    }
+
+    useEffect(() => {
+        initChrome();
     }, []);
 
     return (
