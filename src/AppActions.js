@@ -41,3 +41,23 @@ export const advisorFetchIncidents = (options) => ({
     type: ActionTypes.ADVISOR_INCIDENTS_FETCH,
     payload: fetchData(ActionTypes.ADVISOR_INCIDENTS_FETCH_URL, {}, options)
 });
+
+export const patchmanFetchSystems = (options) => ({
+    type: ActionTypes.PATCHMAN_SYSTEMS_FETCH,
+    payload: fetchData(ActionTypes.PATCHMAN_SYSTEMS_FETCH_URL, {}, options)
+});
+
+export const patchmanFetchSecurity = (options) => ({
+    type: ActionTypes.PATCHMAN_SECURITY_FETCH,
+    payload: fetchData(ActionTypes.PATCHMAN_SECURITY_FETCH_URL, {}, options)
+});
+
+export const patchmanFetchBugs = (options) => ({
+    type: ActionTypes.PATCHMAN_BUGS_FETCH,
+    payload: fetchData(ActionTypes.PATCHMAN_BUGS_FETCH_URL, {}, options)
+});
+
+export const patchmanFetchEnhancements = (options) => ({
+    type: ActionTypes.PATCHMAN_ENHANCEMENTS_FETCH,
+    payload: fetchData(ActionTypes.PATCHMAN_ENHANCEMENTS_FETCH_URL, {}, options)
+});
