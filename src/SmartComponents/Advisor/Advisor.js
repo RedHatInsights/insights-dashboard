@@ -3,7 +3,7 @@ import './_Advisor.scss';
 import * as AppActions from '../../AppActions';
 
 import { INCIDENT_URL, NEW_REC_URL } from './Constants';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import PropTypes from 'prop-types';
@@ -21,22 +21,30 @@ import { SEVERITY_MAP } from './Constants';
 const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
     advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, systemsStats, systemsStatsStatus, intl }) => {
 
+    const [chartData, setChartData] = useState([]);
+
+    const getLatestData = useCallback(() => {
+        if (recStatsStatus === 'fulfilled') {
+            let data = recStats.total_risk;
+            let dataChart = [
+                { name: intl.formatMessage(messages.critical), y: data[SEVERITY_MAP.critical] },
+                { name: intl.formatMessage(messages.important), y: data[SEVERITY_MAP.important] },
+                { name: intl.formatMessage(messages.moderate), y: data[SEVERITY_MAP.moderate] },
+                { name: intl.formatMessage(messages.low), y: data[SEVERITY_MAP.low] }
+            ];
+            setChartData(dataChart);
+        }
+    }, [recStats, recStatsStatus, intl]);
+
     useEffect(() => {
         advisorFetchStatsRecs();
         advisorFetchStatsSystems();
         advisorFetchIncidents();
     }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems]);
 
-    let chartData = [];
-    if (recStatsStatus === 'fulfilled') {
-        let data = recStats.total_risk;
-        chartData = [
-            { name: intl.formatMessage(messages.critical), y: data[SEVERITY_MAP.critical] },
-            { name: intl.formatMessage(messages.important), y: data[SEVERITY_MAP.important] },
-            { name: intl.formatMessage(messages.moderate), y: data[SEVERITY_MAP.moderate] },
-            { name: intl.formatMessage(messages.low), y: data[SEVERITY_MAP.low] }
-        ];
-    }
+    useEffect(() => {
+        getLatestData();
+    }, [getLatestData]);
 
     const legendClick = () => [{
         target: 'labels',
