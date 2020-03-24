@@ -39,33 +39,33 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
         <TemplateCardBody>
             {!isLoaded ? <Loading/> :
                 <React.Fragment>
-                <Button
-                    component="a"
-                    href={ `${UI_BASE}/${PATCHMAN_ID}/systems` }
-                    variant="link"
-                    isInline
-                >
-                    <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
-                </Button>
-                <PieChart
-                    ariaDesc="Operating systems used"
-                    ariaTitle="Pie chart operating systems"
-                    constrainToVisibleArea={ true }
-                    data={ pieChartData }
-                    labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
-                    padding={ pieChartPadding }
-                    height={ 65 }
-                    width={ 65 }
-                    colorScale={ colorScale }
-                    legend="true"
-                    legendData={ pieChartLegendData }
-                    legendOrientation="vertical"
-                    legendHeight={ 75 }
-                    legendWidth={ 200 }
-                />
-            </React.Fragment>
-        }
-    </TemplateCardBody>
+                    <Button
+                        component="a"
+                        href={ `${UI_BASE}/${PATCHMAN_ID}/systems` }
+                        variant="link"
+                        isInline
+                    >
+                        <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
+                    </Button>
+                    <PieChart
+                        ariaDesc="Operating systems used"
+                        ariaTitle="Pie chart operating systems"
+                        constrainToVisibleArea={ true }
+                        data={ pieChartData }
+                        labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
+                        padding={ pieChartPadding }
+                        height={ 65 }
+                        width={ 65 }
+                        colorScale={ colorScale }
+                        legend="true"
+                        legendData={ pieChartLegendData }
+                        legendOrientation="vertical"
+                        legendHeight={ 75 }
+                        legendWidth={ 200 }
+                    />
+                </React.Fragment>
+            }
+        </TemplateCardBody>
     </TemplateCard>;
 };
 
