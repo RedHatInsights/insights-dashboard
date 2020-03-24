@@ -16,5 +16,9 @@
   "deniedStateBody": "Contact your organization administrator(s) for more information",
   "complianceEmptyStateTitle": "No policies",
   "complianceEmptyStateAction1": "Create a policy",
-  "complianceEmptyStateAction2": "Learn about OpenSCAP"
+  "complianceEmptyStateAction2": "Learn about OpenSCAP",
+  "securityAdvisories": "{count, plural, one {security advisory} other {security advisories}}",
+  "bugfixAdvisories": "{count, plural, one {bug fix} other {bug fixes}}",
+  "enhancementAdvisories": "{count, plural, one {enhancement} other {enhancements}}",
+  "systemsAffected": "{count, plural, one {# system} other {# systems}} affected"
 }

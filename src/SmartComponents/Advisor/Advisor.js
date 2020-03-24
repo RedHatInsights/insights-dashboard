@@ -3,16 +3,17 @@ import './_Advisor.scss';
 import * as AppActions from '../../AppActions';
 
 import { INCIDENT_URL, NEW_REC_URL } from './Constants';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import PropTypes from 'prop-types';
-import StackChart from './StackChart';
 import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
 import { NumberDescription } from '../../PresentationalComponents/NumberDescription/NumberDescription';
+import StackChartTemplate from '../../ChartTemplates/StackChart/StackChartTemplate';
+import { SEVERITY_MAP } from './Constants';
 
 /**
  * Advisor Card for showing count/severity of rec hits
@@ -20,11 +21,39 @@ import { NumberDescription } from '../../PresentationalComponents/NumberDescript
 const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
     advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, systemsStats, systemsStatsStatus, intl }) => {
 
+    const [chartData, setChartData] = useState([]);
+
+    const getLatestData = useCallback(() => {
+        if (recStatsStatus === 'fulfilled') {
+            let data = recStats.total_risk;
+            let dataChart = [
+                { name: intl.formatMessage(messages.critical), y: data[SEVERITY_MAP.critical] },
+                { name: intl.formatMessage(messages.important), y: data[SEVERITY_MAP.important] },
+                { name: intl.formatMessage(messages.moderate), y: data[SEVERITY_MAP.moderate] },
+                { name: intl.formatMessage(messages.low), y: data[SEVERITY_MAP.low] }
+            ];
+            setChartData(dataChart);
+        }
+    }, [recStats, recStatsStatus, intl]);
+
     useEffect(() => {
         advisorFetchStatsRecs();
         advisorFetchStatsSystems();
         advisorFetchIncidents();
     }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems]);
+
+    useEffect(() => {
+        getLatestData();
+    }, [getLatestData]);
+
+    const legendClick = () => [{
+        target: 'labels',
+        mutation: (data) => {
+            const risk = data.datum.name.split(' ')[1].toLowerCase();
+            window.location.href =
+                `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10`;
+        }
+    }];
 
     return <TemplateCard appName='Advisor'>
         <TemplateCardHeader title='Advisor recommendations' />
@@ -39,7 +68,19 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                     link={ `${UI_BASE}${INCIDENT_URL}` }
                 />
             }
-            {recStatsStatus !== 'fulfilled' ? <Loading /> : <StackChart data={ recStats.total_risk } />}
+            {recStatsStatus !== 'fulfilled' ? <Loading /> :
+                <StackChartTemplate
+                    ariaDesc="CVEs impacting your systems"
+                    ariaTitle="Vulnerabilities chart"
+                    height={ 40 }
+                    width={ 600 }
+                    maxWidth={ 600 }
+                    legendHeight={ 36 }
+                    legendWidth={ 600 }
+                    data={ chartData }
+                    legendClick={ legendClick }
+                />
+            }
             {systemsStatsStatus !== 'fulfilled' ? <Loading /> :
                 <React.Fragment>
                     <a href={ `${UI_BASE}${NEW_REC_URL}` }>
