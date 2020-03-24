@@ -33,7 +33,7 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
     ];
     const pieChartLegendData = pieChartData.map(item => ({ name: `${item.y} ${item.x}`, symbol: { fill: `${item.fill}`, type: 'circle' } }));
     const colorScale = ['#004b95', '#06c', '#519de9'];
-    const pieChartPadding = { bottom: 0, left: 0, right: 220, top: 0 };
+    const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
     return <TemplateCard appName='PatchManager' className={ 'ins-c-dashboard__card--Patch' }>
         <TemplateCardHeader subtitle='Patch manager'/>
         <TemplateCardBody>
@@ -48,21 +48,20 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                         <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
                     </Button>
                     <PieChart
-                        className="ins-c-pie-chart"
-                        containerWidth={ 275 }
-                        containerHeight={ 90 }
                         ariaDesc="Operating systems used"
                         ariaTitle="Pie chart operating systems"
                         constrainToVisibleArea={ true }
                         data={ pieChartData }
-                        height={ 150 }
                         labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
+                        padding={ pieChartPadding }
+                        height={ 65 }
+                        width={ 65 }
+                        colorScale={ colorScale }
+                        legend="true"
                         legendData={ pieChartLegendData }
                         legendOrientation="vertical"
-                        legendPosition="right"
-                        padding={ pieChartPadding }
-                        width={ 290 }
-                        colorScale={ colorScale }
+                        legendHeight={ 75 }
+                        legendWidth={ 200 }
                     />
                 </React.Fragment>
             }
