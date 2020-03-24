@@ -7,7 +7,7 @@ import ExclamationCircleIcon from '@patternfly/react-icons/dist/js/icons/exclama
 
 export const NumberDescription = ({ data, dataSize, link, linkDescription, layout, critical }) => (
     <div className={ `ins-c-dashboard__number-description pf-m-${layout}` }>
-        { critical && (
+        { critical === 'true' && (
             <ExclamationCircleIcon className='ins-c-summary__icon ins-c-summary__icon-critical' />
         )}
         <NumberData data={ data } dataSize={ dataSize }/>
