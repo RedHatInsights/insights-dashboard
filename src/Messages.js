@@ -66,5 +66,30 @@ export default defineMessages({
         id: 'latestVulnerabilitiesTotal',
         description: 'Vulnerabilities - latest vulnerabilities',
         defaultMessage: '{totalLatest}'
+    },
+    deniedStateTitle: {
+        id: 'deniedStateTitle',
+        description: 'Denied state title',
+        defaultMessage: 'You do not have access to {appName}'
+    },
+    deniedStateBody: {
+        id: 'deniedStateBody',
+        description: 'Denied access body',
+        defaultMessage: 'Contact your organization administrator(s) for more information'
+    },
+    complianceEmptyStateTitle: {
+        id: 'complianceEmptyStateTitle',
+        description: 'Compliance - empty state title',
+        defaultMessage: 'No policies'
+    },
+    complianceEmptyStateAction1: {
+        id: 'complianceEmptyStateAction1',
+        description: 'Compliance - empty state action 1',
+        defaultMessage: 'Create a policy'
+    },
+    complianceEmptyStateAction2: {
+        id: 'complianceEmptyStateAction2',
+        description: 'Compliance - empty state action 2',
+        defaultMessage: 'Learn about OpenSCAP'
     }
 });
