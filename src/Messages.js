@@ -67,6 +67,16 @@ export default defineMessages({
         description: 'Vulnerabilities - latest vulnerabilities',
         defaultMessage: '{totalLatest}'
     },
+    deniedStateTitle: {
+        id: 'deniedStateTitle',
+        description: 'Denied state title',
+        defaultMessage: 'You do not have access to {appName}'
+    },
+    deniedStateBody: {
+        id: 'deniedStateBody',
+        description: 'Denied access body',
+        defaultMessage: 'Contact your organization administrator(s) for more information'
+    },
     complianceEmptyStateTitle: {
         id: 'complianceEmptyStateTitle',
         description: 'Compliance - empty state title',
