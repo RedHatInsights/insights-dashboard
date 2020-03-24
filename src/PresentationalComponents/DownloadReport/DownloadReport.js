@@ -4,7 +4,7 @@ import DownloadIcon from '@patternfly/react-icons/dist/js/icons/download-icon';
 import './DownloadReport.scss';
 
 export const DownloadReport = () => (
-    <Button variant="link" icon={ <DownloadIcon /> }>
+    <Button className="ins-c-download-report__button" variant="link" icon={ <DownloadIcon /> }>
         Report
     </Button>
 );
