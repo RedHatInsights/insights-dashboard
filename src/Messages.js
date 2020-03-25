@@ -102,6 +102,11 @@ export default defineMessages({
         description: 'Compliance - empty state title',
         defaultMessage: 'No policies'
     },
+    complianceEmptyStateBody: {
+        id: 'complianceEmptyStateBody',
+        description: 'Compliance - empty state body',
+        defaultMessage: `The compliance service uses OpenSCAP policies to track your organization's adherence to compliance requirements`
+    },
     complianceEmptyStateAction1: {
         id: 'complianceEmptyStateAction1',
         description: 'Compliance - empty state action 1',
