@@ -151,8 +151,7 @@ class ComplianceCard extends Component {
                                             { intl.formatMessage(messages.complianceEmptyStateTitle) }
                                         </Title>
                                         <EmptyStateBody>
-                                            The compliance service uses OpenSCAP policies to track your organization&apos;s
-                                            adherence to compliance requirements
+                                            { intl.formatMessage(messages.complianceEmptyStateBody) }
                                         </EmptyStateBody>
                                         <EmptyStateSecondaryActions>
                                             <Button
