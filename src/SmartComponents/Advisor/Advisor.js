@@ -1,19 +1,18 @@
-import './_Advisor.scss';
-
 import * as AppActions from '../../AppActions';
 
 import { INCIDENT_URL, NEW_REC_URL } from './Constants';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
+
 import Loading from '../../PresentationalComponents/Loading/Loading';
+import { NumberDescription } from '../../PresentationalComponents/NumberDescription/NumberDescription';
 import PropTypes from 'prop-types';
+import { SEVERITY_MAP } from './Constants';
+import StackChartTemplate from '../../ChartTemplates/StackChart/StackChartTemplate';
 import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
-import { NumberDescription } from '../../PresentationalComponents/NumberDescription/NumberDescription';
-import StackChartTemplate from '../../ChartTemplates/StackChart/StackChartTemplate';
-import { SEVERITY_MAP } from './Constants';
 
 /**
  * Advisor Card for showing count/severity of rec hits
@@ -23,19 +22,6 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
 
     const [chartData, setChartData] = useState([]);
 
-    const getLatestData = useCallback(() => {
-        if (recStatsStatus === 'fulfilled') {
-            let data = recStats.total_risk;
-            let dataChart = [
-                { name: intl.formatMessage(messages.critical), y: data[SEVERITY_MAP.critical] },
-                { name: intl.formatMessage(messages.important), y: data[SEVERITY_MAP.important] },
-                { name: intl.formatMessage(messages.moderate), y: data[SEVERITY_MAP.moderate] },
-                { name: intl.formatMessage(messages.low), y: data[SEVERITY_MAP.low] }
-            ];
-            setChartData(dataChart);
-        }
-    }, [recStats, recStatsStatus, intl]);
-
     useEffect(() => {
         advisorFetchStatsRecs();
         advisorFetchStatsSystems();
@@ -43,8 +29,13 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
     }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems]);
 
     useEffect(() => {
-        getLatestData();
-    }, [getLatestData]);
+        recStatsStatus === 'fulfilled' && setChartData([
+            { name: intl.formatMessage(messages.critical), y: recStats.total_risk[SEVERITY_MAP.critical] },
+            { name: intl.formatMessage(messages.important), y: recStats.total_risk[SEVERITY_MAP.important] },
+            { name: intl.formatMessage(messages.moderate), y: recStats.total_risk[SEVERITY_MAP.moderate] },
+            { name: intl.formatMessage(messages.low), y: recStats.total_risk[SEVERITY_MAP.low] }
+        ]);
+    }, [intl, recStats, recStatsStatus]);
 
     const legendClick = () => [{
         target: 'labels',
