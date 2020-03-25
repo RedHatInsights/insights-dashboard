@@ -57,10 +57,30 @@ export default defineMessages({
         description: 'Remediations - remediations total',
         defaultMessage: '{total} more remediations'
     },
+    vulnerabilitiesTitle: {
+        id: 'vulnerabilitiesTitle',
+        description: 'Vulnerability card header',
+        defaultMessage: 'Vulnerabilities'
+    },
     vulnerabilitiesTotalItems: {
         id: 'vulnerabilitiesTotalItems',
         description: 'Vulnerabilities - vulnerability total',
         defaultMessage: '{total}'
+    },
+    lastxdays: {
+        id: 'lastxdays',
+        description: 'Last x days label where x is a predefined value',
+        defaultMessage: 'Last {days} days'
+    },
+    cvesImpactingSystems: {
+        id: 'cvesImpactingSystems',
+        description: 'Vulnerability - cve impacting link',
+        defaultMessage: '{cves, plural, one {CVE} other {CVEs}} impacting your systems'
+    },
+    vulnerabilityLearnMore: {
+        id: 'vulnerabilityLearnMore',
+        description: 'Vulnerability - learn more link',
+        defaultMessage: 'Learn about CVSS Scores'
     },
     latestVulnerabilitiesTotal: {
         id: 'latestVulnerabilitiesTotal',

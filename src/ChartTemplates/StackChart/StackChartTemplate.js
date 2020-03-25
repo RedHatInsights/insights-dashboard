@@ -1,9 +1,18 @@
 /* eslint-disable camelcase */
+import './_StackChartTemplate.scss';
+
+import { Chart, ChartAxis, ChartBar, ChartLegend, ChartStack, ChartTooltip } from '@patternfly/react-charts';
+import {
+    c_button_m_control_active_after_BorderBottomColor,
+    global_palette_gold_300,
+    global_palette_gold_400,
+    global_palette_orange_300,
+    global_palette_red_200
+} from '@patternfly/react-tokens';
+
 import React from 'react';
-import propTypes from 'prop-types';
 import { capitalize } from '../../Utilities/Common';
-import { Chart, ChartLegend, ChartBar, ChartAxis, ChartStack, ChartTooltip } from '@patternfly/react-charts';
-import { global_palette_gold_300, global_palette_gold_400, global_palette_orange_300, global_palette_red_200 } from '@patternfly/react-tokens';
+import propTypes from 'prop-types';
 
 export const StackChart = ({ ...props }) => {
 
@@ -44,6 +53,7 @@ export const StackChart = ({ ...props }) => {
                     height={ props.legendHeight }
                     width={ props.legendWidth }
                     fontSize={ chartLegendFontSize }
+                    style={ { labels: { fill: c_button_m_control_active_after_BorderBottomColor.value } } }
                     events={ [{
                         target: 'labels', eventHandlers: {
                             onClick: props.legendClick,

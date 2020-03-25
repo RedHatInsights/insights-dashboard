@@ -1,8 +1,6 @@
 /* eslint-disable max-len */
 import * as urijs from 'urijs';
 
-import moment from 'moment';
-
 const BASE_URL = '/api';
 export const UI_BASE = './rhel';
 
@@ -11,20 +9,9 @@ export const COMPLIANCE_FETCH = 'COMPLIANCE_SUMMARY_FETCH';
 export const COMPLIANCE_FETCH_URL = `${BASE_URL}/compliance/profiles`;
 
 // Vulnerability App Constants
-const VULN_CVES = '/vulnerability/v1/vulnerabilities/cves';
-export const CRITICAL_VULNERABILITIES_FETCH = 'CRITICAL_VULNERABILITIES_FETCH';
-export const LATEST_VULNERABILITIES_FETCH = 'LATEST_VULNERABILITIES_FETCH';
+const VULN_CVES = '/vulnerability/v1/report/executive';
 export const VULNERABILITIES_FETCH = 'VULNERABILITIES_FETCH';
-export const CRITICAL_VULNERABILITIES_FETCH_URL = urijs(`${BASE_URL}${VULN_CVES}`)
-.addSearch('cvss_from', 8)
-.toString();
-export const LATEST_VULNERABILITIES_FETCH_URL = urijs(`${BASE_URL}${VULN_CVES}`)
-.addSearch('show_all', 'true')
-.addSearch('public_from', moment().subtract(7, 'days').format('YYYY-MM-DD'))
-.toString();
-export const VULNERABILITIES_FETCH_URL = urijs(`${BASE_URL}${VULN_CVES}`)
-.addSearch('page_size', 1)
-.toString();
+export const VULNERABILITIES_FETCH_URL = urijs(`${BASE_URL}${VULN_CVES}`);
 
 // Advisor App Constants
 const ADV_BASE = '/insights/v1';
