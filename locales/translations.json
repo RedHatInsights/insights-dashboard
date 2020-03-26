@@ -19,6 +19,7 @@
   "deniedStateTitle": "You do not have access to {appName}",
   "deniedStateBody": "Contact your organization administrator(s) for more information",
   "complianceEmptyStateTitle": "No policies",
+  "complianceEmptyStateBody": "The compliance service uses OpenSCAP policies to track your organization's adherence to compliance requirements",
   "complianceEmptyStateAction1": "Create a policy",
   "complianceEmptyStateAction2": "Learn about OpenSCAP",
   "securityAdvisories": "{count, plural, one {security advisory} other {security advisories}}",

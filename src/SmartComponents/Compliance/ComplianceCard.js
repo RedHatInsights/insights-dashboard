@@ -1,13 +1,13 @@
 import * as AppActions from '../../AppActions';
 import React, { Component } from 'react';
 import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
+import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateBody';
 import { EmptyStateSecondaryActions } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateSecondaryActions';
 import { Stack } from '@patternfly/react-core/dist/js/layouts/Stack/Stack';
 import { StackItem } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
 import { Split } from '@patternfly/react-core/dist/js/layouts/Split/Split';
 import { SplitItem } from '@patternfly/react-core/dist/js/layouts/Split/SplitItem';
-import { TextContent } from '@patternfly/react-core/dist/js/components/Text/TextContent';
-import { Text, TextVariants } from '@patternfly/react-core/dist/js/components/Text/Text';
+import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import {
@@ -147,31 +147,28 @@ class ComplianceCard extends Component {
                                     )
                                 ) : (
                                     <EmptyState className="ins-c-compliance__empty-state" variant={ EmptyStateVariant.full }>
-                                        <TextContent>
-                                            <Text component={ TextVariants.p }>
-                                                { intl.formatMessage(messages.complianceEmptyStateTitle) }
-                                            </Text>
-                                            <Text component={ TextVariants.small }>
-                                                The compliance service uses OpenSCAP policies to track your organization&apos;s
-                                                adherence to compliance requirements
-                                            </Text>
-                                            <EmptyStateSecondaryActions className="ins-c-compliance__empty-state-actions">
-                                                <Button
-                                                    variant='link'
-                                                    href={ `${UI_BASE}/compliance/policies/` }
-                                                    component='a'
-                                                >
-                                                    { intl.formatMessage(messages.complianceEmptyStateAction1) }
-                                                </Button>
-                                                <Button
-                                                    variant='link'
-                                                    component='a'
-                                                    href="https://www.open-scap.org/getting-started/"
-                                                >
-                                                    { intl.formatMessage(messages.complianceEmptyStateAction2) }
-                                                </Button>
-                                            </EmptyStateSecondaryActions>
-                                        </TextContent>
+                                        <Title headingLevel="h5" size="sm">
+                                            { intl.formatMessage(messages.complianceEmptyStateTitle) }
+                                        </Title>
+                                        <EmptyStateBody>
+                                            { intl.formatMessage(messages.complianceEmptyStateBody) }
+                                        </EmptyStateBody>
+                                        <EmptyStateSecondaryActions>
+                                            <Button
+                                                variant='link'
+                                                href={ `${UI_BASE}/compliance/policies/` }
+                                                component='a'
+                                            >
+                                                { intl.formatMessage(messages.complianceEmptyStateAction1) }
+                                            </Button>
+                                            <Button
+                                                variant='link'
+                                                component='a'
+                                                href="https://www.open-scap.org/getting-started/"
+                                            >
+                                                { intl.formatMessage(messages.complianceEmptyStateAction2) }
+                                            </Button>
+                                        </EmptyStateSecondaryActions>
                                     </EmptyState>
                                 ))
                             )
