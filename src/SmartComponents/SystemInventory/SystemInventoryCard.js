@@ -1,6 +1,7 @@
 import React from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { NumberDescription } from '../../../../insights-dashboard/src/PresentationalComponents/NumberDescription/NumberDescription';
+import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -8,17 +9,17 @@ import { NumberDescription } from '../../../../insights-dashboard/src/Presentati
 const SystemInventoryCard = () => {
     return <TemplateCard appName='SystemInventory'>
         <TemplateCardHeader subtitle='System inventory and status'/>
-        <TemplateCardBody isHorizontalLayout="true" isFilled={ false }>
+        <TemplateCardBody isFilled={ false }>
             <NumberDescription
-                data="0"
-                dataSize="xl"
-                linkDescription="Connected systems"
-            />
-            <NumberDescription
-                data="0"
+                data="100000"
                 dataSize="lg"
-                linkDescription="Not checked-in last 7 days"
+                percentageData="24% of total systems"
+                linkDescription="Systems running insights-client"
             />
+        </TemplateCardBody>
+        <TemplateCardBody isFilled={ false }>
+            <IconInline message="stale systems" state="warning"/>
+            <IconInline message="systems to be removed" state="critical"/>
         </TemplateCardBody>
     </TemplateCard>;
 };

@@ -13,7 +13,7 @@ import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import { DownloadIcon } from '@patternfly/react-icons';
 import './TemplateCard.scss';
 import DownloadReport from '../../PresentationalComponents/DownloadReport/DownloadReport';
-import InfoInline from '../../PresentationalComponents/InfoInline/InfoInline';
+import IconInline from '../../PresentationalComponents/IconInline/IconInline';
 
 export const TemplateCard = ({ appName, children, ...props }) => (
     <Card className={ `ins-c-dashboard__card ins-c-dashboard__card--${appName}` } { ...props }>
@@ -36,10 +36,10 @@ TemplateCardHead.propTypes = {
     children: propTypes.any
 };
 
-export const TemplateCardActions = ({ children, downloadReport, infoInlineMessage, ...props }) => (
+export const TemplateCardActions = ({ children, downloadReport, iconInlineMessage, iconInlineState, ...props }) => (
     <CardActions { ...props }>
-        { infoInlineMessage &&
-            <InfoInline message={ infoInlineMessage }/>
+        { iconInlineMessage &&
+            <IconInline message={ iconInlineMessage } state={ iconInlineState }/>
         }
         { downloadReport &&
             <DownloadReport/>
@@ -51,7 +51,8 @@ export const TemplateCardActions = ({ children, downloadReport, infoInlineMessag
 TemplateCardActions.propTypes = {
     children: propTypes.any,
     downloadReport: propTypes.any,
-    infoInlineMessage: propTypes.string
+    iconInlineMessage: propTypes.string,
+    iconInlineState: propTypes.string
 };
 
 export const TemplateCardHeader = ({ title, subtitle, onDownload, children, ...props }) => (

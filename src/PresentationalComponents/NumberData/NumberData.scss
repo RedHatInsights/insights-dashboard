@@ -21,3 +21,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.ins-c-dashboard__number-data--number-percentage {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.ins-c-dashboard__number-percentage {
+    margin-left: var(--pf-global--spacer--sm);
+    font-size: var(--pf-global--FontSize--sm);
+
+    > :first-child {
+        margin-right: var(--pf-global--spacer--sm);
+    }
+}
