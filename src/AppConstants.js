@@ -2,7 +2,7 @@
 import * as urijs from 'urijs';
 
 const BASE_URL = '/api';
-export const UI_BASE = './rhel';
+export const UI_BASE = './insights';
 
 // Compliance App Constants
 export const COMPLIANCE_FETCH = 'COMPLIANCE_SUMMARY_FETCH';
