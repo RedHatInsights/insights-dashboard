@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment/moment';
 import Immutable from 'seamless-immutable';
-import { Tooltip, TooltipPosition } from '@patternfly/react-core';
+import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/js/components/Tooltip/Tooltip';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
@@ -123,11 +123,11 @@ SubscriptionsUtilizedCard.propTypes = {
     subscriptionsUtilizedProductTwoFetchStatus: PropTypes.string
 };
 
-const mapStateToProps = state => ({
-    subscriptionsUtilizedProductOne: state.DashboardStore.subscriptionsUtilizedProductOne,
-    subscriptionsUtilizedProductOneFetchStatus: state.DashboardStore.subscriptionsUtilizedProductOneFetchStatus,
-    subscriptionsUtilizedProductTwo: state.DashboardStore.subscriptionsUtilizedProductTwo,
-    subscriptionsUtilizedProductTwoFetchStatus: state.DashboardStore.subscriptionsUtilizedProductTwoFetchStatus
+const mapStateToProps = ({ DashboardStore }) => ({
+    subscriptionsUtilizedProductOne: DashboardStore.subscriptionsUtilizedProductOne,
+    subscriptionsUtilizedProductOneFetchStatus: DashboardStore.subscriptionsUtilizedProductOneFetchStatus,
+    subscriptionsUtilizedProductTwo: DashboardStore.subscriptionsUtilizedProductTwo,
+    subscriptionsUtilizedProductTwoFetchStatus: DashboardStore.subscriptionsUtilizedProductTwoFetchStatus
 });
 
 const mapDispatchToProps = dispatch => ({
