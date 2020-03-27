@@ -1,28 +1,30 @@
 import * as AppActions from '../../AppActions';
-import React, { Component } from 'react';
+
 import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
-import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateBody';
-import { EmptyStateSecondaryActions } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateSecondaryActions';
-import { Stack } from '@patternfly/react-core/dist/js/layouts/Stack/Stack';
-import { StackItem } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
-import { Split } from '@patternfly/react-core/dist/js/layouts/Split/Split';
-import { SplitItem } from '@patternfly/react-core/dist/js/layouts/Split/SplitItem';
-import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
-import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
-import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
+import React, { Component } from 'react';
 import {
     TemplateCard,
+    TemplateCardActions,
     TemplateCardBody,
-    TemplateCardHeader,
     TemplateCardHead,
-    TemplateCardActions
+    TemplateCardHeader
 } from '../../PresentationalComponents/Template/TemplateCard';
+
+import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
+import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateBody';
+import { EmptyStateSecondaryActions } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateSecondaryActions';
 import Loading from '../../PresentationalComponents/Loading/Loading';
+import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import PropTypes from 'prop-types';
+import { Split } from '@patternfly/react-core/dist/js/layouts/Split/Split';
+import { SplitItem } from '@patternfly/react-core/dist/js/layouts/Split/SplitItem';
+import { Stack } from '@patternfly/react-core/dist/js/layouts/Stack/Stack';
+import { StackItem } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
+import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
-import messages from '../../Messages';
 import { injectIntl } from 'react-intl';
+import messages from '../../Messages';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 
 /**
@@ -69,15 +71,15 @@ class ComplianceCard extends Component {
                 } : { 'data-ouia-safe': false } }
             >
                 <TemplateCardHead>
-                    <TemplateCardActions downloadReport="true"/>
-                    <TemplateCardHeader title='Compliance'/>
+                    <TemplateCardActions downloadReport="true" />
+                    <TemplateCardHeader title='Compliance' />
                 </TemplateCardHead>
                 <TemplateCardBody>
                     <Stack>
                         {complianceFetchStatus === 'fulfilled' &&
                             (Array.isArray(complianceSummary.data) &&
-                                (complianceSummary.data.length > 0 ? (
-                                    getTopThreePolicies(complianceSummary).map((element, index) =>
+                                (complianceSummary.data.length > 0 ? <React.Fragment>
+                                    {getTopThreePolicies(complianceSummary).map((element, index) =>
                                         <div className="ins-c-compliance__row" key={ index }>
                                             <div className="ins-c-compliance__row-item">
                                                 <PieChart
@@ -111,47 +113,46 @@ class ComplianceCard extends Component {
                                                     <StackItem>
                                                         <Split gutter='sm'>
                                                             <SplitItem>
-                                                                { intl.formatMessage(messages.compliantHostCount,
+                                                                {intl.formatMessage(messages.compliantHostCount,
                                                                     { count: element.attributes.compliant_host_count }
-                                                                ) }
+                                                                )}
                                                             </SplitItem>
                                                             <SplitItem>
-                                                                { intl.formatMessage(messages.compliantScore,
+                                                                {intl.formatMessage(messages.compliantScore,
                                                                     { score: Math.trunc(element.attributes.score * 100) }
-                                                                ) }
+                                                                )}
                                                             </SplitItem>
                                                         </Split>
                                                     </StackItem>
                                                 </Stack>
                                             </div>
                                         </div>
-                                    )
-                                    (
-                                        <div className="ins-c-compliance__row">
-                                            <div className="ins-c-compliance__row-item">
-                                            </div>
-                                            <div className="ins-c-compliance__row-item">
-                                                <Button
-                                                    className="ins-c-compliance__policy-link"
-                                                    component="a"
-                                                    href={ `/${UI_BASE}/compliance/policies/` }
-                                                    variant="link"
-                                                    isInline
-                                                >
-                                                    {complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
+                                    )}
+                                    <div className="ins-c-compliance__row">
+                                        <div className="ins-c-compliance__row-item">
+                                        </div>
+                                        <div className="ins-c-compliance__row-item">
+                                            <Button
+                                                className="ins-c-compliance__policy-link"
+                                                component="a"
+                                                href={ `/${UI_BASE}/compliance/policies/` }
+                                                variant="link"
+                                                isInline
+                                            >
+                                                {complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                                                     complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
                                                     more compliance policies
-                                                </Button>
-                                            </div>
+                                            </Button>
                                         </div>
-                                    )
-                                ) : (
+                                    </div>
+
+                                </React.Fragment> : (
                                     <EmptyState className="ins-c-compliance__empty-state" variant={ EmptyStateVariant.full }>
                                         <Title headingLevel="h5" size="sm">
-                                            { intl.formatMessage(messages.complianceEmptyStateTitle) }
+                                            {intl.formatMessage(messages.complianceEmptyStateTitle)}
                                         </Title>
                                         <EmptyStateBody>
-                                            { intl.formatMessage(messages.complianceEmptyStateBody) }
+                                            {intl.formatMessage(messages.complianceEmptyStateBody)}
                                         </EmptyStateBody>
                                         <EmptyStateSecondaryActions>
                                             <Button
@@ -159,14 +160,14 @@ class ComplianceCard extends Component {
                                                 href={ `${UI_BASE}/compliance/policies/` }
                                                 component='a'
                                             >
-                                                { intl.formatMessage(messages.complianceEmptyStateAction1) }
+                                                {intl.formatMessage(messages.complianceEmptyStateAction1)}
                                             </Button>
                                             <Button
                                                 variant='link'
                                                 component='a'
                                                 href="https://www.open-scap.org/getting-started/"
                                             >
-                                                { intl.formatMessage(messages.complianceEmptyStateAction2) }
+                                                {intl.formatMessage(messages.complianceEmptyStateAction2)}
                                             </Button>
                                         </EmptyStateSecondaryActions>
                                     </EmptyState>
