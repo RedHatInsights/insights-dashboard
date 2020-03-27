@@ -54,22 +54,23 @@ export const filterChartData = (report = [], capacity = [], filter) => {
     const reportData = report.reverse();
     const capacityData = capacity.reverse();
     let chartData = {};
+    let recordIndex = null;
 
     const [responseSchema = {}] = setResponseSchemas([
         RHSM_API_RESPONSE_DATA_TYPES
     ]);
 
-    for (let index = 0; index < reportData.length; index++) {
-        const value = reportData[index];
-        if (value[RHSM_API_RESPONSE_DATA_TYPES.HAS_DATA] === false) {
-            continue;
-        }
+    const record = reportData.find((data, index) => {
+        recordIndex = index;
+        return data[RHSM_API_RESPONSE_DATA_TYPES.HAS_DATA] === true;
+    });
 
-        const date = value[RHSM_API_RESPONSE_DATA_TYPES.DATE];
+    if (record) {
+        const date = record[RHSM_API_RESPONSE_DATA_TYPES.DATE];
         chartData = {
             date,
-            report: { ...responseSchema, ...value },
-            capacity: { ...responseSchema, ...capacityData[index] },
+            report: { ...responseSchema, ...record },
+            capacity: { ...responseSchema, ...capacityData[recordIndex] },
             percentage: undefined
         };
 
@@ -90,7 +91,6 @@ export const filterChartData = (report = [], capacity = [], filter) => {
         }
 
         chartData.percentage = percentage;
-        break;
     }
 
     return chartData;
