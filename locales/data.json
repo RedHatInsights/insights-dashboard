@@ -26,6 +26,10 @@
     "securityAdvisories": "{count, plural, one {security advisory} other {security advisories}}",
     "bugfixAdvisories": "{count, plural, one {bug fix} other {bug fixes}}",
     "enhancementAdvisories": "{count, plural, one {enhancement} other {enhancements}}",
-    "systemsAffected": "{count, plural, one {# system} other {# systems}} affected"
+    "systemsAffected": "{count, plural, one {# system} other {# systems}} affected",
+    "systemInventoryDescription": "Systems running insights-client",
+    "systemInventoryWarning1": "stale systems",
+    "systemInventoryWarning2": "systems to be removed",
+    "systemInventoryPercentageData": "0% of total systems"
   }
 }
