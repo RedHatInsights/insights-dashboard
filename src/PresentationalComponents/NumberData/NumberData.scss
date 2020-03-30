@@ -17,9 +17,6 @@
 .ins-c-dashboard__number-data--lg,
 .ins-c-dashboard__number-data--md {
     font-family: var(--pf-global--FontFamily--redhatfont--heading--sans-serif);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .ins-c-dashboard__number-data--number-percentage {
@@ -29,10 +26,20 @@
 }
 
 .ins-c-dashboard__number-percentage {
+    display: flex;
+    align-items: baseline;
     margin-left: var(--pf-global--spacer--sm);
     font-size: var(--pf-global--FontSize--sm);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
 
-    > :first-child {
+    span {
+        display: inline-block;
+        max-width: 80%;
         margin-right: var(--pf-global--spacer--sm);
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }

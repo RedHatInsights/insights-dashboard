@@ -18,8 +18,8 @@ const checkState = state => {
     }
 };
 
-export const IconInline = ({ message, state }) => (
-    <div className="ins-c-dashboard__info-inline">
+export const IconInline = ({ message, state, systemInventory }) => (
+    <div className={ 'ins-c-dashboard__info-inline' + (systemInventory ? ' ins-m-padding-top ' : '') }>
         { checkState(state) }
         <p>{ message }</p>
     </div>
@@ -27,7 +27,8 @@ export const IconInline = ({ message, state }) => (
 
 IconInline.propTypes = {
     message: propTypes.string,
-    state: propTypes.string
+    state: propTypes.string,
+    systemInventory: propTypes.boolean
 };
 
 export default IconInline;

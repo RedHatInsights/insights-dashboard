@@ -2,26 +2,39 @@ import React from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { NumberDescription } from '../../../../insights-dashboard/src/PresentationalComponents/NumberDescription/NumberDescription';
 import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
+import { injectIntl } from 'react-intl';
+import messages from '../../Messages';
+import PropTypes from 'prop-types';
 
 /**
  * System inventory card for showing system inventory and status.
  */
-const SystemInventoryCard = () => {
+const SystemInventoryCard = ({ intl }) => {
     return <TemplateCard appName='SystemInventory'>
-        <TemplateCardHeader subtitle='System inventory and status'/>
+        <TemplateCardHeader subtitle='Insights system inventory'/>
         <TemplateCardBody isFilled={ false }>
             <NumberDescription
                 data="100000"
                 dataSize="lg"
-                percentageData="24% of total systems"
-                linkDescription="Systems running insights-client"
+                percentageData={ intl.formatMessage(messages.systemInventoryPercentageData) }
+                linkDescription={ intl.formatMessage(messages.systemInventoryDescription) }
             />
-        </TemplateCardBody>
-        <TemplateCardBody isFilled={ false }>
-            <IconInline message="stale systems" state="warning"/>
-            <IconInline message="systems to be removed" state="critical"/>
+            <IconInline
+                message={ intl.formatMessage(messages.systemInventoryWarning1) }
+                state="warning"
+                systemInventory="true"
+            />
+            <IconInline
+                message={ intl.formatMessage(messages.systemInventoryWarning2) }
+                state="critical"
+                systemInventory="true"
+            />
         </TemplateCardBody>
     </TemplateCard>;
 };
 
-export default SystemInventoryCard;
+SystemInventoryCard.propTypes = {
+    intl: PropTypes.any
+};
+
+export default injectIntl(SystemInventoryCard);
