@@ -61,8 +61,8 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
             }
             {recStatsStatus !== 'fulfilled' ? <Loading /> :
                 <StackChartTemplate
-                    ariaDesc="CVEs impacting your systems"
-                    ariaTitle="Vulnerabilities chart"
+                    ariaDesc="Advisor recommendations"
+                    ariaTitle="Advisor recommendations chart"
                     height={ 40 }
                     width={ 600 }
                     maxWidth={ 600 }
