@@ -105,14 +105,12 @@ const SubscriptionsUtilizedCard = ({ intl, subscriptionsUtilizedProductOne, subs
             </Tooltip>) || <Loading key="productOneLoad" />
     ];
 
-    return (
-        <TemplateCard appName='SubscriptionsUtilized'>
-            <TemplateCardHeader subtitle={ intl.formatMessage(messages.subscriptionsUtilizedTitle) }/>
-            <TemplateCardBody>
-                {(productOne.percentage > productTwo.percentage && productOne.percentage > 100) ? charts.reverse() : charts}
-            </TemplateCardBody>
-        </TemplateCard>
-    );
+    return <TemplateCard appName='SubscriptionsUtilized'>
+        <TemplateCardHeader subtitle={ intl.formatMessage(messages.subscriptionsUtilizedTitle) }/>
+        <TemplateCardBody>
+            {(productOne.percentage > productTwo.percentage && productOne.percentage > 100) ? charts.reverse() : charts}
+        </TemplateCardBody>
+    </TemplateCard>;
 };
 
 SubscriptionsUtilizedCard.propTypes = {
