@@ -6,7 +6,7 @@ import { NumberData } from '../../PresentationalComponents/NumberData/NumberData
 import CriticalIcon from '../../Icons/CriticalIcon';
 
 export const NumberDescription = ({ data, dataSize, percentageData, link, linkDescription, layout, critical }) => (
-    <div className={ `ins-c-dashboard__number-description` + (layout ? ` pf-m-${layout}` : '') }>
+    <div className={ `ins-c-dashboard__number-description ${layout ? `pf-m-${layout}` : ''}` }>
         { critical === 'true' && (
             <CriticalIcon />
         )}
