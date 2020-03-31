@@ -1,5 +1,14 @@
-.ins-c-dashboard__card--Patch {
-    .pf-c-button.pf-m-link {
-        text-align: left;
+// Pie chart overrides in the Patch card
+.ins-c-patch__chart {
+    padding-top: var(--pf-global--spacer--sm);
+
+    .pf-c-chart {
+        margin-right: var(--pf-global--spacer--md);
+        top: var(--pf-global--spacer--sm);
     }
+}
+
+.ins-c-pie-chart__legend .pf-c-chart {
+    top: var(--pf-global--spacer--sm);
+    left: var(--pf-global--spacer--md);
 }

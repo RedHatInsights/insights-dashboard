@@ -26,6 +26,7 @@
     "securityAdvisories": "{count, plural, one {security advisory} other {security advisories}}",
     "bugfixAdvisories": "{count, plural, one {bug fix} other {bug fixes}}",
     "enhancementAdvisories": "{count, plural, one {enhancement} other {enhancements}}",
-    "systemsAffected": "{count, plural, one {# system} other {# systems}} affected"
+    "systemsAffected": "{count, plural, one {# system} other {# systems}} affected",
+    "patchTitle": "Patch"
   }
 }

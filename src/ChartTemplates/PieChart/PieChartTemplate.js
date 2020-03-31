@@ -7,7 +7,7 @@ import './PieChartTemplate.scss';
 export const PieChart = ({ ...props }) => {
     return (
         <div className="ins-c-pie-chart__row">
-            <div className="ins-c-pie-chart" style={ { width: props.width, height: props.height } }>
+            <div style={ { width: props.width, height: props.height } }>
                 <ChartPie
                     ariaDesc={ props.ariaDesc }
                     ariaTitle={ props.ariaTitle }

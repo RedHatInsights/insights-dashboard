@@ -12,6 +12,7 @@ import SlackHashIcon from '@patternfly/react-icons/dist/js/icons/slack-hash-icon
 import EnvelopeIcon from '@patternfly/react-icons/dist/js/icons/envelope-icon';
 import BellIcon from '@patternfly/react-icons/dist/js/icons/bell-icon';
 import CogsIcon from '@patternfly/react-icons/dist/js/icons/cogs-icon';
+import './CustomPoliciesCard.scss';
 
 /**
  * Custom policies card with a table

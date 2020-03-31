@@ -13,13 +13,9 @@ import TimeStamp from './../../PresentationalComponents/TimeStamp/TimeStamp';
 import messages from '../../Messages';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
+import './RemediationsCard.scss';
 
 const mockData = [
-    {
-        status: 'Running',
-        name: 'Name',
-        timestamp: 'Timestamp'
-    },
     {
         status: 'Running',
         name: 'Name',

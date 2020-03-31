@@ -1,56 +1,7 @@
-// Custom policies
-.ins-c-custom-policies__icon-group >*:not(:last-child) {
-  margin-right: var(--pf-global--spacer--md);
-}
-
-.ins-c-custom-policies__card-body {
-  @media screen and (max-width: 768px) {
-    padding: 0;
-  }
-}
-
-// Compliance
-.ins-c-compliance__policy-link {
-  white-space: pre-wrap;
+// All buttons should be text-align left and font-size 14px
+.pf-c-button.pf-m-link {
   text-align: left;
-}
-
-.ins-c-compliance__empty-state {
-  &.pf-c-empty-state {
-    padding: 0;
-  }
-
-  .pf-c-empty-state__body {
-    font-size: var(--pf-global--FontSize--sm);
-  }
-
-  .pf-c-empty-state__secondary {
-    margin-top: var(--pf-global--spacer--md);
-  }
-}
-
-.ins-c-compliance__row {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.ins-c-compliance__row:not(:first-child),
-.ins-c-compliance__row:only-of-type {
-  padding-top: var(--pf-global--spacer--md);
-}
-
-.ins-c-compliance__row-item:first-child {
-  width: 75px;
-  margin-right: var(--pf-global--spacer--lg);
-}
-
-.ins-c-compliance__row-item:last-child {
-  max-width: 200px;
-
-  > .pf-l-stack .pf-l-stack__item .pf-l-split .pf-l-split__item {
-    font-size: var(--pf-global--FontSize--sm);
-  }
+  font-size: 14px;
 }
 
 // Dashboard
@@ -113,12 +64,12 @@
 
   .dashboard-card-rules {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 1fr;
   }
 
   .dashboard-card-vulnerabilities {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 1fr;
   }
 
   .dashboard-card-custom-policies {
@@ -186,7 +137,16 @@
       display: flex;
       flex-direction: column;
       grid-column: 3;
-      grid-row: 2 / span 3;
+      grid-row: 2 / span 2;
+
+      .pf-c-card {
+        flex-grow: 1;
+      }
+    }
+
+    .dashboard-card-rules-vulnerabilities {
+      display: flex;
+      flex-direction: column;
 
       .pf-c-card {
         flex-grow: 1;
@@ -210,39 +170,5 @@
     @media screen and (max-width: 576px) {
       padding: 0px;
     }
-  }
-}
-
-.ins-c-remediations-container {
-  display: flex;
-  flex-direction: row;
-
-  &:not(:last-child) {
-    padding-bottom: var(--pf-global--spacer--md);
-  }
-}
-
-.ins-c-remediation__status {
-  display: flex;
-  flex-direction: row;
-  padding-top: 2px;
-  padding-right: 16px;
-  min-width: 100px;
-
-  > p {
-      margin-left: var(--pf-global--spacer--sm);
-      font-size: var(--pf-global--FontSize--sm);
-  }
-}
-
-.ins-c-custom-policies__table {
-  thead tr th:first-child,
-  tbody tr th:first-child {
-    padding-left: 0;
-  }
-
-  thead tr th:last-child,
-  tbody tr td:last-child {
-    padding-right: 0;
   }
 }

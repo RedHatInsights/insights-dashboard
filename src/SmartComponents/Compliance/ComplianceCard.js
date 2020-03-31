@@ -26,6 +26,7 @@ import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import messages from '../../Messages';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
+import './ComplianceCard.scss';
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -63,6 +64,7 @@ class ComplianceCard extends Component {
         } = this.props;
 
         const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
+        const colorScale = ['#06c', '#519de9'];
 
         return (
             <TemplateCard appName='Compliance' className='ins-c-card__compliance'
@@ -90,11 +92,11 @@ class ComplianceCard extends Component {
                                                         { x: element.attributes.name, y: element.attributes.score * 100 },
                                                         { x: 'empty', y: 100 }
                                                     ] }
-                                                    height={ 75 }
+                                                    height={ 65 }
+                                                    width={ 65 }
                                                     labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
                                                     padding={ pieChartPadding }
-                                                    width={ 75 }
-                                                    colorScale={ ['#002f5d', '#06c', '#8bc1f7'] }
+                                                    colorScale={ colorScale }
                                                 />
                                             </div>
                                             <div className="ins-c-compliance__row-item">

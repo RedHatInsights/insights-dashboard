@@ -4,6 +4,7 @@ import { INCIDENT_URL, NEW_REC_URL } from './Constants';
 import React, { useEffect, useState } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 
+import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { NumberDescription } from '../../PresentationalComponents/NumberDescription/NumberDescription';
 import PropTypes from 'prop-types';
@@ -73,11 +74,9 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                 />
             }
             {systemsStatsStatus !== 'fulfilled' ? <Loading /> :
-                <React.Fragment>
-                    <a href={ `${UI_BASE}${NEW_REC_URL}` }>
-                        {intl.formatMessage(messages.recsImpactingSystems, { totalRecs: recStats.total, systems: systemsStats.total })}
-                    </a>
-                </React.Fragment>}
+                <Button component="a" href={ `${UI_BASE}${NEW_REC_URL}` } variant="link" isInline>
+                    {intl.formatMessage(messages.recsImpactingSystems, { totalRecs: recStats.total, systems: systemsStats.total })}
+                </Button>}
         </TemplateCardBody>
     </TemplateCard>;
 };
