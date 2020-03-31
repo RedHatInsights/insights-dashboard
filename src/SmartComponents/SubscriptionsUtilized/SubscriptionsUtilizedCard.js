@@ -69,16 +69,18 @@ const SubscriptionsUtilizedCard = ({ intl, subscriptionsUtilizedProductOne, subs
 
     const productTwoTooltip = (
         <ul>
-            <li>RHEL sockets: {productTwo.report}</li>
-            <li>Subscription threshold: {productTwo.capacity}</li>
-            <li>Data from: {moment.utc(productTwo.date).format('MMM D, YYYY')}</li>
+            <li>{ intl.formatMessage(messages.subscriptionsUtilizedProductTwoReport, { totalReport: productTwo.report }) }</li>
+            <li>{ intl.formatMessage(messages.subscriptionsUtilizedProductCapacity, { totalCapacity: productTwo.capacity }) }</li>
+            <li>{ intl.formatMessage(messages.subscriptionsUtilizedProductDate,
+                { formattedDate: moment.utc(productTwo.date).format('MMM D, YYYY') }) }</li>
         </ul>
     );
     const productOneTooltip = (
         <ul>
-            <li>OpenShift Cores: {productOne.report}</li>
-            <li>Subscription threshold: {productOne.capacity}</li>
-            <li>Data from: {moment.utc(productOne.date).format('MMM D, YYYY')}</li>
+            <li>{ intl.formatMessage(messages.subscriptionsUtilizedProductOneReport, { totalReport: productOne.report }) }</li>
+            <li>{ intl.formatMessage(messages.subscriptionsUtilizedProductCapacity, { totalCapacity: productOne.capacity }) }</li>
+            <li>{ intl.formatMessage(messages.subscriptionsUtilizedProductDate,
+                { formattedDate: moment.utc(productOne.date).format('MMM D, YYYY') }) }</li>
         </ul>
     );
 
@@ -86,7 +88,7 @@ const SubscriptionsUtilizedCard = ({ intl, subscriptionsUtilizedProductOne, subs
         (subscriptionsUtilizedProductTwoFetchStatus === 'fulfilled' &&
             <Tooltip key="productTwo" content={ productTwoTooltip } position={ TooltipPosition.top } distance={ -30 }>
                 <ProgressTemplate
-                    title="Red Hat Enterprise Linux"
+                    title={ intl.formatMessage(messages.subscriptionsUtilizedProductTwoTitle) }
                     value={ (productTwo.percentage <= 100 && productTwo.percentage) || 0 }
                     label={ `${productTwo.percentage}%` }
                     variant={ (productTwo.percentage <= 100 && 'info') || (productTwo.percentage > 100 && 'danger') }
@@ -95,7 +97,7 @@ const SubscriptionsUtilizedCard = ({ intl, subscriptionsUtilizedProductOne, subs
         (subscriptionsUtilizedProductOneFetchStatus === 'fulfilled' &&
             <Tooltip key="productOne" content={ productOneTooltip } position={ TooltipPosition.top } distance={ -30 }>
                 <ProgressTemplate
-                    title="Red Hat OpenShift"
+                    title={ intl.formatMessage(messages.subscriptionsUtilizedProductOneTitle) }
                     value={ (productOne.percentage <= 100 && productOne.percentage) || 0 }
                     label={ `${productOne.percentage}%` }
                     variant={ (productOne.percentage <= 100 && 'info') || (productOne.percentage > 100 && 'danger') }
@@ -105,7 +107,7 @@ const SubscriptionsUtilizedCard = ({ intl, subscriptionsUtilizedProductOne, subs
 
     return (
         <TemplateCard appName='SubscriptionsUtilized'>
-            <TemplateCardHeader subtitle={ intl.formatMessage(messages.subscriptionsUtilized) }/>
+            <TemplateCardHeader subtitle={ intl.formatMessage(messages.subscriptionsUtilizedTitle) }/>
             <TemplateCardBody>
                 {(productOne.percentage > productTwo.percentage && productOne.percentage > 100) ? charts.reverse() : charts}
             </TemplateCardBody>

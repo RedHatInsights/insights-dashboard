@@ -7,10 +7,40 @@ export default defineMessages({
         description: 'Title of the dashboard',
         defaultMessage: 'Overview'
     },
-    subscriptionsUtilized: {
-        id: 'subscriptionsUtilized',
+    subscriptionsUtilizedTitle: {
+        id: 'subscriptionsUtilizedTitle',
         description: 'Title of the subscriptions utilized card',
-        defaultMessage: 'Subscriptions utilized'
+        defaultMessage: 'Subscription watch utilization summary'
+    },
+    subscriptionsUtilizedProductOneTitle: {
+        id: 'subscriptionsUtilizedProductOneTitle',
+        description: 'Subscriptions utilized card - product one title',
+        defaultMessage: 'Red Hat OpenShift'
+    },
+    subscriptionsUtilizedProductOneReport: {
+        id: 'subscriptionsUtilizedProductOneDesc',
+        description: 'Subscriptions utilized card - product one report total',
+        defaultMessage: 'OpenShift Cores: {totalReport}'
+    },
+    subscriptionsUtilizedProductTwoTitle: {
+        id: 'subscriptionsUtilizedProductTwoTitle',
+        description: 'Subscriptions utilized card - product two title',
+        defaultMessage: 'Red Hat Enterprise Linux'
+    },
+    subscriptionsUtilizedProductTwoReport: {
+        id: 'subscriptionsUtilizedProductTwoTitleDesc',
+        description: 'Subscriptions utilized card - product two report total',
+        defaultMessage: 'RHEL sockets: {totalReport}'
+    },
+    subscriptionsUtilizedProductCapacity: {
+        id: 'subscriptionsUtilizedProductCapacity',
+        description: 'Subscriptions utilized card - product capacity',
+        defaultMessage: 'Subscription threshold: {totalCapacity}'
+    },
+    subscriptionsUtilizedProductDate: {
+        id: 'subscriptionsUtilizedProductDate',
+        description: 'Subscriptions utilized card - product date',
+        defaultMessage: 'Data from: {formattedDate}'
     },
     recsImpactingSystems: {
         id: 'recsImpactingSystems',
