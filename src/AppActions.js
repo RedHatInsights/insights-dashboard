@@ -51,3 +51,19 @@ export const patchmanFetchEnhancements = (options) => ({
     type: ActionTypes.PATCHMAN_ENHANCEMENTS_FETCH,
     payload: fetchData(ActionTypes.PATCHMAN_ENHANCEMENTS_FETCH_URL, {}, options)
 });
+
+export const subscriptionsUtilizedProductOneFetch = (id, options) => ({
+    type: ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH,
+    payload: Promise.all([
+        fetchData(`${ActionTypes.SUBSCRIPTIONS_UTILIZED_REPORT_FETCH_URL}${id}`, {}, options),
+        fetchData(`${ActionTypes.SUBSCRIPTIONS_UTILIZED_CAPACITY_FETCH_URL}${id}`, {}, options)
+    ])
+});
+
+export const subscriptionsUtilizedProductTwoFetch = (id, options) => ({
+    type: ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH,
+    payload: Promise.all([
+        fetchData(`${ActionTypes.SUBSCRIPTIONS_UTILIZED_REPORT_FETCH_URL}${id}`, {}, options),
+        fetchData(`${ActionTypes.SUBSCRIPTIONS_UTILIZED_CAPACITY_FETCH_URL}${id}`, {}, options)
+    ])
+});
