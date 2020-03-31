@@ -27,7 +27,8 @@
   "enhancementAdvisories": "{count, plural, one {enhancement} other {enhancements}}",
   "systemsAffected": "{count, plural, one {# system} other {# systems}} affected",
   "systemInventoryDescription": "Systems running insights-client",
-  "systemInventoryWarning1": "stale systems",
-  "systemInventoryWarning2": "systems to be removed",
-  "systemInventoryPercentageData": "0% of total systems"
+  "systemInventoryWarning": "stale systems",
+  "systemInventoryDanger": "systems to be removed",
+  "systemInventoryPercentageData": "0% of total systems",
+  "systemInventoryTitle": "Insights system inventory"
 }

@@ -56,7 +56,7 @@ TemplateCardActions.propTypes = {
 };
 
 export const TemplateCardHeader = ({ title, subtitle, onDownload, children, ...props }) => (
-    <CardHeader className={ 'ins-c-dashboard__card--header' + (subtitle ? ' ins-m-padding-small ' : '') }  { ...props }>
+    <CardHeader className={ `ins-c-dashboard__card--header ${subtitle ? ' ins-m-padding-small ' : ''}` }  { ...props }>
         <Level>
             { title &&
                 <LevelItem>
@@ -86,7 +86,7 @@ TemplateCardHeader.propTypes = {
 };
 
 export const TemplateCardBody = ({ children, isHorizontalLayout, ...props }) => (
-    <CardBody className={ 'ins-c-dashboard__card--body' + (isHorizontalLayout ? ' ins-m-horizontal' : '') } { ...props }>
+    <CardBody className={ `ins-c-dashboard__card--body ${isHorizontalLayout ? ' ins-m-horizontal' : ''}` } { ...props }>
         { children }
     </CardBody>
 );
