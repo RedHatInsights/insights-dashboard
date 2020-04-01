@@ -85,24 +85,26 @@ const SubscriptionsUtilizedCard = ({ intl, subscriptionsUtilizedProductOne, subs
     );
 
     const charts = [
-        (subscriptionsUtilizedProductTwoFetchStatus === 'fulfilled' &&
-            <Tooltip key="productTwo" content={ productTwoTooltip } position={ TooltipPosition.top } distance={ -30 }>
-                <ProgressTemplate
-                    title={ intl.formatMessage(messages.subscriptionsUtilizedProductTwoTitle) }
-                    value={ (productTwo.percentage <= 100 && productTwo.percentage) || 0 }
-                    label={ `${productTwo.percentage}%` }
-                    variant={ (productTwo.percentage <= 100 && 'info') || (productTwo.percentage > 100 && 'danger') }
-                />
-            </Tooltip>) || <Loading key="productTwoLoad" />,
-        (subscriptionsUtilizedProductOneFetchStatus === 'fulfilled' &&
-            <Tooltip key="productOne" content={ productOneTooltip } position={ TooltipPosition.top } distance={ -30 }>
-                <ProgressTemplate
-                    title={ intl.formatMessage(messages.subscriptionsUtilizedProductOneTitle) }
-                    value={ (productOne.percentage <= 100 && productOne.percentage) || 0 }
-                    label={ `${productOne.percentage}%` }
-                    variant={ (productOne.percentage <= 100 && 'info') || (productOne.percentage > 100 && 'danger') }
-                />
-            </Tooltip>) || <Loading key="productOneLoad" />
+        (productOne.percentage !== (undefined && null) && productTwo.percentage !== (undefined && null) &&
+            (subscriptionsUtilizedProductTwoFetchStatus === 'fulfilled' && productTwo.percentage !== undefined &&
+                <Tooltip key="productTwo" content={ productTwoTooltip } position={ TooltipPosition.top } distance={ -30 }>
+                    <ProgressTemplate
+                        title={ intl.formatMessage(messages.subscriptionsUtilizedProductTwoTitle) }
+                        value={ (productTwo.percentage) || 0 }
+                        label={ `${productTwo.percentage}%` }
+                        variant={ (productTwo.percentage <= 100 && 'info') || (productTwo.percentage > 100 && 'danger') }
+                    />
+                </Tooltip>) || <Loading key="productTwoLoad" />,
+        (subscriptionsUtilizedProductOneFetchStatus === 'fulfilled' && productOne.percentage !== ('undefined' || 'null') &&
+                <Tooltip key="productOne" content={ productOneTooltip } position={ TooltipPosition.top } distance={ -30 }>
+                    <ProgressTemplate
+                        title={ intl.formatMessage(messages.subscriptionsUtilizedProductOneTitle) }
+                        value={ (productOne.percentage) || 0 }
+                        label={ `${productOne.percentage}%` }
+                        variant={ (productOne.percentage <= 100 && 'info') || (productOne.percentage > 100 && 'danger') }
+                    />
+                </Tooltip>) || <Loading key="productOneLoad" />
+        ) || <div>test</div>
     ];
 
     return <TemplateCard appName='SubscriptionsUtilized'>
