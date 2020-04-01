@@ -21,7 +21,11 @@ const initialState = Immutable({
     patchmanBugs: {},
     patchmanBugsStatus: '',
     patchmanEnhancements: {},
-    patchmanEnhancementsStatus: ''
+    patchmanEnhancementsStatus: '',
+    subscriptionsUtilizedProductOne: [],
+    subscriptionsUtilizedProductOneFetchStatus: '',
+    subscriptionsUtilizedProductTwo: [],
+    subscriptionsUtilizedProductTwoFetchStatus: ''
 });
 
 export const DashboardStore = (state = initialState, action) => {
@@ -126,6 +130,28 @@ export const DashboardStore = (state = initialState, action) => {
 
         case `${ActionTypes.PATCHMAN_ENHANCEMENTS_FETCH}_REJECTED`:
             return state.set('patchmanEnhancementsStatus', 'rejected');
+
+        // SubsUtilized Product One
+        case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH}_PENDING`:
+            return state.set('subscriptionsUtilizedProductOneFetchStatus', 'pending');
+        case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                subscriptionsUtilizedProductOne: action.payload,
+                subscriptionsUtilizedProductOneFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH}_REJECTED`:
+            return state.set('subscriptionsUtilizedProductOneFetchStatus', 'rejected');
+
+        // SubsUtilized Product Two
+        case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH}_PENDING`:
+            return state.set('subscriptionsUtilizedProductTwoFetchStatus', 'pending');
+        case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                subscriptionsUtilizedProductTwo: action.payload,
+                subscriptionsUtilizedProductTwoFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH}_REJECTED`:
+            return state.set('subscriptionsUtilizedProductTwoFetchStatus', 'rejected');
 
         default:
             return state;

@@ -1,7 +1,13 @@
 {
   "en": {
     "dashboardTitle": "Overview",
-    "subscriptionsUtilized": "Subscriptions utilized",
+    "subscriptionsUtilizedTitle": "Subscription watch utilization summary",
+    "subscriptionsUtilizedProductOneTitle": "Red Hat OpenShift",
+    "subscriptionsUtilizedProductOneDesc": "OpenShift Cores: {totalReport}",
+    "subscriptionsUtilizedProductTwoTitle": "Red Hat Enterprise Linux",
+    "subscriptionsUtilizedProductTwoTitleDesc": "RHEL sockets: {totalReport}",
+    "subscriptionsUtilizedProductCapacity": "Subscription threshold: {totalCapacity}",
+    "subscriptionsUtilizedProductDate": "Data from: {formattedDate}",
     "recsImpactingSystems": "{totalRecs, plural, one {# recommendation} other {# recommendations}}  impacting {systems, plural, one {# system} other {# systems}}",
     "incidentsDetected": "{incidents, plural, one {incident} other {incidents}} detected",
     "critical": "Critical",
