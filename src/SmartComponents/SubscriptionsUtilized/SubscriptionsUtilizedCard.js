@@ -16,7 +16,7 @@ import { RHSM_API_RESPONSE_DATA, RHSM_API_RESPONSE_DATA_TYPES, RHSM_API_PRODUCT_
 /**
  * Subscriptions utilized card for showing the portion of Subscriptions used.
  */
-const SubscriptionsUtilizedCard = ({ intl, subscriptionsUtilizedProductOne, subscriptionsUtilizedProductOneFetch,
+const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscriptionsUtilizedProductOneFetch,
     subscriptionsUtilizedProductOneFetchStatus, subscriptionsUtilizedProductTwo, subscriptionsUtilizedProductTwoFetch,
     subscriptionsUtilizedProductTwoFetchStatus }) => {
 
