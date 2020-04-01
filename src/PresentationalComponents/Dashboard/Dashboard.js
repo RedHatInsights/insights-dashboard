@@ -4,10 +4,9 @@ import { Divider } from '@patternfly/react-core/dist/js/components/Divider/Divid
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
 import { PageSection } from '@patternfly/react-core/dist/js/components/Page/PageSection';
-import PropTypes from 'prop-types';
 import { TimeStamp } from './../TimeStamp/TimeStamp';
 import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import messages from '../../Messages';
 import { PermissionContext } from '../../App';
 import DeniedState from '../DeniedState/DeniedState';
@@ -21,8 +20,11 @@ const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/P
 const CustomPoliciesCard = lazy(() => import('../../SmartComponents/CustomPolicies/CustomPoliciesCard'));
 const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
 
-const Dashboard = ({ intl }) => {
+const Dashboard = () => {
+
     const permission = useContext(PermissionContext);
+    const intl = useIntl();
+
     return (
         <React.Fragment>
             <PageSection>
@@ -78,6 +80,4 @@ const Dashboard = ({ intl }) => {
     );
 };
 
-Dashboard.propTypes = { intl: PropTypes.any };
-
-export default injectIntl(Dashboard);
+export default Dashboard;

@@ -4,10 +4,10 @@ import moment from 'moment/moment';
 import Immutable from 'seamless-immutable';
 import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/js/components/Tooltip/Tooltip';
 import { connect } from 'react-redux';
-import { injectIntl } from 'react-intl';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { ProgressTemplate } from '../../../../insights-dashboard/src/ChartTemplates/Progress/ProgressTemplate';
+import { useIntl } from 'react-intl';
 import messages from '../../Messages';
 import * as AppActions from '../../AppActions';
 import { setRangedDateTime, filterChartData } from './SubscriptionsUtilizedHelpers';
@@ -16,11 +16,12 @@ import { RHSM_API_RESPONSE_DATA, RHSM_API_RESPONSE_DATA_TYPES, RHSM_API_PRODUCT_
 /**
  * Subscriptions utilized card for showing the portion of Subscriptions used.
  */
-const SubscriptionsUtilizedCard = ({ intl, subscriptionsUtilizedProductOne, subscriptionsUtilizedProductOneFetch,
+const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscriptionsUtilizedProductOneFetch,
     subscriptionsUtilizedProductOneFetchStatus, subscriptionsUtilizedProductTwo, subscriptionsUtilizedProductTwoFetch,
     subscriptionsUtilizedProductTwoFetchStatus }) => {
 
     const [products, setProducts] = useState([]);
+    const intl = useIntl();
 
     useEffect(() => {
         const { startDate, endDate } = setRangedDateTime();
@@ -137,4 +138,4 @@ const mapDispatchToProps = dispatch => ({
     subscriptionsUtilizedProductTwoFetch: (productId, options) => dispatch(AppActions.subscriptionsUtilizedProductTwoFetch(productId, options))
 });
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(SubscriptionsUtilizedCard));
+export default connect(mapStateToProps, mapDispatchToProps)(SubscriptionsUtilizedCard);

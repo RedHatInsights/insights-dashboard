@@ -12,12 +12,15 @@ import {
 
 import LockIcon from '@patternfly/react-icons/dist/js/icons/lock-icon';
 
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import messages from '../../Messages';
 
 import './DeniedState.scss';
 
-const DeniedState = ({ appName, intl }) => {
+const DeniedState = ({ appName }) => {
+
+    const intl = useIntl();
+
     return (
         <Card className='ins-c-dashboard__card'>
             <EmptyState variant={ EmptyStateVariant.full } className='ins-c-dashboard__denied-state'>
@@ -32,8 +35,7 @@ const DeniedState = ({ appName, intl }) => {
 };
 
 DeniedState.propTypes = {
-    appName: PropTypes.string,
-    intl: PropTypes.any
+    appName: PropTypes.string
 };
 
-export default injectIntl(DeniedState);
+export default DeniedState;
