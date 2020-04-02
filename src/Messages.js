@@ -7,10 +7,40 @@ export default defineMessages({
         description: 'Title of the dashboard',
         defaultMessage: 'Overview'
     },
-    subscriptionsUtilized: {
-        id: 'subscriptionsUtilized',
+    subscriptionsUtilizedTitle: {
+        id: 'subscriptionsUtilizedTitle',
         description: 'Title of the subscriptions utilized card',
-        defaultMessage: 'Subscriptions utilized'
+        defaultMessage: 'Subscription watch utilization summary'
+    },
+    subscriptionsUtilizedProductOneTitle: {
+        id: 'subscriptionsUtilizedProductOneTitle',
+        description: 'Subscriptions utilized card - product one title',
+        defaultMessage: 'Red Hat OpenShift'
+    },
+    subscriptionsUtilizedProductOneReport: {
+        id: 'subscriptionsUtilizedProductOneDesc',
+        description: 'Subscriptions utilized card - product one report total',
+        defaultMessage: 'OpenShift Cores: {totalReport}'
+    },
+    subscriptionsUtilizedProductTwoTitle: {
+        id: 'subscriptionsUtilizedProductTwoTitle',
+        description: 'Subscriptions utilized card - product two title',
+        defaultMessage: 'Red Hat Enterprise Linux'
+    },
+    subscriptionsUtilizedProductTwoReport: {
+        id: 'subscriptionsUtilizedProductTwoTitleDesc',
+        description: 'Subscriptions utilized card - product two report total',
+        defaultMessage: 'RHEL sockets: {totalReport}'
+    },
+    subscriptionsUtilizedProductCapacity: {
+        id: 'subscriptionsUtilizedProductCapacity',
+        description: 'Subscriptions utilized card - product capacity',
+        defaultMessage: 'Subscription threshold: {totalCapacity}'
+    },
+    subscriptionsUtilizedProductDate: {
+        id: 'subscriptionsUtilizedProductDate',
+        description: 'Subscriptions utilized card - product date',
+        defaultMessage: 'Data from: {formattedDate}'
     },
     recsImpactingSystems: {
         id: 'recsImpactingSystems',
@@ -141,5 +171,30 @@ export default defineMessages({
         id: 'patchTitle',
         description: 'Patch - title',
         defaultMessage: 'Patch'
+    },
+    systemInventoryDescription: {
+        id: 'systemInventoryDescription',
+        description: 'System inventory - description',
+        defaultMessage: 'Systems running insights-client'
+    },
+    systemInventoryWarning: {
+        id: 'systemInventoryWarning',
+        description: 'System inventory - warning',
+        defaultMessage: 'stale systems'
+    },
+    systemInventoryDanger: {
+        id: 'systemInventoryDanger',
+        description: 'System inventory - danger',
+        defaultMessage: 'systems to be removed'
+    },
+    systemInventoryPercentageData: {
+        id: 'systemInventoryPercentageData',
+        description: 'System Inventory - percentage data',
+        defaultMessage: '0% of total systems'
+    },
+    systemInventoryTitle: {
+        id: 'systemInventoryTitle',
+        description: 'System Inventory - title',
+        defaultMessage: 'Insights system inventory'
     }
 });

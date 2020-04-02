@@ -12,15 +12,16 @@ import { SEVERITY_MAP } from './Constants';
 import StackChartTemplate from '../../ChartTemplates/StackChart/StackChartTemplate';
 import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import messages from '../../Messages';
 
 /**
  * Advisor Card for showing count/severity of rec hits
  */
 const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
-    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, systemsStats, systemsStatsStatus, intl }) => {
+    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, systemsStats, systemsStatsStatus }) => {
 
+    const intl = useIntl();
     const [chartData, setChartData] = useState([]);
 
     useEffect(() => {
@@ -90,11 +91,10 @@ Advisor.propTypes = {
     systemsStatsStatus: PropTypes.string,
     advisorIncidents: PropTypes.object,
     advisorIncidentsStatus: PropTypes.string,
-    advisorFetchIncidents: PropTypes.func,
-    intl: PropTypes.any
+    advisorFetchIncidents: PropTypes.func
 };
 
-export default injectIntl(connect(
+export default connect(
     ({ DashboardStore }) => ({
         recStats: DashboardStore.advisorStatsRecs,
         recStatsStatus: DashboardStore.advisorStatsRecsStatus,
@@ -108,4 +108,4 @@ export default injectIntl(connect(
         advisorFetchStatsSystems: (url) => dispatch(AppActions.advisorFetchStatsSystems(url)),
         advisorFetchIncidents: (url) => dispatch(AppActions.advisorFetchIncidents(url))
     })
-)(Advisor));
+)(Advisor);

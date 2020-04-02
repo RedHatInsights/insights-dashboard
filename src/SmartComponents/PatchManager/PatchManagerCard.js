@@ -1,7 +1,7 @@
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { patchmanFetchBugs, patchmanFetchEnhancements, patchmanFetchSecurity, patchmanFetchSystems } from '../../AppActions';
 import { PATCHMAN_ID, UI_BASE } from '../../AppConstants';
@@ -15,7 +15,7 @@ import './PatchManagerCard.scss';
  * Operating systems card for showing the ratio of operating systems used.
  */
 const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity, securityStatus,
-    security, bugs, fetchBugs, bugsStatus, enhancements, fetchEnhancements, enhancementsStatus, intl }) => {
+    security, bugs, fetchBugs, bugsStatus, enhancements, fetchEnhancements, enhancementsStatus }) => {
 
     React.useEffect(() => {
         fetchSystems();
@@ -24,6 +24,7 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
         fetchEnhancements();
     }, [fetchSystems, fetchSecurity, fetchBugs, fetchEnhancements]);
 
+    const intl = useIntl();
     const isLoaded = [systemsStatus, securityStatus, bugsStatus, enhancementsStatus].every(item => item === 'fulfilled');
 
     const pieChartData = [
@@ -83,11 +84,10 @@ PatchManagerCard.propTypes = {
     bugsStatus: PropTypes.string,
     fetchEnhancements: PropTypes.func,
     enhancements: PropTypes.number,
-    enhancementsStatus: PropTypes.string,
-    intl: PropTypes.any
+    enhancementsStatus: PropTypes.string
 };
 
-export default injectIntl(connect(
+export default connect(
     ({ DashboardStore }) => ({
         systems: DashboardStore.patchmanSystems,
         systemsStatus: DashboardStore.patchmanSystemsStatus,
@@ -104,4 +104,4 @@ export default injectIntl(connect(
         fetchBugs: (url) => dispatch(patchmanFetchBugs(url)),
         fetchEnhancements: (url) => dispatch(patchmanFetchEnhancements(url))
     })
-)(PatchManagerCard));
+)(PatchManagerCard);

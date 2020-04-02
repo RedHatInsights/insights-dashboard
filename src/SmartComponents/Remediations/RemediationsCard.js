@@ -11,9 +11,8 @@ import FinishedIcon from './../../Icons/FinishedIcon';
 import RunningIcon from './../../Icons/RunningIcon';
 import TimeStamp from './../../PresentationalComponents/TimeStamp/TimeStamp';
 import messages from '../../Messages';
-import { injectIntl } from 'react-intl';
-import PropTypes from 'prop-types';
 import './RemediationsCard.scss';
+import { useIntl } from 'react-intl';
 
 const mockData = [
     {
@@ -36,7 +35,10 @@ const mockData = [
 /**
  * Remediations card.
  */
-const RemediationsCard = ({ intl }) => {
+const RemediationsCard = () => {
+
+    const intl = useIntl();
+
     const remediationsList = mockData.map((remediation, index) =>
         <React.Fragment key={ index }>
             <div className="ins-c-remediations-container">
@@ -87,8 +89,4 @@ const RemediationsCard = ({ intl }) => {
     </TemplateCard>;
 };
 
-RemediationsCard.propTypes = {
-    intl: PropTypes.any
-};
-
-export default injectIntl(RemediationsCard);
+export default RemediationsCard;
