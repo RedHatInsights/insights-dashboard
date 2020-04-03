@@ -166,5 +166,30 @@ export default defineMessages({
         id: 'systemsAffected',
         description: 'Patch - systems affected',
         defaultMessage: '{count, plural, one {# system} other {# systems}} affected'
+    },
+    systemInventoryDescription: {
+        id: 'systemInventoryDescription',
+        description: 'System inventory - description',
+        defaultMessage: 'Systems running insights-client'
+    },
+    systemInventoryWarning: {
+        id: 'systemInventoryWarning',
+        description: 'System inventory - warning',
+        defaultMessage: 'stale systems'
+    },
+    systemInventoryDanger: {
+        id: 'systemInventoryDanger',
+        description: 'System inventory - danger',
+        defaultMessage: 'systems to be removed'
+    },
+    systemInventoryPercentageData: {
+        id: 'systemInventoryPercentageData',
+        description: 'System Inventory - percentage data',
+        defaultMessage: '0% of total systems'
+    },
+    systemInventoryTitle: {
+        id: 'systemInventoryTitle',
+        description: 'System Inventory - title',
+        defaultMessage: 'Insights system inventory'
     }
 });
