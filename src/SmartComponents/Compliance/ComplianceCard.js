@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import * as AppActions from '../../AppActions';
 
 import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
@@ -27,6 +28,10 @@ import { useIntl } from 'react-intl';
 import messages from '../../Messages';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import './ComplianceCard.scss';
+import {
+    chart_color_blue_200,
+    chart_color_blue_300
+} from '@patternfly/react-tokens';
 
 const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSummary }) => {
 
@@ -36,7 +41,10 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
 
     const intl = useIntl();
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
-    const colorScale = ['#06c', '#519de9'];
+    const colorScale = [
+        chart_color_blue_300.value,
+        chart_color_blue_200.value
+    ];
 
     /*
         * Returns the first two -- if there are at least two entries -- items as a shallow copy of

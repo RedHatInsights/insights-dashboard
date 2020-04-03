@@ -90,6 +90,7 @@
       grid-row: 1;
       column-gap: 24px;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+      max-height: 200px;
 
       > *:not(:last-child) {
         border-bottom: initial;
