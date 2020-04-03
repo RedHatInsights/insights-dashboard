@@ -86,26 +86,28 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
     );
 
     const charts = [
-        (productOne.percentage !== (undefined && null) && productTwo.percentage !== (undefined && null) &&
-            (subscriptionsUtilizedProductTwoFetchStatus === 'fulfilled' && productTwo.percentage !== undefined &&
+        (subscriptionsUtilizedProductTwoFetchStatus === 'fulfilled' ?
+            ((productTwo.percentage !== undefined && productTwo.percentage !== null) &&
                 <Tooltip key="productTwo" content={ productTwoTooltip } position={ TooltipPosition.top } distance={ -30 }>
                     <ProgressTemplate
                         title={ intl.formatMessage(messages.subscriptionsUtilizedProductTwoTitle) }
-                        value={ (productTwo.percentage) || 0 }
+                        value={ productTwo.percentage }
                         label={ `${productTwo.percentage}%` }
                         variant={ (productTwo.percentage <= 100 && 'info') || (productTwo.percentage > 100 && 'danger') }
                     />
-                </Tooltip>) || <Loading key="productTwoLoad" />,
-        (subscriptionsUtilizedProductOneFetchStatus === 'fulfilled' && productOne.percentage !== ('undefined' || 'null') &&
+                </Tooltip>
+            ) : (<Loading key="productTwoLoad" />)),
+        (subscriptionsUtilizedProductOneFetchStatus === 'fulfilled' ?
+            ((productOne.percentage !== undefined && productOne.percentage !== null) &&
                 <Tooltip key="productOne" content={ productOneTooltip } position={ TooltipPosition.top } distance={ -30 }>
                     <ProgressTemplate
                         title={ intl.formatMessage(messages.subscriptionsUtilizedProductOneTitle) }
-                        value={ (productOne.percentage) || 0 }
+                        value={ productOne.percentage }
                         label={ `${productOne.percentage}%` }
                         variant={ (productOne.percentage <= 100 && 'info') || (productOne.percentage > 100 && 'danger') }
                     />
-                </Tooltip>) || <Loading key="productOneLoad" />
-        ) || <div>test</div>
+                </Tooltip>
+            ) : (<Loading key="productOneLoad" />))
     ];
 
     return <TemplateCard appName='SubscriptionsUtilized'>
