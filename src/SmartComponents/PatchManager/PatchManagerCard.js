@@ -34,9 +34,9 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
     const isLoaded = [systemsStatus, securityStatus, bugsStatus, enhancementsStatus].every(item => item === 'fulfilled');
 
     const pieChartData = [
-        { x: intl.formatMessage(messages.securityAdvisories, { count: security }), y: security, fill: '#004b95' },
-        { x: intl.formatMessage(messages.bugfixAdvisories, { count: bugs }), y: bugs, fill: '#519de9' },
-        { x: intl.formatMessage(messages.enhancementAdvisories, { count: enhancements }), y: enhancements, fill: '#06c' }
+        { x: intl.formatMessage(messages.securityAdvisories, { count: security }), y: security, fill: chart_color_blue_400.value },
+        { x: intl.formatMessage(messages.bugfixAdvisories, { count: bugs }), y: bugs, fill: chart_color_blue_200.value },
+        { x: intl.formatMessage(messages.enhancementAdvisories, { count: enhancements }), y: enhancements, fill: chart_color_blue_300.value }
     ];
     const pieChartLegendData = pieChartData.map(item => ({ name: `${item.y} ${item.x}`, symbol: { fill: `${item.fill}`, type: 'circle' } }));
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
