@@ -1,14 +1,16 @@
 import './_dashboard.scss';
+
 import React, { Suspense, lazy, useContext } from 'react';
+
+import DeniedState from '../DeniedState/DeniedState';
 import { Divider } from '@patternfly/react-core/dist/js/components/Divider/Divider';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
 import { PageSection } from '@patternfly/react-core/dist/js/components/Page/PageSection';
-import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
-import { useIntl } from 'react-intl';
-import messages from '../../Messages';
 import { PermissionContext } from '../../App';
-import DeniedState from '../DeniedState/DeniedState';
+import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
+import messages from '../../Messages';
+import { useIntl } from 'react-intl';
 
 const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
 const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
@@ -16,7 +18,7 @@ const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability
 const SystemInventoryCard = lazy(() => import('../../SmartComponents/SystemInventory/SystemInventoryCard'));
 const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedCard'));
 const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
-const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
+// const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
 
 const Dashboard = () => {
 
@@ -63,9 +65,9 @@ const Dashboard = () => {
                         { permission.compliance ? <ComplianceCard /> : <DeniedState appName='Compliance'/> }
                     </Suspense>
                     <Divider />
-                    <Suspense fallback={ <Loading /> }>
+                    {/* <Suspense fallback={ <Loading /> }>
                         { permission.remediations ? <RemediationsCard /> : <DeniedState appName='Remediations'/> }
-                    </Suspense>
+                    </Suspense> */}
                 </div>
             </Main>
         </React.Fragment>
