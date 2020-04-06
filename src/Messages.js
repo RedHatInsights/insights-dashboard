@@ -167,6 +167,11 @@ export default defineMessages({
         description: 'Patch - systems affected',
         defaultMessage: '{count, plural, one {# system} other {# systems}} affected'
     },
+    patchTitle: {
+        id: 'patchTitle',
+        description: 'Patch - title',
+        defaultMessage: 'Patch'
+    },
     systemInventoryDescription: {
         id: 'systemInventoryDescription',
         description: 'System inventory - description',

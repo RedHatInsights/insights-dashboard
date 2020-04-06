@@ -4,7 +4,6 @@ import { Divider } from '@patternfly/react-core/dist/js/components/Divider/Divid
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
 import { PageSection } from '@patternfly/react-core/dist/js/components/Page/PageSection';
-import { TimeStamp } from './../TimeStamp/TimeStamp';
 import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import { useIntl } from 'react-intl';
 import messages from '../../Messages';
@@ -17,7 +16,6 @@ const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability
 const SystemInventoryCard = lazy(() => import('../../SmartComponents/SystemInventory/SystemInventoryCard'));
 const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedCard'));
 const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
-const CustomPoliciesCard = lazy(() => import('../../SmartComponents/CustomPolicies/CustomPoliciesCard'));
 const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
 
 const Dashboard = () => {
@@ -31,7 +29,6 @@ const Dashboard = () => {
                 <Title headingLevel="h1" size="2xl">
                     {intl.formatMessage(messages.dashboardTitle)}
                 </Title>
-                <TimeStamp timestamp="Timestamp goes here" />
             </PageSection>
             <Main className='ins-l-dashboard'>
                 <div className="dashboard-card-group">
@@ -68,11 +65,6 @@ const Dashboard = () => {
                     <Divider />
                     <Suspense fallback={ <Loading /> }>
                         { permission.remediations ? <RemediationsCard /> : <DeniedState appName='Remediations'/> }
-                    </Suspense>
-                </div>
-                <div className="dashboard-card-custom-policies">
-                    <Suspense fallback={ <Loading /> }>
-                        { permission.customPolicies ? <CustomPoliciesCard /> : <DeniedState appName='Custom Policies'/> }
                     </Suspense>
                 </div>
             </Main>

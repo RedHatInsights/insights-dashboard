@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -10,6 +11,11 @@ import messages from '../../Messages';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import './PatchManagerCard.scss';
+import {
+    chart_color_blue_200,
+    chart_color_blue_300,
+    chart_color_blue_400
+} from '@patternfly/react-tokens';
 
 /**
  * Operating systems card for showing the ratio of operating systems used.
@@ -28,15 +34,21 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
     const isLoaded = [systemsStatus, securityStatus, bugsStatus, enhancementsStatus].every(item => item === 'fulfilled');
 
     const pieChartData = [
-        { x: intl.formatMessage(messages.securityAdvisories, { count: security }), y: security, fill: '#004b95' },
-        { x: intl.formatMessage(messages.bugfixAdvisories, { count: bugs }), y: bugs, fill: '#06c' },
-        { x: intl.formatMessage(messages.enhancementAdvisories, { count: enhancements }), y: enhancements, fill: '#519de9' }
+        { x: intl.formatMessage(messages.securityAdvisories, { count: security }), y: security, fill: chart_color_blue_400.value },
+        { x: intl.formatMessage(messages.bugfixAdvisories, { count: bugs }), y: bugs, fill: chart_color_blue_200.value },
+        { x: intl.formatMessage(messages.enhancementAdvisories, { count: enhancements }), y: enhancements, fill: chart_color_blue_300.value }
     ];
     const pieChartLegendData = pieChartData.map(item => ({ name: `${item.y} ${item.x}`, symbol: { fill: `${item.fill}`, type: 'circle' } }));
-    const colorScale = ['#004b95', '#06c', '#519de9'];
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
+
+    const colorScale = [
+        chart_color_blue_400.value,
+        chart_color_blue_300.value,
+        chart_color_blue_200.value
+    ];
+
     return <TemplateCard appName='PatchManager' className={ 'ins-c-dashboard__card--Patch' }>
-        <TemplateCardHeader subtitle='Patch manager'/>
+        <TemplateCardHeader subtitle={ intl.formatMessage(messages.patchTitle) }/>
         <TemplateCardBody>
             {!isLoaded ? <Loading/> :
                 <React.Fragment>
@@ -48,22 +60,24 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                     >
                         <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
                     </Button>
-                    <PieChart
-                        ariaDesc="Operating systems used"
-                        ariaTitle="Pie chart operating systems"
-                        constrainToVisibleArea={ true }
-                        data={ pieChartData }
-                        labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
-                        padding={ pieChartPadding }
-                        height={ 65 }
-                        width={ 65 }
-                        colorScale={ colorScale }
-                        legend="true"
-                        legendData={ pieChartLegendData }
-                        legendOrientation="vertical"
-                        legendHeight={ 75 }
-                        legendWidth={ 200 }
-                    />
+                    <div className="ins-c-patch__chart">
+                        <PieChart
+                            ariaDesc="Operating systems used"
+                            ariaTitle="Pie chart operating systems"
+                            constrainToVisibleArea={ true }
+                            data={ pieChartData }
+                            labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
+                            padding={ pieChartPadding }
+                            height={ 65 }
+                            width={ 65 }
+                            colorScale={ colorScale }
+                            legend="true"
+                            legendData={ pieChartLegendData }
+                            legendOrientation="vertical"
+                            legendHeight={ 75 }
+                            legendWidth={ 200 }
+                        />
+                    </div>
                 </React.Fragment>
             }
         </TemplateCardBody>

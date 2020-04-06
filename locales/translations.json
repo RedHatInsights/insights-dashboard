@@ -32,6 +32,7 @@
   "bugfixAdvisories": "{count, plural, one {bug fix} other {bug fixes}}",
   "enhancementAdvisories": "{count, plural, one {enhancement} other {enhancements}}",
   "systemsAffected": "{count, plural, one {# system} other {# systems}} affected",
+  "patchTitle": "Patch",
   "systemInventoryDescription": "Systems running insights-client",
   "systemInventoryWarning": "stale systems",
   "systemInventoryDanger": "systems to be removed",

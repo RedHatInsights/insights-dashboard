@@ -11,14 +11,10 @@ import FinishedIcon from './../../Icons/FinishedIcon';
 import RunningIcon from './../../Icons/RunningIcon';
 import TimeStamp from './../../PresentationalComponents/TimeStamp/TimeStamp';
 import messages from '../../Messages';
+import './RemediationsCard.scss';
 import { useIntl } from 'react-intl';
 
 const mockData = [
-    {
-        status: 'Running',
-        name: 'Name',
-        timestamp: 'Timestamp'
-    },
     {
         status: 'Running',
         name: 'Name',
