@@ -80,7 +80,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                 ariaTitle="Pie chart operating systems"
                                                 constrainToVisibleArea={ true }
                                                 data={ [
-                                                    { x: element.attributes.name, y: element.attributes.score * 100 },
+                                                    { x: element.attributes.name, y: element.attributes.score },
                                                     { x: 'empty', y: 100 }
                                                 ] }
                                                 labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
