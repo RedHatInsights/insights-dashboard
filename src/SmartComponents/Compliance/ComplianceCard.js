@@ -112,7 +112,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                         </SplitItem>
                                                         <SplitItem>
                                                             {intl.formatMessage(messages.compliantScore,
-                                                                { score: Math.trunc(element.attributes.score * 100) }
+                                                                { score: Math.trunc(element.attributes.score) }
                                                             )}
                                                         </SplitItem>
                                                     </Split>
