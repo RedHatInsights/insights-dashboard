@@ -41,7 +41,7 @@ const Dashboard = () => {
                     </div>
                     <div className="dashboard-card-entitlements">
                         <Suspense fallback={ <Loading /> }>
-                            <SubscriptionsUtilizedCard />
+                            { permission.subscriptions ? <SubscriptionsUtilizedCard /> : <DeniedState appName='Subscriptions'/> }
                         </Suspense>
                     </div>
                     <div className="dashboard-card-operating-systems">
