@@ -20,7 +20,7 @@ export default defineMessages({
     subscriptionsUtilizedProductOneReport: {
         id: 'subscriptionsUtilizedProductOneDesc',
         description: 'Subscriptions utilized card - product one report total',
-        defaultMessage: 'OpenShift Cores: {totalReport}'
+        defaultMessage: 'OpenShift cores: {totalReport}'
     },
     subscriptionsUtilizedProductTwoTitle: {
         id: 'subscriptionsUtilizedProductTwoTitle',

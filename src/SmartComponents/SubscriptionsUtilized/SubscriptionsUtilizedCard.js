@@ -48,13 +48,13 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
             chartData.productOne = filterChartData(
                 productOneReport[RHSM_API_RESPONSE_DATA],
                 productOneCapacity[RHSM_API_RESPONSE_DATA],
-                [RHSM_API_RESPONSE_DATA_TYPES.SOCKETS]
+                RHSM_API_RESPONSE_DATA_TYPES.CORES
             );
 
             chartData.productTwo = filterChartData(
                 productTwoReport[RHSM_API_RESPONSE_DATA],
                 productTwoCapacity[RHSM_API_RESPONSE_DATA],
-                [RHSM_API_RESPONSE_DATA_TYPES.CORES]
+                RHSM_API_RESPONSE_DATA_TYPES.SOCKETS
             );
         }
 

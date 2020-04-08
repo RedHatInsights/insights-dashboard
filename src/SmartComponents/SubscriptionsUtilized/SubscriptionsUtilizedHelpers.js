@@ -82,7 +82,7 @@ export const filterChartData = (report = [], capacity = [], filter) => {
             percentage = 0;
         }
 
-        if (!Number.isFinite(percentage)) {
+        if (percentage === Infinity) {
             percentage = undefined;
         }
 
