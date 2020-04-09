@@ -20,13 +20,16 @@ const App = (props) => {
         patch: false,
         vulnerability: false
     });
+    const [isOrgAdmin, setIsOrgAdmin] = useState(false);
     const [arePermissionsReady, setArePermissionReady] = useState(false);
 
     async function initChrome () {
         insights.chrome.init();
         insights.chrome.identifyApp('dashboard');
         // wait for auth first, otherwise the call to RBAC may 401
-        await window.insights.chrome.auth.getUser();
+        await window.insights.chrome.auth.getUser().then(
+            user => setIsOrgAdmin(user.identity.user.is_org_admin)
+        );
         // TODO: Update this function to query multiple apps instead of empty request (limited by API)
         insights.chrome.getUserPermissions().then(
             dashboardPermissions => {
@@ -62,7 +65,8 @@ const App = (props) => {
                     advisor: permissions.advisor,
                     remediations: permissions.remediations,
                     patch: permissions.patch,
-                    vulnerability: permissions.vulnerability
+                    vulnerability: permissions.vulnerability,
+                    subscriptions: isOrgAdmin
                 } }>
                 <Routes childProps={ props } />
             </PermissionContext.Provider>

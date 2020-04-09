@@ -20,7 +20,7 @@ export default defineMessages({
     subscriptionsUtilizedProductOneReport: {
         id: 'subscriptionsUtilizedProductOneDesc',
         description: 'Subscriptions utilized card - product one report total',
-        defaultMessage: 'OpenShift Cores: {totalReport}'
+        defaultMessage: 'OpenShift cores: {totalReport}'
     },
     subscriptionsUtilizedProductTwoTitle: {
         id: 'subscriptionsUtilizedProductTwoTitle',
@@ -166,6 +166,11 @@ export default defineMessages({
         id: 'systemsAffected',
         description: 'Patch - systems affected',
         defaultMessage: '{count, plural, one {# system} other {# systems}} affected'
+    },
+    patchTitle: {
+        id: 'patchTitle',
+        description: 'Patch - title',
+        defaultMessage: 'Patch'
     },
     systemInventoryDescription: {
         id: 'systemInventoryDescription',

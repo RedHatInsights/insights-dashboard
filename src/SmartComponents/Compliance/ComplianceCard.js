@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import * as AppActions from '../../AppActions';
 
 import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
@@ -26,6 +27,11 @@ import { connect } from 'react-redux';
 import { useIntl } from 'react-intl';
 import messages from '../../Messages';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
+import './ComplianceCard.scss';
+import {
+    chart_color_blue_200,
+    chart_color_blue_300
+} from '@patternfly/react-tokens';
 
 const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSummary }) => {
 
@@ -35,6 +41,10 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
 
     const intl = useIntl();
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
+    const colorScale = [
+        chart_color_blue_300.value,
+        chart_color_blue_200.value
+    ];
 
     /*
         * Returns the first two -- if there are at least two entries -- items as a shallow copy of
@@ -70,14 +80,14 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                 ariaTitle="Pie chart operating systems"
                                                 constrainToVisibleArea={ true }
                                                 data={ [
-                                                    { x: element.attributes.name, y: element.attributes.score * 100 },
+                                                    { x: element.attributes.name, y: element.attributes.score },
                                                     { x: 'empty', y: 100 }
                                                 ] }
-                                                height={ 75 }
                                                 labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
                                                 padding={ pieChartPadding }
-                                                width={ 75 }
-                                                colorScale={ ['#002f5d', '#06c', '#8bc1f7'] }
+                                                height={ 65 }
+                                                width={ 65 }
+                                                colorScale={ colorScale }
                                             />
                                         </div>
                                         <div className="ins-c-compliance__row-item">
@@ -102,7 +112,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                         </SplitItem>
                                                         <SplitItem>
                                                             {intl.formatMessage(messages.compliantScore,
-                                                                { score: Math.trunc(element.attributes.score * 100) }
+                                                                { score: Math.trunc(element.attributes.score) }
                                                             )}
                                                         </SplitItem>
                                                     </Split>

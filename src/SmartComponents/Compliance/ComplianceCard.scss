@@ -1,0 +1,43 @@
+// Compliance
+.ins-c-compliance__policy-link {
+    white-space: pre-wrap;
+    text-align: left;
+  }
+  
+  .ins-c-compliance__empty-state {
+    &.pf-c-empty-state {
+      padding: 0;
+    }
+  
+    .pf-c-empty-state__body {
+      font-size: var(--pf-global--FontSize--sm);
+    }
+  
+    .pf-c-empty-state__secondary {
+      margin-top: var(--pf-global--spacer--md);
+    }
+  }
+  
+  .ins-c-compliance__row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  
+  .ins-c-compliance__row:not(:first-child),
+  .ins-c-compliance__row:only-of-type {
+    padding-top: var(--pf-global--spacer--lg);
+  }
+  
+  .ins-c-compliance__row-item:first-child {
+    width: 65px;
+    margin-right: var(--pf-global--spacer--lg);
+  }
+  
+  .ins-c-compliance__row-item:last-child {
+    max-width: 200px;
+  
+    > .pf-l-stack .pf-l-stack__item .pf-l-split .pf-l-split__item {
+      font-size: var(--pf-global--FontSize--sm);
+    }
+  }
