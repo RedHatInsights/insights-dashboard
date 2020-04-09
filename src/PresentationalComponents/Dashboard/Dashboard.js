@@ -16,9 +16,10 @@ const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
 const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
 const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
 const SystemInventoryCard = lazy(() => import('../../SmartComponents/SystemInventory/SystemInventoryCard'));
-const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedCard'));
+// TODO uncomment
+// const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedCard'));
 const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
-// const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
+const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
 
 const Dashboard = () => {
 
@@ -40,9 +41,9 @@ const Dashboard = () => {
                         </Suspense>
                     </div>
                     <div className="dashboard-card-entitlements">
-                        <Suspense fallback={ <Loading /> }>
+                        {/* TODO <Suspense fallback={ <Loading /> }>
                             { permission.subscriptions ? <SubscriptionsUtilizedCard /> : <DeniedState appName='Subscription Watch'/> }
-                        </Suspense>
+                        </Suspense> */ }
                     </div>
                     <div className="dashboard-card-operating-systems">
                         <Suspense fallback={ <Loading /> }>
@@ -65,9 +66,9 @@ const Dashboard = () => {
                         { permission.compliance ? <ComplianceCard /> : <DeniedState appName='Compliance'/> }
                     </Suspense>
                     <Divider />
-                    {/* <Suspense fallback={ <Loading /> }>
+                    <Suspense fallback={ <Loading /> }>
                         { permission.remediations ? <RemediationsCard /> : <DeniedState appName='Remediations'/> }
-                    </Suspense> */}
+                    </Suspense>
                 </div>
             </Main>
         </React.Fragment>

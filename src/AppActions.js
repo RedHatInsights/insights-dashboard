@@ -67,3 +67,13 @@ export const subscriptionsUtilizedProductTwoFetch = (id, options) => ({
         fetchData(`${ActionTypes.SUBSCRIPTIONS_UTILIZED_CAPACITY_FETCH_URL}${id}`, {}, options)
     ])
 });
+
+export const fetchRemediations = (options) => ({
+    type: ActionTypes.REMEDIATIONS_FETCH,
+    payload: fetchData(ActionTypes.REMEDIATIONS_FETCH_URL, {}, options)
+});
+
+export const fetchRemediationsPlaybookRuns = (id, options) => ({
+    type: ActionTypes.REMEDIATIONS_PLAYBOOK_RUNS_FETCH,
+    payload: fetchData(`${ActionTypes.REMEDIATIONS_PLAYBOOK_RUNS_FETCH_URL}${id}/playbook_runs?limit=1&offset=0&sort=-updated_at`, {}, options)
+});

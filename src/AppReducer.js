@@ -25,7 +25,11 @@ const initialState = Immutable({
     subscriptionsUtilizedProductOne: [],
     subscriptionsUtilizedProductOneFetchStatus: '',
     subscriptionsUtilizedProductTwo: [],
-    subscriptionsUtilizedProductTwoFetchStatus: ''
+    subscriptionsUtilizedProductTwoFetchStatus: '',
+    remediations: {},
+    remediationsFetchStatus: '',
+    remediationsPlaybookRuns: {},
+    remediationsPlaybookRunsFetchStatus: ''
 });
 
 export const DashboardStore = (state = initialState, action) => {
@@ -155,5 +159,26 @@ export const DashboardStore = (state = initialState, action) => {
 
         default:
             return state;
+
+        // REMEDIATIONS
+        case `${ActionTypes.REMEDIATIONS_FETCH}_PENDING`:
+            return state.set('remediationsFetchStatus', 'pending');
+        case `${ActionTypes.REMEDIATIONS_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                remediations: action.payload,
+                remediationsFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.REMEDIATIONS_FETCH}_REJECTED`:
+            return state.set('remediationsFetchStatus', 'rejected');
+
+        case `${ActionTypes.REMEDIATIONS_PLAYBOOK_RUNS_FETCH}_PENDING`:
+            return state.set('remediationsPlaybookRunsFetchStatus', 'pending');
+        case `${ActionTypes.REMEDIATIONS_PLAYBOOK_RUNS_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                remediationsPlaybookRuns: action.payload,
+                remediationsPlaybookRunsFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.REMEDIATIONS_PLAYBOOK_RUNS_FETCH}_REJECTED`:
+            return state.set('remediationsPlaybookRunsFetchStatus', 'rejected');
     }
 };
