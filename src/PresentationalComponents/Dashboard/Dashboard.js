@@ -16,8 +16,7 @@ const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
 const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
 const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
 const SystemInventoryCard = lazy(() => import('../../SmartComponents/SystemInventory/SystemInventoryCard'));
-// TODO uncomment
-// const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedCard'));
+const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedCard'));
 const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
 const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
 
@@ -41,9 +40,9 @@ const Dashboard = () => {
                         </Suspense>
                     </div>
                     <div className="dashboard-card-entitlements">
-                        {/* TODO <Suspense fallback={ <Loading /> }>
+                        <Suspense fallback={ <Loading /> }>
                             { permission.subscriptions ? <SubscriptionsUtilizedCard /> : <DeniedState appName='Subscription Watch'/> }
-                        </Suspense> */ }
+                        </Suspense>
                     </div>
                     <div className="dashboard-card-operating-systems">
                         <Suspense fallback={ <Loading /> }>
