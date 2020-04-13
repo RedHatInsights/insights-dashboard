@@ -11,8 +11,18 @@ const checkState = {
     critical: CriticalIcon
 };
 
-export const IconInline = ({ message, state, systemInventory }) => {
+export const IconInline = ({ message, state, systemInventory, href }) => {
     const Icon = checkState[state] || React.Fragment;
+
+    if (href) {
+        return (
+            <a href={ href } className={ `ins-c-dashboard__info-inline ${systemInventory ? ' ins-m-padding-top' : ''}` }>
+                <Icon/>
+                <p>{ message }</p>
+            </a>
+        );
+    }
+
     return (
         <div className={ `ins-c-dashboard__info-inline ${systemInventory ? ' ins-m-padding-top' : ''}` }>
             <Icon/>
@@ -24,7 +34,8 @@ export const IconInline = ({ message, state, systemInventory }) => {
 IconInline.propTypes = {
     message: propTypes.string,
     state: propTypes.string,
-    systemInventory: propTypes.boolean
+    systemInventory: propTypes.boolean,
+    href: propTypes.string
 };
 
 export default IconInline;

@@ -1,4 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+
+import * as AppActions from '../../AppActions';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
+import { connect } from 'react-redux';
+
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { NumberDescription } from '../../../../insights-dashboard/src/PresentationalComponents/NumberDescription/NumberDescription';
 import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
@@ -8,31 +14,105 @@ import messages from '../../Messages';
 /**
  * System inventory card for showing system inventory and status.
  */
-const SystemInventoryCard = () => {
+const SystemInventoryCard = ({
+    fetchInventory, inventoryFetchStatus, inventorySummary,
+    fetchInventoryStale, inventoryStaleFetchStatus, inventoryStaleSummary,
+    fetchInventoryWarning, inventoryWarningFetchStatus, inventoryWarningSummary,
+    fetchInventoryTotal, inventoryTotalFetchStatus, inventoryTotalSummary
+}) => {
+
+    useEffect(() => {
+        fetchInventoryTotal();
+    }, [fetchInventoryTotal]);
+
+    useEffect(() => {
+        fetchInventory();
+    }, [fetchInventory]);
+
+    useEffect(() => {
+        fetchInventoryStale();
+    }, [fetchInventoryStale]);
+
+    useEffect(() => {
+        fetchInventoryWarning();
+    }, [fetchInventoryWarning]);
 
     const intl = useIntl();
 
     return <TemplateCard appName='SystemInventory'>
         <TemplateCardHeader subtitle={ intl.formatMessage(messages.systemInventoryTitle) }/>
         <TemplateCardBody isFilled={ false }>
-            <NumberDescription
-                data="100000"
-                dataSize="lg"
-                percentageData={ intl.formatMessage(messages.systemInventoryPercentageData) }
-                linkDescription={ intl.formatMessage(messages.systemInventoryDescription) }
-            />
-            <IconInline
-                message={ intl.formatMessage(messages.systemInventoryWarning) }
-                state="warning"
-                systemInventory="true"
-            />
-            <IconInline
-                message={ intl.formatMessage(messages.systemInventoryDanger) }
-                state="critical"
-                systemInventory="true"
-            />
+            { inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
+                <NumberDescription
+                    data={ inventorySummary.total }
+                    dataSize="lg"
+                    percentageData={ intl.formatMessage(messages.systemInventoryPercentageData,
+                        { count: Math.floor((inventorySummary.total / inventoryTotalSummary.total) * 100) }
+                    ) }
+                    linkDescription={ intl.formatMessage(messages.systemInventoryDescription) }
+                    link='./insights/inventory'
+                />
+            }
+            { inventoryWarningFetchStatus === 'fulfilled' &&
+                <IconInline
+                    href='./insights/inventory/?status=stale_warning'
+                    message={ intl.formatMessage(messages.systemInventoryWarning,
+                        { count: inventoryWarningSummary.total }
+                    ) }
+                    state="warning"
+                    systemInventory="true"
+                />
+            }
+            { inventoryStaleFetchStatus === 'fulfilled' &&
+                <IconInline
+                    href='./insights/inventory/?status=stale'
+                    message={ intl.formatMessage(messages.systemInventoryDanger,
+                        { count: inventoryStaleSummary.total }
+                    ) }
+                    state="critical"
+                    systemInventory="true"
+                />
+            }
         </TemplateCardBody>
     </TemplateCard>;
 };
 
-export default SystemInventoryCard;
+SystemInventoryCard.propTypes = {
+    fetchInventory: PropTypes.func,
+    inventorySummary: PropTypes.object,
+    inventoryFetchStatus: PropTypes.string,
+    fetchInventoryStale: PropTypes.func,
+    inventoryStaleSummary: PropTypes.object,
+    inventoryStaleFetchStatus: PropTypes.string,
+    fetchInventoryWarning: PropTypes.func,
+    inventoryWarningSummary: PropTypes.object,
+    inventoryWarningFetchStatus: PropTypes.string,
+    fetchInventoryTotal: PropTypes.func,
+    inventoryTotalSummary: PropTypes.object,
+    inventoryTotalFetchStatus: PropTypes.string,
+    intl: PropTypes.any
+};
+
+const mapStateToProps = (state, ownProps) => ({
+    inventorySummary: state.DashboardStore.inventorySummary,
+    inventoryFetchStatus: state.DashboardStore.inventoryFetchStatus,
+    inventoryStaleSummary: state.DashboardStore.inventoryStaleSummary,
+    inventoryStaleFetchStatus: state.DashboardStore.inventoryStaleFetchStatus,
+    inventoryWarningSummary: state.DashboardStore.inventoryWarningSummary,
+    inventoryWarningFetchStatus: state.DashboardStore.inventoryWarningFetchStatus,
+    inventoryTotalSummary: state.DashboardStore.inventoryTotalSummary,
+    inventoryTotalFetchStatus: state.DashboardStore.inventoryTotalFetchStatus,
+    ...ownProps
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchInventory: () => dispatch(AppActions.fetchInventorySummary()),
+    fetchInventoryStale: () => dispatch(AppActions.fetchInventoryStaleSummary()),
+    fetchInventoryWarning: () => dispatch(AppActions.fetchInventoryWarningSummary()),
+    fetchInventoryTotal: () => dispatch(AppActions.fetchInventoryTotalSummary())
+});
+
+export default routerParams(connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SystemInventoryCard));

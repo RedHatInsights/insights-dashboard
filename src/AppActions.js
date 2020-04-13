@@ -67,3 +67,23 @@ export const subscriptionsUtilizedProductTwoFetch = (id, options) => ({
         fetchData(`${ActionTypes.SUBSCRIPTIONS_UTILIZED_CAPACITY_FETCH_URL}${id}`, {}, options)
     ])
 });
+
+export const fetchInventorySummary = (options) => ({
+    type: ActionTypes.INVENTORY_FETCH,
+    payload: fetchData(ActionTypes.INVENTORY_FETCH_URL, {}, options)
+});
+
+export const fetchInventoryTotalSummary = (options) => ({
+    type: ActionTypes.INVENTORY_TOTAL_FETCH,
+    payload: fetchData(ActionTypes.INVENTORY_TOTAL_FETCH_URL, {}, options)
+});
+
+export const fetchInventoryStaleSummary = (options) => ({
+    type: ActionTypes.INVENTORY_STALE_FETCH,
+    payload: fetchData(ActionTypes.INVENTORY_STALE_FETCH_URL, {}, options)
+});
+
+export const fetchInventoryWarningSummary = (options) => ({
+    type: ActionTypes.INVENTORY_WARNING_FETCH,
+    payload: fetchData(ActionTypes.INVENTORY_WARNING_FETCH_URL, {}, options)
+});

@@ -180,17 +180,17 @@ export default defineMessages({
     systemInventoryWarning: {
         id: 'systemInventoryWarning',
         description: 'System inventory - warning',
-        defaultMessage: 'stale systems'
+        defaultMessage: '{count} stale systems'
     },
     systemInventoryDanger: {
         id: 'systemInventoryDanger',
         description: 'System inventory - danger',
-        defaultMessage: 'systems to be removed'
+        defaultMessage: '{count} systems to be removed'
     },
     systemInventoryPercentageData: {
         id: 'systemInventoryPercentageData',
         description: 'System Inventory - percentage data',
-        defaultMessage: '0% of total systems'
+        defaultMessage: '{count}% of total systems'
     },
     systemInventoryTitle: {
         id: 'systemInventoryTitle',
