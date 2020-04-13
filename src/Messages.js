@@ -211,5 +211,15 @@ export default defineMessages({
         id: 'remediationsNoActivity',
         description: 'Remediations playbook - failed getting data',
         defaultMessage: 'Failure'
+    },
+    remediationsNoDataTitle: {
+        id: 'remediationsNoDataTitle',
+        description: 'No remediations',
+        defaultMessage: `You haven't created any remediation Playbooks yet`
+    },
+    remediationsNoDataBody: {
+        id: 'remediationsNoDataBody',
+        description: 'Create a playbook to see remediations',
+        defaultMessage: 'Create an Ansible Playbook to remediate or mitigate vulnerabilities or configuration issues.'
     }
 });

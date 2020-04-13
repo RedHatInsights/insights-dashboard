@@ -7,19 +7,30 @@ import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import { Bullseye } from '@patternfly/react-core/dist/js/layouts/Bullseye/Bullseye';
 
 import WrenchIcon from '@patternfly/react-icons/dist/js/icons/wrench-icon';
+import PropTypes from 'prop-types';
+
+import { useIntl } from 'react-intl';
+import messages from '../../Messages';
 
 export const RemediationsEmptyState = () => {
+
+    const intl = useIntl();
+
     return (
         <Bullseye>
             <EmptyState variant={ EmptyStateVariant.small }>
                 <EmptyStateIcon icon={ WrenchIcon }/>
                 <Title headingLevel="h6" size="md">
-                    You haven&apos;t created any remediation Playbooks yet
+                    { intl.formatMessage(messages.remediationsNoDataTitle)}
                 </Title>
                 <EmptyStateBody>
-                    Create an Ansible Playbook to remediate or mitigate vulnerabilities or configuration issues.
+                    { intl.formatMessage(messages.remediationsNoDataBody)}
                 </EmptyStateBody>
             </EmptyState>
         </Bullseye>
     );
+};
+
+RemediationsEmptyState.propTypes = {
+    intl: PropTypes.any
 };
