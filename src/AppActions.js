@@ -67,3 +67,8 @@ export const subscriptionsUtilizedProductTwoFetch = (id, options) => ({
         fetchData(`${ActionTypes.SUBSCRIPTIONS_UTILIZED_CAPACITY_FETCH_URL}${id}`, {}, options)
     ])
 });
+
+export const fetchRemediations = (options) => ({
+    type: ActionTypes.REMEDIATIONS_FETCH,
+    payload: fetchData(ActionTypes.REMEDIATIONS_FETCH_URL, {}, options)
+});
