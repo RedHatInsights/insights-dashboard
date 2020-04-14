@@ -1,6 +1,6 @@
 {
   "en": {
-    "dashboardTitle": "Overview",
+    "dashboardTitle": "Dashboard",
     "subscriptionsUtilizedTitle": "Subscription watch utilization summary",
     "subscriptionsUtilizedProductOneTitle": "Red Hat OpenShift",
     "subscriptionsUtilizedProductOneDesc": "OpenShift Cores: {totalReport}",
