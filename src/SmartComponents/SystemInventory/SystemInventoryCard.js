@@ -5,6 +5,7 @@ import * as AppActions from '../../AppActions';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { connect } from 'react-redux';
 
+import { Button } from '@patternfly/react-core';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { NumberDescription } from '../../../../insights-dashboard/src/PresentationalComponents/NumberDescription/NumberDescription';
 import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
@@ -44,34 +45,36 @@ const SystemInventoryCard = ({
         <TemplateCardBody isFilled={ false }>
             { inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
                 <NumberDescription
-                    data={ inventorySummary.total }
+                    data={ inventorySummary.total || 0 }
                     dataSize="lg"
                     percentageData={ intl.formatMessage(messages.systemInventoryPercentageData,
-                        { count: Math.floor((inventorySummary.total / inventoryTotalSummary.total) * 100) }
+                        { count: Math.floor((inventorySummary.total / inventoryTotalSummary.total) * 100) || 0 }
                     ) }
                     linkDescription={ intl.formatMessage(messages.systemInventoryDescription) }
                     link='./insights/inventory'
                 />
             }
-            { inventoryWarningFetchStatus === 'fulfilled' &&
-                <IconInline
-                    href='./insights/inventory/?status=stale_warning'
-                    message={ intl.formatMessage(messages.systemInventoryWarning,
-                        { count: inventoryWarningSummary.total }
-                    ) }
-                    state="warning"
-                    systemInventory="true"
-                />
-            }
             { inventoryStaleFetchStatus === 'fulfilled' &&
-                <IconInline
-                    href='./insights/inventory/?status=stale'
-                    message={ intl.formatMessage(messages.systemInventoryDanger,
-                        { count: inventoryStaleSummary.total }
-                    ) }
-                    state="critical"
-                    systemInventory="true"
-                />
+                <Button component="a" variant="link" href='./insights/inventory/?status=stale' isInline>
+                    <IconInline
+                        message={ intl.formatMessage(messages.systemInventoryDanger,
+                            { count: inventoryStaleSummary.total || 0 }
+                        ) }
+                        state="warning"
+                        systemInventory="true"
+                    />
+                </Button>
+            }
+            { inventoryWarningFetchStatus === 'fulfilled' &&
+                <Button component="a" variant="link" href='./insights/inventory/?status=stale_warning' isInline>
+                    <IconInline
+                        message={ intl.formatMessage(messages.systemInventoryWarning,
+                            { count: inventoryWarningSummary.total || 0 }
+                        ) }
+                        state="critical"
+                        systemInventory="true"
+                    />
+                </Button>
             }
         </TemplateCardBody>
     </TemplateCard>;
