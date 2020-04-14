@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import * as AppActions from '../../AppActions';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { connect } from 'react-redux';
 
-import { Button } from '@patternfly/react-core';
+import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { NumberDescription } from '../../../../insights-dashboard/src/PresentationalComponents/NumberDescription/NumberDescription';
 import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
@@ -24,19 +23,14 @@ const SystemInventoryCard = ({
 
     useEffect(() => {
         fetchInventoryTotal();
-    }, [fetchInventoryTotal]);
-
-    useEffect(() => {
         fetchInventory();
-    }, [fetchInventory]);
-
-    useEffect(() => {
         fetchInventoryStale();
-    }, [fetchInventoryStale]);
-
-    useEffect(() => {
         fetchInventoryWarning();
-    }, [fetchInventoryWarning]);
+    }, [fetchInventoryTotal,
+        fetchInventory,
+        fetchInventoryStale,
+        fetchInventoryWarning]
+    );
 
     const intl = useIntl();
 
@@ -96,26 +90,21 @@ SystemInventoryCard.propTypes = {
     intl: PropTypes.any
 };
 
-const mapStateToProps = (state, ownProps) => ({
-    inventorySummary: state.DashboardStore.inventorySummary,
-    inventoryFetchStatus: state.DashboardStore.inventoryFetchStatus,
-    inventoryStaleSummary: state.DashboardStore.inventoryStaleSummary,
-    inventoryStaleFetchStatus: state.DashboardStore.inventoryStaleFetchStatus,
-    inventoryWarningSummary: state.DashboardStore.inventoryWarningSummary,
-    inventoryWarningFetchStatus: state.DashboardStore.inventoryWarningFetchStatus,
-    inventoryTotalSummary: state.DashboardStore.inventoryTotalSummary,
-    inventoryTotalFetchStatus: state.DashboardStore.inventoryTotalFetchStatus,
-    ...ownProps
-});
-
-const mapDispatchToProps = dispatch => ({
-    fetchInventory: () => dispatch(AppActions.fetchInventorySummary()),
-    fetchInventoryStale: () => dispatch(AppActions.fetchInventoryStaleSummary()),
-    fetchInventoryWarning: () => dispatch(AppActions.fetchInventoryWarningSummary()),
-    fetchInventoryTotal: () => dispatch(AppActions.fetchInventoryTotalSummary())
-});
-
-export default routerParams(connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SystemInventoryCard));
+export default connect(
+    ({ DashboardStore }) => ({
+        inventorySummary: DashboardStore.inventorySummary,
+        inventoryFetchStatus: DashboardStore.inventoryFetchStatus,
+        inventoryStaleSummary: DashboardStore.inventoryStaleSummary,
+        inventoryStaleFetchStatus: DashboardStore.inventoryStaleFetchStatus,
+        inventoryWarningSummary: DashboardStore.inventoryWarningSummary,
+        inventoryWarningFetchStatus: DashboardStore.inventoryWarningFetchStatus,
+        inventoryTotalSummary: DashboardStore.inventoryTotalSummary,
+        inventoryTotalFetchStatus: DashboardStore.inventoryTotalFetchStatus
+    }),
+    dispatch => ({
+        fetchInventory: () => dispatch(AppActions.fetchInventorySummary()),
+        fetchInventoryStale: () => dispatch(AppActions.fetchInventoryStaleSummary()),
+        fetchInventoryWarning: () => dispatch(AppActions.fetchInventoryWarningSummary()),
+        fetchInventoryTotal: () => dispatch(AppActions.fetchInventoryTotalSummary())
+    })
+)(SystemInventoryCard);
