@@ -41,3 +41,7 @@
       font-size: var(--pf-global--FontSize--sm);
     }
   }
+
+.ins-c-card__compliance {
+  .pf-c-card__header { padding: 0; }
+}

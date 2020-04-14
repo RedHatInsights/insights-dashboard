@@ -5,7 +5,6 @@ import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/js/co
 import React, { useEffect } from 'react';
 import {
     TemplateCard,
-    TemplateCardActions,
     TemplateCardBody,
     TemplateCardHead,
     TemplateCardHeader
@@ -64,7 +63,6 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
             } : { 'data-ouia-safe': false } }
         >
             <TemplateCardHead>
-                <TemplateCardActions downloadReport="true" />
                 <TemplateCardHeader title='Compliance' />
             </TemplateCardHead>
             <TemplateCardBody>
