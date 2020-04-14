@@ -90,11 +90,11 @@ export default defineMessages({
     vulnerabilitiesTitle: {
         id: 'vulnerabilitiesTitle',
         description: 'Vulnerability card header',
-        defaultMessage: 'Vulnerabilities'
+        defaultMessage: 'Vulnerability'
     },
     vulnerabilitiesTotalItems: {
         id: 'vulnerabilitiesTotalItems',
-        description: 'Vulnerabilities - vulnerability total',
+        description: 'Vulnerability - vulnerability total',
         defaultMessage: '{total}'
     },
     lastxdays: {
