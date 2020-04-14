@@ -1,0 +1,4 @@
+.ins-c-remediation__status-icon--passed { color: var(--pf-global--success-color--200); }
+.ins-c-remediation__status-icon--failed { color: var(--pf-global--danger-color--100); }
+.ins-c-remediation__status-icon--running { color: var(--pf-global--default-color--300); }
+.ins-c-remediation__status-text { text-transform: capitalize; }

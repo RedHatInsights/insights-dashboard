@@ -12,10 +12,14 @@
     flex-direction: row;
     padding-top: 2px;
     padding-right: 16px;
-    min-width: 100px;
+    min-width: 110px;
 
     > p {
         margin-left: var(--pf-global--spacer--sm);
         font-size: var(--pf-global--FontSize--sm);
     }
+}
+
+.ins-c-dashboard__card--Remediations {
+    .pf-c-card__header { padding: 0; }
 }
