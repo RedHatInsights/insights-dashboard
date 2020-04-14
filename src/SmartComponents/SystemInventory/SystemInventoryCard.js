@@ -45,7 +45,7 @@ const SystemInventoryCard = ({
                         { count: Math.floor((inventorySummary.total / inventoryTotalSummary.total) * 100) || 0 }
                     ) }
                     linkDescription = { intl.formatMessage(messages.systemInventoryDescription,
-                        { count: Math.floor((inventorySummary.total / inventoryTotalSummary.total) * 100) || 0 }
+                        { count: inventorySummary.total || 0 }
                     ) }
                     link='./insights/inventory'
                 />
