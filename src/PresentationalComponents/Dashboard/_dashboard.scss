@@ -11,6 +11,28 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto;
 
+  &.ins-m-no-subscription {
+    @media screen and (min-width: 1200px) {
+      .dashboard-card-group {
+        grid-column: 1 / span 2;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+        .dashboard-card-entitlements {
+          display: none;
+          visibility: hidden;
+        }
+
+        .dashboard-card-operating-systems {
+          grid-column: 2 / span 1;
+        }
+      }
+
+      .dashboard-card-compliance-remediations {
+        grid-row: 1 / span 3;
+      }
+    }
+  }
+
   > *:not(.dashboard-card-group) {
     background-color: #fff; // sets the background for the lazy loading state
   }

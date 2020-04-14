@@ -32,7 +32,7 @@ const Dashboard = () => {
                     {intl.formatMessage(messages.dashboardTitle)}
                 </Title>
             </PageSection>
-            <Main className='ins-l-dashboard'>
+            <Main className={ `ins-l-dashboard ${ permission.advisor !== 'true' && ' ins-m-no-subscription ' }` }>
                 <div className="dashboard-card-group">
                     <div className="dashboard-card-system-inventory">
                         <Suspense fallback={ <Loading /> }>
@@ -41,7 +41,7 @@ const Dashboard = () => {
                     </div>
                     <div className="dashboard-card-entitlements">
                         <Suspense fallback={ <Loading /> }>
-                            { permission.subscriptions ? <SubscriptionsUtilizedCard /> : <DeniedState appName='Subscription Watch'/> }
+                            { permission.subscriptions && <SubscriptionsUtilizedCard /> }
                         </Suspense>
                     </div>
                     <div className="dashboard-card-operating-systems">
