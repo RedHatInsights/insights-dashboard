@@ -177,15 +177,15 @@ export default defineMessages({
         description: 'System inventory - description',
         defaultMessage: 'Systems running insights-client'
     },
-    systemInventoryWarning: {
-        id: 'systemInventoryWarning',
-        description: 'System inventory - warning',
-        defaultMessage: '{count} stale systems'
-    },
-    systemInventoryDanger: {
-        id: 'systemInventoryDanger',
-        description: 'System inventory - danger',
+    systemInventoryStaleWarning: {
+        id: 'systemInventoryStaleWarning',
+        description: 'System inventory - stale warning',
         defaultMessage: '{count} systems to be removed'
+    },
+    systemInventoryStale: {
+        id: 'systemInventoryStale',
+        description: 'System inventory - stale',
+        defaultMessage: '{count} stale systems'
     },
     systemInventoryPercentageData: {
         id: 'systemInventoryPercentageData',
