@@ -82,11 +82,6 @@ export default defineMessages({
         description: 'Compliance - compliant score',
         defaultMessage: '{score}% passes'
     },
-    remediationsTotal: {
-        id: 'remediationsTotal',
-        description: 'Remediations - remediations total',
-        defaultMessage: '{total} more remediations'
-    },
     vulnerabilitiesTitle: {
         id: 'vulnerabilitiesTitle',
         description: 'Vulnerability card header',
@@ -196,5 +191,35 @@ export default defineMessages({
         id: 'systemInventoryTitle',
         description: 'System Inventory - title',
         defaultMessage: 'Insights system inventory'
+    },
+    remediationsTotal: {
+        id: 'remediationsTotal',
+        description: 'Remediations - remediations total',
+        defaultMessage: '{total} more remediations'
+    },
+    remediationsPlaybookStatus: {
+        id: 'remediationsPlaybookStatus',
+        description: 'Remediations playbook - status',
+        defaultMessage: '{status}'
+    },
+    remediationsPlaybookNoActivity: {
+        id: 'remediationsPlaybookNoActivity',
+        description: 'Remediations playbook - no activity',
+        defaultMessage: 'No activity'
+    },
+    remediationsPlaybookFailure: {
+        id: 'remediationsNoActivity',
+        description: 'Remediations playbook - failed getting data',
+        defaultMessage: 'Failure'
+    },
+    remediationsNoDataTitle: {
+        id: 'remediationsNoDataTitle',
+        description: 'No remediations',
+        defaultMessage: `You haven't created any remediation Playbooks yet`
+    },
+    remediationsNoDataBody: {
+        id: 'remediationsNoDataBody',
+        description: 'Create a playbook to see remediations',
+        defaultMessage: 'Create an Ansible Playbook to remediate or mitigate vulnerabilities or configuration issues.'
     }
 });
