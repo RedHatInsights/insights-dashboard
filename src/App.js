@@ -66,7 +66,8 @@ const App = (props) => {
                     remediations: permissions.remediations,
                     patch: permissions.patch,
                     vulnerability: permissions.vulnerability,
-                    subscriptions: true
+                    subscriptions: true,
+                    isOrgAdmin
                 } }>
                 <Routes childProps={ props } />
             </PermissionContext.Provider>
