@@ -39,12 +39,14 @@ const SystemInventoryCard = ({
         <TemplateCardBody isFilled={ false }>
             { inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
                 <NumberDescription
-                    data={ inventorySummary.total || 0 }
+                    data={ inventorySummary.total.toLocaleString() || 0 }
                     dataSize="lg"
                     percentageData={ intl.formatMessage(messages.systemInventoryPercentageData,
                         { count: Math.floor((inventorySummary.total / inventoryTotalSummary.total) * 100) || 0 }
                     ) }
-                    linkDescription={ intl.formatMessage(messages.systemInventoryDescription) }
+                    linkDescription = { intl.formatMessage(messages.systemInventoryDescription,
+                        { count: Math.floor((inventorySummary.total / inventoryTotalSummary.total) * 100) || 0 }
+                    ) }
                     link='./insights/inventory'
                 />
             }
