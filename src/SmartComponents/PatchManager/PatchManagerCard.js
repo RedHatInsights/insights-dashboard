@@ -16,6 +16,7 @@ import {
     chart_color_blue_300,
     chart_color_blue_400
 } from '@patternfly/react-tokens';
+import FailState from '../../PresentationalComponents/FailState/FailState';
 
 /**
  * Operating systems card for showing the ratio of operating systems used.
@@ -79,6 +80,9 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                         />
                     </div>
                 </React.Fragment>
+            }
+            {fetchSystems === 'rejected' &&
+                <FailState appName='Patch'/>
             }
         </TemplateCardBody>
     </TemplateCard>;

@@ -33,6 +33,8 @@ import {
     chart_color_blue_300
 } from '@patternfly/react-tokens';
 
+import FailState from '../../PresentationalComponents/FailState/FailState';
+
 const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSummary }) => {
 
     useEffect(() => {
@@ -169,6 +171,9 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                     }
                     {complianceFetchStatus === 'pending' && (<Loading />)}
                 </Stack>
+                {complianceFetchStatus === 'rejected' &&
+                    <FailState appName='Vulnerability'/>
+                }
             </TemplateCardBody>
         </TemplateCard>
     );

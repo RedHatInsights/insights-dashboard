@@ -221,5 +221,10 @@ export default defineMessages({
         id: 'remediationsNoDataBody',
         description: 'Create a playbook to see remediations',
         defaultMessage: 'Create an Ansible Playbook to remediate or mitigate vulnerabilities or configuration issues.'
+    },
+    errorStateTitle: {
+        id: 'errorStateTitle',
+        description: 'Error with API title',
+        defaultMessage: '{appName} has experienced an error. Contact Red Hat support if the problem persists'
     }
 });

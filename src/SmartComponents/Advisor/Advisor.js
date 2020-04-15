@@ -15,6 +15,8 @@ import { connect } from 'react-redux';
 import { useIntl } from 'react-intl';
 import messages from '../../Messages';
 
+import FailState from '../../PresentationalComponents/FailState/FailState';
+
 /**
  * Advisor Card for showing count/severity of rec hits
  */
@@ -78,6 +80,9 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                 <Button component="a" href={ `${UI_BASE}${NEW_REC_URL}` } variant="link" isInline>
                     {intl.formatMessage(messages.recsImpactingSystems, { totalRecs: recStats.total, systems: systemsStats.total })}
                 </Button>}
+            {advisorIncidentsStatus === 'rejected' &&
+                <FailState appName='Vulnerability'/>
+            }
         </TemplateCardBody>
     </TemplateCard>;
 };
