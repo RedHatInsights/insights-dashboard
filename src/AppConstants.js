@@ -40,8 +40,7 @@ export const SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH = 'SUBSCRIPTIONS_UTILIZED_
 export const SUBSCRIPTIONS_UTILIZED_REPORT_FETCH_URL = `${BASE_URL}/rhsm-subscriptions/v1/tally/products/`;
 export const SUBSCRIPTIONS_UTILIZED_CAPACITY_FETCH_URL = `${BASE_URL}/rhsm-subscriptions/v1/capacity/products/`;
 
-
-// Inventory
+// Inventory Constants
 export const INVENTORY_BASE = '/inventory/v1';
 export const INVENTORY_TOTAL_FETCH = 'INVENTORY_TOTAL_FETCH';
 export const INVENTORY_TOTAL_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts`;
