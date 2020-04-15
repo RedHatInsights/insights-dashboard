@@ -25,7 +25,9 @@ const initialState = Immutable({
     subscriptionsUtilizedProductOne: [],
     subscriptionsUtilizedProductOneFetchStatus: '',
     subscriptionsUtilizedProductTwo: [],
-    subscriptionsUtilizedProductTwoFetchStatus: ''
+    subscriptionsUtilizedProductTwoFetchStatus: '',
+    remediations: {},
+    remediationsFetchStatus: ''
 });
 
 export const DashboardStore = (state = initialState, action) => {
@@ -155,5 +157,16 @@ export const DashboardStore = (state = initialState, action) => {
 
         default:
             return state;
+
+        // REMEDIATIONS
+        case `${ActionTypes.REMEDIATIONS_FETCH}_PENDING`:
+            return state.set('remediationsFetchStatus', 'pending');
+        case `${ActionTypes.REMEDIATIONS_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                remediations: action.payload,
+                remediationsFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.REMEDIATIONS_FETCH}_REJECTED`:
+            return state.set('remediationsFetchStatus', 'rejected');
     }
 };

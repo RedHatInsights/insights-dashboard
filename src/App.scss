@@ -50,3 +50,8 @@
 
     }
 }
+
+// Empty states
+.page__dashboard .pf-c-empty-state__body {
+    font-size: var(--pf-global--FontSize--sm);
+}
