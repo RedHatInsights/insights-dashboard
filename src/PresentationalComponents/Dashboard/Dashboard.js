@@ -18,7 +18,7 @@ const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability
 const SystemInventoryCard = lazy(() => import('../../SmartComponents/SystemInventory/SystemInventoryCard'));
 const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedCard'));
 const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
-// const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
+const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
 
 const Dashboard = () => {
 
@@ -65,9 +65,9 @@ const Dashboard = () => {
                         { permission.compliance ? <ComplianceCard /> : <DeniedState appName='Compliance'/> }
                     </Suspense>
                     <Divider />
-                    {/* <Suspense fallback={ <Loading /> }>
+                    <Suspense fallback={ <Loading /> }>
                         { permission.remediations ? <RemediationsCard /> : <DeniedState appName='Remediations'/> }
-                    </Suspense> */}
+                    </Suspense>
                 </div>
             </Main>
         </React.Fragment>

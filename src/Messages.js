@@ -82,11 +82,6 @@ export default defineMessages({
         description: 'Compliance - compliant score',
         defaultMessage: '{score}% passes'
     },
-    remediationsTotal: {
-        id: 'remediationsTotal',
-        description: 'Remediations - remediations total',
-        defaultMessage: '{total} more remediations'
-    },
     vulnerabilitiesTitle: {
         id: 'vulnerabilitiesTitle',
         description: 'Vulnerability card header',
@@ -175,26 +170,56 @@ export default defineMessages({
     systemInventoryDescription: {
         id: 'systemInventoryDescription',
         description: 'System inventory - description',
-        defaultMessage: 'Systems running insights-client'
+        defaultMessage: '{count, plural, one {System} other {Systems}} running insights-client'
     },
-    systemInventoryWarning: {
-        id: 'systemInventoryWarning',
-        description: 'System inventory - warning',
-        defaultMessage: 'stale systems'
+    systemInventoryStaleWarning: {
+        id: 'systemInventoryStaleWarning',
+        description: 'System inventory - stale warning',
+        defaultMessage: '{count, plural, one {# system} other {# systems}} to be removed'
     },
-    systemInventoryDanger: {
-        id: 'systemInventoryDanger',
-        description: 'System inventory - danger',
-        defaultMessage: 'systems to be removed'
+    systemInventoryStale: {
+        id: 'systemInventoryStale',
+        description: 'System inventory - stale',
+        defaultMessage: '{count, plural, one {# stale system} other {# stale systems}}'
     },
     systemInventoryPercentageData: {
         id: 'systemInventoryPercentageData',
         description: 'System Inventory - percentage data',
-        defaultMessage: '0% of total systems'
+        defaultMessage: '{count}% of total systems'
     },
     systemInventoryTitle: {
         id: 'systemInventoryTitle',
         description: 'System Inventory - title',
         defaultMessage: 'Insights system inventory'
+    },
+    remediationsTotal: {
+        id: 'remediationsTotal',
+        description: 'Remediations - remediations total',
+        defaultMessage: '{total} more remediations'
+    },
+    remediationsPlaybookStatus: {
+        id: 'remediationsPlaybookStatus',
+        description: 'Remediations playbook - status',
+        defaultMessage: '{status}'
+    },
+    remediationsPlaybookNoActivity: {
+        id: 'remediationsPlaybookNoActivity',
+        description: 'Remediations playbook - no activity',
+        defaultMessage: 'No activity'
+    },
+    remediationsPlaybookFailure: {
+        id: 'remediationsNoActivity',
+        description: 'Remediations playbook - failed getting data',
+        defaultMessage: 'Failure'
+    },
+    remediationsNoDataTitle: {
+        id: 'remediationsNoDataTitle',
+        description: 'No remediations',
+        defaultMessage: `You haven't created any remediation Playbooks yet`
+    },
+    remediationsNoDataBody: {
+        id: 'remediationsNoDataBody',
+        description: 'Create a playbook to see remediations',
+        defaultMessage: 'Create an Ansible Playbook to remediate or mitigate vulnerabilities or configuration issues.'
     }
 });

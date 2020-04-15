@@ -25,7 +25,18 @@ const initialState = Immutable({
     subscriptionsUtilizedProductOne: [],
     subscriptionsUtilizedProductOneFetchStatus: '',
     subscriptionsUtilizedProductTwo: [],
-    subscriptionsUtilizedProductTwoFetchStatus: ''
+    subscriptionsUtilizedProductTwoFetchStatus: '',
+
+    inventorySummary: {},
+    inventoryFetchStatus: '',
+    inventoryStaleSummary: {},
+    inventoryStaleFetchStatus: '',
+    inventoryWarningSummary: {},
+    inventoryWarningFetchStatus: '',
+    inventoryTotalSummary: {},
+    inventoryTotalFetchStatus: '',
+    remediations: {},
+    remediationsFetchStatus: ''
 });
 
 export const DashboardStore = (state = initialState, action) => {
@@ -155,5 +166,57 @@ export const DashboardStore = (state = initialState, action) => {
 
         default:
             return state;
+
+        // Inventory
+        case `${ActionTypes.INVENTORY_FETCH}_PENDING`:
+            return state.set('inventoryFetchStatus', 'pending');
+        case `${ActionTypes.INVENTORY_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                inventorySummary: action.payload,
+                inventoryFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.INVENTORY_FETCH}_REJECTED`:
+            return state.set('inventoryFetchStatus', 'rejected');
+
+        case `${ActionTypes.INVENTORY_STALE_FETCH}_PENDING`:
+            return state.set('inventoryStaleFetchStatus', 'pending');
+        case `${ActionTypes.INVENTORY_STALE_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                inventoryStaleSummary: action.payload,
+                inventoryStaleFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.INVENTORY_STALE_FETCH}_REJECTED`:
+            return state.set('inventoryStaleFetchStatus', 'rejected');
+
+        case `${ActionTypes.INVENTORY_WARNING_FETCH}_PENDING`:
+            return state.set('inventoryWarningFetchStatus', 'pending');
+        case `${ActionTypes.INVENTORY_WARNING_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                inventoryWarningSummary: action.payload,
+                inventoryWarningFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.INVENTORY_WARNING_FETCH}_REJECTED`:
+            return state.set('inventoryWarningFetchStatus', 'rejected');
+
+        case `${ActionTypes.INVENTORY_TOTAL_FETCH}_PENDING`:
+            return state.set('inventoryTotalFetchStatus', 'pending');
+        case `${ActionTypes.INVENTORY_TOTAL_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                inventoryTotalSummary: action.payload,
+                inventoryTotalFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.INVENTORY_TOTAL_FETCH}_REJECTED`:
+            return state.set('inventoryTotalFetchStatus', 'rejected');
+
+        // REMEDIATIONS
+        case `${ActionTypes.REMEDIATIONS_FETCH}_PENDING`:
+            return state.set('remediationsFetchStatus', 'pending');
+        case `${ActionTypes.REMEDIATIONS_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                remediations: action.payload,
+                remediationsFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.REMEDIATIONS_FETCH}_REJECTED`:
+            return state.set('remediationsFetchStatus', 'rejected');
     }
 };
