@@ -68,6 +68,26 @@ export const subscriptionsUtilizedProductTwoFetch = (id, options) => ({
     ])
 });
 
+export const fetchInventorySummary = (options) => ({
+    type: ActionTypes.INVENTORY_FETCH,
+    payload: fetchData(ActionTypes.INVENTORY_FETCH_URL, {}, options)
+});
+
+export const fetchInventoryTotalSummary = (options) => ({
+    type: ActionTypes.INVENTORY_TOTAL_FETCH,
+    payload: fetchData(ActionTypes.INVENTORY_TOTAL_FETCH_URL, {}, options)
+});
+
+export const fetchInventoryStaleSummary = (options) => ({
+    type: ActionTypes.INVENTORY_STALE_FETCH,
+    payload: fetchData(ActionTypes.INVENTORY_STALE_FETCH_URL, {}, options)
+});
+
+export const fetchInventoryWarningSummary = (options) => ({
+    type: ActionTypes.INVENTORY_WARNING_FETCH,
+    payload: fetchData(ActionTypes.INVENTORY_WARNING_FETCH_URL, {}, options)
+});
+
 export const fetchRemediations = (options) => ({
     type: ActionTypes.REMEDIATIONS_FETCH,
     payload: fetchData(ActionTypes.REMEDIATIONS_FETCH_URL, {}, options)
