@@ -32,7 +32,7 @@ const Dashboard = () => {
                     {intl.formatMessage(messages.dashboardTitle)}
                 </Title>
             </PageSection>
-            <Main className={ `ins-l-dashboard ${ permission.advisor !== 'true' && ' ins-m-no-subscription ' }` }>
+            <Main className={ `ins-l-dashboard ${ permission.subscriptions !== 'true' && ' ins-m-no-subscription ' }` }>
                 <div className="dashboard-card-group">
                     <div className="dashboard-card-system-inventory">
                         <Suspense fallback={ <Loading /> }>
