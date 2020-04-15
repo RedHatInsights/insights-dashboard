@@ -86,4 +86,9 @@ export const fetchInventoryStaleSummary = (options) => ({
 export const fetchInventoryWarningSummary = (options) => ({
     type: ActionTypes.INVENTORY_WARNING_FETCH,
     payload: fetchData(ActionTypes.INVENTORY_WARNING_FETCH_URL, {}, options)
+)};
+                                                          
+export const fetchRemediations = (options) => ({
+    type: ActionTypes.REMEDIATIONS_FETCH,
+    payload: fetchData(ActionTypes.REMEDIATIONS_FETCH_URL, {}, options)
 });

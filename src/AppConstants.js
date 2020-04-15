@@ -40,6 +40,7 @@ export const SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH = 'SUBSCRIPTIONS_UTILIZED_
 export const SUBSCRIPTIONS_UTILIZED_REPORT_FETCH_URL = `${BASE_URL}/rhsm-subscriptions/v1/tally/products/`;
 export const SUBSCRIPTIONS_UTILIZED_CAPACITY_FETCH_URL = `${BASE_URL}/rhsm-subscriptions/v1/capacity/products/`;
 
+
 // Inventory
 export const INVENTORY_BASE = '/inventory/v1';
 export const INVENTORY_TOTAL_FETCH = 'INVENTORY_TOTAL_FETCH';
@@ -50,3 +51,10 @@ export const INVENTORY_STALE_FETCH = 'INVENTORY_STALE_FETCH';
 export const INVENTORY_STALE_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale&registered_with=insights`;
 export const INVENTORY_WARNING_FETCH = 'INVENTORY_WARNING_FETCH';
 export const INVENTORY_WARNING_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale_warning&registered_with=insights`;
+
+// Remediations App Constants
+const REMEDIATIONS_BASE = '/remediations/v1';
+export const REMEDIATIONS_FETCH = 'REMEDIATIONS_FETCH';
+export const REMEDIATIONS_FETCH_URL = `${BASE_URL}${REMEDIATIONS_BASE}/remediations?sort=-updated_at&limit=4&offset=0`;
+export const REMEDIATIONS_PLAYBOOK_RUNS_FETCH = 'REMEDIATIONS_PLAYBOOK_RUNS_FETCH';
+export const REMEDIATIONS_PLAYBOOK_RUNS_FETCH_URL = `${BASE_URL}${REMEDIATIONS_BASE}/remediations/`;
