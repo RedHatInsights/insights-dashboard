@@ -6,7 +6,6 @@ import React, { useEffect } from 'react';
 import {
     TemplateCard,
     TemplateCardBody,
-    TemplateCardHead,
     TemplateCardHeader
 } from '../../PresentationalComponents/Template/TemplateCard';
 
@@ -62,9 +61,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                 'data-ouia-safe': true
             } : { 'data-ouia-safe': false } }
         >
-            <TemplateCardHead>
-                <TemplateCardHeader title='Compliance' />
-            </TemplateCardHead>
+            <TemplateCardHeader title='Compliance' />
             <TemplateCardBody>
                 <Stack>
                     {complianceFetchStatus === 'fulfilled' &&
