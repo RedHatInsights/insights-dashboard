@@ -11,7 +11,9 @@ export const init = (...middleware) => {
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     registry = getRegistry(
         {},
-        [...middleware, promise, notificationsMiddleware({ errorDescriptionKey: 'response.data' })],
+        [...middleware, promise, notificationsMiddleware({
+            errorTitleKey: ['message']
+        })],
         composeEnhancers
     );
     registry.register({ DashboardStore });
