@@ -16,6 +16,7 @@ import {
     chart_color_blue_300,
     chart_color_blue_400
 } from '@patternfly/react-tokens';
+import FailState from '../../PresentationalComponents/FailState/FailState';
 
 /**
  * Operating systems card for showing the ratio of operating systems used.
@@ -46,6 +47,15 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
         chart_color_blue_300.value,
         chart_color_blue_200.value
     ];
+
+    if (systemsStatus === 'rejected') {
+        return (
+            <TemplateCard appName='PatchManager' className={ 'ins-c-dashboard__card--Patch' }>
+                <TemplateCardHeader subtitle={ intl.formatMessage(messages.patchTitle) }/>
+                <TemplateCardBody><FailState appName='Patch'/></TemplateCardBody>
+            </TemplateCard>
+        );
+    }
 
     return <TemplateCard appName='PatchManager' className={ 'ins-c-dashboard__card--Patch' }>
         <TemplateCardHeader subtitle={ intl.formatMessage(messages.patchTitle) }/>
