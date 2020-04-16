@@ -224,7 +224,7 @@ export default defineMessages({
     },
     errorStateTitle: {
         id: 'errorStateTitle',
-        description: 'Error with API title',
+        description: 'Error fetching API',
         defaultMessage: '{appName} has experienced an error. Contact Red Hat support if the problem persists'
     }
 });
