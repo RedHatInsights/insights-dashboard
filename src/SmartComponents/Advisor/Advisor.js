@@ -81,7 +81,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                     {intl.formatMessage(messages.recsImpactingSystems, { totalRecs: recStats.total, systems: systemsStats.total })}
                 </Button>}
             {advisorIncidentsStatus === 'rejected' &&
-                <FailState appName='Vulnerability'/>
+                <FailState appName='Advisor'/>
             }
         </TemplateCardBody>
     </TemplateCard>;

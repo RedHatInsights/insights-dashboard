@@ -172,7 +172,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                     {complianceFetchStatus === 'pending' && (<Loading />)}
                 </Stack>
                 {complianceFetchStatus === 'rejected' &&
-                    <FailState appName='Vulnerability'/>
+                    <FailState appName='Compliance'/>
                 }
             </TemplateCardBody>
         </TemplateCard>
