@@ -50,6 +50,15 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         }
     }];
 
+    if (advisorIncidentsStatus === 'rejected') {
+        return (
+            <TemplateCard appName='Advisor' data-ouia-safe>
+                <TemplateCardHeader title='Advisor recommendations' />
+                <TemplateCardBody><FailState appName='Advisor'/></TemplateCardBody>
+            </TemplateCard>
+        );
+    }
+
     return <TemplateCard appName='Advisor'>
         <TemplateCardHeader title='Advisor recommendations' />
         <TemplateCardBody>
@@ -80,9 +89,6 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                 <Button component="a" href={ `${UI_BASE}${NEW_REC_URL}` } variant="link" isInline>
                     {intl.formatMessage(messages.recsImpactingSystems, { totalRecs: recStats.total, systems: systemsStats.total })}
                 </Button>}
-            {advisorIncidentsStatus === 'rejected' &&
-                <FailState appName='Advisor'/>
-            }
         </TemplateCardBody>
     </TemplateCard>;
 };

@@ -48,6 +48,15 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
         chart_color_blue_200.value
     ];
 
+    if (systemsStatus === 'rejected') {
+        return (
+            <TemplateCard appName='PatchManager' className={ 'ins-c-dashboard__card--Patch' }>
+                <TemplateCardHeader subtitle={ intl.formatMessage(messages.patchTitle) }/>
+                <TemplateCardBody><FailState appName='Patch'/></TemplateCardBody>
+            </TemplateCard>
+        );
+    }
+
     return <TemplateCard appName='PatchManager' className={ 'ins-c-dashboard__card--Patch' }>
         <TemplateCardHeader subtitle={ intl.formatMessage(messages.patchTitle) }/>
         <TemplateCardBody>
@@ -80,9 +89,6 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                         />
                     </div>
                 </React.Fragment>
-            }
-            {fetchSystems === 'rejected' &&
-                <FailState appName='Patch'/>
             }
         </TemplateCardBody>
     </TemplateCard>;
