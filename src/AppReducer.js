@@ -151,7 +151,10 @@ export const DashboardStore = (state = initialState, action) => {
                 subscriptionsUtilizedProductOneFetchStatus: 'fulfilled'
             });
         case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH}_REJECTED`:
-            return state.set('subscriptionsUtilizedProductOneFetchStatus', 'rejected');
+            return Immutable.merge(state, {
+                subscriptionsUtilizedProductOne: action.payload.response,
+                subscriptionsUtilizedProductOneFetchStatus: 'rejected'
+            });
 
         // SubsUtilized Product Two
         case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH}_PENDING`:
@@ -162,7 +165,10 @@ export const DashboardStore = (state = initialState, action) => {
                 subscriptionsUtilizedProductTwoFetchStatus: 'fulfilled'
             });
         case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH}_REJECTED`:
-            return state.set('subscriptionsUtilizedProductTwoFetchStatus', 'rejected');
+            return Immutable.merge(state, {
+                subscriptionsUtilizedProductTwo: action.payload.response,
+                subscriptionsUtilizedProductTwoFetchStatus: 'rejected'
+            });
 
         default:
             return state;

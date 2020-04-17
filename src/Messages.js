@@ -10,7 +10,17 @@ export default defineMessages({
     subscriptionsUtilizedTitle: {
         id: 'subscriptionsUtilizedTitle',
         description: 'Title of the subscriptions utilized card',
-        defaultMessage: 'Subscription watch utilization summary'
+        defaultMessage: 'Subscription Watch utilization summary'
+    },
+    subscriptionsUtilizedLearnMore: {
+        id: 'subscriptionsUtilizedLearnMore',
+        description: 'Subscriptions utilized card - learn more description',
+        defaultMessage: 'Activate Subscription Watch to monitor your subscription utilization.'
+    },
+    subscriptionsUtilizedLearnMoreAction: {
+        id: 'subscriptionsUtilizedLearnMoreAction',
+        description: 'Subscriptions utilized card - learn more action',
+        defaultMessage: 'Learn about Subscription Watch'
     },
     subscriptionsUtilizedProductOneTitle: {
         id: 'subscriptionsUtilizedProductOneTitle',
