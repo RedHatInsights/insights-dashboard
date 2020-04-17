@@ -74,7 +74,7 @@ const SystemInventoryCard = ({
                 </Button>
             }
             { inventoryTotalFetchStatus === 'rejected' &&
-                <FailState appName='Inventory'/>
+                <FailState appName='Inventory' isSmall/>
             }
         </TemplateCardBody>
     </TemplateCard>;

@@ -154,7 +154,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                         </Button>
                     </EmptyStateSecondaryActions>
                 </EmptyState>) ||
-                (productError && <FailState appName={ intl.formatMessage(messages.subscriptionsUtilizedTitle) } />) ||
+                (productError && <FailState appName={ intl.formatMessage(messages.subscriptionsUtilizedTitle) } isSmall/>) ||
                 charts
             }
         </TemplateCardBody>
