@@ -5,7 +5,7 @@ export default defineMessages({
     dashboardTitle: {
         id: 'dashboardTitle',
         description: 'Title of the dashboard',
-        defaultMessage: 'Overview'
+        defaultMessage: 'Dashboard'
     },
     subscriptionsUtilizedTitle: {
         id: 'subscriptionsUtilizedTitle',
