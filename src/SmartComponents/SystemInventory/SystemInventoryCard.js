@@ -10,6 +10,7 @@ import { NumberDescription } from '../../../../insights-dashboard/src/Presentati
 import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
 import { useIntl } from 'react-intl';
 import messages from '../../Messages';
+import FailState from '../../PresentationalComponents/FailState/FailState';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -71,6 +72,9 @@ const SystemInventoryCard = ({
                         systemInventory="true"
                     />
                 </Button>
+            }
+            { inventoryTotalFetchStatus === 'rejected' &&
+                <FailState appName='Inventory'/>
             }
         </TemplateCardBody>
     </TemplateCard>;

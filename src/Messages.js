@@ -5,12 +5,22 @@ export default defineMessages({
     dashboardTitle: {
         id: 'dashboardTitle',
         description: 'Title of the dashboard',
-        defaultMessage: 'Overview'
+        defaultMessage: 'Dashboard'
     },
     subscriptionsUtilizedTitle: {
         id: 'subscriptionsUtilizedTitle',
         description: 'Title of the subscriptions utilized card',
-        defaultMessage: 'Subscription watch utilization summary'
+        defaultMessage: 'Subscription Watch utilization summary'
+    },
+    subscriptionsUtilizedLearnMore: {
+        id: 'subscriptionsUtilizedLearnMore',
+        description: 'Subscriptions utilized card - learn more description',
+        defaultMessage: 'Activate Subscription Watch to monitor your subscription utilization.'
+    },
+    subscriptionsUtilizedLearnMoreAction: {
+        id: 'subscriptionsUtilizedLearnMoreAction',
+        description: 'Subscriptions utilized card - learn more action',
+        defaultMessage: 'Learn about Subscription Watch'
     },
     subscriptionsUtilizedProductOneTitle: {
         id: 'subscriptionsUtilizedProductOneTitle',
@@ -85,11 +95,11 @@ export default defineMessages({
     vulnerabilitiesTitle: {
         id: 'vulnerabilitiesTitle',
         description: 'Vulnerability card header',
-        defaultMessage: 'Vulnerabilities'
+        defaultMessage: 'Vulnerability'
     },
     vulnerabilitiesTotalItems: {
         id: 'vulnerabilitiesTotalItems',
-        description: 'Vulnerabilities - vulnerability total',
+        description: 'Vulnerability - vulnerability total',
         defaultMessage: '{total}'
     },
     lastxdays: {
@@ -221,5 +231,10 @@ export default defineMessages({
         id: 'remediationsNoDataBody',
         description: 'Create a playbook to see remediations',
         defaultMessage: 'Create an Ansible Playbook to remediate or mitigate vulnerabilities or configuration issues.'
+    },
+    errorStateTitle: {
+        id: 'errorStateTitle',
+        description: 'Error fetching API',
+        defaultMessage: '{appName} has experienced an error. Contact Red Hat support if the problem persists.'
     }
 });

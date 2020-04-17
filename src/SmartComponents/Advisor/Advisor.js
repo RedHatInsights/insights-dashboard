@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
+import FailState from '../../PresentationalComponents/FailState/FailState';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { NumberDescription } from '../../PresentationalComponents/NumberDescription/NumberDescription';
 import PropTypes from 'prop-types';
@@ -12,8 +13,8 @@ import { SEVERITY_MAP } from './Constants';
 import StackChartTemplate from '../../ChartTemplates/StackChart/StackChartTemplate';
 import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
-import { useIntl } from 'react-intl';
 import messages from '../../Messages';
+import { useIntl } from 'react-intl';
 
 /**
  * Advisor Card for showing count/severity of rec hits
@@ -48,37 +49,41 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         }
     }];
 
-    return <TemplateCard appName='Advisor'>
+    return <TemplateCard appName='Advisor' data-ouia-safe>
         <TemplateCardHeader title='Advisor recommendations' />
-        <TemplateCardBody>
-            {advisorIncidentsStatus !== 'fulfilled' ? <Loading /> :
-                <NumberDescription
-                    data={ advisorIncidents.meta.count }
-                    dataSize="md"
-                    layout="horizontal"
-                    linkDescription={ intl.formatMessage(messages.incidentsDetected, { incidents: advisorIncidents.meta.count }) }
-                    critical={ advisorIncidents.meta.count > 50 ? 'true' : 'false' }
-                    link={ `${UI_BASE}${INCIDENT_URL}` }
-                />
-            }
-            {recStatsStatus !== 'fulfilled' ? <Loading /> :
-                <StackChartTemplate
-                    ariaDesc="Advisor recommendations"
-                    ariaTitle="Advisor recommendations chart"
-                    height={ 40 }
-                    width={ 600 }
-                    maxWidth={ 600 }
-                    legendHeight={ 36 }
-                    legendWidth={ 600 }
-                    data={ chartData }
-                    legendClick={ legendClick }
-                />
-            }
-            {systemsStatsStatus !== 'fulfilled' ? <Loading /> :
-                <Button component="a" href={ `${UI_BASE}${NEW_REC_URL}` } variant="link" isInline>
-                    {intl.formatMessage(messages.recsImpactingSystems, { totalRecs: recStats.total, systems: systemsStats.total })}
-                </Button>}
-        </TemplateCardBody>
+        {advisorIncidentsStatus === 'rejected' ?
+            <TemplateCardBody><FailState appName='Advisor' /></TemplateCardBody>
+            : <TemplateCardBody>
+                {advisorIncidentsStatus !== 'fulfilled' ? <Loading /> :
+                    <NumberDescription
+                        data={ advisorIncidents.meta.count }
+                        dataSize="md"
+                        layout="horizontal"
+                        linkDescription={ intl.formatMessage(messages.incidentsDetected, { incidents: advisorIncidents.meta.count }) }
+                        critical={ advisorIncidents.meta.count > 50 ? 'true' : 'false' }
+                        link={ `${UI_BASE}${INCIDENT_URL}` }
+                    />
+                }
+                {recStatsStatus !== 'fulfilled' ? <Loading /> :
+                    <StackChartTemplate
+                        ariaDesc="Advisor recommendations"
+                        ariaTitle="Advisor recommendations chart"
+                        height={ 40 }
+                        width={ 600 }
+                        maxWidth={ 600 }
+                        legendHeight={ 36 }
+                        legendWidth={ 600 }
+                        data={ chartData }
+                        legendClick={ legendClick }
+                    />
+                }
+                {systemsStatsStatus !== 'fulfilled' ? <Loading /> :
+                    <Button component="a" href={ `${UI_BASE}${NEW_REC_URL}` } variant="link" isInline>
+                        {intl.formatMessage(messages.recsImpactingSystems, { totalRecs: recStats.total, systems: systemsStats.total })}
+                    </Button>}
+            </TemplateCardBody>
+        }
+
     </TemplateCard>;
 };
 

@@ -2,8 +2,8 @@ import { notifications, notificationsMiddleware } from '@redhat-cloud-services/f
 
 import { DashboardStore } from '../AppReducer';
 import { compose } from 'redux';
-import { getRegistry } from '@red-hat-insights/insights-frontend-components';
-import promise from 'redux-promise-middleware';
+import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
+import promiseMiddleware from 'redux-promise-middleware';
 
 let registry;
 
@@ -11,7 +11,9 @@ export const init = (...middleware) => {
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     registry = getRegistry(
         {},
-        [...middleware, promise, notificationsMiddleware({ errorDescriptionKey: 'response.data' })],
+        [...middleware, promiseMiddleware, notificationsMiddleware({
+            errorTitleKey: ['message']
+        })],
         composeEnhancers
     );
     registry.register({ DashboardStore });
