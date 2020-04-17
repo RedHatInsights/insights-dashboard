@@ -15,6 +15,8 @@ import { connect } from 'react-redux';
 import { useIntl } from 'react-intl';
 import messages from '../../Messages';
 
+import FailState from '../../PresentationalComponents/FailState/FailState';
+
 /**
  * Advisor Card for showing count/severity of rec hits
  */
@@ -47,6 +49,15 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                 `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10`;
         }
     }];
+
+    if (advisorIncidentsStatus === 'rejected') {
+        return (
+            <TemplateCard appName='Advisor' data-ouia-safe>
+                <TemplateCardHeader title='Advisor recommendations' />
+                <TemplateCardBody><FailState appName='Advisor'/></TemplateCardBody>
+            </TemplateCard>
+        );
+    }
 
     return <TemplateCard appName='Advisor'>
         <TemplateCardHeader title='Advisor recommendations' />

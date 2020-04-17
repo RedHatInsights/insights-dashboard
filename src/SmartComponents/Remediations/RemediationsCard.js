@@ -17,6 +17,8 @@ import { useIntl } from 'react-intl';
 
 import { RemediationsEmptyState } from './RemediationsEmptyState';
 
+import FailState from '../../PresentationalComponents/FailState/FailState';
+
 /**
  * Remediations card.
  */
@@ -64,6 +66,9 @@ const RemediationsCard = ({
                             </React.Fragment>
                             : <RemediationsEmptyState/>)
                     )
+                }
+                {remediationsFetchStatus === 'rejected' &&
+                    <FailState appName='Remediations'/>
                 }
             </TemplateCardBody>
         </TemplateCard>
