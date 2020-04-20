@@ -12,6 +12,8 @@ import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 
+import NoSystems from '../NoSystems/NoSystems';
+
 const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
 const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
 const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
@@ -26,51 +28,53 @@ const Dashboard = () => {
     const intl = useIntl();
 
     return (
-        <React.Fragment>
-            <PageSection>
-                <Title headingLevel="h1" size="2xl">
-                    {intl.formatMessage(messages.dashboardTitle)}
-                </Title>
-            </PageSection>
-            <Main className='ins-l-dashboard'>
-                <div className="dashboard-card-group">
-                    <div className="dashboard-card-system-inventory">
+        permission.hasSystems ?
+            <React.Fragment>
+                <PageSection>
+                    <Title headingLevel="h1" size="2xl">
+                        {intl.formatMessage(messages.dashboardTitle)}
+                    </Title>
+                </PageSection>
+                <Main className='ins-l-dashboard'>
+                    <div className="dashboard-card-group">
+                        <div className="dashboard-card-system-inventory">
+                            <Suspense fallback={ <Loading /> }>
+                                <SystemInventoryCard />
+                            </Suspense>
+                        </div>
+                        <div className="dashboard-card-entitlements">
+                            <Suspense fallback={ <Loading /> }>
+                                { permission.subscriptions ? <SubscriptionsUtilizedCard /> : <DeniedState appName='Subscription Watch'/> }
+                            </Suspense>
+                        </div>
+                        <div className="dashboard-card-operating-systems">
+                            <Suspense fallback={ <Loading /> }>
+                                { permission.patch ? <PatchManagerCard /> : <DeniedState appName='Patch'/> }
+                            </Suspense>
+                        </div>
+                    </div>
+                    <div className="dashboard-card-rules">
                         <Suspense fallback={ <Loading /> }>
-                            <SystemInventoryCard />
+                            { permission.advisor ? <AdvisorCard /> : <DeniedState appName='Advisor'/> }
                         </Suspense>
                     </div>
-                    <div className="dashboard-card-entitlements">
+                    <div className="dashboard-card-vulnerabilities">
                         <Suspense fallback={ <Loading /> }>
-                            { permission.subscriptions ? <SubscriptionsUtilizedCard /> : <DeniedState appName='Subscription Watch'/> }
+                            { permission.vulnerability ? <VulnerabilityCard /> : <DeniedState appName='Vulnerability'/> }
                         </Suspense>
                     </div>
-                    <div className="dashboard-card-operating-systems">
+                    <div className="dashboard-card-compliance-remediations">
                         <Suspense fallback={ <Loading /> }>
-                            { permission.patch ? <PatchManagerCard /> : <DeniedState appName='Patch'/> }
+                            { permission.compliance ? <ComplianceCard /> : <DeniedState appName='Compliance'/> }
+                        </Suspense>
+                        <Divider />
+                        <Suspense fallback={ <Loading /> }>
+                            { permission.remediations ? <RemediationsCard /> : <DeniedState appName='Remediations'/> }
                         </Suspense>
                     </div>
-                </div>
-                <div className="dashboard-card-rules">
-                    <Suspense fallback={ <Loading /> }>
-                        { permission.advisor ? <AdvisorCard /> : <DeniedState appName='Advisor'/> }
-                    </Suspense>
-                </div>
-                <div className="dashboard-card-vulnerabilities">
-                    <Suspense fallback={ <Loading /> }>
-                        { permission.vulnerability ? <VulnerabilityCard /> : <DeniedState appName='Vulnerability'/> }
-                    </Suspense>
-                </div>
-                <div className="dashboard-card-compliance-remediations">
-                    <Suspense fallback={ <Loading /> }>
-                        { permission.compliance ? <ComplianceCard /> : <DeniedState appName='Compliance'/> }
-                    </Suspense>
-                    <Divider />
-                    <Suspense fallback={ <Loading /> }>
-                        { permission.remediations ? <RemediationsCard /> : <DeniedState appName='Remediations'/> }
-                    </Suspense>
-                </div>
-            </Main>
-        </React.Fragment>
+                </Main>
+            </React.Fragment>
+            : <NoSystems/>
     );
 };
 

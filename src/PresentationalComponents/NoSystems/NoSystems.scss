@@ -1,0 +1,18 @@
+.ins-c-no-systems {
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: var(--pf-global--spacer--2xl);
+
+    .pf-c-empty-state__icon {
+        fill: var(--pf-global--primary-color--100);
+        height: 1.5em;
+        width: 1.5em;
+    }
+    .pf-c-empty-state__body .pf-l-stack {
+        color: var(--pf-c-empty-state__body--Color);
+    }
+    .pf-c-form-control, .pf-c-clipboard-copy__group {
+        background: white;
+    }
+}

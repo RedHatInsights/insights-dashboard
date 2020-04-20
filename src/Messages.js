@@ -236,5 +236,32 @@ export default defineMessages({
         id: 'errorStateTitle',
         description: 'Error fetching API',
         defaultMessage: '{appName} has experienced an error. Contact Red Hat support if the problem persists.'
+    },
+    noSystemsTitle: {
+        id: 'noSystemsTitle',
+        description: 'No systems',
+        defaultMessage: 'Get started with Red Hat Insights'
+    },
+    noSystemsDescription: {
+        id: 'noSystemsDescription',
+        description: 'Register systems to use Insights',
+        defaultMessage: 'With predictive analytics, avoid problems and unplanned\
+                        downtime in your Red Hat environment. Red Hat Insights is\
+                        included with your Red Hat Enterprise Linux subscription.'
+    },
+    noSystemsInstall: {
+        id: 'noSystemsInstall',
+        description: 'Install the client',
+        defaultMessage: 'Install the client on the RHEL system'
+    },
+    noSystemsRegister: {
+        id: 'noSystemsRegister',
+        description: 'Register systems',
+        defaultMessage: 'Register the system to Red Hat Insights'
+    },
+    noSystemsLink: {
+        id: 'noSystemsLink',
+        description: 'Getting started documentation',
+        defaultMessage: 'Getting started documentation'
     }
 });
