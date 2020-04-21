@@ -202,6 +202,12 @@ export default defineMessages({
         description: 'System Inventory - title',
         defaultMessage: 'Insights system inventory'
     },
+    systemInventoryNotUsingClient: {
+        id: 'systemInventoryNotUsingClient',
+        description: 'Number of systems not running insights client',
+        defaultMessage: '{count, plural, one {# additional system} other {# additional systems}} not running insights-client\
+        are not taking advantage of Red Hat Insights capabilities.'
+    },
     remediationsTotal: {
         id: 'remediationsTotal',
         description: 'Remediations - remediations total',

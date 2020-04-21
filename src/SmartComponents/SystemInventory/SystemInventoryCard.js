@@ -49,6 +49,9 @@ const SystemInventoryCard = ({
                         { count: inventorySummary.total || 0 }
                     ) }
                     link='./insights/inventory'
+                    iconTooltipText = { intl.formatMessage(messages.systemInventoryNotUsingClient,
+                        { count: inventoryTotalSummary.total - inventorySummary.total || 0 }
+                    ) }
                 />
             }
             { inventoryStaleFetchStatus === 'fulfilled' &&
