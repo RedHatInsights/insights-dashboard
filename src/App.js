@@ -2,6 +2,9 @@ import './App.scss';
 
 import React, { useEffect, createContext, useState } from 'react';
 
+import { INVENTORY_TOTAL_FETCH_URL } from './AppConstants';
+import API from './Utilities/Api';
+
 import PropTypes from 'prop-types';
 import { Routes } from './Routes';
 
@@ -22,6 +25,7 @@ const App = (props) => {
     });
     const [isOrgAdmin, setIsOrgAdmin] = useState(false);
     const [arePermissionsReady, setArePermissionReady] = useState(false);
+    const [hasSystems, setHasSystems] = useState();
 
     async function initChrome () {
         insights.chrome.init();
@@ -49,6 +53,8 @@ const App = (props) => {
                 setArePermissionReady(true);
             }
         );
+        const inventorySystems = await API.get(`${INVENTORY_TOTAL_FETCH_URL}`);
+        setHasSystems(inventorySystems.data.total > 0);
     }
 
     useEffect(() => {
@@ -66,7 +72,9 @@ const App = (props) => {
                     remediations: permissions.remediations,
                     patch: permissions.patch,
                     vulnerability: permissions.vulnerability,
-                    subscriptions: isOrgAdmin
+                    subscriptions: true,
+                    isOrgAdmin,
+                    hasSystems
                 } }>
                 <Routes childProps={ props } />
             </PermissionContext.Provider>

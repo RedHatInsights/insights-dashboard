@@ -52,7 +52,7 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
         return (
             <TemplateCard appName='PatchManager' className={ 'ins-c-dashboard__card--Patch' }>
                 <TemplateCardHeader subtitle={ intl.formatMessage(messages.patchTitle) }/>
-                <TemplateCardBody><FailState appName='Patch'/></TemplateCardBody>
+                <TemplateCardBody><FailState appName='Patch' isSmall/></TemplateCardBody>
             </TemplateCard>
         );
     }

@@ -5,12 +5,22 @@ export default defineMessages({
     dashboardTitle: {
         id: 'dashboardTitle',
         description: 'Title of the dashboard',
-        defaultMessage: 'Overview'
+        defaultMessage: 'Dashboard'
     },
     subscriptionsUtilizedTitle: {
         id: 'subscriptionsUtilizedTitle',
         description: 'Title of the subscriptions utilized card',
-        defaultMessage: 'Subscription watch utilization summary'
+        defaultMessage: 'Subscription Watch utilization summary'
+    },
+    subscriptionsUtilizedLearnMore: {
+        id: 'subscriptionsUtilizedLearnMore',
+        description: 'Subscriptions utilized card - learn more description',
+        defaultMessage: 'Activate Subscription Watch to monitor your subscription utilization.'
+    },
+    subscriptionsUtilizedLearnMoreAction: {
+        id: 'subscriptionsUtilizedLearnMoreAction',
+        description: 'Subscriptions utilized card - learn more action',
+        defaultMessage: 'Learn about Subscription Watch'
     },
     subscriptionsUtilizedProductOneTitle: {
         id: 'subscriptionsUtilizedProductOneTitle',
@@ -226,5 +236,32 @@ export default defineMessages({
         id: 'errorStateTitle',
         description: 'Error fetching API',
         defaultMessage: '{appName} has experienced an error. Contact Red Hat support if the problem persists.'
+    },
+    noSystemsTitle: {
+        id: 'noSystemsTitle',
+        description: 'No systems',
+        defaultMessage: 'Get started with Red Hat Insights'
+    },
+    noSystemsDescription: {
+        id: 'noSystemsDescription',
+        description: 'Register systems to use Insights',
+        defaultMessage: 'With predictive analytics, avoid problems and unplanned\
+                        downtime in your Red Hat environment. Red Hat Insights is\
+                        included with your Red Hat Enterprise Linux subscription.'
+    },
+    noSystemsInstall: {
+        id: 'noSystemsInstall',
+        description: 'Install the client',
+        defaultMessage: 'Install the client on the RHEL system'
+    },
+    noSystemsRegister: {
+        id: 'noSystemsRegister',
+        description: 'Register systems',
+        defaultMessage: 'Register the system to Red Hat Insights'
+    },
+    noSystemsLink: {
+        id: 'noSystemsLink',
+        description: 'Getting started documentation',
+        defaultMessage: 'Getting started documentation'
     }
 });
