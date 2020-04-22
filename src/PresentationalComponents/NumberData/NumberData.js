@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import '../../../src/PresentationalComponents/NumberData/NumberData.scss';
 import InfoIcon from '../../Icons/InfoIcon';
 import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/js/components/Tooltip/Tooltip';
+import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 
 export const NumberData = ({ data, dataSize, percentageData, iconTooltipText }) => (
     console.log('test', iconTooltipText),
@@ -16,7 +17,9 @@ export const NumberData = ({ data, dataSize, percentageData, iconTooltipText }) 
                 <Tooltip
                     position={ TooltipPosition.top }
                     content={ <div>{ iconTooltipText }</div> }>
-                    <InfoIcon />
+                    <Button variant="plain" aria-label="Action" className='ins-c-info-icon'>
+                        <InfoIcon />
+                    </Button>
                 </Tooltip>
             </span>
         }

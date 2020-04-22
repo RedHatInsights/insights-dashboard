@@ -11,6 +11,7 @@ import { IconInline } from '../../PresentationalComponents/IconInline/IconInline
 import { useIntl } from 'react-intl';
 import messages from '../../Messages';
 import FailState from '../../PresentationalComponents/FailState/FailState';
+import './SystemInventoryCard.scss';
 
 /**
  * System inventory card for showing system inventory and status.
