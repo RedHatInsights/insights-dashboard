@@ -1,8 +1,13 @@
 .stackChartLegend {
     left: -9px;
     position: relative;
+    
+    @media screen and (max-width: 787px) {
+        max-width: 400px;
+    }
 }
 
 .pf-c-chart {
     height: unset !important;
 }
+
