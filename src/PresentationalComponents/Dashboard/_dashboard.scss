@@ -8,7 +8,7 @@
 .ins-l-dashboard {
   display: grid;
   grid-gap: 24px;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto;
 
   > *:not(.dashboard-card-group) {
