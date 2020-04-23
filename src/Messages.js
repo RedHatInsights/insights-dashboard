@@ -22,6 +22,11 @@ export default defineMessages({
         description: 'Subscriptions utilized card - learn more action',
         defaultMessage: 'Learn about Subscription Watch'
     },
+    subscriptionsUtilizedNoProductData: {
+        id: 'subscriptionsUtilizedNoProductData',
+        description: 'Subscriptions utilized card - no data',
+        defaultMessage: 'No data available'
+    },
     subscriptionsUtilizedProductOneTitle: {
         id: 'subscriptionsUtilizedProductOneTitle',
         description: 'Subscriptions utilized card - product one title',
