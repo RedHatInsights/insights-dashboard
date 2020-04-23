@@ -11,6 +11,7 @@ import { IconInline } from '../../PresentationalComponents/IconInline/IconInline
 import { useIntl } from 'react-intl';
 import messages from '../../Messages';
 import FailState from '../../PresentationalComponents/FailState/FailState';
+import './SystemInventoryCard.scss';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -49,6 +50,9 @@ const SystemInventoryCard = ({
                         { count: inventorySummary.total || 0 }
                     ) }
                     link='./insights/inventory'
+                    iconTooltipText = { intl.formatMessage(messages.systemInventoryNotUsingClient,
+                        { count: inventoryTotalSummary.total - inventorySummary.total || 0 }
+                    ) }
                 />
             }
             { inventoryStaleFetchStatus === 'fulfilled' &&
