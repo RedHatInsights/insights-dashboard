@@ -23,7 +23,7 @@ export const StackChart = ({ ...props }) => {
         global_palette_gold_300.value
     ];
     const barWidth = 25;
-    const chartLegendFontSize = 14;
+    const chartLegendFontSize = 12;
     const labelComponent = () => <ChartTooltip text={ ({ datum }) => `${capitalize(datum.name)}: ${datum.y}` } constrainToVisibleArea />;
     const legendData = props.data.map(item => ({ name: `${item.y} ${capitalize(item.name)}`, symbol: { type: null } }));
     const stackChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
@@ -69,6 +69,7 @@ export const StackChart = ({ ...props }) => {
                         }
                     }] }
                     orientation='horizontal'
+                    gutter={ 0 }
                     colorScale={ colorScale } />
             </span>
         </React.Fragment>
