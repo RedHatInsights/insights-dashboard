@@ -45,7 +45,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
     ]);
 
     useEffect(() => {
-        const chartData = { productError: false, productOptIn: false, productOne: {}, productTwo: {} };
+        const chartData = { productError: false, productOptIn: false, productOne: {}, productTwo: {}, productsHaveData: false };
 
         if (subscriptionsUtilizedProductOneFetchStatus === 'fulfilled' || subscriptionsUtilizedProductTwoFetchStatus === 'fulfilled') {
             const [productOneReport = {}, productOneCapacity = {}] = Immutable.asMutable(subscriptionsUtilizedProductOne, { deep: true }) || [];
@@ -61,6 +61,10 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                 productTwoCapacity[RHSM_API_RESPONSE_DATA],
                 RHSM_API_RESPONSE_DATA_TYPES.SOCKETS
             );
+
+            if (typeof chartData.productOne.percentage === 'number' || typeof chartData.productTwo.percentage === 'number') {
+                chartData.productsHaveData = true;
+            }
         }
 
         if (subscriptionsUtilizedProductOneFetchStatus === 'rejected' && subscriptionsUtilizedProductTwoFetchStatus === 'rejected') {
@@ -76,7 +80,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
         subscriptionsUtilizedProductTwoFetchStatus
     ]);
 
-    const { productError, productOptIn, productOne = {}, productTwo = {} } = products;
+    const { productError, productOptIn, productOne = {}, productTwo = {}, productsHaveData } = products;
 
     const productTwoTooltip = (
         <ul>
@@ -155,7 +159,12 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                     </EmptyStateSecondaryActions>
                 </EmptyState>) ||
                 (productError && <FailState appName={ intl.formatMessage(messages.subscriptionsUtilizedTitle) } isSmall/>) ||
-                charts
+                (productsHaveData && charts) ||
+                <EmptyState className="ins-c-subscriptions-utilized__empty-state" variant={ EmptyStateVariant.full }>
+                    <EmptyStateBody>
+                        {intl.formatMessage(messages.subscriptionsUtilizedNoProductData)}
+                    </EmptyStateBody>
+                </EmptyState>
             }
         </TemplateCardBody>
     </TemplateCard>;
