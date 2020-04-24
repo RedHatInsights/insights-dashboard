@@ -60,12 +60,12 @@ export default defineMessages({
     recsImpactingSystems: {
         id: 'recsImpactingSystems',
         description: 'Advisor - recs impacting systems',
-        defaultMessage: '{totalRecs, plural, one {# recommendation} other {# recommendations}}  impacting {systems, plural, one {# system} other {# systems}}'
+        defaultMessage: '{totalRecs, plural, one {# Recommendation} other {# Recommendations}}  impacting {systems, plural, one {# system} other {# systems}}'
     },
     incidentsDetected: {
         id: 'incidentsDetected',
         description: 'Advisor - incidents detected',
-        defaultMessage: '{incidents, plural, one {incident} other {incidents}} detected'
+        defaultMessage: '{incidents, plural, one {Incident} other {Incidents}} detected'
     },
     critical: {
         id: 'critical',
