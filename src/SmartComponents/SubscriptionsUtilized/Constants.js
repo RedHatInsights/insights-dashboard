@@ -16,3 +16,9 @@ export const RHSM_API_PRODUCT_ID_TYPES = {
 export const RHSM_API_QUERY_GRANULARITY_TYPES = {
     DAILY: 'daily'
 };
+
+export const SW_PATHS = {
+    APP: '/subscriptions',
+    RHEL: '/subscriptions/rhel-sw',
+    OPENSHIFT: '/subscriptions/openshift-sw'
+};
