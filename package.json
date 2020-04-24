@@ -52,7 +52,6 @@
     "@patternfly/react-tokens": "2.8.13",
     "@red-hat-insights/insights-frontend-components": "3.41.70",
     "@redhat-cloud-services/frontend-components": "1.0.20",
-    "@redhat-cloud-services/frontend-components-notifications": "1.0.2",
     "@redhat-cloud-services/frontend-components-translations": "0.0.6",
     "@redhat-cloud-services/frontend-components-utilities": "1.0.1",
     "classnames": "2.2.6",
