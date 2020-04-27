@@ -130,8 +130,9 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                             isInline
                                         >
                                             {complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
-                                                complianceSummary.data.length > 1 ? ` ${complianceSummary.data.length} ` : ' '}
-                                                more compliance policies
+                                                complianceSummary.data.length > 1 &&
+                                                    `${complianceSummary.data.length} more compliance policies`
+                                            }
                                         </Button>
                                     </div>
                                 </div>
