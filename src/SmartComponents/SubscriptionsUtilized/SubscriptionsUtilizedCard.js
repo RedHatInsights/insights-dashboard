@@ -15,7 +15,13 @@ import { useIntl } from 'react-intl';
 import messages from '../../Messages';
 import * as AppActions from '../../AppActions';
 import { setRangedDateTime, filterChartData } from './SubscriptionsUtilizedHelpers';
-import { RHSM_API_RESPONSE_DATA, RHSM_API_RESPONSE_DATA_TYPES, RHSM_API_PRODUCT_ID_TYPES, RHSM_API_QUERY_GRANULARITY_TYPES } from './Constants';
+import {
+    RHSM_API_RESPONSE_DATA,
+    RHSM_API_RESPONSE_DATA_TYPES,
+    RHSM_API_PRODUCT_ID_TYPES,
+    RHSM_API_QUERY_GRANULARITY_TYPES,
+    SW_PATHS
+} from './Constants';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import './SubscriptionsUtilizedCard.scss';
 
@@ -45,7 +51,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
     ]);
 
     useEffect(() => {
-        const chartData = { productError: false, productOptIn: false, productOne: {}, productTwo: {}, productsHaveData: false };
+        const chartData = { productError: false, productOptIn: false, productOne: {}, productTwo: {} };
 
         if (subscriptionsUtilizedProductOneFetchStatus === 'fulfilled' || subscriptionsUtilizedProductTwoFetchStatus === 'fulfilled') {
             const [productOneReport = {}, productOneCapacity = {}] = Immutable.asMutable(subscriptionsUtilizedProductOne, { deep: true }) || [];
@@ -61,10 +67,6 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                 productTwoCapacity[RHSM_API_RESPONSE_DATA],
                 RHSM_API_RESPONSE_DATA_TYPES.SOCKETS
             );
-
-            if (typeof chartData.productOne.percentage === 'number' || typeof chartData.productTwo.percentage === 'number') {
-                chartData.productsHaveData = true;
-            }
         }
 
         if (subscriptionsUtilizedProductOneFetchStatus === 'rejected' && subscriptionsUtilizedProductTwoFetchStatus === 'rejected') {
@@ -80,7 +82,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
         subscriptionsUtilizedProductTwoFetchStatus
     ]);
 
-    const { productError, productOptIn, productOne = {}, productTwo = {}, productsHaveData } = products;
+    const { productError, productOptIn, productOne = {}, productTwo = {} } = products;
 
     const productTwoTooltip = (
         <ul>
@@ -100,21 +102,33 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
     );
 
     const charts = [];
-    const generateCharts = ({ fetchStatus, percentage, title, tooltip }) => {
+    const generateCharts = ({ fetchStatus, percentage, title, tooltip, link }) => {
         switch (fetchStatus) {
             case 'pending':
                 charts.push(<Loading key={ `su-loading-${title}` } />);
                 break;
             case 'fulfilled':
                 if (percentage !== undefined && percentage !== null) {
-                    charts.push(<Tooltip key={ `su-tooltip-${title}` } content={ tooltip } position={ TooltipPosition.top } distance={ -30 }>
-                        <ProgressTemplate
-                            title={ title }
-                            value={ percentage }
-                            label={ `${percentage}%` }
-                            variant={ (percentage > 100 && 'danger') || 'info' }
-                        />
-                    </Tooltip>);
+                    charts.push(
+                        <Tooltip
+                            key={ `su-tooltip-${title}` }
+                            content={ tooltip }
+                            position={ TooltipPosition.top }
+                            distance={ -10 }
+                            entryDelay={ 200 }
+                        >
+                            <Button className="ins-c-subscriptions-utilized__chart-link"
+                                variant="link"
+                                href={ link } component="a"
+                            >
+                                <ProgressTemplate
+                                    title={ title }
+                                    value={ percentage }
+                                    label={ `${percentage}%` }
+                                    variant={ (percentage > 100 && 'danger') || 'info' }
+                                />
+                            </Button>
+                        </Tooltip>);
                 }
 
                 break;
@@ -125,14 +139,16 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
         fetchStatus: subscriptionsUtilizedProductTwoFetchStatus,
         percentage: productTwo.percentage,
         title: intl.formatMessage(messages.subscriptionsUtilizedProductTwoTitle),
-        tooltip: productTwoTooltip
+        tooltip: productTwoTooltip,
+        link: SW_PATHS.RHEL
     });
 
     generateCharts({
         fetchStatus: subscriptionsUtilizedProductOneFetchStatus,
         percentage: productOne.percentage,
         title: intl.formatMessage(messages.subscriptionsUtilizedProductOneTitle),
-        tooltip: productOneTooltip
+        tooltip: productOneTooltip,
+        link: SW_PATHS.OPENSHIFT
     });
 
     if (productOne.percentage > productTwo.percentage && productOne.percentage > 100) {
@@ -151,7 +167,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                         <Button
                             className="ins-c-subscriptions-utilized__app-link"
                             variant="link"
-                            href="/subscriptions"
+                            href={ SW_PATHS.APP }
                             component="a"
                         >
                             {intl.formatMessage(messages.subscriptionsUtilizedLearnMoreAction)}
@@ -159,12 +175,12 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                     </EmptyStateSecondaryActions>
                 </EmptyState>) ||
                 (productError && <FailState appName={ intl.formatMessage(messages.subscriptionsUtilizedTitle) } isSmall/>) ||
-                (productsHaveData && charts) ||
-                <EmptyState className="ins-c-subscriptions-utilized__empty-state" variant={ EmptyStateVariant.full }>
+                (!charts.length && <EmptyState className="ins-c-subscriptions-utilized__empty-state" variant={ EmptyStateVariant.full }>
                     <EmptyStateBody>
                         {intl.formatMessage(messages.subscriptionsUtilizedNoProductData)}
                     </EmptyStateBody>
-                </EmptyState>
+                </EmptyState>) ||
+                charts
             }
         </TemplateCardBody>
     </TemplateCard>;
