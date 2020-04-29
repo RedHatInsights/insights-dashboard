@@ -72,8 +72,8 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                     </Button>
                     <div className="ins-c-patch__chart">
                         <PieChart
-                            ariaDesc="Operating systems used"
-                            ariaTitle="Pie chart operating systems"
+                            ariaDesc="Patch systems chart"
+                            ariaTitle="Patch systems chart"
                             constrainToVisibleArea={ true }
                             data={ pieChartData }
                             labels={ ({ datum }) => `${datum.x}: ${datum.y}` }

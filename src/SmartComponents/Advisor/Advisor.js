@@ -66,7 +66,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                 }
                 {recStatsStatus !== 'fulfilled' ? <Loading /> :
                     <StackChartTemplate
-                        ariaDesc="Advisor recommendations"
+                        ariaDesc="This chart represents the incidents detecting your system."
                         ariaTitle="Advisor recommendations chart"
                         height={ 40 }
                         width={ 600 }
