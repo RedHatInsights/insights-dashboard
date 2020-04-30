@@ -13,6 +13,7 @@ import {
 import React from 'react';
 import { capitalize } from '../../Utilities/Common';
 import propTypes from 'prop-types';
+import StackChartLabel from './StackChartLabel';
 
 export const StackChart = ({ ...props }) => {
 
@@ -54,22 +55,24 @@ export const StackChart = ({ ...props }) => {
                     width={ props.legendWidth }
                     fontSize={ chartLegendFontSize }
                     style={ { labels: { fill: c_button_m_control_active_after_BorderBottomColor.value } } }
-                    events={ [{
-                        target: 'labels', eventHandlers: {
-                            onClick: props.legendClick,
-                            onMouseOver: () => {
-                                return [{
-                                    mutation: (data) => {
-                                        return {
-                                            style: Object.assign({}, data.style, { cursor: 'pointer' })
-                                        };
-                                    }
-                                }];
-                            }
-                        }
-                    }] }
                     orientation='horizontal'
-                    colorScale={ colorScale } />
+                    colorScale={ colorScale }
+                    // events={ [{
+                    //     target: 'labels', eventHandlers: {
+                    //         onClick: props.legendClick,
+                    //         onMouseOver: () => {
+                    //             return [{
+                    //                 mutation: (data) => {
+                    //                     return {
+                    //                         style: Object.assign({}, data.style, { cursor: 'pointer' })
+                    //                     };
+                    //                 }
+                    //             }];
+                    //         }
+                    //     }
+                    // }] }
+                    labelComponent={ <StackChartLabel link={ props.legendClick }/> }
+                />
             </span>
         </React.Fragment>
     );

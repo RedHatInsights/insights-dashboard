@@ -49,6 +49,18 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         }
     }];
 
+    // const legendClick = (data) => {
+    //     const risk = data.datum.name.split(' ')[1].toLowerCase();
+    //     const link = `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10`;
+
+    //     return link;
+
+    // };
+
+    const legendData = legendClick(chartData);
+
+    console.log('what is the legend click data' + legendData);
+
     return <TemplateCard appName='Advisor' data-ouia-safe>
         <TemplateCardHeader title='Advisor recommendations' />
         {advisorIncidentsStatus === 'rejected' ?
@@ -74,7 +86,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                         legendHeight={ 36 }
                         legendWidth={ 600 }
                         data={ chartData }
-                        legendClick={ legendClick }
+                        legendClick={ legendData }
                     />
                 }
                 {systemsStatsStatus !== 'fulfilled' ? <Loading /> :
