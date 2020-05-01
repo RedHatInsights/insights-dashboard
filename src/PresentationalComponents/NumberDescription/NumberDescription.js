@@ -10,8 +10,8 @@ export const NumberDescription = ({ data, dataSize, percentageData, link, linkDe
         { critical === 'true' && (
             <CriticalIcon />
         )}
-        <NumberData data={ data } dataSize={ dataSize } percentageData={ percentageData }/>
         <Button component="a" variant="link" href={ link }>
+            <NumberData data={ data } dataSize={ dataSize } percentageData={ percentageData }/>
             { linkDescription }
         </Button>
     </div>

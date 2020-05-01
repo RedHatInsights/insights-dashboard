@@ -23,6 +23,10 @@
     display: flex;
     flex-direction: row;
     align-items: flex-end;
+
+    > * {
+        color: #000;
+    }
 }
 
 .ins-c-dashboard__number-percentage {

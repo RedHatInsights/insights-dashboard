@@ -47,8 +47,9 @@ export const StackChart = ({ ...props }) => {
                     />)}
                 </ChartStack>
             </Chart>
-            <span className='stackChartLegend'>
+            <span className='stackChartLegend' role="list" aria-label="Chart legend">
                 <ChartLegend
+                    role="list"
                     data={ legendData }
                     responsive={ false }
                     height={ props.legendHeight }
@@ -57,20 +58,6 @@ export const StackChart = ({ ...props }) => {
                     style={ { labels: { fill: c_button_m_control_active_after_BorderBottomColor.value } } }
                     orientation='horizontal'
                     colorScale={ colorScale }
-                    // events={ [{
-                    //     target: 'labels', eventHandlers: {
-                    //         onClick: props.legendClick,
-                    //         onMouseOver: () => {
-                    //             return [{
-                    //                 mutation: (data) => {
-                    //                     return {
-                    //                         style: Object.assign({}, data.style, { cursor: 'pointer' })
-                    //                     };
-                    //                 }
-                    //             }];
-                    //         }
-                    //     }
-                    // }] }
                     labelComponent={ <StackChartLabel link={ props.legendClick }/> }
                 />
             </span>

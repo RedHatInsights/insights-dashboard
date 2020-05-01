@@ -21,7 +21,7 @@ export const PieChart = ({ ...props }) => {
                 />
             </div>
             { props.legend === 'true' &&
-                <div className="ins-c-pie-chart__legend" style={ { width: props.legendWidth, height: props.legendHeight } }>
+                <div className="ins-c-pie-chart__legend" aria-label="Chart legend" style={ { width: props.legendWidth, height: props.legendHeight } }>
                     <ChartLegend
                         height={ props.legendHeight }
                         width={ props.legendWidth }
