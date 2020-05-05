@@ -4,7 +4,7 @@ import './_StackChartTemplate.scss';
 import { Chart, ChartAxis, ChartBar, ChartLegend, ChartStack, ChartTooltip } from '@patternfly/react-charts';
 import {
     c_button_m_control_active_after_BorderBottomColor,
-    global_palette_gold_300,
+    global_palette_gold_200,
     global_palette_gold_400,
     global_palette_orange_300,
     global_palette_red_200
@@ -20,11 +20,11 @@ export const StackChart = ({ ...props }) => {
         global_palette_red_200.value,
         global_palette_orange_300.value,
         global_palette_gold_400.value,
-        global_palette_gold_300.value
+        global_palette_gold_200.value
     ];
     const barWidth = 25;
     const chartLegendFontSize = 12;
-    const labelComponent = () => <ChartTooltip text={ ({ datum }) => `${capitalize(datum.name)}: ${datum.y}` } constrainToVisibleArea />;
+    const labelComponent = () => <ChartTooltip  dx={ -30 } orientation='top' text={ ({ datum }) => `${capitalize(datum.name)}: ${datum.y}` } />;
     const legendData = props.data.map(item => ({ name: `${item.y} ${capitalize(item.name)}`, symbol: { type: null } }));
     const stackChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
 
