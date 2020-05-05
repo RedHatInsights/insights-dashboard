@@ -19,6 +19,25 @@ export const PieChart = ({ ...props }) => {
                     width={ props.width }
                     colorScale={ props.colorScale }
                 />
+                <table tabIndex="0" style={ { display: 'none' } }>
+                    <caption>Patch chart</caption>
+                    <tr>
+                        <th scope="col" tabIndex="0">Value</th>
+                        <th scope="col" tabIndex="0">title</th>
+                    </tr>
+                    <tr>
+                        <th scope="row" tabIndex="0">35</th>
+                        <th scope="row" tabIndex="0">security advisories</th>
+                    </tr>
+                    <tr>
+                        <th scope="row" tabIndex="0">8</th>
+                        <th scope="row" tabIndex="0">bug fixes</th>
+                    </tr>
+                    <tr>
+                        <th scope="row" tabIndex="0">0</th>
+                        <th scope="row" tabIndex="0">enhancements</th>
+                    </tr>
+                </table>
             </div>
             { props.legend === 'true' &&
                 <div className="ins-c-pie-chart__legend" aria-label="Chart legend" style={ { width: props.legendWidth, height: props.legendHeight } }>
