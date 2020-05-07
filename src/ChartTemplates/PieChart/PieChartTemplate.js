@@ -7,7 +7,7 @@ import './PieChartTemplate.scss';
 export const PieChart = ({ ...props }) => {
     return (
         <div className="ins-c-pie-chart__row">
-            <div style={ { width: props.width, height: props.height } }>
+            <div style={ { width: props.width, height: props.height, position: 'relative' } }>
                 <ChartPie
                     ariaDesc={ props.ariaDesc }
                     ariaTitle={ props.ariaTitle }
@@ -19,23 +19,18 @@ export const PieChart = ({ ...props }) => {
                     width={ props.width }
                     colorScale={ props.colorScale }
                 />
-                <table tabIndex="0" style={ { display: 'none' } }>
-                    <caption>Patch chart</caption>
+                <table tabIndex="0" className="visually-hidden" aria-label="Patch chart data">
                     <tr>
-                        <th scope="col" tabIndex="0">Value</th>
-                        <th scope="col" tabIndex="0">title</th>
+                        <td>246</td>
+                        <td>security advisories</td>
                     </tr>
                     <tr>
-                        <th scope="row" tabIndex="0">35</th>
-                        <th scope="row" tabIndex="0">security advisories</th>
+                        <td>712</td>
+                        <td>bug fixes</td>
                     </tr>
                     <tr>
-                        <th scope="row" tabIndex="0">8</th>
-                        <th scope="row" tabIndex="0">bug fixes</th>
-                    </tr>
-                    <tr>
-                        <th scope="row" tabIndex="0">0</th>
-                        <th scope="row" tabIndex="0">enhancements</th>
+                        <td>88</td>
+                        <td>enhancements</td>
                     </tr>
                 </table>
             </div>
