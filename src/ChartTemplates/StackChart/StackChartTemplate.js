@@ -24,10 +24,9 @@ export const StackChart = ({ ...props }) => {
     ];
     const barWidth = 25;
     const chartLegendFontSize = 12;
-    const labelComponent = () => <ChartTooltip  dx={ -30 } orientation='top' text={ ({ datum }) => `${capitalize(datum.name)}: ${datum.y}` } />;
     const legendData = props.data.map(item => ({ name: `${item.y} ${capitalize(item.name)}`, symbol: { type: null } }));
     const stackChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
-
+    const dataMin = props.data.length && props.data.filter(item => item.y > 0).map(el => el.y).reduce((acc, curr) => Math.min(acc, curr));
     return (
         <React.Fragment>
             <Chart
@@ -41,8 +40,10 @@ export const StackChart = ({ ...props }) => {
                 <ChartStack horizontal
                     colorScale={ colorScale }>
                     {props.data.map(item => <ChartBar key={ item }
-                        barWidth={ barWidth } labelComponent={ labelComponent() }
-                        data={ [{ name: item.name, y: item.y, x: 1, label: item.name }] }
+                        barWidth={ barWidth } labelComponent={ <ChartTooltip
+                            style={ { fontSize: '12px', padding: '10' } }
+                            dx={ -(item.y / dataMin) * 5 } orientation='top' /> }
+                        data={ [{ name: item.name, y: item.y, x: 1, label: ({ datum }) => `${capitalize(datum.name)}: ${datum.y}` }] }
                     />)}
                 </ChartStack>
             </Chart>
