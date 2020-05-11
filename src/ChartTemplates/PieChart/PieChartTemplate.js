@@ -19,19 +19,15 @@ export const PieChart = ({ ...props }) => {
                     width={ props.width }
                     colorScale={ props.colorScale }
                 />
-                <table tabIndex="0" className="visually-hidden" aria-label="Patch chart data">
-                    <tr>
-                        <td>246</td>
-                        <td>security advisories</td>
-                    </tr>
-                    <tr>
-                        <td>712</td>
-                        <td>bug fixes</td>
-                    </tr>
-                    <tr>
-                        <td>88</td>
-                        <td>enhancements</td>
-                    </tr>
+                <table tabIndex="0" className="visually-hidden" aria-label={ props.ariaTitle + ` data` }>
+                    { props.data.map((d, index) => {
+                        return [
+                            <tr key={ index }>
+                                <td>{ d.y }</td>
+                                <td>{ d.x }</td>
+                            </tr>
+                        ];
+                    }) }
                 </table>
             </div>
             { props.legend === 'true' &&
