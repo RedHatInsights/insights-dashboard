@@ -18,3 +18,19 @@
     clip: rect(1px, 1px, 1px, 1px);
     white-space: nowrap; /* added line */
 }
+
+.ins-chart-label {
+    // fill: var(--pf-global--primary-color--100) !important;
+
+    &:hover,
+    &:active,
+    &:focus {
+        tspan {
+            fill: var(--pf-global--primary-color--200) !important;
+        }
+    }
+
+    tspan {
+        fill: var(--pf-global--primary-color--100) !important;
+    }
+}
