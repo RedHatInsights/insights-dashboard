@@ -20,7 +20,9 @@
 }
 
 .ins-chart-label {
-    // fill: var(--pf-global--primary-color--100) !important;
+    tspan {
+        fill: var(--pf-global--primary-color--100) !important;
+    }
 
     &:hover,
     &:active,
@@ -28,9 +30,5 @@
         tspan {
             fill: var(--pf-global--primary-color--200) !important;
         }
-    }
-
-    tspan {
-        fill: var(--pf-global--primary-color--100) !important;
     }
 }
