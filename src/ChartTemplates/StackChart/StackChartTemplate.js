@@ -47,17 +47,17 @@ export const StackChart = ({ ...props }) => {
                     />)}
                 </ChartStack>
             </Chart>
-            <table tabIndex="0" className="visually-hidden" aria-label={ props.ariaTitle + ` data` }>
-                { props.data.map((d, index) => {
-                    return [
-                        <tr key={ index }>
-                            <td>{ d.y }</td>
-                            <td>{ d.name }</td>
-                        </tr>
-                    ];
-                }) }
-            </table>
             <span className='stackChartLegend' role="list" aria-label="Chart legend">
+                <table tabIndex="0" className="visually-hidden" aria-label={ props.ariaTitle + ` data` }>
+                    { props.data.map((d, index) => {
+                        return [
+                            <tr key={ index }>
+                                <td>{ d.y }</td>
+                                <td>{ d.name }</td>
+                            </tr>
+                        ];
+                    }) }
+                </table>
                 <ChartLegend
                     role="list"
                     data={ legendData }
