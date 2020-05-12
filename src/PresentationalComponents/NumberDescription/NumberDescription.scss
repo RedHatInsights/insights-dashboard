@@ -27,7 +27,8 @@
         }
 
         .pf-c-button.pf-m-link {
-            padding-left: var(--pf-global--spacer--sm);
+            padding: 0;
+            margin-left: var(--pf-global--spacer--sm);
         }
     }
 }

@@ -1,6 +1,5 @@
 import App from './App';
 import { IntlProvider } from '@redhat-cloud-services/frontend-components-translations';
-import { NotificationsPortal } from '@redhat-cloud-services/frontend-components-notifications';
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -15,10 +14,7 @@ ReactDOM.render(
     <IntlProvider locale={ navigator.language } messages={ messages } onError={ console.log }>
         <Provider store={ init().getStore() }>
             <Router basename={ getBaseName(window.location.pathname) }>
-                <React.Fragment>
-                    <NotificationsPortal />
-                    <App />
-                </React.Fragment>
+                <App />
             </Router>
         </Provider>
     </IntlProvider>,
