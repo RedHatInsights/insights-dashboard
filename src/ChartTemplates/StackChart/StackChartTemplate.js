@@ -1,9 +1,11 @@
 /* eslint-disable camelcase */
 import './_StackChartTemplate.scss';
 
-import { Chart, ChartAxis, ChartBar, ChartLegend, ChartStack, ChartTooltip } from '@patternfly/react-charts';
+import { Chart, ChartAxis, ChartBar, ChartLabel, ChartLegend, ChartStack, ChartTooltip } from '@patternfly/react-charts';
 import {
     c_button_m_control_active_after_BorderBottomColor,
+    global_FontFamily_redhatfont_heading_sans_serif,
+    global_FontWeight_normal,
     global_palette_gold_200,
     global_palette_gold_400,
     global_palette_orange_300,
@@ -26,55 +28,52 @@ export const StackChart = ({ ...props }) => {
     const chartLegendFontSize = 12;
     const legendData = props.data.map(item => ({ name: `${item.y} ${capitalize(item.name)}`, symbol: { type: null } }));
     const stackChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
-    const dataMin = props.data.length && props.data.filter(item => item.y > 0).map(el => el.y).reduce((acc, curr) => Math.min(acc, curr));
-    return (
-        <React.Fragment>
-            <Chart
-                ariaDesc={ props.ariaDesc }
-                ariaTitle={ props.ariaTitle }
-                padding={ stackChartPadding }
-                width={ props.width }
-                height={ props.height }
-                maxWidth={ props.maxWidth }>
-                <ChartAxis axisComponent={ <React.Fragment /> } />
-                <ChartStack horizontal
-                    colorScale={ colorScale }>
-                    {props.data.map(item => <ChartBar key={ item }
-                        barWidth={ barWidth } labelComponent={ <ChartTooltip
-                            style={ { fontSize: '12px', padding: '10' } }
-                            dx={ -(item.y / dataMin) * 5 } orientation='top' /> }
-                        data={ [{ name: item.name, y: item.y, x: 1, label: ({ datum }) => `${capitalize(datum.name)}: ${datum.y}` }] }
-                    />)}
-                </ChartStack>
-            </Chart>
-            <span className='stackChartLegend'>
-                <ChartLegend
-                    data={ legendData }
-                    responsive={ false }
-                    height={ props.legendHeight }
-                    width={ props.legendWidth }
-                    fontSize={ chartLegendFontSize }
-                    style={ { labels: { fill: c_button_m_control_active_after_BorderBottomColor.value } } }
-                    events={ [{
-                        target: 'labels', eventHandlers: {
-                            onClick: props.legendClick,
-                            onMouseOver: () => {
-                                return [{
-                                    mutation: (data) => {
-                                        return {
-                                            style: Object.assign({}, data.style, { cursor: 'pointer' })
-                                        };
-                                    }
-                                }];
-                            }
-                        }
-                    }] }
-                    orientation='horizontal'
-                    gutter={ 0 }
-                    colorScale={ colorScale } />
-            </span>
-        </React.Fragment>
-    );
+    const rawData = props.data.length && props.data.filter(item => item.y > 0).map(el => el.y);
+    const dataMin = rawData.length && rawData.reduce((acc, curr) => Math.min(acc, curr));
+
+    const LegendLabel = ({ ...rest }) => <a><ChartLabel { ...rest } /></a>;
+
+    return <React.Fragment>
+        <Chart
+            ariaDesc={ props.ariaDesc }
+            ariaTitle={ props.ariaTitle }
+            padding={ stackChartPadding }
+            width={ props.width }
+            height={ props.height }
+            maxWidth={ props.maxWidth }>
+            <ChartAxis axisComponent={ <React.Fragment /> } />
+            <ChartStack horizontal
+                colorScale={ colorScale }>
+                {props.data.map(item => <ChartBar key={ item }
+                    barWidth={ barWidth } labelComponent={ <ChartTooltip
+                        style={ { fontSize: '12px', padding: '10' } }
+                        dx={ dataMin ? (-(item.y / dataMin) * 5) : 0 } orientation='top' /> }
+                    data={ [{ name: item.name, y: item.y, x: 1, label: ({ datum }) => `${capitalize(datum.name)}: ${datum.y}` }] }
+                />)}
+            </ChartStack>
+        </Chart>
+        <span className='stackChartLegend'>
+            <ChartLegend
+                data={ legendData }
+                responsive={ false }
+                height={ props.legendHeight }
+                width={ props.legendWidth }
+                fontSize={ chartLegendFontSize }
+                className='pf-m-redhat-font'
+                style={ {
+                    labels: {
+                        fontWeight: global_FontWeight_normal.value,
+                        fontFamily: global_FontFamily_redhatfont_heading_sans_serif.value,
+                        fill: c_button_m_control_active_after_BorderBottomColor.value
+                    }
+                } }
+                events={ [{ target: 'labels', eventHandlers: { onClick: props.legendClick } }] }
+                labelComponent={ <LegendLabel /> }
+                orientation='horizontal'
+                gutter={ 0 }
+                colorScale={ colorScale } />
+        </span>
+    </React.Fragment>;
 };
 
 StackChart.propTypes = {
