@@ -5,13 +5,13 @@ import '../../../src/PresentationalComponents/NumberDescription/NumberDescriptio
 import { NumberData } from '../../PresentationalComponents/NumberData/NumberData';
 import CriticalIcon from '../../Icons/CriticalIcon';
 
-export const NumberDescription = ({ data, dataSize, percentageData, link, linkDescription, layout, critical }) => (
+export const NumberDescription = ({ data, dataSize, percentageData, link, linkDescription, layout, critical, iconTooltipText }) => (
     <div className={ `ins-c-dashboard__number-description ${layout ? `pf-m-${layout}` : ''}` }>
         { critical === 'true' && (
             <CriticalIcon />
         )}
         <Button component="a" variant="link" href={ link }>
-            <NumberData data={ data } dataSize={ dataSize } percentageData={ percentageData }/>
+            <NumberData data={ data } dataSize={ dataSize } percentageData={ percentageData } iconTooltipText={ iconTooltipText }/>
             { linkDescription }
         </Button>
     </div>
@@ -24,7 +24,8 @@ NumberDescription.propTypes = {
     link: propTypes.any,
     linkDescription: propTypes.string,
     layout: propTypes.string,
-    critical: propTypes.string
+    critical: propTypes.string,
+    iconTooltipText: propTypes.node
 };
 
 export default NumberDescription;

@@ -22,6 +22,11 @@ export default defineMessages({
         description: 'Subscriptions utilized card - learn more action',
         defaultMessage: 'Learn about Subscription Watch'
     },
+    subscriptionsUtilizedNoProductData: {
+        id: 'subscriptionsUtilizedNoProductData',
+        description: 'Subscriptions utilized card - no data',
+        defaultMessage: 'No data available'
+    },
     subscriptionsUtilizedProductOneTitle: {
         id: 'subscriptionsUtilizedProductOneTitle',
         description: 'Subscriptions utilized card - product one title',
@@ -55,12 +60,12 @@ export default defineMessages({
     recsImpactingSystems: {
         id: 'recsImpactingSystems',
         description: 'Advisor - recs impacting systems',
-        defaultMessage: '{totalRecs, plural, one {# recommendation} other {# recommendations}}  impacting {systems, plural, one {# system} other {# systems}}'
+        defaultMessage: '{totalRecs, plural, one {# Recommendation} other {# Recommendations}}  impacting {systems, plural, one {# system} other {# systems}}'
     },
     incidentsDetected: {
         id: 'incidentsDetected',
         description: 'Advisor - incidents detected',
-        defaultMessage: '{incidents, plural, one {incident} other {incidents}} detected'
+        defaultMessage: '{incidents, plural, one {Incident} other {Incidents}} detected'
     },
     critical: {
         id: 'critical',
@@ -201,6 +206,12 @@ export default defineMessages({
         id: 'systemInventoryTitle',
         description: 'System Inventory - title',
         defaultMessage: 'Insights system inventory'
+    },
+    systemInventoryNotUsingClient: {
+        id: 'systemInventoryNotUsingClient',
+        description: 'Number of systems not running insights client',
+        defaultMessage: '{count, plural, one {# additional system} other {# additional systems}} not running insights-client\
+        are not taking advantage of Red Hat Insights capabilities.'
     },
     remediationsTotal: {
         id: 'remediationsTotal',

@@ -37,19 +37,22 @@ const App = (props) => {
         // TODO: Update this function to query multiple apps instead of empty request (limited by API)
         insights.chrome.getUserPermissions().then(
             dashboardPermissions => {
-                const permissionList = dashboardPermissions.map(permissions => permissions.permission);
-                setPermissions({
-                    customPolicies: permissionList.includes('custom-policies:*:*'),
-                    compliance: permissionList.includes('compliance:*:*'),
-                    drift: permissionList.includes('drift:*:*'),
-                    advisor: permissionList.includes('insights:*:*'),
-                    remediations: permissionList.includes('remediations:*:*') ||
-                        permissionList.includes('remediations:remediation:*') ||
-                        permissionList.includes('remediations:remediation:read') ||
-                        permissionList.includes('remediations:*:read'),
-                    patch: permissionList.includes('patch:*:*'),
-                    vulnerability: permissionList.includes('vulnerability:*:*')
-                });
+                const permissionList = dashboardPermissions.length && dashboardPermissions.map(permissions => permissions.permission);
+                if (permissionList.length) {
+                    setPermissions({
+                        customPolicies: permissionList.includes('custom-policies:*:*'),
+                        compliance: permissionList.includes('compliance:*:*'),
+                        drift: permissionList.includes('drift:*:*'),
+                        advisor: permissionList.includes('insights:*:*'),
+                        remediations: permissionList.includes('remediations:*:*') ||
+                            permissionList.includes('remediations:remediation:*') ||
+                            permissionList.includes('remediations:remediation:read') ||
+                            permissionList.includes('remediations:*:read'),
+                        patch: permissionList.includes('patch:*:*'),
+                        vulnerability: permissionList.includes('vulnerability:*:*')
+                    });
+                }
+
                 setArePermissionReady(true);
             }
         );
