@@ -59,7 +59,7 @@ export const StackChart = ({ ...props }) => {
                     }) }
                 </table>
                 <ChartLegend
-                    role="list"
+                    aria-label="Chart legend"
                     data={ legendData }
                     responsive={ false }
                     height={ props.legendHeight }
