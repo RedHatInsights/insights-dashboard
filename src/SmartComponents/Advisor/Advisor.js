@@ -42,11 +42,8 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
 
     const legendClick = chartData.map((data) => {
         const risk = data.name.toLowerCase();
-        const link = `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10`;
-        return link;
+        return `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10`;
     });
-
-    console.log('what is the legend click data' + legendClick);
 
     return <TemplateCard appName='Advisor' data-ouia-safe>
         <TemplateCardHeader title='Advisor recommendations' />
@@ -65,7 +62,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                 }
                 {recStatsStatus !== 'fulfilled' ? <Loading /> :
                     <StackChartTemplate
-                        ariaDesc="This chart represents the incidents detecting your system."
+                        ariaDesc={ intl.formatMessage(messages.advisorChartDescription, { count: advisorIncidents.meta.count }) }
                         ariaTitle="Advisor recommendations chart"
                         height={ 40 }
                         width={ 600 }
