@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import './_StackChartTemplate.scss';
 
 export const StackChartLabel = ({ link, ...props }) => (
-    <a className="pf-c-button pf-m-link pf-m-inline ins-chart-label" href={ link[props.index] }><ChartLabel { ...props }/></a>
+    <a className="pf-c-button pf-m-link pf-m-inline" href={ link[props.index] }><ChartLabel { ...props }/></a>
 );
 
 StackChartLabel.propTypes = {
