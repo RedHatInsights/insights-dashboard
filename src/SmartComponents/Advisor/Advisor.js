@@ -62,7 +62,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                 }
                 {recStatsStatus !== 'fulfilled' ? <Loading /> :
                     <StackChartTemplate
-                        ariaDesc={ intl.formatMessage(messages.advisorChartDescription, { count: advisorIncidents.meta.count }) }
+                        ariaDesc={ intl.formatMessage(messages.advisorChartDescription) }
                         ariaTitle="Advisor recommendations chart"
                         height={ 40 }
                         width={ 600 }

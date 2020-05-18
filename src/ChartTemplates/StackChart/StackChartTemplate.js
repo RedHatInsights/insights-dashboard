@@ -4,12 +4,11 @@ import './_StackChartTemplate.scss';
 import { Chart, ChartAxis, ChartBar, ChartLegend, ChartStack, ChartTooltip } from '@patternfly/react-charts';
 import {
     c_button_m_control_active_after_BorderBottomColor,
-    global_FontFamily_redhatfont_heading_sans_serif,
-    global_FontWeight_normal,
     global_palette_gold_200,
     global_palette_gold_400,
     global_palette_orange_300,
-    global_palette_red_200
+    global_palette_red_200,
+    global_primary_color_200
 } from '@patternfly/react-tokens';
 
 import React from 'react';
@@ -74,32 +73,39 @@ export const StackChart = ({ ...props }) => {
                 gutter={ 0 }
                 style={ {
                     labels: {
-                        fontWeight: global_FontWeight_normal.value,
-                        fontFamily: global_FontFamily_redhatfont_heading_sans_serif.value,
                         fill: c_button_m_control_active_after_BorderBottomColor.value
                     }
                 } }
-                // events={ [{
-                //     target: 'data',
-                //     eventHandlers: {
-                //         onMouseOver: () => {
-                //             return [{
-                //                 mutation: (props) => {
-                //                     return {
-                //                         style: Object.assign({}, props.style, { fill: c_button_m_control_active_after_BorderBottomColor.value })
-                //                     };
-                //                 }
-                //             }];
-                //         },
-                //         onMouseOut: () => {
-                //             return [{
-                //                 mutation: () => {
-                //                     return null;
-                //                 }
-                //             }];
-                //         }
-                //     }
-                // }] }
+                events={ [{
+                    target: 'labels',
+                    eventHandlers: {
+                        onMouseOver: () => {
+                            return [{
+                                mutation: (props) => {
+                                    return {
+                                        style: Object.assign({}, props.style, { fill: global_primary_color_200.value, textDecoration: 'underline' })
+                                    };
+                                }
+                            }];
+                        },
+                        onMouseOut: () => {
+                            return [{
+                                mutation: () => {
+                                    return null;
+                                }
+                            }];
+                        },
+                        onClick: () => {
+                            return [{
+                                mutation: (props) => {
+                                    return {
+                                        style: Object.assign({}, props.style, { fill: global_primary_color_200.value, textDecoration: 'underline' })
+                                    };
+                                }
+                            }];
+                        }
+                    }
+                }] }
                 colorScale={ colorScale } />
         </span>
     </React.Fragment>;

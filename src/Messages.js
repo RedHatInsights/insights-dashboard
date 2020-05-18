@@ -278,6 +278,6 @@ export default defineMessages({
     advisorChartDescription: {
         id: 'advisorChartDescription',
         description: 'Advisor chart description',
-        defaultMessage: 'This chart shows recommendations effecting your {count, plural, one {# system} other {# systems}}'
+        defaultMessage: 'This chart shows recommendations effecting your system}'
     }
 });
