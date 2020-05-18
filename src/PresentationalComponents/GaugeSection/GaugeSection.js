@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Split, SplitItem } from '@patternfly/react-core';
-import { Gauge } from '@red-hat-insights/insights-frontend-components';
+
+import { Gauge } from '@redhat-cloud-services/frontend-components-charts/Gauge';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
 

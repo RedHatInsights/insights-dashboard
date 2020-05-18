@@ -3,7 +3,7 @@ import './_ins-c-gauge-widget.scss';
 import { Button, Modal, Stack, StackItem } from '@patternfly/react-core';
 import React, { Component } from 'react';
 
-import { Gauge } from '@red-hat-insights/insights-frontend-components';
+import { Gauge } from '@redhat-cloud-services/frontend-components-charts/Gauge';
 import asyncComponent from '../../Utilities/asyncComponent';
 import { capitalize } from '../../Utilities/Common';
 import classNames from 'classnames';

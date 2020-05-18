@@ -1,37 +1,65 @@
 // Importing Global Variables
-@import '~@red-hat-insights/insights-frontend-components/Utilities/_all';
-@import '~@red-hat-insights/insights-frontend-components/index.css';
-@import '~@red-hat-insights/insights-frontend-components/Utilities/_mixins';
+// Sass Imports
+@import "~@redhat-cloud-services/frontend-components-utilities/files/Utilities/_mixins";
+@import "~@redhat-cloud-services/frontend-components-utilities/files/Utilities/all";
 
-.pf-l-page__main .pf-c-card { min-height: 100%; }
+@import "~@redhat-cloud-services/frontend-components/index.css";
+
+.pf-l-page__main .pf-c-card {
+    min-height: 100%;
+}
 
 .ins-c-summary {
-    &__accent { color: var(--pf-global--palette--black-500); }
-
-    &__emphasis { @include rem("font-size", 32px); }
-
-    &__icon {
-        &-critical { fill: var(--pf-global--palette--red-100); }
-        &-high { fill: var(--pf-global--palette--orange-300); }
-        &-medium { fill: var(--pf-global--palette--gold-300); }
-        &-low { fill: var(--pf-global--palette--blue-300); }
-
-        &-flag { fill: var(--pf-global--palette--blue-500); }
-        &-check { fill: var(--pf-global--palette--green-300); }
-
-        &-info { fill: var(--pf-global--palette--blue-200); }
+    &__accent {
+        color: var(--pf-global--palette--black-500);
     }
 
-    &__title { @include rem("margin-bottom", 10px); }
+    &__emphasis {
+        @include rem("font-size", 32px);
+    }
+
+    &__icon {
+        &-critical {
+            fill: var(--pf-global--palette--red-100);
+        }
+        &-high {
+            fill: var(--pf-global--palette--orange-300);
+        }
+        &-medium {
+            fill: var(--pf-global--palette--gold-300);
+        }
+        &-low {
+            fill: var(--pf-global--palette--blue-300);
+        }
+
+        &-flag {
+            fill: var(--pf-global--palette--blue-500);
+        }
+        &-check {
+            fill: var(--pf-global--palette--green-300);
+        }
+
+        &-info {
+            fill: var(--pf-global--palette--blue-200);
+        }
+    }
+
+    &__title {
+        @include rem("margin-bottom", 10px);
+    }
 
     .ins-c-summary__icon + .ins-c-summary__emphasis {
         @include rem("margin-left", 10px);
         @include rem("margin-right", 10px);
     }
 
-    .ins-m-green { color: var(--pf-global--palette--green-400); }
+    .ins-m-green {
+        color: var(--pf-global--palette--green-400);
+    }
 
-    .ins-m-red { color: var(--pf-global--palette--red-100); }
+    .ins-m-red {
+        color: var(--pf-global--palette--red-100);
+    }
 }
 
 // ==================================================================
@@ -47,7 +75,6 @@
     &__metrics-percentage {
         margin-top: 10px;
         text-align: center;
-
     }
 }
 

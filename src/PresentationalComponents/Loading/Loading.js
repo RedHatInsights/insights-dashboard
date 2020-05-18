@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { Skeleton } from '@red-hat-insights/insights-frontend-components';
+import { Skeleton } from '@redhat-cloud-services/frontend-components/components/Skeleton';
 
 const Loading = () => {
     return (
