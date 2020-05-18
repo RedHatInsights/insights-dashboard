@@ -5,14 +5,13 @@ import React, { Suspense, lazy, useContext } from 'react';
 import DeniedState from '../DeniedState/DeniedState';
 import { Divider } from '@patternfly/react-core/dist/js/components/Divider/Divider';
 import Loading from '../../PresentationalComponents/Loading/Loading';
-import { Main } from '@red-hat-insights/insights-frontend-components/components/Main';
+import { Main } from '@redhat-cloud-services/frontend-components/components/Main';
+import NoSystems from '../NoSystems/NoSystems';
 import { PageSection } from '@patternfly/react-core/dist/js/components/Page/PageSection';
 import { PermissionContext } from '../../App';
 import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
-
-import NoSystems from '../NoSystems/NoSystems';
 
 const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
 const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
