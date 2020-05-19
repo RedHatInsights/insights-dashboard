@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import './_StackChartTemplate.scss';
 
-import { Chart, ChartAxis, ChartBar, ChartLegend, ChartStack, ChartTooltip } from '@patternfly/react-charts';
+import { Chart, ChartAxis, ChartBar, ChartLabel, ChartLegend, ChartStack, ChartTooltip } from '@patternfly/react-charts';
 import {
     c_button_m_control_active_after_BorderBottomColor,
     global_palette_gold_200,
@@ -14,7 +14,6 @@ import {
 import React from 'react';
 import { capitalize } from '../../Utilities/Common';
 import propTypes from 'prop-types';
-import StackChartLabel from './StackChartLabel';
 
 export const StackChart = ({ ...props }) => {
 
@@ -30,6 +29,8 @@ export const StackChart = ({ ...props }) => {
     const stackChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
     const rawData = props.data.length && props.data.filter(item => item.y > 0).map(el => el.y);
     const dataMin = rawData.length && rawData.reduce((acc, curr) => Math.min(acc, curr));
+
+    const LegendLabel = ({ ...rest }) => <a className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest }/></a>;
 
     return <React.Fragment>
         <Chart
@@ -68,7 +69,7 @@ export const StackChart = ({ ...props }) => {
                 width={ props.legendWidth }
                 fontSize={ chartLegendFontSize }
                 className='pf-m-redhat-font'
-                labelComponent={ <StackChartLabel link={ props.legendClick }/> }
+                labelComponent={ <LegendLabel/> }
                 orientation='horizontal'
                 gutter={ 0 }
                 style={ {
