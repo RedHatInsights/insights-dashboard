@@ -7,7 +7,7 @@ import './PieChartTemplate.scss';
 export const PieChart = ({ ...props }) => {
     return (
         <div className="ins-c-pie-chart__row">
-            <div style={ { width: props.width, height: props.height } }>
+            <div style={ { width: props.width, height: props.height, position: 'relative' } }>
                 <ChartPie
                     ariaDesc={ props.ariaDesc }
                     ariaTitle={ props.ariaTitle }
@@ -19,9 +19,19 @@ export const PieChart = ({ ...props }) => {
                     width={ props.width }
                     colorScale={ props.colorScale }
                 />
+                <table tabIndex="0" className="visually-hidden" aria-label={ props.ariaTitle + ` data` }>
+                    { props.data.map((d, index) => {
+                        return [
+                            <tr key={ index }>
+                                <td>{ d.y }</td>
+                                <td>{ d.x }</td>
+                            </tr>
+                        ];
+                    }) }
+                </table>
             </div>
             { props.legend === 'true' &&
-                <div className="ins-c-pie-chart__legend" style={ { width: props.legendWidth, height: props.legendHeight } }>
+                <div className="ins-c-pie-chart__legend" aria-label="Chart legend" style={ { width: props.legendWidth, height: props.legendHeight } }>
                     <ChartLegend
                         height={ props.legendHeight }
                         width={ props.legendWidth }

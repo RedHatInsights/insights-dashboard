@@ -274,5 +274,10 @@ export default defineMessages({
         id: 'noSystemsLink',
         description: 'Getting started documentation',
         defaultMessage: 'Getting started documentation'
+    },
+    advisorChartDescription: {
+        id: 'advisorChartDescription',
+        description: 'Advisor chart description',
+        defaultMessage: 'This chart shows recommendations effecting your system'
     }
 });

@@ -40,14 +40,10 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         ]);
     }, [intl, recStats, recStatsStatus]);
 
-    const legendClick = () => [{
-        target: 'labels',
-        mutation: (data) => {
-            const risk = data.datum.name.split(' ')[1].toLowerCase();
-            window.location.href =
-                `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10`;
-        }
-    }];
+    const legendClick = chartData.map((data) => {
+        const risk = data.name.toLowerCase();
+        return `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10`;
+    });
 
     return <TemplateCard appName='Advisor' data-ouia-safe>
         <TemplateCardHeader title='Advisor recommendations' />
@@ -66,7 +62,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                 }
                 {recStatsStatus !== 'fulfilled' ? <Loading /> :
                     <StackChartTemplate
-                        ariaDesc="Advisor recommendations"
+                        ariaDesc={ intl.formatMessage(messages.advisorChartDescription) }
                         ariaTitle="Advisor recommendations chart"
                         height={ 40 }
                         width={ 600 }

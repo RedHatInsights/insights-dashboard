@@ -4,12 +4,11 @@ import './_StackChartTemplate.scss';
 import { Chart, ChartAxis, ChartBar, ChartLabel, ChartLegend, ChartStack, ChartTooltip } from '@patternfly/react-charts';
 import {
     c_button_m_control_active_after_BorderBottomColor,
-    global_FontFamily_redhatfont_heading_sans_serif,
-    global_FontWeight_normal,
     global_palette_gold_200,
     global_palette_gold_400,
     global_palette_orange_300,
-    global_palette_red_200
+    global_palette_red_200,
+    global_primary_color_200
 } from '@patternfly/react-tokens';
 
 import React from 'react';
@@ -31,7 +30,7 @@ export const StackChart = ({ ...props }) => {
     const rawData = props.data.length && props.data.filter(item => item.y > 0).map(el => el.y);
     const dataMin = rawData.length && rawData.reduce((acc, curr) => Math.min(acc, curr));
 
-    const LegendLabel = ({ ...rest }) => <a><ChartLabel { ...rest } /></a>;
+    const LegendLabel = ({ ...rest }) => <a className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest }/></a>;
 
     return <React.Fragment>
         <Chart
@@ -52,7 +51,17 @@ export const StackChart = ({ ...props }) => {
                 />)}
             </ChartStack>
         </Chart>
-        <span className='stackChartLegend'>
+        <span className='stackChartLegend' aria-label="Chart legend">
+            <table tabIndex="0" className="visually-hidden" aria-label={ props.ariaTitle + ` data` }>
+                { props.data.map((d, index) => {
+                    return [
+                        <tr key={ index }>
+                            <td>{ d.y }</td>
+                            <td>{ d.name }</td>
+                        </tr>
+                    ];
+                }) }
+            </table>
             <ChartLegend
                 data={ legendData }
                 responsive={ false }
@@ -60,17 +69,44 @@ export const StackChart = ({ ...props }) => {
                 width={ props.legendWidth }
                 fontSize={ chartLegendFontSize }
                 className='pf-m-redhat-font'
+                labelComponent={ <LegendLabel/> }
+                orientation='horizontal'
+                gutter={ 0 }
                 style={ {
                     labels: {
-                        fontWeight: global_FontWeight_normal.value,
-                        fontFamily: global_FontFamily_redhatfont_heading_sans_serif.value,
                         fill: c_button_m_control_active_after_BorderBottomColor.value
                     }
                 } }
-                events={ [{ target: 'labels', eventHandlers: { onClick: props.legendClick } }] }
-                labelComponent={ <LegendLabel /> }
-                orientation='horizontal'
-                gutter={ 0 }
+                events={ [{
+                    target: 'labels',
+                    eventHandlers: {
+                        onMouseOver: () => {
+                            return [{
+                                mutation: (props) => {
+                                    return {
+                                        style: Object.assign({}, props.style, { fill: global_primary_color_200.value, textDecoration: 'underline' })
+                                    };
+                                }
+                            }];
+                        },
+                        onMouseOut: () => {
+                            return [{
+                                mutation: () => {
+                                    return null;
+                                }
+                            }];
+                        },
+                        onClick: () => {
+                            return [{
+                                mutation: (props) => {
+                                    return {
+                                        style: Object.assign({}, props.style, { fill: global_primary_color_200.value, textDecoration: 'underline' })
+                                    };
+                                }
+                            }];
+                        }
+                    }
+                }] }
                 colorScale={ colorScale } />
         </span>
     </React.Fragment>;
@@ -85,7 +121,8 @@ StackChart.propTypes = {
     width: propTypes.number,
     legendHeight: propTypes.number,
     legendWidth: propTypes.number,
-    legendClick: propTypes.any
+    legendClick: propTypes.any,
+    style: propTypes.any
 };
 
 export default StackChart;

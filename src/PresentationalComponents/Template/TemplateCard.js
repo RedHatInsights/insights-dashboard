@@ -65,7 +65,7 @@ export const TemplateCardHeader = ({ title, subtitle, onDownload, children, ...p
             }
             { subtitle &&
                 <LevelItem>
-                    <p className="ins-c-dashboard__card--header-subtitle">{ subtitle }</p>
+                    <h2 className="ins-c-dashboard__card--header-subtitle">{ subtitle }</h2>
                 </LevelItem>
             }
             <LevelItem>

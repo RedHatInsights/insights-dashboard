@@ -1,9 +1,4 @@
 .ins-c-dashboard__number-description {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    max-width: 100%;
-
     > * {
         text-align: left;
     }
@@ -16,19 +11,27 @@
         text-overflow: ellipsis;
         line-height: var(--pf-global--FontSize--sm);
         text-align: left;
+
+        > .pf-c-button__text {
+            display: flex;
+            flex-direction: column;
+            align-items: baseline;
+            min-width: 0;
+            max-width: 100%;
+        }
     }
 
     &.pf-m-horizontal {
-        flex-direction: row;
-        align-items: baseline;
-
         svg {
             margin-right: var(--pf-global--spacer--sm);
         }
 
-        .pf-c-button.pf-m-link {
-            padding: 0;
-            margin-left: var(--pf-global--spacer--sm);
+        .pf-c-button.pf-m-link .pf-c-button__text {
+            flex-direction: row;
+
+            > :first-child {
+                padding-right: var(--pf-global--spacer--sm);
+            }
         }
     }
 }

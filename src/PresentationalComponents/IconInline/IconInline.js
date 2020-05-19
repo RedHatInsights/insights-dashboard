@@ -16,7 +16,7 @@ export const IconInline = ({ message, state, systemInventory }) => {
 
     return (
         <div className={ `ins-c-dashboard__info-inline ${systemInventory ? ' ins-m-padding-top' : ''}` }>
-            <Icon/>
+            <Icon aria-hidden="true"/>
             <p>{ message }</p>
         </div>
     );
