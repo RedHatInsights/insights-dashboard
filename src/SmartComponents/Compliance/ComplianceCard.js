@@ -69,16 +69,21 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                     {complianceFetchStatus === 'fulfilled' &&
                         (Array.isArray(complianceSummary.data) &&
                             (complianceSummary.data.length > 0 ? <React.Fragment>
-                                {getTopThreePolicies(complianceSummary).map((element, index) =>
+                                {getTopThreePolicies(complianceSummary).map((policy, index) =>
                                     <div className="ins-c-compliance__row" key={ index }>
                                         <div className="ins-c-compliance__row-item">
                                             <PieChart
-                                                ariaDesc="Operating systems used"
-                                                ariaTitle="Pie chart operating systems"
+                                                ariaDesc="Compliance score"
+                                                ariaTitle="Pie chart compliance"
                                                 constrainToVisibleArea={ true }
                                                 data={ [
-                                                    { x: element.attributes.name, y: element.attributes.score },
-                                                    { x: 'empty', y: 100 }
+                                                    {
+                                                        x: 'Compliant',
+                                                        y: policy.attributes.compliant_host_count
+                                                    }, {
+                                                        x: 'Non-compliant',
+                                                        y: policy.attributes.total_host_count - policy.attributes.compliant_host_count
+                                                    }
                                                 ] }
                                                 labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
                                                 padding={ pieChartPadding }
@@ -93,23 +98,25 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                     <Button
                                                         className="ins-c-compliance__policy-link"
                                                         component="a"
-                                                        href={ `/${UI_BASE}/compliance/policies/` }
+                                                        href={ `/${UI_BASE}/compliance/reports/${policy.id}` }
                                                         variant="link"
                                                         isInline
                                                     >
-                                                        {element.attributes.name}
+                                                        {policy.attributes.name}
                                                     </Button>
                                                 </StackItem>
                                                 <StackItem>
                                                     <Split gutter='sm'>
                                                         <SplitItem>
                                                             {intl.formatMessage(messages.compliantHostCount,
-                                                                { count: element.attributes.compliant_host_count }
+                                                                { count: policy.attributes.total_host_count }
                                                             )}
                                                         </SplitItem>
                                                         <SplitItem>
                                                             {intl.formatMessage(messages.compliantScore,
-                                                                { score: Math.trunc(element.attributes.score) }
+                                                                { score: Math.trunc(
+                                                                    policy.attributes.compliant_host_count / policy.attributes.total_host_count
+                                                                ) }
                                                             )}
                                                         </SplitItem>
                                                     </Split>
@@ -125,13 +132,13 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                         <Button
                                             className="ins-c-compliance__policy-link"
                                             component="a"
-                                            href={ `/${UI_BASE}/compliance/policies/` }
+                                            href={ `/${UI_BASE}/compliance/reports/` }
                                             variant="link"
                                             isInline
                                         >
                                             {complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
-                                                complianceSummary.data.length > 1 &&
-                                                    `${complianceSummary.data.length} more compliance policies`
+                                                3 - complianceSummary.data.length >= 1 &&
+                                                    `${3 - complianceSummary.data.length} more compliance reports`
                                             }
                                         </Button>
                                     </div>
@@ -148,7 +155,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                     <EmptyStateSecondaryActions>
                                         <Button
                                             variant='link'
-                                            href={ `${UI_BASE}/compliance/policies/` }
+                                            href={ `${UI_BASE}/compliance/reports/` }
                                             component='a'
                                         >
                                             {intl.formatMessage(messages.complianceEmptyStateAction1)}

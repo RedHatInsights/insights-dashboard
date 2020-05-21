@@ -6,7 +6,7 @@ export const UI_BASE = './insights';
 
 // Compliance App Constants
 export const COMPLIANCE_FETCH = 'COMPLIANCE_SUMMARY_FETCH';
-export const COMPLIANCE_FETCH_URL = `${BASE_URL}/compliance/profiles`;
+export const COMPLIANCE_FETCH_URL = `${BASE_URL}/compliance/profiles?search=has_test_results=true`;
 
 // Vulnerability App Constants
 const VULN_CVES = '/vulnerability/v1/report/executive';
