@@ -30,7 +30,9 @@ export const StackChart = ({ ...props }) => {
     const rawData = props.data.length && props.data.filter(item => item.y > 0).map(el => el.y);
     const dataMin = rawData.length && rawData.reduce((acc, curr) => Math.min(acc, curr));
 
-    const LegendLabel = ({ ...rest }) => <a href={ props.legendClick } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
+    // eslint-disable-next-line react/prop-types
+    const LegendLabel = ({ index, ...rest }) =>
+        <a href={ props.legendClick[index] } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
 
     return <React.Fragment>
         <Chart
