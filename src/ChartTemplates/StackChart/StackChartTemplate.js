@@ -30,7 +30,7 @@ export const StackChart = ({ ...props }) => {
     const rawData = props.data.length && props.data.filter(item => item.y > 0).map(el => el.y);
     const dataMin = rawData.length && rawData.reduce((acc, curr) => Math.min(acc, curr));
 
-    const LegendLabel = ({ ...rest }) => <a className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest }/></a>;
+    const LegendLabel = ({ ...rest }) => <a href={ props.legendClick } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
 
     return <React.Fragment>
         <Chart
@@ -53,14 +53,14 @@ export const StackChart = ({ ...props }) => {
         </Chart>
         <span className='stackChartLegend' aria-label="Chart legend">
             <table tabIndex="0" className="visually-hidden" aria-label={ props.ariaTitle + ` data` }>
-                { props.data.map((d, index) => {
+                {props.data.map((d, index) => {
                     return [
                         <tr key={ index }>
-                            <td>{ d.y }</td>
-                            <td>{ d.name }</td>
+                            <td>{d.y}</td>
+                            <td>{d.name}</td>
                         </tr>
                     ];
-                }) }
+                })}
             </table>
             <ChartLegend
                 data={ legendData }
@@ -69,7 +69,7 @@ export const StackChart = ({ ...props }) => {
                 width={ props.legendWidth }
                 fontSize={ chartLegendFontSize }
                 className='pf-m-redhat-font'
-                labelComponent={ <LegendLabel/> }
+                labelComponent={ <LegendLabel /> }
                 orientation='horizontal'
                 gutter={ 0 }
                 style={ {
