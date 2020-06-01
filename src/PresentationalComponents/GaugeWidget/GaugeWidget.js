@@ -71,7 +71,7 @@ class GaugeWidget extends Component {
 
         let renderModal = (
             <Modal
-                isLarge
+                variant='large'
                 title={ capitalize(this.props.label) }
                 isOpen={ isModalOpen }
                 onClose={ this.handleModalToggle }
@@ -135,7 +135,7 @@ class GaugeWidget extends Component {
                         </Gauge>
                     </div>
                     <div className='ins-c-gauge-widget__disabled--legend'>
-                        <Stack gutter='sm'>
+                        <Stack hasGutter>
                             {variantLegend}
                         </Stack>
                     </div>
