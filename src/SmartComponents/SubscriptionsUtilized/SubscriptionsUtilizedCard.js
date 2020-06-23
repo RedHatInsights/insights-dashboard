@@ -18,6 +18,9 @@ import { setRangedDateTime, filterChartData } from './SubscriptionsUtilizedHelpe
 import {
     RHSM_API_RESPONSE_DATA,
     RHSM_API_RESPONSE_DATA_TYPES,
+    RHSM_API_RESPONSE_ERROR_DATA,
+    RHSM_API_RESPONSE_ERROR_DATA_TYPES,
+    RHSM_API_RESPONSE_ERROR_DATA_CODE_TYPES,
     RHSM_API_PRODUCT_ID_TYPES,
     RHSM_API_QUERY_GRANULARITY_TYPES,
     SW_PATHS
@@ -70,8 +73,12 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
         }
 
         if (subscriptionsUtilizedProductOneFetchStatus === 'rejected' && subscriptionsUtilizedProductTwoFetchStatus === 'rejected') {
+            const [productOneError = {}] = subscriptionsUtilizedProductOne.data?.[RHSM_API_RESPONSE_ERROR_DATA] || [];
+            const [productTwoError = {}] = subscriptionsUtilizedProductOne.data?.[RHSM_API_RESPONSE_ERROR_DATA] || [];
+
             chartData.productError = true;
-            chartData.productOptIn = subscriptionsUtilizedProductOne.status === 403 && subscriptionsUtilizedProductTwo.status === 403;
+            chartData.productOptIn = productOneError[RHSM_API_RESPONSE_ERROR_DATA_TYPES.CODE] === RHSM_API_RESPONSE_ERROR_DATA_CODE_TYPES.OPTIN &&
+                productTwoError[RHSM_API_RESPONSE_ERROR_DATA_TYPES.CODE] === RHSM_API_RESPONSE_ERROR_DATA_CODE_TYPES.OPTIN;
         }
 
         setProducts(chartData);
