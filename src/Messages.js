@@ -95,7 +95,7 @@ export default defineMessages({
     compliantScore: {
         id: 'compliantScore',
         description: 'Compliance - compliant score',
-        defaultMessage: '{score}% passes'
+        defaultMessage: '{score}% compliant'
     },
     vulnerabilitiesTitle: {
         id: 'vulnerabilitiesTitle',
