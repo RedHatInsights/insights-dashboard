@@ -26,15 +26,17 @@
     padding-top: var(--pf-global--spacer--lg);
   }
   
+  .ins-c-compliance__row-item {
+    max-width: 200px;
+    font-size: var(--pf-global--FontSize--sm);
+
+    >.pf-l-split .pf-l-split__item {
+      font-size: var(--pf-global--FontSize--sm);
+    }
+  }
+
   .ins-c-compliance__row-item:first-child {
     width: 65px;
     margin-right: var(--pf-global--spacer--lg);
   }
   
-  .ins-c-compliance__row-item:last-child {
-    max-width: 200px;
-  
-    > .pf-l-stack .pf-l-stack__item .pf-l-split .pf-l-split__item {
-      font-size: var(--pf-global--FontSize--sm);
-    }
-  }
