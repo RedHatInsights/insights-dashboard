@@ -101,10 +101,11 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                             </SplitItem>
                                             <SplitItem>
                                                 {intl.formatMessage(messages.compliantScore,
-                                                    {
-                                                        score: Math.trunc(
+                                                    { score: +(
+                                                        100 * (
                                                             policy.attributes.compliant_host_count / policy.attributes.total_host_count
                                                         )
+                                                    ).toFixed(1)
                                                     }
                                                 )}
                                             </SplitItem>
