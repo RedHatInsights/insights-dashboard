@@ -39,7 +39,7 @@ const renderStatusIcon = (status) => ({
         aria-label="Remediation failed" />
 })[status];
 
-const RunStatus = ({ id, name }) => {
+const RunStatus = ({ id, name, index }) => {
     const [playbookRun, setPlaybookRun] = useState({});
     const [hasData, setHasData] = useState();
     const [loaded, setLoaded] = useState();
@@ -91,7 +91,7 @@ const RunStatus = ({ id, name }) => {
             }
         </div>
         <div className="ins-c-remediation__timestamp">
-            <Button component="a" variant="link" isInline href={ `./insights/remediations/${id}` }>
+            <Button id={ `remediation-link-${index}` } component="a" variant="link" isInline href={ `./insights/remediations/${id}` }>
                 {name} {/* do not intl this */}
             </Button>
             { loaded === undefined && <Skeleton size='md' /> }
@@ -106,7 +106,8 @@ const RunStatus = ({ id, name }) => {
 RunStatus.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
-    intl: PropTypes.any
+    intl: PropTypes.any,
+    index: PropTypes.any
 };
 
 export default RunStatus;
