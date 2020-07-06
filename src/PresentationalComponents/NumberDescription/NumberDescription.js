@@ -1,18 +1,21 @@
-import React from 'react';
-import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
-import propTypes from 'prop-types';
 import '../../../src/PresentationalComponents/NumberDescription/NumberDescription.scss';
-import { NumberData } from '../../PresentationalComponents/NumberData/NumberData';
+
+import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import CriticalIcon from '../../Icons/CriticalIcon';
+import { NumberData } from '../../PresentationalComponents/NumberData/NumberData';
+import React from 'react';
+import propTypes from 'prop-types';
 
 export const NumberDescription = ({ data, dataSize, percentageData, link, linkDescription, layout, critical, iconTooltipText }) => (
     <div className={ `ins-c-dashboard__number-description ${layout ? `pf-m-${layout}` : ''}` }>
-        { critical === 'true' && (
+        {critical === 'true' && (
             <CriticalIcon />
         )}
-        <Button component="a" variant="link" href={ link }>
-            <NumberData data={ data } dataSize={ dataSize } percentageData={ percentageData } iconTooltipText={ iconTooltipText }/>
-            { linkDescription }
+        <Button component="a" variant="link" href={ link } >
+            <span className='pf-c-button__text'>
+                <NumberData data={ data } dataSize={ dataSize } percentageData={ percentageData } iconTooltipText={ iconTooltipText } />
+                {linkDescription}
+            </span>
         </Button>
     </div>
 );
