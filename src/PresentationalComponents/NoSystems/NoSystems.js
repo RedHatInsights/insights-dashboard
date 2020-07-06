@@ -1,23 +1,22 @@
-import React from 'react';
+import './NoSystems.scss';
 
-import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import {
     EmptyState,
-    EmptyStateVariant,
     EmptyStateBody,
-    EmptyStateIcon
+    EmptyStateIcon,
+    EmptyStateVariant
 } from '@patternfly/react-core/dist/js/components/EmptyState';
 
-import { ClipboardCopy } from '@patternfly/react-core/dist/js/components/ClipboardCopy';
 import { Button } from '@patternfly/react-core/dist/js/components/Button';
+import ChartSpikeIcon from '@patternfly/react-icons/dist/js/icons/chartSpike-icon';
+import { ClipboardCopy } from '@patternfly/react-core/dist/js/components/ClipboardCopy';
+import { Main } from '@redhat-cloud-services/frontend-components/components/Main';
+import React from 'react';
 import { Stack } from '@patternfly/react-core/dist/js/layouts/Stack/Stack';
 import { StackItem } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
-import ChartSpikeIcon from '@patternfly/react-icons/dist/js/icons/chartSpike-icon';
-import { Main } from '@redhat-cloud-services/frontend-components/components/Main';
-import { useIntl } from 'react-intl';
+import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import messages from '../../Messages';
-
-import './NoSystems.scss';
+import { useIntl } from 'react-intl';
 
 const NoSystems = () => {
 
@@ -31,7 +30,7 @@ const NoSystems = () => {
                     {intl.formatMessage(messages.noSystemsTitle)}
                 </Title>
                 <EmptyStateBody>
-                    <Stack gutter='md'>
+                    <Stack hasGutter>
                         <StackItem>
                             {intl.formatMessage(messages.noSystemsDescription)}
                         </StackItem>

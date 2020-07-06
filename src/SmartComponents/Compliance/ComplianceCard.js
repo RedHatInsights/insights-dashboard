@@ -93,7 +93,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                         >
                                             {policy.attributes.name}
                                         </Button>
-                                        <Split gutter='sm'>
+                                        <Split hasGutter>
                                             <SplitItem>
                                                 {intl.formatMessage(messages.compliantHostCount,
                                                     { count: policy.attributes.total_host_count }
@@ -135,7 +135,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
 
                         </React.Fragment> : (
                             <EmptyState className="ins-c-compliance__empty-state" variant={ EmptyStateVariant.full }>
-                                <Title headingLevel="h5" size="sm">
+                                <Title headingLevel="h5" size="md">
                                     {intl.formatMessage(messages.complianceEmptyStateTitle)}
                                 </Title>
                                 <EmptyStateBody>

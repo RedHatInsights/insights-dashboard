@@ -6,7 +6,6 @@ import React, { useEffect } from 'react';
 import {
     TemplateCard,
     TemplateCardBody,
-    TemplateCardHead,
     TemplateCardHeader
 } from '../../PresentationalComponents/Template/TemplateCard';
 
@@ -35,9 +34,7 @@ const RemediationsCard = ({
 
     return (
         <TemplateCard appName='Remediations'>
-            <TemplateCardHead>
-                <TemplateCardHeader title='Remediations' />
-            </TemplateCardHead>
+            <TemplateCardHeader title='Remediations' />
             <TemplateCardBody>
                 {remediationsFetchStatus === 'fulfilled' &&
                     (Array.isArray(remediations.data) &&
