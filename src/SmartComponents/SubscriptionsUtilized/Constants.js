@@ -8,6 +8,16 @@ export const RHSM_API_RESPONSE_DATA_TYPES = {
     HAS_INFINITE: 'has_infinite_quantity'
 };
 
+export const RHSM_API_RESPONSE_ERROR_DATA = 'errors';
+
+export const RHSM_API_RESPONSE_ERROR_DATA_TYPES = {
+    CODE: 'code'
+};
+
+export const RHSM_API_RESPONSE_ERROR_DATA_CODE_TYPES = {
+    OPTIN: 'SUBSCRIPTIONS1004'
+};
+
 export const RHSM_API_PRODUCT_ID_TYPES = {
     RHEL: 'RHEL',
     OPENSHIFT: 'OpenShift Container Platform'

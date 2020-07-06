@@ -32,7 +32,8 @@ export const StackChart = ({ ...props }) => {
 
     // eslint-disable-next-line react/prop-types
     const LegendLabel = ({ index, ...rest }) =>
-        <a href={ props.legendClick[index] } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
+        <a id={ `${(props.ariaTitle).toLowerCase().replace(/\s/g, '-')}-legend-${index + 1}` }
+            href={ props.legendClick[index] } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
 
     return <React.Fragment>
         <Chart
