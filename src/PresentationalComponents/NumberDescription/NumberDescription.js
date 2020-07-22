@@ -17,7 +17,7 @@ export const NumberDescription = ({ data, dataSize, percentageData, link, linkDe
             <FlexItem spacer={ { default: 'spacerXs' } }>
                 <NumberData data={ data } dataSize={ dataSize } percentageData={ percentageData } iconTooltipText={ iconTooltipText } />
             </FlexItem>
-            <FlexItem spacer={ { default: 'spacerXs' } }><Button isInline variant="link" href={ link } >{linkDescription}</Button></FlexItem>
+            <FlexItem spacer={ { default: 'spacerXs' } }><Button component='a' isInline variant="link" href={ link } >{linkDescription}</Button></FlexItem>
         </Flex>
     </div>
 );
