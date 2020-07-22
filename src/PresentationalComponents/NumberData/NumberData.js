@@ -12,12 +12,13 @@ export const NumberData = ({ data, dataSize, percentageData, iconTooltipText }) 
         <span className={ `ins-c-dashboard__number-data--${dataSize}` }>
             {data}
         </span>
-        { percentageData &&
+        {percentageData &&
             <span className="ins-c-dashboard__number-percentage">
                 <span>{percentageData}</span>
                 <Tooltip
+                    key={ `${iconTooltipText}` }
                     position={ TooltipPosition.top }
-                    content={ <div>{ iconTooltipText }</div> }>
+                    content={ <div>{iconTooltipText}</div> }>
                     <Button variant="plain" aria-label="Action" className='ins-c-info-icon'>
                         <InfoIcon />
                     </Button>

@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import './SystemInventoryCard.scss';
 
 import * as AppActions from '../../AppActions';
-import { connect } from 'react-redux';
+
+import React, { useEffect } from 'react';
+import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
-import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
-import { NumberDescription } from '../../../../insights-dashboard/src/PresentationalComponents/NumberDescription/NumberDescription';
-import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
-import { useIntl } from 'react-intl';
-import messages from '../../Messages';
 import FailState from '../../PresentationalComponents/FailState/FailState';
-import './SystemInventoryCard.scss';
+import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
+import { NumberDescription } from '../../../../insights-dashboard/src/PresentationalComponents/NumberDescription/NumberDescription';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import messages from '../../Messages';
+import { useIntl } from 'react-intl';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -38,7 +39,7 @@ const SystemInventoryCard = ({
 
     return <TemplateCard appName='SystemInventory'>
         <TemplateCardHeader subtitle={ intl.formatMessage(messages.systemInventoryTitle) }/>
-        <TemplateCardBody isFilled={ false }>
+        <TemplateCardBody isFilled={ false } className='dashboard-card-system-inventory-body'>
             { inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
                 <NumberDescription
                     data={ inventorySummary.total.toLocaleString() || 0 }
