@@ -65,11 +65,11 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                         ariaDesc={ intl.formatMessage(messages.advisorChartDescription) }
                         ariaTitle="Advisor recommendations chart"
                         height={ 40 }
-                        width={ 500 }
                         maxWidth={ 500 }
                         legendHeight={ 36 }
                         legendWidth={ 500 }
                         data={ chartData }
+                        constrainToVisibleArea={ false }
                         legendClick={ legendClick }
                     />
                 }
