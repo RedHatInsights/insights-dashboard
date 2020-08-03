@@ -12,6 +12,7 @@ import QuestionIcon from './../../Icons/QuestionIcon';
 import { REMEDIATIONS_PLAYBOOK_RUNS_FETCH_URL } from '../../AppConstants';
 import TimeStamp from './../../PresentationalComponents/TimeStamp/TimeStamp';
 import TimesCircleIcon from '@patternfly/react-icons/dist/js/icons/times-circle-icon';
+import { Tooltip } from '@patternfly/react-core/dist/esm/components/Tooltip/Tooltip';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 
@@ -91,9 +92,14 @@ const RunStatus = ({ id, name, index }) => {
             }
         </div>
         <div className="ins-c-remediation__timestamp">
-            <Button id={ `remediation-link-${index}` } component="a" variant="link" isInline href={ `./insights/remediations/${id}` }>
-                {name} {/* do not intl this */}
-            </Button>
+            {name.length > 20 ? <Tooltip content={ name }>
+                <Button id={ `remediation-link-${index}` } component="a" variant="link" isInline href={ `./insights/remediations/${id}` }>
+                    {`${name.substring(0, 20)}...`} {/* do not intl this */}
+                </Button>
+            </Tooltip> :
+                <Button id={ `remediation-link-${index}` } component="a" variant="link" isInline href={ `./insights/remediations/${id}` }>
+                    {name} {/* do not intl this */}
+                </Button>}
             { loaded === undefined && <Skeleton size='md' /> }
             { loaded && hasData
                 ? <TimeStamp timestamp={ <DateFormat type='exact' date={ playbookRun[0].created_at } /> } />
