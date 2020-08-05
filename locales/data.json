@@ -54,6 +54,7 @@
     "noSystemsInstall": "Install the client on the RHEL system",
     "noSystemsRegister": "Register the system to Red Hat Insights",
     "noSystemsLink": "Getting started documentation",
-    "advisorChartDescription": "This chart shows recommendations effecting your system"
+    "advisorChartDescription": "This chart shows recommendations effecting your system",
+    "registerYourSystems": "Register your systems"
   }
 }
