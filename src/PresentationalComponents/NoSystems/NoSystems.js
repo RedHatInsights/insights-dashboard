@@ -9,7 +9,6 @@ import {
 
 import { Button } from '@patternfly/react-core/dist/js/components/Button';
 import ChartSpikeIcon from '@patternfly/react-icons/dist/js/icons/chartSpike-icon';
-import { ClipboardCopy } from '@patternfly/react-core/dist/js/components/ClipboardCopy';
 import { Main } from '@redhat-cloud-services/frontend-components/components/Main';
 import React from 'react';
 import { Stack } from '@patternfly/react-core/dist/js/layouts/Stack/Stack';
@@ -34,25 +33,13 @@ const NoSystems = () => {
                         <StackItem>
                             {intl.formatMessage(messages.noSystemsDescription)}
                         </StackItem>
-                        <StackItem>
-                            <span className='ins-c-no-systems__helper'>
-                                1. {intl.formatMessage(messages.noSystemsInstall)}
-                            </span>
-                            <ClipboardCopy>yum install insights-client</ClipboardCopy>
-                        </StackItem>
-                        <StackItem>
-                            <span className='ins-c-no-systems__helper'>
-                                2. {intl.formatMessage(messages.noSystemsRegister)}
-                            </span>
-                            <ClipboardCopy>insights-client --register</ClipboardCopy>
-                        </StackItem>
                     </Stack>
                 </EmptyStateBody>
                 <Button
                     component="a"
-                    href="https://access.redhat.com/products/red-hat-insights#getstarted"
-                    target="_blank" variant="primary">
-                    {intl.formatMessage(messages.noSystemsLink)}
+                    href="https://cloud.redhat.com/beta/insights/registration"
+                    variant="primary">
+                    {intl.formatMessage(messages.registerYourSystems)}
                 </Button>
             </EmptyState>
         </Main>

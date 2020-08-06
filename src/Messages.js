@@ -279,5 +279,10 @@ export default defineMessages({
         id: 'advisorChartDescription',
         description: 'Advisor chart description',
         defaultMessage: 'This chart shows recommendations effecting your system'
+    },
+    registerYourSystems: {
+        id: 'registerYourSystems',
+        description: 'Register your systems',
+        defaultMessage: 'Register your systems'
     }
 });
