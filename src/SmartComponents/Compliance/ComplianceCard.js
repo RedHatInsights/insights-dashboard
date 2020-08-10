@@ -87,7 +87,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                             id={ `compliance-link-${index + 1}` }
                                             className="ins-c-compliance__policy-link"
                                             component="a"
-                                            href={ `/${UI_BASE}/compliance/reports/${policy.id}` }
+                                            href={ `${UI_BASE}/compliance/reports/${policy.id}` }
                                             variant="link"
                                             isInline
                                         >
@@ -121,7 +121,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                     <Button
                                         className="ins-c-compliance__policy-link"
                                         component="a"
-                                        href={ `/${UI_BASE}/compliance/reports/` }
+                                        href={ `${UI_BASE}/compliance/reports/` }
                                         variant="link"
                                         isInline
                                     >
