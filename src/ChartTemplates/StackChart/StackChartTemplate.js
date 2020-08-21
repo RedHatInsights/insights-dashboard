@@ -87,7 +87,7 @@ export const StackChart = ({ ...props }) => {
                 className='pf-m-redhat-font'
                 labelComponent={ <LegendLabel /> }
                 orientation='horizontal'
-                gutter={ 0 }
+                gutter={ 20 }
                 style={ {
                     labels: {
                         fill: c_button_m_control_active_after_BorderBottomColor.value
