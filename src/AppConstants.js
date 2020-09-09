@@ -3,6 +3,7 @@ import * as urijs from 'urijs';
 
 const BASE_URL = '/api';
 export const UI_BASE = './insights';
+export const SELECTED_TAGS_SET = 'SELECTED_TAGS_SET';
 
 // Compliance App Constants
 export const COMPLIANCE_FETCH = 'COMPLIANCE_SUMMARY_FETCH';

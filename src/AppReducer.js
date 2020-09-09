@@ -26,7 +26,6 @@ const initialState = Immutable({
     subscriptionsUtilizedProductOneFetchStatus: '',
     subscriptionsUtilizedProductTwo: [],
     subscriptionsUtilizedProductTwoFetchStatus: '',
-
     inventorySummary: {},
     inventoryFetchStatus: '',
     inventoryStaleSummary: {},
@@ -36,11 +35,18 @@ const initialState = Immutable({
     inventoryTotalSummary: {},
     inventoryTotalFetchStatus: '',
     remediations: {},
-    remediationsFetchStatus: ''
+    remediationsFetchStatus: '',
+    selectedTags: []
 });
 
 export const DashboardStore = (state = initialState, action) => {
     switch (action.type) {
+        // GLOBAL
+        case ActionTypes.SELECTED_TAGS_SET:
+            return Immutable.merge(state, {
+                selectedTags: action.payload
+            });
+
         // COMPLIANCE
         case `${ActionTypes.COMPLIANCE_FETCH}_PENDING`:
             return state.set('complianceFetchStatus', 'pending');
@@ -170,9 +176,6 @@ export const DashboardStore = (state = initialState, action) => {
                 subscriptionsUtilizedProductTwoFetchStatus: 'rejected'
             });
 
-        default:
-            return state;
-
         // Inventory
         case `${ActionTypes.INVENTORY_FETCH}_PENDING`:
             return state.set('inventoryFetchStatus', 'pending');
@@ -224,5 +227,9 @@ export const DashboardStore = (state = initialState, action) => {
             });
         case `${ActionTypes.REMEDIATIONS_FETCH}_REJECTED`:
             return state.set('remediationsFetchStatus', 'rejected');
+
+        default:
+            return state;
+
     }
 };

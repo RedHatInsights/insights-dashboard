@@ -92,3 +92,8 @@ export const fetchRemediations = (options) => ({
     type: ActionTypes.REMEDIATIONS_FETCH,
     payload: fetchData(ActionTypes.REMEDIATIONS_FETCH_URL, {}, options)
 });
+
+export const setSelectedTags = (tags) => ({
+    type: ActionTypes.SELECTED_TAGS_SET,
+    payload: tags
+});
