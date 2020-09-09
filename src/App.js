@@ -1,19 +1,19 @@
 import './App.scss';
 
-import React, { useEffect, createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
-import { INVENTORY_TOTAL_FETCH_URL } from './AppConstants';
 import API from './Utilities/Api';
-
+import { INVENTORY_TOTAL_FETCH_URL } from './AppConstants';
+import PageLoading from './PresentationalComponents/PageLoading/PageLoading';
 import PropTypes from 'prop-types';
 import { Routes } from './Routes';
-
-import PageLoading from './PresentationalComponents/PageLoading/PageLoading';
+import { setSelectedTags } from './AppActions';
+import { useDispatch } from 'react-redux';
 
 export const PermissionContext = createContext();
 
 const App = (props) => {
-
+    const dispatch = useDispatch();
     const [permissions, setPermissions] = useState({
         customPolicies: false,
         compliance: false,
@@ -28,9 +28,23 @@ const App = (props) => {
     const [arePermissionsReady, setArePermissionReady] = useState(false);
     const [hasSystems, setHasSystems] = useState();
 
-    async function initChrome () {
+    async function initChrome() {
         insights.chrome.init();
         insights.chrome.identifyApp('dashboard');
+
+        insights.chrome?.globalFilterScope?.('insights');
+        if (insights.chrome?.globalFilterScope) {
+            insights.chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
+                const selectedTags = insights.chrome?.mapGlobalFilter?.(data)?.filter(item => !item.includes('Workloads')) || undefined;
+                const encodedTags = selectedTags.map(tag => {
+                    const [namespace, rest] = tag.split('/');
+                    const [key, value] = rest.split('=');
+                    return `${encodeURIComponent(namespace)}/${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+                });
+                dispatch(setSelectedTags(encodedTags));
+            });
+        }
+
         // wait for auth first, otherwise the call to RBAC may 401
         await window.insights.chrome.auth.getUser().then(
             user => setIsOrgAdmin(user.identity.user.is_org_admin)
@@ -64,6 +78,7 @@ const App = (props) => {
 
     useEffect(() => {
         initChrome();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -83,7 +98,7 @@ const App = (props) => {
                 } }>
                 <Routes childProps={ props } />
             </PermissionContext.Provider>
-            : <PageLoading/>
+            : <PageLoading />
     );
 };
 

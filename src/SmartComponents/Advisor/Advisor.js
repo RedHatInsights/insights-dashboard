@@ -20,16 +20,16 @@ import { useIntl } from 'react-intl';
  * Advisor Card for showing count/severity of rec hits
  */
 const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
-    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, systemsStats, systemsStatsStatus }) => {
+    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, systemsStats, systemsStatsStatus, selectedTags }) => {
 
     const intl = useIntl();
     const [chartData, setChartData] = useState([]);
 
     useEffect(() => {
-        advisorFetchStatsRecs();
-        advisorFetchStatsSystems();
-        advisorFetchIncidents();
-    }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems]);
+        advisorFetchStatsRecs(selectedTags.length && ({ tags: selectedTags.join() }));
+        advisorFetchStatsSystems(selectedTags.length && ({ tags: selectedTags.join() }));
+        advisorFetchIncidents(selectedTags.length && ({ tags: selectedTags.join() }));
+    }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems, selectedTags]);
 
     useEffect(() => {
         recStatsStatus === 'fulfilled' && setChartData([
@@ -42,7 +42,8 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
 
     const legendClick = chartData.map((data) => {
         const risk = data.name.toLowerCase();
-        return `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10`;
+        // eslint-disable-next-line max-len
+        return `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags.length && '&tags=' + selectedTags.join()}`;
     });
 
     return <TemplateCard appName='Advisor' data-ouia-safe>
@@ -92,7 +93,8 @@ Advisor.propTypes = {
     systemsStatsStatus: PropTypes.string,
     advisorIncidents: PropTypes.object,
     advisorIncidentsStatus: PropTypes.string,
-    advisorFetchIncidents: PropTypes.func
+    advisorFetchIncidents: PropTypes.func,
+    selectedTags: PropTypes.array
 };
 
 export default connect(
@@ -102,11 +104,12 @@ export default connect(
         systemsStats: DashboardStore.advisorStatsSystems,
         systemsStatsStatus: DashboardStore.advisorStatsSystemsStatus,
         advisorIncidents: DashboardStore.advisorIncidents,
-        advisorIncidentsStatus: DashboardStore.advisorIncidentsStatus
+        advisorIncidentsStatus: DashboardStore.advisorIncidentsStatus,
+        selectedTags: DashboardStore.selectedTags
     }),
     dispatch => ({
-        advisorFetchStatsRecs: (url) => dispatch(AppActions.advisorFetchStatsRecs(url)),
-        advisorFetchStatsSystems: (url) => dispatch(AppActions.advisorFetchStatsSystems(url)),
-        advisorFetchIncidents: (url) => dispatch(AppActions.advisorFetchIncidents(url))
+        advisorFetchStatsRecs: (data) => dispatch(AppActions.advisorFetchStatsRecs(data)),
+        advisorFetchStatsSystems: (data) => dispatch(AppActions.advisorFetchStatsSystems(data)),
+        advisorFetchIncidents: (data) => dispatch(AppActions.advisorFetchIncidents(data))
     })
 )(Advisor);
