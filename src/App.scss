@@ -52,14 +52,6 @@
         @include rem("margin-left", 10px);
         @include rem("margin-right", 10px);
     }
-
-    .ins-m-green {
-        color: var(--pf-global--palette--green-400);
-    }
-
-    .ins-m-red {
-        color: var(--pf-global--palette--red-100);
-    }
 }
 
 // ==================================================================
@@ -81,4 +73,16 @@
 // Empty states
 .page__dashboard .pf-c-empty-state__body {
     font-size: var(--pf-global--FontSize--sm);
+}
+
+// ==================================================================
+// Colors
+// ==================================================================
+
+.ins-m-green {
+    color: var(--pf-global--palette--green-400);
+}
+
+.ins-m-red {
+    color: var(--pf-global--palette--red-100);
 }

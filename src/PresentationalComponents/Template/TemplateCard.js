@@ -55,12 +55,12 @@ TemplateCardActions.propTypes = {
     iconInlineState: propTypes.string
 };
 
-export const TemplateCardHeader = ({ title, subtitle, onDownload, children, ...props }) => (
+export const TemplateCardHeader = ({ title, subtitle, onDownload, children, titleClassName, ...props }) => (
     <CardHeader className={ `ins-c-dashboard__card--header ${subtitle ? ' ins-m-padding-small ' : ''}` }  { ...props }>
         <Level>
             { title &&
                 <LevelItem>
-                    <Title headingLevel="h2" size="lg"> { title } </Title>
+                    <Title headingLevel="h2" size="lg" className={ titleClassName }> { title } </Title>
                 </LevelItem>
             }
             { subtitle &&
@@ -80,6 +80,7 @@ export const TemplateCardHeader = ({ title, subtitle, onDownload, children, ...p
 
 TemplateCardHeader.propTypes = {
     title: propTypes.string,
+    titleClassName: propTypes.string,
     subtitle: propTypes.string,
     children: propTypes.any,
     onDownload: propTypes.func

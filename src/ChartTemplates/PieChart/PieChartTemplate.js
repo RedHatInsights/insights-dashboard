@@ -1,10 +1,16 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import { ChartPie } from '@patternfly/react-charts/dist/js/components/ChartPie/ChartPie';
-import { ChartLegend } from '@patternfly/react-charts/dist/js/components/ChartLegend/ChartLegend';
 import './PieChartTemplate.scss';
 
+import { ChartLabel } from '@patternfly/react-charts';
+import { ChartLegend } from '@patternfly/react-charts/dist/js/components/ChartLegend/ChartLegend';
+import { ChartPie } from '@patternfly/react-charts/dist/js/components/ChartPie/ChartPie';
+import React from 'react';
+import propTypes from 'prop-types';
+
 export const PieChart = ({ ...props }) => {
+    // eslint-disable-next-line react/prop-types
+    const LegendLabel = ({ index, ...rest }) => <a id={ `${(props.ariaTitle).toLowerCase().replace(/\s/g, '-')}-legend-${index + 1}` }
+        href={ props.legendClick[index] } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
+
     return (
         <div className="ins-c-pie-chart__row">
             <div style={ { width: props.width, height: props.height, position: 'relative' } }>
@@ -20,17 +26,17 @@ export const PieChart = ({ ...props }) => {
                     colorScale={ props.colorScale }
                 />
                 <table tabIndex="0" className="visually-hidden" aria-label={ props.ariaTitle + ` data` }>
-                    { props.data.map((d, index) => {
+                    {props.data.map((d, index) => {
                         return [
                             <tr key={ index }>
-                                <td>{ d.y }</td>
-                                <td>{ d.x }</td>
+                                <td>{d.y}</td>
+                                <td>{d.x}</td>
                             </tr>
                         ];
-                    }) }
+                    })}
                 </table>
             </div>
-            { props.legend === 'true' &&
+            {props.legend === 'true' &&
                 <div className="ins-c-pie-chart__legend" aria-label="Chart legend" style={ { width: props.legendWidth, height: props.legendHeight } }>
                     <ChartLegend
                         height={ props.legendHeight }
@@ -39,6 +45,7 @@ export const PieChart = ({ ...props }) => {
                         data={ props.legendData }
                         rowGutter={ { top: -5, bottom: -5 } }
                         orientation={ props.legendOrientation }
+                        labelComponent={ props.legendClick && < LegendLabel /> }
                     />
                 </div>
             }
@@ -59,7 +66,8 @@ PieChart.propTypes = {
     colorScale: propTypes.array,
     legend: propTypes.boolean,
     legendWidth: propTypes.number,
-    legendHeight: propTypes.number
+    legendHeight: propTypes.number,
+    legendClick: propTypes.any
 };
 
 export default PieChart;

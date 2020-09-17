@@ -62,10 +62,10 @@ export default defineMessages({
         description: 'Advisor - recs impacting systems',
         defaultMessage: '{totalRecs, plural, one {# Recommendation} other {# Recommendations}}  impacting {systems, plural, one {# system} other {# systems}}'
     },
-    incidentsDetected: {
-        id: 'incidentsDetected',
-        description: 'Advisor - incidents detected',
-        defaultMessage: '{incidents, plural, one {Incident} other {Incidents}} detected'
+    incidents: {
+        id: 'incidents',
+        description: 'Advisor - incidents ',
+        defaultMessage: '{incidents, plural, one {# Incident} other {# Incidents}}'
     },
     critical: {
         id: 'critical',
@@ -74,18 +74,18 @@ export default defineMessages({
     },
     important: {
         id: 'important',
-        description: 'important',
-        defaultMessage: 'important'
+        description: 'Important',
+        defaultMessage: 'Important'
     },
     moderate: {
         id: 'moderate',
-        description: 'moderate',
-        defaultMessage: 'moderate'
+        description: 'Moderate',
+        defaultMessage: 'Moderate'
     },
     low: {
         id: 'low',
-        description: 'low',
-        defaultMessage: 'low'
+        description: 'Low',
+        defaultMessage: 'Low'
     },
     compliantHostCount: {
         id: 'compliantHostCount',
@@ -284,5 +284,50 @@ export default defineMessages({
         id: 'registerYourSystems',
         description: 'Register your systems',
         defaultMessage: 'Register your systems'
+    },
+    recommendations: {
+        id: 'recommendations',
+        description: 'Recommendations',
+        defaultMessage: 'recommendations'
+    },
+    inAdvisor: {
+        id: 'inAdvisor',
+        description: 'in Advisor',
+        defaultMessage: 'in Advisor'
+    },
+    totalRisk: {
+        id: 'totalRisk',
+        description: 'Total risk',
+        defaultMessage: 'Total risk'
+    },
+    category: {
+        id: 'category',
+        description: 'Category',
+        defaultMessage: 'Category'
+    },
+    availability: {
+        id: 'availability',
+        description: 'Category chart value',
+        defaultMessage: 'Availability'
+    },
+    performance: {
+        id: 'performance',
+        description: 'Category chart  value',
+        defaultMessage: 'Performance'
+    },
+    stability: {
+        id: 'stability',
+        description: 'Category chart  value',
+        defaultMessage: 'Stability'
+    },
+    security: {
+        id: 'security',
+        description: 'Category chart  value',
+        defaultMessage: 'Security'
+    },
+    totalRiskDef: {
+        id: 'totalRiskDef',
+        description: 'Total risk definition',
+        defaultMessage: 'A value derived from the <em>likelihood</em> that the condition will negatively affect your infrastructure, and the <em>impact</em> on system operation if that were to happen'
     }
 });

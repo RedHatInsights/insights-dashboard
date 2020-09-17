@@ -3,9 +3,17 @@
     "defaultMessage": "This chart shows recommendations effecting your system",
     "description": "Advisor chart description"
   },
+  "availability": {
+    "defaultMessage": "Availability",
+    "description": "Category chart value"
+  },
   "bugfixAdvisories": {
     "defaultMessage": "{count, plural, one {bug fix} other {bug fixes}}",
     "description": "Patch - bugfix advisories"
+  },
+  "category": {
+    "defaultMessage": "Category",
+    "description": "Category"
   },
   "complianceEmptyStateAction1": {
     "defaultMessage": "Create a policy",
@@ -60,12 +68,16 @@
     "description": "Error fetching API"
   },
   "important": {
-    "defaultMessage": "important",
+    "defaultMessage": "Important",
     "description": "important"
   },
-  "incidentsDetected": {
-    "defaultMessage": "{incidents, plural, one {Incident} other {Incidents}} detected",
-    "description": "Advisor - incidents detected"
+  "inAdvisor": {
+    "defaultMessage": "in Advisor",
+    "description": "in Advisor"
+  },
+  "incidents": {
+    "defaultMessage": "{incidents, plural, one {# Incident} other {# Incidents}}",
+    "description": "Advisor - incidents "
   },
   "lastxdays": {
     "defaultMessage": "Last {days} days",
@@ -76,11 +88,11 @@
     "description": "Vulnerabilities - latest vulnerabilities"
   },
   "low": {
-    "defaultMessage": "low",
+    "defaultMessage": "Low",
     "description": "low"
   },
   "moderate": {
-    "defaultMessage": "moderate",
+    "defaultMessage": "Moderate",
     "description": "moderate"
   },
   "noSystemsDescription": {
@@ -106,6 +118,14 @@
   "patchTitle": {
     "defaultMessage": "Patch",
     "description": "Patch - title"
+  },
+  "performance": {
+    "defaultMessage": "Performance",
+    "description": "Category chart  value"
+  },
+  "recommendations": {
+    "defaultMessage": "recommendations",
+    "description": "Recommendations"
   },
   "recsImpactingSystems": {
     "defaultMessage": "{totalRecs, plural, one {# Recommendation} other {# Recommendations}} impacting {systems, plural, one {# system} other {# systems}}",
@@ -139,9 +159,17 @@
     "defaultMessage": "{total} more remediations",
     "description": "Remediations - remediations total"
   },
+  "security": {
+    "defaultMessage": "Security",
+    "description": "Category chart  value"
+  },
   "securityAdvisories": {
     "defaultMessage": "{count, plural, one {security advisory} other {security advisories}}",
     "description": "Patch - security advisories"
+  },
+  "stability": {
+    "defaultMessage": "Stability",
+    "description": "Category chart  value"
   },
   "subscriptionsUtilizedLearnMore": {
     "defaultMessage": "Activate Subscription Watch to monitor your subscription utilization.",
@@ -210,6 +238,10 @@
   "systemsAffected": {
     "defaultMessage": "{count, plural, one {# system} other {# systems}} affected",
     "description": "Patch - systems affected"
+  },
+  "totalRisk": {
+    "defaultMessage": "Total risk",
+    "description": "Total risk"
   },
   "vulnerabilitiesTitle": {
     "defaultMessage": "Vulnerability",
