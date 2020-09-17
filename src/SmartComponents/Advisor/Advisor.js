@@ -1,29 +1,60 @@
+/* eslint-disable react/display-name */
+/* eslint-disable camelcase */
+import './Advisor.scss';
+
 import * as AppActions from '../../AppActions';
 
-import { INCIDENT_URL, NEW_REC_URL } from './Constants';
+import { Button, Divider, Title, TitleSizes, Tooltip, TooltipPosition } from '@patternfly/react-core/dist/esm/components';
+import { Flex, FlexItem, Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts';
+import { INCIDENT_URL, SEVERITY_MAP } from './Constants';
 import React, { useEffect, useState } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
+import {
+    global_palette_cyan_100,
+    global_palette_cyan_200,
+    global_palette_cyan_300,
+    global_palette_cyan_400
+} from '@patternfly/react-tokens/dist/esm/';
 
-import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import FailState from '../../PresentationalComponents/FailState/FailState';
+import InfoIcon from '../../Icons/InfoIcon';
+import { InsightsLabel } from '@redhat-cloud-services/frontend-components/components/esm/InsightsLabel';
 import Loading from '../../PresentationalComponents/Loading/Loading';
-import { NumberDescription } from '../../PresentationalComponents/NumberDescription/NumberDescription';
+import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import PropTypes from 'prop-types';
-import { SEVERITY_MAP } from './Constants';
-import StackChartTemplate from '../../ChartTemplates/StackChart/StackChartTemplate';
 import { UI_BASE } from '../../AppConstants';
+import { capitalize } from '../../Utilities/Common';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 
-/**
- * Advisor Card for showing count/severity of rec hits
- */
 const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
-    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, systemsStats, systemsStatsStatus, selectedTags }) => {
+    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, selectedTags }) => {
 
     const intl = useIntl();
-    const [chartData, setChartData] = useState([]);
+    const [trData, setTRData] = useState([]);
+    const [categoryData, setCategoryData] = useState([]);
+
+    const colorScale = [
+        global_palette_cyan_100.value,
+        global_palette_cyan_200.value,
+        global_palette_cyan_300.value,
+        global_palette_cyan_400.value
+    ];
+    const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length && `&tags=${selectedTags.join()}`}`;
+    const pieLegendClick = categoryData.map(({ value }) => `${UI_BASE}/advisor/recommendations?category=${value}${urlRest}`);
+    const totalRiskUrl = (risk) => `${UI_BASE}/advisor/recommendations?total_risk=${risk}${urlRest}`;
+
+    const iconTooltip = text => <Tooltip
+        key={ text }
+        position={ TooltipPosition.top }
+        content={ <div>{text}</div> }>
+        <Button variant='plain' aria-label='Action' className='ins-c-info-icon'>
+            <InfoIcon />
+        </Button>
+    </Tooltip>;
+
+    const pieLegendData = categoryData.map(item => ({ name: `${item.y} ${item.x}`, symbol: { fill: `${item.fill}`, type: 'square' } }));
 
     useEffect(() => {
         advisorFetchStatsRecs(selectedTags.length && ({ tags: selectedTags.join() }));
@@ -32,55 +63,95 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
     }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems, selectedTags]);
 
     useEffect(() => {
-        recStatsStatus === 'fulfilled' && setChartData([
-            { name: intl.formatMessage(messages.critical), y: recStats.total_risk[SEVERITY_MAP.critical] },
-            { name: intl.formatMessage(messages.important), y: recStats.total_risk[SEVERITY_MAP.important] },
-            { name: intl.formatMessage(messages.moderate), y: recStats.total_risk[SEVERITY_MAP.moderate] },
-            { name: intl.formatMessage(messages.low), y: recStats.total_risk[SEVERITY_MAP.low] }
-        ]);
+        if (recStatsStatus === 'fulfilled') {
+            const { total_risk, category } = recStats;
+            setTRData([
+                { title: `${total_risk[SEVERITY_MAP.critical]} ${capitalize(intl.formatMessage(messages.critical))}`, risk: SEVERITY_MAP.critical },
+                {
+                    title: `${total_risk[SEVERITY_MAP.important]} ${capitalize(intl.formatMessage(messages.important))}`,
+                    risk: SEVERITY_MAP.important
+                },
+                { title: `${total_risk[SEVERITY_MAP.moderate]} ${capitalize(intl.formatMessage(messages.moderate))}`, risk: SEVERITY_MAP.moderate },
+                { title: `${total_risk[SEVERITY_MAP.low]} ${capitalize(intl.formatMessage(messages.low))}`, risk: SEVERITY_MAP.low }
+            ]);
+            setCategoryData([
+                {
+                    x: intl.formatMessage(messages.availability, { count: category.Availability }), y: category.Availability,
+                    fill: colorScale[0], value: 1
+                },
+                {
+                    x: intl.formatMessage(messages.stability, { count: category.Stability }), y: category.Stability,
+                    fill: colorScale[1], value: 3
+                },
+                {
+                    x: intl.formatMessage(messages.performance, { count: category.Performance }), y: category.Performance,
+                    fill: colorScale[2], value: 4
+                },
+                {
+                    x: intl.formatMessage(messages.security, { count: category.Security }), y: category.Security,
+                    fill: colorScale[3], value: 2
+                }
+            ]);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [intl, recStats, recStatsStatus]);
 
-    const legendClick = chartData.map((data) => {
-        const risk = data.name.toLowerCase();
-        // eslint-disable-next-line max-len
-        return `${UI_BASE}/advisor/recommendations?total_risk=${SEVERITY_MAP[risk]}&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags.length && '&tags=' + selectedTags.join()}`;
-    });
-
     return <TemplateCard appName='Advisor' data-ouia-safe>
-        <TemplateCardHeader title='Advisor recommendations' />
+        {advisorIncidentsStatus === 'pending' ? <Loading /> : <TemplateCardHeader titleClassName='ins-m-red'
+            title={ `${intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count || 0 })}` }>
+            &nbsp;
+            {intl.formatMessage(messages.inAdvisor)}
+            &nbsp;
+            <Button component='a' href={ `${UI_BASE}${INCIDENT_URL}` } variant='link' isInline>
+                {intl.formatMessage(messages.recommendations)}
+            </Button>
+        </TemplateCardHeader>}
         {advisorIncidentsStatus === 'rejected' ?
             <TemplateCardBody><FailState appName='Advisor' /></TemplateCardBody>
             : <TemplateCardBody>
-                {advisorIncidentsStatus !== 'fulfilled' ? <Loading /> :
-                    <NumberDescription
-                        data={ advisorIncidents.meta.count }
-                        dataSize="md"
-                        layout="horizontal"
-                        linkDescription={ intl.formatMessage(messages.incidentsDetected, { incidents: advisorIncidents.meta.count }) }
-                        critical={ advisorIncidents.meta.count > 50 ? 'true' : 'false' }
-                        link={ `${UI_BASE}${INCIDENT_URL}` }
-                    />
-                }
-                {recStatsStatus !== 'fulfilled' ? <Loading /> :
-                    <StackChartTemplate
-                        ariaDesc={ intl.formatMessage(messages.advisorChartDescription) }
-                        ariaTitle="Advisor recommendations chart"
-                        height={ 40 }
-                        maxWidth={ 500 }
-                        legendHeight={ 36 }
-                        legendWidth={ 500 }
-                        data={ chartData }
-                        constrainToVisibleArea={ false }
-                        legendClick={ legendClick }
-                    />
-                }
-                {systemsStatsStatus !== 'fulfilled' ? <Loading /> :
-                    <Button component="a" href={ `${UI_BASE}${NEW_REC_URL}` } variant="link" isInline>
-                        {intl.formatMessage(messages.recsImpactingSystems, { totalRecs: recStats.total, systems: systemsStats.total })}
-                    </Button>}
+                <Flex>
+                    <Flex grow={ { default: 'grow' } }>
+                        <FlexItem>
+                            <Title headingLevel='h2' size={ TitleSizes.lg }>
+                                {`${intl.formatMessage(messages.totalRisk)}`}
+                                {iconTooltip(intl.formatMessage(messages.totalRiskDef, { em: str => <em>{str}</em> }))}
+                            </Title>
+                            <Grid hasGutter>
+                                {trData.map(({ title, risk }) =>
+                                    <GridItem span={ 6 } key={ title } ><Button component='a' href={ totalRiskUrl(risk) } variant='link' isInline>
+                                        <InsightsLabel value={ risk } text={ title } />
+                                    </Button>
+                                    </GridItem>)}
+                            </Grid>
+                        </FlexItem>
+                    </Flex>
+                    <Divider isVertical />
+                    <Flex grow={ { default: 'grow' } }>
+                        <FlexItem>
+                            <Title headingLevel='h2' size={ TitleSizes.lg }>
+                                {`${intl.formatMessage(messages.category)}`}
+                            </Title>
+                            <PieChart
+                                ariaDesc='Advisor Category pie chart'
+                                ariaTitle='Advisor Category pie chartt'
+                                constrainToVisibleArea={ true }
+                                data={ categoryData }
+                                labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
+                                colorScale={ colorScale }
+                                height={ 150 }
+                                width={ 150 }
+                                legend='true'
+                                legendData={ pieLegendData }
+                                legendClick={ pieLegendClick }
+                                legendOrientation='vertical'
+                                legendHeight={ 80 }
+                                legendWidth={ 130 }
+                            />
+                        </FlexItem>
+                    </Flex>
+                </Flex>
             </TemplateCardBody>
         }
-
     </TemplateCard>;
 };
 
