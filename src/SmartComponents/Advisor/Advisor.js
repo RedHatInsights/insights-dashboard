@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/display-name */
 /* eslint-disable camelcase */
 import './Advisor.scss';
@@ -29,7 +30,7 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 
 const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
-    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, selectedTags }) => {
+    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, selectedTags, workloads }) => {
 
     const intl = useIntl();
     const [trData, setTRData] = useState([]);
@@ -41,7 +42,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         global_palette_cyan_300.value,
         global_palette_cyan_400.value
     ];
-    const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length && `&tags=${selectedTags.join()}`}`;
+    const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length && `&tags=${selectedTags.join()}`}${workloads?.SAP && `&sap_system=true`}`;
     const pieLegendClick = categoryData.map(({ value }) => `${UI_BASE}/advisor/recommendations?category=${value}${urlRest}`);
     const totalRiskUrl = (risk) => `${UI_BASE}/advisor/recommendations?total_risk=${risk}${urlRest}`;
 
@@ -57,10 +58,11 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
     const pieLegendData = categoryData.map(item => ({ name: `${item.y} ${item.x}`, symbol: { fill: `${item.fill}`, type: 'square' } }));
 
     useEffect(() => {
-        advisorFetchStatsRecs(selectedTags.length && ({ tags: selectedTags.join() }));
-        advisorFetchStatsSystems(selectedTags.length && ({ tags: selectedTags.join() }));
-        advisorFetchIncidents(selectedTags.length && ({ tags: selectedTags.join() }));
-    }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems, selectedTags]);
+        const options = { ...selectedTags.length && ({ tags: selectedTags.join() }), ...workloads?.SAP && ({ sap_system: true }) };
+        advisorFetchStatsRecs(options);
+        advisorFetchStatsSystems(options);
+        advisorFetchIncidents(options);
+    }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems, selectedTags, workloads]);
 
     useEffect(() => {
         if (recStatsStatus === 'fulfilled') {
@@ -166,7 +168,8 @@ Advisor.propTypes = {
     advisorIncidents: PropTypes.object,
     advisorIncidentsStatus: PropTypes.string,
     advisorFetchIncidents: PropTypes.func,
-    selectedTags: PropTypes.array
+    selectedTags: PropTypes.array,
+    workloads: PropTypes.object
 };
 
 export default connect(
@@ -177,7 +180,8 @@ export default connect(
         systemsStatsStatus: DashboardStore.advisorStatsSystemsStatus,
         advisorIncidents: DashboardStore.advisorIncidents,
         advisorIncidentsStatus: DashboardStore.advisorIncidentsStatus,
-        selectedTags: DashboardStore.selectedTags
+        selectedTags: DashboardStore.selectedTags,
+        workloads: DashboardStore.workloads
     }),
     dispatch => ({
         advisorFetchStatsRecs: (data) => dispatch(AppActions.advisorFetchStatsRecs(data)),
