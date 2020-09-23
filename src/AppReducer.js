@@ -36,7 +36,8 @@ const initialState = Immutable({
     inventoryTotalFetchStatus: '',
     remediations: {},
     remediationsFetchStatus: '',
-    selectedTags: []
+    selectedTags: [],
+    workloads: {}
 });
 
 export const DashboardStore = (state = initialState, action) => {
@@ -45,6 +46,11 @@ export const DashboardStore = (state = initialState, action) => {
         case ActionTypes.SELECTED_TAGS_SET:
             return Immutable.merge(state, {
                 selectedTags: action.payload
+            });
+
+        case ActionTypes.WORKLOADS_SET:
+            return Immutable.merge(state, {
+                workloads: action.payload
             });
 
         // COMPLIANCE

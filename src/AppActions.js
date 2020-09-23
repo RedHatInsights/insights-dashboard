@@ -97,3 +97,8 @@ export const setSelectedTags = (tags) => ({
     type: ActionTypes.SELECTED_TAGS_SET,
     payload: tags
 });
+
+export const setWorkloads = (data) => ({
+    type: ActionTypes.WORKLOADS_SET,
+    payload: data
+});

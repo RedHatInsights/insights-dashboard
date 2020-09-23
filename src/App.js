@@ -1,14 +1,14 @@
 import './App.scss';
 
 import React, { createContext, useEffect, useState } from 'react';
+import { batch, useDispatch } from 'react-redux';
+import { setSelectedTags, setWorkloads } from './AppActions';
 
 import API from './Utilities/Api';
 import { INVENTORY_TOTAL_FETCH_URL } from './AppConstants';
 import PageLoading from './PresentationalComponents/PageLoading/PageLoading';
 import PropTypes from 'prop-types';
 import { Routes } from './Routes';
-import { setSelectedTags } from './AppActions';
-import { useDispatch } from 'react-redux';
 
 export const PermissionContext = createContext();
 
@@ -36,7 +36,10 @@ const App = (props) => {
         if (insights.chrome?.globalFilterScope) {
             insights.chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
                 const selectedTags = insights.chrome?.mapGlobalFilter?.(data)?.filter(item => !item.includes('Workloads')) || undefined;
-                dispatch(setSelectedTags(selectedTags));
+                batch(()=>{
+                    dispatch(setWorkloads(data?.Workloads));
+                    dispatch(setSelectedTags(selectedTags));
+                });
             });
         }
 
@@ -73,7 +76,7 @@ const App = (props) => {
 
     useEffect(() => {
         initChrome();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
