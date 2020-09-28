@@ -1,13 +1,12 @@
 import './PieChartTemplate.scss';
 
-import { ChartLabel } from '@patternfly/react-charts';
-import { ChartLegend } from '@patternfly/react-charts/dist/js/components/ChartLegend/ChartLegend';
-import { ChartPie } from '@patternfly/react-charts/dist/js/components/ChartPie/ChartPie';
+import { ChartLabel } from '@patternfly/react-charts/dist/esm/components/ChartLabel/ChartLabel';
+import { ChartLegend } from '@patternfly/react-charts/dist/esm/components/ChartLegend/ChartLegend';
+import { ChartPie } from '@patternfly/react-charts/dist/esm/components/ChartPie/ChartPie';
 import React from 'react';
 import propTypes from 'prop-types';
 
 export const PieChart = ({ ...props }) => {
-    // eslint-disable-next-line react/prop-types
     const LegendLabel = ({ index, ...rest }) => <a id={ `${(props.ariaTitle).toLowerCase().replace(/\s/g, '-')}-legend-${index + 1}` }
         href={ props.legendClick[index] } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
 
@@ -67,7 +66,8 @@ PieChart.propTypes = {
     legend: propTypes.boolean,
     legendWidth: propTypes.number,
     legendHeight: propTypes.number,
-    legendClick: propTypes.any
+    legendClick: propTypes.any,
+    index: propTypes.any
 };
 
 export default PieChart;

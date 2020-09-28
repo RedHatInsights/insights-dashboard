@@ -1,12 +1,19 @@
 import './PageLoading.scss';
 
-import { Main } from '@redhat-cloud-services/frontend-components/components/Main';
+import {
+    EmptyState,
+    EmptyStateIcon,
+    Title
+} from '@patternfly/react-core/dist/esm/components';
+
 import React from 'react';
 import { Spinner } from '@patternfly/react-core/dist/js/components/Spinner';
 
-const PageLoading = () =>
-    <Main>
-        <Spinner className='ins-c-loading-spinner'/>
-    </Main>;
+const PageLoading = () => <EmptyState>
+    <EmptyStateIcon variant="container" component={ Spinner } />
+    <Title size="lg" headingLevel="h4">
+        Loading
+    </Title>
+</EmptyState>;
 
 export default PageLoading;
