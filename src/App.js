@@ -36,7 +36,7 @@ const App = (props) => {
         if (insights.chrome?.globalFilterScope) {
             insights.chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
                 const selectedTags = insights.chrome?.mapGlobalFilter?.(data)?.filter(item => !item.includes('Workloads')) || undefined;
-                batch(()=>{
+                batch(() => {
                     dispatch(setWorkloads(data?.Workloads));
                     dispatch(setSelectedTags(selectedTags));
                 });

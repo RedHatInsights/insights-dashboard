@@ -139,14 +139,13 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                                 ariaTitle='Advisor Category pie chartt'
                                 constrainToVisibleArea={ true }
                                 data={ categoryData }
-                                labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
                                 colorScale={ colorScale }
                                 height={ 150 }
                                 width={ 150 }
                                 legend='true'
                                 legendData={ pieLegendData }
                                 legendClick={ pieLegendClick }
-                                legendOrientation='vertical'
+                                legendOrientation={ true }
                                 legendHeight={ 80 }
                                 legendWidth={ 130 }
                             />
