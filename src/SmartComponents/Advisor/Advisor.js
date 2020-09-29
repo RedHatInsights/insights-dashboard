@@ -42,7 +42,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         global_palette_cyan_300.value,
         global_palette_cyan_400.value
     ];
-    const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length && `&tags=${selectedTags.join()}`}${workloads?.SAP && `&sap_system=true`}`;
+    const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length ? `&tags=${selectedTags.join()}` : ''}${workloads?.SAP ? `&sap_system=true` : ''}`;
     const pieLegendClick = categoryData.map(({ value }) => `${UI_BASE}/advisor/recommendations?category=${value}${urlRest}`);
     const totalRiskUrl = (risk) => `${UI_BASE}/advisor/recommendations?total_risk=${risk}${urlRest}`;
 
