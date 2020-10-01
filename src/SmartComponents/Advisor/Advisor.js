@@ -46,7 +46,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         workloadsMap[key] && !!value.isSelected && { [`filter[system_profile][${workloadsMap[key]}]`]: value.isSelected }
     )[0];
     const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length ?
-        `&tags=${selectedTags.join()}` : ''}${workloads?.SAP && '&sap_system=true'}`;
+        `&tags=${selectedTags.join()}` : ''}${workloads?.SAP ? '&sap_system=true' : ''}`;
     const pieLegendClick = categoryData.map(({ value }) => `${UI_BASE}/advisor/recommendations?category=${value}${urlRest}`);
     const totalRiskUrl = (risk) => `${UI_BASE}/advisor/recommendations?total_risk=${risk}${urlRest}`;
 
