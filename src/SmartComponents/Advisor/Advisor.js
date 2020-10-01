@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable react/display-name */
 /* eslint-disable camelcase */
 import './Advisor.scss';
@@ -42,9 +41,14 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         global_palette_cyan_300.value,
         global_palette_cyan_400.value
     ];
-    const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length ? `&tags=${selectedTags.join()}` : ''}${workloads?.SAP ? `&sap_system=true` : ''}`;
-    const pieLegendClick = categoryData.map(({ value }) => `${UI_BASE}/advisor/recommendations?category=${value}${urlRest}`);
-    const totalRiskUrl = (risk) => `${UI_BASE}/advisor/recommendations?total_risk=${risk}${urlRest}`;
+    const workloadsMap = { SAP: 'sap_system' };
+    const workloadQueryBuilder = workloads => Object.entries(workloads).map(([key, value]) =>
+        workloadsMap[key] && !!value.isSelected && { [`filter[system_profile][${workloadsMap[key]}]`]: value.isSelected }
+    )[0];
+    const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length ?
+        `&tags=${selectedTags.join()}` : ''}${workloads && workloadQueryBuilder(workloads)}`;
+    const pieLegendClick = categoryData.map(({ value }) => `${UI_BASE} /advisor/recommendations ? category = ${value} ${urlRest} `);
+    const totalRiskUrl = (risk) => `${UI_BASE} /advisor/recommendations ? total_risk = ${risk} ${urlRest} `;
 
     const iconTooltip = text => <Tooltip
         key={ text }
@@ -55,26 +59,27 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         </Button>
     </Tooltip>;
 
-    const pieLegendData = categoryData.map(item => ({ name: `${item.y} ${item.x}`, symbol: { fill: `${item.fill}`, type: 'square' } }));
+    const pieLegendData = categoryData.map(item => ({ name: `${item.y} ${item.x} `, symbol: { fill: `${item.fill} `, type: 'square' } }));
 
     useEffect(() => {
-        const options = { ...selectedTags.length && ({ tags: selectedTags.join() }), ...workloads?.SAP && ({ sap_system: true }) };
+        const options = { ...selectedTags.length && ({ tags: selectedTags.join() }), ...workloadQueryBuilder(workloads) };
         advisorFetchStatsRecs(options);
         advisorFetchStatsSystems(options);
         advisorFetchIncidents(options);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems, selectedTags, workloads]);
 
     useEffect(() => {
         if (recStatsStatus === 'fulfilled') {
             const { total_risk, category } = recStats;
             setTRData([
-                { title: `${total_risk[SEVERITY_MAP.critical]} ${capitalize(intl.formatMessage(messages.critical))}`, risk: SEVERITY_MAP.critical },
+                { title: `${total_risk[SEVERITY_MAP.critical]} ${capitalize(intl.formatMessage(messages.critical))} `, risk: SEVERITY_MAP.critical },
                 {
-                    title: `${total_risk[SEVERITY_MAP.important]} ${capitalize(intl.formatMessage(messages.important))}`,
+                    title: `${total_risk[SEVERITY_MAP.important]} ${capitalize(intl.formatMessage(messages.important))} `,
                     risk: SEVERITY_MAP.important
                 },
-                { title: `${total_risk[SEVERITY_MAP.moderate]} ${capitalize(intl.formatMessage(messages.moderate))}`, risk: SEVERITY_MAP.moderate },
-                { title: `${total_risk[SEVERITY_MAP.low]} ${capitalize(intl.formatMessage(messages.low))}`, risk: SEVERITY_MAP.low }
+                { title: `${total_risk[SEVERITY_MAP.moderate]} ${capitalize(intl.formatMessage(messages.moderate))} `, risk: SEVERITY_MAP.moderate },
+                { title: `${total_risk[SEVERITY_MAP.low]} ${capitalize(intl.formatMessage(messages.low))} `, risk: SEVERITY_MAP.low }
             ]);
             setCategoryData([
                 {
@@ -101,11 +106,11 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
     return <TemplateCard appName='Advisor' data-ouia-safe>
         {advisorIncidentsStatus === 'pending' ? <Loading /> :
             <TemplateCardHeader titleClassName={ advisorIncidents?.meta?.count ? 'ins-m-red' : 'ins-m-green' }
-                title={ `${intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })}` }>
-            &nbsp;
+                title={ `${intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })} ` }>
+                &nbsp;
                 {intl.formatMessage(messages.inAdvisor)}
             &nbsp;
-                <Button component='a' href={ `${UI_BASE}${INCIDENT_URL}` } variant='link' isInline>
+                <Button component='a' href={ `${UI_BASE} ${INCIDENT_URL} ` } variant='link' isInline>
                     {intl.formatMessage(messages.recommendations)}
                 </Button>
             </TemplateCardHeader>}
@@ -116,7 +121,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                     <Flex grow={ { default: 'grow' } }>
                         <FlexItem>
                             <Title headingLevel='h2' size={ TitleSizes.lg }>
-                                {`${intl.formatMessage(messages.totalRisk)}`}
+                                {`${intl.formatMessage(messages.totalRisk)} `}
                                 {iconTooltip(intl.formatMessage(messages.totalRiskDef, { em: str => <em>{str}</em> }))}
                             </Title>
                             <Grid hasGutter>
@@ -132,7 +137,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                     <Flex grow={ { default: 'grow' } }>
                         <FlexItem>
                             <Title headingLevel='h2' size={ TitleSizes.lg }>
-                                {`${intl.formatMessage(messages.category)}`}
+                                {`${intl.formatMessage(messages.category)} `}
                             </Title>
                             <PieChart
                                 ariaDesc='Advisor Category pie chart'
