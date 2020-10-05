@@ -4,6 +4,6 @@
         cursor: default;
     }
 }
-.dashboard-card-system-inventory-body {
+.dashboard-card-system-inventory-body:not(.dashboard-m-no-access) {
     max-width: 400px;
 }
