@@ -96,10 +96,7 @@ const SystemInventoryCard = ({
                     </Fragment> : <NotAuthorized
                         showReturnButton={ false }
                         serviceName="Inventory"
-                        description={ <Fragment>
-                            <div>Your organization administrator must grant</div>
-                            <div>you inventory access to view your systems.</div>
-                        </Fragment> }
+                        description={ <div>{intl.formatMessage(messages.systemInventoryNoAccess)}</div> }
                     />
             }
         </TemplateCardBody>
