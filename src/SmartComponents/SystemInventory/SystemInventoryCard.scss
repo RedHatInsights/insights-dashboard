@@ -4,6 +4,14 @@
         cursor: default;
     }
 }
-.dashboard-card-system-inventory-body {
+.dashboard-card-system-inventory-body:not(.dashboard-m-no-access) {
     max-width: 400px;
+}
+.dashboard-card-system-inventory-body .pf-c-empty-state__body > div {
+    max-width: 290px;
+    margin: auto;
+
+    @media screen and (max-width: 768px) {
+        max-width: 200px;
+    }
 }
