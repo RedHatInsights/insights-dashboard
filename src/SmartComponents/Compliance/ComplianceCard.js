@@ -56,7 +56,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
         >
             <TemplateCardHeader title='Compliance' />
             <TemplateCardBody>
-                {workloads === undefined || workloads['All workloads'] || workloads === {} ?
+                {workloads === undefined || workloads['All workloads'] || Object.entries(workloads).length === 0 ?
                     <React.Fragment>
                         {complianceFetchStatus === 'fulfilled' &&
                             (Array.isArray(complianceSummary.data) &&

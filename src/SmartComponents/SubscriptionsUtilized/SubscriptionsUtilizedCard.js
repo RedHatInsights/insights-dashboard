@@ -168,7 +168,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
     return <TemplateCard appName='SubscriptionsUtilized'>
         <TemplateCardHeader subtitle={ intl.formatMessage(messages.subscriptionsUtilizedTitle) }/>
         <TemplateCardBody>
-            {workloads === undefined || workloads['All workloads'] || workloads === {} ?
+            {workloads === undefined || workloads['All workloads'] || Object.entries(workloads).length === 0 ?
                 <React.Fragment>
                     {
                         (productOptIn && <EmptyState className="ins-c-subscriptions-utilized__empty-state" variant={ EmptyStateVariant.full }>
