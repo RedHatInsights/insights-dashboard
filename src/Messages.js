@@ -334,5 +334,10 @@ export default defineMessages({
         id: 'totalRiskDef',
         description: 'Total risk definition',
         defaultMessage: 'A value derived from the <em>likelihood</em> that the condition will negatively affect your infrastructure, and the <em>impact</em> on system operation if that were to happen'
+    },
+    contentNotSupported: {
+        id: 'contentNotSupported',
+        description: 'Content not supported for this filter',
+        defaultMessage: 'Content not supported for this filter'
     }
 });

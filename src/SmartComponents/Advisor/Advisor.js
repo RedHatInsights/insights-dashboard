@@ -10,6 +10,7 @@ import { INCIDENT_URL, SEVERITY_MAP } from './Constants';
 import React, { useEffect, useState } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import {
+    global_palette_black_300,
     global_palette_cyan_100,
     global_palette_cyan_200,
     global_palette_cyan_300,
@@ -30,17 +31,15 @@ import { useIntl } from 'react-intl';
 
 const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
     advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, selectedTags, workloads }) => {
-
+    const colors = [global_palette_cyan_100.value,
+        global_palette_cyan_200.value,
+        global_palette_cyan_300.value,
+        global_palette_cyan_400.value];
     const intl = useIntl();
     const [trData, setTRData] = useState([]);
     const [categoryData, setCategoryData] = useState([]);
+    const [colorScale, setColorScale] = useState();
 
-    const colorScale = [
-        global_palette_cyan_100.value,
-        global_palette_cyan_200.value,
-        global_palette_cyan_300.value,
-        global_palette_cyan_400.value
-    ];
     const workloadsMap = { SAP: 'sap_system' };
     const workloadQueryBuilder = workloads => Object.entries(workloads).map(([key, value]) =>
         workloadsMap[key] && !!value.isSelected && { [`filter[system_profile][${workloadsMap[key]}]`]: value.isSelected }
@@ -72,6 +71,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
     useEffect(() => {
         if (recStatsStatus === 'fulfilled') {
             const { total_risk, category } = recStats;
+            const categoryCount = category.Stability + category.Availability + category.Performance + category.Security;
             setTRData([
                 { title: `${total_risk[SEVERITY_MAP.critical]} ${capitalize(intl.formatMessage(messages.critical))} `, risk: SEVERITY_MAP.critical },
                 {
@@ -84,21 +84,22 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
             setCategoryData([
                 {
                     x: intl.formatMessage(messages.availability, { count: category.Availability }), y: category.Availability,
-                    fill: colorScale[0], value: 1
+                    fill: colors[0], value: 1
                 },
                 {
                     x: intl.formatMessage(messages.stability, { count: category.Stability }), y: category.Stability,
-                    fill: colorScale[1], value: 3
+                    fill: colors[1], value: 3
                 },
                 {
                     x: intl.formatMessage(messages.performance, { count: category.Performance }), y: category.Performance,
-                    fill: colorScale[2], value: 4
+                    fill: colors[2], value: 4
                 },
                 {
                     x: intl.formatMessage(messages.security, { count: category.Security }), y: category.Security,
-                    fill: colorScale[3], value: 2
-                }
+                    fill: colors[3], value: 2
+                }, (categoryCount === 0 && { x: intl.formatMessage(messages.category), y: '0' })
             ]);
+            setColorScale(categoryCount === 0 ? [global_palette_black_300.value] : colors);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [intl, recStats, recStatsStatus]);

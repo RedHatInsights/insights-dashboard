@@ -39,6 +39,10 @@
     "defaultMessage": "{score}% compliant",
     "description": "Compliance - compliant score"
   },
+  "contentNotSupported": {
+    "defaultMessage": "Content not supported for this filter",
+    "description": "Content not supported for this filter"
+  },
   "critical": {
     "defaultMessage": "Critical",
     "description": "Critical"
@@ -69,7 +73,7 @@
   },
   "important": {
     "defaultMessage": "Important",
-    "description": "important"
+    "description": "Important"
   },
   "inAdvisor": {
     "defaultMessage": "in Advisor",
@@ -89,11 +93,11 @@
   },
   "low": {
     "defaultMessage": "Low",
-    "description": "low"
+    "description": "Low"
   },
   "moderate": {
     "defaultMessage": "Moderate",
-    "description": "moderate"
+    "description": "Moderate"
   },
   "noSystemsDescription": {
     "defaultMessage": "With predictive analytics, avoid problems and unplanned downtime in your Red Hat environment. Red Hat Insights is included with your Red Hat Enterprise Linux subscription.",
@@ -215,6 +219,10 @@
     "defaultMessage": "{count, plural, one {System} other {Systems}} running insights-client",
     "description": "System inventory - description"
   },
+  "systemInventoryNoAccess": {
+    "defaultMessage": "Your organization administrator must grant you inventory access to view your systems.",
+    "description": "User has no access to read inventory systems"
+  },
   "systemInventoryNotUsingClient": {
     "defaultMessage": "{count, plural, one {# additional system} other {# additional systems}} not running insights-client are not taking advantage of Red Hat Insights capabilities.",
     "description": "Number of systems not running insights client"
@@ -242,6 +250,10 @@
   "totalRisk": {
     "defaultMessage": "Total risk",
     "description": "Total risk"
+  },
+  "totalRiskDef": {
+    "defaultMessage": "A value derived from the <em>likelihood</em> that the condition will negatively affect your infrastructure, and the <em>impact</em> on system operation if that were to happen",
+    "description": "Total risk definition"
   },
   "vulnerabilitiesTitle": {
     "defaultMessage": "Vulnerability",
