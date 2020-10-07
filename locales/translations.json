@@ -9,6 +9,7 @@
   "complianceEmptyStateTitle": "No policies",
   "compliantHostCount": "{count, plural, one {# system} other {# systems}}",
   "compliantScore": "{score}% compliant",
+  "contentNotSupported": "Content not supported for this filter",
   "critical": "Critical",
   "cvesImpactingSystems": "{cves, plural, one {CVE} other {CVEs}} impacting your systems",
   "dashboardTitle": "Dashboard",
@@ -53,6 +54,7 @@
   "subscriptionsUtilizedProductTwoTitleDesc": "RHEL sockets: {totalReport}",
   "subscriptionsUtilizedTitle": "Subscription Watch utilization summary",
   "systemInventoryDescription": "{count, plural, one {System} other {Systems}} running insights-client",
+  "systemInventoryNoAccess": "Your organization administrator must grant you inventory access to view your systems.",
   "systemInventoryNotUsingClient": "{count, plural, one {# additional system} other {# additional systems}} not running insights-client are not taking advantage of Red Hat Insights capabilities.",
   "systemInventoryPercentageData": "{count}% of total systems",
   "systemInventoryStale": "{count, plural, one {# stale system} other {# stale systems}}",
@@ -60,6 +62,7 @@
   "systemInventoryTitle": "Insights system inventory",
   "systemsAffected": "{count, plural, one {# system} other {# systems}} affected",
   "totalRisk": "Total risk",
+  "totalRiskDef": "A value derived from the <em>likelihood</em> that the condition will negatively affect your infrastructure, and the <em>impact</em> on system operation if that were to happen",
   "vulnerabilitiesTitle": "Vulnerability",
   "vulnerabilitiesTotalItems": "{total}",
   "vulnerabilityLearnMore": "Learn about CVSS Scores"
