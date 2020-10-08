@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import { workloadsPropType } from '../../Utilities/Common';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -140,18 +141,7 @@ SystemInventoryCard.propTypes = {
     inventoryTotalFetchStatus: PropTypes.string,
     intl: PropTypes.any,
     selectedTags: PropTypes.arrayOf(PropTypes.string),
-    workloads: PropTypes.oneOf([
-        PropTypes.shape({
-            SAP: PropTypes.shape({
-                isSelected: PropTypes.bool
-            })
-        }),
-        PropTypes.shape({
-            'All workloads': PropTypes.shape({
-                isSelected: PropTypes.bool
-            })
-        })
-    ])
+    workloads: workloadsPropType
 };
 
 export default connect(
