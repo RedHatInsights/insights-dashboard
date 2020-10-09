@@ -24,7 +24,7 @@ import Loading from '../../PresentationalComponents/Loading/Loading';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import PropTypes from 'prop-types';
 import { UI_BASE } from '../../AppConstants';
-import { capitalize } from '../../Utilities/Common';
+import { capitalize, workloadsPropType } from '../../Utilities/Common';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
@@ -174,7 +174,7 @@ Advisor.propTypes = {
     advisorIncidentsStatus: PropTypes.string,
     advisorFetchIncidents: PropTypes.func,
     selectedTags: PropTypes.array,
-    workloads: PropTypes.object
+    workloads: workloadsPropType
 };
 
 export default connect(

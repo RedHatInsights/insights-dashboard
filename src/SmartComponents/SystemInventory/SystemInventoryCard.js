@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import './SystemInventoryCard.scss';
 
 import * as AppActions from '../../AppActions';
@@ -6,6 +7,7 @@ import React, { useEffect, Fragment } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/files/RBACHook';
 import { NotAuthorized } from '@redhat-cloud-services/frontend-components/components/cjs/NotAuthorized';
+import { generateFilter } from '@redhat-cloud-services/frontend-components-utilities/files/helpers';
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
@@ -14,6 +16,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import { workloadsPropType } from '../../Utilities/Common';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -22,7 +25,8 @@ const SystemInventoryCard = ({
     fetchInventory, inventoryFetchStatus, inventorySummary,
     fetchInventoryStale, inventoryStaleFetchStatus, inventoryStaleSummary,
     fetchInventoryWarning, inventoryWarningFetchStatus, inventoryWarningSummary,
-    fetchInventoryTotal, inventoryTotalFetchStatus, inventoryTotalSummary
+    fetchInventoryTotal, inventoryTotalFetchStatus, inventoryTotalSummary,
+    selectedTags, workloads
 }) => {
     const { hasAccess } = usePermissions('inventory', [
         'inventory:*:*',
@@ -31,14 +35,33 @@ const SystemInventoryCard = ({
         'inventory:hosts:read'
     ]);
     useEffect(() => {
-        fetchInventoryTotal();
-        fetchInventory();
-        fetchInventoryStale();
-        fetchInventoryWarning();
+        const sapFilter = workloads?.SAP?.isSelected ? generateFilter({
+            system_profile: {
+                sap_system: true
+            }
+        }) : undefined;
+        fetchInventoryTotal({
+            ...sapFilter,
+            ...selectedTags.length > 0 && { tags: selectedTags.join() }
+        });
+        fetchInventory({
+            ...sapFilter,
+            ...selectedTags.length > 0 && { tags: selectedTags.join() }
+        });
+        fetchInventoryStale({
+            ...sapFilter,
+            ...selectedTags.length > 0 && { tags: selectedTags.join() }
+        });
+        fetchInventoryWarning({
+            ...sapFilter,
+            ...selectedTags.length > 0 && { tags: selectedTags.join() }
+        });
     }, [fetchInventoryTotal,
         fetchInventory,
         fetchInventoryStale,
-        fetchInventoryWarning]
+        fetchInventoryWarning,
+        selectedTags,
+        workloads]
     );
 
     const intl = useIntl();
@@ -116,7 +139,9 @@ SystemInventoryCard.propTypes = {
     fetchInventoryTotal: PropTypes.func,
     inventoryTotalSummary: PropTypes.object,
     inventoryTotalFetchStatus: PropTypes.string,
-    intl: PropTypes.any
+    intl: PropTypes.any,
+    selectedTags: PropTypes.arrayOf(PropTypes.string),
+    workloads: workloadsPropType
 };
 
 export default connect(
@@ -128,12 +153,14 @@ export default connect(
         inventoryWarningSummary: DashboardStore.inventoryWarningSummary,
         inventoryWarningFetchStatus: DashboardStore.inventoryWarningFetchStatus,
         inventoryTotalSummary: DashboardStore.inventoryTotalSummary,
-        inventoryTotalFetchStatus: DashboardStore.inventoryTotalFetchStatus
+        inventoryTotalFetchStatus: DashboardStore.inventoryTotalFetchStatus,
+        selectedTags: DashboardStore.selectedTags,
+        workloads: DashboardStore.workloads
     }),
     dispatch => ({
-        fetchInventory: () => dispatch(AppActions.fetchInventorySummary()),
-        fetchInventoryStale: () => dispatch(AppActions.fetchInventoryStaleSummary()),
-        fetchInventoryWarning: () => dispatch(AppActions.fetchInventoryWarningSummary()),
-        fetchInventoryTotal: () => dispatch(AppActions.fetchInventoryTotalSummary())
+        fetchInventory: (params) => dispatch(AppActions.fetchInventorySummary(params)),
+        fetchInventoryStale: (params) => dispatch(AppActions.fetchInventoryStaleSummary(params)),
+        fetchInventoryWarning: (params) => dispatch(AppActions.fetchInventoryWarningSummary(params)),
+        fetchInventoryTotal: (params) => dispatch(AppActions.fetchInventoryTotalSummary(params))
     })
 )(SystemInventoryCard);

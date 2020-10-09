@@ -55,7 +55,7 @@
     "@redhat-cloud-services/frontend-components": "2.4.9",
     "@redhat-cloud-services/frontend-components-charts": "2.4.2",
     "@redhat-cloud-services/frontend-components-translations": "2.2.1",
-    "@redhat-cloud-services/frontend-components-utilities": "2.2.4",
+    "@redhat-cloud-services/frontend-components-utilities": "2.2.5",
     "classnames": "2.2.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
