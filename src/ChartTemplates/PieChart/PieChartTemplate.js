@@ -6,26 +6,28 @@ import { ChartPie } from '@patternfly/react-charts/dist/esm/components/ChartPie/
 import React from 'react';
 import propTypes from 'prop-types';
 
-export const PieChart = ({ ...props }) => {
-    const LegendLabel = ({ index, ...rest }) => <a id={ `${(props.ariaTitle).toLowerCase().replace(/\s/g, '-')}-legend-${index + 1}` }
-        href={ props.legendClick[index] } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
+export const PieChart = ({ ariaDesc, ariaTitle, constrainToVisibleArea, data, legendData, padding, height, width, legendOrientation,
+    colorScale, legend, legendWidth, legendHeight, legendClick }) => {
+    // eslint-disable-next-line react/prop-types
+    const LegendLabel = ({ index, ...rest }) => <a id={ `${ariaTitle.toLowerCase().replace(/\s/g, '-')}-legend-${index + 1}` }
+        href={ legendClick[index] } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
 
     return (
         <div className="ins-c-pie-chart__row">
-            <div style={ { width: props.width, height: props.height, position: 'relative' } }>
+            <div style={ { width, height, position: 'relative' } }>
                 <ChartPie
-                    ariaDesc={ props.ariaDesc }
-                    ariaTitle={ props.ariaTitle }
-                    constrainToVisibleArea={ props.constrainToVisibleArea }
-                    data={ props.data }
-                    height={ props.height }
+                    ariaDesc={ ariaDesc }
+                    ariaTitle={ ariaTitle }
+                    constrainToVisibleArea={ constrainToVisibleArea }
+                    data={ data }
+                    height={ height }
                     labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
-                    padding={ props.padding }
-                    width={ props.width }
-                    colorScale={ props.colorScale }
+                    padding={ padding }
+                    width={ width }
+                    colorScale={ colorScale }
                 />
-                <table tabIndex="0" className="visually-hidden" aria-label={ props.ariaTitle + ` data` }>
-                    {props.data.map((d, index) => {
+                <table tabIndex="0" className="visually-hidden" aria-label={ ariaTitle + ` data` }>
+                    {data.map((d, index) => {
                         return [
                             <tr key={ index }>
                                 <td>{d.y}</td>
@@ -35,16 +37,16 @@ export const PieChart = ({ ...props }) => {
                     })}
                 </table>
             </div>
-            {props.legend === 'true' &&
-                <div className="ins-c-pie-chart__legend" aria-label="Chart legend" style={ { width: props.legendWidth, height: props.legendHeight } }>
+            {legend === 'true' &&
+                <div className="ins-c-pie-chart__legend" aria-label="Chart legend" style={ { width: legendWidth, height: legendHeight } }>
                     <ChartLegend
-                        height={ props.legendHeight }
-                        width={ props.legendWidth }
+                        height={ legendHeight }
+                        width={ legendWidth }
                         fontSize={ 14 }
-                        data={ props.legendData }
+                        data={ legendData }
                         rowGutter={ { top: -5, bottom: -5 } }
-                        orientation={ props.legendOrientation }
-                        labelComponent={ props.legendClick && < LegendLabel /> }
+                        orientation={ legendOrientation }
+                        labelComponent={ legendClick && < LegendLabel /> }
                     />
                 </div>
             }
@@ -66,8 +68,7 @@ PieChart.propTypes = {
     legend: propTypes.boolean,
     legendWidth: propTypes.number,
     legendHeight: propTypes.number,
-    legendClick: propTypes.any,
-    index: propTypes.any
+    legendClick: propTypes.any
 };
 
 export default PieChart;

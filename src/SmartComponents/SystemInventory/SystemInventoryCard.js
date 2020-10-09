@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import './SystemInventoryCard.scss';
 
 import * as AppActions from '../../AppActions';
