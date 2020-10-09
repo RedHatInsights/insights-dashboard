@@ -3,19 +3,20 @@ import './SystemInventoryCard.scss';
 
 import * as AppActions from '../../AppActions';
 
-import React, { useEffect, Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
-import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/files/RBACHook';
-import { NotAuthorized } from '@redhat-cloud-services/frontend-components/components/cjs/NotAuthorized';
-import { generateFilter } from '@redhat-cloud-services/frontend-components-utilities/files/helpers';
+
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
+import { NotAuthorized } from '@redhat-cloud-services/frontend-components/components/cjs/NotAuthorized';
 import { NumberDescription } from '../../../../insights-dashboard/src/PresentationalComponents/NumberDescription/NumberDescription';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { generateFilter } from '@redhat-cloud-services/frontend-components-utilities/files/helpers';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/files/RBACHook';
 import { workloadsPropType } from '../../Utilities/Common';
 
 /**
