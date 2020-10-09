@@ -1,22 +1,23 @@
-/* eslint-disable camelcase */
-import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { useIntl } from 'react-intl';
-import { connect } from 'react-redux';
-import { patchmanFetchBugs, patchmanFetchEnhancements, patchmanFetchSecurity, patchmanFetchSystems } from '../../AppActions';
-import { PATCHMAN_ID, UI_BASE } from '../../AppConstants';
-import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
-import messages from '../../Messages';
-import Loading from '../../PresentationalComponents/Loading/Loading';
-import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import './PatchManagerCard.scss';
+
+import { PATCHMAN_ID, UI_BASE } from '../../AppConstants';
+import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import {
     chart_color_blue_200,
     chart_color_blue_300,
     chart_color_blue_400
 } from '@patternfly/react-tokens';
+import { patchmanFetchBugs, patchmanFetchEnhancements, patchmanFetchSecurity, patchmanFetchSystems } from '../../AppActions';
+
+import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import FailState from '../../PresentationalComponents/FailState/FailState';
+import Loading from '../../PresentationalComponents/Loading/Loading';
+import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import messages from '../../Messages';
+import { useIntl } from 'react-intl';
 
 /**
  * Operating systems card for showing the ratio of operating systems used.

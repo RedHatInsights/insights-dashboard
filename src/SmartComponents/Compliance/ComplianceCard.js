@@ -1,6 +1,5 @@
 import './ComplianceCard.scss';
 
-/* eslint-disable camelcase */
 import * as AppActions from '../../AppActions';
 
 import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';

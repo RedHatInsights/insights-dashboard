@@ -1,5 +1,4 @@
 /* eslint-disable react/display-name */
-/* eslint-disable camelcase */
 import './Advisor.scss';
 
 import * as AppActions from '../../AppActions';
@@ -9,6 +8,7 @@ import { Flex, FlexItem, Grid, GridItem } from '@patternfly/react-core/dist/esm/
 import { INCIDENT_URL, SEVERITY_MAP } from './Constants';
 import React, { useEffect, useState } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
+import { capitalize, workloadsPropType } from '../../Utilities/Common';
 import {
     global_palette_black_300,
     global_palette_cyan_100,
@@ -24,7 +24,6 @@ import Loading from '../../PresentationalComponents/Loading/Loading';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import PropTypes from 'prop-types';
 import { UI_BASE } from '../../AppConstants';
-import { capitalize, workloadsPropType } from '../../Utilities/Common';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
