@@ -104,16 +104,17 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
     }, [intl, recStats, recStatsStatus]);
 
     return <TemplateCard appName='Advisor' data-ouia-safe>
-        {advisorIncidentsStatus === 'pending' ? <Loading /> :
-            <TemplateCardHeader titleClassName={ advisorIncidents?.meta?.count ? 'ins-m-red' : 'ins-m-green' }
-                title={ `${intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })} ` }>
-                &nbsp;
-                {intl.formatMessage(messages.inAdvisor)}
+        {advisorIncidentsStatus === 'pending' && <Loading />}
+        {advisorIncidentsStatus === 'fulfilled' && <TemplateCardHeader
+            titleClassName={ advisorIncidents?.meta?.count ? 'ins-m-red' : 'ins-m-green' }
+            title={ `${intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })} ` }>
             &nbsp;
-                <Button component='a' href={ `${UI_BASE}${INCIDENT_URL}` } variant='link' isInline>
-                    {intl.formatMessage(messages.recommendations)}
-                </Button>
-            </TemplateCardHeader>}
+            {intl.formatMessage(messages.inAdvisor)}
+        &nbsp;
+            <Button component='a' href={ `${UI_BASE}${INCIDENT_URL}` } variant='link' isInline>
+                {intl.formatMessage(messages.recommendations)}
+            </Button>
+        </TemplateCardHeader>}
         {advisorIncidentsStatus === 'rejected' ?
             <TemplateCardBody><FailState appName='Advisor' /></TemplateCardBody>
             : <TemplateCardBody>
