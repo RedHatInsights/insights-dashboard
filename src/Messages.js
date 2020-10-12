@@ -339,5 +339,15 @@ export default defineMessages({
         id: 'contentNotSupported',
         description: 'Content not supported for this filter',
         defaultMessage: 'Content not supported for this filter'
+    },
+    insightsForSap: {
+        id: 'insightsForSap',
+        description: 'Red Hat Insights for SAP',
+        defaultMessage: 'Red Hat Insights for SAP'
+    },
+    providesAdditionalSAPworkload: {
+        id: 'providesAdditionalSAPworkload',
+        description: 'Red Hat Insights provides additional SAP',
+        defaultMessage: `Red Hat Insights provides additional SAP workload-focused enhancements to provide a curated view of the health across the SAP Landscape on Red Hat Enterprise Linux. This functionality further enables Insights detection and remediation capabilities for workload optimization, performance, stability, compliance & security. <break></break> Red Hat Insights has not detected any hosts running a SAP workload. To take advantage of these features, please install the Insights-client on an RHEL host running SAP & these systems will be automatically profiled.`
     }
 });

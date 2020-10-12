@@ -10,40 +10,50 @@ import {
 import { Button } from '@patternfly/react-core/dist/js/components/Button';
 import ChartSpikeIcon from '@patternfly/react-icons/dist/js/icons/chartSpike-icon';
 import { Main } from '@redhat-cloud-services/frontend-components/components/Main';
+import PlusCircleIcon from '@patternfly/react-icons/dist/js/icons/plus-circle-icon';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Stack } from '@patternfly/react-core/dist/js/layouts/Stack/Stack';
 import { StackItem } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
 import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
+import { UI_BASE } from '../../AppConstants';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 
-const NoSystems = () => {
-
+const NoSystems = ({ workloadIs }) => {
     const intl = useIntl();
 
-    return (
-        <Main>
-            <EmptyState variant={ EmptyStateVariant.small } className='ins-c-no-systems'>
-                <EmptyStateIcon icon={ ChartSpikeIcon } />
-                <Title headingLevel="h5" size="lg">
-                    {intl.formatMessage(messages.noSystemsTitle)}
-                </Title>
-                <EmptyStateBody>
-                    <Stack hasGutter>
-                        <StackItem>
-                            {intl.formatMessage(messages.noSystemsDescription)}
-                        </StackItem>
-                    </Stack>
-                </EmptyStateBody>
-                <Button
-                    component="a"
-                    href="https://cloud.redhat.com/beta/insights/registration"
-                    variant="primary">
-                    {intl.formatMessage(messages.registerYourSystems)}
-                </Button>
-            </EmptyState>
-        </Main>
-    );
+    const workloadTypes = {
+        SAP: {
+            icon: PlusCircleIcon,
+            title: intl.formatMessage(messages.insightsForSap),
+            // eslint-disable-next-line react/display-name
+            body: intl.formatMessage(messages.providesAdditionalSAPworkload, { break: () => <React.Fragment><br /> <br /></React.Fragment> })
+        }
+    };
+
+    return <Main>
+        <EmptyState variant={ EmptyStateVariant.small } className='ins-c-no-systems'>
+            <EmptyStateIcon icon={ workloadTypes[workloadIs]?.icon || ChartSpikeIcon } />
+            <Title headingLevel='h5' size='lg'>
+                {workloadTypes[workloadIs]?.title || intl.formatMessage(messages.noSystemsTitle)}
+            </Title>
+            <EmptyStateBody>
+                <Stack hasGutter>
+                    <StackItem>
+                        {workloadTypes[workloadIs]?.body || intl.formatMessage(messages.noSystemsDescription)}
+                    </StackItem>
+                </Stack>
+            </EmptyStateBody>
+            <Button component='a' href={ `${UI_BASE}/registration` } variant='primary'>
+                {intl.formatMessage(messages.registerYourSystems)}
+            </Button>
+        </EmptyState>
+    </Main>;
+};
+
+NoSystems.propTypes = {
+    workloadIs: PropTypes.string
 };
 
 export default NoSystems;
