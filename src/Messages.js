@@ -213,6 +213,11 @@ export default defineMessages({
         defaultMessage: '{count, plural, one {# additional system} other {# additional systems}} not running insights-client\
         are not taking advantage of Red Hat Insights capabilities.'
     },
+    systemInventoryNoAccess: {
+        id: 'systemInventoryNoAccess',
+        description: 'User has no access to read inventory systems',
+        defaultMessage: 'Your organization administrator must grant you inventory access to view your systems.'
+    },
     remediationsTotal: {
         id: 'remediationsTotal',
         description: 'Remediations - remediations total',
@@ -329,5 +334,10 @@ export default defineMessages({
         id: 'totalRiskDef',
         description: 'Total risk definition',
         defaultMessage: 'A value derived from the <em>likelihood</em> that the condition will negatively affect your infrastructure, and the <em>impact</em> on system operation if that were to happen'
+    },
+    contentNotSupported: {
+        id: 'contentNotSupported',
+        description: 'Content not supported for this filter',
+        defaultMessage: 'Content not supported for this filter'
     }
 });

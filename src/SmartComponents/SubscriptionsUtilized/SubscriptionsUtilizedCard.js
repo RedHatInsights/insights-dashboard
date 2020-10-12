@@ -1,39 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import moment from 'moment/moment';
-import Immutable from 'seamless-immutable';
-import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
-import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
-import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateBody';
-import { EmptyStateSecondaryActions } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateSecondaryActions';
-import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/js/components/Tooltip/Tooltip';
-import { connect } from 'react-redux';
-import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
-import Loading from '../../PresentationalComponents/Loading/Loading';
-import { ProgressTemplate } from '../../../../insights-dashboard/src/ChartTemplates/Progress/ProgressTemplate';
-import { useIntl } from 'react-intl';
-import messages from '../../Messages';
+import './SubscriptionsUtilizedCard.scss';
+
 import * as AppActions from '../../AppActions';
-import { setRangedDateTime, filterChartData } from './SubscriptionsUtilizedHelpers';
+
+import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
 import {
+    RHSM_API_PRODUCT_ID_TYPES,
+    RHSM_API_QUERY_GRANULARITY_TYPES,
     RHSM_API_RESPONSE_DATA,
     RHSM_API_RESPONSE_DATA_TYPES,
     RHSM_API_RESPONSE_ERROR_DATA,
-    RHSM_API_RESPONSE_ERROR_DATA_TYPES,
     RHSM_API_RESPONSE_ERROR_DATA_CODE_TYPES,
-    RHSM_API_PRODUCT_ID_TYPES,
-    RHSM_API_QUERY_GRANULARITY_TYPES,
+    RHSM_API_RESPONSE_ERROR_DATA_TYPES,
     SW_PATHS
 } from './Constants';
+import React, { useEffect, useState } from 'react';
+import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
+import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/js/components/Tooltip/Tooltip';
+import { filterChartData, setRangedDateTime } from './SubscriptionsUtilizedHelpers';
+
+import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
+import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateBody';
+import { EmptyStateSecondaryActions } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateSecondaryActions';
 import FailState from '../../PresentationalComponents/FailState/FailState';
-import './SubscriptionsUtilizedCard.scss';
+import Immutable from 'seamless-immutable';
+import Loading from '../../PresentationalComponents/Loading/Loading';
+import { ProgressTemplate } from '../../../../insights-dashboard/src/ChartTemplates/Progress/ProgressTemplate';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import messages from '../../Messages';
+import moment from 'moment/moment';
+import { useIntl } from 'react-intl';
 
 /**
  * Subscriptions utilized card for showing the portion of Subscriptions used.
  */
 const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscriptionsUtilizedProductOneFetch,
     subscriptionsUtilizedProductOneFetchStatus, subscriptionsUtilizedProductTwo, subscriptionsUtilizedProductTwoFetch,
-    subscriptionsUtilizedProductTwoFetchStatus }) => {
+    subscriptionsUtilizedProductTwoFetchStatus, workloads }) => {
 
     const [products, setProducts] = useState([]);
     const intl = useIntl();
@@ -165,22 +168,24 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
     return <TemplateCard appName='SubscriptionsUtilized'>
         <TemplateCardHeader subtitle={ intl.formatMessage(messages.subscriptionsUtilizedTitle) }/>
         <TemplateCardBody>
-            {
-                (productOptIn && <EmptyState className="ins-c-subscriptions-utilized__empty-state" variant={ EmptyStateVariant.full }>
-                    <EmptyStateBody>
-                        {intl.formatMessage(messages.subscriptionsUtilizedLearnMore)}
-                    </EmptyStateBody>
-                    <EmptyStateSecondaryActions>
-                        <Button
-                            className="ins-c-subscriptions-utilized__app-link"
-                            variant="link"
-                            href={ SW_PATHS.APP }
-                            component="a"
-                        >
-                            {intl.formatMessage(messages.subscriptionsUtilizedLearnMoreAction)}
-                        </Button>
-                    </EmptyStateSecondaryActions>
-                </EmptyState>) ||
+            {workloads === undefined || workloads['All workloads'] || Object.entries(workloads).length === 0 ?
+                <React.Fragment>
+                    {
+                        (productOptIn && <EmptyState className="ins-c-subscriptions-utilized__empty-state" variant={ EmptyStateVariant.full }>
+                            <EmptyStateBody>
+                                {intl.formatMessage(messages.subscriptionsUtilizedLearnMore)}
+                            </EmptyStateBody>
+                            <EmptyStateSecondaryActions>
+                                <Button
+                                    className="ins-c-subscriptions-utilized__app-link"
+                                    variant="link"
+                                    href={ SW_PATHS.APP }
+                                    component="a"
+                                >
+                                    {intl.formatMessage(messages.subscriptionsUtilizedLearnMoreAction)}
+                                </Button>
+                            </EmptyStateSecondaryActions>
+                        </EmptyState>) ||
                 (productError && <FailState appName={ intl.formatMessage(messages.subscriptionsUtilizedTitle) } isSmall/>) ||
                 (!charts.length && <EmptyState className="ins-c-subscriptions-utilized__empty-state" variant={ EmptyStateVariant.full }>
                     <EmptyStateBody>
@@ -188,6 +193,13 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                     </EmptyStateBody>
                 </EmptyState>) ||
                 charts
+                    }
+                </React.Fragment>
+                : <EmptyState>
+                    <EmptyStateBody>
+                        {intl.formatMessage(messages.contentNotSupported)}
+                    </EmptyStateBody>
+                </EmptyState>
             }
         </TemplateCardBody>
     </TemplateCard>;
@@ -200,14 +212,16 @@ SubscriptionsUtilizedCard.propTypes = {
     subscriptionsUtilizedProductOneFetchStatus: PropTypes.string,
     subscriptionsUtilizedProductTwo: PropTypes.array,
     subscriptionsUtilizedProductTwoFetch: PropTypes.func,
-    subscriptionsUtilizedProductTwoFetchStatus: PropTypes.string
+    subscriptionsUtilizedProductTwoFetchStatus: PropTypes.string,
+    workloads: PropTypes.object
 };
 
 const mapStateToProps = ({ DashboardStore }) => ({
     subscriptionsUtilizedProductOne: DashboardStore.subscriptionsUtilizedProductOne,
     subscriptionsUtilizedProductOneFetchStatus: DashboardStore.subscriptionsUtilizedProductOneFetchStatus,
     subscriptionsUtilizedProductTwo: DashboardStore.subscriptionsUtilizedProductTwo,
-    subscriptionsUtilizedProductTwoFetchStatus: DashboardStore.subscriptionsUtilizedProductTwoFetchStatus
+    subscriptionsUtilizedProductTwoFetchStatus: DashboardStore.subscriptionsUtilizedProductTwoFetchStatus,
+    workloads: DashboardStore.workloads
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,4 +1,4 @@
-/* eslint-disable camelcase */
+/* eslint-disable react/prop-types */
 import './_StackChartTemplate.scss';
 
 import { Chart, ChartAxis, ChartBar, ChartLabel, ChartLegend, ChartStack, ChartTooltip } from '@patternfly/react-charts';
@@ -15,7 +15,8 @@ import {
 import { capitalize } from '../../Utilities/Common';
 import propTypes from 'prop-types';
 
-export const StackChart = ({ ...props }) => {
+export const StackChart = ({ ariaTitle, ariaDesc, data, height, maxWidth, legendHeight, legendClick, legendWidth, style,
+    constrainToVisibleArea }) => {
 
     const colorScale = [
         global_palette_red_200.value,
@@ -25,9 +26,9 @@ export const StackChart = ({ ...props }) => {
     ];
     const barWidth = 25;
     const chartLegendFontSize = 12;
-    const legendData = props.data.map(item => ({ name: `${item.y} ${capitalize(item.name)}`, symbol: { type: null } }));
+    const legendData = data.map(item => ({ name: `${item.y} ${capitalize(item.name)}`, symbol: { type: null } }));
     const stackChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
-    const rawData = props.data.length && props.data.filter(item => item.y > 0).map(el => el.y);
+    const rawData = data.length && data.filter(item => item.y > 0).map(el => el.y);
     const dataSum = rawData.length && rawData.reduce((acc, curr) => acc + curr, 0);
     const [width, setWidth] = useState();
     const chartRef = useRef();
@@ -39,28 +40,27 @@ export const StackChart = ({ ...props }) => {
         window.addEventListener('resize', handleResize);
     }, []);
 
-    // eslint-disable-next-line react/prop-types
     const LegendLabel = ({ index, ...rest }) =>
-        <a id={ `${(props.ariaTitle).toLowerCase().replace(/\s/g, '-')}-legend-${index + 1}` }
-            href={ props.legendClick[index] } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
+        <a id={ `${ariaTitle.toLowerCase().replace(/\s/g, '-')}-legend-${index + 1}` }
+            href={ legendClick[index] } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
 
     return <React.Fragment>
         <div ref={ chartRef } aria-label='Stack Chart'>
             <Chart
-                ariaDesc={ props.ariaDesc }
-                ariaTitle={ props.ariaTitle }
+                ariaDesc={ ariaDesc }
+                ariaTitle={ ariaTitle }
                 padding={ stackChartPadding }
                 width={ width }
-                height={ props.height }
-                maxWidth={ props.maxWidth }>
+                height={ height }
+                maxWidth={ maxWidth }>
                 <ChartAxis axisComponent={ <React.Fragment /> } />
                 <ChartStack horizontal
                     colorScale={ colorScale }>
-                    {props.data.map(item => <ChartBar key={ item }
+                    {data.map(item => <ChartBar key={ item }
                         barWidth={ barWidth } labelComponent={ <ChartTooltip
                             pointerOrientation='bottom'
                             style={ { fontSize: '12px', padding: '10' } }
-                            orientation='top' constrainToVisibleArea={ props.constrainToVisibleArea }
+                            orientation='top' constrainToVisibleArea={ constrainToVisibleArea }
                             dx={ -(width * (item.y / dataSum)) / 2 } dy={ -12 }/> }
                         data={ [{ name: item.name, y: item.y, x: 1, label: ({ datum }) => `${capitalize(datum.name)}: ${datum.y}` }] }
                     />)}
@@ -68,8 +68,8 @@ export const StackChart = ({ ...props }) => {
             </Chart>
         </div>
         <span className='stackChartLegend' aria-label="Chart legend">
-            <table tabIndex="0" className="visually-hidden" aria-label={ props.ariaTitle + ` data` }>
-                {props.data.map((d, index) => {
+            <table tabIndex="0" className="visually-hidden" aria-label={ ariaTitle + ` data` }>
+                {data.map((d, index) => {
                     return [
                         <tr key={ index }>
                             <td>{d.y}</td>
@@ -81,8 +81,8 @@ export const StackChart = ({ ...props }) => {
             <ChartLegend
                 data={ legendData }
                 responsive={ false }
-                height={ props.legendHeight }
-                width={ props.legendWidth }
+                height={ legendHeight }
+                width={ legendWidth }
                 fontSize={ chartLegendFontSize }
                 className='pf-m-redhat-font'
                 labelComponent={ <LegendLabel /> }
@@ -98,9 +98,9 @@ export const StackChart = ({ ...props }) => {
                     eventHandlers: {
                         onMouseOver: () => {
                             return [{
-                                mutation: (props) => {
+                                mutation: () => {
                                     return {
-                                        style: Object.assign({}, props.style, { fill: global_primary_color_200.value, textDecoration: 'underline' })
+                                        style: Object.assign({}, style, { fill: global_primary_color_200.value, textDecoration: 'underline' })
                                     };
                                 }
                             }];
@@ -114,9 +114,9 @@ export const StackChart = ({ ...props }) => {
                         },
                         onClick: () => {
                             return [{
-                                mutation: (props) => {
+                                mutation: () => {
                                     return {
-                                        style: Object.assign({}, props.style, { fill: global_primary_color_200.value, textDecoration: 'underline' })
+                                        style: Object.assign({}, style, { fill: global_primary_color_200.value, textDecoration: 'underline' })
                                     };
                                 }
                             }];
