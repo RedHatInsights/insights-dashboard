@@ -26,7 +26,7 @@ const SystemInventoryCard = ({
     fetchInventoryStale, inventoryStaleFetchStatus, inventoryStaleSummary,
     fetchInventoryWarning, inventoryWarningFetchStatus, inventoryWarningSummary,
     fetchInventoryTotal, inventoryTotalFetchStatus, inventoryTotalSummary,
-    selectedTags, workloads
+    selectedTags, workloads, SID
 }) => {
     const { hasAccess } = usePermissions('inventory', [
         'inventory:*:*',
@@ -34,12 +34,14 @@ const SystemInventoryCard = ({
         'inventory:hosts:*',
         'inventory:hosts:read'
     ]);
+
     useEffect(() => {
-        const sapFilter = workloads?.SAP?.isSelected ? generateFilter({
+        const sapFilter = generateFilter({
             system_profile: {
-                sap_system: true
+                ...workloads?.SAP?.isSelected && { sap_system: true },
+                ...SID?.length > 0 && { sap_sids: SID }
             }
-        }) : undefined;
+        });
         fetchInventoryTotal({
             ...sapFilter,
             ...selectedTags.length > 0 && { tags: selectedTags.join() }
@@ -141,7 +143,8 @@ SystemInventoryCard.propTypes = {
     inventoryTotalFetchStatus: PropTypes.string,
     intl: PropTypes.any,
     selectedTags: PropTypes.arrayOf(PropTypes.string),
-    workloads: workloadsPropType
+    workloads: workloadsPropType,
+    SID: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default connect(
@@ -155,7 +158,8 @@ export default connect(
         inventoryTotalSummary: DashboardStore.inventoryTotalSummary,
         inventoryTotalFetchStatus: DashboardStore.inventoryTotalFetchStatus,
         selectedTags: DashboardStore.selectedTags,
-        workloads: DashboardStore.workloads
+        workloads: DashboardStore.workloads,
+        SID: DashboardStore.SID
     }),
     dispatch => ({
         fetchInventory: (params) => dispatch(AppActions.fetchInventorySummary(params)),
