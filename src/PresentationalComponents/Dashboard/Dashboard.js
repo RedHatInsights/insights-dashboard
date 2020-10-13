@@ -1,7 +1,8 @@
 import './_dashboard.scss';
 
-import React, { Suspense, lazy, useCallback, useContext, useEffect, useState } from 'react';
+import React, { Suspense, lazy, useContext, useEffect, useState } from 'react';
 
+import API from '../../Utilities/Api';
 import DeniedState from '../DeniedState/DeniedState';
 import { Divider } from '@patternfly/react-core/dist/js/components/Divider/Divider';
 import Loading from '../../PresentationalComponents/Loading/Loading';
@@ -9,11 +10,9 @@ import { Main } from '@redhat-cloud-services/frontend-components/components/Main
 import NoSystems from '../NoSystems/NoSystems';
 import { PageSection } from '@patternfly/react-core/dist/js/components/Page/PageSection';
 import { PermissionContext } from '../../App';
-import PropTypes from 'prop-types';
+import { SAP_FETCH_URL } from '../../AppConstants';
 import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import { connect } from 'react-redux';
-import { fetchInventorySummary } from '../../AppActions';
-import { generateFilter } from '@redhat-cloud-services/frontend-components-utilities/files/helpers';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import { workloadsPropType } from '../../Utilities/Common';
@@ -26,31 +25,26 @@ const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/Subsc
 const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
 const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
 
-const Dashboard = ({ inventorySummary, workloads, fetchInventory, inventoryFetchStatus }) => {
+const Dashboard = ({ workloads }) => {
     const permission = useContext(PermissionContext);
     const intl = useIntl();
     const [supportsSap, setSupportsSap] = useState(true);
 
-    const fetchInventoryFn = useCallback(() => {
-        const sapFilter = workloads?.SAP?.isSelected ? generateFilter({
-            system_profile: {
-                sap_system: true
+    useEffect(() => {
+        const fetchSapSystems = async () => {
+            try {
+                const response = await API.get(SAP_FETCH_URL);
+                setSupportsSap(response.data.results?.find(({ value }) => value)?.count > 0);
+            } catch (error) {
+                throw `${error}`;
             }
-        }) : undefined;
-        fetchInventory({ ...sapFilter });
-    }, [fetchInventory, workloads]);
+        };
 
-    useEffect(() => {
-        fetchInventoryFn();
-    }, [fetchInventoryFn]);
-
-    useEffect(() => {
-        inventoryFetchStatus === 'fulfilled' && setSupportsSap(workloads === undefined || workloads.SAP === undefined ||
-            (workloads?.SAP?.isSelected && inventorySummary?.total > 0));
-    }, [inventoryFetchStatus, inventorySummary, supportsSap, workloads]);
+        fetchSapSystems();
+    }, []);
 
     return permission.hasSystems ?
-        supportsSap ?
+        !workloads?.SAP || workloads?.SAP?.isSelected && supportsSap ?
             <React.Fragment>
                 <PageSection>
                     <Title headingLevel="h1" size="2xl">
@@ -101,18 +95,7 @@ const Dashboard = ({ inventorySummary, workloads, fetchInventory, inventoryFetch
 };
 
 Dashboard.propTypes = {
-    inventorySummary: PropTypes.object,
-    inventoryFetchStatus: PropTypes.string,
-    fetchInventory: PropTypes.func,
     workloads: workloadsPropType
 };
 
-export default connect(
-    ({ DashboardStore }) => ({
-        inventorySummary: DashboardStore.inventorySummary,
-        inventoryFetchStatus: DashboardStore.inventoryFetchStatus,
-        workloads: DashboardStore.workloads
-    }), dispatch => ({
-        fetchInventory: (params) => dispatch(fetchInventorySummary(params))
-    })
-)(Dashboard);
+export default connect(({ DashboardStore }) => ({ workloads: DashboardStore.workloads }), null)(Dashboard);
