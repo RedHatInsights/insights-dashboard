@@ -2,7 +2,7 @@ import './App.scss';
 
 import React, { createContext, useEffect, useState } from 'react';
 import { batch, useDispatch } from 'react-redux';
-import { setSelectedTags, setWorkloads } from './AppActions';
+import { setSelectedTags, setWorkloads, setSIDs } from './AppActions';
 
 import API from './Utilities/Api';
 import { INVENTORY_TOTAL_FETCH_URL } from './AppConstants';
@@ -35,9 +35,10 @@ const App = (props) => {
         insights.chrome?.globalFilterScope?.('insights');
         if (insights.chrome?.globalFilterScope) {
             insights.chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
-                const selectedTags = insights.chrome?.mapGlobalFilter?.(data)?.filter(item => !item.includes('Workloads')) || undefined;
+                const [workloads, SID, selectedTags] = insights.chrome?.mapGlobalFilter?.(data, false, true);
                 batch(() => {
-                    dispatch(setWorkloads(data?.Workloads));
+                    dispatch(setWorkloads(workloads));
+                    dispatch(setSIDs(SID));
                     dispatch(setSelectedTags(selectedTags));
                 });
             });

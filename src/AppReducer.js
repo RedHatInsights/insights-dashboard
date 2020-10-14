@@ -53,6 +53,11 @@ export const DashboardStore = (state = initialState, action) => {
                 workloads: action.payload
             });
 
+        case ActionTypes.SID_SET:
+            return Immutable.merge(state, {
+                SID: action.payload
+            });
+
         // COMPLIANCE
         case `${ActionTypes.COMPLIANCE_FETCH}_PENDING`:
             return state.set('complianceFetchStatus', 'pending');
