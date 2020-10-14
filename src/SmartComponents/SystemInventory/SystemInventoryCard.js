@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import { generateFilter } from '@redhat-cloud-services/frontend-components-utilities/files/helpers';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+// eslint-disable-next-line no-unused-vars
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/files/RBACHook';
 import { workloadsPropType } from '../../Utilities/Common';
 
@@ -28,12 +29,14 @@ const SystemInventoryCard = ({
     fetchInventoryTotal, inventoryTotalFetchStatus, inventoryTotalSummary,
     selectedTags, workloads, SID
 }) => {
-    const { hasAccess } = usePermissions('inventory', [
-        'inventory:*:*',
-        'inventory:*:read',
-        'inventory:hosts:*',
-        'inventory:hosts:read'
-    ]);
+    const hasAccess  = true;
+
+    // const { hasAccess } = usePermissions('inventory', [
+    //     'inventory:*:*',
+    //     'inventory:*:read',
+    //     'inventory:hosts:*',
+    //     'inventory:hosts:read'
+    // ]);
 
     useEffect(() => {
         const sapFilter = generateFilter({

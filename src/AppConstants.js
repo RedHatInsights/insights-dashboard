@@ -61,3 +61,6 @@ export const REMEDIATIONS_FETCH = 'REMEDIATIONS_FETCH';
 export const REMEDIATIONS_FETCH_URL = `${BASE_URL}${REMEDIATIONS_BASE}/remediations?sort=-updated_at&limit=4&offset=0`;
 export const REMEDIATIONS_PLAYBOOK_RUNS_FETCH = 'REMEDIATIONS_PLAYBOOK_RUNS_FETCH';
 export const REMEDIATIONS_PLAYBOOK_RUNS_FETCH_URL = `${BASE_URL}${REMEDIATIONS_BASE}/remediations/`;
+
+// Workloads Constants
+export const SAP_FETCH_URL = `${BASE_URL}/inventory/v1/system_profile/sap_system`;
