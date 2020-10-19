@@ -44,7 +44,7 @@ const Dashboard = ({ workloads }) => {
     }, []);
 
     return permission.hasSystems ?
-        !workloads?.SAP || workloads?.SAP?.isSelected && supportsSap ?
+        (!workloads?.SAP?.isSelected) || (workloads?.SAP?.isSelected && supportsSap) ?
             <React.Fragment>
                 <PageSection>
                     <Title headingLevel="h1" size="2xl">
