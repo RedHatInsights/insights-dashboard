@@ -8,7 +8,7 @@ import { Flex, FlexItem, Grid, GridItem } from '@patternfly/react-core/dist/esm/
 import { INCIDENT_URL, SEVERITY_MAP } from './Constants';
 import React, { useEffect, useState } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
-import { capitalize, workloadsPropType } from '../../Utilities/Common';
+import { capitalize, sapFilter, workloadsPropType } from '../../Utilities/Common';
 import {
     global_palette_black_300,
     global_palette_cyan_100,
@@ -29,7 +29,7 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 
 const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
-    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, selectedTags, workloads }) => {
+    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, selectedTags, workloads, SID }) => {
     const colors = [global_palette_cyan_100.value,
         global_palette_cyan_200.value,
         global_palette_cyan_300.value,
@@ -38,13 +38,8 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
     const [trData, setTRData] = useState([]);
     const [categoryData, setCategoryData] = useState([]);
     const [colorScale, setColorScale] = useState();
-
-    const workloadsMap = { SAP: 'sap_system' };
-    const workloadQueryBuilder = workloads => Object.entries(workloads).map(([key, value]) =>
-        workloadsMap[key] && !!value.isSelected && { [`filter[system_profile][${workloadsMap[key]}]`]: value.isSelected }
-    )[0];
     const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length ?
-        `&tags=${selectedTags.join()}` : ''}${workloads?.SAP ? '&sap_system=true' : ''}`;
+        `&tags=${selectedTags?.join()}` : ''}${workloads?.SAP ? '&sap_system=true' : ''}${SID?.length ? `&sap_sids=${SID?.join()}` : ''}`;
     const pieLegendClick = categoryData.map(({ value }) => `${UI_BASE}/advisor/recommendations?category=${value}${urlRest}`);
     const totalRiskUrl = (risk) => `${UI_BASE}/advisor/recommendations?total_risk=${risk}${urlRest}`;
 
@@ -60,12 +55,11 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
     const pieLegendData = categoryData.map(item => ({ name: `${item.y} ${item.x} `, symbol: { fill: `${item.fill} `, type: 'square' } }));
 
     useEffect(() => {
-        const options = { ...selectedTags.length && ({ tags: selectedTags.join() }), ...(workloads && workloadQueryBuilder(workloads)) };
+        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags.join() } };
         advisorFetchStatsRecs(options);
         advisorFetchStatsSystems(options);
         advisorFetchIncidents(options);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems, selectedTags, workloads]);
+    }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems, selectedTags, workloads, SID]);
 
     useEffect(() => {
         if (recStatsStatus === 'fulfilled') {
@@ -174,7 +168,8 @@ Advisor.propTypes = {
     advisorIncidentsStatus: PropTypes.string,
     advisorFetchIncidents: PropTypes.func,
     selectedTags: PropTypes.array,
-    workloads: workloadsPropType
+    workloads: workloadsPropType,
+    SID: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default connect(
@@ -186,7 +181,8 @@ export default connect(
         advisorIncidents: DashboardStore.advisorIncidents,
         advisorIncidentsStatus: DashboardStore.advisorIncidentsStatus,
         selectedTags: DashboardStore.selectedTags,
-        workloads: DashboardStore.workloads
+        workloads: DashboardStore.workloads,
+        SID: DashboardStore.SID
     }),
     dispatch => ({
         advisorFetchStatsRecs: (data) => dispatch(AppActions.advisorFetchStatsRecs(data)),
