@@ -4,6 +4,7 @@ import * as AppActions from '../../AppActions';
 
 import React, { Fragment, useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
+import { sapFilter, workloadsPropType } from '../../Utilities/Common';
 
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import FailState from '../../PresentationalComponents/FailState/FailState';
@@ -12,12 +13,10 @@ import { NotAuthorized } from '@redhat-cloud-services/frontend-components/compon
 import { NumberDescription } from '../../../../insights-dashboard/src/PresentationalComponents/NumberDescription/NumberDescription';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { generateFilter } from '@redhat-cloud-services/frontend-components-utilities/files/helpers';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 // eslint-disable-next-line no-unused-vars
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/files/RBACHook';
-import { workloadsPropType } from '../../Utilities/Common';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -29,7 +28,7 @@ const SystemInventoryCard = ({
     fetchInventoryTotal, inventoryTotalFetchStatus, inventoryTotalSummary,
     selectedTags, workloads, SID
 }) => {
-    const hasAccess  = true;
+    const hasAccess = true;
 
     // const { hasAccess } = usePermissions('inventory', [
     //     'inventory:*:*',
@@ -39,40 +38,18 @@ const SystemInventoryCard = ({
     // ]);
 
     useEffect(() => {
-        const sapFilter = generateFilter({
-            system_profile: {
-                ...workloads?.SAP?.isSelected && { sap_system: true },
-                ...SID?.length > 0 && { sap_sids: SID }
-            }
-        });
-        fetchInventoryTotal({
-            ...sapFilter,
-            ...selectedTags.length > 0 && { tags: selectedTags.join() }
-        });
-        fetchInventory({
-            ...sapFilter,
-            ...selectedTags.length > 0 && { tags: selectedTags.join() }
-        });
-        fetchInventoryStale({
-            ...sapFilter,
-            ...selectedTags.length > 0 && { tags: selectedTags.join() }
-        });
-        fetchInventoryWarning({
-            ...sapFilter,
-            ...selectedTags.length > 0 && { tags: selectedTags.join() }
-        });
-    }, [fetchInventoryTotal,
-        fetchInventory,
-        fetchInventoryStale,
-        fetchInventoryWarning,
-        selectedTags,
-        workloads]
+        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags.join() } };
+        fetchInventoryTotal(options);
+        fetchInventory(options);
+        fetchInventoryStale(options);
+        fetchInventoryWarning(options);
+    }, [fetchInventoryTotal, fetchInventory, fetchInventoryStale, fetchInventoryWarning, selectedTags, workloads, SID]
     );
 
     const intl = useIntl();
 
     return <TemplateCard appName='SystemInventory'>
-        <TemplateCardHeader subtitle={ intl.formatMessage(messages.systemInventoryTitle) }/>
+        <TemplateCardHeader subtitle={ intl.formatMessage(messages.systemInventoryTitle) } />
         <TemplateCardBody
             isFilled={ hasAccess === false }
             className={ `dashboard-card-system-inventory-body ${hasAccess === false ? ' dashboard-m-no-access' : ''}` }
@@ -80,23 +57,23 @@ const SystemInventoryCard = ({
             {
                 hasAccess ?
                     <Fragment>
-                        { inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
+                        {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
                             <NumberDescription
                                 data={ inventorySummary.total.toLocaleString() || 0 }
                                 dataSize="lg"
                                 percentageData={ intl.formatMessage(messages.systemInventoryPercentageData,
                                     { count: Math.floor((inventorySummary.total / inventoryTotalSummary.total) * 100) || 0 }
                                 ) }
-                                linkDescription = { intl.formatMessage(messages.systemInventoryDescription,
+                                linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
                                     { count: inventorySummary.total || 0 }
                                 ) }
                                 link='./insights/inventory'
-                                iconTooltipText = { intl.formatMessage(messages.systemInventoryNotUsingClient,
+                                iconTooltipText={ intl.formatMessage(messages.systemInventoryNotUsingClient,
                                     { count: inventoryTotalSummary.total - inventorySummary.total || 0 }
                                 ) }
                             />
                         }
-                        { inventoryStaleFetchStatus === 'fulfilled' &&
+                        {inventoryStaleFetchStatus === 'fulfilled' &&
                             <Button component="a" variant="link" href='./insights/inventory/?status=stale' isInline>
                                 <IconInline
                                     message={ intl.formatMessage(messages.systemInventoryStale,
@@ -107,7 +84,7 @@ const SystemInventoryCard = ({
                                 />
                             </Button>
                         }
-                        { inventoryWarningFetchStatus === 'fulfilled' &&
+                        {inventoryWarningFetchStatus === 'fulfilled' &&
                             <Button component="a" variant="link" href='./insights/inventory/?status=stale_warning' isInline>
                                 <IconInline
                                     message={ intl.formatMessage(messages.systemInventoryStaleWarning,
@@ -118,8 +95,8 @@ const SystemInventoryCard = ({
                                 />
                             </Button>
                         }
-                        { inventoryTotalFetchStatus === 'rejected' &&
-                            <FailState appName='Inventory' isSmall/>
+                        {inventoryTotalFetchStatus === 'rejected' &&
+                            <FailState appName='Inventory' isSmall />
                         }
                     </Fragment> : <NotAuthorized
                         showReturnButton={ false }
