@@ -38,7 +38,7 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
     ];
 
     useEffect(() => {
-        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags.join() } };
+        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
         fetchSystems(options);
         fetchSecurity(options);
         fetchBugs(options);
