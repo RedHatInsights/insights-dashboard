@@ -28,14 +28,13 @@ const SystemInventoryCard = ({
     fetchInventoryTotal, inventoryTotalFetchStatus, inventoryTotalSummary,
     selectedTags, workloads, SID
 }) => {
-    const hasAccess = true;
 
-    // const { hasAccess } = usePermissions('inventory', [
-    //     'inventory:*:*',
-    //     'inventory:*:read',
-    //     'inventory:hosts:*',
-    //     'inventory:hosts:read'
-    // ]);
+    const { hasAccess } = usePermissions('inventory', [
+        'inventory:*:*',
+        'inventory:*:read',
+        'inventory:hosts:*',
+        'inventory:hosts:read'
+    ]);
 
     useEffect(() => {
         const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags.join() } };
@@ -55,7 +54,14 @@ const SystemInventoryCard = ({
             className={ `dashboard-card-system-inventory-body ${hasAccess === false ? ' dashboard-m-no-access' : ''}` }
         >
             {
-                hasAccess ?
+                hasAccess === false ?
+                    <NotAuthorized
+                        showReturnButton={ false }
+                        serviceName="Inventory"
+                        icon={ () => '' }
+                        variant='xs'
+                        description={ <div>{intl.formatMessage(messages.systemInventoryNoAccess)}</div> }
+                    /> :
                     <Fragment>
                         {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
                             <NumberDescription
@@ -98,11 +104,7 @@ const SystemInventoryCard = ({
                         {inventoryTotalFetchStatus === 'rejected' &&
                             <FailState appName='Inventory' isSmall />
                         }
-                    </Fragment> : <NotAuthorized
-                        showReturnButton={ false }
-                        serviceName="Inventory"
-                        description={ <div>{intl.formatMessage(messages.systemInventoryNoAccess)}</div> }
-                    />
+                    </Fragment>
             }
         </TemplateCardBody>
     </TemplateCard>;
