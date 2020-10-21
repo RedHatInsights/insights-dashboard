@@ -55,7 +55,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
     const pieLegendData = categoryData.map(item => ({ name: `${item.y} ${item.x} `, symbol: { fill: `${item.fill} `, type: 'square' } }));
 
     useEffect(() => {
-        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags.join() } };
+        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
         advisorFetchStatsRecs(options);
         advisorFetchStatsSystems(options);
         advisorFetchIncidents(options);

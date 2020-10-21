@@ -38,7 +38,7 @@ const SystemInventoryCard = ({
     // ]);
 
     useEffect(() => {
-        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags.join() } };
+        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
         fetchInventoryTotal(options);
         fetchInventory(options);
         fetchInventoryStale(options);
