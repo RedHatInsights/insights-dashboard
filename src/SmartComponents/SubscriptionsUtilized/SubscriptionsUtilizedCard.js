@@ -2,7 +2,7 @@ import './SubscriptionsUtilizedCard.scss';
 
 import * as AppActions from '../../AppActions';
 
-import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
+import { EmptyState, EmptyStateBody, EmptyStateVariant } from '@patternfly/react-core/dist/esm/components/EmptyState/index';
 import {
     RHSM_API_PRODUCT_ID_TYPES,
     RHSM_API_QUERY_GRANULARITY_TYPES,
@@ -17,11 +17,12 @@ import React, { useEffect, useState } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/js/components/Tooltip/Tooltip';
 import { filterChartData, setRangedDateTime } from './SubscriptionsUtilizedHelpers';
+import { supportsGlobalFilter, workloadsPropType } from '../../Utilities/Common';
 
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
-import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateBody';
 import { EmptyStateSecondaryActions } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateSecondaryActions';
 import FailState from '../../PresentationalComponents/FailState/FailState';
+import FilterNotSupported from '../../PresentationalComponents/FilterNotSupported';
 import Immutable from 'seamless-immutable';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { ProgressTemplate } from '../../../../insights-dashboard/src/ChartTemplates/Progress/ProgressTemplate';
@@ -36,7 +37,7 @@ import { useIntl } from 'react-intl';
  */
 const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscriptionsUtilizedProductOneFetch,
     subscriptionsUtilizedProductOneFetchStatus, subscriptionsUtilizedProductTwo, subscriptionsUtilizedProductTwoFetch,
-    subscriptionsUtilizedProductTwoFetchStatus, workloads }) => {
+    subscriptionsUtilizedProductTwoFetchStatus, workloads, selectedTags, SID }) => {
 
     const [products, setProducts] = useState([]);
     const intl = useIntl();
@@ -168,7 +169,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
     return <TemplateCard appName='SubscriptionsUtilized'>
         <TemplateCardHeader subtitle={ intl.formatMessage(messages.subscriptionsUtilizedTitle) }/>
         <TemplateCardBody>
-            {workloads === undefined || workloads['All workloads'] || Object.entries(workloads).length === 0 ?
+            {supportsGlobalFilter(selectedTags, workloads, SID) ?
                 <React.Fragment>
                     {
                         (productOptIn && <EmptyState className="ins-c-subscriptions-utilized__empty-state" variant={ EmptyStateVariant.full }>
@@ -195,11 +196,8 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                 charts
                     }
                 </React.Fragment>
-                : <EmptyState>
-                    <EmptyStateBody>
-                        {intl.formatMessage(messages.contentNotSupported)}
-                    </EmptyStateBody>
-                </EmptyState>
+                : <FilterNotSupported href={ SW_PATHS.APP } title={ intl.formatMessage(messages.filterNotApplicable) }
+                    appName={ intl.formatMessage(messages.subscriptionsTitle) } />
             }
         </TemplateCardBody>
     </TemplateCard>;
@@ -213,7 +211,9 @@ SubscriptionsUtilizedCard.propTypes = {
     subscriptionsUtilizedProductTwo: PropTypes.array,
     subscriptionsUtilizedProductTwoFetch: PropTypes.func,
     subscriptionsUtilizedProductTwoFetchStatus: PropTypes.string,
-    workloads: PropTypes.object
+    selectedTags: PropTypes.array,
+    workloads: workloadsPropType,
+    SID: PropTypes.arrayOf(PropTypes.string)
 };
 
 const mapStateToProps = ({ DashboardStore }) => ({
@@ -221,8 +221,9 @@ const mapStateToProps = ({ DashboardStore }) => ({
     subscriptionsUtilizedProductOneFetchStatus: DashboardStore.subscriptionsUtilizedProductOneFetchStatus,
     subscriptionsUtilizedProductTwo: DashboardStore.subscriptionsUtilizedProductTwo,
     subscriptionsUtilizedProductTwoFetchStatus: DashboardStore.subscriptionsUtilizedProductTwoFetchStatus,
-    workloads: DashboardStore.workloads
-});
+    selectedTags: DashboardStore.selectedTags,
+    workloads: DashboardStore.workloads,
+    SID: DashboardStore.SID });
 
 const mapDispatchToProps = dispatch => ({
     subscriptionsUtilizedProductOneFetch: (productId, options) => dispatch(AppActions.subscriptionsUtilizedProductOneFetch(productId, options)),

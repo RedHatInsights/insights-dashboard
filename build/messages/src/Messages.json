@@ -31,6 +31,10 @@
     "defaultMessage": "No policies",
     "description": "Compliance - empty state title"
   },
+  "complianceTitle": {
+    "defaultMessage": "Compliance",
+    "description": "Compliance card header"
+  },
   "compliantHostCount": {
     "defaultMessage": "{count, plural, one {# system} other {# systems}}",
     "description": "Compliance - compliant host count"
@@ -39,10 +43,6 @@
     "defaultMessage": "{score}% compliant",
     "description": "Compliance - compliant score"
   },
-  "contentNotSupported": {
-    "defaultMessage": "Content not supported for this filter",
-    "description": "Content not supported for this filter"
-  },
   "critical": {
     "defaultMessage": "Critical",
     "description": "Critical"
@@ -50,6 +50,10 @@
   "cvesImpactingSystems": {
     "defaultMessage": "{cves, plural, one {CVE} other {CVEs}} impacting your systems",
     "description": "Vulnerability - cve impacting link"
+  },
+  "dashboardFiltration": {
+    "defaultMessage": "Dashboard filtration temporarily unavailable",
+    "description": "Dashboard filtration temporarily unavailable"
   },
   "dashboardTitle": {
     "defaultMessage": "Dashboard",
@@ -70,6 +74,18 @@
   "errorStateTitle": {
     "defaultMessage": "{appName} has experienced an error. Contact Red Hat support if the problem persists.",
     "description": "Error fetching API"
+  },
+  "filterNotApplicable": {
+    "defaultMessage": "Filter not applicable",
+    "description": "Filter not applicable"
+  },
+  "filteredResultsInApp": {
+    "defaultMessage": "Filtered results are available directly within the {appname} application.",
+    "description": "Filtered results are available directly"
+  },
+  "functionalityNotSupported": {
+    "defaultMessage": "This functionality is not supported within {appname}. Remove all filters to show dashboard results.",
+    "description": "This functionality is not supported within"
   },
   "important": {
     "defaultMessage": "Important",
@@ -182,6 +198,10 @@
   "stability": {
     "defaultMessage": "Stability",
     "description": "Category chart  value"
+  },
+  "subscriptionsTitle": {
+    "defaultMessage": "Subscription Watch",
+    "description": "Title of the subscriptions utilized card"
   },
   "subscriptionsUtilizedLearnMore": {
     "defaultMessage": "Activate Subscription Watch to monitor your subscription utilization.",

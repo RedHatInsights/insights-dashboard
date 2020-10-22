@@ -12,6 +12,11 @@ export default defineMessages({
         description: 'Title of the subscriptions utilized card',
         defaultMessage: 'Subscription Watch utilization summary'
     },
+    subscriptionsTitle: {
+        id: 'subscriptionsTitle',
+        description: 'Title of the subscriptions utilized card',
+        defaultMessage: 'Subscription Watch'
+    },
     subscriptionsUtilizedLearnMore: {
         id: 'subscriptionsUtilizedLearnMore',
         description: 'Subscriptions utilized card - learn more description',
@@ -101,6 +106,11 @@ export default defineMessages({
         id: 'vulnerabilitiesTitle',
         description: 'Vulnerability card header',
         defaultMessage: 'Vulnerability'
+    },
+    complianceTitle: {
+        id: 'complianceTitle',
+        description: 'Compliance card header',
+        defaultMessage: 'Compliance'
     },
     vulnerabilitiesTotalItems: {
         id: 'vulnerabilitiesTotalItems',
@@ -335,10 +345,25 @@ export default defineMessages({
         description: 'Total risk definition',
         defaultMessage: 'A value derived from the <em>likelihood</em> that the condition will negatively affect your infrastructure, and the <em>impact</em> on system operation if that were to happen'
     },
-    contentNotSupported: {
-        id: 'contentNotSupported',
-        description: 'Content not supported for this filter',
-        defaultMessage: 'Content not supported for this filter'
+    dashboardFiltration: {
+        id: 'dashboardFiltration',
+        description: 'Dashboard filtration temporarily unavailable',
+        defaultMessage: 'Dashboard filtration temporarily unavailable'
+    },
+    functionalityNotSupported: {
+        id: 'functionalityNotSupported',
+        description: 'This functionality is not supported within',
+        defaultMessage: 'This functionality is not supported within {appname}. Remove all filters to show dashboard results.'
+    },
+    filteredResultsInApp: {
+        id: 'filteredResultsInApp',
+        description: 'Filtered results are available directly',
+        defaultMessage: 'Filtered results are available directly within the {appname} application.'
+    },
+    filterNotApplicable: {
+        id: 'filterNotApplicable',
+        description: 'Filter not applicable',
+        defaultMessage: 'Filter not applicable'
     },
     insightsForSap: {
         id: 'insightsForSap',
