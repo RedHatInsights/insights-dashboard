@@ -2,15 +2,20 @@ import './ComplianceCard.scss';
 
 import * as AppActions from '../../AppActions';
 
-import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
+import {
+    EmptyState,
+    EmptyStateBody,
+    EmptyStateSecondaryActions,
+    EmptyStateVariant
+} from '@patternfly/react-core/dist/esm/components/EmptyState/index';
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { chart_color_blue_200, chart_color_blue_300 } from '@patternfly/react-tokens';
+import { supportsGlobalFilter, workloadsPropType } from '../../Utilities/Common';
 
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
-import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateBody';
-import { EmptyStateSecondaryActions } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateSecondaryActions';
 import FailState from '../../PresentationalComponents/FailState/FailState';
+import FilterNotSupported from '../../PresentationalComponents/FilterNotSupported';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import PropTypes from 'prop-types';
@@ -23,7 +28,7 @@ import messages from '../../Messages';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { useIntl } from 'react-intl';
 
-const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSummary, workloads }) => {
+const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSummary, selectedTags, workloads, SID }) => {
 
     useEffect(() => {
         fetchCompliance();
@@ -53,9 +58,9 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                 'data-ouia-safe': true
             } : { 'data-ouia-safe': false } }
         >
-            <TemplateCardHeader title='Compliance' />
+            <TemplateCardHeader title={ intl.formatMessage(messages.complianceTitle) } />
             <TemplateCardBody>
-                {workloads === undefined || workloads['All workloads'] || Object.entries(workloads).length === 0 ?
+                {supportsGlobalFilter(selectedTags, workloads, SID) ?
                     <React.Fragment>
                         {complianceFetchStatus === 'fulfilled' &&
                             (Array.isArray(complianceSummary.data) &&
@@ -166,11 +171,8 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                         {complianceFetchStatus === 'pending' && (<Loading />)}
                         {complianceFetchStatus === 'rejected' && <FailState appName='Compliance' />}
                     </React.Fragment>
-                    : <EmptyState>
-                        <EmptyStateBody>
-                            {intl.formatMessage(messages.contentNotSupported)}
-                        </EmptyStateBody>
-                    </EmptyState>
+                    : <FilterNotSupported href={ `${UI_BASE}/compliance/` } title={ intl.formatMessage(messages.filterNotApplicable) }
+                        appName={ intl.formatMessage(messages.complianceTitle) } />
                 }
             </TemplateCardBody>
         </TemplateCard>
@@ -182,14 +184,17 @@ ComplianceCard.propTypes = {
     complianceSummary: PropTypes.object,
     complianceFetchStatus: PropTypes.string,
     intl: PropTypes.any,
-    workloads: PropTypes.object
+    selectedTags: PropTypes.array,
+    workloads: workloadsPropType,
+    SID: PropTypes.arrayOf(PropTypes.string)
 };
 
-const mapStateToProps = (state, ownProps) => ({
-    complianceSummary: state.DashboardStore.complianceSummary,
-    complianceFetchStatus: state.DashboardStore.complianceFetchStatus,
-    workloads: state.DashboardStore.workloads,
-    ...ownProps
+const mapStateToProps = ({ DashboardStore }) => ({
+    complianceSummary: DashboardStore.complianceSummary,
+    complianceFetchStatus: DashboardStore.complianceFetchStatus,
+    selectedTags: DashboardStore.selectedTags,
+    workloads: DashboardStore.workloads,
+    SID: DashboardStore.SID
 });
 
 const mapDispatchToProps = dispatch => ({
