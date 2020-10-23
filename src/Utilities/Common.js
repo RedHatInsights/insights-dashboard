@@ -34,3 +34,6 @@ export const sapFilter = (workloads, SID) => generateFilter({
         ...SID?.length > 0 && { sap_sids: SID }
     }
 });
+
+export const supportsGlobalFilter = (selectedTags, workloads, SID) =>
+    workloads === undefined || workloads['All workloads'] && selectedTags.length === 0 && Object.entries(SID).length === 0;

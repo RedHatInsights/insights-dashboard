@@ -37,7 +37,8 @@ const initialState = Immutable({
     remediations: {},
     remediationsFetchStatus: '',
     selectedTags: [],
-    workloads: {}
+    workloads: {},
+    SID: {}
 });
 
 export const DashboardStore = (state = initialState, action) => {
