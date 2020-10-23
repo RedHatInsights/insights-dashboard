@@ -35,11 +35,10 @@ const App = (props) => {
         insights.chrome?.globalFilterScope?.('insights');
         if (insights.chrome?.globalFilterScope) {
             insights.chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
-                let selectedTags = insights.chrome?.mapGlobalFilter?.(data)?.
-                    filter(item => !item.includes('Workloads')) || undefined;
+                const [workloads, SID, selectedTags] = insights.chrome?.mapGlobalFilter?.(data, false, true);
                 batch(() => {
-                    dispatch(setWorkloads(data?.Workloads));
-                    dispatch(setSIDs(Object.entries(data?.['SAP ID (SID)'] || {}).filter(([, { isSelected }]) => isSelected).map(([key]) => key)));
+                    dispatch(setWorkloads(workloads));
+                    dispatch(setSIDs(SID));
                     dispatch(setSelectedTags(selectedTags));
                 });
             });
