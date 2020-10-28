@@ -33,7 +33,7 @@ export const sapFilter = (workloads, SID) => generateFilter({
         ...workloads?.SAP?.isSelected && { sap_system: true },
         ...SID?.length > 0 && { sap_sids: SID }
     }
-});
+}, undefined, { arrayEnhancer: 'contains' });
 
 export const supportsGlobalFilter = (selectedTags, workloads, SID) =>
     workloads === undefined || workloads['All workloads'] && selectedTags.length === 0 && Object.entries(SID).length === 0;
