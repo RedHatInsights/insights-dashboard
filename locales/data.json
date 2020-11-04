@@ -46,7 +46,7 @@
     "remediationsPlaybookStatus": "{status}",
     "remediationsPlaybookNoActivity": "No activity",
     "remediationsNoActivity": "Failure",
-    "remediationsNoDataTitle": "You haven't created any remediation Playbooks yet",
+    "remediationsNoDataTitle": "You haven't created any remediation playbooks yet",
     "remediationsNoDataBody": "Create an Ansible Playbook to remediate or mitigate vulnerabilities or configuration issues.",
     "errorStateTitle": "{appName} has experienced an error. Contact Red Hat support if the problem persists.",
     "noSystemsTitle": "Get started with Red Hat Insights",
