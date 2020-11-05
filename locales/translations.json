@@ -42,7 +42,7 @@
   "registerYourSystems": "Register your systems",
   "remediationsNoActivity": "Failure",
   "remediationsNoDataBody": "Create an Ansible Playbook to remediate or mitigate vulnerabilities or configuration issues.",
-  "remediationsNoDataTitle": "You haven't created any remediation Playbooks yet",
+  "remediationsNoDataTitle": "You haven't created any remediation playbooks yet",
   "remediationsPlaybookNoActivity": "No activity",
   "remediationsPlaybookStatus": "{status}",
   "remediationsTotal": "{total} more remediations",
