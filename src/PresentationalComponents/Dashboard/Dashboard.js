@@ -7,7 +7,6 @@ import DeniedState from '../DeniedState/DeniedState';
 import { Divider } from '@patternfly/react-core/dist/js/components/Divider/Divider';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { Main } from '@redhat-cloud-services/frontend-components/components/Main';
-import NoSystems from '../NoSystems/NoSystems';
 import { PageSection } from '@patternfly/react-core/dist/js/components/Page/PageSection';
 import { PermissionContext } from '../../App';
 import { SAP_FETCH_URL } from '../../AppConstants';
@@ -16,6 +15,7 @@ import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import { workloadsPropType } from '../../Utilities/Common';
+import ZeroState from '../ZeroState/ZeroState';
 
 const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
 const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
@@ -43,7 +43,7 @@ const Dashboard = ({ workloads }) => {
         fetchSapSystems();
     }, []);
 
-    return permission.hasSystems ?
+    return !permission.hasSystems ?
         (!workloads?.SAP?.isSelected) || (workloads?.SAP?.isSelected && supportsSap) ?
             <React.Fragment>
                 <PageSection>
@@ -90,8 +90,8 @@ const Dashboard = ({ workloads }) => {
                     </div>
                 </Main>
             </React.Fragment>
-            : <NoSystems workloadIs='SAP' />
-        : <NoSystems />;
+            : <ZeroState workloadIs='SAP' />
+        : <ZeroState />;
 };
 
 Dashboard.propTypes = {

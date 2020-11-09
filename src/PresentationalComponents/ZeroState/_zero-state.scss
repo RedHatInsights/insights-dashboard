@@ -1,0 +1,37 @@
+@import '~@patternfly/patternfly/sass-utilities/_all.scss';
+
+$ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
+
+.ins-c-chrome__global-filter {
+  display: none;
+}
+
+.ins-c-marketing-page {
+  --ins-m-marketing-page--RowGap: var(--pf-global--spacer--xl);
+  --ins-m-marketing-page--ColumnGap: var(--pf-global--spacer--xl);
+  --ins-m-marketing-page--section--PaddingTop: var(--pf-global--spacer--xl);
+  --ins-m-marketing-page--section--PaddingRight: var(--pf-global--spacer--2xl);
+  --ins-m-marketing-page--section--PaddingBottom: var(--pf-global--spacer--xl);
+  --ins-m-marketing-page--section--PaddingLeft: var(--pf-global--spacer--2xl);
+
+  .ins-l-autofit {
+    --ins-l-autofit--m-gutter--RowGap: var(--ins-m-marketing-page--RowGap);
+    --ins-l-autofit--m-gutter--ColumnGap: var(--ins-m-marketing-page--ColumnGap);
+  }
+
+  .pf-c-page__main-section {
+    --pf-c-page__main-section--PaddingTop: var(--ins-m-marketing-page--section--PaddingTop);
+    --pf-c-page__main-section--PaddingRight: var(--ins-m-marketing-page--section--PaddingRight);
+    --pf-c-page__main-section--PaddingBottom: var(--ins-m-marketing-page--section--PaddingBottom);
+    --pf-c-page__main-section--PaddingLeft: var(--ins-m-marketing-page--section--PaddingLeft);
+  }
+
+  .ins-c-marketing-banner {
+    --ins-c-marketing-banner--PaddingTop: var(--pf-global--spacer--2xl);
+    --ins-c-marketing-banner--PaddingBottom: var(--pf-global--spacer--2xl);
+  }
+
+  .pf-l-grid {
+    --pf-l-grid--m-gutter--GridGap: var(--pf-global--spacer--xl);
+  }
+}
