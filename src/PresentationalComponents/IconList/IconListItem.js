@@ -1,25 +1,14 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
 
-class IconListItem extends Component {
+const IconListItem = ({ className, iconListItemStyle, children }) => {
+    const IconListItemClasses = classNames(className, 'ins-c-icon-list__item');
 
-    render () {
-        const IconListItemClasses = classNames(
-            this.props.className,
-            'ins-c-icon-list__item'
-        );
-
-        return (
-            <li
-                className={ IconListItemClasses }
-                style={ this.props.iconListItemStyle }>
-                { this.props.children }
-            </li>
-        );
-    }
-}
+    return <li className={ IconListItemClasses } style={ iconListItemStyle }>
+        {children}
+    </li>;
+};
 
 export default IconListItem;
 

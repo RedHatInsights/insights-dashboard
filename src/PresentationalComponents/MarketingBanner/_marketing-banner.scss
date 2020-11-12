@@ -1,9 +1,9 @@
-@import '~@patternfly/patternfly/sass-utilities/_all.scss';
+@import "~@patternfly/patternfly/sass-utilities/_all.scss";
 
 $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
 
 .ins-c-marketing-banner {
-  --ins-c-marketing-banner--before--Opacity: .3;
+  --ins-c-marketing-banner--before--Opacity: 0.3;
   --ins-c-marketing-banner--before--BackgroundSize: #{pf-size-prem(200px)};
 
   --ins-c-marketing-banner--PaddingTop: var(--pf-c-page__main-section--PaddingTop, var(--pf-global--spacer--2xl));
@@ -14,29 +14,34 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
   --ins-c-marketing-banner--before--content--width: 2fr;
   --ins-c-marketing-banner--before--graphic--width: 1fr;
 
-  --ins-c-marketing-banner--m-with-graphic--GridTemplateAreas: 'graphic content';
-  --ins-c-marketing-banner--m-with-graphic--GridTemplateColumns: var(--ins-c-marketing-banner--before--graphic--width) var(--ins-c-marketing-banner--before--content--width);
+  --ins-c-marketing-banner--m-with-graphic--GridTemplateAreas: "graphic content";
+  --ins-c-marketing-banner--m-with-graphic--GridTemplateColumns: var(--ins-c-marketing-banner--before--graphic--width)
+    var(--ins-c-marketing-banner--before--content--width);
 
-  --ins-c-marketing-banner--m-graphic-right--GridTemplateAreas: 'content graphic';
-  --ins-c-marketing-banner--m-graphic-right--GridTemplateColumns: var(--ins-c-marketing-banner--before--content--width) var(--ins-c-marketing-banner--before--graphic--width);
+  --ins-c-marketing-banner--m-graphic-right--GridTemplateAreas: "content graphic";
+  --ins-c-marketing-banner--m-graphic-right--GridTemplateColumns: var(--ins-c-marketing-banner--before--content--width)
+    var(--ins-c-marketing-banner--before--graphic--width);
 
   @media screen and (min-width: $pf-global--breakpoint--lg) {
-    --ins-c-marketing-banner--before--Opacity: .65;
+    --ins-c-marketing-banner--before--Opacity: 0.65;
   }
 
   @media screen and (min-width: $pf-global--breakpoint--2xl) {
     --ins-c-marketing-banner--before--Opacity: 1;
   }
 
-  @include pf-build-css-variable-stack('--ins-c-marketing-banner--before--graphic--width', '--ins-c-marketing-banner--graphic--width', $ins-c-marketing-banner--breakpoint-map);
+  @include pf-build-css-variable-stack(
+    "--ins-c-marketing-banner--before--graphic--width",
+    "--ins-c-marketing-banner--graphic--width",
+    $ins-c-marketing-banner--breakpoint-map
+  );
 
   &.ins-m-with-graphic {
-
     &:not(.pf-m-limit-width),
     .pf-c-page__main-body {
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-areas: 'content';
+      grid-template-areas: "content";
       grid-gap: var(--ins-m-marketing-page--ColumnGap);
       padding-top: var(--ins-c-marketing-banner--PaddingTop);
       padding-bottom: var(--ins-c-marketing-banner--PaddingBottom);
@@ -53,13 +58,13 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
       }
 
       &::before {
-        content: '';
+        content: "";
         grid-area: content;
         margin-top: var(--ins-c-marketing-banner--before--Offset--top);
         margin-right: var(--ins-c-marketing-banner--before--Offset--right);
         margin-bottom: var(--ins-c-marketing-banner--before--Offset--bottom);
         margin-left: var(--ins-c-marketing-banner--before--Offset--left);
-        background-image: url('../../images/img__zero-state-header.svg');
+        background-image: url("../../images/img__zero-state-header.svg");
         background-size: var(--ins-c-marketing-banner--before--BackgroundSize);
         background-position-x: 20px;
         background-position-y: -8px;
@@ -83,13 +88,16 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
     --ins-c-marketing-banner--before--Offset--left: 0;
 
     @media screen and (min-width: $pf-global--breakpoint--md) {
-      --ins-c-marketing-banner--m-with-graphic--GridTemplateAreas: var(--ins-c-marketing-banner--m-graphic-right--GridTemplateAreas);
-      --ins-c-marketing-banner--m-with-graphic--GridTemplateColumns: var(--ins-c-marketing-banner--m-graphic-right--GridTemplateColumns);
+      --ins-c-marketing-banner--m-with-graphic--GridTemplateAreas: var(
+        --ins-c-marketing-banner--m-graphic-right--GridTemplateAreas
+      );
+      --ins-c-marketing-banner--m-with-graphic--GridTemplateColumns: var(
+        --ins-c-marketing-banner--m-graphic-right--GridTemplateColumns
+      );
     }
   }
 
   &[class*="pf-m-dark-"].pf-c-page__main-section {
-
     .pf-c-button.pf-m-primary {
       color: var(--pf-global--primary-color-100);
       background-color: #{$pf-color-blue-400};
@@ -100,7 +108,7 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
         color: var(--pf-global--primary-color-100);
         background-color: #{$pf-color-blue-500};
       }
-  }
+    }
 
     .pf-c-button.pf-m-secondary,
     .pf-c-button.pf-m-tertiary {

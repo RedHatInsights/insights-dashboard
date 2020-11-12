@@ -1,26 +1,16 @@
-import React, { Component } from 'react';
 import './_icon-list.scss';
 
+import React from 'react';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
 
-class IconList extends Component {
+const IconList = ({ iconListStyle, className, children }) => {
+    const IconListClasses = classNames(className, 'ins-c-icon-list');
 
-    render () {
-        const IconListClasses = classNames(
-            this.props.className,
-            'ins-c-icon-list'
-        );
-
-        return (
-            <ul
-                className={ IconListClasses }
-                style={ this.props.iconListStyle }>
-                { this.props.children }
-            </ul>
-        );
-    }
-}
+    return <ul className={ IconListClasses } style={ iconListStyle }>
+        {children}
+    </ul>;
+};
 
 export default IconList;
 

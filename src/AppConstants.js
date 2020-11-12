@@ -15,6 +15,7 @@ export const COMPLIANCE_FETCH_URL = `${BASE_URL}/compliance/profiles?search=has_
 const VULN_CVES = '/vulnerability/v1/report/executive';
 export const VULNERABILITIES_FETCH = 'VULNERABILITIES_FETCH';
 export const VULNERABILITIES_FETCH_URL = urijs(`${BASE_URL}${VULN_CVES}`);
+export const VULNERABILITIES_CVES_URL = `${BASE_URL}/vulnerability/v1/vulnerabilities/cves`;
 
 // Advisor App Constants
 const ADV_BASE = '/insights/v1';

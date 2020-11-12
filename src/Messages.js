@@ -374,5 +374,156 @@ export default defineMessages({
         id: 'providesAdditionalSAPworkload',
         description: 'Red Hat Insights provides additional SAP',
         defaultMessage: `Red Hat Insights provides additional SAP workload-focused enhancements to provide a curated view of the health across the SAP Landscape on Red Hat Enterprise Linux. This functionality further enables Insights detection and remediation capabilities for workload optimization, performance, stability, compliance & security. <break></break> Red Hat Insights has not detected any hosts running a SAP workload. To take advantage of these features, please install the Insights-client on an RHEL host running SAP & these systems will be automatically profiled.`
+    },
+    learnmore: {
+        id: 'learnmore',
+        description: 'learnmore',
+        defaultMessage: 'Learn more'
+    },
+    more: {
+        id: 'more',
+        description: 'more',
+        defaultMessage: 'more'
+    },
+    singleConsistent: {
+        id: 'singleConsistent',
+        description: 'Single, consistent management solution',
+        defaultMessage: 'Single, consistent management solution across on-premise, hybrid cloud, and public cloud. Included with Red Hat Enterprise Linux subscription.'
+    },
+    learnmoreRHI: {
+        id: 'learnmoreRHI',
+        description: 'Learn more about Red Hat Insights',
+        defaultMessage: 'Learn more about Red Hat Insights'
+    },
+    contactsales: {
+        id: 'contactsales',
+        description: 'Contact sales',
+        defaultMessage: 'Contact sales'
+    },
+    smartManagement: {
+        id: 'smartManagement',
+        description: 'Smart Management subscription',
+        defaultMessage: 'Smart Management subscription enables push-button remediation of issues identified by Insights. Any issues identified by Insights are accompanied by remediation instructions, and with Smart Management, remediation is available at scale.'
+    },
+    insightsandsmartmanagement: {
+        id: 'insightsandsmartmanagement',
+        description: 'Insights and Smart Management',
+        defaultMessage: 'Insights and Smart Management'
+    },
+    rhm1: {
+        id: 'rhm1',
+        description: 'zero state last box',
+        defaultMessage: 'Red Hat Management gives you the flexibility to manage Red Hat Enterprise Linux on-premise or in a hosted environment'
+    },
+    rhm2: {
+        id: 'rhm2',
+        description: 'zero state last box',
+        defaultMessage: 'Red Hat Management covers your entire system and security management life cycle'
+    },
+    rhm3: {
+        id: 'rhm3',
+        description: 'zero state last box',
+        defaultMessage: 'Red Hat Management includes Red Hat Satellite and the new cloud management services for Red Hat Enterprise Linux'
+    },
+    securityRedirect: {
+        id: 'securityRedirect',
+        description: 'Understanding our security measures',
+        defaultMessage: 'Understanding our security measures'
+    },
+    dataPrivacyAndControls: {
+        id: 'dataPrivacyAndControls',
+        description: 'Data privacy body',
+        defaultMessage: 'Red Hat Insights provides a mechanism for users to obtain actionable intelligence regarding suggested improvements to deployed Red Hat software. This document covers the security measures Red Hat puts in place to provide secure transmission, processing, and analysis of this data by those tools.'
+    },
+    dataPrivacyAndControlsTitle: {
+        id: 'dataPrivacyAndControlsTitle',
+        description: 'Data privacy and controls title',
+        defaultMessage: 'Data privacy and controls in Red Hat Insights'
+    },
+    zslblTitle: {
+        id: 'zslblTitle',
+        description: 'zero state left bullet list title',
+        defaultMessage: 'Improve operational confidence'
+    },
+    zslblBody: {
+        id: 'zslblBody',
+        description: 'zero state left bullet body',
+        defaultMessage: 'Deliver more reliable IT solutions by identifying performance and configuration risks before downtime occurs. With less downtime, IT can focus on higher value projects and deepen their skills.'
+    },
+    zslblb1: {
+        id: 'zslblb1',
+        description: 'zero state left bullet list b1',
+        defaultMessage: 'Meet high IT performance and security demands across traditional and cloud instances.'
+    },
+    zslblb2: {
+        id: 'zslblb2',
+        description: 'zero state left bullet list b2',
+        defaultMessage: 'Gain operational confidence through enhanced visibility into IT environments.'
+    },
+    zslblb3: {
+        id: 'zslblb3',
+        description: 'zero state left bullet list b3',
+        defaultMessage: 'Optimize staff efficiency and extend Linux skills.'
+    },
+    zslblb4: {
+        id: 'zslblb4',
+        description: 'zero state left bullet list b4',
+        defaultMessage: 'Shift teams to focus on delivering innovation.'
+    },
+    zslblb5: {
+        id: 'zslblb5',
+        description: 'zero state left bullet list b5',
+        defaultMessage: 'Control complexity by working with fewer and more reliable configurations.'
+    },
+    zsrblTitle: {
+        id: 'zsrblTitle',
+        description: 'zero state right bullet list title',
+        defaultMessage: 'Continually manage vulnerability risks'
+    },
+    zsrblBody: {
+        id: 'zsrblBody',
+        description: 'zero state right bullet body',
+        defaultMessage: 'Identify risks in advance, and filter to focus on the most important ones. Continually analyze against a large volume of Red Hat industry vulnerability and compliance advisories, as well as your own policies without manual steps.'
+    },
+    zsrblb1: {
+        id: 'zsrblb1',
+        description: 'zero state right bullet list b1',
+        defaultMessage: 'Implement more defined analytics-driven processes for risk assessment and prioritization.'
+    },
+    zsrblb2: {
+        id: 'zsrblb2',
+        description: 'zero state right bullet list b2',
+        defaultMessage: 'Remediate prioritized risks using easy to understand guidance or Ansible ™ Playbooks to address threats at scale.'
+    },
+    zsrblb3: {
+        id: 'zsrblb3',
+        description: 'zero state right bullet list b3',
+        defaultMessage: 'Gain visibility into your posture regarding security vulnerabilities, industry compliance, and internally defined security policies.'
+    },
+    zsrblb4: {
+        id: 'zsrblb4',
+        description: 'zero state right bullet list b4',
+        defaultMessage: 'Easily create audience-appropriate reporting.'
+    },
+    zsrblb5: {
+        id: 'zsrblb5',
+        description: 'zero state right bullet list b5',
+        defaultMessage: 'Implement predictable processes. Shift teams to more predictable processes for continuous security visibility.'
+    },
+
+    zssampleTitleL: {
+        id: 'zssampleTitleL',
+        description: 'zero state sample title left',
+        defaultMessage: 'Latest security vulnerabilities affecting RHEL infrastructures'
+    },
+    zssampleTitleR: {
+        id: 'zssampleTitleR',
+        description: 'zero state sample title right',
+        defaultMessage: 'CVSS Base Score'
+    },
+    zssampleActionButton: {
+        id: 'zssampleActionButton',
+        description: 'zero state sample call to action button',
+        defaultMessage: 'Register systems to find issues across your infrastructure'
     }
 });

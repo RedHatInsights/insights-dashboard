@@ -1,32 +1,28 @@
-import React, { Component } from 'react';
-import { PageSection } from '@patternfly/react-core';
 import './_marketing-banner.scss';
 
+import { PageSection } from '@patternfly/react-core';
+import React from 'react';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
 
-class MarketingBanner extends Component {
+const MarketingBanner = ({ className, hasGraphic, graphicRight, dark1000, fullBleed, style, isWidthLimited, children }) => {
 
-    render () {
-        const MarketingBannerSectionClasses = classNames(
-            this.props.className,
-            'ins-c-marketing-banner',
-            { [`ins-m-with-graphic `]: this.props.hasGraphic },
-            { [`ins-m-graphic-right`]: this.props.graphicRight },
-            { [`ins-m-dark-1000 pf-m-dark-1000`]: this.props.dark1000 },
-            { [`ins-m-full-bleed`]: this.props.fullBleed }
-        );
+    const MarketingBannerSectionClasses = classNames(
+        className,
+        'ins-c-marketing-banner',
+        { [`ins-m-with-graphic `]: hasGraphic },
+        { [`ins-m-graphic-right`]: graphicRight },
+        { [`ins-m-dark-1000 pf-m-dark-1000`]: dark1000 },
+        { [`ins-m-full-bleed`]: fullBleed }
+    );
 
-        return (
-            <PageSection
-                className={ MarketingBannerSectionClasses }
-                style={ this.props.style }
-                isWidthLimited={ this.props.isWidthLimited }>
-                { this.props.children }
-            </PageSection>
-        );
-    }
-}
+    return <PageSection
+        className={ MarketingBannerSectionClasses }
+        style={ style }
+        isWidthLimited={ isWidthLimited }>
+        {children}
+    </PageSection>;
+};
 
 export default MarketingBanner;
 
