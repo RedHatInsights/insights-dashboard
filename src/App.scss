@@ -2,8 +2,8 @@
 // Sass Imports
 @import "~@redhat-cloud-services/frontend-components-utilities/files/Utilities/_mixins";
 @import "~@redhat-cloud-services/frontend-components-utilities/files/Utilities/all";
-
 @import "~@redhat-cloud-services/frontend-components/index.css";
+@import "~@patternfly/patternfly/sass-utilities/_all.scss";
 
 .pf-l-page__main .pf-c-card {
     min-height: 100%;
@@ -85,4 +85,56 @@
 
 .ins-m-red {
     color: var(--pf-global--palette--red-100);
+}
+
+$ins-c-width-limiter--breakpoint-map: build-breakpoint-map();
+
+.pf-c-page__main-section {
+    &.pf-m-dark-1000 {
+        --pf-c-page__main-section--BackgroundColor: var(--pf-global--palette--black-1000);
+    }
+}
+
+.ins-c-text--black-400 {
+    color: var(--pf-global--palette--black-400);
+}
+
+.ins-c-width-limiter {
+    --ins-c-width-limiter--MaxWidth: auto;
+
+    @include pf-build-css-variable-stack(
+        "max-width",
+        "--ins-c-width-limiter--MaxWidth",
+        $ins-c-width-limiter--breakpoint-map
+    );
+}
+
+$ins-l-autofit--breakpoint-map: build-breakpoint-map();
+
+// Layouts
+.ins-l-autofit {
+    --ins-l-autofit--m-gutter--ColumnGap: var(--pf-global--gutter--md);
+    --ins-l-autofit--m-gutter--RowGap: var(--pf-global--gutter--md);
+    --ins-l-autofit--GridTemplateColumns--min: 250px;
+    --ins-l-autofit--GridTemplateColumns--minmax--min: var(--ins-l-autofit--GridTemplateColumns--min);
+    --ins-l-autofit--GridTemplateColumns: repeat(
+        auto-fit,
+        minmax(var(--ins-l-autofit--GridTemplateColumns--minmax--min), 1fr)
+    );
+    --ins-l-autofit--GridTemplateRows: auto;
+
+    display: grid;
+    grid-template-columns: var(--ins-l-autofit--GridTemplateColumns);
+    grid-template-rows: var(--ins-l-autofit--GridTemplateRows);
+
+    &.pf-m-gutter {
+        row-gap: var(--ins-l-autofit--m-gutter--RowGap);
+        column-gap: var(--ins-l-autofit--m-gutter--ColumnGap);
+    }
+
+    @include pf-build-css-variable-stack(
+        "--ins-l-autofit--GridTemplateColumns--minmax--min",
+        "--ins-l-autofit--GridTemplateColumns--min",
+        $ins-l-autofit--breakpoint-map
+    );
 }

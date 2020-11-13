@@ -12,6 +12,7 @@ import { PageSection } from '@patternfly/react-core/dist/js/components/Page/Page
 import { PermissionContext } from '../../App';
 import { SAP_FETCH_URL } from '../../AppConstants';
 import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
+import ZeroState from '../ZeroState/ZeroState';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
@@ -91,7 +92,7 @@ const Dashboard = ({ workloads }) => {
                 </Main>
             </React.Fragment>
             : <NoSystems workloadIs='SAP' />
-        : <NoSystems />;
+        : <ZeroState />;
 };
 
 Dashboard.propTypes = {

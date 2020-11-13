@@ -1,0 +1,29 @@
+@import "~@patternfly/patternfly/sass-utilities/_all.scss";
+
+.ins-c-icon-list {
+  --ins-c-icon-list--RowGap: var(--pf-global--spacer--lg);
+  --ins-c-icon-list--item--ColumnGap: var(--pf-global--spacer--md);
+  --ins-c-icon-list--item--before--Content--width: 1rem;
+  --ins-c-icon-list--item--before--Content--height: 1rem;
+  --ins-c-icon-list--item--before--Content--url: "../../images/icon__plus-solid.svg";
+
+  list-style: none;
+  display: grid;
+  row-gap: var(--ins-c-icon-list--RowGap);
+
+  li {
+    display: grid;
+    column-gap: var(--ins-c-icon-list--item--ColumnGap);
+    grid-template-columns: 1rem auto;
+    align-content: start;
+
+    &::before {
+      grid-column: 1;
+      content: url(../../images/icon__plus-solid.svg);
+      width: var(--ins-c-icon-list--item--before--Content--width);
+      height: var(--ins-c-icon-list--item--before--Content--height);
+      color: var(--pf-global--palette--red-100);
+      transform: translateY(2px);
+    }
+  }
+}
