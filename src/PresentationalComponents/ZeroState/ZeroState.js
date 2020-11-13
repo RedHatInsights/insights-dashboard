@@ -114,7 +114,9 @@ const ZeroState = () => {
                             <Button
                                 isLarge
                                 component='a'
-                                href={ `${UI_BASE}/registration` } variant='primary'>
+                                href={ `${UI_BASE}/registration` }
+                                variant='primary'
+                                rel='noreferrer'>
                                 {intl.formatMessage(messages.registerYourSystems)}
                             </Button>
                         </FlexItem>
@@ -124,6 +126,7 @@ const ZeroState = () => {
                                 variant='secondary'
                                 component='a'
                                 target='_blank'
+                                rel='noreferrer'
                                 href='https://www.redhat.com/en/technologies/management/insights'>
                                 {intl.formatMessage(messages.learnmoreRHI)}&nbsp;&nbsp;&nbsp;
                                 <ArrowRightIcon />
@@ -240,7 +243,8 @@ const ZeroState = () => {
                 <FlexItem>
                     <Button component='a'
                         href={ `${UI_BASE}/security/insights/` }
-                        target='_blank'>
+                        target='_blank'
+                        rel='noreferrer'>
                         {intl.formatMessage(messages.securityRedirect)}
                     </Button>
                 </FlexItem>
@@ -278,7 +282,8 @@ const ZeroState = () => {
                                     <Button className='pf-m-secondary'
                                         component='a'
                                         href='https://www.redhat.com/en/technologies/management/smart-management'
-                                        target='_blank'>
+                                        target='_blank'
+                                        rel='noreferrer'>
                                         {intl.formatMessage(messages.learnmore)}
                                     </Button>
                                 </FlexItem>
@@ -286,7 +291,8 @@ const ZeroState = () => {
                                     <Button className='pf-m-secondary'
                                         component='a'
                                         href='https://www.redhat.com/en/contact'
-                                        target='_blank'>
+                                        target='_blank'
+                                        rel='noreferrer'>
                                         {intl.formatMessage(messages.contactsales)}
                                     </Button>
                                 </FlexItem>
