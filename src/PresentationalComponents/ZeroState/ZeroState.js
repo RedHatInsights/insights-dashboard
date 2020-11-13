@@ -114,17 +114,16 @@ const ZeroState = () => {
                             <Button
                                 isLarge
                                 component='a'
-                                href={ `${UI_BASE}/registration` }
                                 variant='primary'
-                                rel='noreferrer'>
+                                href={ `${UI_BASE}/registration` }>
                                 {intl.formatMessage(messages.registerYourSystems)}
                             </Button>
                         </FlexItem>
                         <FlexItem>
                             <Button
                                 className='pf-m-plain'
-                                variant='secondary'
                                 component='a'
+                                variant='secondary'
                                 target='_blank'
                                 rel='noreferrer'
                                 href='https://www.redhat.com/en/technologies/management/insights'>
@@ -241,10 +240,11 @@ const ZeroState = () => {
                     </p>
                 </FlexItem>
                 <FlexItem>
-                    <Button component='a'
-                        href={ `${UI_BASE}/security/insights/` }
+                    <Button
+                        component='a'
                         target='_blank'
-                        rel='noreferrer'>
+                        rel='noreferrer'
+                        href={ `${UI_BASE}/security/insights/` }>
                         {intl.formatMessage(messages.securityRedirect)}
                     </Button>
                 </FlexItem>
@@ -279,20 +279,22 @@ const ZeroState = () => {
                         <GridItem md={ 6 } lg={ 7 } className='pf-u-pl-lg'>
                             <Flex>
                                 <FlexItem>
-                                    <Button className='pf-m-secondary'
+                                    <Button
+                                        className='pf-m-secondary'
                                         component='a'
-                                        href='https://www.redhat.com/en/technologies/management/smart-management'
                                         target='_blank'
-                                        rel='noreferrer'>
+                                        rel='noreferrer'
+                                        href='https://www.redhat.com/en/technologies/management/smart-management'>
                                         {intl.formatMessage(messages.learnmore)}
                                     </Button>
                                 </FlexItem>
                                 <FlexItem>
-                                    <Button className='pf-m-secondary'
+                                    <Button
+                                        className='pf-m-secondary'
                                         component='a'
-                                        href='https://www.redhat.com/en/contact'
                                         target='_blank'
-                                        rel='noreferrer'>
+                                        rel='noreferrer'
+                                        href='https://www.redhat.com/en/contact'>
                                         {intl.formatMessage(messages.contactsales)}
                                     </Button>
                                 </FlexItem>
