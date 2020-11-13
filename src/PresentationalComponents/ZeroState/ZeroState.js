@@ -123,7 +123,8 @@ const ZeroState = () => {
                                 className='pf-m-plain'
                                 variant='secondary'
                                 component='a'
-                                href='https://www.redhat.com/en/resources/smart-management-datasheet'>
+                                target='_blank'
+                                href='https://www.redhat.com/en/technologies/management/insights'>
                                 {intl.formatMessage(messages.learnmoreRHI)}&nbsp;&nbsp;&nbsp;
                                 <ArrowRightIcon />
                             </Button>
