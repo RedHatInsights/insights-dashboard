@@ -2,10 +2,6 @@
 
 $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
 
-.ins-c-chrome__global-filter {
-  display: none;
-}
-
 .ins-c-marketing-page {
   --ins-m-marketing-page--RowGap: var(--pf-global--spacer--xl);
   --ins-m-marketing-page--ColumnGap: var(--pf-global--spacer--xl);

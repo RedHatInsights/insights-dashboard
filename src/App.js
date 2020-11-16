@@ -73,6 +73,9 @@ const App = (props) => {
         );
         const inventorySystems = await API.get(`${INVENTORY_TOTAL_FETCH_URL}`);
         setHasSystems(inventorySystems.data.total > 0);
+        if (inventorySystems.data.total <= 0) {
+            insights.chrome.hideGlobalFilter();
+        }
     }
 
     useEffect(() => {
