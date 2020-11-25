@@ -1,38 +1,62 @@
-/* eslint-disable react/display-name */
 import './Advisor.scss';
 
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import * as AppActions from '../../AppActions';
 
-import { Button, Divider, Title, TitleSizes, Tooltip, TooltipPosition } from '@patternfly/react-core/dist/esm/components';
-import { Flex, FlexItem, Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts';
 import { INCIDENT_URL, SEVERITY_MAP } from './Constants';
-import React, { useEffect, useState } from 'react';
-import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { capitalize, sapFilter, workloadsPropType } from '../../Utilities/Common';
-
-import  global_palette_black_300 from '@patternfly/react-tokens/dist/js/global_palette_black_300';
-import  global_palette_cyan_100 from '@patternfly/react-tokens/dist/js/global_palette_cyan_100';
-import  global_palette_cyan_200 from '@patternfly/react-tokens/dist/js/global_palette_cyan_200';
-import  global_palette_cyan_300 from '@patternfly/react-tokens/dist/js/global_palette_cyan_300';
-import  global_palette_cyan_400 from '@patternfly/react-tokens/dist/js/global_palette_cyan_400';
-
-import FailState from '../../PresentationalComponents/FailState/FailState';
-import InfoIcon from '../../Icons/InfoIcon';
-import { InsightsLabel } from '@redhat-cloud-services/frontend-components/InsightsLabel';
-import Loading from '../../PresentationalComponents/Loading/Loading';
-import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
-import PropTypes from 'prop-types';
 import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
-import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import messages from '../../Messages';
+
+import  global_palette_black_300 from '@patternfly/react-tokens/dist/js/global_palette_black_300';
+import  global_palette_blue_100 from '@patternfly/react-tokens/dist/js/global_palette_blue_100';
+import  global_palette_blue_200 from '@patternfly/react-tokens/dist/js/global_palette_blue_200';
+import  global_palette_blue_300 from '@patternfly/react-tokens/dist/js/global_palette_blue_300';
+import  global_palette_blue_400 from '@patternfly/react-tokens/dist/js/global_palette_blue_400';
+
+import FailState from '../../PresentationalComponents/FailState/FailState';
+import Loading from '../../PresentationalComponents/Loading/Loading';
+
+// components
+import {
+    Button,
+    Card,
+    CardBody,
+    Divider,
+    Title
+} from '@patternfly/react-core/dist/esm/components';
+
+// layouts
+import {
+    Flex,
+    FlexItem,
+    Grid
+} from '@patternfly/react-core/dist/esm/layouts';
+
+// charts
+import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
+import { ChartLegend } from '@patternfly/react-charts';
+
+// icons
+import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
+
+// template card
+import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
+
+// expandable card
+import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 
 const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
     advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, selectedTags, workloads, SID }) => {
-    const colors = [global_palette_cyan_100.value,
-        global_palette_cyan_200.value,
-        global_palette_cyan_300.value,
-        global_palette_cyan_400.value];
+    const colors = [
+        global_palette_blue_100.value,
+        global_palette_blue_200.value,
+        global_palette_blue_300.value,
+        global_palette_blue_400.value
+    ];
     const intl = useIntl();
     const [trData, setTRData] = useState([]);
     const [categoryData, setCategoryData] = useState([]);
@@ -41,17 +65,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         `&tags=${selectedTags?.join()}` : ''}${workloads?.SAP ? '&sap_system=true' : ''}${SID?.length ? `&sap_sids=${SID?.join()}` : ''}`;
     const pieLegendClick = categoryData.map(({ value }) => `${UI_BASE}/advisor/recommendations?category=${value}${urlRest}`);
     const totalRiskUrl = (risk) => `${UI_BASE}/advisor/recommendations?total_risk=${risk}${urlRest}`;
-
-    const iconTooltip = text => <Tooltip
-        key={ text }
-        position={ TooltipPosition.top }
-        content={ <div>{text}</div> }>
-        <Button variant='plain' aria-label='Action' className='ins-c-info-icon'>
-            <InfoIcon />
-        </Button>
-    </Tooltip>;
-
-    const pieLegendData = categoryData.map(item => ({ name: `${item.y} ${item.x} `, symbol: { fill: `${item.fill} `, type: 'square' } }));
+    const pieLegendData = categoryData.map(item => ({ name: `${item.y} ${item.x} `, symbol: { fill: `${item.fill} `, type: 'circle' } }));
 
     useEffect(() => {
         const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
@@ -65,14 +79,24 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
             const { total_risk, category } = recStats;
             const categoryCount = category.Stability + category.Availability + category.Performance + category.Security;
             setTRData([
-                { title: `${total_risk[SEVERITY_MAP.critical]} ${capitalize(intl.formatMessage(messages.critical))} `, risk: SEVERITY_MAP.critical },
                 {
-                    title: `${total_risk[SEVERITY_MAP.important]} ${capitalize(intl.formatMessage(messages.important))} `,
-                    risk: SEVERITY_MAP.important
+                    title: `${capitalize(intl.formatMessage(messages.critical))} `,
+                    risk: `${total_risk[SEVERITY_MAP.critical]}`
                 },
-                { title: `${total_risk[SEVERITY_MAP.moderate]} ${capitalize(intl.formatMessage(messages.moderate))} `, risk: SEVERITY_MAP.moderate },
-                { title: `${total_risk[SEVERITY_MAP.low]} ${capitalize(intl.formatMessage(messages.low))} `, risk: SEVERITY_MAP.low }
+                {
+                    title: `${capitalize(intl.formatMessage(messages.important))} `,
+                    risk: `${total_risk[SEVERITY_MAP.important]}`
+                },
+                {
+                    title: `${capitalize(intl.formatMessage(messages.moderate))} `,
+                    risk: `${total_risk[SEVERITY_MAP.moderate]}`
+                },
+                {
+                    title: `${capitalize(intl.formatMessage(messages.low))} `,
+                    risk: `${total_risk[SEVERITY_MAP.low]}`
+                }
             ]);
+
             setCategoryData([
                 {
                     x: intl.formatMessage(messages.availability, { count: category.Availability }), y: category.Availability,
@@ -96,64 +120,109 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [intl, recStats, recStatsStatus]);
 
-    return <TemplateCard appName='Advisor' data-ouia-safe>
+    const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
+
+    return <Card>
         {advisorIncidentsStatus === 'pending' && <Loading />}
-        {advisorIncidentsStatus === 'fulfilled' && <TemplateCardHeader
-            titleClassName={ advisorIncidents?.meta?.count ? 'ins-m-red' : 'ins-m-green' }
-            title={ `${intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })} ` }>
-            &nbsp;
-            {intl.formatMessage(messages.inAdvisor)}
-        &nbsp;
-            <Button component='a' href={ `${UI_BASE}${INCIDENT_URL}` } variant='link' isInline>
-                {intl.formatMessage(messages.recommendations)}
-            </Button>
-        </TemplateCardHeader>}
         {advisorIncidentsStatus === 'rejected' ?
             <TemplateCardBody><FailState appName='Advisor' /></TemplateCardBody>
-            : <TemplateCardBody>
-                <Flex>
-                    <Flex grow={ { default: 'grow' } }>
-                        <FlexItem>
-                            <Title headingLevel='h2' size={ TitleSizes.lg }>
-                                {`${intl.formatMessage(messages.totalRisk)} `}
-                                {iconTooltip(intl.formatMessage(messages.totalRiskDef, { em: str => <em>{str}</em> }))}
-                            </Title>
+            : <React.Fragment>
+                <ExpandableCardTemplate
+                    appName='Advisor'
+                    className='ins-m-toggle-right-on-md'
+                    title={intl.formatMessage(messages.advisorCardHeader1)}
+                    body={
+                        <TemplateCardBody className="ins-c-advisor-recs__card-body">
                             <Grid hasGutter>
-                                {trData.map(({ title, risk }) =>
-                                    <GridItem span={ 6 } key={ title } ><Button component='a' href={ totalRiskUrl(risk) } variant='link' isInline>
-                                        <InsightsLabel value={ risk } text={ title } />
-                                    </Button>
-                                    </GridItem>)}
+                                <Flex
+                                    direction={ { default: 'column' } }
+                                    alignItems={ { default: 'alignItemsCenter' } }
+                                    spaceItems={ { default: 'spaceItemsLg' } }
+                                >
+                                    <Flex>
+                                        <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />
+                                        <span className="pf-u-font-size-2xl pf-u-text-align-center pf-u-font-weight-bold">
+                                            {intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })}
+                                        </span>
+                                    </Flex>
+                                    <FlexItem>
+                                        <p className='pf-u-text-align-center'>{intl.formatMessage(messages.advisorCardMessage)}</p>
+                                    </FlexItem>
+                                    <FlexItem>
+                                        <Button variant='secondary' component='a' href={ `${UI_BASE}${INCIDENT_URL}` }>
+                                            {intl.formatMessage(messages.advisorCardCTA)}
+                                        </Button>
+                                    </FlexItem>
+                                </Flex>
                             </Grid>
-                        </FlexItem>
-                    </Flex>
-                    <Divider isVertical />
-                    <Flex grow={ { default: 'grow' } }>
-                        <FlexItem>
-                            <Title headingLevel='h2' size={ TitleSizes.lg }>
-                                {`${intl.formatMessage(messages.category)} `}
+                        </TemplateCardBody>
+                    }
+                />
+                <Divider inset={ { md: 'insetLg' } } />
+                <ExpandableCardTemplate
+                    appName='advisor-recommendation-by-total-risk'
+                    className='ins-m-toggle-right-on-md'
+                    title={intl.formatMessage(messages.advisorCardHeader2)}
+                    body={
+                        <TemplateCardBody className="ins-c-advisor-recs__card-body">
+                            <Flex justifyContent={ { default: 'justifyContentSpaceEvenly' } }>
+                                {trData.map(({ title, risk }) =>
+                                    <a key={ title } href={ totalRiskUrl(risk) }>
+                                        <Flex
+                                            direction={ { default: 'column' } }
+                                            spaceItems={ { default: 'spaceItemsNone' } }
+                                            alignItems={ { default: 'alignItemsCenter' } }
+                                        >
+                                            <span className="pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold">
+                                                { risk }
+                                            </span>
+                                            <span>
+                                                { title }
+                                            </span>
+                                        </Flex>
+                                    </a>)}
+                            </Flex>
+                        </TemplateCardBody>
+                    }
+                />
+                <Card component="div">
+                    <CardBody>
+                        <Grid hasGutter>
+                            <Title headingLevel="h4" size="xl">
+                                {intl.formatMessage(messages.advisorCardHeader3)}
                             </Title>
-                            <PieChart
-                                ariaDesc='Advisor Category pie chart'
-                                ariaTitle='Advisor Category pie chartt'
-                                constrainToVisibleArea={ true }
-                                data={ categoryData }
-                                colorScale={ colorScale }
-                                height={ 150 }
-                                width={ 150 }
-                                legend='true'
-                                legendData={ pieLegendData }
-                                legendClick={ pieLegendClick }
-                                legendOrientation={ true }
-                                legendHeight={ 80 }
-                                legendWidth={ 130 }
-                            />
-                        </FlexItem>
-                    </Flex>
-                </Flex>
-            </TemplateCardBody>
+                            <Flex alignItems={ { default: 'alignItemsCenter' } }>
+                                <FlexItem>
+                                    <PieChart
+                                        ariaDesc='Advisor Category pie chart'
+                                        ariaTitle='Advisor Category pie chartt'
+                                        constrainToVisibleArea={ true }
+                                        data={ categoryData }
+                                        colorScale={ colorScale }
+                                        padding={ pieChartPadding }
+                                        height={ 100 }
+                                        width={ 100 }
+                                    />
+                                </FlexItem>
+                                <FlexItem flex={ { default: 'flex_1s' } }>
+                                    <ChartLegend
+                                        x={ 0 }
+                                        y={ 0 }
+                                        width="auto"
+                                        height={ 70 }
+                                        data={ pieLegendData }
+                                        orientation="horizontal"
+                                        itemsPerRow={ 2 }
+                                        click={ pieLegendClick }
+                                    />
+                                </FlexItem>
+                            </Flex>
+                        </Grid>
+                    </CardBody>
+                </Card>
+            </React.Fragment>
         }
-    </TemplateCard>;
+    </Card>;
 };
 
 Advisor.propTypes = {

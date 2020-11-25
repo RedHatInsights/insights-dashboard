@@ -8,16 +8,16 @@ import { NumberData } from '../../PresentationalComponents/NumberData/NumberData
 import React from 'react';
 import propTypes from 'prop-types';
 
-export const NumberDescription = ({ data, dataSize, percentageData, link, linkDescription, layout, critical, iconTooltipText, flexDirection }) => (
-    <div className={ `ins-c-dashboard__number-description ${layout ? `pf-m-${layout}` : ''}` }>
+export const NumberDescription = ({ data, dataSize, link, linkDescription, layout, critical, iconTooltipText }) => (
+    <div className={ `${layout ? `pf-m-${layout}` : ''}` }>
         {critical === 'true' && (
             <CriticalIcon />
         )}
-        <Flex direction={ flexDirection }>
-            <FlexItem spacer={ { default: 'spacerXs' } }>
-                <NumberData data={ data } dataSize={ dataSize } percentageData={ percentageData } iconTooltipText={ iconTooltipText } />
+        <Flex direction={ { default: 'column' } } spaceItems={ { default: 'spaceItemsXs' } }>
+            <FlexItem>
+                <NumberData data={ data } dataSize={ dataSize } iconTooltipText={ iconTooltipText } />
             </FlexItem>
-            <FlexItem spacer={ { default: 'spacerXs' } }>
+            <FlexItem>
                 <Button component='a' isInline variant="link" href={ link } >{linkDescription}</Button>
             </FlexItem>
         </Flex>

@@ -1,19 +1,25 @@
 import './TemplateCard.scss';
 
-import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
-import { Card } from '@patternfly/react-core/dist/js/components/Card/Card';
-import { CardActions } from '@patternfly/react-core/dist/js/components/Card/CardActions';
-import { CardBody } from '@patternfly/react-core/dist/js/components/Card/CardBody';
-import { CardFooter } from '@patternfly/react-core/dist/js/components/Card/CardFooter';
-import { CardHeader } from '@patternfly/react-core/dist/js/components/Card/CardHeader';
-import { DownloadIcon } from '@patternfly/react-icons';
-import DownloadReport from '../../PresentationalComponents/DownloadReport/DownloadReport';
-import IconInline from '../../PresentationalComponents/IconInline/IconInline';
-import { Level } from '@patternfly/react-core/dist/js/layouts/Level/Level';
-import { LevelItem } from '@patternfly/react-core/dist/js/layouts/Level/LevelItem';
 import React from 'react';
-import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import propTypes from 'prop-types';
+
+import DownloadReport from '../DownloadReport/DownloadReport';
+import IconInline from '../IconInline/IconInline';
+
+// components
+import {
+    Button,
+    Card,
+    CardActions,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+    Title
+} from '@patternfly/react-core/dist/js/components/';
+
+// icons
+import { DownloadIcon } from '@patternfly/react-icons';
 
 export const TemplateCard = ({ appName, children, ...props }) => (
     <Card className={ `ins-c-dashboard__card ins-c-dashboard__card--${appName}` } { ...props }>
@@ -42,7 +48,7 @@ export const TemplateCardActions = ({ children, downloadReport, iconInlineMessag
             <IconInline message={ iconInlineMessage } state={ iconInlineState }/>
         }
         { downloadReport &&
-            <DownloadReport/>
+            <DownloadReport />
         }
         {children}
     </CardActions>
@@ -55,33 +61,31 @@ TemplateCardActions.propTypes = {
     iconInlineState: propTypes.string
 };
 
-export const TemplateCardHeader = ({ title, subtitle, onDownload, children, titleClassName, ...props }) => (
-    <CardHeader className={ `ins-c-dashboard__card--header ${subtitle ? ' ins-m-padding-small ' : ''}` }  { ...props }>
-        <Level>
-            { title &&
-                <LevelItem>
-                    <Title headingLevel="h2" size="lg" className={ titleClassName }> { title } </Title>
-                </LevelItem>
-            }
+export const TemplateCardHeader = ({ title, onDownload, subtitle, children, ...props }) => (
+    <CardHeader className='ins-c-dashboard__card--header'  { ...props }>
+        <CardTitle>
+            <Title headingLevel="h4" size="xl">
+                { title }
+            </Title>
             { subtitle &&
-                <LevelItem>
-                    <h2 className="ins-c-dashboard__card--header-subtitle">{ subtitle }</h2>
-                </LevelItem>
+                <div>
+                    { subtitle }
+                </div>
             }
-            <LevelItem>
-                { children }
-                { onDownload &&
-                    <Button variant='link' icon={ <DownloadIcon/> } onClick={ onDownload }>Report</Button>
-                }
-            </LevelItem>
-        </Level>
+        </CardTitle>
+        <CardActions>
+            { children }
+            { onDownload &&
+                <Button variant='link' icon={ <DownloadIcon/> } onClick={ onDownload }>Report</Button>
+            }
+        </CardActions>
     </CardHeader>
 );
 
 TemplateCardHeader.propTypes = {
     title: propTypes.string,
     titleClassName: propTypes.string,
-    subtitle: propTypes.string,
+    subtitle: propTypes.any,
     children: propTypes.any,
     onDownload: propTypes.func
 };

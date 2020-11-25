@@ -57,18 +57,23 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
     }
 
     return <TemplateCard appName='PatchManager' className={ 'ins-c-dashboard__card--Patch' }>
-        <TemplateCardHeader subtitle={ intl.formatMessage(messages.patchTitle) } />
+        <TemplateCardHeader
+            title={ intl.formatMessage(messages.patchTitle) }
+            subtitle={
+                <Button
+                    component="a"
+                    href={ `${UI_BASE}/${PATCHMAN_ID}/systems` }
+                    variant="link"
+                    isInline
+                >
+                    <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
+                </Button>
+            }
+        />
+
         <TemplateCardBody>
             {!isLoaded ? <Loading /> :
                 <React.Fragment>
-                    <Button
-                        component="a"
-                        href={ `${UI_BASE}/${PATCHMAN_ID}/systems` }
-                        variant="link"
-                        isInline
-                    >
-                        <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
-                    </Button>
                     <div className="ins-c-patch__chart">
                         <PieChart
                             ariaDesc="Patch systems chart"
