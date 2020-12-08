@@ -11,6 +11,7 @@ import {
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { chart_color_blue_200, chart_color_blue_300 } from '@patternfly/react-tokens';
+import { global_palette_black_300 } from '@patternfly/react-tokens/dist/esm/';
 import { supportsGlobalFilter, workloadsPropType } from '../../Utilities/Common';
 
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
@@ -78,14 +79,15 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                             y: policy.attributes.compliant_host_count
                                                         }, {
                                                             x: 'Non-compliant',
-                                                            y: policy.attributes.total_host_count - policy.attributes.compliant_host_count
-                                                        }
+                                                            y: policy.attributes.test_result_host_count - policy.attributes.compliant_host_count
+                                                        }, (policy.attributes.test_result_host_count === 0 && { x: 'Compliant', y: '0' })
                                                     ] }
                                                     labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
                                                     padding={ pieChartPadding }
                                                     height={ 65 }
                                                     width={ 65 }
-                                                    colorScale={ colorScale }
+                                                    colorScale={ policy.attributes.test_result_host_count === 0 ?
+                                                        [global_palette_black_300.value] : colorScale }
                                                 />
                                             </div>
                                             <div className="ins-c-compliance__row-item">
@@ -102,16 +104,17 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                 <Split hasGutter>
                                                     <SplitItem>
                                                         {intl.formatMessage(messages.compliantHostCount,
-                                                            { count: policy.attributes.total_host_count }
+                                                            { count: policy.attributes.test_result_host_count }
                                                         )}
                                                     </SplitItem>
                                                     <SplitItem>
                                                         {intl.formatMessage(messages.compliantScore,
                                                             {
-                                                                score: +(
-                                                                    100 * (
-                                                                        policy.attributes.compliant_host_count / policy.attributes.total_host_count
-                                                                    )
+                                                                score: +(policy.attributes.test_result_host_count &&
+                                                                    (100 * (
+                                                                        policy.attributes.compliant_host_count /
+                                                                        policy.attributes.test_result_host_count
+                                                                    ))
                                                                 ).toFixed(1)
                                                             }
                                                         )}
