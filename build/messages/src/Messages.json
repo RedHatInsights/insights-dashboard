@@ -68,7 +68,7 @@
     "description": "Data privacy body"
   },
   "dataPrivacyAndControlsTitle": {
-    "defaultMessage": "Data privacy and controls in Red Hat Insights",
+    "defaultMessage": "Data privacy and controls in Insights",
     "description": "Data privacy and controls title"
   },
   "deniedStateBody": {
@@ -112,8 +112,8 @@
     "description": "Advisor - incidents "
   },
   "insightsForSap": {
-    "defaultMessage": "Red Hat Insights for SAP",
-    "description": "Red Hat Insights for SAP"
+    "defaultMessage": "Insights for SAP",
+    "description": "Insights for SAP"
   },
   "insightsandsmartmanagement": {
     "defaultMessage": "Insights and Smart Management",
@@ -132,8 +132,8 @@
     "description": "learnmore"
   },
   "learnmoreRHI": {
-    "defaultMessage": "Learn more about Red Hat Insights",
-    "description": "Learn more about Red Hat Insights"
+    "defaultMessage": "Learn more about Insights",
+    "description": "Learn more about Insights"
   },
   "low": {
     "defaultMessage": "Low",
@@ -148,7 +148,7 @@
     "description": "more"
   },
   "noSystemsDescription": {
-    "defaultMessage": "With predictive analytics, avoid problems and unplanned downtime in your Red Hat environment. Red Hat Insights is included with your Red Hat Enterprise Linux subscription.",
+    "defaultMessage": "With predictive analytics, avoid problems and unplanned downtime in your Red Hat environment. Insights is included with your Red Hat Enterprise Linux subscription.",
     "description": "Register systems to use Insights"
   },
   "noSystemsInstall": {
@@ -160,11 +160,11 @@
     "description": "Getting started documentation"
   },
   "noSystemsRegister": {
-    "defaultMessage": "Register the system to Red Hat Insights",
+    "defaultMessage": "Register the system to Insights",
     "description": "Register systems"
   },
   "noSystemsTitle": {
-    "defaultMessage": "Get started with Red Hat Insights",
+    "defaultMessage": "Get started with Insights",
     "description": "No systems"
   },
   "patchTitle": {
@@ -176,8 +176,8 @@
     "description": "Category chart  value"
   },
   "providesAdditionalSAPworkload": {
-    "defaultMessage": "Red Hat Insights provides additional SAP workload-focused enhancements to provide a curated view of the health across the SAP Landscape on Red Hat Enterprise Linux. This functionality further enables Insights detection and remediation capabilities for workload optimization, performance, stability, compliance & security. <break></break> Red Hat Insights has not detected any hosts running a SAP workload. To take advantage of these features, please install the Insights-client on an RHEL host running SAP & these systems will be automatically profiled.",
-    "description": "Red Hat Insights provides additional SAP"
+    "defaultMessage": "Insights provides additional SAP workload-focused enhancements to provide a curated view of the health across the SAP Landscape on Red Hat Enterprise Linux. This functionality further enables Insights detection and remediation capabilities for workload optimization, performance, stability, compliance & security. <break></break> Insights has not detected any hosts running a SAP workload. To take advantage of these features, please install the Insights-client on an RHEL host running SAP & these systems will be automatically profiled.",
+    "description": "Insights provides additional SAP"
   },
   "recommendations": {
     "defaultMessage": "recommendations",
@@ -280,7 +280,7 @@
     "description": "Subscriptions utilized card - product one report total"
   },
   "subscriptionsUtilizedProductOneTitle": {
-    "defaultMessage": "Red Hat OpenShift",
+    "defaultMessage": "OpenShift",
     "description": "Subscriptions utilized card - product one title"
   },
   "subscriptionsUtilizedProductTwoTitle": {
@@ -304,7 +304,7 @@
     "description": "User has no access to read inventory systems"
   },
   "systemInventoryNotUsingClient": {
-    "defaultMessage": "{count, plural, one {# additional system} other {# additional systems}} not running insights-client are not taking advantage of Red Hat Insights capabilities.",
+    "defaultMessage": "{count, plural, one {# additional system} other {# additional systems}} not running insights-client are not taking advantage of Insights capabilities.",
     "description": "Number of systems not running insights client"
   },
   "systemInventoryPercentageData": {

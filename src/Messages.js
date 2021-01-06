@@ -35,7 +35,7 @@ export default defineMessages({
     subscriptionsUtilizedProductOneTitle: {
         id: 'subscriptionsUtilizedProductOneTitle',
         description: 'Subscriptions utilized card - product one title',
-        defaultMessage: 'Red Hat OpenShift'
+        defaultMessage: 'OpenShift'
     },
     subscriptionsUtilizedProductOneReport: {
         id: 'subscriptionsUtilizedProductOneDesc',
@@ -221,7 +221,7 @@ export default defineMessages({
         id: 'systemInventoryNotUsingClient',
         description: 'Number of systems not running insights client',
         defaultMessage: '{count, plural, one {# additional system} other {# additional systems}} not running insights-client\
-        are not taking advantage of Red Hat Insights capabilities.'
+        are not taking advantage of Insights capabilities.'
     },
     systemInventoryNoAccess: {
         id: 'systemInventoryNoAccess',
@@ -266,13 +266,13 @@ export default defineMessages({
     noSystemsTitle: {
         id: 'noSystemsTitle',
         description: 'No systems',
-        defaultMessage: 'Get started with Red Hat Insights'
+        defaultMessage: 'Get started with Insights'
     },
     noSystemsDescription: {
         id: 'noSystemsDescription',
         description: 'Register systems to use Insights',
         defaultMessage: 'With predictive analytics, avoid problems and unplanned\
-                        downtime in your Red Hat environment. Red Hat Insights is\
+                        downtime in your Red Hat environment. Insights is\
                         included with your Red Hat Enterprise Linux subscription.'
     },
     noSystemsInstall: {
@@ -283,7 +283,7 @@ export default defineMessages({
     noSystemsRegister: {
         id: 'noSystemsRegister',
         description: 'Register systems',
-        defaultMessage: 'Register the system to Red Hat Insights'
+        defaultMessage: 'Register the system to Insights'
     },
     noSystemsLink: {
         id: 'noSystemsLink',
@@ -367,13 +367,13 @@ export default defineMessages({
     },
     insightsForSap: {
         id: 'insightsForSap',
-        description: 'Red Hat Insights for SAP',
-        defaultMessage: 'Red Hat Insights for SAP'
+        description: 'Insights for SAP',
+        defaultMessage: 'Insights for SAP'
     },
     providesAdditionalSAPworkload: {
         id: 'providesAdditionalSAPworkload',
-        description: 'Red Hat Insights provides additional SAP',
-        defaultMessage: `Red Hat Insights provides additional SAP workload-focused enhancements to provide a curated view of the health across the SAP Landscape on Red Hat Enterprise Linux. This functionality further enables Insights detection and remediation capabilities for workload optimization, performance, stability, compliance & security. <break></break> Red Hat Insights has not detected any hosts running a SAP workload. To take advantage of these features, please install the Insights-client on an RHEL host running SAP & these systems will be automatically profiled.`
+        description: 'Insights provides additional SAP',
+        defaultMessage: `Insights provides additional SAP workload-focused enhancements to provide a curated view of the health across the SAP Landscape on Red Hat Enterprise Linux. This functionality further enables Insights detection and remediation capabilities for workload optimization, performance, stability, compliance & security. <break></break> Insights has not detected any hosts running a SAP workload. To take advantage of these features, please install the Insights-client on an RHEL host running SAP & these systems will be automatically profiled.`
     },
     learnmore: {
         id: 'learnmore',
@@ -392,8 +392,8 @@ export default defineMessages({
     },
     learnmoreRHI: {
         id: 'learnmoreRHI',
-        description: 'Learn more about Red Hat Insights',
-        defaultMessage: 'Learn more about Red Hat Insights'
+        description: 'Learn more about Insights',
+        defaultMessage: 'Learn more about Insights'
     },
     contactsales: {
         id: 'contactsales',
@@ -438,7 +438,7 @@ export default defineMessages({
     dataPrivacyAndControlsTitle: {
         id: 'dataPrivacyAndControlsTitle',
         description: 'Data privacy and controls title',
-        defaultMessage: 'Data privacy and controls in Red Hat Insights'
+        defaultMessage: 'Data privacy and controls in Insights'
     },
     zslblTitle: {
         id: 'zslblTitle',
