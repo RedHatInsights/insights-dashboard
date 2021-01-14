@@ -66,8 +66,7 @@
     "redux": "4.0.5",
     "redux-logger": "3.0.6",
     "redux-promise-middleware": "6.1.2",
-    "seamless-immutable": "7.1.4",
-    "urijs": "1.19.5"
+    "seamless-immutable": "7.1.4"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
