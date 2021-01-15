@@ -5,10 +5,6 @@
 @import "~@redhat-cloud-services/frontend-components/index.css";
 @import "~@patternfly/patternfly/sass-utilities/_all.scss";
 
-.pf-l-page__main .pf-c-card {
-    min-height: 100%;
-}
-
 .ins-c-summary {
     &__accent {
         color: var(--pf-global--palette--black-500);
