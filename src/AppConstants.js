@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-import * as urijs from 'urijs';
 
 const BASE_URL = '/api';
 export const UI_BASE = './insights';
@@ -13,9 +12,9 @@ export const COMPLIANCE_SEARCH = encodeURIComponent('(has_policy_test_results=tr
 export const COMPLIANCE_FETCH_URL = `${BASE_URL}/compliance/profiles?search=${COMPLIANCE_SEARCH}`;
 
 // Vulnerability App Constants
-const VULN_CVES = '/vulnerability/v1/report/executive';
+const VULN_BASE = '/vulnerability/v1';
 export const VULNERABILITIES_FETCH = 'VULNERABILITIES_FETCH';
-export const VULNERABILITIES_FETCH_URL = urijs(`${BASE_URL}${VULN_CVES}`);
+export const VULNERABILITIES_FETCH_URL = (`${BASE_URL}${VULN_BASE}/dashboard`);
 export const VULNERABILITIES_CVES_URL = `${BASE_URL}/vulnerability/v1/vulnerabilities/cves`;
 
 // Advisor App Constants
