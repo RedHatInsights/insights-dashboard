@@ -5,7 +5,7 @@ import { CardBody } from '@patternfly/react-core/dist/js/components/Card/CardBod
 import { CardFooter } from '@patternfly/react-core/dist/js/components/Card/CardFooter';
 import { CardHeader } from '@patternfly/react-core/dist/js/components/Card/CardHeader';
 import React from 'react';
-import { Skeleton } from '@redhat-cloud-services/frontend-components/components/Skeleton/';
+import { Skeleton } from '@redhat-cloud-services/frontend-components/Skeleton/';
 
 const Loading = () => {
     return (

@@ -1,6 +1,6 @@
 import { DashboardStore } from '../AppReducer';
 import { compose } from 'redux';
-import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
+import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
 import promiseMiddleware from 'redux-promise-middleware';
 
 let registry;

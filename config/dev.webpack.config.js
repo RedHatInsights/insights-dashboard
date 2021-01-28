@@ -1,4 +1,4 @@
-/* global require, module, __dirname */
+/* global */
 const { resolve } = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const config = require('@redhat-cloud-services/frontend-components-config');
