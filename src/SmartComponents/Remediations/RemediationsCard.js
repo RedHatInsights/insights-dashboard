@@ -16,7 +16,7 @@ import { RemediationsEmptyState } from './RemediationsEmptyState';
 import RunStatus from './RunStatus';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
 import { useIntl } from 'react-intl';
 
 /**
