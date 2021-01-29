@@ -12,6 +12,10 @@ plugins.push(
     })
 );
 
+// eslint-disable-next-line no-unused-vars
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// plugins.push(new BundleAnalyzerPlugin())
+
 module.exports = {
     ...webpackConfig,
     plugins
