@@ -9,14 +9,14 @@ import { sapFilter, workloadsPropType } from '../../Utilities/Common';
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
-import { NotAuthorized } from '@redhat-cloud-services/frontend-components/components/cjs/NotAuthorized';
+import { NotAuthorized } from '@redhat-cloud-services/frontend-components/NotAuthorized';
 import { NumberDescription } from '../../../../insights-dashboard/src/PresentationalComponents/NumberDescription/NumberDescription';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 // eslint-disable-next-line no-unused-vars
-import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/files/RBACHook';
+import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 /**
  * System inventory card for showing system inventory and status.

@@ -1,12 +1,14 @@
-parser: babel-eslint
+parser: '@babel/eslint-parser'
 settings:
   react:
     version: '16.0'
 env:
+  node: true
   browser: true
   es6: true
 plugins:
   - 'react-hooks'
+  - '@babel'
 extends:
   - 'eslint:recommended'
   - 'prettier'
@@ -51,14 +53,6 @@ rules:
       MemberExpression: 0
       ImportDeclaration: 1
       ObjectExpression: 1
-  react/jsx-curly-spacing:
-    - error
-    - always
-    - allowMultiline: false
-    - spacing:
-      - objectLiterals:
-        - never
-    - children: true
   key-spacing: 2
   keyword-spacing: 2
   linebreak-style:

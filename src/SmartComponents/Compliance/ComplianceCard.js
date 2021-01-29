@@ -11,7 +11,6 @@ import {
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { chart_color_blue_200, chart_color_blue_300 } from '@patternfly/react-tokens';
-import { global_palette_black_300 } from '@patternfly/react-tokens/dist/esm/';
 import { supportsGlobalFilter, workloadsPropType } from '../../Utilities/Common';
 
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
@@ -25,8 +24,9 @@ import { SplitItem } from '@patternfly/react-core/dist/js/layouts/Split/SplitIte
 import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
+import { global_palette_black_300 } from '@patternfly/react-tokens/dist/esm/';
 import messages from '../../Messages';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
 import { useIntl } from 'react-intl';
 
 const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSummary, selectedTags, workloads, SID }) => {

@@ -6,7 +6,7 @@ import API from '../../Utilities/Api';
 import DeniedState from '../DeniedState/DeniedState';
 import { Divider } from '@patternfly/react-core/dist/js/components/Divider/Divider';
 import Loading from '../../PresentationalComponents/Loading/Loading';
-import { Main } from '@redhat-cloud-services/frontend-components/components/Main';
+import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import NoSystems from '../NoSystems/NoSystems';
 import { PageSection } from '@patternfly/react-core/dist/js/components/Page/PageSection';
 import { PermissionContext } from '../../App';

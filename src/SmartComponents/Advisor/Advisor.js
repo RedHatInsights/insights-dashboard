@@ -19,7 +19,7 @@ import {
 
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import InfoIcon from '../../Icons/InfoIcon';
-import { InsightsLabel } from '@redhat-cloud-services/frontend-components/components/esm/InsightsLabel';
+import { InsightsLabel } from '@redhat-cloud-services/frontend-components/InsightsLabel';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import PropTypes from 'prop-types';
