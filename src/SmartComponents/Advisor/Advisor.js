@@ -9,13 +9,12 @@ import { INCIDENT_URL, SEVERITY_MAP } from './Constants';
 import React, { useEffect, useState } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { capitalize, sapFilter, workloadsPropType } from '../../Utilities/Common';
-import {
-    global_palette_black_300,
-    global_palette_cyan_100,
-    global_palette_cyan_200,
-    global_palette_cyan_300,
-    global_palette_cyan_400
-} from '@patternfly/react-tokens/dist/esm/';
+
+import  global_palette_black_300 from '@patternfly/react-tokens/dist/js/global_palette_black_300';
+import  global_palette_cyan_100 from '@patternfly/react-tokens/dist/js/global_palette_cyan_100';
+import  global_palette_cyan_200 from '@patternfly/react-tokens/dist/js/global_palette_cyan_200';
+import  global_palette_cyan_300 from '@patternfly/react-tokens/dist/js/global_palette_cyan_300';
+import  global_palette_cyan_400 from '@patternfly/react-tokens/dist/js/global_palette_cyan_400';
 
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import InfoIcon from '../../Icons/InfoIcon';
