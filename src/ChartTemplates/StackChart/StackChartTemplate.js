@@ -3,14 +3,12 @@ import './_StackChartTemplate.scss';
 
 import { Chart, ChartAxis, ChartBar, ChartLabel, ChartLegend, ChartStack, ChartTooltip } from '@patternfly/react-charts';
 import React, { useEffect, useRef, useState } from 'react';
-import {
-    c_button_m_control_active_after_BorderBottomColor,
-    global_palette_gold_200,
-    global_palette_gold_400,
-    global_palette_orange_300,
-    global_palette_red_200,
-    global_primary_color_200
-} from '@patternfly/react-tokens';
+import c_button_m_control_active_after_BorderBottomColor from '@patternfly/react-tokens/dist/js/c_button_m_control_active_after_BorderBottomWidth';
+import global_palette_gold_200 from '@patternfly/react-tokens/dist/js/global_palette_gold_200';
+import global_palette_gold_400 from '@patternfly/react-tokens/dist/js/global_palette_gold_400';
+import global_palette_orange_300 from '@patternfly/react-tokens/dist/js/global_palette_orange_300';
+import global_palette_red_200 from '@patternfly/react-tokens/dist/js/global_palette_red_200';
+import global_primary_color_200 from '@patternfly/react-tokens/dist/js/global_primary_color_200';
 
 import { capitalize } from '../../Utilities/Common';
 import propTypes from 'prop-types';

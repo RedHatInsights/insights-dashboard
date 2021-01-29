@@ -3,7 +3,9 @@ import './PatchManagerCard.scss';
 import { PATCHMAN_ID, UI_BASE } from '../../AppConstants';
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
-import { chart_color_blue_200, chart_color_blue_300, chart_color_blue_400 } from '@patternfly/react-tokens';
+import chart_color_blue_200 from '@patternfly/react-tokens/dist/js/chart_color_blue_200';
+import chart_color_blue_300 from '@patternfly/react-tokens/dist/js/chart_color_blue_300';
+import chart_color_blue_400 from '@patternfly/react-tokens/dist/js/chart_color_blue_400';
 import { patchmanFetchBugs, patchmanFetchEnhancements, patchmanFetchSecurity, patchmanFetchSystems } from '../../AppActions';
 import { sapFilter, workloadsPropType } from '../../Utilities/Common';
 
