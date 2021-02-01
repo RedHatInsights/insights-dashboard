@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Loading from './PresentationalComponents/Loading/Loading';
 
-const Dashboard = lazy(() => import(/* webpackChunkName: 'Dashboard' */ './PresentationalComponents/Dashboard/Dashboard'));
+const Dashboard = lazy(() => import(/* webpackChunkName: 'dashboard-route' */ './PresentationalComponents/Dashboard/Dashboard'));
 export const Routes = () => {
     return (
         <Switch>
