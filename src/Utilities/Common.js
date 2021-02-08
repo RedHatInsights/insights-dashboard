@@ -35,5 +35,6 @@ export const sapFilter = (workloads, SID) => generateFilter({
     }
 }, undefined, { arrayEnhancer: 'contains' });
 
-export const supportsGlobalFilter = (selectedTags, workloads, SID) =>
-    workloads === undefined || workloads['All workloads'] && selectedTags.length === 0 && Object.entries(SID).length === 0;
+export const supportsGlobalFilter = (selectedTags, workloads, SID) => workloads === undefined ||
+!Object.values(workloads).map(value => value.isSelected).reduce((res, cur) => res || cur, false) &&
+selectedTags.length === 0 && Object.entries(SID).length === 0;
