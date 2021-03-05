@@ -5,7 +5,6 @@ import * as AppActions from '../../AppActions';
 // components
 import {
     Button,
-    ButtonVariant,
     DataList,
     DescriptionList,
     DescriptionListDescription,
