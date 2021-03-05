@@ -1,4 +1,32 @@
 {
+  "advisorAppBlockBody": {
+    "defaultMessage": "Advisor body content.",
+    "description": "Advisor app block body"
+  },
+  "advisorAppBlockHeader": {
+    "defaultMessage": "Advisor",
+    "description": "Advisor app block header"
+  },
+  "advisorCardCTA": {
+    "defaultMessage": "Create remediation plan",
+    "description": "Advisor card CTA"
+  },
+  "advisorCardHeader1": {
+    "defaultMessage": "Advisory recommendations",
+    "description": "Advisory card header 1"
+  },
+  "advisorCardHeader2": {
+    "defaultMessage": "Recommendations by total risk",
+    "description": "Advisory card header 2"
+  },
+  "advisorCardHeader3": {
+    "defaultMessage": "Recommendations by category",
+    "description": "Advisory card header 3"
+  },
+  "advisorCardMessage": {
+    "defaultMessage": "Problematic conditions that cause an issue have been actively detected on your systems",
+    "description": "Advisor card message"
+  },
   "advisorChartDescription": {
     "defaultMessage": "This chart shows recommendations effecting your system",
     "description": "Advisor chart description"
@@ -14,6 +42,14 @@
   "category": {
     "defaultMessage": "Category",
     "description": "Category"
+  },
+  "complianceAppBlockBody": {
+    "defaultMessage": "Easily identify and manage security compliance issues in the RHEL infrastructure.",
+    "description": "compliance app block body"
+  },
+  "complianceAppBlockHeader": {
+    "defaultMessage": "Compliance",
+    "description": "compliance app block header"
   },
   "complianceEmptyStateAction1": {
     "defaultMessage": "Create a policy",
@@ -50,6 +86,14 @@
   "critical": {
     "defaultMessage": "Critical",
     "description": "Critical"
+  },
+  "cveByCvssScoreTitle": {
+    "defaultMessage": "CVEs by CVSS score",
+    "description": "CVE by cvss score card header"
+  },
+  "cvesImpactingOneOrMoreSystems": {
+    "defaultMessage": "{cves, plural, one {CVE} other {CVEs}} with security rules impacting 1 or more systems",
+    "description": "Vulnerability - cve impacting link"
   },
   "cvesImpactingSystems": {
     "defaultMessage": "{cves, plural, one {CVE} other {CVEs}} impacting your systems",
@@ -95,6 +139,10 @@
     "defaultMessage": "Filtered results are available directly within the {appname} application.",
     "description": "Filtered results are available directly"
   },
+  "footerTitle": {
+    "defaultMessage": "Setup additional services",
+    "description": "Footer section title"
+  },
   "functionalityNotSupported": {
     "defaultMessage": "This functionality is not supported within {appname}. Remove all filters to show dashboard results.",
     "description": "This functionality is not supported within"
@@ -108,7 +156,7 @@
     "description": "in Advisor"
   },
   "incidents": {
-    "defaultMessage": "{incidents, plural, one {# Incident} other {# Incidents}}",
+    "defaultMessage": "{incidents, plural, one {# incident} other {# incidents}} detected",
     "description": "Advisor - incidents "
   },
   "insightsForSap": {
@@ -147,6 +195,10 @@
     "defaultMessage": "more",
     "description": "more"
   },
+  "moreAbout": {
+    "defaultMessage": "More about Red Hat's response",
+    "description": "More about Red Hat's response"
+  },
   "noSystemsDescription": {
     "defaultMessage": "With predictive analytics, avoid problems and unplanned downtime in your Red Hat environment. Insights is included with your Red Hat Enterprise Linux subscription.",
     "description": "Register systems to use Insights"
@@ -167,6 +219,14 @@
     "defaultMessage": "Get started with Insights",
     "description": "No systems"
   },
+  "patchAppBlockBody": {
+    "defaultMessage": "Patch body content.",
+    "description": "Patch app block body"
+  },
+  "patchAppBlockHeader": {
+    "defaultMessage": "Patch",
+    "description": "Patch app block header"
+  },
   "patchTitle": {
     "defaultMessage": "Patch",
     "description": "Patch - title"
@@ -174,6 +234,22 @@
   "performance": {
     "defaultMessage": "Performance",
     "description": "Category chart  value"
+  },
+  "policiesAppBlockBody": {
+    "defaultMessage": "Create and evaluate custom system configurations in your environment.",
+    "description": "Policies app block body"
+  },
+  "policiesAppBlockHeader": {
+    "defaultMessage": "Policies",
+    "description": "Policies app block header"
+  },
+  "policiesCardCTA": {
+    "defaultMessage": "View all policies",
+    "description": "Policies CTA"
+  },
+  "policiesCardHeader": {
+    "defaultMessage": "Policies",
+    "description": "Policies card header"
   },
   "providesAdditionalSAPworkload": {
     "defaultMessage": "Insights provides additional SAP workload-focused enhancements to provide a curated view of the health across the SAP Landscape on Red Hat Enterprise Linux. This functionality further enables Insights detection and remediation capabilities for workload optimization, performance, stability, compliance & security. <break></break> Insights has not detected any hosts running a SAP workload. To take advantage of these features, please install the Insights-client on an RHEL host running SAP & these systems will be automatically profiled.",
@@ -190,6 +266,18 @@
   "registerYourSystems": {
     "defaultMessage": "Register your systems",
     "description": "Register your systems"
+  },
+  "remediationsAppBlockBody": {
+    "defaultMessage": "Fully automate resolution procedures tailored to each system. Either remediate issues manually or create Ansible Playbooks.",
+    "description": "Remediations app block body"
+  },
+  "remediationsAppBlockHeader": {
+    "defaultMessage": "Remediations",
+    "description": "Remediations app block header"
+  },
+  "remediationsCardHeader": {
+    "defaultMessage": "Remediations",
+    "description": "Remediations card header"
   },
   "remediationsNoActivity": {
     "defaultMessage": "Failure",
@@ -251,6 +339,14 @@
     "defaultMessage": "Stability",
     "description": "Category chart  value"
   },
+  "subscriptionsAppBlockBody": {
+    "defaultMessage": "Subscriptions body content.",
+    "description": "Subscriptions app block body"
+  },
+  "subscriptionsAppBlockHeader": {
+    "defaultMessage": "Subscriptions",
+    "description": "Subscriptions app block header"
+  },
   "subscriptionsTitle": {
     "defaultMessage": "Subscription Watch",
     "description": "Title of the subscriptions utilized card"
@@ -295,6 +391,10 @@
     "defaultMessage": "Subscription Watch utilization summary",
     "description": "Title of the subscriptions utilized card"
   },
+  "systemInventoryCTA": {
+    "defaultMessage": "Register systems",
+    "description": "System inventory - cta"
+  },
   "systemInventoryDescription": {
     "defaultMessage": "{count, plural, one {System} other {Systems}} running insights-client",
     "description": "System inventory - description"
@@ -323,9 +423,17 @@
     "defaultMessage": "Insights system inventory",
     "description": "System Inventory - title"
   },
+  "systemInventoryUnregisteredDescription": {
+    "defaultMessage": "{count, plural, one {System} other {Systems}} unregistered",
+    "description": "System unregistered - description"
+  },
   "systemsAffected": {
     "defaultMessage": "{count, plural, one {# system} other {# systems}} affected",
     "description": "Patch - systems affected"
+  },
+  "systemsExposed": {
+    "defaultMessage": "Systems exposed",
+    "description": "Systems exposed"
   },
   "totalRisk": {
     "defaultMessage": "Total risk",
@@ -335,6 +443,10 @@
     "defaultMessage": "A value derived from the <em>likelihood</em> that the condition will negatively affect your infrastructure, and the <em>impact</em> on system operation if that were to happen",
     "description": "Total risk definition"
   },
+  "viewDetails": {
+    "defaultMessage": "View details",
+    "description": "View details"
+  },
   "vulnerabilitiesTitle": {
     "defaultMessage": "Vulnerability",
     "description": "Vulnerability card header"
@@ -343,9 +455,25 @@
     "defaultMessage": "{total}",
     "description": "Vulnerability - vulnerability total"
   },
+  "vulnerabilityAppBlockBody": {
+    "defaultMessage": "Vulnerability body content.",
+    "description": "Vulnerability app block body"
+  },
+  "vulnerabilityAppBlockHeader": {
+    "defaultMessage": "Vulnerability",
+    "description": "Vulnerability app block header"
+  },
+  "vulnerabilityCardCTAText": {
+    "defaultMessage": "Triage rules",
+    "description": "Vulnerability card cta text"
+  },
   "vulnerabilityLearnMore": {
     "defaultMessage": "Learn about CVSS Scores",
     "description": "Vulnerability - learn more link"
+  },
+  "vulnerabilityMessage": {
+    "defaultMessage": "Red Hat recommends addressing these CVEs w/high priority due to heightened risk associated with these security issues",
+    "description": "Vulnerability message"
   },
   "zslblBody": {
     "defaultMessage": "Deliver more reliable IT solutions by identifying performance and configuration risks before downtime occurs. With less downtime, IT can focus on higher value projects and deepen their skills.",

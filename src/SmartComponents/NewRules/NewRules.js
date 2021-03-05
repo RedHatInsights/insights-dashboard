@@ -1,21 +1,6 @@
 import './NewRules.scss';
 
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import * as AppActions from '../../AppActions';
-
-import { capitalize } from '../../Utilities/Common';
-import { connect } from 'react-redux';
-// import { INCIDENT_URL, SEVERITY_MAP } from './Constants';
-// import { SEVERITY_MAP } from './Constants';
-// import { InsightsLabel } from '@redhat-cloud-services/frontend-components/components/esm/InsightsLabel';
-import { useIntl } from 'react-intl';
-import { UI_BASE } from '../../AppConstants';
-// import { SEVERITY_MAP } from './Constants';
-import { workloadsPropType } from '../../Utilities/Common';
-import { DataListItemTemplate } from '../../PresentationalComponents/Template/DataListItemTemplate';
-// import messages from '../../Messages';
-// import Loading from '../../PresentationalComponents/Loading/Loading';
 
 // components
 import {
@@ -23,18 +8,36 @@ import {
     ButtonVariant,
     DataList,
     DescriptionList,
-    DescriptionListTerm,
-    DescriptionListGroup,
     DescriptionListDescription,
+    DescriptionListGroup,
+    DescriptionListTerm,
     TextContent,
     Title
 } from '@patternfly/react-core/dist/esm/components';
-
 // layouts
 import {
     Flex,
     FlexItem
 } from '@patternfly/react-core/dist/esm/layouts';
+import React, { useEffect } from 'react';
+
+import { DataListItemTemplate } from '../../PresentationalComponents/Template/DataListItemTemplate';
+// charts
+import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
+import PropTypes from 'prop-types';
+import { UI_BASE } from '../../AppConstants';
+import { capitalize } from '../../Utilities/Common';
+import { connect } from 'react-redux';
+import messages from '../../Messages';
+// import { INCIDENT_URL, SEVERITY_MAP } from './Constants';
+// import { SEVERITY_MAP } from './Constants';
+// import { InsightsLabel } from '@redhat-cloud-services/frontend-components/components/esm/InsightsLabel';
+import { useIntl } from 'react-intl';
+// import { SEVERITY_MAP } from './Constants';
+import { workloadsPropType } from '../../Utilities/Common';
+
+// import messages from '../../Messages';
+// import Loading from '../../PresentationalComponents/Loading/Loading';
 
 // // charts
 // import {
@@ -42,11 +45,10 @@ import {
 //     // severitColor
 // } from '@patternfly/react-charts';
 
-// charts
-import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
-
 // const DistilledDataList = ({ fetchVulnerabilities, vulnerabilities, vulnerabilitiesFetchStatus, workloads, SID, selectedTags }) => {
 const DistilledDataList = ({ fetchVulnerabilities, workloads, SID, selectedTags }) => {
+    const intl = useIntl();
+
     useEffect(() => {
         const options = {
             ...workloads?.SAP?.isSelected && { sap_system: true },
@@ -56,8 +58,6 @@ const DistilledDataList = ({ fetchVulnerabilities, workloads, SID, selectedTags 
 
         fetchVulnerabilities(options);
     }, [fetchVulnerabilities, workloads, SID, selectedTags]);
-
-    const intl = useIntl();
 
     let vulnerabilitiesTemp = {
         cves_by_severity: {
@@ -219,9 +219,9 @@ const DistilledDataList = ({ fetchVulnerabilities, workloads, SID, selectedTags 
                                 </DescriptionList>
                                 <Flex flexDefault={ { md: 'flex_1', xl: 'flexDefault' } }>
                                     <Button type="a" href="#"
-                                        rel='noreferrer' target='_blank' variant="secondary">View details</Button>
+                                        rel='noreferrer' target='_blank' variant="secondary">{intl.formatMessage(messages.viewDetails)}</Button>
                                     <a href={ `https://access.redhat.com/node/${item.node_id}` } rel='noreferrer' target='_blank'>
-                                        More about Red Hat&apos;s response
+                                        {intl.formatMessage(messages.moreAbout)}
                                     </a>
                                 </Flex>
                             </Flex>
@@ -244,14 +244,9 @@ const DistilledDataList = ({ fetchVulnerabilities, workloads, SID, selectedTags 
                                     </FlexItem>
                                     <Flex direction={ { default: 'column' } } spaceItems={ { default: 'spaceItemsNone' } }>
                                         <div className="pf-u-font-size-2xl">{ item.systems_affected }</div>
-                                        <div>Systems exposed</div>
+                                        <div>{intl.formatMessage(messages.systemsExposed)}</div>
                                     </Flex>
                                 </Flex>
-                                <FlexItem>
-                                    <Button variant={ ButtonVariant.primary } className="pf-u-hidden-on-md">
-                                        Dismiss
-                                    </Button>
-                                </FlexItem>
                             </Flex>
                         </Flex>
                     }

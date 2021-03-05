@@ -682,5 +682,20 @@ export default defineMessages({
         id: 'vulnerabilityAppBlockBody',
         description: 'Vulnerability app block body',
         defaultMessage: 'Vulnerability body content.'
+    },
+    viewDetails: {
+        id: 'viewDetails',
+        description: 'View details',
+        defaultMessage: 'View details'
+    },
+    moreAbout: {
+        id: 'moreAbout',
+        description: 'More about Red Hat\'s response',
+        defaultMessage: 'More about Red Hat\'s response'
+    },
+    systemsExposed: {
+        id: 'systemsExposed',
+        description: 'Systems exposed',
+        defaultMessage: 'Systems exposed'
     }
 });
