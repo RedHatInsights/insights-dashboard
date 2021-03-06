@@ -167,7 +167,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
     }
 
     return <TemplateCard appName='SubscriptionsUtilized'>
-        <TemplateCardHeader subtitle={ intl.formatMessage(messages.subscriptionsUtilizedTitle) }/>
+        <TemplateCardHeader title={ intl.formatMessage(messages.subscriptionsUtilizedTitle) }/>
         <TemplateCardBody>
             {supportsGlobalFilter(selectedTags, workloads, SID) ?
                 <React.Fragment>

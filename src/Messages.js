@@ -70,7 +70,7 @@ export default defineMessages({
     incidents: {
         id: 'incidents',
         description: 'Advisor - incidents ',
-        defaultMessage: '{incidents, plural, one {# Incident} other {# Incidents}}'
+        defaultMessage: '{incidents, plural, one {# incident} other {# incidents}} detected'
     },
     critical: {
         id: 'critical',
@@ -107,6 +107,11 @@ export default defineMessages({
         description: 'Vulnerability card header',
         defaultMessage: 'Vulnerability'
     },
+    cveByCvssScoreTitle: {
+        id: 'cveByCvssScoreTitle',
+        description: 'CVE by cvss score card header',
+        defaultMessage: 'CVEs by CVSS score'
+    },
     complianceTitle: {
         id: 'complianceTitle',
         description: 'Compliance card header',
@@ -126,6 +131,21 @@ export default defineMessages({
         id: 'cvesImpactingSystems',
         description: 'Vulnerability - cve impacting link',
         defaultMessage: '{cves, plural, one {CVE} other {CVEs}} impacting your systems'
+    },
+    cvesImpactingOneOrMoreSystems: {
+        id: 'cvesImpactingOneOrMoreSystems',
+        description: 'Vulnerability - cve impacting link',
+        defaultMessage: '{cves, plural, one {CVE} other {CVEs}} with security rules impacting 1 or more systems'
+    },
+    vulnerabilityMessage: {
+        id: 'vulnerabilityMessage',
+        description: 'Vulnerability message',
+        defaultMessage: 'Red Hat recommends addressing these CVEs w/high priority due to heightened risk associated with these security issues'
+    },
+    vulnerabilityCardCTAText: {
+        id: 'vulnerabilityCardCTAText',
+        description: 'Vulnerability card cta text',
+        defaultMessage: 'View CVEs'
     },
     vulnerabilityLearnMore: {
         id: 'vulnerabilityLearnMore',
@@ -197,6 +217,11 @@ export default defineMessages({
         description: 'System inventory - description',
         defaultMessage: '{count, plural, one {System} other {Systems}} running insights-client'
     },
+    systemInventoryUnregisteredDescription: {
+        id: 'systemInventoryUnregisteredDescription',
+        description: 'System unregistered - description',
+        defaultMessage: '{count, plural, one {System} other {Systems}} unregistered'
+    },
     systemInventoryStaleWarning: {
         id: 'systemInventoryStaleWarning',
         description: 'System inventory - stale warning',
@@ -206,6 +231,11 @@ export default defineMessages({
         id: 'systemInventoryStale',
         description: 'System inventory - stale',
         defaultMessage: '{count, plural, one {# stale system} other {# stale systems}}'
+    },
+    systemInventoryCTA: {
+        id: 'systemInventoryCTA',
+        description: 'System inventory - cta',
+        defaultMessage: 'Register systems'
     },
     systemInventoryPercentageData: {
         id: 'systemInventoryPercentageData',
@@ -525,5 +555,147 @@ export default defineMessages({
         id: 'zssampleActionButton',
         description: 'zero state sample call to action button',
         defaultMessage: 'Register systems to find issues across your infrastructure'
+    },
+
+    // Card headers
+    footerTitle: {
+        id: 'footerTitle',
+        description: 'Footer section title',
+        defaultMessage: 'Setup additional services'
+    },
+
+    // Card headers
+    advisorCardHeader1: {
+        id: 'advisorCardHeader1',
+        description: 'Advisory card header 1',
+        defaultMessage: 'Advisory recommendations'
+    },
+    advisorCardHeader2: {
+        id: 'advisorCardHeader2',
+        description: 'Advisory card header 2',
+        defaultMessage: 'Recommendations by total risk'
+    },
+    advisorCardHeader3: {
+        id: 'advisorCardHeader3',
+        description: 'Advisory card header 3',
+        defaultMessage: 'Recommendations by category'
+    },
+    policiesCardHeader: {
+        id: 'policiesCardHeader',
+        description: 'Policies card header',
+        defaultMessage: 'Policies'
+    },
+    remediationsCardHeader: {
+        id: 'remediationsCardHeader',
+        description: 'Remediations card header',
+        defaultMessage: 'Remediations'
+    },
+
+    // Card CTAs
+    advisorCardCTA: {
+        id: 'advisorCardCTA',
+        description: 'Advisor card CTA',
+        defaultMessage: 'View incidents'
+    },
+    policiesCardCTA: {
+        id: 'policiesCardCTA',
+        description: 'Policies CTA',
+        defaultMessage: 'View all policies'
+    },
+
+    // Card messages
+    advisorCardMessage: {
+        id: 'advisorCardMessage',
+        description: 'Advisor card message',
+        defaultMessage: 'Problematic conditions that cause an issue have been actively detected on your systems'
+    },
+
+    // App block titles
+    advisorAppBlockHeader: {
+        id: 'advisorAppBlockHeader',
+        description: 'Advisor app block header',
+        defaultMessage: 'Advisor'
+    },
+    complianceAppBlockHeader: {
+        id: 'complianceAppBlockHeader',
+        description: 'compliance app block header',
+        defaultMessage: 'Compliance'
+    },
+    patchAppBlockHeader: {
+        id: 'patchAppBlockHeader',
+        description: 'Patch app block header',
+        defaultMessage: 'Patch'
+    },
+    policiesAppBlockHeader: {
+        id: 'policiesAppBlockHeader',
+        description: 'Policies app block header',
+        defaultMessage: 'Policies'
+    },
+    remediationsAppBlockHeader: {
+        id: 'remediationsAppBlockHeader',
+        description: 'Remediations app block header',
+        defaultMessage: 'Remediations'
+    },
+    subscriptionsAppBlockHeader: {
+        id: 'subscriptionsAppBlockHeader',
+        description: 'Subscriptions app block header',
+        defaultMessage: 'Subscriptions'
+    },
+    vulnerabilityAppBlockHeader: {
+        id: 'vulnerabilityAppBlockHeader',
+        description: 'Vulnerability app block header',
+        defaultMessage: 'Vulnerability'
+    },
+
+    // App block titles
+    advisorAppBlockBody: {
+        id: 'advisorAppBlockBody',
+        description: 'Advisor app block body',
+        defaultMessage: 'Advisor body content.'
+    },
+    complianceAppBlockBody: {
+        id: 'complianceAppBlockBody',
+        description: 'compliance app block body',
+        defaultMessage: 'Easily identify and manage security compliance issues in the RHEL infrastructure.'
+    },
+    patchAppBlockBody: {
+        id: 'patchAppBlockBody',
+        description: 'Patch app block body',
+        defaultMessage: 'Patch body content.'
+    },
+    policiesAppBlockBody: {
+        id: 'policiesAppBlockBody',
+        description: 'Policies app block body',
+        defaultMessage: 'Create and evaluate custom system configurations in your environment.'
+    },
+    remediationsAppBlockBody: {
+        id: 'remediationsAppBlockBody',
+        description: 'Remediations app block body',
+        defaultMessage: 'Fully automate resolution procedures tailored to each system. Either remediate issues manually or create Ansible Playbooks.'
+    },
+    subscriptionsAppBlockBody: {
+        id: 'subscriptionsAppBlockBody',
+        description: 'Subscriptions app block body',
+        defaultMessage: 'Subscriptions body content.'
+    },
+    vulnerabilityAppBlockBody: {
+        id: 'vulnerabilityAppBlockBody',
+        description: 'Vulnerability app block body',
+        defaultMessage: 'Vulnerability body content.'
+    },
+    viewDetails: {
+        id: 'viewDetails',
+        description: 'View details',
+        defaultMessage: 'View details'
+    },
+    moreAbout: {
+        id: 'moreAbout',
+        description: 'More about Red Hat\'s response',
+        defaultMessage: 'More about Red Hat\'s response'
+    },
+    systemsExposed: {
+        id: 'systemsExposed',
+        description: 'Systems exposed',
+        defaultMessage: 'Systems exposed'
     }
 });

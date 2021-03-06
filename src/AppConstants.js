@@ -5,6 +5,12 @@ export const UI_BASE = './insights';
 export const SELECTED_TAGS_SET = 'SELECTED_TAGS_SET';
 export const WORKLOADS_SET = 'WORKLOADS_SET';
 export const SID_SET = 'SID_SET';
+export const SEVERITY_MAP = {
+    critical: 4,
+    important: 3,
+    moderate: 2,
+    low: 1
+};
 
 // Compliance App Constants
 export const COMPLIANCE_FETCH = 'COMPLIANCE_SUMMARY_FETCH';

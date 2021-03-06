@@ -4,12 +4,12 @@ import * as AppActions from '../../AppActions';
 
 import React, { useEffect } from 'react';
 import {
-    TemplateCard,
-    TemplateCardBody,
-    TemplateCardHeader
+    TemplateCardActions,
+    TemplateCardBody
 } from '../../PresentationalComponents/Template/TemplateCard';
 
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
+import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import PropTypes from 'prop-types';
 import { RemediationsEmptyState } from './RemediationsEmptyState';
@@ -19,9 +19,6 @@ import messages from '../../Messages';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
 import { useIntl } from 'react-intl';
 
-/**
- * Remediations card.
- */
 const RemediationsCard = ({
     fetchRemediations, remediationsFetchStatus, remediations
 }) => {
@@ -33,44 +30,51 @@ const RemediationsCard = ({
     }, [fetchRemediations]);
 
     return (
-        <TemplateCard appName='Remediations'>
-            <TemplateCardHeader title='Remediations' />
-            <TemplateCardBody>
-                {remediationsFetchStatus === 'fulfilled' &&
-                    (Array.isArray(remediations.data) &&
-                        (remediations.data.length > 0 ?
-                            <React.Fragment>
-                                {remediations.data.map((element, index) =>
-                                    <RunStatus id={ element.id } name={ element.name } key={ element.id } index={ index + 1 } />
-                                )}
-                                {remediations.meta.total > remediations.meta.count &&
-                                    <div className='ins-c-remediations-container'>
-                                        <div className='ins-c-remediation__status'>
+        <ExpandableCardTemplate
+            appName='remediations'
+            className='ins-c-card__remediations ins-m-toggle-right-on-md'
+            title={ intl.formatMessage(messages.remediationsCardHeader) }
+            header={
+                <TemplateCardActions />
+            }
+            body={
+                <TemplateCardBody>
+                    {remediationsFetchStatus === 'fulfilled' &&
+                        (Array.isArray(remediations.data) &&
+                            (remediations.data.length > 0 ?
+                                <React.Fragment>
+                                    {remediations.data.map((element, index) =>
+                                        <RunStatus id={ element.id } name={ element.name } key={ element.id } index={ index + 1 } />
+                                    )}
+                                    {remediations.meta.total > remediations.meta.count &&
+                                        <div className='ins-c-remediations-container'>
+                                            <div className='ins-c-remediation__status'>
+                                            </div>
+                                            <div className='ins-c-remediation__timestamp'>
+                                                <Button
+                                                    id='remediations-link-more'
+                                                    component='a'
+                                                    href='./insights/remediations'
+                                                    variant='link'
+                                                    isInline
+                                                >
+                                                    {intl.formatMessage(messages.remediationsTotal,
+                                                        { total: remediations.meta.total - remediations.meta.count }
+                                                    )}
+                                                </Button>
+                                            </div>
                                         </div>
-                                        <div className='ins-c-remediation__timestamp'>
-                                            <Button
-                                                id='remediations-link-more'
-                                                component='a'
-                                                href='./insights/remediations'
-                                                variant='link'
-                                                isInline
-                                            >
-                                                {intl.formatMessage(messages.remediationsTotal,
-                                                    { total: remediations.meta.total - remediations.meta.count }
-                                                )}
-                                            </Button>
-                                        </div>
-                                    </div>
-                                }
-                            </React.Fragment>
-                            : <RemediationsEmptyState />)
-                    )
-                }
-                {remediationsFetchStatus === 'rejected' &&
-                    <FailState appName='Remediations' />
-                }
-            </TemplateCardBody>
-        </TemplateCard>
+                                    }
+                                </React.Fragment>
+                                : <RemediationsEmptyState />)
+                        )
+                    }
+                    {remediationsFetchStatus === 'rejected' &&
+                        <FailState appName='Remediations' />
+                    }
+                </TemplateCardBody>
+            }
+        />
     );
 };
 

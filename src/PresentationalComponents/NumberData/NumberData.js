@@ -8,7 +8,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 export const NumberData = ({ data, dataSize, percentageData, iconTooltipText }) => (
-    <div className="ins-c-dashboard__number-data--number-percentage">
+    <div>
         <span className={ `ins-c-dashboard__number-data--${dataSize}` }>
             {data}
         </span>

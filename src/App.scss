@@ -1,5 +1,31 @@
 @import "~@redhat-cloud-services/frontend-components-utilities/styles/_all";
 @import "~@patternfly/patternfly/sass-utilities/_all";
+@import "~@patternfly/patternfly/utilities/Alignment/alignment.css";
+
+$ins-l-autofit--breakpoint-map: build-breakpoint-map();
+$ins-c-width-limiter--breakpoint-map: build-breakpoint-map();
+
+#root.pf-c-page__main {
+    height: auto;
+}
+
+html, body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.ins-c-sidebar + .pf-c-page__drawer .pf-c-drawer__content {
+    > div {
+        display: contents;
+    }
+}
+
+.ins-c-drawer-control {
+    position: absolute;
+    top: 100px;
+    right: 10px;
+    z-index: 1000;
+}
 
 .ins-c-summary {
     &__accent {
@@ -46,6 +72,45 @@
     }
 }
 
+// ins-c-metrics ins-m-split ins-m-no-border-on-md
+.ins-c-metrics {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+
+    &::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        pointer-events: none;
+        border-top: var(--pf-global--BorderWidth--sm) solid var(--pf-global--BorderColor--100);
+        border-bottom: var(--pf-global--BorderWidth--sm) solid var(--pf-global--BorderColor--100);
+    }
+}
+
+.ins-c-metrics__metric {
+    display: inline-grid;
+    align-items: center;
+    grid-auto-flow: column;
+    grid-gap: var(--pf-global--spacer--sm);
+    padding: var(--pf-global--spacer--md) var(--pf-global--spacer--sm);
+
+    > svg {
+        font-size: var(--pf-global--icon--FontSize--md);
+    }
+}
+
+.ins-c-metrics__metric-number {
+    font-size: var(--pf-global--icon--FontSize--md);
+}
+
+.ins-c-metrics__metric__label {
+    color: var(--pf-global--Color--200);
+}
+
 // ==================================================================
 // Gauge
 // ==================================================================
@@ -79,7 +144,6 @@
     color: var(--pf-global--palette--red-100);
 }
 
-$ins-c-width-limiter--breakpoint-map: build-breakpoint-map();
 
 .pf-c-page__main-section {
     &.pf-m-dark-1000 {
@@ -91,28 +155,181 @@ $ins-c-width-limiter--breakpoint-map: build-breakpoint-map();
     color: var(--pf-global--palette--black-400);
 }
 
+// width limiter
 .ins-c-width-limiter {
     --ins-c-width-limiter--MaxWidth: auto;
+    --ins-c-width-limiter--MinWidth: 0;
 
     @include pf-build-css-variable-stack(
         "max-width",
         "--ins-c-width-limiter--MaxWidth",
         $ins-c-width-limiter--breakpoint-map
     );
+    @include pf-build-css-variable-stack(
+        "min-width",
+        "--ins-c-width-limiter--MinWidth",
+        $ins-c-width-limiter--breakpoint-map
+    );
 }
 
-$ins-l-autofit--breakpoint-map: build-breakpoint-map();
+// data-list
+.pf-c-data-list {
+    --ins-c-data-list__item-row--MinHeight: auto;
 
+    &.ins-m-toggle-right-on-md {
+        @media screen and (min-width: $pf-global--breakpoint--md) {
+            .pf-c-data-list__item-control {
+                order: 1;
+                margin-right: calc(var(--pf-global--spacer--sm) * -1);
+            }
+        }
+    }
+
+    .pf-c-data-list__cell {
+        &.pf-m-display-flex {
+            display: flex;
+        }
+
+        // stylelint-disable no-descending-specificity
+        & + .pf-c-data-list__cell.pf-m-flex-none,
+        &.pf-m-flex-none {
+            flex: none;
+        }
+        // stylelint-enable
+    }
+
+    &.ins-m-no-border {
+        .pf-c-data-list__item::before {
+            content: none;
+        }
+
+        .pf-c-data-list__expandable-content {
+            border-top: none;
+        }
+    }
+
+    &.ins-m-no-padding {
+        --pf-c-data-list__item-row--PaddingRight: 0;
+        --pf-c-data-list__item-row--PaddingLeft: 0;
+    }
+
+    &.ins-m-no-top-border {
+        --pf-c-data-list--BorderTopWidth: 0;
+        --pf-c-data-list--BorderTopColor: transparent;
+    }
+}
+
+// card
+.pf-c-card {
+    > .pf-c-card {
+        --pf-c-card--BoxShadow: none;
+    }
+
+    &.ins-m-toggle-right-on-md {
+        @media screen and (min-width: $pf-global--breakpoint--md) {
+            .pf-c-card__title {
+                flex: 1;
+            }
+
+            .pf-c-card__header-toggle {
+                order: 5;
+                margin-right: calc(var(--pf-global--spacer--sm) * -1);
+                margin-left: 0;
+                padding-left: var(--pf-c-card__header-toggle--MarginRight);
+            }
+        }
+    }
+}
+
+// table
+.pf-c-table {
+    &.ins-m-no-left-padding {
+        padding-right: var(--pf-c-table--cell--PaddingLeft);
+        padding-left: 0;
+    }
+
+    &.ins-m-no-styling {
+        tr:not(.pf-c-table__expandable-row) {
+            border-bottom: none;
+        }
+
+        // stylelint-disable no-descending-specificity
+        tr > * {
+            --pf-c-table--cell--PaddingTop: 0;
+            --pf-c-table--cell--PaddingRight: var(--pf-global--spacer--md);
+            --pf-c-table--cell--PaddingBottom: 0;
+            --pf-c-table--cell--PaddingLeft: var(--pf-global--spacer--md);
+        }
+        // stylelint-enable
+    }
+}
+
+// dot
+.ins-c-table__dot {
+    --ins-c-table__dot--BackgroundColor: #000;
+
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: var(--ins-c-table__dot--BackgroundColor);
+    }
+
+    // stylelint-disable no-descending-specificity
+    > * {
+        margin-left: var(--pf-global--spacer--sm);
+    }
+    // stylelint-enable
+}
+
+.pf-c-form-control {
+    &.pf-m-plain {
+        border: none;
+    }
+}
+
+// ==================================================================
 // Layouts
+// ==================================================================
+
+// columns
+.ins-l-columns {
+    --ins-l-columns--MarginBottom: var(--pf-global--spacer--md);
+    --ins-l-columns--Gap: var(--pf-global--gutter);
+
+    gap: var(--ins-l-columns--Gap);
+    column-fill: balance;
+
+    @media screen and (min-width: $pf-global--breakpoint--md) {
+        columns: 2;
+    }
+
+    &.ins-m-3-col-on-xl {
+        @media screen and (min-width: $pf-global--breakpoint--xl) {
+            columns: 3;
+        }
+    }
+
+    // stylelint-disable no-descending-specificity
+    > * {
+        margin-bottom: var(--ins-l-columns--MarginBottom);
+        break-inside: avoid;
+    }
+    // stylelint-enable
+}
+
+// autofit
 .ins-l-autofit {
     --ins-l-autofit--m-gutter--ColumnGap: var(--pf-global--gutter--md);
     --ins-l-autofit--m-gutter--RowGap: var(--pf-global--gutter--md);
     --ins-l-autofit--GridTemplateColumns--min: 250px;
     --ins-l-autofit--GridTemplateColumns--minmax--min: var(--ins-l-autofit--GridTemplateColumns--min);
-    --ins-l-autofit--GridTemplateColumns: repeat(
-        auto-fit,
-        minmax(var(--ins-l-autofit--GridTemplateColumns--minmax--min), 1fr)
-    );
+    --ins-l-autofit--GridTemplateColumns: repeat(auto-fit, minmax(var(--ins-l-autofit--GridTemplateColumns--minmax--min), 1fr));
     --ins-l-autofit--GridTemplateRows: auto;
 
     display: grid;
@@ -129,4 +346,14 @@ $ins-l-autofit--breakpoint-map: build-breakpoint-map();
         "--ins-l-autofit--GridTemplateColumns--min",
         $ins-l-autofit--breakpoint-map
     );
+}
+
+.pf-l-grid {
+    height: 100%;
+
+    &.pf-m-full-height {
+        > .pf-c-card {
+            align-self: stretch;
+        }
+    }
 }
