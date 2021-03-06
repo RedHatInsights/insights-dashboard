@@ -1,0 +1,180 @@
+import * as AppActions from '../../AppActions';
+import React, { useEffect } from 'react';
+
+import { connect } from 'react-redux';
+import { sapFilter, workloadsPropType } from '../../Utilities/Common';
+import { NotAuthorized } from '@redhat-cloud-services/frontend-components/NotAuthorized';
+import { NumberDescription } from '../../PresentationalComponents/NumberDescription/NumberDescription';
+import { useIntl } from 'react-intl';
+import { UI_BASE } from '../../AppConstants';
+import FailState from '../../PresentationalComponents/FailState/FailState';
+import PropTypes from 'prop-types';
+import messages from '../../Messages';
+// eslint-disable-next-line no-unused-vars
+import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
+
+// components
+import {
+    Button
+} from '@patternfly/react-core/dist/esm/components';
+
+// layouts
+import {
+    Flex,
+    FlexItem
+} from '@patternfly/react-core/dist/esm/layouts';
+
+// icons
+import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
+
+/**
+ * System inventory card for showing system inventory and status.
+ */
+const SystemInventoryHeader = ({
+    fetchInventory, inventoryFetchStatus, inventorySummary,
+    fetchInventoryStale, inventoryStaleFetchStatus, inventoryStaleSummary,
+    fetchInventoryWarning, inventoryWarningFetchStatus, inventoryWarningSummary,
+    fetchInventoryTotal, inventoryTotalFetchStatus, inventoryTotalSummary,
+    selectedTags, workloads, SID
+}) => {
+
+    const { hasAccess } = usePermissions('inventory', [
+        'inventory:*:*',
+        'inventory:*:read',
+        'inventory:hosts:*',
+        'inventory:hosts:read'
+    ]);
+
+    useEffect(() => {
+        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
+        fetchInventoryTotal(options);
+        fetchInventory(options);
+        fetchInventoryStale(options);
+        fetchInventoryWarning(options);
+    }, [fetchInventoryTotal, fetchInventory, fetchInventoryStale, fetchInventoryWarning, selectedTags, workloads, SID]
+    );
+
+    const intl = useIntl();
+
+    return <div>
+        {
+            hasAccess === false ?
+                <NotAuthorized
+                    showReturnButton={ false }
+                    serviceName="Inventory"
+                    icon={ () => '' }
+                    variant='xs'
+                    description={ <div>{intl.formatMessage(messages.systemInventoryNoAccess)}</div> }
+                /> :
+                <Flex spaceItems={ { md: 'spaceItemsXl' } }
+                    alignItems={ { md: 'alignItemsCenter' } }
+                    direction={ { default: 'column', md: 'row' } }
+                >
+                    <Flex spaceItems={ { default: 'spaceItemsXl' } }>
+                        {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
+                            <NumberDescription
+                                data={ inventorySummary.total.toLocaleString() || 0 }
+                                dataSize="lg"
+                                linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
+                                    { count: inventorySummary.total || 0 }
+                                ) }
+                                link='./insights/inventory'
+                            />
+                        }
+                        {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
+                            <NumberDescription
+                                data={ inventoryTotalSummary.total - inventorySummary.total || 0 }
+                                dataSize="lg"
+                                linkDescription={ intl.formatMessage(messages.systemInventoryUnregisteredDescription,
+                                    { count: inventoryTotalSummary.total || 0 }
+                                ) }
+                                link='./insights/inventory'
+                            />
+                        }
+                    </Flex>
+                    <Flex spaceItems={ { default: 'spaceItemsXl' } }
+                        alignItems={ { default: 'alignItemsCenter' } }
+                        flex={ { default: 'flex_1' } }
+                    >
+                        <Flex direction={ { default: 'column' } } spaceItems={ { default: 'spaceItemsNone' } }>
+                            <FlexItem>
+                                {inventoryStaleFetchStatus === 'fulfilled' &&
+                                    <Button component="a" variant="link" href='./insights/inventory/?status=stale' isInline>
+                                        <IconInline
+                                            message={ intl.formatMessage(messages.systemInventoryStale,
+                                                { count: inventoryStaleSummary.total || 0 }
+                                            ) }
+                                            state="warning"
+                                            systemInventory="true"
+                                        />
+                                    </Button>
+                                }
+                            </FlexItem>
+                            <FlexItem>
+                                {inventoryWarningFetchStatus === 'fulfilled' &&
+                                    <Button component="a" variant="link" href='./insights/inventory/?status=stale_warning' isInline>
+                                        <IconInline
+                                            message={ intl.formatMessage(messages.systemInventoryStaleWarning,
+                                                { count: inventoryWarningSummary.total || 0 }
+                                            ) }
+                                            state="critical"
+                                            systemInventory="true"
+                                        />
+                                    </Button>
+                                }
+                            </FlexItem>
+                            {inventoryTotalFetchStatus === 'rejected' &&
+                                <FailState appName='Inventory' isSmall />
+                            }
+                        </Flex>
+                        <FlexItem align={{ md: 'alignRight' }}>
+                            <Button component='a' variant='primary' href={ `${UI_BASE}/registration` }>
+                                { intl.formatMessage(messages.systemInventoryCTA) }
+                            </Button>
+                        </FlexItem>
+                    </Flex>
+                </Flex>
+        }
+    </div>;
+};
+
+SystemInventoryHeader.propTypes = {
+    fetchInventory: PropTypes.func,
+    inventorySummary: PropTypes.object,
+    inventoryFetchStatus: PropTypes.string,
+    fetchInventoryStale: PropTypes.func,
+    inventoryStaleSummary: PropTypes.object,
+    inventoryStaleFetchStatus: PropTypes.string,
+    fetchInventoryWarning: PropTypes.func,
+    inventoryWarningSummary: PropTypes.object,
+    inventoryWarningFetchStatus: PropTypes.string,
+    fetchInventoryTotal: PropTypes.func,
+    inventoryTotalSummary: PropTypes.object,
+    inventoryTotalFetchStatus: PropTypes.string,
+    intl: PropTypes.any,
+    selectedTags: PropTypes.arrayOf(PropTypes.string),
+    workloads: workloadsPropType,
+    SID: PropTypes.arrayOf(PropTypes.string)
+};
+
+export default connect(
+    ({ DashboardStore }) => ({
+        inventorySummary: DashboardStore.inventorySummary,
+        inventoryFetchStatus: DashboardStore.inventoryFetchStatus,
+        inventoryStaleSummary: DashboardStore.inventoryStaleSummary,
+        inventoryStaleFetchStatus: DashboardStore.inventoryStaleFetchStatus,
+        inventoryWarningSummary: DashboardStore.inventoryWarningSummary,
+        inventoryWarningFetchStatus: DashboardStore.inventoryWarningFetchStatus,
+        inventoryTotalSummary: DashboardStore.inventoryTotalSummary,
+        inventoryTotalFetchStatus: DashboardStore.inventoryTotalFetchStatus,
+        selectedTags: DashboardStore.selectedTags,
+        workloads: DashboardStore.workloads,
+        SID: DashboardStore.SID
+    }),
+    dispatch => ({
+        fetchInventory: (params) => dispatch(AppActions.fetchInventorySummary(params)),
+        fetchInventoryStale: (params) => dispatch(AppActions.fetchInventoryStaleSummary(params)),
+        fetchInventoryWarning: (params) => dispatch(AppActions.fetchInventoryWarningSummary(params)),
+        fetchInventoryTotal: (params) => dispatch(AppActions.fetchInventoryTotalSummary(params))
+    })
+)(SystemInventoryHeader);

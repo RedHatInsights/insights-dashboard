@@ -3,9 +3,6 @@ import './PatchManagerCard.scss';
 import { PATCHMAN_ID, UI_BASE } from '../../AppConstants';
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
-import chart_color_blue_200 from '@patternfly/react-tokens/dist/js/chart_color_blue_200';
-import chart_color_blue_300 from '@patternfly/react-tokens/dist/js/chart_color_blue_300';
-import chart_color_blue_400 from '@patternfly/react-tokens/dist/js/chart_color_blue_400';
 import { patchmanFetchBugs, patchmanFetchEnhancements, patchmanFetchSecurity, patchmanFetchSystems } from '../../AppActions';
 import { sapFilter, workloadsPropType } from '../../Utilities/Common';
 
@@ -14,6 +11,9 @@ import FailState from '../../PresentationalComponents/FailState/FailState';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import PropTypes from 'prop-types';
+import chart_color_blue_200 from '@patternfly/react-tokens/dist/js/chart_color_blue_200';
+import chart_color_blue_300 from '@patternfly/react-tokens/dist/js/chart_color_blue_300';
+import chart_color_blue_400 from '@patternfly/react-tokens/dist/js/chart_color_blue_400';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
@@ -57,18 +57,23 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
     }
 
     return <TemplateCard appName='PatchManager' className={ 'ins-c-dashboard__card--Patch' }>
-        <TemplateCardHeader subtitle={ intl.formatMessage(messages.patchTitle) } />
+        <TemplateCardHeader
+            title={ intl.formatMessage(messages.patchTitle) }
+            subtitle={
+                <Button
+                    component="a"
+                    href={ `${UI_BASE}/${PATCHMAN_ID}/systems` }
+                    variant="link"
+                    isInline
+                >
+                    <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
+                </Button>
+            }
+        />
+
         <TemplateCardBody>
             {!isLoaded ? <Loading /> :
                 <React.Fragment>
-                    <Button
-                        component="a"
-                        href={ `${UI_BASE}/${PATCHMAN_ID}/systems` }
-                        variant="link"
-                        isInline
-                    >
-                        <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
-                    </Button>
                     <div className="ins-c-patch__chart">
                         <PieChart
                             ariaDesc="Patch systems chart"

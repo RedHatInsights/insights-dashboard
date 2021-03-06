@@ -1,15 +1,13 @@
-import React from 'react';
+import './RemediationsEmptyState.scss';
 
 import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyState';
+
 import { EmptyStateBody } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateBody';
-import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
-
 import PropTypes from 'prop-types';
-
-import { useIntl } from 'react-intl';
+import React from 'react';
+import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import messages from '../../Messages';
-
-import './RemediationsEmptyState.scss';
+import { useIntl } from 'react-intl';
 
 export const RemediationsEmptyState = () => {
 
@@ -17,7 +15,7 @@ export const RemediationsEmptyState = () => {
 
     return (
         <EmptyState variant={ EmptyStateVariant.small }>
-            <Title headingLevel="h6" size="md">
+            <Title headingLevel='h6' size='md'>
                 { intl.formatMessage(messages.remediationsNoDataTitle)}
             </Title>
             <EmptyStateBody>

@@ -1,174 +1,25 @@
+@import "~@patternfly/patternfly/sass-utilities/_all.scss";
+@import "~@patternfly/patternfly/utilities/Text/text.scss";
+@import "~@patternfly/patternfly/utilities/Display/display.scss";
+@import "~@patternfly/patternfly/utilities/Accessibility/accessibility.scss";
+
 // All buttons should be text-align left and font-size 14px
 .pf-c-button.pf-m-link {
   text-align: left;
   font-size: 14px;
 }
 
-// Dashboard
-.ins-l-dashboard {
-  display: grid;
-  grid-gap: 24px;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto;
+.ins-c-dashboard-data-list__pie-chart {
 
-  > *:not(.dashboard-card-group) {
-    background-color: #fff; // sets the background for the lazy loading state
-  }
+  > .pf-c-chart > svg {
+    max-width: #{pf-size-prem(80px)};
 
-  .dashboard-card-group {
-    display: grid;
-    grid-row: 1;
-
-    > * {
-      background-color: #fff; // sets the background for the lazy loading state
-    }
-
-    > *:not(:last-child) {
-      border-bottom: 1px solid var(--pf-global--BorderColor--100);
-    }
-
-    .dashboard-card-system-inventory {
-      grid-column: 1;
-    }
-  
-    .dashboard-card-entitlements {
-      grid-column: 1;
-      grid-row: 2;
-    }
-  
-    .dashboard-card-operating-systems {
-      grid-column: 1;
-      grid-row: 3;
-    }
-    
-    > * > .pf-c-card {
-      position: relative;
-
-      &::before {
-        position: absolute;
-        content: "";
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        border-top: 0px;
-      }
-    }
-
-    > *:first-child {
-      .pf-c-card::before {
-        border-top: 3px solid var(--pf-global--primary-color--100);
-      }
-    }
-  }
-
-  .dashboard-card-rules {
-    grid-column: 1;
-    grid-row: 1fr;
-  }
-
-  .dashboard-card-vulnerabilities {
-    grid-column: 1;
-    grid-row: 1fr;
-  }
-
-  .dashboard-card-custom-policies {
-    grid-column: 1;
-    grid-row: 5;
-  }
-
-  .dashboard-card-compliance-remediations {
-    grid-column: 1;
-    grid-row: 4;
-  }
-
-  @media screen and (min-width: 1298px) {
-    grid-template-columns: 1fr 1fr 1fr;
-
-    .dashboard-card-group {
-      grid-column: 1 / span 3;
-      grid-row: 1;
-      column-gap: 24px;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-
-      > *:not(:last-child) {
-        border-bottom: initial;
-      }
-
-      .dashboard-card-system-inventory {
-        grid-column: 1 / span 1;
-        grid-row: 1;
-      }
-  
-      .dashboard-card-entitlements {
-        grid-column: 2 / span 1;
-        grid-row: 1;
-      }
-  
-      .dashboard-card-operating-systems {
-        grid-column: 3 / span 1;
-        grid-row: 1;
-      }
-
-      > * > .pf-c-card {
-      &::before {
-        border-top: 3px solid var(--pf-global--primary-color--100);
-      }
-    }
-
-    }
-
-    .dashboard-card-rules {
-      grid-column: 1 / span 2;
-      grid-row: 2;
-    }
-
-    .dashboard-card-vulnerabilities {
-      grid-column: 1 / span 2;
-      grid-row: 3;
-    }
-
-    .dashboard-card-custom-policies {
-      grid-column: 1 / span 2;
-      grid-row: 4;
-    }
-
-    .dashboard-card-compliance-remediations {
-      display: flex;
-      flex-direction: column;
-      grid-column: 3;
-      grid-row: 2 / span 2;
-
-      .pf-c-card {
-        flex-grow: 1;
-      }
-    }
-
-    .dashboard-card-rules-vulnerabilities {
-      display: flex;
-      flex-direction: column;
-
-      .pf-c-card {
-        flex-grow: 1;
-      }
-    }
-
-    div:not(.dashboard-card-compliance-remediations) > .pf-c-card {
-      height: 100%;
+    @media screen and (min-width: $pf-global--breakpoint--md) {
+      max-width: #{pf-size-prem(80px)};
     }
   }
 }
 
-.pf-c-page__main-section {
-  &:first-child {
-    @media screen and (min-width: 576px) {
-      padding-bottom: 0px;
-    }
-  }
-
-  &:last-child {
-    @media screen and (max-width: 576px) {
-      padding: 0px;
-    }
-  }
+.ins-c-dashboard-card__pie-chart {
+  width: 180px;
 }

@@ -1,0 +1,35 @@
+@import "~@patternfly/patternfly/sass-utilities/_all.scss";
+
+.ins-c-app-block {
+    display: grid;
+    grid-template-columns: [icon] max-content [text] auto;
+    align-self: start;
+    gap: var(--pf-global--gutter--md);
+
+    > * {
+        grid-column: text;
+    }
+
+    .pf-c-button__icon {
+        --pf-c-button__icon--m-end--MarginLeft: var(--pf-global--spacer--md);
+
+        color: var(--pf-global--link--Color);
+    }
+}
+
+.ins-c-app-block__icon {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    grid-area: icon;
+    grid-row: 1 / 3;
+    width: #{pf-size-prem(60px)};
+    height: #{pf-size-prem(60px)};
+    border-radius: 50%;
+    background: var(--pf-global--BackgroundColor--200);
+
+    > svg {
+        font-size: var(--pf-global--icon--FontSize--lg);
+        align-self: center;
+    }
+}
