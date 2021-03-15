@@ -1,53 +1,47 @@
 import './Advisor.scss';
 
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import * as AppActions from '../../AppActions';
-
-import { INCIDENT_URL, SEVERITY_MAP } from './Constants';
-import { capitalize, sapFilter, workloadsPropType } from '../../Utilities/Common';
-import { UI_BASE } from '../../AppConstants';
-import { connect } from 'react-redux';
-import { useIntl } from 'react-intl';
-import messages from '../../Messages';
-
-import  global_palette_black_300 from '@patternfly/react-tokens/dist/js/global_palette_black_300';
-import  global_palette_blue_100 from '@patternfly/react-tokens/dist/js/global_palette_blue_100';
-import  global_palette_blue_200 from '@patternfly/react-tokens/dist/js/global_palette_blue_200';
-import  global_palette_blue_300 from '@patternfly/react-tokens/dist/js/global_palette_blue_300';
-import  global_palette_blue_400 from '@patternfly/react-tokens/dist/js/global_palette_blue_400';
-
-import FailState from '../../PresentationalComponents/FailState/FailState';
-import Loading from '../../PresentationalComponents/Loading/Loading';
 
 // components
 import {
     Button,
     Card,
     CardBody,
+    CardTitle,
     Divider,
     Title
 } from '@patternfly/react-core/dist/esm/components';
-
 // layouts
 import {
     Flex,
     FlexItem,
     Grid
 } from '@patternfly/react-core/dist/esm/layouts';
+import { INCIDENT_URL, SEVERITY_MAP } from './Constants';
+import React, { useEffect, useState } from 'react';
+import { capitalize, sapFilter, workloadsPropType } from '../../Utilities/Common';
 
-// charts
-import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import { ChartLegend } from '@patternfly/react-charts';
-
 // icons
 import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
-
-// template card
-import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
-
 // expandable card
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
+import FailState from '../../PresentationalComponents/FailState/FailState';
+import Loading from '../../PresentationalComponents/Loading/Loading';
+// charts
+import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
+import PropTypes from 'prop-types';
+// template card
+import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
+import { UI_BASE } from '../../AppConstants';
+import { connect } from 'react-redux';
+import  global_palette_black_300 from '@patternfly/react-tokens/dist/js/global_palette_black_300';
+import  global_palette_blue_100 from '@patternfly/react-tokens/dist/js/global_palette_blue_100';
+import  global_palette_blue_200 from '@patternfly/react-tokens/dist/js/global_palette_blue_200';
+import  global_palette_blue_300 from '@patternfly/react-tokens/dist/js/global_palette_blue_300';
+import  global_palette_blue_400 from '@patternfly/react-tokens/dist/js/global_palette_blue_400';
+import messages from '../../Messages';
+import { useIntl } from 'react-intl';
 
 const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
     advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, selectedTags, workloads, SID }) => {
@@ -141,7 +135,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                                 >
                                     <Flex>
                                         <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />
-                                        <span className="pf-u-font-size-2xl pf-u-text-align-center pf-u-font-weight-bold">
+                                        <span className="pf-u-font-size-2xl pf-u-text-align-center pf-u-font-weight-normal">
                                             {intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })}
                                         </span>
                                     </Flex>
@@ -149,7 +143,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                                         <p className='pf-u-text-align-center'>{intl.formatMessage(messages.advisorCardMessage)}</p>
                                     </FlexItem>
                                     <FlexItem>
-                                        <Button variant='secondary' component='a' href={ `${UI_BASE}${INCIDENT_URL}` }>
+                                        <Button variant='secondary' isSmall component='a' href={ `${UI_BASE}${INCIDENT_URL}` }>
                                             {intl.formatMessage(messages.advisorCardCTA)}
                                         </Button>
                                     </FlexItem>
@@ -164,7 +158,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                     className='ins-m-toggle-right-on-md'
                     title={intl.formatMessage(messages.advisorCardHeader2)}
                     body={
-                        <TemplateCardBody className="ins-c-advisor-recs__card-body">
+                        <TemplateCardBody className="ins-c-advisor-recs__card-body pf-u-pb-0">
                             <Flex justifyContent={ { default: 'justifyContentSpaceEvenly' } }>
                                 {trData.map(({ title, risk }) =>
                                     <a key={ title } href={ totalRiskUrl(risk) }>
@@ -173,10 +167,10 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                                             spaceItems={ { default: 'spaceItemsNone' } }
                                             alignItems={ { default: 'alignItemsCenter' } }
                                         >
-                                            <span className="pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold">
+                                            <span className="pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-normal">
                                                 { risk }
                                             </span>
-                                            <span>
+                                            <span className="pf-u-font-size-sm">
                                                 { title }
                                             </span>
                                         </Flex>
@@ -186,11 +180,14 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                     }
                 />
                 <Card component="div">
-                    <CardBody>
-                        <Grid hasGutter>
-                            <Title headingLevel="h4" size="xl">
-                                {intl.formatMessage(messages.advisorCardHeader3)}
-                            </Title>
+                    <CardTitle>
+                        <Title headingLevel="h4" size="lg">
+                            {intl.formatMessage(messages.advisorCardHeader3)}
+                        </Title>
+                    </CardTitle>
+
+                    <CardBody className="pf-u-pt-sm">
+                        <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsLg' }}>
                             <Flex alignItems={ { default: 'alignItemsCenter' } }>
                                 <FlexItem>
                                     <PieChart
@@ -217,7 +214,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                                     />
                                 </FlexItem>
                             </Flex>
-                        </Grid>
+                        </Flex>
                     </CardBody>
                 </Card>
             </React.Fragment>

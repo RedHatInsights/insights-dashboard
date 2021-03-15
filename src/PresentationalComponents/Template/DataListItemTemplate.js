@@ -1,31 +1,29 @@
 import './DataListItemTemplate.scss';
 
-import React, { useState } from 'react';
-import propTypes from 'prop-types';
-
-import messages from '../../Messages';
-import { capitalize } from '../../Utilities/Common';
-import { InsightsLabel } from '@redhat-cloud-services/frontend-components/components/esm/InsightsLabel';
-import { SEVERITY_MAP } from './DataListItemTemplateConstants';
-import { useIntl } from 'react-intl';
-
 // components
 import {
     Button,
     ButtonVariant,
-    DataListItem,
-    DataListItemRow,
     DataListCell,
     DataListContent,
+    DataListItem,
     DataListItemCells,
+    DataListItemRow,
     Title
 } from '@patternfly/react-core/dist/esm/components';
-
-// layouts
-import { Flex } from '@patternfly/react-core/dist/esm/layouts';
+import React, { useState } from 'react';
 
 // icons
 import AngleRightIcon from '@patternfly/react-icons/dist/js/icons/angle-right-icon';
+import { DateFormat } from '@redhat-cloud-services/frontend-components';
+// layouts
+import { Flex } from '@patternfly/react-core/dist/esm/layouts';
+import { InsightsLabel } from '@redhat-cloud-services/frontend-components/components/esm/InsightsLabel';
+import { SEVERITY_MAP } from './DataListItemTemplateConstants';
+import { capitalize } from '../../Utilities/Common';
+import messages from '../../Messages';
+import propTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 
 export const DataListItemTemplate = ({
     dataListItemTemplateContent,
@@ -66,7 +64,7 @@ export const DataListItemTemplate = ({
                             type="button"
                             className="pf-m-link"
                         >
-                            <span className="pf-c-data-list__toggle-text">
+                            <span className="pf-c-data-list__toggle-text pf-c-button pf-m-inline pf-m-link">
                                 { isExpanded && 'Collapse' }
                                 { !isExpanded && 'Expand' }
                             </span>
@@ -79,9 +77,12 @@ export const DataListItemTemplate = ({
                 <DataListItemCells
                     dataListCells={[
                         <DataListCell key={ `key-${dataListItemTemplateKey}-datalist-cell` }>
-                            <Flex>
-                                <Flex direction={ { default: 'column' } } spaceItems={ { default: 'spaceItemsNone' } } flex={ { default: 'flex_1' } }>
-                                    <span className='date pf-u-color-200'>Newly released security rule {dataListItemTemplateDate }</span>
+                            <Flex alignItems={ { default: 'alignItemsCenter' } }>
+                                <Flex direction={ { default: 'column' } } spaceItems={ { default: 'spaceItemsNone' } }
+                                    flex={ { default: 'flex_1' } }>
+                                    <span className='date pf-u-color-200 pf-u-font-size-sm'>
+                                        Newly released security rule &nbsp;<DateFormat type='onlyDate' date={ dataListItemTemplateDate } />
+                                    </span>
                                     <Title headingLevel="h4" size="md"
                                         className='pf-u-font-weight-light ins-c-title-toggle' id={ `itemDescription-${ dataListItemTemplateKey }` }>
                                         <span>

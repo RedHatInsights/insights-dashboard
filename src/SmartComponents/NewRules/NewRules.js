@@ -42,7 +42,7 @@ const DistilledDataList = ({ vulnerabilities }) => {
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
 
     return (
-        <DataList className='ins-c-dashboard-data-list ins-m-toggle-right-on-md ins-m-no-border'
+        <DataList className='ins-c-dashboard-data-list ins-m-toggle-right-on-md ins-m-no-border pf-m-compact'
             gridBreakpoint='none'
         >
             {newRules?.map((item, index) =>

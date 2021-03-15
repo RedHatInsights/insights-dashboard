@@ -2,6 +2,7 @@
 @import "~@patternfly/patternfly/utilities/Text/text.scss";
 @import "~@patternfly/patternfly/utilities/Display/display.scss";
 @import "~@patternfly/patternfly/utilities/Accessibility/accessibility.scss";
+@import "~@patternfly/patternfly/utilities/Spacing/spacing.scss";
 
 // All buttons should be text-align left and font-size 14px
 .pf-c-button.pf-m-link {
@@ -22,4 +23,33 @@
 
 .ins-c-dashboard-card__pie-chart {
   width: 180px;
+}
+
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  background: grey;
+  margin-bottom: 30px;
+}
+
+.my-masonry-grid_column {
+  .pf-c-card {
+    margin-bottom: var(--pf-global--spacer--lg);
+
+    .pf-c-card {
+      margin-bottom: 0;
+    }
+  }
 }
