@@ -60,7 +60,7 @@ TemplateCardActions.propTypes = {
 export const TemplateCardHeader = ({ title, onDownload, subtitle, children, ...props }) => (
     <CardHeader className='ins-c-dashboard__card--header'  { ...props }>
         <CardTitle>
-            <Title headingLevel='h4' size='xl'>
+            <Title headingLevel='h4' size='lg'>
                 { title }
             </Title>
             { subtitle &&

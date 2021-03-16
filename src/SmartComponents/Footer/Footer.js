@@ -1,29 +1,25 @@
-import React, { useContext, useEffect, useState } from 'react';
-
-import { AppBlock } from '../../PresentationalComponents/Template/AppBlockTemplate';
-import { PermissionContext } from '../../App';
-import { SAP_FETCH_URL } from '../../AppConstants';
-import { useIntl } from 'react-intl';
-// import { workloadsPropType } from '../../Utilities/Common';
-import API from '../../Utilities/Api';
-import messages from '../../Messages';
-
 // components
 import {
     PageSection,
     PageSectionVariants,
     Title
 } from '@patternfly/react-core/dist/esm/components';
+import React, { useContext, useEffect, useState } from 'react';
 
+// import { workloadsPropType } from '../../Utilities/Common';
+import API from '../../Utilities/Api';
+import { AppBlock } from '../../PresentationalComponents/Template/AppBlockTemplate';
+import BlueprintIcon from '@patternfly/react-icons/dist/js/icons/blueprint-icon';
+// icons
+import BuildIcon from '@patternfly/react-icons/dist/js/icons/build-icon';
 // layouts
 import {
     Flex
 } from '@patternfly/react-core/dist/esm/layouts';
-
-// icons
-import BuildIcon from '@patternfly/react-icons/dist/js/icons/build-icon';
-import BlueprintIcon from '@patternfly/react-icons/dist/js/icons/blueprint-icon';
-import DomainIcon from '@patternfly/react-icons/dist/js/icons/domain-icon';
+import { PermissionContext } from '../../App';
+import { SAP_FETCH_URL } from '../../AppConstants';
+import messages from '../../Messages';
+import { useIntl } from 'react-intl';
 
 /**
  * Dashboard footer
@@ -58,27 +54,8 @@ const DashboardFooter = ({ workloads })  => {
                         {intl.formatMessage(messages.footerTitle)}
                     </Title>
                     <div className="ins-l-columns ins-m-3-col-on-xl">
-                        {permission.vulnerability &&
-                            <AppBlock
-                                appName='vulnerability'
-                                title={intl.formatMessage(messages.vulnerabilityAppBlockHeader)}
-                                body={intl.formatMessage(messages.vulnerabilityAppBlockBody)}
-                                url='vulnerability'
-                                icon={ <BlueprintIcon /> }
-                            />
-                        }
 
-                        {permission.advisor &&
-                            <AppBlock
-                                appName='advisor'
-                                title={intl.formatMessage(messages.advisorAppBlockHeader)}
-                                body={intl.formatMessage(messages.advisorAppBlockBody)}
-                                url='advisor'
-                                icon={ <DomainIcon /> }
-                            />
-                        }
-
-                        {permission.policies &&
+                        {!permission.policies &&
                             <AppBlock
                                 appName='policies'
                                 title={intl.formatMessage(messages.policiesAppBlockHeader)}
@@ -88,7 +65,7 @@ const DashboardFooter = ({ workloads })  => {
                             />
                         }
 
-                        {permission.remediations &&
+                        {!permission.remediations &&
                             <AppBlock
                                 appName='remediation'
                                 title={intl.formatMessage(messages.remediationsAppBlockHeader)}
@@ -98,32 +75,12 @@ const DashboardFooter = ({ workloads })  => {
                             />
                         }
 
-                        {permission.patch &&
-                            <AppBlock
-                                appName='patch'
-                                title={intl.formatMessage(messages.patchAppBlockHeader)}
-                                body={intl.formatMessage(messages.patchAppBlockBody)}
-                                url='patch'
-                                icon={ <DomainIcon /> }
-                            />
-                        }
-
-                        {permission.compliance &&
+                        {!permission.compliance &&
                             <AppBlock
                                 appName='compliance'
                                 title={intl.formatMessage(messages.complianceAppBlockHeader)}
                                 body={intl.formatMessage(messages.complianceAppBlockBody)}
                                 url='compliance'
-                                icon={ <BuildIcon /> }
-                            />
-                        }
-
-                        {permission.subscriptions &&
-                            <AppBlock
-                                appName='subscription'
-                                title={intl.formatMessage(messages.subscriptionsAppBlockHeader)}
-                                body={intl.formatMessage(messages.subscriptionsAppBlockBody)}
-                                url='subscriptions'
                                 icon={ <BuildIcon /> }
                             />
                         }

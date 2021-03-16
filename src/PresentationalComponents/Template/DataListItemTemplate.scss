@@ -2,7 +2,7 @@
 
 .ins-c-dashboard-data-list {
     --pf-c-data-list__item-control--not-last-child--MarginRight: var(--pf-global--spacer--xs);
-    --pf-c-data-list__item-control--PaddingTop: calc(var(--pf-global--spacer--md) + var(--pf-global--spacer--xs));
+    --pf-c-data-list__item-control--PaddingTop: calc(var(--pf-global--spacer--sm));
     --pf-c-data-list__item-control--PaddingBottom: 0;
     --pf-c-data-list__item-control--MarginRight: var(--pf-global--spacer--sm);
     --pf-c-data-list__item-control--MarginLeft: calc(var(--pf-global--spacer--sm) * -1);
@@ -16,9 +16,7 @@
         --pf-c-data-list__item-control--MarginLeft: var(--pf-global--spacer--md);
         --pf-c-data-list__toggle--MarginLeft: var(--pf-global--spacer--sm);
         --pf-c-data-list__item-control--MarginLeft: var(--pf-global--spacer--xs);
-        --pf-c-data-list__item-control--PaddingTop: calc(
-            var(--pf-global--spacer--sm) + var(--pf-global--spacer--sm) + var(--pf-global--spacer--xs)
-        );
+        --pf-c-data-list__item-control--PaddingTop: calc(var(--pf-global--spacer--sm) + var(--pf-global--spacer--xs));
         --pf-c-data-list__item-control--MarginRight: calc(var(--pf-global--spacer--md) * -1);
         --pf-c-data-list__expandable-content-body--PaddingTop: var(--pf-global--spacer--sm);
     }
@@ -46,16 +44,18 @@
         > .pf-c-button {
             display: flex;
         }
+
     }
 
     .pf-c-data-list__toggle-text {
         display: none;
         position: relative;
-        margin-right: var(--pf-global--spacer--md);
+        margin-right: var(--pf-global--spacer--sm);
 
         @media screen and (min-width: $pf-global--breakpoint--md) {
             display: inline-flex;
             min-width: 6ch;
+            text-align: right;
         }
 
         > * {
@@ -66,19 +66,18 @@
 
     .pf-c-data-list__expandable-content-body {
         @media screen and (min-width: $pf-global--breakpoint--md) {
-            padding-top: var(--pf-global--spacer--sm);
+
+            --pf-c-data-list__expandable-content-body--PaddingTop: var(--pf-global--spacer--sm);
 
             .pf-c-data-list__item-row {
+                --pf-c-data-list__expandable-content-body--PaddingTop: 0;
+
                 min-height: var(--ins-c-data-list__item-row--MinHeight);
             }
         }
     }
-}
 
-.ins-c-dashboard__list-item {
-    --pf-c-data-list__item-content--md--PaddingBottom: var(--pf-global--spacer--lg);
-
-    &.pf-m-expanded {
-        --pf-c-data-list__item-content--md--PaddingBottom: var(--pf-global--spacer--sm);
+    .ins-c-new-rules-severities {
+        margin-right: var(--pf-global--spacer--md);
     }
 }

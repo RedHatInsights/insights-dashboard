@@ -4,7 +4,7 @@ import IntlProvider from '@redhat-cloud-services/frontend-components-translation
 import { Provider } from 'react-redux';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { getBaseName } from '@redhat-cloud-services/frontend-components-utilities/helpers';
+import { getBaseName } from '@redhat-cloud-services/frontend-components-utilities/helpers/helpers';
 import { init } from './Store';
 import messages from '../locales/data.json';
 
