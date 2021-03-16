@@ -15,7 +15,7 @@ import React, { useState } from 'react';
 import AngleRightIcon from '@patternfly/react-icons/dist/js/icons/angle-right-icon';
 import { DateFormat } from '@redhat-cloud-services/frontend-components';
 import { Flex } from '@patternfly/react-core/dist/esm/layouts';
-import { InsightsLabel } from '@redhat-cloud-services/frontend-components/components/esm/InsightsLabel';
+import { InsightsLabel } from '@redhat-cloud-services/frontend-components/InsightsLabel';
 import { SEVERITY_MAP } from '../../AppConstants';
 import { capitalize } from '../../Utilities/Common';
 import messages from '../../Messages';

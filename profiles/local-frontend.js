@@ -1,4 +1,4 @@
-/*global module*/
+/*global */
 
 const SECTION = 'insights';
 const APP_ID = 'dashboard';
