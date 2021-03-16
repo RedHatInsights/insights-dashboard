@@ -1,31 +1,31 @@
+import './SystemInventoryHeader.scss';
+
 import * as AppActions from '../../AppActions';
-import React, { useEffect } from 'react';
-
-import { connect } from 'react-redux';
-import { sapFilter, workloadsPropType } from '../../Utilities/Common';
-import { NotAuthorized } from '@redhat-cloud-services/frontend-components/NotAuthorized';
-import { NumberDescription } from '../../PresentationalComponents/NumberDescription/NumberDescription';
-import { useIntl } from 'react-intl';
-import { UI_BASE } from '../../AppConstants';
-import FailState from '../../PresentationalComponents/FailState/FailState';
-import PropTypes from 'prop-types';
-import messages from '../../Messages';
-// eslint-disable-next-line no-unused-vars
-import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
-
-// components
-import {
-    Button
-} from '@patternfly/react-core/dist/esm/components';
 
 // layouts
 import {
     Flex,
     FlexItem
 } from '@patternfly/react-core/dist/esm/layouts';
+import React, { useEffect } from 'react';
+import { sapFilter, workloadsPropType } from '../../Utilities/Common';
 
+// components
+import {
+    Button
+} from '@patternfly/react-core/dist/esm/components';
+import FailState from '../../PresentationalComponents/FailState/FailState';
 // icons
 import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
+import { NotAuthorized } from '@redhat-cloud-services/frontend-components/NotAuthorized';
+import { NumberDescription } from '../../PresentationalComponents/NumberDescription/NumberDescription';
+import PropTypes from 'prop-types';
+import { UI_BASE } from '../../AppConstants';
+import { connect } from 'react-redux';
+import messages from '../../Messages';
+import { useIntl } from 'react-intl';
+// eslint-disable-next-line no-unused-vars
+import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook/RBACHook';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -56,7 +56,7 @@ const SystemInventoryHeader = ({
 
     const intl = useIntl();
 
-    return <div>
+    return <React.Fragment>
         {
             hasAccess === false ?
                 <NotAuthorized
@@ -135,7 +135,7 @@ const SystemInventoryHeader = ({
                     </Flex>
                 </Flex>
         }
-    </div>;
+    </React.Fragment>;
 };
 
 SystemInventoryHeader.propTypes = {

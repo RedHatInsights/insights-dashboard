@@ -32,99 +32,88 @@ export const DataListItemTemplate = ({
     ...props
 }) => {
     const [isExpanded, setIsExpanded] = useState(dataListItemTemplateIsExpanded);
-
     const intl = useIntl();
 
-    return (
-        <DataListItem
-            aria-labelledby={ `ins-c-dashboard__list-item--${dataListItemTemplateName}` }
-            isExpanded={ isExpanded }
-            className={ `ins-c-dashboard__list-item` }
-            key={ dataListItemTemplateKey }
-            { ...props }
-        >
-            <DataListItemRow>
-                <div className='pf-c-data-list__item-control'>
-                    <div
-                        className='pf-c-data-list__toggle'
-                        onClick={ () => setIsExpanded(!isExpanded) }
-                        isExpanded={ isExpanded }
-                        id={ `data-list-toggle-${dataListItemTemplateName}` }
-                        aria-controls={ `data-list-item-${dataListItemTemplateName}` }
-                    >
-                        <Button id={ `data-list-item-${dataListItemTemplateName}-toggle` }
-                            variant={ ButtonVariant.plain }
-                            aria-expanded={ isExpanded }
-                            type='button'
-                            className='pf-m-link'
-                        >
-                            <span className='pf-c-data-list__toggle-text'>
-                                { isExpanded && 'Collapse' }
-                                { !isExpanded && 'Expand' }
-                            </span>
-                            <div className='pf-c-data-list__toggle-icon'>
-                                <AngleRightIcon />
-                            </div>
-                        </Button>
-                    </div>
+    return <DataListItem
+        aria-labelledby={`ins-c-dashboard__list-item--${dataListItemTemplateName}`}
+        isExpanded={isExpanded}
+        className={`ins-c-dashboard__list-item`}
+        key={dataListItemTemplateKey}
+        {...props}
+    >
+        <DataListItemRow>
+            <div className="pf-c-data-list__item-control">
+                <div className="pf-c-data-list__toggle"
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    isExpanded={isExpanded}
+                    id={`data-list-toggle-${dataListItemTemplateName}`}
+                    aria-controls={`data-list-item-${dataListItemTemplateName}`}>
+                    <Button id={`data-list-item-${dataListItemTemplateName}-toggle`} variant={ButtonVariant.plain} aria-expanded={isExpanded}
+                        type="button"
+                        className="pf-m-link"                    >
+                        <span className="pf-c-data-list__toggle-text pf-c-button pf-m-inline pf-m-link">
+                            {isExpanded && 'Collapse'}
+                            {!isExpanded && 'Expand'}
+                        </span>
+                        <div className="pf-c-data-list__toggle-icon">
+                            <AngleRightIcon />
+                        </div>
+                    </Button>
                 </div>
-                <DataListItemCells
-                    dataListCells={[
-                        <DataListCell key={ `key-${dataListItemTemplateKey}-datalist-cell` }>
-                            <Flex>
-                                <Flex direction={ { default: 'column' } } spaceItems={ { default: 'spaceItemsNone' } } flex={ { default: 'flex_1' } }>
-                                    <span className='date pf-u-color-200'>
-                                        Newly released security rule&nbsp;<DateFormat type='onlyDate' date={ dataListItemTemplateDate } />
+            </div>
+            <DataListItemCells
+                dataListCells={[
+                    <DataListCell key={`key-${dataListItemTemplateKey}-datalist-cell`}>
+                        <Flex alignItems={{ default: 'alignItemsCenter' }}>
+                            <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsNone' }}
+                                flex={{ default: 'flex_1' }}>
+                                <span className='date pf-u-color-200 pf-u-font-size-sm'>
+                                    Newly released security rule &nbsp;<DateFormat type='onlyDate' date={dataListItemTemplateDate} />
+                                </span>
+                                <Title headingLevel="h4" size="md"
+                                    className='pf-u-font-weight-light ins-c-title-toggle' id={`itemDescription-${dataListItemTemplateKey}`}>
+                                    <span>
+                                        {capitalize(intl.formatMessage({
+                                            id: 'itemTitle',
+                                            description: 'itemTitle',
+                                            defaultMessage: dataListItemTemplateName
+                                        }))}
                                     </span>
-                                    <Title headingLevel='h4' size='md'
-                                        className='pf-u-font-weight-light ins-c-title-toggle' id={ `itemDescription-${ dataListItemTemplateKey }` }>
-                                        <span>
-                                            {capitalize(intl.formatMessage({
-                                                id: 'itemTitle',
-                                                description: 'itemTitle',
-                                                defaultMessage: dataListItemTemplateName
-                                            }))}
-                                        </span>
-                                    </Title>
-                                </Flex>
-                                <div className='ins-c-new-rules-severities'>
-                                    <Flex alignItems={ { default: 'alignItemsCenter' } } alignSelf={ { default: 'alignSelfStretch' } }>
-                                        { dataListItemTemplateSeverity === 1 &&
-                                            <InsightsLabel
-                                                value={ SEVERITY_MAP.low }
-                                                text={ `${capitalize(intl.formatMessage(messages.low))}` }
-                                            />
-                                        }
-                                        { dataListItemTemplateSeverity === 2 &&
-                                            <InsightsLabel
-                                                value={ SEVERITY_MAP.moderate }
-                                                text={ `${capitalize(intl.formatMessage(messages.moderate))}` }
-                                            />
-                                        }
-                                        { dataListItemTemplateSeverity === 3 &&
-                                            <InsightsLabel
-                                                value={ SEVERITY_MAP.important }
-                                                text={ `${capitalize(intl.formatMessage(messages.important))}` }
-                                            />
-                                        }
-                                        { dataListItemTemplateSeverity === 4 &&
-                                            <InsightsLabel
-                                                value={ SEVERITY_MAP.critical }
-                                                text={ `${capitalize(intl.formatMessage(messages.critical))}` }
-                                            />
-                                        }
-                                    </Flex>
-                                </div>
+                                </Title>
                             </Flex>
-                        </DataListCell>
-                    ]}
-                />
-            </DataListItemRow>
-            <DataListContent aria-label='Primary Content Details' id='ex-expand1' isHidden={ !isExpanded }>
-                { dataListItemTemplateContent }
-            </DataListContent>
-        </DataListItem>
-    );
+                            <div className="ins-c-new-rules-severities">
+                                <Flex alignItems={{ default: 'alignItemsCenter' }} alignSelf={{ default: 'alignSelfStretch' }}>
+                                    {dataListItemTemplateSeverity === 1 &&
+                                        <InsightsLabel
+                                            value={SEVERITY_MAP.low}
+                                            text={`${capitalize(intl.formatMessage(messages.low))}`} />
+                                    }
+                                    {dataListItemTemplateSeverity === 2 &&
+                                        <InsightsLabel
+                                            value={SEVERITY_MAP.moderate}
+                                            text={`${capitalize(intl.formatMessage(messages.moderate))}`} />
+                                    }
+                                    {dataListItemTemplateSeverity === 3 &&
+                                        <InsightsLabel
+                                            value={SEVERITY_MAP.important}
+                                            text={`${capitalize(intl.formatMessage(messages.important))}`} />
+                                    }
+                                    {dataListItemTemplateSeverity === 4 &&
+                                        <InsightsLabel
+                                            value={SEVERITY_MAP.critical}
+                                            text={`${capitalize(intl.formatMessage(messages.critical))}`} />
+                                    }
+                                </Flex>
+                            </div>
+                        </Flex>
+                    </DataListCell>
+                ]}
+            />
+        </DataListItemRow>
+        <DataListContent aria-label="Primary Content Details" id="ex-expand1" isHidden={!isExpanded}>
+            {dataListItemTemplateContent}
+        </DataListContent>
+    </DataListItem>;
 };
 
 DataListItemTemplate.propTypes = {

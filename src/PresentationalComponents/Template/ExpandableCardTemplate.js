@@ -1,45 +1,52 @@
+// components
 import {
     Card,
     CardExpandableContent,
     CardHeader,
     CardTitle,
+    Divider,
     Title
 } from '@patternfly/react-core/dist/esm/components';
 import React, { useState } from 'react';
 
 import propTypes from 'prop-types';
 
-export const ExpandableCardTemplate = ({ className, appName, title, header, body, ...props }) => {
+export const ExpandableCardTemplate = ({ className, appName, title, header, body, hasDivider, ...props }) => {
     const [isExpanded, setIsExpanded] = useState(true);
 
     return (
-        <Card
-            className={ `ins-c-dashboard__card ins-c-dashboard__card--${appName} ${className}` }
-            id={ `ins-c-dashboard__card--${appName}` }
-            isExpanded={ isExpanded }
-            { ...props }
-        >
-            <CardHeader
-                onExpand={() => setIsExpanded(!isExpanded)}
-                toggleButtonProps={{
-                    id: `ins-c-dashboard__card-title--${appName}-toggle-button`,
-                    'aria-label': 'Details',
-                    'aria-labelledby': `ins-c-dashboard__card-title--${appName} toggle-button`,
-                    'aria-expanded': isExpanded }}
+        <React.Fragment>
+            <Card
+                className={ `ins-c-dashboard__card ins-c-dashboard__card--${appName} ${className}` }
+                id={ `ins-c-dashboard__card--${appName}` }
+                isExpanded={ isExpanded }
+                { ...props }
             >
-                { title &&
-                    <CardTitle>
-                        <Title headingLevel='h2' size='xl'>
-                            { title }
-                        </Title>
-                    </CardTitle>
+                { hasDivider &&
+                    <Divider inset={ { md: 'insetLg' } } />
                 }
-                { header }
-            </CardHeader>
-            <CardExpandableContent>
-                { body }
-            </CardExpandableContent>
-        </Card>
+                <CardHeader
+                    onExpand={() => setIsExpanded(!isExpanded)}
+                    toggleButtonProps={{
+                        id: `ins-c-dashboard__card-title--${appName}-toggle-button`,
+                        'aria-label': 'Details',
+                        'aria-labelledby': `ins-c-dashboard__card-title--${appName} toggle-button`,
+                        'aria-expanded': isExpanded }}
+                >
+                    { title &&
+                        <CardTitle>
+                            <Title headingLevel="h2" size="lg">
+                                { title }
+                            </Title>
+                        </CardTitle>
+                    }
+                    { header }
+                </CardHeader>
+                <CardExpandableContent>
+                    { body }
+                </CardExpandableContent>
+            </Card>
+        </React.Fragment>
     );
 };
 
@@ -49,5 +56,6 @@ ExpandableCardTemplate.propTypes = {
     title: propTypes.string,
     header: propTypes.any,
     body: propTypes.any,
+    hasDivider: propTypes.any,
     footer: propTypes.footer
 };

@@ -1,5 +1,5 @@
 // For common helpers used throughout app
-import { generateFilter } from '@redhat-cloud-services/frontend-components-utilities/helpers';
+import { generateFilter } from '@redhat-cloud-services/frontend-components-utilities/helpers/helpers';
 const SAP_KEYS = ['SAP', 'All workloads'];
 
 export const capitalize = (string) => string[0].toUpperCase() + string.substring(1);

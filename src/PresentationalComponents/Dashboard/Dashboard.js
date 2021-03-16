@@ -1,9 +1,21 @@
 import './_dashboard.scss';
 
+// layouts
+import {
+    Grid,
+    GridItem
+} from '@patternfly/react-core/dist/esm/layouts';
+// components
+import {
+    PageSection,
+    PageSectionVariants,
+    Title
+} from '@patternfly/react-core/dist/esm/components';
 import React, { Suspense, lazy, useContext, useEffect, useState } from 'react';
 
 import API from '../../Utilities/Api';
 import Loading from '../../PresentationalComponents/Loading/Loading';
+import Masonry from 'react-masonry-css';
 import NoSystems from '../NoSystems/NoSystems';
 import { PermissionContext } from '../../App';
 import { SAP_FETCH_URL } from '../../AppConstants';
@@ -24,19 +36,6 @@ const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/R
 const PoliciesCard = lazy(() => import('../../SmartComponents/Policies/PoliciesCard'));
 const Footer = lazy(() => import('../../SmartComponents/Footer/Footer'));
 
-// components
-import {
-    PageSection,
-    PageSectionVariants,
-    Title
-} from '@patternfly/react-core/dist/esm/components';
-
-// layouts
-import {
-    Grid,
-    GridItem
-} from '@patternfly/react-core/dist/esm/layouts';
-
 const Dashboard = ({ workloads }) => {
     const permission = useContext(PermissionContext);
     const intl = useIntl();
@@ -55,10 +54,16 @@ const Dashboard = ({ workloads }) => {
         fetchSapSystems();
     }, []);
 
+    const breakpointColumnsObj = {
+        default: 2,
+        768: 1,
+        0: 1
+    };
+
     return permission.hasSystems ?
         (!workloads?.SAP?.isSelected) || (workloads?.SAP?.isSelected && supportsSap) ?
             <React.Fragment>
-                <PageSection isWidthLimited variant={ PageSectionVariants.light }>
+                <PageSection isWidthLimited variant={ PageSectionVariants.light } className="ins-c-dashboard-header">
                     <Title headingLevel="h1" size="2xl" className="pf-u-screen-reader">
                         {intl.formatMessage(messages.dashboardTitle)}
                     </Title>
@@ -75,54 +80,48 @@ const Dashboard = ({ workloads }) => {
                                 }
                             </GridItem>
                         </Suspense>
-                        <Grid hasGutter>
+                        <Masonry
+                            breakpointCols={breakpointColumnsObj}
+                            className="ins-l-masonry"
+                            columnClassName="ins-l-masonry_column"
+                        >
                             <Suspense fallback={ <Loading /> }>
                                 {permission.vulnerability &&
-                                    <GridItem md={ 6 }>
-                                        <Grid className="pf-m-full-height">
-                                            <VulnerabilityCard />
-                                        </Grid>
-                                    </GridItem>
+                                    <VulnerabilityCard />
                                 }
                             </Suspense>
                             <Suspense fallback={ <Loading /> }>
                                 {permission.advisor &&
-                                    <GridItem md={ 6 }>
-                                        <Grid className="pf-m-full-height">
-                                            <AdvisorCard />
-                                        </Grid>
-                                    </GridItem>
+                                    <AdvisorCard />
                                 }
                             </Suspense>
-                            <div className="ins-l-columns">
-                                <PoliciesCard />
-                                <Suspense fallback={ <Loading /> }>
-                                    {permission.policies &&
-                                        <PoliciesCard />
-                                    }
-                                </Suspense>
-                                <Suspense fallback={ <Loading /> }>
-                                    {permission.remediations &&
-                                        <RemediationsCard />
-                                    }
-                                </Suspense>
-                                <Suspense fallback={ <Loading /> }>
-                                    {permission.patch &&
-                                        <PatchManagerCard />
-                                    }
-                                </Suspense>
-                                <Suspense fallback={ <Loading /> }>
-                                    {permission.compliance &&
-                                        <ComplianceCard />
-                                    }
-                                </Suspense>
-                                <Suspense fallback={ <Loading /> }>
-                                    {permission.subscriptions &&
-                                        <SubscriptionsUtilizedCard />
-                                    }
-                                </Suspense>
-                            </div>
-                        </Grid>
+                            <PoliciesCard />
+                            <Suspense fallback={ <Loading /> }>
+                                {permission.policies &&
+                                    <PoliciesCard />
+                                }
+                            </Suspense>
+                            <Suspense fallback={ <Loading /> }>
+                                {permission.remediations &&
+                                    <RemediationsCard />
+                                }
+                            </Suspense>
+                            <Suspense fallback={ <Loading /> }>
+                                {permission.patch &&
+                                    <PatchManagerCard />
+                                }
+                            </Suspense>
+                            <Suspense fallback={ <Loading /> }>
+                                {permission.compliance &&
+                                    <ComplianceCard />
+                                }
+                            </Suspense>
+                            <Suspense fallback={ <Loading /> }>
+                                {permission.subscriptions &&
+                                    <SubscriptionsUtilizedCard />
+                                }
+                            </Suspense>
+                        </Masonry>
                     </Grid>
                 </PageSection>
                 <Footer />

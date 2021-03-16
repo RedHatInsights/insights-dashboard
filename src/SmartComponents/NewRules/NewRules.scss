@@ -18,18 +18,8 @@
   }
 }
 
-.ins-c-dashboard__list-item {
-  --ins-c-title-toggle--Display: block;
-
-  &.pf-m-expanded {
-    --ins-c-title-toggle--Display: none;
-  }
-
+.ins-c-dashboard__list-item.pf-m-expanded {
   .ins-c-title-toggle {
-    display: var(--ins-c-title-toggle--Display);
+    visibility: hidden;
   }
-}
-
-.ins-c-new-rules-severities {
-  margin-right: var(--pf-global--spacer--md);
 }
