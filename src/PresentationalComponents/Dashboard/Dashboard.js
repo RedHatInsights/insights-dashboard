@@ -32,8 +32,7 @@ const Dashboard = ({ workloads }) => {
     const permission = useContext(PermissionContext);
     const intl = useIntl();
     const [supportsSap, setSupportsSap] = useState(true);
-    const vulnerabilities = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities);
-    let { recent_rules: newRules } = vulnerabilities;
+    const newRules = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities.recent_rules);
 
     useEffect(() => {
         const fetchSapSystems = async () => {

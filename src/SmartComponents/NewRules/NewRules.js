@@ -23,8 +23,7 @@ import { useSelector } from 'react-redux';
 
 const NewRules = () => {
     const intl = useIntl();
-    const vulnerabilities = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities);
-    let { recent_rules: newRules } = vulnerabilities;
+    const newRules = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities.recent_rules);
     const severitColor = {
         1: ['#2b9af3', '#06c'],
         2: ['#f4c145', '#c58c00'],
