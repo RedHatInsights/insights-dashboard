@@ -25,7 +25,6 @@ const NewRules = lazy(() => import('../../SmartComponents/NewRules/NewRules'));
 const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedCard'));
 const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
 const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
-const PoliciesCard = lazy(() => import('../../SmartComponents/Policies/PoliciesCard'));
 const Footer = lazy(() => import('../../SmartComponents/Footer/Footer'));
 
 const Dashboard = ({ workloads }) => {
@@ -84,12 +83,6 @@ const Dashboard = ({ workloads }) => {
                             <Suspense fallback={ <Loading /> }>
                                 {permission.advisor &&
                                     <AdvisorCard />
-                                }
-                            </Suspense>
-                            <PoliciesCard />
-                            <Suspense fallback={ <Loading /> }>
-                                {permission.policies &&
-                                    <PoliciesCard />
                                 }
                             </Suspense>
                             <Suspense fallback={ <Loading /> }>
