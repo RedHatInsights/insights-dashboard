@@ -14,16 +14,16 @@ import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
 
 import { DataListItemTemplate } from '../../PresentationalComponents/Template/DataListItemTemplate';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { UI_BASE } from '../../AppConstants';
 import { capitalize } from '../../Utilities/Common';
-import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import { useSelector } from 'react-redux';
 
-const DistilledDataList = ({ vulnerabilities }) => {
+const NewRules = () => {
     const intl = useIntl();
+    const vulnerabilities = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities);
     let { recent_rules: newRules } = vulnerabilities;
     const severitColor = {
         1: ['#2b9af3', '#06c'],
@@ -33,9 +33,9 @@ const DistilledDataList = ({ vulnerabilities }) => {
     };
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
 
-    return <DataList className='ins-c-dashboard-data-list ins-m-toggle-right-on-md ins-m-no-border pf-m-compact'
-        gridBreakpoint='none'        >
-        {newRules?.map((item, index) =>
+    return newRules?.length > 0 ? <DataList className='ins-c-dashboard-data-list ins-m-toggle-right-on-md ins-m-no-border pf-m-compact'
+        gridBreakpoint='none'>
+        {newRules.map((item, index) =>
             <DataListItemTemplate
                 key={item.key}
                 dataListItemTemplateKey={item.key}
@@ -109,17 +109,8 @@ const DistilledDataList = ({ vulnerabilities }) => {
                         </Flex>
                     </Flex>
                 } />
-        )}</DataList>;
+        )}</DataList>
+        : <React.Fragment />;
 };
 
-DistilledDataList.propTypes = {
-    vulnerabilities: PropTypes.object,
-    vulnerabilitiesFetchStatus: PropTypes.string
-};
-
-export default connect(
-    ({ DashboardStore }) => ({
-        vulnerabilities: DashboardStore.vulnerabilities,
-        vulnerabilitiesFetchStatus: DashboardStore.vulnerabilitiesFetchStatus
-    })
-)(DistilledDataList);
+export default NewRules;
