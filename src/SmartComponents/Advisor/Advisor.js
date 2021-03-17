@@ -16,7 +16,7 @@ import {
 import { Flex, FlexItem, Grid } from '@patternfly/react-core/dist/esm/layouts';
 import React, { useEffect, useState } from 'react';
 import { SEVERITY_MAP, UI_BASE } from '../../AppConstants';
-import { capitalize, sapFilter, workloadsPropType } from '../../Utilities/Common';
+import { capitalize, sapFilter } from '../../Utilities/Common';
 import {
     global_palette_black_300,
     global_palette_blue_100,
@@ -24,6 +24,7 @@ import {
     global_palette_blue_300,
     global_palette_blue_400
 } from '@patternfly/react-tokens/dist/js/';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
@@ -32,19 +33,25 @@ import { INCIDENT_URL } from './Constants';
 import InfoIcon from '../../Icons/InfoIcon';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
-import PropTypes from 'prop-types';
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
-import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 
-const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetchStatsSystems,
-    advisorIncidents, advisorIncidentsStatus, advisorFetchIncidents, selectedTags, workloads, SID }) => {
+const Advisor = () => {
     const colors = [global_palette_blue_100.value, global_palette_blue_200.value, global_palette_blue_300.value, global_palette_blue_400.value];
     const intl = useIntl();
     const [trData, setTRData] = useState([]);
     const [categoryData, setCategoryData] = useState([]);
     const [colorScale, setColorScale] = useState();
+    const dispatch = useDispatch();
+    const recStats = useSelector(({ DashboardStore }) => DashboardStore.advisorStatsRecs);
+    const recStatsStatus = useSelector(({ DashboardStore }) => DashboardStore.advisorStatsRecsStatus);
+    const advisorIncidents = useSelector(({ DashboardStore }) => DashboardStore.advisorIncidents);
+    const advisorIncidentsStatus = useSelector(({ DashboardStore }) => DashboardStore.advisorIncidentsStatus);
+    const selectedTags = useSelector(({ DashboardStore }) => DashboardStore.selectedTags);
+    const workloads = useSelector(({ DashboardStore }) => DashboardStore.workloads);
+    const SID = useSelector(({ DashboardStore }) => DashboardStore.SID);
+
     const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length ?
         `&tags=${selectedTags?.join()}` : ''}${workloads?.SAP ? '&sap_system=true' : ''}${SID?.length ? `&sap_sids=${SID?.join()}` : ''}`;
     const totalRiskUrl = (risk) => `${UI_BASE}/advisor/recommendations?total_risk=${risk}${urlRest}`;
@@ -63,11 +70,14 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
 
     useEffect(() => {
+        const advisorFetchStatsRecs = options => dispatch(AppActions.advisorFetchStatsRecs(options));
+        const advisorFetchStatsSystems = options => dispatch(AppActions.advisorFetchStatsSystems(options));
+        const advisorFetchIncidents = options => dispatch(AppActions.advisorFetchIncidents(options));
         const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
         advisorFetchStatsRecs(options);
         advisorFetchStatsSystems(options);
         advisorFetchIncidents(options);
-    }, [advisorFetchIncidents, advisorFetchStatsRecs, advisorFetchStatsSystems, selectedTags, workloads, SID]);
+    }, [selectedTags, workloads, SID, dispatch]);
 
     useEffect(() => {
         if (recStatsStatus === 'fulfilled') {
@@ -114,10 +124,10 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
             setColorScale(categoryCount === 0 ? [global_palette_black_300.value] : colors);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [intl, recStats, recStatsStatus]);
+    }, [recStats, recStatsStatus]);
 
     return <Card>
-        {advisorIncidentsStatus === 'pending' && <Loading />}
+        {advisorIncidentsStatus === 'pending' || recStatsStatus === 'pending' && <Loading />}
         {advisorIncidentsStatus === 'rejected' ?
             <TemplateCardBody><FailState appName='Advisor' /></TemplateCardBody>
             : <React.Fragment>
@@ -149,8 +159,7 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                             </Flex>
                         </Grid>
                     </TemplateCardBody>
-                    }
-                />
+                    } />
                 <Divider inset={{ md: 'insetLg' }} />
                 <ExpandableCardTemplate
                     appName='advisor-recommendation-by-total-risk'
@@ -212,42 +221,9 @@ const Advisor = ({ recStats, recStatsStatus, advisorFetchStatsRecs, advisorFetch
                             </CardBody>
                         </Card>
                     </TemplateCardBody>
-                    }
-                />
-            </React.Fragment>
-        }
+                    }/>
+            </React.Fragment>}
     </Card>;
 };
 
-Advisor.propTypes = {
-    advisorFetchStatsRecs: PropTypes.func,
-    recStats: PropTypes.object,
-    recStatsStatus: PropTypes.string,
-    advisorFetchStatsSystems: PropTypes.func,
-    systemsStats: PropTypes.object,
-    systemsStatsStatus: PropTypes.string,
-    advisorIncidents: PropTypes.object,
-    advisorIncidentsStatus: PropTypes.string,
-    advisorFetchIncidents: PropTypes.func,
-    selectedTags: PropTypes.array,
-    workloads: workloadsPropType,
-    SID: PropTypes.arrayOf(PropTypes.string)
-};
-
-export default connect(
-    ({ DashboardStore }) => ({
-        recStats: DashboardStore.advisorStatsRecs,
-        recStatsStatus: DashboardStore.advisorStatsRecsStatus,
-        systemsStats: DashboardStore.advisorStatsSystems,
-        systemsStatsStatus: DashboardStore.advisorStatsSystemsStatus,
-        advisorIncidents: DashboardStore.advisorIncidents,
-        advisorIncidentsStatus: DashboardStore.advisorIncidentsStatus,
-        selectedTags: DashboardStore.selectedTags,
-        workloads: DashboardStore.workloads,
-        SID: DashboardStore.SID
-    }),
-    dispatch => ({
-        advisorFetchStatsRecs: (data) => dispatch(AppActions.advisorFetchStatsRecs(data)),
-        advisorFetchStatsSystems: (data) => dispatch(AppActions.advisorFetchStatsSystems(data)),
-        advisorFetchIncidents: (data) => dispatch(AppActions.advisorFetchIncidents(data))
-    }))(Advisor);
+export default Advisor;
