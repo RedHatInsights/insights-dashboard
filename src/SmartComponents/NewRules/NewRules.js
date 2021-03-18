@@ -28,6 +28,7 @@ import { useSelector } from 'react-redux';
 
 const NewRules = () => {
     const intl = useIntl();
+    const [isExpanded, setIsExpanded] = useState(JSON.parse(localStorage.getItem('DashboardNewRulesExpanded') || 'true'));
     const vulnerabilities = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities);
     let { recent_rules: newRules } = vulnerabilities;
     const severitColor = {
@@ -37,7 +38,6 @@ const NewRules = () => {
         4: ['#c9190b', '#470000']
     };
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
-    const [isExpanded, setIsExpanded] = useState(true);
 
     return <DataList className='ins-c-dashboard-data-list ins-m-toggle-right-on-md ins-m-no-border pf-m-compact'
         gridBreakpoint='none'>
@@ -46,7 +46,7 @@ const NewRules = () => {
                 <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />
                 <b>{intl.formatMessage(messages.latestCritical)}</b>
                 <div className='pf-c-data-list__toggle'
-                    onClick={() => setIsExpanded(!isExpanded)}
+                    onClick={() => {localStorage.setItem('DashboardNewRulesExpanded', `${!isExpanded}`); setIsExpanded(!isExpanded);}}
                     isExpanded={isExpanded}
                     id={`data-list-toggle`}
                     aria-controls={`data-list-item`}>
