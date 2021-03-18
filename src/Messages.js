@@ -697,5 +697,25 @@ export default defineMessages({
         id: 'systemsExposed',
         description: 'Systems exposed',
         defaultMessage: 'Systems exposed'
+    },
+    collapse: {
+        id: 'collapse',
+        description: 'collapse',
+        defaultMessage: 'Collapse'
+    },
+    collapseAll: {
+        id: 'collapseAll',
+        description: 'collapse all',
+        defaultMessage: 'Collapse all'
+    },
+    expand: {
+        id: 'expand',
+        description: 'expand',
+        defaultMessage: 'Expand'
+    },
+    latestCritical: {
+        id: 'latestCritical',
+        description: 'latestCritical',
+        defaultMessage: 'Latest critical notifications on your systems'
     }
 });

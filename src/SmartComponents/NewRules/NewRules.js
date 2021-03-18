@@ -2,7 +2,10 @@ import './NewRules.scss';
 
 import {
     Button,
+    ButtonVariant,
     DataList,
+    DataListItem,
+    DataListItemRow,
     DescriptionList,
     DescriptionListDescription,
     DescriptionListGroup,
@@ -11,10 +14,12 @@ import {
     Title
 } from '@patternfly/react-core/dist/esm/components';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
+import React, { useState } from 'react';
 
+import AngleRightIcon from '@patternfly/react-icons/dist/js/icons/angle-right-icon';
 import { DataListItemTemplate } from '../../PresentationalComponents/Template/DataListItemTemplate';
+import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
-import React from 'react';
 import { UI_BASE } from '../../AppConstants';
 import { capitalize } from '../../Utilities/Common';
 import messages from '../../Messages';
@@ -23,7 +28,7 @@ import { useSelector } from 'react-redux';
 
 const NewRules = () => {
     const intl = useIntl();
-    const vulnerabilities = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities.recent_rules);
+    const vulnerabilities = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities);
     let { recent_rules: newRules } = vulnerabilities;
     const severitColor = {
         1: ['#2b9af3', '#06c'],
@@ -32,10 +37,34 @@ const NewRules = () => {
         4: ['#c9190b', '#470000']
     };
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
+    const [isExpanded, setIsExpanded] = useState(true);
 
-    return newRules?.length > 0 ? <DataList className='ins-c-dashboard-data-list ins-m-toggle-right-on-md ins-m-no-border pf-m-compact'
+    return <DataList className='ins-c-dashboard-data-list ins-m-toggle-right-on-md ins-m-no-border pf-m-compact'
         gridBreakpoint='none'>
-        {newRules.map((item, index) =>
+        <DataListItem aria-labelledby='ex-item1' isExpanded={isExpanded}>
+            <DataListItemRow classname='ins-c-dashboard-data-list'>
+                <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />
+                <b>{intl.formatMessage(messages.latestCritical)}</b>
+                <div className='pf-c-data-list__toggle'
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    isExpanded={isExpanded}
+                    id={`data-list-toggle`}
+                    aria-controls={`data-list-item`}>
+                    <Button id={`data-list-item-toggle`} variant={ButtonVariant.plain} aria-expanded={isExpanded}
+                        type='button'
+                        className='pf-m-link'>
+                        <span className='pf-c-data-list__toggle-text pf-c-button pf-m-inline pf-m-link'>
+                            {isExpanded && intl.formatMessage(messages.collapseAll)}
+                            {!isExpanded && intl.formatMessage(messages.expand)}
+                        </span>
+                        <div className='pf-c-data-list__toggle-icon'>
+                            <AngleRightIcon />
+                        </div>
+                    </Button>
+                </div>
+            </DataListItemRow>
+        </DataListItem>
+        {newRules?.map((item, index) =>
             <DataListItemTemplate
                 key={item.key}
                 dataListItemTemplateKey={item.key}
@@ -47,7 +76,7 @@ const NewRules = () => {
                         alignItems={{ md: 'alignItemsFlexStart' }}
                         spaceItems={{ md: 'spaceItems2xl' }}>
                         <Flex direction={{ default: 'column' }} flex={{ md: 'flex_3', xl: 'flexDefault' }}>
-                            <Title headingLevel="h4" size="xl" className='pf-u-font-weight-lights'>
+                            <Title headingLevel='h4' size='xl' className='pf-u-font-weight-lights'>
                                 <span>
                                     {capitalize(intl.formatMessage({
                                         id: 'itemTitle',
@@ -79,8 +108,8 @@ const NewRules = () => {
                                     )}</DescriptionListGroup>
                             </DescriptionList>
                             <Flex flexDefault={{ md: 'flex_1', xl: 'flexDefault' }}>
-                                <Button type="a" href={`${UI_BASE}/vulnerability/cves/${item.associated_cves[0]}`}
-                                    component='a' variant="secondary">{intl.formatMessage(messages.viewDetails)}</Button>
+                                <Button type='a' href={`${UI_BASE}/vulnerability/cves/${item.associated_cves[0]}`}
+                                    component='a' variant='secondary'>{intl.formatMessage(messages.viewDetails)}</Button>
                                 <a href={`https://access.redhat.com/node/${item.node_id}`} rel='noreferrer' target='_blank'>
                                     {intl.formatMessage(messages.moreAbout)}
                                 </a>
@@ -90,8 +119,8 @@ const NewRules = () => {
                             <Flex alignItems={{ default: 'alignItemsCenter' }} flexWrap={{ default: 'nowrap' }}>
                                 <FlexItem>
                                     <PieChart
-                                        ariaDesc="--"
-                                        ariaTitle="--"
+                                        ariaDesc='--'
+                                        ariaTitle='--'
                                         data={[{ x: 'Total systems', y: vulnerabilities.system_count },
                                             { x: 'Systems affected', y: item.systems_affected }
                                         ]}
@@ -102,15 +131,16 @@ const NewRules = () => {
                                         colorScale={severitColor[item.severity]} />
                                 </FlexItem>
                                 <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsNone' }}>
-                                    <div className="pf-u-font-size-2xl">{item.systems_affected}</div>
+                                    <div className='pf-u-font-size-2xl'>{item.systems_affected}</div>
                                     <div>{intl.formatMessage(messages.systemsExposed)}</div>
                                 </Flex>
                             </Flex>
                         </Flex>
                     </Flex>
                 } />
-        )}</DataList>
-        : <React.Fragment />;
+        )}
+
+    </DataList>;
 };
 
 export default NewRules;
