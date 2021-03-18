@@ -39,15 +39,6 @@ export const DashboardFooter = () => {
                         {intl.formatMessage(messages.footerTitle)}
                     </Title>
                     <div className="ins-l-columns ins-m-3-col-on-xl">
-                        {!permission.policies &&
-                            <AppBlock
-                                appName='policies'
-                                title={intl.formatMessage(messages.policiesAppBlockHeader)}
-                                body={intl.formatMessage(messages.policiesAppBlockBody)}
-                                url={`${UI_BASE}/policies/`}
-                                icon={<BuildIcon />}
-                            />
-                        }
                         {!permission.remediations &&
                             <AppBlock
                                 appName='remediation'
@@ -63,24 +54,6 @@ export const DashboardFooter = () => {
                                 title={intl.formatMessage(messages.complianceAppBlockHeader)}
                                 body={intl.formatMessage(messages.complianceAppBlockBody)}
                                 url={`${UI_BASE}/compliance/`}
-                                icon={<BuildIcon />}
-                            />
-                        }
-                        {!permission.patch &&
-                            <AppBlock
-                                appName='patch'
-                                title={intl.formatMessage(messages.patchAppBlockHeader)}
-                                body={intl.formatMessage(messages.patchAppBlockBody)}
-                                url={`${UI_BASE}/patch/advisories`}
-                                icon={<BlueprintIcon />}
-                            />
-                        }
-                        {!permission.subscriptions &&
-                            <AppBlock
-                                appName='subscriptions'
-                                title={intl.formatMessage(messages.subscriptionsAppBlockHeader)}
-                                body={intl.formatMessage(messages.subscriptionsAppBlockBody)}
-                                url={`${UI_BASE}/subscriptions/`}
                                 icon={<BuildIcon />}
                             />
                         }
