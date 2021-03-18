@@ -4,7 +4,9 @@ import {
     Button,
     ButtonVariant,
     DataList,
+    DataListCell,
     DataListItem,
+    DataListItemCells,
     DataListItemRow,
     DescriptionList,
     DescriptionListDescription,
@@ -87,26 +89,36 @@ const NewRules = () => {
 
     return <DataList className='ins-c-dashboard-data-list ins-m-toggle-right-on-md ins-m-no-border pf-m-compact'
         gridBreakpoint='none'>
-        <DataListItem aria-labelledby='ex-item1' isExpanded={isExpanded}>
-            <DataListItemRow classname='ins-c-dashboard-data-list'>
-                <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />
-                <b>{intl.formatMessage(messages.latestCritical)}</b>
-                <div className='pf-c-data-list__toggle'
-                    onClick={() => {localStorage.setItem('DashboardNewRulesExpanded', `${!isExpanded}`); setIsExpanded(!isExpanded);}}
-                    isExpanded={isExpanded}
-                    id={`data-list-toggle`}
-                    aria-controls={`data-list-item`}>
-                    <Button id={`data-list-item-toggle`} variant={ButtonVariant.plain} aria-expanded={isExpanded}
-                        type='button'
-                        className='pf-m-link'>
-                        <span className='pf-c-data-list__toggle-text pf-c-button pf-m-inline pf-m-link'>
-                            {isExpanded && intl.formatMessage(messages.collapseAll)}
-                            {!isExpanded && intl.formatMessage(messages.expand)}
-                        </span>
-                        <div className='pf-c-data-list__toggle-icon'>
-                            <AngleRightIcon />
-                        </div>
-                    </Button>
+        <DataListItem aria-labelledby='collapse-all-text' isExpanded={isExpanded}>
+            <DataListItemRow className='ins-c-dashboard-data-list__title-row'>
+                <DataListItemCells
+                    dataListCells={[
+                        <DataListCell key="primary content">
+                            <Flex spaceItems={ { default: 'spaceItemsMd' } } alignItems={ { default: 'alignItemsCenter' } } flexWrap={ { default: 'nowrap' } }>
+                                <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />
+                                <span id="collapse-all-text" className="pf-u-font-weight-bold">{intl.formatMessage(messages.latestCritical)}</span>
+                            </Flex>
+                        </DataListCell>,
+                    ]}
+                />
+                <div className='pf-c-data-list__item-control'>
+                    <div className='pf-c-data-list__toggle'
+                        onClick={() => {localStorage.setItem('DashboardNewRulesExpanded', `${!isExpanded}`); setIsExpanded(!isExpanded);}}
+                        isExpanded={isExpanded}
+                        id={`data-list-toggle`}
+                        aria-controls={`data-list-item`}>
+                        <Button id={`data-list-item-toggle`} variant={ButtonVariant.plain} aria-expanded={isExpanded}
+                            type='button'
+                            className='pf-m-link'>
+                            <span className='pf-c-data-list__toggle-text pf-c-button pf-m-inline pf-m-link'>
+                                {isExpanded && intl.formatMessage(messages.collapseAll)}
+                                {!isExpanded && intl.formatMessage(messages.expand)}
+                            </span>
+                            <div className='pf-c-data-list__toggle-icon'>
+                                <AngleRightIcon />
+                            </div>
+                        </Button>
+                    </div>
                 </div>
             </DataListItemRow>
         </DataListItem>
