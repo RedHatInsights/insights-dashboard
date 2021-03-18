@@ -54,7 +54,7 @@ const Advisor = () => {
 
     const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length ?
         `&tags=${selectedTags?.join()}` : ''}${workloads?.SAP ? '&sap_system=true' : ''}${SID?.length ? `&sap_sids=${SID?.join()}` : ''}`;
-    const totalRiskUrl = (risk) => `${UI_BASE}/advisor/recommendations?total_risk=${risk}${urlRest}`;
+    const totalRiskUrl = risk => `${UI_BASE}/advisor/recommendations?total_risk=${risk}${urlRest}`;
     const pieLegendData = categoryData.map(item => ({
         name: `${item.y} ${item.x} `, fill: `${item.fill}`,
         url: `${UI_BASE}/advisor/recommendations?category=${item.value}${urlRest}`
@@ -86,19 +86,23 @@ const Advisor = () => {
             setTRData([
                 {
                     title: `${capitalize(intl.formatMessage(messages.critical))} `,
-                    risk: `${total_risk[SEVERITY_MAP.critical]}`
+                    risk: `${total_risk[SEVERITY_MAP.critical]}`,
+                    value: SEVERITY_MAP.critical
                 },
                 {
                     title: `${capitalize(intl.formatMessage(messages.important))} `,
-                    risk: `${total_risk[SEVERITY_MAP.important]}`
+                    risk: `${total_risk[SEVERITY_MAP.important]}`,
+                    value: SEVERITY_MAP.important
                 },
                 {
                     title: `${capitalize(intl.formatMessage(messages.moderate))} `,
-                    risk: `${total_risk[SEVERITY_MAP.moderate]}`
+                    risk: `${total_risk[SEVERITY_MAP.moderate]}`,
+                    value: SEVERITY_MAP.moderate
                 },
                 {
                     title: `${capitalize(intl.formatMessage(messages.low))} `,
-                    risk: `${total_risk[SEVERITY_MAP.low]}`
+                    risk: `${total_risk[SEVERITY_MAP.low]}`,
+                    value: SEVERITY_MAP.low
                 }
             ]);
 
@@ -170,8 +174,8 @@ const Advisor = () => {
                     </React.Fragment>}
                     body={<TemplateCardBody className="ins-c-advisor-recs__card-body pf-u-pb-0">
                         <Flex justifyContent={{ default: 'justifyContentSpaceEvenly' }}>
-                            {trData.map(({ title, risk }) =>
-                                <a key={title} href={totalRiskUrl(risk)}>
+                            {trData.map(({ title, risk, value }) =>
+                                <a key={title} href={totalRiskUrl(value)}>
                                     <Flex
                                         direction={{ default: 'column' }}
                                         spaceItems={{ default: 'spaceItemsNone' }}
