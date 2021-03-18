@@ -1,34 +1,22 @@
-// components
-import {
-    PageSection,
-    PageSectionVariants,
-    Title
-} from '@patternfly/react-core/dist/esm/components';
+import { PageSection, PageSectionVariants, Title } from '@patternfly/react-core/dist/esm/components';
 import React, { useContext, useEffect, useState } from 'react';
+import { SAP_FETCH_URL, UI_BASE } from '../../AppConstants';
 
-// import { workloadsPropType } from '../../Utilities/Common';
 import API from '../../Utilities/Api';
 import { AppBlock } from '../../PresentationalComponents/Template/AppBlockTemplate';
 import BlueprintIcon from '@patternfly/react-icons/dist/js/icons/blueprint-icon';
-// icons
 import BuildIcon from '@patternfly/react-icons/dist/js/icons/build-icon';
-// layouts
-import {
-    Flex
-} from '@patternfly/react-core/dist/esm/layouts';
+import { Flex } from '@patternfly/react-core/dist/esm/layouts';
 import { PermissionContext } from '../../App';
-import { SAP_FETCH_URL } from '../../AppConstants';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import { useSelector } from 'react-redux';
 
-/**
- * Dashboard footer
- */
-
-const DashboardFooter = ({ workloads })  => {
+export const DashboardFooter = () => {
     const permission = useContext(PermissionContext);
     const intl = useIntl();
     const [supportsSap, setSupportsSap] = useState(true);
+    const workloads = useSelector(({ DashboardStore }) => DashboardStore.workloads);
 
     useEffect(() => {
         const fetchSapSystems = async () => {
@@ -45,43 +33,55 @@ const DashboardFooter = ({ workloads })  => {
 
     return permission.hasSystems ?
         (!workloads?.SAP?.isSelected) || (workloads?.SAP?.isSelected && supportsSap) ?
-            <PageSection isWidthLimited className='ins-c-dashboard-footer pf-u-pt-lg' variant={ PageSectionVariants.light }>
-                <Flex
-                    direction={ { default: 'column' } }
-                    spaceItems={ { default: 'spaceItemsXl' } }
-                >
+            <PageSection isWidthLimited className='ins-c-dashboard-footer pf-u-pt-lg' variant={PageSectionVariants.light}>
+                <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsXl' }}>
                     <Title headingLevel="h2" size="xl">
                         {intl.formatMessage(messages.footerTitle)}
                     </Title>
                     <div className="ins-l-columns ins-m-3-col-on-xl">
-
                         {!permission.policies &&
                             <AppBlock
                                 appName='policies'
                                 title={intl.formatMessage(messages.policiesAppBlockHeader)}
                                 body={intl.formatMessage(messages.policiesAppBlockBody)}
-                                url='policies'
-                                icon={ <BuildIcon /> }
+                                url={`${UI_BASE}/policies/`}
+                                icon={<BuildIcon />}
                             />
                         }
-
                         {!permission.remediations &&
                             <AppBlock
                                 appName='remediation'
                                 title={intl.formatMessage(messages.remediationsAppBlockHeader)}
                                 body={intl.formatMessage(messages.remediationsAppBlockBody)}
-                                url='remediation'
-                                icon={ <BlueprintIcon /> }
+                                url={`${UI_BASE}/remediation/`}
+                                icon={<BlueprintIcon />}
                             />
                         }
-
                         {!permission.compliance &&
                             <AppBlock
                                 appName='compliance'
                                 title={intl.formatMessage(messages.complianceAppBlockHeader)}
                                 body={intl.formatMessage(messages.complianceAppBlockBody)}
-                                url='compliance'
-                                icon={ <BuildIcon /> }
+                                url={`${UI_BASE}/compliance/`}
+                                icon={<BuildIcon />}
+                            />
+                        }
+                        {!permission.patch &&
+                            <AppBlock
+                                appName='patch'
+                                title={intl.formatMessage(messages.patchAppBlockHeader)}
+                                body={intl.formatMessage(messages.patchAppBlockBody)}
+                                url={`${UI_BASE}/patch/advisories`}
+                                icon={<BlueprintIcon />}
+                            />
+                        }
+                        {!permission.subscriptions &&
+                            <AppBlock
+                                appName='subscriptions'
+                                title={intl.formatMessage(messages.subscriptionsAppBlockHeader)}
+                                body={intl.formatMessage(messages.subscriptionsAppBlockBody)}
+                                url={`${UI_BASE}/subscriptions/`}
+                                icon={<BuildIcon />}
                             />
                         }
                     </div>

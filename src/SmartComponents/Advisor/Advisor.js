@@ -140,10 +140,10 @@ const Advisor = () => {
                             <Flex
                                 direction={{ default: 'column' }}
                                 alignItems={{ default: 'alignItemsCenter' }}
-                                spaceItems={{ default: 'spaceItemsLg' }}
-                            >
+                                spaceItems={{ default: 'spaceItemsLg' }}>
                                 <Flex>
-                                    <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />
+                                    {advisorIncidents?.meta?.count > 0 &&
+                                        <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />}
                                     <span className="pf-u-font-size-2xl pf-u-text-align-center pf-u-font-weight-normal">
                                         {intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })}
                                     </span>
@@ -175,8 +175,7 @@ const Advisor = () => {
                                     <Flex
                                         direction={{ default: 'column' }}
                                         spaceItems={{ default: 'spaceItemsNone' }}
-                                        alignItems={{ default: 'alignItemsCenter' }}
-                                    >
+                                        alignItems={{ default: 'alignItemsCenter' }}>
                                         <span className="pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-normal">
                                             {risk}
                                         </span>
@@ -204,8 +203,7 @@ const Advisor = () => {
                                                 colorScale={colorScale}
                                                 padding={pieChartPadding}
                                                 height={100}
-                                                width={100}
-                                            />
+                                                width={100}/>
                                         </FlexItem>
                                         <div className="ins-c-legend">
                                             {pieLegendData.map((item) =>
@@ -221,7 +219,7 @@ const Advisor = () => {
                             </CardBody>
                         </Card>
                     </TemplateCardBody>
-                    }/>
+                    } />
             </React.Fragment>}
     </Card>;
 };
