@@ -30,7 +30,53 @@ const NewRules = () => {
     const intl = useIntl();
     const [isExpanded, setIsExpanded] = useState(JSON.parse(localStorage.getItem('DashboardNewRulesExpanded') || 'true'));
     const vulnerabilities = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities);
-    let { recent_rules: newRules } = vulnerabilities;
+    let newRules = [
+        {
+            associated_cves: [
+                'CVE-2016-0800'
+            ],
+            description: 'A heap-based buffer overflow was found in the way ...',
+            id: 'CVE_2019_11135_cpu_taa|CVE_2019_11135_CPU_TAA_KERNEL',
+            name: 'sudo privilege escalation',
+            node_id: 5737621,
+            public_date: '2016-03-01T00:00:00+00:00',
+            severity: 3,
+            systems_affected: 178
+        }, {
+            associated_cves: [
+                'CVE-2016-0800'
+            ],
+            description: 'A heap-based buffer overflow was found in the way ...',
+            id: 'CVE_2019_11135_cpu_taa|CVE_2019_11135_CPU_TAA_KERNEL',
+            name: 'sudo privilege escalation',
+            node_id: 5737621,
+            public_date: '2016-03-01T00:00:00+00:00',
+            severity: 3,
+            systems_affected: 178
+        }, {
+            associated_cves: [
+                'CVE-2016-0800'
+            ],
+            description: 'A heap-based buffer overflow was found in the way ...',
+            id: 'CVE_2019_11135_cpu_taa|CVE_2019_11135_CPU_TAA_KERNEL',
+            name: 'sudo privilege escalation',
+            node_id: 5737621,
+            public_date: '2016-03-01T00:00:00+00:00',
+            severity: 3,
+            systems_affected: 178
+        }, {
+            associated_cves: [
+                'CVE-2016-0800'
+            ],
+            description: 'A heap-based buffer overflow was found in the way ...',
+            id: 'CVE_2019_11135_cpu_taa|CVE_2019_11135_CPU_TAA_KERNEL',
+            name: 'sudo privilege escalation',
+            node_id: 5737621,
+            public_date: '2016-03-01T00:00:00+00:00',
+            severity: 3,
+            systems_affected: 178
+        }
+    ];
     const severitColor = {
         1: ['#2b9af3', '#06c'],
         2: ['#f4c145', '#c58c00'],
@@ -64,7 +110,7 @@ const NewRules = () => {
                 </div>
             </DataListItemRow>
         </DataListItem>
-        {newRules?.map((item, index) =>
+        {isExpanded && newRules?.map((item, index) =>
             <DataListItemTemplate
                 key={item.key}
                 dataListItemTemplateKey={item.key}
@@ -139,7 +185,6 @@ const NewRules = () => {
                     </Flex>
                 } />
         )}
-
     </DataList>;
 };
 
