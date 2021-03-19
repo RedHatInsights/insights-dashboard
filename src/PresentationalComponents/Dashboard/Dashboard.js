@@ -66,7 +66,7 @@ const Dashboard = ({ workloads }) => {
                 <PageSection isFilled={true} isWidthLimited>
                     <Grid hasGutter>
                         <Suspense fallback={ <Loading /> }>
-                            {!newRules?.length > 0 && permission.vulnerability && <GridItem>
+                            {newRules?.length > 0 && permission.vulnerability && <GridItem>
                                 <NewRules />
                             </GridItem> }
                         </Suspense>
