@@ -22,7 +22,7 @@ export const DashboardFooter = ({ supportsSap }) => {
                     {intl.formatMessage(messages.footerTitle)}
                 </Title>
                 <div className="ins-l-columns ins-m-3-col-on-xl">
-                    {permission.compliance &&
+                    {!permission.compliance &&
                         <AppBlock
                             appName='compliance'
                             title={intl.formatMessage(messages.complianceAppBlockHeader)}
@@ -30,7 +30,7 @@ export const DashboardFooter = ({ supportsSap }) => {
                             url={`${UI_BASE}/compliance/reports`}
                             icon={<img src={ComplianceIcon} alt='Insights Remediation Icon' />}
                         />
-                    }{permission.remediations &&
+                    }{!permission.remediations &&
                         <AppBlock
                             appName='remediation'
                             title={intl.formatMessage(messages.remediationsAppBlockHeader)}
