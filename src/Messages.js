@@ -604,6 +604,11 @@ export default defineMessages({
     },
 
     // Card messages
+    advisorCardMessage: {
+        id: 'advisorCardMessage',
+        description: 'Advisor card message',
+        defaultMessage: 'Problematic conditions that cause an issue have been actively detected on your systems'
+    },
     complianceAppBlockHeader: {
         id: 'complianceAppBlockHeader',
         description: 'compliance app block header',
