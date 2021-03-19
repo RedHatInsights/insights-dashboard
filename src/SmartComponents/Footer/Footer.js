@@ -15,7 +15,7 @@ export const DashboardFooter = ({ supportsSap }) => {
     const permission = useContext(PermissionContext);
     const intl = useIntl();
 
-    return (permission.hasSystems && supportsSap) && (permission.remediations || !permission.compliance) ?
+    return (permission.hasSystems && supportsSap) && (!permission.remediations || !permission.compliance) ?
         <PageSection isWidthLimited className='ins-c-dashboard-footer pf-u-pt-lg' variant={PageSectionVariants.light}>
             <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsXl' }}>
                 <Title headingLevel="h2" size="xl">
