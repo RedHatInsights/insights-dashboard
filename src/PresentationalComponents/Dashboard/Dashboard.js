@@ -108,7 +108,7 @@ const Dashboard = ({ workloads }) => {
                         </Masonry>
                     </Grid>
                 </PageSection>
-                <Footer />
+                <Footer supportsSap={(!workloads?.SAP?.isSelected) || (workloads?.SAP?.isSelected && supportsSap)}/>
             </React.Fragment>
             : <NoSystems workloadIs='SAP' />
         : <ZeroState />;
