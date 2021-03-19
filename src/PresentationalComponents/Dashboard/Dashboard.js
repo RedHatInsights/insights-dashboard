@@ -1,16 +1,7 @@
 import './_dashboard.scss';
 
-// layouts
-import {
-    Grid,
-    GridItem
-} from '@patternfly/react-core/dist/esm/layouts';
-// components
-import {
-    PageSection,
-    PageSectionVariants,
-    Title
-} from '@patternfly/react-core/dist/esm/components';
+import { Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts';
+import { PageSection, PageSectionVariants, Title } from '@patternfly/react-core/dist/esm/components';
 import React, { Suspense, lazy, useContext, useEffect, useState } from 'react';
 
 import API from '../../Utilities/Api';
@@ -23,6 +14,7 @@ import ZeroState from '../ZeroState/ZeroState';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import { useSelector } from 'react-redux';
 import { workloadsPropType } from '../../Utilities/Common';
 
 const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
@@ -33,13 +25,13 @@ const NewRules = lazy(() => import('../../SmartComponents/NewRules/NewRules'));
 const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedCard'));
 const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
 const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
-const PoliciesCard = lazy(() => import('../../SmartComponents/Policies/PoliciesCard'));
 const Footer = lazy(() => import('../../SmartComponents/Footer/Footer'));
 
 const Dashboard = ({ workloads }) => {
     const permission = useContext(PermissionContext);
     const intl = useIntl();
     const [supportsSap, setSupportsSap] = useState(true);
+    const newRules = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities.recent_rules);
 
     useEffect(() => {
         const fetchSapSystems = async () => {
@@ -74,11 +66,9 @@ const Dashboard = ({ workloads }) => {
                 <PageSection isFilled={true} isWidthLimited>
                     <Grid hasGutter>
                         <Suspense fallback={ <Loading /> }>
-                            <GridItem>
-                                {permission.vulnerability &&
-                                    <NewRules />
-                                }
-                            </GridItem>
+                            {newRules?.length > 0 && permission.vulnerability && <GridItem>
+                                <NewRules />
+                            </GridItem> }
                         </Suspense>
                         <Masonry
                             breakpointCols={breakpointColumnsObj}
@@ -93,12 +83,6 @@ const Dashboard = ({ workloads }) => {
                             <Suspense fallback={ <Loading /> }>
                                 {permission.advisor &&
                                     <AdvisorCard />
-                                }
-                            </Suspense>
-                            <PoliciesCard />
-                            <Suspense fallback={ <Loading /> }>
-                                {permission.policies &&
-                                    <PoliciesCard />
                                 }
                             </Suspense>
                             <Suspense fallback={ <Loading /> }>
@@ -124,7 +108,7 @@ const Dashboard = ({ workloads }) => {
                         </Masonry>
                     </Grid>
                 </PageSection>
-                <Footer />
+                <Footer supportsSap={(!workloads?.SAP?.isSelected) || (workloads?.SAP?.isSelected && supportsSap)}/>
             </React.Fragment>
             : <NoSystems workloadIs='SAP' />
         : <ZeroState />;

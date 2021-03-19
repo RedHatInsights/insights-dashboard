@@ -42,20 +42,20 @@ export const DataListItemTemplate = ({
         {...props}
     >
         <DataListItemRow>
-            <div className="pf-c-data-list__item-control">
-                <div className="pf-c-data-list__toggle"
+            <div className='pf-c-data-list__item-control'>
+                <div className='pf-c-data-list__toggle'
                     onClick={() => setIsExpanded(!isExpanded)}
                     isExpanded={isExpanded}
                     id={`data-list-toggle-${dataListItemTemplateName}`}
                     aria-controls={`data-list-item-${dataListItemTemplateName}`}>
                     <Button id={`data-list-item-${dataListItemTemplateName}-toggle`} variant={ButtonVariant.plain} aria-expanded={isExpanded}
-                        type="button"
-                        className="pf-m-link"                    >
-                        <span className="pf-c-data-list__toggle-text pf-c-button pf-m-inline pf-m-link">
-                            {isExpanded && 'Collapse'}
-                            {!isExpanded && 'Expand'}
+                        type='button'
+                        className='pf-m-link'                    >
+                        <span className='pf-c-data-list__toggle-text pf-c-button pf-m-inline pf-m-link'>
+                            {isExpanded && intl.formatMessage(messages.collapse)}
+                            {!isExpanded && intl.formatMessage(messages.expand)}
                         </span>
-                        <div className="pf-c-data-list__toggle-icon">
+                        <div className='pf-c-data-list__toggle-icon'>
                             <AngleRightIcon />
                         </div>
                     </Button>
@@ -70,7 +70,7 @@ export const DataListItemTemplate = ({
                                 <span className='date pf-u-color-200 pf-u-font-size-sm'>
                                     Newly released security rule &nbsp;<DateFormat type='onlyDate' date={dataListItemTemplateDate} />
                                 </span>
-                                <Title headingLevel="h4" size="md"
+                                <Title headingLevel='h4' size='md'
                                     className='pf-u-font-weight-light ins-c-title-toggle' id={`itemDescription-${dataListItemTemplateKey}`}>
                                     <span>
                                         {capitalize(intl.formatMessage({
@@ -81,7 +81,7 @@ export const DataListItemTemplate = ({
                                     </span>
                                 </Title>
                             </Flex>
-                            <div className="ins-c-new-rules-severities">
+                            <div className='ins-c-new-rules-severities'>
                                 <Flex alignItems={{ default: 'alignItemsCenter' }} alignSelf={{ default: 'alignSelfStretch' }}>
                                     {dataListItemTemplateSeverity === 1 &&
                                         <InsightsLabel
@@ -110,7 +110,7 @@ export const DataListItemTemplate = ({
                 ]}
             />
         </DataListItemRow>
-        <DataListContent aria-label="Primary Content Details" id="ex-expand1" isHidden={!isExpanded}>
+        <DataListContent aria-label='Primary Content Details' id='ex-expand1' isHidden={!isExpanded}>
             {dataListItemTemplateContent}
         </DataListContent>
     </DataListItem>;

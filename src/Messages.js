@@ -609,79 +609,25 @@ export default defineMessages({
         description: 'Advisor card message',
         defaultMessage: 'Problematic conditions that cause an issue have been actively detected on your systems'
     },
-
-    // App block titles
-    advisorAppBlockHeader: {
-        id: 'advisorAppBlockHeader',
-        description: 'Advisor app block header',
-        defaultMessage: 'Advisor'
-    },
     complianceAppBlockHeader: {
         id: 'complianceAppBlockHeader',
         description: 'compliance app block header',
         defaultMessage: 'Compliance'
-    },
-    patchAppBlockHeader: {
-        id: 'patchAppBlockHeader',
-        description: 'Patch app block header',
-        defaultMessage: 'Patch'
-    },
-    policiesAppBlockHeader: {
-        id: 'policiesAppBlockHeader',
-        description: 'Policies app block header',
-        defaultMessage: 'Policies'
     },
     remediationsAppBlockHeader: {
         id: 'remediationsAppBlockHeader',
         description: 'Remediations app block header',
         defaultMessage: 'Remediations'
     },
-    subscriptionsAppBlockHeader: {
-        id: 'subscriptionsAppBlockHeader',
-        description: 'Subscriptions app block header',
-        defaultMessage: 'Subscriptions'
-    },
-    vulnerabilityAppBlockHeader: {
-        id: 'vulnerabilityAppBlockHeader',
-        description: 'Vulnerability app block header',
-        defaultMessage: 'Vulnerability'
-    },
-
-    // App block titles
-    advisorAppBlockBody: {
-        id: 'advisorAppBlockBody',
-        description: 'Advisor app block body',
-        defaultMessage: 'Advisor body content.'
-    },
     complianceAppBlockBody: {
         id: 'complianceAppBlockBody',
         description: 'compliance app block body',
         defaultMessage: 'Easily identify and manage security compliance issues in the RHEL infrastructure.'
     },
-    patchAppBlockBody: {
-        id: 'patchAppBlockBody',
-        description: 'Patch app block body',
-        defaultMessage: 'Patch body content.'
-    },
-    policiesAppBlockBody: {
-        id: 'policiesAppBlockBody',
-        description: 'Policies app block body',
-        defaultMessage: 'Create and evaluate custom system configurations in your environment.'
-    },
     remediationsAppBlockBody: {
         id: 'remediationsAppBlockBody',
         description: 'Remediations app block body',
         defaultMessage: 'Fully automate resolution procedures tailored to each system. Either remediate issues manually or create Ansible Playbooks.'
-    },
-    subscriptionsAppBlockBody: {
-        id: 'subscriptionsAppBlockBody',
-        description: 'Subscriptions app block body',
-        defaultMessage: 'Subscriptions body content.'
-    },
-    vulnerabilityAppBlockBody: {
-        id: 'vulnerabilityAppBlockBody',
-        description: 'Vulnerability app block body',
-        defaultMessage: 'Vulnerability body content.'
     },
     viewDetails: {
         id: 'viewDetails',
@@ -697,5 +643,25 @@ export default defineMessages({
         id: 'systemsExposed',
         description: 'Systems exposed',
         defaultMessage: 'Systems exposed'
+    },
+    collapse: {
+        id: 'collapse',
+        description: 'collapse',
+        defaultMessage: 'Collapse'
+    },
+    collapseAll: {
+        id: 'collapseAll',
+        description: 'collapse all',
+        defaultMessage: 'Collapse all'
+    },
+    expand: {
+        id: 'expand',
+        description: 'expand',
+        defaultMessage: 'Expand'
+    },
+    latestCritical: {
+        id: 'latestCritical',
+        description: 'latestCritical',
+        defaultMessage: 'Latest critical notifications on your systems'
     }
 });

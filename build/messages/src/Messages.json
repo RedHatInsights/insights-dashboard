@@ -43,6 +43,14 @@
     "defaultMessage": "Category",
     "description": "Category"
   },
+  "collapse": {
+    "defaultMessage": "Collapse",
+    "description": "collapse"
+  },
+  "collapseAll": {
+    "defaultMessage": "Collapse all",
+    "description": "collapse all"
+  },
   "complianceAppBlockBody": {
     "defaultMessage": "Easily identify and manage security compliance issues in the RHEL infrastructure.",
     "description": "compliance app block body"
@@ -131,6 +139,10 @@
     "defaultMessage": "{appName} has experienced an error. Contact Red Hat support if the problem persists.",
     "description": "Error fetching API"
   },
+  "expand": {
+    "defaultMessage": "Expand",
+    "description": "expand"
+  },
   "filterNotApplicable": {
     "defaultMessage": "Filter not applicable",
     "description": "Filter not applicable"
@@ -170,6 +182,10 @@
   "lastxdays": {
     "defaultMessage": "Last {days} days",
     "description": "Last x days label where x is a predefined value"
+  },
+  "latestCritical": {
+    "defaultMessage": "Latest critical notifications on your systems",
+    "description": "latestCritical"
   },
   "latestVulnerabilitiesTotal": {
     "defaultMessage": "{totalLatest}",
