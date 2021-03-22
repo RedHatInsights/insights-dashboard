@@ -140,7 +140,7 @@ export default defineMessages({
     vulnerabilityMessage: {
         id: 'vulnerabilityMessage',
         description: 'Vulnerability message',
-        defaultMessage: 'Red Hat recommends addressing these CVEs w/high priority due to heightened risk associated with these security issues'
+        defaultMessage: 'Red Hat recommends addressing these CVEs with high priority due to heightened risk associated with these security issues'
     },
     vulnerabilityCardCTAText: {
         id: 'vulnerabilityCardCTAText',

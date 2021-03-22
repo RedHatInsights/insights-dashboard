@@ -1,12 +1,4 @@
 {
-  "advisorAppBlockBody": {
-    "defaultMessage": "Advisor body content.",
-    "description": "Advisor app block body"
-  },
-  "advisorAppBlockHeader": {
-    "defaultMessage": "Advisor",
-    "description": "Advisor app block header"
-  },
   "advisorCardCTA": {
     "defaultMessage": "View incidents",
     "description": "Advisor card CTA"
@@ -235,14 +227,6 @@
     "defaultMessage": "Get started with Insights",
     "description": "No systems"
   },
-  "patchAppBlockBody": {
-    "defaultMessage": "Patch body content.",
-    "description": "Patch app block body"
-  },
-  "patchAppBlockHeader": {
-    "defaultMessage": "Patch",
-    "description": "Patch app block header"
-  },
   "patchTitle": {
     "defaultMessage": "Patch",
     "description": "Patch - title"
@@ -250,14 +234,6 @@
   "performance": {
     "defaultMessage": "Performance",
     "description": "Category chart  value"
-  },
-  "policiesAppBlockBody": {
-    "defaultMessage": "Create and evaluate custom system configurations in your environment.",
-    "description": "Policies app block body"
-  },
-  "policiesAppBlockHeader": {
-    "defaultMessage": "Policies",
-    "description": "Policies app block header"
   },
   "policiesCardCTA": {
     "defaultMessage": "View all policies",
@@ -354,14 +330,6 @@
   "stability": {
     "defaultMessage": "Stability",
     "description": "Category chart  value"
-  },
-  "subscriptionsAppBlockBody": {
-    "defaultMessage": "Subscriptions body content.",
-    "description": "Subscriptions app block body"
-  },
-  "subscriptionsAppBlockHeader": {
-    "defaultMessage": "Subscriptions",
-    "description": "Subscriptions app block header"
   },
   "subscriptionsTitle": {
     "defaultMessage": "Subscription Watch",
@@ -471,14 +439,6 @@
     "defaultMessage": "{total}",
     "description": "Vulnerability - vulnerability total"
   },
-  "vulnerabilityAppBlockBody": {
-    "defaultMessage": "Vulnerability body content.",
-    "description": "Vulnerability app block body"
-  },
-  "vulnerabilityAppBlockHeader": {
-    "defaultMessage": "Vulnerability",
-    "description": "Vulnerability app block header"
-  },
   "vulnerabilityCardCTAText": {
     "defaultMessage": "View CVEs",
     "description": "Vulnerability card cta text"
@@ -488,7 +448,7 @@
     "description": "Vulnerability - learn more link"
   },
   "vulnerabilityMessage": {
-    "defaultMessage": "Red Hat recommends addressing these CVEs w/high priority due to heightened risk associated with these security issues",
+    "defaultMessage": "Red Hat recommends addressing these CVEs with high priority due to heightened risk associated with these security issues",
     "description": "Vulnerability message"
   },
   "zslblBody": {
