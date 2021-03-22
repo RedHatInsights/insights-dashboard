@@ -4,7 +4,22 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const config = require('@redhat-cloud-services/frontend-components-config');
 const { config: webpackConfig, plugins } = config({
     rootFolder: resolve(__dirname, '../'),
-    debug: true
+    debug: true,
+    appUrl: '/insights/dashboard',
+    betaEnv: 'prod',
+    deployment: 'apps',
+    useProxy: process.env.API_ENDOINT ? true : false,
+    localChrome: process.env.INSIGHTS_CHROME,
+    customProxy: process.env.API_ENDOINT ? [
+        {
+            context: (path) => path.includes('/api/'),
+            target: process.env.API_ENDOINT,
+            secure: true,
+            changeOrigin: true,
+            autoRewrite: true,
+            ws: true
+        }
+    ] : []
 });
 
 plugins.push(
