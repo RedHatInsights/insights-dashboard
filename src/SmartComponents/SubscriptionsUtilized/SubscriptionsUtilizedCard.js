@@ -14,19 +14,20 @@ import {
     SW_PATHS
 } from './Constants';
 import React, { useEffect, useState } from 'react';
-import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/js/components/Tooltip/Tooltip';
 import { filterChartData, setRangedDateTime } from './SubscriptionsUtilizedHelpers';
 import { supportsGlobalFilter, workloadsPropType } from '../../Utilities/Common';
 
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
 import { EmptyStateSecondaryActions } from '@patternfly/react-core/dist/js/components/EmptyState/EmptyStateSecondaryActions';
+import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import FilterNotSupported from '../../PresentationalComponents/FilterNotSupported';
 import Immutable from 'seamless-immutable';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { ProgressTemplate } from '../../../../insights-dashboard/src/ChartTemplates/Progress/ProgressTemplate';
 import PropTypes from 'prop-types';
+import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import moment from 'moment/moment';
@@ -97,18 +98,18 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
 
     const productTwoTooltip = (
         <ul>
-            <li>{ intl.formatMessage(messages.subscriptionsUtilizedProductTwoReport, { totalReport: productTwo.report }) }</li>
-            <li>{ intl.formatMessage(messages.subscriptionsUtilizedProductCapacity, { totalCapacity: productTwo.capacity }) }</li>
-            <li>{ intl.formatMessage(messages.subscriptionsUtilizedProductDate,
-                { formattedDate: moment.utc(productTwo.date).format('MMM D, YYYY') }) }</li>
+            <li>{intl.formatMessage(messages.subscriptionsUtilizedProductTwoReport, { totalReport: productTwo.report })}</li>
+            <li>{intl.formatMessage(messages.subscriptionsUtilizedProductCapacity, { totalCapacity: productTwo.capacity })}</li>
+            <li>{intl.formatMessage(messages.subscriptionsUtilizedProductDate,
+                { formattedDate: moment.utc(productTwo.date).format('MMM D, YYYY') })}</li>
         </ul>
     );
     const productOneTooltip = (
         <ul>
-            <li>{ intl.formatMessage(messages.subscriptionsUtilizedProductOneReport, { totalReport: productOne.report }) }</li>
-            <li>{ intl.formatMessage(messages.subscriptionsUtilizedProductCapacity, { totalCapacity: productOne.capacity }) }</li>
-            <li>{ intl.formatMessage(messages.subscriptionsUtilizedProductDate,
-                { formattedDate: moment.utc(productOne.date).format('MMM D, YYYY') }) }</li>
+            <li>{intl.formatMessage(messages.subscriptionsUtilizedProductOneReport, { totalReport: productOne.report })}</li>
+            <li>{intl.formatMessage(messages.subscriptionsUtilizedProductCapacity, { totalCapacity: productOne.capacity })}</li>
+            <li>{intl.formatMessage(messages.subscriptionsUtilizedProductDate,
+                { formattedDate: moment.utc(productOne.date).format('MMM D, YYYY') })}</li>
         </ul>
     );
 
@@ -116,27 +117,27 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
     const generateCharts = ({ fetchStatus, percentage, title, tooltip, link }) => {
         switch (fetchStatus) {
             case 'pending':
-                charts.push(<Loading key={ `su-loading-${title}` } />);
+                charts.push(<Loading key={`su-loading-${title}`} />);
                 break;
             case 'fulfilled':
                 if (percentage !== undefined && percentage !== null) {
                     charts.push(
                         <Tooltip
-                            key={ `su-tooltip-${title}` }
-                            content={ tooltip }
-                            position={ TooltipPosition.top }
-                            distance={ -10 }
-                            entryDelay={ 200 }
+                            key={`su-tooltip-${title}`}
+                            content={tooltip}
+                            position={TooltipPosition.top}
+                            distance={-10}
+                            entryDelay={200}
                         >
-                            <Button className="ins-c-subscriptions-utilized__chart-link"
-                                variant="link"
-                                href={ link } component="a"
+                            <Button className='ins-c-subscriptions-utilized__chart-link'
+                                variant='link'
+                                href={link} component='a'
                             >
                                 <ProgressTemplate
-                                    title={ title }
-                                    value={ percentage }
-                                    label={ `${percentage}%` }
-                                    variant={ (percentage > 100 && 'danger') || 'info' }
+                                    title={title}
+                                    value={percentage}
+                                    label={`${percentage}%`}
+                                    variant={(percentage > 100 && 'danger') || 'info'}
                                 />
                             </Button>
                         </Tooltip>);
@@ -166,41 +167,44 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
         charts.reverse();
     }
 
-    return <TemplateCard appName='SubscriptionsUtilized'>
-        <TemplateCardHeader title={ intl.formatMessage(messages.subscriptionsUtilizedTitle) }/>
-        <TemplateCardBody>
+    return <ExpandableCardTemplate appName='SubscriptionsUtilized'
+        className='ins-m-toggle-right-on-md'
+        title={intl.formatMessage(messages.subscriptionsUtilizedTitle)}
+        isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_subwatch') || 'true')}
+        isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_subwatch', isExpanded)}
+        body={<TemplateCardBody>
             {supportsGlobalFilter(selectedTags, workloads, SID) ?
                 <React.Fragment>
                     {
-                        (productOptIn && <EmptyState className="ins-c-subscriptions-utilized__empty-state" variant={ EmptyStateVariant.full }>
+                        (productOptIn && <EmptyState className='ins-c-subscriptions-utilized__empty-state' variant={EmptyStateVariant.full}>
                             <EmptyStateBody>
                                 {intl.formatMessage(messages.subscriptionsUtilizedLearnMore)}
                             </EmptyStateBody>
                             <EmptyStateSecondaryActions>
                                 <Button
-                                    className="ins-c-subscriptions-utilized__app-link"
-                                    variant="link"
-                                    href={ SW_PATHS.APP }
-                                    component="a"
+                                    className='ins-c-subscriptions-utilized__app-link'
+                                    variant='link'
+                                    href={SW_PATHS.APP}
+                                    component='a'
                                 >
                                     {intl.formatMessage(messages.subscriptionsUtilizedLearnMoreAction)}
                                 </Button>
                             </EmptyStateSecondaryActions>
                         </EmptyState>) ||
-                (productError && <FailState appName={ intl.formatMessage(messages.subscriptionsUtilizedTitle) } isSmall/>) ||
-                (!charts.length && <EmptyState className="ins-c-subscriptions-utilized__empty-state" variant={ EmptyStateVariant.full }>
-                    <EmptyStateBody>
-                        {intl.formatMessage(messages.subscriptionsUtilizedNoProductData)}
-                    </EmptyStateBody>
-                </EmptyState>) ||
-                charts
+                        (productError && <FailState appName={intl.formatMessage(messages.subscriptionsUtilizedTitle)} isSmall />) ||
+                        (!charts.length && <EmptyState className='ins-c-subscriptions-utilized__empty-state' variant={EmptyStateVariant.full}>
+                            <EmptyStateBody>
+                                {intl.formatMessage(messages.subscriptionsUtilizedNoProductData)}
+                            </EmptyStateBody>
+                        </EmptyState>) ||
+                        charts
                     }
                 </React.Fragment>
-                : <FilterNotSupported href={ SW_PATHS.APP } title={ intl.formatMessage(messages.filterNotApplicable) }
-                    appName={ intl.formatMessage(messages.subscriptionsTitle) } />
+                : <FilterNotSupported href={SW_PATHS.APP} title={intl.formatMessage(messages.filterNotApplicable)}
+                    appName={intl.formatMessage(messages.subscriptionsTitle)} />
             }
-        </TemplateCardBody>
-    </TemplateCard>;
+        </TemplateCardBody>}
+    />;
 };
 
 SubscriptionsUtilizedCard.propTypes = {
@@ -223,7 +227,8 @@ const mapStateToProps = ({ DashboardStore }) => ({
     subscriptionsUtilizedProductTwoFetchStatus: DashboardStore.subscriptionsUtilizedProductTwoFetchStatus,
     selectedTags: DashboardStore.selectedTags,
     workloads: DashboardStore.workloads,
-    SID: DashboardStore.SID });
+    SID: DashboardStore.SID
+});
 
 const mapDispatchToProps = dispatch => ({
     subscriptionsUtilizedProductOneFetch: (productId, options) => dispatch(AppActions.subscriptionsUtilizedProductOneFetch(productId, options)),

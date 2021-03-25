@@ -30,7 +30,7 @@ import { useSelector } from 'react-redux';
 
 const NewRules = () => {
     const intl = useIntl();
-    const [isExpanded, setIsExpanded] = useState(JSON.parse(localStorage.getItem('DashboardNewRulesExpanded') || 'true'));
+    const [isExpanded, setIsExpanded] = useState(JSON.parse(localStorage.getItem('dashboard_expanded_cta') || 'true'));
     const vulnerabilities = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities);
     let { recent_rules: newRules } = vulnerabilities;
     const severitColor = {
@@ -58,7 +58,7 @@ const NewRules = () => {
                 />
                 <div className='pf-c-data-list__item-control'>
                     <div className='pf-c-data-list__toggle'
-                        onClick={() => { localStorage.setItem('DashboardNewRulesExpanded', `${!isExpanded}`); setIsExpanded(!isExpanded); }}
+                        onClick={() => { localStorage.setItem('dashboard_expanded_cta', `${!isExpanded}`); setIsExpanded(!isExpanded); }}
                         isExpanded={isExpanded}
                         id={`data-list-toggle`}
                         aria-controls={`data-list-item`}>
