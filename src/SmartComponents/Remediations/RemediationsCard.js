@@ -34,6 +34,8 @@ const RemediationsCard = ({
             appName='remediations'
             className='ins-c-card__remediations ins-m-toggle-right-on-md'
             title={ intl.formatMessage(messages.remediationsCardHeader) }
+            isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_remediations') || 'true')}
+            isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_remediations', isExpanded)}
             header={
                 <TemplateCardActions />
             }

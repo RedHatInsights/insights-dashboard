@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import './SystemInventoryHeader.scss';
 
 import * as AppActions from '../../AppActions';
@@ -78,10 +79,10 @@ const SystemInventoryHeader = ({
                                 linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
                                     { count: inventorySummary.total || 0 }
                                 ) }
-                                link='./insights/inventory'
+                                link='./insights/inventory/?status=fresh&status=stale&source=insights'
                             />
                         }
-                        {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
+                        {/* {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
                             <NumberDescription
                                 data={ inventoryTotalSummary.total - inventorySummary.total || 0 }
                                 dataSize="lg"
@@ -90,7 +91,7 @@ const SystemInventoryHeader = ({
                                 ) }
                                 link='./insights/inventory'
                             />
-                        }
+                        } */}
                     </Flex>
                     <Flex spaceItems={ { default: 'spaceItemsXl' } }
                         alignItems={ { default: 'alignItemsCenter' } }

@@ -15,19 +15,11 @@ import {
     EmptyStateVariant,
     Title
 } from '@patternfly/react-core/dist/esm/components';
-import {
-    Flex,
-    FlexItem
-} from '@patternfly/react-core/dist/esm/layouts';
+import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
 import React, { useEffect } from 'react';
-// template card
-import {
-    TemplateCardActions,
-    TemplateCardBody
-} from '../../PresentationalComponents/Template/TemplateCard';
+import { TemplateCardActions, TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import { supportsGlobalFilter, workloadsPropType } from '../../Utilities/Common';
 
-// expandable card
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import FilterNotSupported from '../../PresentationalComponents/FilterNotSupported';
@@ -65,6 +57,8 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                 'data-ouia-safe': true
             } : { 'data-ouia-safe': false } }
             title={ intl.formatMessage(messages.complianceTitle) }
+            isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_compliance') || 'true')}
+            isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_compliance', isExpanded)}
             header={
                 <TemplateCardActions />
             }

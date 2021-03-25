@@ -7,6 +7,7 @@ import { patchmanFetchBugs, patchmanFetchEnhancements, patchmanFetchSecurity, pa
 import { sapFilter, workloadsPropType } from '../../Utilities/Common';
 
 import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
+import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
@@ -49,53 +50,50 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
 
     if (systemsStatus === 'rejected') {
         return (
-            <TemplateCard appName='PatchManager' className={ 'ins-c-dashboard__card--Patch' }>
-                <TemplateCardHeader subtitle={ intl.formatMessage(messages.patchTitle) } />
+            <TemplateCard appName='PatchManager' className={'ins-c-dashboard__card--Patch'}>
+                <TemplateCardHeader subtitle={intl.formatMessage(messages.patchTitle)} />
                 <TemplateCardBody><FailState appName='Patch' isSmall /></TemplateCardBody>
             </TemplateCard>
         );
     }
 
-    return <TemplateCard appName='PatchManager' className={ 'ins-c-dashboard__card--Patch' }>
-        <TemplateCardHeader
-            title={ intl.formatMessage(messages.patchTitle) }
-            subtitle={
-                <Button
-                    component="a"
-                    href={ `${UI_BASE}/${PATCHMAN_ID}/systems` }
-                    variant="link"
-                    isInline
-                >
-                    <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
-                </Button>
-            }
-        />
-
-        <TemplateCardBody>
+    return <ExpandableCardTemplate appName='PatchManager'
+        isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_patch') || 'true')}
+        isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_patch', isExpanded)}
+        title={intl.formatMessage(messages.patchTitle)}
+        className={'ins-c-dashboard__card--Patch ins-m-toggle-right-on-md'}
+        body={<TemplateCardBody>
             {!isLoaded ? <Loading /> :
                 <React.Fragment>
-                    <div className="ins-c-patch__chart">
+                    <Button
+                        component='a'
+                        href={`${UI_BASE}/${PATCHMAN_ID}/systems`}
+                        variant='link'
+                        isInline>
+                        <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
+                    </Button>
+                    <div className='ins-c-patch__chart'>
                         <PieChart
-                            ariaDesc="Patch systems chart"
-                            ariaTitle="Patch systems chart"
-                            constrainToVisibleArea={ true }
-                            data={ pieChartData }
-                            labels={ ({ datum }) => `${datum.x}: ${datum.y}` }
-                            padding={ pieChartPadding }
-                            height={ 65 }
-                            width={ 65 }
-                            colorScale={ colorScale }
-                            legend="true"
-                            legendData={ pieChartLegendData }
-                            legendOrientation="vertical"
-                            legendHeight={ 75 }
-                            legendWidth={ 200 }
+                            ariaDesc='Patch systems chart'
+                            ariaTitle='Patch systems chart'
+                            constrainToVisibleArea={true}
+                            data={pieChartData}
+                            labels={({ datum }) => `${datum.x}: ${datum.y}`}
+                            padding={pieChartPadding}
+                            height={65}
+                            width={65}
+                            colorScale={colorScale}
+                            legend='true'
+                            legendData={pieChartLegendData}
+                            legendOrientation='vertical'
+                            legendHeight={75}
+                            legendWidth={200}
                         />
                     </div>
                 </React.Fragment>
             }
-        </TemplateCardBody>
-    </TemplateCard>;
+        </TemplateCardBody>}
+    />;
 };
 
 PatchManagerCard.propTypes = {

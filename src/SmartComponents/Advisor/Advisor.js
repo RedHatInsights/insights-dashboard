@@ -139,7 +139,9 @@ const Advisor = () => {
                     appName='Advisor'
                     className='ins-m-toggle-right-on-md'
                     title={intl.formatMessage(messages.advisorCardHeader1)}
-                    body={<TemplateCardBody className="ins-c-advisor-recs__card-body">
+                    isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor1') || 'true')}
+                    isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor1', isExpanded)}
+                    body={<TemplateCardBody className='ins-c-advisor-recs__card-body'>
                         <Grid hasGutter>
                             <Flex
                                 direction={{ default: 'column' }}
@@ -148,7 +150,7 @@ const Advisor = () => {
                                 <Flex>
                                     {advisorIncidents?.meta?.count > 0 &&
                                         <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />}
-                                    <span className="pf-u-font-size-2xl pf-u-text-align-center pf-u-font-weight-normal">
+                                    <span className='pf-u-font-size-2xl pf-u-text-align-center pf-u-font-weight-normal'>
                                         {intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })}
                                     </span>
                                 </Flex>
@@ -172,7 +174,9 @@ const Advisor = () => {
                         {intl.formatMessage(messages.advisorCardHeader2)}
                         {iconTooltip(intl.formatMessage(messages.totalRiskDef, { em: str => <em>{str}</em> }))}
                     </React.Fragment>}
-                    body={<TemplateCardBody className="ins-c-advisor-recs__card-body pf-u-pb-0">
+                    isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor2') || 'true')}
+                    isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor2', isExpanded)}
+                    body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-u-pb-0'>
                         <Flex justifyContent={{ default: 'justifyContentSpaceEvenly' }}>
                             {trData.map(({ title, risk, value }) =>
                                 <a key={title} href={totalRiskUrl(value)}>
@@ -180,22 +184,22 @@ const Advisor = () => {
                                         direction={{ default: 'column' }}
                                         spaceItems={{ default: 'spaceItemsNone' }}
                                         alignItems={{ default: 'alignItemsCenter' }}>
-                                        <span className="pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-normal">
+                                        <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-normal'>
                                             {risk}
                                         </span>
-                                        <span className="pf-u-font-size-sm">
+                                        <span className='pf-u-font-size-sm'>
                                             {title}
                                         </span>
                                     </Flex>
                                 </a>)}
                         </Flex>
-                        <Card component="div">
+                        <Card component='div'>
                             <CardTitle>
-                                <Title headingLevel="h4" size="lg">
+                                <Title headingLevel='h4' size='lg'>
                                     {intl.formatMessage(messages.advisorCardHeader3)}
                                 </Title>
                             </CardTitle>
-                            <CardBody className="pf-u-pt-sm">
+                            <CardBody className='pf-u-pt-sm'>
                                 <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsLg' }}>
                                     <Flex alignItems={{ default: 'alignItemsCenter' }}>
                                         <FlexItem>
@@ -207,14 +211,14 @@ const Advisor = () => {
                                                 colorScale={colorScale}
                                                 padding={pieChartPadding}
                                                 height={100}
-                                                width={100}/>
+                                                width={100} />
                                         </FlexItem>
-                                        <div className="ins-c-legend">
+                                        <div className='ins-c-legend'>
                                             {pieLegendData.map((item) =>
-                                                <a key={item.url} href={item.url} className="ins-c-legend__item">
-                                                    <span className="ins-c-legend__dot"
+                                                <a key={item.url} href={item.url} className='ins-c-legend__item'>
+                                                    <span className='ins-c-legend__dot'
                                                         style={{ '--ins-c-legend__dot--BackgroundColor': `${item.fill}` }} />
-                                                    <span className="ins-c-legend__text">{item.name}</span>
+                                                    <span className='ins-c-legend__text'>{item.name}</span>
                                                 </a>
                                             )}
                                         </div>
