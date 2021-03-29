@@ -19,7 +19,7 @@ const MarketingBanner = ({ className, hasGraphic, graphicRight, dark1000, fullBl
     return <PageSection
         className={ MarketingBannerSectionClasses }
         style={ style }
-        isWidthLimited={ isWidthLimited }>
+        isWidthLimited>
         {children}
     </PageSection>;
 };
@@ -29,7 +29,7 @@ export default MarketingBanner;
 MarketingBanner.propTypes = {
     children: propTypes.any.isRequired,
     className: propTypes.string,
-    style: propTypes.string,
+    style: propTypes.any,
     graphicRight: propTypes.bool,
     hasGraphic: propTypes.bool,
     dark1000: propTypes.bool,

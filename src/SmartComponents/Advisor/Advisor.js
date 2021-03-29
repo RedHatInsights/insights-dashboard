@@ -9,11 +9,12 @@ import {
     CardBody,
     CardTitle,
     Divider,
+    TextContent,
     Title,
     Tooltip,
     TooltipPosition
 } from '@patternfly/react-core/dist/esm/components';
-import { Flex, FlexItem, Grid } from '@patternfly/react-core/dist/esm/layouts';
+import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
 import React, { useEffect, useState } from 'react';
 import { SEVERITY_MAP, UI_BASE } from '../../AppConstants';
 import { capitalize, sapFilter } from '../../Utilities/Common';
@@ -27,6 +28,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
+import { CompoundCard } from '../../PresentationalComponents/Template/CompoundCard';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import { INCIDENT_URL } from './Constants';
@@ -130,7 +132,7 @@ const Advisor = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [recStats, recStatsStatus]);
 
-    return <Card>
+    return <CompoundCard className="ins-c-dashboard-card-parent ins-c-dashboard__card--compound--Advisor">
         {advisorIncidentsStatus === 'pending' || recStatsStatus === 'pending' && <Loading />}
         {advisorIncidentsStatus === 'rejected' ?
             <TemplateCardBody><FailState appName='Advisor' /></TemplateCardBody>
@@ -141,43 +143,48 @@ const Advisor = () => {
                     title={intl.formatMessage(messages.advisorCardHeader1)}
                     isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor1') || 'true')}
                     isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor1', isExpanded)}
-                    body={<TemplateCardBody className='ins-c-advisor-recs__card-body'>
-                        <Grid hasGutter>
-                            <Flex
-                                direction={{ default: 'column' }}
-                                alignItems={{ default: 'alignItemsCenter' }}
-                                spaceItems={{ default: 'spaceItemsLg' }}>
-                                <Flex>
+                    body={<TemplateCardBody className="ins-c-advisor-recs__card-body pf-u-pb-2xl">
+                        <Flex
+                            direction={{ default: 'column' }}
+                            alignItems={{ default: 'alignItemsCenter' }}>
+                            <FlexItem>
+                                <Flex
+                                    alignItems={{ default: 'alignItemsFlexCenter' }}
+                                    justifyContent={{ default: 'justifyContentCenter' }}>
                                     {advisorIncidents?.meta?.count > 0 &&
                                         <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />}
                                     <span className='pf-u-font-size-2xl pf-u-text-align-center pf-u-font-weight-normal'>
                                         {intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })}
                                     </span>
                                 </Flex>
-                                <FlexItem>
-                                    <p className='pf-u-text-align-center pf-u-font-size-sm'>{intl.formatMessage(messages.advisorCardMessage)}</p>
-                                </FlexItem>
-                                <FlexItem>
-                                    <Button variant='secondary' isSmall component='a' href={`${UI_BASE}${INCIDENT_URL}`}>
-                                        {intl.formatMessage(messages.advisorCardCTA)}
-                                    </Button>
-                                </FlexItem>
-                            </Flex>
-                        </Grid>
+                                <TextContent
+                                    className='ins-c-width-limiter pf-u-text-align-center'
+                                    style={{ '--ins-c-width-limiter--MaxWidth': '34ch' }}>
+                                    <p className="pf-u-font-size-sm">
+                                        {intl.formatMessage(messages.advisorCardMessage)}
+                                    </p>
+                                </TextContent>
+                            </FlexItem>
+                            <Button variant='secondary' isSmall component='a' href={`${UI_BASE}${INCIDENT_URL}`}>
+                                {intl.formatMessage(messages.advisorCardCTA)}
+                            </Button>
+                        </Flex>
                     </TemplateCardBody>
                     } />
                 <Divider inset={{ md: 'insetLg' }} />
                 <ExpandableCardTemplate
                     appName='advisor-recommendation-by-total-risk'
                     className='ins-m-toggle-right-on-md'
-                    title={<React.Fragment>
+                    title={<Flex flexWrap={{ default: 'nowrap' }}>
                         {intl.formatMessage(messages.advisorCardHeader2)}
                         {iconTooltip(intl.formatMessage(messages.totalRiskDef, { em: str => <em>{str}</em> }))}
-                    </React.Fragment>}
+                    </Flex>}
                     isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor2') || 'true')}
                     isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor2', isExpanded)}
                     body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-u-pb-0'>
-                        <Flex justifyContent={{ default: 'justifyContentSpaceEvenly' }}>
+                        <Flex
+                            justifyContent={{ default: 'justifyContentCenter' }}
+                            spaceItems={{ default: 'spaceItems3xl' }}>
                             {trData.map(({ title, risk, value }) =>
                                 <a key={title} href={totalRiskUrl(value)}>
                                     <Flex
@@ -201,7 +208,9 @@ const Advisor = () => {
                             </CardTitle>
                             <CardBody className='pf-u-pt-sm'>
                                 <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsLg' }}>
-                                    <Flex alignItems={{ default: 'alignItemsCenter' }}>
+                                    <Flex
+                                        alignItems={{ default: 'alignItemsCenter' }}
+                                        spaceItems={{ default: 'spaceItemsXl' }}>
                                         <FlexItem>
                                             <PieChart
                                                 ariaDesc='Advisor Category pie chart'
@@ -229,7 +238,7 @@ const Advisor = () => {
                     </TemplateCardBody>
                     } />
             </React.Fragment>}
-    </Card>;
+    </CompoundCard>;
 };
 
 export default Advisor;

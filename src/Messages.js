@@ -122,6 +122,11 @@ export default defineMessages({
         description: 'Vulnerability - vulnerability total',
         defaultMessage: '{total}'
     },
+    vulnerabilitiesKnownExploitsTotalItems: {
+        id: 'vulnerabilitiesKnownExploitsTotalItems',
+        description: 'Vulnerability - known exploits total',
+        defaultMessage: '{total}'
+    },
     lastxdays: {
         id: 'lastxdays',
         description: 'Last x days label where x is a predefined value',
@@ -135,7 +140,12 @@ export default defineMessages({
     cvesImpactingOneOrMoreSystems: {
         id: 'cvesImpactingOneOrMoreSystems',
         description: 'Vulnerability - cve impacting link',
-        defaultMessage: '{cves, plural, one {CVE} other {CVEs}} with security rules impacting 1 or more systems'
+        defaultMessage: `{cves, plural, one {CVE} other {CVEs}} with <b>security rules</b> impacting 1 or more systems`
+    },
+    knownExploitsOneOrMoreSystems: {
+        id: 'knownExploitsOneOrMoreSystems',
+        description: 'Vulnerability - known exploits link',
+        defaultMessage: `{cves, plural, one {CVE} other {CVEs}} with <b>known exploits</b> impacting 1 or more systems`
     },
     vulnerabilityMessage: {
         id: 'vulnerabilityMessage',
@@ -146,6 +156,11 @@ export default defineMessages({
         id: 'vulnerabilityCardCTAText',
         description: 'Vulnerability card cta text',
         defaultMessage: 'View CVEs'
+    },
+    vulnerabilityCardKnownExploitsCTAText: {
+        id: 'vulnerabilityCardKnownExploitsCTAText',
+        description: 'Vulnerability card known exploits cta text',
+        defaultMessage: 'View known exploits'
     },
     vulnerabilityLearnMore: {
         id: 'vulnerabilityLearnMore',

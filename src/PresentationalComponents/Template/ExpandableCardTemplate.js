@@ -37,11 +37,11 @@ export const ExpandableCardTemplate = ({ className, appName, title, header, body
 ExpandableCardTemplate.propTypes = {
     appName: propTypes.string,
     className: propTypes.string,
-    title: propTypes.string,
+    title: propTypes.any,
     header: propTypes.any,
     body: propTypes.any,
     hasDivider: propTypes.any,
     isExpanded: propTypes.bool,
     isExpandedCallback: propTypes.func,
-    footer: propTypes.footer
+    footer: propTypes.any
 };

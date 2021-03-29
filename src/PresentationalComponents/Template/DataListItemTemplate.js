@@ -8,6 +8,7 @@ import {
     DataListItem,
     DataListItemCells,
     DataListItemRow,
+    Label,
     Title
 } from '@patternfly/react-core/dist/esm/components';
 import React, { useState } from 'react';
@@ -15,12 +16,11 @@ import React, { useState } from 'react';
 import AngleRightIcon from '@patternfly/react-icons/dist/js/icons/angle-right-icon';
 import { DateFormat } from '@redhat-cloud-services/frontend-components';
 import { Flex } from '@patternfly/react-core/dist/esm/layouts';
-import { InsightsLabel } from '@redhat-cloud-services/frontend-components/InsightsLabel';
-import { SEVERITY_MAP } from '../../AppConstants';
 import { capitalize } from '../../Utilities/Common';
 import messages from '../../Messages';
 import propTypes from 'prop-types';
 import { useIntl } from 'react-intl';
+import DashboardIcon from './DashboardIcon';
 
 export const DataListItemTemplate = ({
     dataListItemTemplateContent,
@@ -84,24 +84,16 @@ export const DataListItemTemplate = ({
                             <div className='ins-c-new-rules-severities'>
                                 <Flex alignItems={{ default: 'alignItemsCenter' }} alignSelf={{ default: 'alignSelfStretch' }}>
                                     {dataListItemTemplateSeverity === 1 &&
-                                        <InsightsLabel
-                                            value={SEVERITY_MAP.low}
-                                            text={`${capitalize(intl.formatMessage(messages.low))}`} />
+                                        <Label icon={<DashboardIcon type='lowSeverity' />}>{ capitalize(intl.formatMessage(messages.low)) }</Label>
                                     }
                                     {dataListItemTemplateSeverity === 2 &&
-                                        <InsightsLabel
-                                            value={SEVERITY_MAP.moderate}
-                                            text={`${capitalize(intl.formatMessage(messages.moderate))}`} />
+                                        <Label color="blue" icon={<DashboardIcon type='moderateSeverity' />}>{ capitalize(intl.formatMessage(messages.moderate)) }</Label>
                                     }
                                     {dataListItemTemplateSeverity === 3 &&
-                                        <InsightsLabel
-                                            value={SEVERITY_MAP.important}
-                                            text={`${capitalize(intl.formatMessage(messages.important))}`} />
+                                        <Label color="orange" icon={<DashboardIcon type='importantSeverity' />}>{ capitalize(intl.formatMessage(messages.important)) }</Label>
                                     }
                                     {dataListItemTemplateSeverity === 4 &&
-                                        <InsightsLabel
-                                            value={SEVERITY_MAP.critical}
-                                            text={`${capitalize(intl.formatMessage(messages.critical))}`} />
+                                        <Label color="red" icon={<DashboardIcon type='criticalSeverity' />}>{ capitalize(intl.formatMessage(messages.critical)) }</Label>
                                     }
                                 </Flex>
                             </div>
