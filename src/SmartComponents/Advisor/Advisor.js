@@ -19,16 +19,16 @@ import React, { useEffect, useState } from 'react';
 import { SEVERITY_MAP, UI_BASE } from '../../AppConstants';
 import { capitalize, sapFilter } from '../../Utilities/Common';
 import {
-    global_palette_black_300,
+    global_disabled_color_100,
     global_palette_blue_100,
     global_palette_blue_200,
     global_palette_blue_300,
     global_palette_blue_400
-} from '@patternfly/react-tokens/dist/js/';
+} from '@patternfly/react-tokens/dist/esm/';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
 import { CompoundCard } from '../../PresentationalComponents/Template/CompoundCard';
+import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import { INCIDENT_URL } from './Constants';
@@ -127,12 +127,12 @@ const Advisor = () => {
                 }
             ]);
 
-            setColorScale(categoryCount === 0 ? [global_palette_black_300.value] : colors);
+            setColorScale(categoryCount === 0 ? [global_disabled_color_100.value] : colors);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [recStats, recStatsStatus]);
 
-    return <CompoundCard className="ins-c-dashboard-card-parent ins-c-dashboard__card--compound--Advisor">
+    return <CompoundCard className='ins-c-dashboard-card-parent ins-c-dashboard__card--compound--Advisor'>
         {advisorIncidentsStatus === 'pending' || recStatsStatus === 'pending' && <Loading />}
         {advisorIncidentsStatus === 'rejected' ?
             <TemplateCardBody><FailState appName='Advisor' /></TemplateCardBody>
@@ -143,7 +143,7 @@ const Advisor = () => {
                     title={intl.formatMessage(messages.advisorCardHeader1)}
                     isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor1') || 'true')}
                     isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor1', isExpanded)}
-                    body={<TemplateCardBody className="ins-c-advisor-recs__card-body pf-u-pb-2xl">
+                    body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-u-pb-2xl'>
                         <Flex
                             direction={{ default: 'column' }}
                             alignItems={{ default: 'alignItemsCenter' }}>
@@ -160,7 +160,7 @@ const Advisor = () => {
                                 <TextContent
                                     className='ins-c-width-limiter pf-u-text-align-center'
                                     style={{ '--ins-c-width-limiter--MaxWidth': '34ch' }}>
-                                    <p className="pf-u-font-size-sm">
+                                    <p className='pf-u-font-size-sm'>
                                         {intl.formatMessage(messages.advisorCardMessage)}
                                     </p>
                                 </TextContent>

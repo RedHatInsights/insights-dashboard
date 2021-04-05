@@ -5,7 +5,7 @@ import React from 'react';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
 
-const MarketingBanner = ({ className, hasGraphic, graphicRight, dark1000, fullBleed, style, isWidthLimited, children }) => {
+const MarketingBanner = ({ className, hasGraphic, graphicRight, dark1000, fullBleed, style, children }) => {
 
     const MarketingBannerSectionClasses = classNames(
         className,

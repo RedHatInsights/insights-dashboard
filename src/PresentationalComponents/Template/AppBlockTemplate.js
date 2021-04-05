@@ -9,7 +9,7 @@ import {
     FlexItem
 } from '@patternfly/react-core/dist/esm/layouts';
 
-import ArrowRightIcon from '@patternfly/react-icons/dist/js/icons/arrow-right-icon';
+import ArrowRightIcon from '@patternfly/react-icons/dist/esm/icons/arrow-right-icon';
 import React from 'react';
 import { UI_BASE } from '../../AppConstants';
 import propTypes from 'prop-types';

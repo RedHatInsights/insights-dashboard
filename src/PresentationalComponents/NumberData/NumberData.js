@@ -1,8 +1,8 @@
 import '../../../src/PresentationalComponents/NumberData/NumberData.scss';
 
-import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/js/components/Tooltip/Tooltip';
+import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/esm/components/Tooltip/Tooltip';
 
-import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
+import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import InfoIcon from '../../Icons/InfoIcon';
 import React from 'react';
 import propTypes from 'prop-types';

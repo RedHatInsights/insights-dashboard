@@ -9,7 +9,7 @@ import {
     CardHeader,
     CardTitle,
     Title
-} from '@patternfly/react-core/dist/js/components/';
+} from '@patternfly/react-core/dist/esm/components/';
 
 import { DownloadIcon } from '@patternfly/react-icons';
 import DownloadReport from '../DownloadReport/DownloadReport';

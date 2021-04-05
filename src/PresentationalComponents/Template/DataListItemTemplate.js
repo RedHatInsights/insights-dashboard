@@ -13,14 +13,14 @@ import {
 } from '@patternfly/react-core/dist/esm/components';
 import React, { useState } from 'react';
 
-import AngleRightIcon from '@patternfly/react-icons/dist/js/icons/angle-right-icon';
+import AngleRightIcon from '@patternfly/react-icons/dist/esm/icons/angle-right-icon';
+import DashboardIcon from '../DashboardIcon/DashboardIcon';
 import { DateFormat } from '@redhat-cloud-services/frontend-components';
 import { Flex } from '@patternfly/react-core/dist/esm/layouts';
 import { capitalize } from '../../Utilities/Common';
 import messages from '../../Messages';
 import propTypes from 'prop-types';
 import { useIntl } from 'react-intl';
-import DashboardIcon from './DashboardIcon';
 
 export const DataListItemTemplate = ({
     dataListItemTemplateContent,
@@ -84,16 +84,22 @@ export const DataListItemTemplate = ({
                             <div className='ins-c-new-rules-severities'>
                                 <Flex alignItems={{ default: 'alignItemsCenter' }} alignSelf={{ default: 'alignSelfStretch' }}>
                                     {dataListItemTemplateSeverity === 1 &&
-                                        <Label icon={<DashboardIcon type='lowSeverity' />}>{ capitalize(intl.formatMessage(messages.low)) }</Label>
+                                        <Label icon={<DashboardIcon type='lowSeverity' />}>{capitalize(intl.formatMessage(messages.low))}</Label>
                                     }
                                     {dataListItemTemplateSeverity === 2 &&
-                                        <Label color="blue" icon={<DashboardIcon type='moderateSeverity' />}>{ capitalize(intl.formatMessage(messages.moderate)) }</Label>
+                                        <Label color="blue" icon={<DashboardIcon type='moderateSeverity' />}>
+                                            {capitalize(intl.formatMessage(messages.moderate))}
+                                        </Label>
                                     }
                                     {dataListItemTemplateSeverity === 3 &&
-                                        <Label color="orange" icon={<DashboardIcon type='importantSeverity' />}>{ capitalize(intl.formatMessage(messages.important)) }</Label>
+                                        <Label color="orange" icon={<DashboardIcon type='importantSeverity' />}>
+                                            {capitalize(intl.formatMessage(messages.important))}
+                                        </Label>
                                     }
                                     {dataListItemTemplateSeverity === 4 &&
-                                        <Label color="red" icon={<DashboardIcon type='criticalSeverity' />}>{ capitalize(intl.formatMessage(messages.critical)) }</Label>
+                                        <Label color="red" icon={<DashboardIcon type='criticalSeverity' />}>
+                                            {capitalize(intl.formatMessage(messages.critical))}
+                                        </Label>
                                     }
                                 </Flex>
                             </div>

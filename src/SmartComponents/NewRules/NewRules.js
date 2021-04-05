@@ -18,7 +18,7 @@ import {
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
 import React, { useState } from 'react';
 
-import AngleRightIcon from '@patternfly/react-icons/dist/js/icons/angle-right-icon';
+import AngleRightIcon from '@patternfly/react-icons/dist/esm/icons/angle-right-icon';
 import { DataListItemTemplate } from '../../PresentationalComponents/Template/DataListItemTemplate';
 import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
@@ -33,8 +33,6 @@ const NewRules = () => {
     const [isExpanded, setIsExpanded] = useState(JSON.parse(localStorage.getItem('dashboard_expanded_cta') || 'true'));
     const vulnerabilities = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities);
     let { recent_rules: newRules } = vulnerabilities;
-    console.log(vulnerabilities);
-
     const severityColor = {
         1: ['#2b9af3', '#06c'],
         2: ['#f4c145', '#c58c00'],
@@ -49,11 +47,11 @@ const NewRules = () => {
             <DataListItemRow className='ins-c-dashboard-data-list__title-row'>
                 <DataListItemCells
                     dataListCells={[
-                        <DataListCell key="primary content">
+                        <DataListCell key='primary content'>
                             <Flex spaceItems={{ default: 'spaceItemsMd' }} alignItems={{ default: 'alignItemsCenter' }}
                                 flexWrap={{ default: 'nowrap' }}>
                                 <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />
-                                <span id="collapse-all-text" className="pf-u-font-weight-bold">{intl.formatMessage(messages.latestCritical)}</span>
+                                <span id='collapse-all-text' className='pf-u-font-weight-bold'>{intl.formatMessage(messages.latestCritical)}</span>
                             </Flex>
                         </DataListCell>
                     ]}
@@ -92,7 +90,7 @@ const NewRules = () => {
                         spaceItems={{ md: 'spaceItems2xl' }}
                         flexWrap={{ default: 'nowrap' }}>
                         <Flex direction={{ default: 'column' }} flex={{ md: 'flex_3' }}>
-                            <FlexItem spacer={{ default: 'spacerXs'}}>
+                            <FlexItem spacer={{ default: 'spacerXs' }}>
                                 <Title headingLevel='h4' size='xl' className='pf-u-font-weight-lights'>
                                     <span>
                                         {capitalize(intl.formatMessage({

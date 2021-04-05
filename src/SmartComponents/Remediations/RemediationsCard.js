@@ -8,7 +8,7 @@ import {
     TemplateCardBody
 } from '../../PresentationalComponents/Template/TemplateCard';
 
-import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
+import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import PropTypes from 'prop-types';

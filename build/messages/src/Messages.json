@@ -92,7 +92,7 @@
     "description": "CVE by cvss score card header"
   },
   "cvesImpactingOneOrMoreSystems": {
-    "defaultMessage": "{cves, plural, one {CVE} other {CVEs}} with security rules impacting 1 or more systems",
+    "defaultMessage": "{cves, plural, one {CVE} other {CVEs}} with <strong>security rules</strong> impacting 1 or more systems",
     "description": "Vulnerability - cve impacting link"
   },
   "cvesImpactingSystems": {
@@ -170,6 +170,10 @@
   "insightsandsmartmanagement": {
     "defaultMessage": "Insights and Smart Management",
     "description": "Insights and Smart Management"
+  },
+  "knownExploitsOneOrMoreSystems": {
+    "defaultMessage": "{cves, plural, one {CVE} other {CVEs}} with <strong>known exploits</strong> impacting 1 or more systems",
+    "description": "Vulnerability - known exploits link"
   },
   "lastxdays": {
     "defaultMessage": "Last {days} days",
@@ -435,13 +439,13 @@
     "defaultMessage": "Vulnerability",
     "description": "Vulnerability card header"
   },
-  "vulnerabilitiesTotalItems": {
-    "defaultMessage": "{total}",
-    "description": "Vulnerability - vulnerability total"
-  },
   "vulnerabilityCardCTAText": {
     "defaultMessage": "View CVEs",
     "description": "Vulnerability card cta text"
+  },
+  "vulnerabilityCardKnownExploitsCTAText": {
+    "defaultMessage": "View known exploits",
+    "description": "Vulnerability card known exploits cta text"
   },
   "vulnerabilityLearnMore": {
     "defaultMessage": "Learn about CVSS Scores",
