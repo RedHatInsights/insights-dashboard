@@ -1,21 +1,23 @@
 import './PatchManagerCard.scss';
 
+import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
 import { PATCHMAN_ID, UI_BASE } from '../../AppConstants';
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
+import { capitalize, sapFilter, workloadsPropType } from '../../Utilities/Common';
 import { patchmanFetchBugs, patchmanFetchEnhancements, patchmanFetchSecurity, patchmanFetchSystems } from '../../AppActions';
-import { sapFilter, workloadsPropType } from '../../Utilities/Common';
 
-import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
+import { Button } from '@patternfly/react-core/dist/esm/components';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import PropTypes from 'prop-types';
-import chart_color_blue_200 from '@patternfly/react-tokens/dist/js/chart_color_blue_200';
-import chart_color_blue_300 from '@patternfly/react-tokens/dist/js/chart_color_blue_300';
-import chart_color_blue_400 from '@patternfly/react-tokens/dist/js/chart_color_blue_400';
+import chart_color_blue_200 from '@patternfly/react-tokens/dist/esm/chart_color_blue_200';
+import chart_color_blue_300 from '@patternfly/react-tokens/dist/esm/chart_color_blue_300';
+import chart_color_blue_400 from '@patternfly/react-tokens/dist/esm/chart_color_blue_400';
 import { connect } from 'react-redux';
+import global_disabled_color_100 from '@patternfly/react-tokens/dist/esm/global_disabled_color_100';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 
@@ -28,16 +30,25 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
     const intl = useIntl();
     const isLoaded = [systemsStatus, securityStatus, bugsStatus, enhancementsStatus].every(item => item === 'fulfilled');
     const pieChartData = [
-        { x: intl.formatMessage(messages.securityAdvisories, { count: security }), y: security, fill: chart_color_blue_400.value },
-        { x: intl.formatMessage(messages.bugfixAdvisories, { count: bugs }), y: bugs, fill: chart_color_blue_300.value },
-        { x: intl.formatMessage(messages.enhancementAdvisories, { count: enhancements }), y: enhancements, fill: chart_color_blue_200.value }
+        {
+            x: intl.formatMessage(messages.securityAdvisories, { count: security }), y: security, fill: chart_color_blue_400.value,
+            url: '/insights/patch/advisories?offset=0&filter%5Badvisory_type%5D=3'
+        },
+        {
+            x: intl.formatMessage(messages.bugfixAdvisories, { count: bugs }), y: bugs, fill: chart_color_blue_300.value,
+            url: '/insights/patch/advisories?offset=0&filter%5Badvisory_type%5D=2'
+        },
+        {
+            x: intl.formatMessage(messages.enhancementAdvisories, { count: enhancements }), y: enhancements, fill: chart_color_blue_200.value,
+            url: '/insights/patch/advisories?offset=0&filter%5Badvisory_type%5D=1'
+        }
     ];
-    const pieChartLegendData = pieChartData.map(item => ({ name: `${item.y} ${item.x}`, symbol: { fill: `${item.fill}`, type: 'circle' } }));
+
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
     const colorScale = [
-        chart_color_blue_400.value,
+        chart_color_blue_200.value,
         chart_color_blue_300.value,
-        chart_color_blue_200.value
+        chart_color_blue_400.value
     ];
 
     useEffect(() => {
@@ -64,7 +75,7 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
         className={'ins-c-dashboard__card--Patch ins-m-toggle-right-on-md'}
         body={<TemplateCardBody>
             {!isLoaded ? <Loading /> :
-                <React.Fragment>
+                <Flex direction={{ default: 'column' }}>
                     <Button
                         component='a'
                         href={`${UI_BASE}/${PATCHMAN_ID}/systems`}
@@ -72,42 +83,51 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                         isInline>
                         <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
                     </Button>
-                    <div className='ins-c-patch__chart'>
-                        <PieChart
-                            ariaDesc='Patch systems chart'
-                            ariaTitle='Patch systems chart'
-                            constrainToVisibleArea={true}
-                            data={pieChartData}
-                            labels={({ datum }) => `${datum.x}: ${datum.y}`}
-                            padding={pieChartPadding}
-                            height={65}
-                            width={65}
-                            colorScale={colorScale}
-                            legend='true'
-                            legendData={pieChartLegendData}
-                            legendOrientation='vertical'
-                            legendHeight={75}
-                            legendWidth={200}
-                        />
-                    </div>
-                </React.Fragment>
+                    <Flex
+                        alignItems={{ default: 'alignItemsCenter' }}
+                        spaceItems={{ default: 'spaceItemsXl' }}>
+                        <FlexItem>
+                            <PieChart
+                                colorScale={isLoaded && (security === 0 && bugs === 0 && enhancements === 0) ? [global_disabled_color_100.value]
+                                    : colorScale}
+                                ariaDesc='Patch systems chart'
+                                ariaTitle='Patch systems chart'
+                                constrainToVisibleArea={true}
+                                data={pieChartData}
+                                labels={({ datum }) => `${datum.x}: ${datum.y}`}
+                                padding={pieChartPadding}
+                                height={100}
+                                width={100}
+                            />
+                        </FlexItem>
+                        <div className='ins-c-legend'>
+                            {pieChartData.map((item, index) =>
+                                <a key={item.url} href={item.url} className='ins-c-legend__item'>
+                                    <span className='ins-c-legend__dot'
+                                        style={{ '--ins-c-legend__dot--BackgroundColor': `${colorScale[index]}` }} />
+                                    <span className='ins-c-legend__text'>{item.y} {capitalize(item.x)}</span>
+                                </a>
+                            )}
+                        </div>
+                    </Flex>
+                </Flex>
             }
         </TemplateCardBody>}
     />;
 };
 
 PatchManagerCard.propTypes = {
-    systems: PropTypes.number,
+    systems: PropTypes.any,
     systemsStatus: PropTypes.string,
     fetchSystems: PropTypes.func,
     fetchSecurity: PropTypes.func,
-    security: PropTypes.number,
+    security: PropTypes.any,
     securityStatus: PropTypes.string,
     fetchBugs: PropTypes.func,
-    bugs: PropTypes.number,
+    bugs: PropTypes.any,
     bugsStatus: PropTypes.string,
     fetchEnhancements: PropTypes.func,
-    enhancements: PropTypes.number,
+    enhancements: PropTypes.any,
     enhancementsStatus: PropTypes.string,
     selectedTags: PropTypes.arrayOf(PropTypes.string),
     workloads: workloadsPropType,

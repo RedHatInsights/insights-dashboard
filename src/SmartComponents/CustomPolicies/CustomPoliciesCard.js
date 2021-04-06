@@ -1,18 +1,20 @@
-import React from 'react';
+import './CustomPoliciesCard.scss';
+
+import { Table, TableBody, TableHeader, TableVariant } from '@patternfly/react-table';
 import {
     TemplateCard,
+    TemplateCardActions,
     TemplateCardBody,
-    TemplateCardHeader,
     TemplateCardHead,
-    TemplateCardActions
+    TemplateCardHeader
 } from '../../PresentationalComponents/Template/TemplateCard';
-import { Table, TableHeader, TableBody, TableVariant } from '@patternfly/react-table';
+
+import BellIcon from '@patternfly/react-icons/dist/esm/icons/bell-icon';
+import CogsIcon from '@patternfly/react-icons/dist/esm/icons/cogs-icon';
+import EnvelopeIcon from '@patternfly/react-icons/dist/esm/icons/envelope-icon';
 import FinishedIcon from './../../Icons/FinishedIcon';
-import SlackHashIcon from '@patternfly/react-icons/dist/js/icons/slack-hash-icon';
-import EnvelopeIcon from '@patternfly/react-icons/dist/js/icons/envelope-icon';
-import BellIcon from '@patternfly/react-icons/dist/js/icons/bell-icon';
-import CogsIcon from '@patternfly/react-icons/dist/js/icons/cogs-icon';
-import './CustomPoliciesCard.scss';
+import React from 'react';
+import SlackHashIcon from '@patternfly/react-icons/dist/esm/icons/slack-hash-icon';
 
 /**
  * Custom policies card with a table

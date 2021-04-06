@@ -1,17 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import './FailState.scss';
 
-import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import {
     EmptyState,
-    EmptyStateVariant,
-    EmptyStateBody
-} from '@patternfly/react-core/dist/js/components/EmptyState';
+    EmptyStateBody,
+    EmptyStateVariant
+} from '@patternfly/react-core/dist/esm/components/EmptyState';
 
-import { useIntl } from 'react-intl';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Title } from '@patternfly/react-core/dist/esm/components/Title/Title';
 import messages from '../../Messages';
-
-import './FailState.scss';
+import { useIntl } from 'react-intl';
 
 const FailState = ({ appName, isSmall }) => {
 

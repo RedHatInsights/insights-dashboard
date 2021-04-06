@@ -5,17 +5,17 @@ import {
     EmptyStateBody,
     EmptyStateIcon,
     EmptyStateVariant
-} from '@patternfly/react-core/dist/js/components/EmptyState';
+} from '@patternfly/react-core/dist/esm/components/EmptyState';
 
-import { Button } from '@patternfly/react-core/dist/js/components/Button';
-import ChartSpikeIcon from '@patternfly/react-icons/dist/js/icons/chartSpike-icon';
+import { Button } from '@patternfly/react-core/dist/esm/components/Button';
+import ChartSpikeIcon from '@patternfly/react-icons/dist/esm/icons/chartSpike-icon';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
-import PlusCircleIcon from '@patternfly/react-icons/dist/js/icons/plus-circle-icon';
+import PlusCircleIcon from '@patternfly/react-icons/dist/esm/icons/plus-circle-icon';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Stack } from '@patternfly/react-core/dist/js/layouts/Stack/Stack';
-import { StackItem } from '@patternfly/react-core/dist/js/layouts/Stack/StackItem';
-import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
+import { Stack } from '@patternfly/react-core/dist/esm/layouts/Stack/Stack';
+import { StackItem } from '@patternfly/react-core/dist/esm/layouts/Stack/StackItem';
+import { Title } from '@patternfly/react-core/dist/esm/components/Title/Title';
 import { UI_BASE } from '../../AppConstants';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';

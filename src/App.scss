@@ -5,7 +5,7 @@
 $ins-l-autofit--breakpoint-map: build-breakpoint-map();
 $ins-c-width-limiter--breakpoint-map: build-breakpoint-map();
 
-#root.pf-c-page__main {
+#root.pf-c-page__main.dashboard {
     height: auto;
 }
 
@@ -365,7 +365,6 @@ html, body {
 }
 
 .pf-l-grid {
-    height: 100%;
 
     &.pf-m-full-height {
         > .pf-c-card {
@@ -374,9 +373,6 @@ html, body {
     }
 }
 
-#root.pf-c-page__main.dashboard,
-#temp.pf-c-page__main.dashboard,
-#no-access.pf-c-page__main.dashboard {
+#root.pf-c-page__main {
     height: auto;
 }
-

@@ -2,8 +2,8 @@
 import { generateFilter } from '@redhat-cloud-services/frontend-components-utilities/helpers/helpers';
 const SAP_KEYS = ['SAP', 'All workloads'];
 
-export const capitalize = (string) => string[0].toUpperCase() + string.substring(1);
-export const workloadsPropType = (props, propName, componentName) => {
+const capitalize = (string) => string[0].toUpperCase() + string.substring(1);
+const workloadsPropType = (props, propName, componentName) => {
     let error;
     const prop = props?.[propName];
     if (typeof props !== 'object') {
@@ -28,13 +28,15 @@ export const workloadsPropType = (props, propName, componentName) => {
     return error;
 };
 
-export const sapFilter = (workloads, SID) => generateFilter({
+const sapFilter = (workloads, SID) => generateFilter({
     system_profile: {
         ...workloads?.SAP?.isSelected && { sap_system: true },
         ...SID?.length > 0 && { sap_sids: SID }
     }
 }, undefined, { arrayEnhancer: 'contains' });
 
-export const supportsGlobalFilter = (selectedTags, workloads, SID) => workloads === undefined ||
-!Object.values(workloads).map(value => value.isSelected).reduce((res, cur) => res || cur, false) &&
-selectedTags.length === 0 && Object.entries(SID).length === 0;
+const supportsGlobalFilter = (selectedTags, workloads, SID) => workloads === undefined ||
+    !Object.values(workloads).map(value => value.isSelected).reduce((res, cur) => res || cur, false) &&
+    selectedTags.length === 0 && Object.entries(SID).length === 0;
+
+export { capitalize, workloadsPropType, sapFilter, supportsGlobalFilter };

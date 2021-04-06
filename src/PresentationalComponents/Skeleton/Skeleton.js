@@ -1,9 +1,9 @@
 import './_Skeleton.scss';
 
-import { Card } from '@patternfly/react-core/dist/js/components/Card/Card';
-import { CardBody } from '@patternfly/react-core/dist/js/components/Card/CardBody';
-import { CardFooter } from '@patternfly/react-core/dist/js/components/Card/CardFooter';
-import { CardHeader } from '@patternfly/react-core/dist/js/components/Card/CardHeader';
+import { Card } from '@patternfly/react-core/dist/esm/components/Card/Card';
+import { CardBody } from '@patternfly/react-core/dist/esm/components/Card/CardBody';
+import { CardFooter } from '@patternfly/react-core/dist/esm/components/Card/CardFooter';
+import { CardHeader } from '@patternfly/react-core/dist/esm/components/Card/CardHeader';
 import React from 'react';
 import { Skeleton } from '@redhat-cloud-services/frontend-components/Skeleton/';
 

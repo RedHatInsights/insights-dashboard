@@ -1,4 +1,4 @@
-import './_dashboard.scss';
+import './dashboard.scss';
 
 import { Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts';
 import { PageSection, PageSectionVariants, Title } from '@patternfly/react-core/dist/esm/components';
@@ -48,8 +48,7 @@ const Dashboard = ({ workloads }) => {
 
     const breakpointColumnsObj = {
         default: 2,
-        768: 1,
-        0: 1
+        992: 1
     };
 
     return permission.hasSystems ?
@@ -86,6 +85,11 @@ const Dashboard = ({ workloads }) => {
                                 }
                             </Suspense>
                             <Suspense fallback={ <Loading /> }>
+                                {permission.compliance &&
+                                    <ComplianceCard />
+                                }
+                            </Suspense>
+                            <Suspense fallback={ <Loading /> }>
                                 {permission.remediations &&
                                     <RemediationsCard />
                                 }
@@ -93,11 +97,6 @@ const Dashboard = ({ workloads }) => {
                             <Suspense fallback={ <Loading /> }>
                                 {permission.patch &&
                                     <PatchManagerCard />
-                                }
-                            </Suspense>
-                            <Suspense fallback={ <Loading /> }>
-                                {permission.compliance &&
-                                    <ComplianceCard />
                                 }
                             </Suspense>
                             <Suspense fallback={ <Loading /> }>
