@@ -1,18 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import './DeniedState.scss';
 
-import { Card } from '@patternfly/react-core/dist/js/components/Card/Card';
-import { Title } from '@patternfly/react-core/dist/js/components/Title/Title';
 import {
     EmptyState,
-    EmptyStateVariant,
-    EmptyStateBody
-} from '@patternfly/react-core/dist/js/components/EmptyState';
+    EmptyStateBody,
+    EmptyStateVariant
+} from '@patternfly/react-core/dist/esm/components/EmptyState';
 
-import { useIntl } from 'react-intl';
+import { Card } from '@patternfly/react-core/dist/esm/components/Card/Card';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Title } from '@patternfly/react-core/dist/esm/components/Title/Title';
 import messages from '../../Messages';
-
-import './DeniedState.scss';
+import { useIntl } from 'react-intl';
 
 const DeniedState = ({ appName }) => {
 

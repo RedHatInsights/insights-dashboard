@@ -6,7 +6,7 @@ import React, { Fragment, useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { sapFilter, workloadsPropType } from '../../Utilities/Common';
 
-import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
+import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
 import { NotAuthorized } from '@redhat-cloud-services/frontend-components/NotAuthorized';

@@ -7,7 +7,7 @@ import {
 } from '@patternfly/react-core/dist/esm/components';
 
 import React from 'react';
-import { Spinner } from '@patternfly/react-core/dist/js/components/Spinner';
+import { Spinner } from '@patternfly/react-core/dist/esm/components/Spinner';
 
 const PageLoading = () => <EmptyState>
     <EmptyStateIcon variant="container" component={ Spinner } />

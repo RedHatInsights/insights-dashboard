@@ -1,8 +1,8 @@
 import '../../../src/PresentationalComponents/NumberDescription/NumberDescription.scss';
 
-import { Flex, FlexItem } from '@patternfly/react-core/dist/js/layouts/Flex/index';
+import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts/Flex/index';
 
-import { Button } from '@patternfly/react-core/dist/js/components/Button/Button';
+import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import CriticalIcon from '../../Icons/CriticalIcon';
 import { NumberData } from '../../PresentationalComponents/NumberData/NumberData';
 import React from 'react';

@@ -27,17 +27,19 @@ export const PieChart = ({ ariaDesc, ariaTitle, constrainToVisibleArea, data, le
                     colorScale={ colorScale }
                 />
                 <table tabIndex="0" className="visually-hidden" aria-label={ ariaTitle + ` data` }>
-                    {data.map((d, index) => {
-                        return [
-                            <tr key={ index }>
-                                <td>{d.y}</td>
-                                <td>{d.x}</td>
-                            </tr>
-                        ];
-                    })}
+                    <tbody>
+                        {data.map((d, index) => {
+                            return [
+                                <tr key={ index }>
+                                    <td>{d.y}</td>
+                                    <td>{d.x}</td>
+                                </tr>
+                            ];
+                        })}
+                    </tbody>
                 </table>
             </div>
-            {legend === 'true' &&
+            {legend &&
                 <div className="ins-c-pie-chart__legend" aria-label="Chart legend" style={ { width: legendWidth, height: legendHeight } }>
                     <ChartLegend
                         height={ legendHeight }
@@ -57,15 +59,15 @@ export const PieChart = ({ ariaDesc, ariaTitle, constrainToVisibleArea, data, le
 PieChart.propTypes = {
     ariaDesc: propTypes.string,
     ariaTitle: propTypes.string,
-    constrainToVisibleArea: propTypes.boolean,
+    constrainToVisibleArea: propTypes.bool,
     data: propTypes.array,
     legendData: propTypes.array,
     padding: propTypes.object,
     height: propTypes.number,
     width: propTypes.number,
-    legendOrientation: propTypes.boolean,
+    legendOrientation: propTypes.string,
     colorScale: propTypes.array,
-    legend: propTypes.boolean,
+    legend: propTypes.bool,
     legendWidth: propTypes.number,
     legendHeight: propTypes.number,
     legendClick: propTypes.any

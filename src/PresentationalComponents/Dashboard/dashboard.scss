@@ -1,8 +1,8 @@
-@import "~@patternfly/patternfly/sass-utilities/_all.scss";
-@import "~@patternfly/patternfly/utilities/Text/text.scss";
-@import "~@patternfly/patternfly/utilities/Display/display.scss";
-@import "~@patternfly/patternfly/utilities/Accessibility/accessibility.scss";
-@import "~@patternfly/patternfly/utilities/Spacing/spacing.scss";
+@import "~@patternfly/patternfly/sass-utilities/_all";
+@import "~@patternfly/patternfly/utilities/Text/text";
+@import "~@patternfly/patternfly/utilities/Display/display";
+@import "~@patternfly/patternfly/utilities/Accessibility/accessibility";
+@import "~@patternfly/patternfly/utilities/Spacing/spacing";
 
 // All buttons should be text-align left and font-size 14px
 .pf-c-button.pf-m-link {
@@ -11,7 +11,6 @@
 }
 
 .ins-c-dashboard-data-list__pie-chart {
-
   > .pf-c-chart > svg {
     max-width: #{pf-size-prem(80px)};
 
@@ -34,6 +33,11 @@
   width: auto;
 }
 
+.pf-c-card {
+  --pf-c-card--child--PaddingRight: var(--pf-global--spacer--xl);
+  --pf-c-card--child--PaddingLeft: var(--pf-global--spacer--xl);
+}
+
 .ins-l-masonry_column {
   padding-left: var(--pf-global--spacer--lg); /* gutter size */
   background-clip: padding-box;
@@ -44,4 +48,35 @@
       margin-bottom: 0;
     }
   }
+}
+
+.pf-c-drawer__content {
+  > div {
+    display: contents;
+  }
+}
+
+.pf-c-page__sidebar {
+  display: none;
+}
+
+.ins-c-dashboard-card-parent {
+  > *:last-child,
+  .pf-c-card__expandable-content,
+  .pf-c-card__expandable-content .pf-c-card__body {
+    flex: 1;
+  }
+
+  .pf-c-card__expandable-content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.pf-c-page__main-section {
+  --pf-c-page--section--m-limit-width--MaxWidth: 1400px;
+}
+
+.pf-l-grid {
+  --pf-l-grid--m-gutter--GridGap: var(--pf-global--spacer--lg);
 }

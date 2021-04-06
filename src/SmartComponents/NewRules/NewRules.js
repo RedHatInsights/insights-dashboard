@@ -18,7 +18,7 @@ import {
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
 import React, { useState } from 'react';
 
-import AngleRightIcon from '@patternfly/react-icons/dist/js/icons/angle-right-icon';
+import AngleRightIcon from '@patternfly/react-icons/dist/esm/icons/angle-right-icon';
 import { DataListItemTemplate } from '../../PresentationalComponents/Template/DataListItemTemplate';
 import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
@@ -33,7 +33,7 @@ const NewRules = () => {
     const [isExpanded, setIsExpanded] = useState(JSON.parse(localStorage.getItem('dashboard_expanded_cta') || 'true'));
     const vulnerabilities = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities);
     let { recent_rules: newRules } = vulnerabilities;
-    const severitColor = {
+    const severityColor = {
         1: ['#2b9af3', '#06c'],
         2: ['#f4c145', '#c58c00'],
         3: ['#ec7a08', '#8f4700'],
@@ -47,11 +47,11 @@ const NewRules = () => {
             <DataListItemRow className='ins-c-dashboard-data-list__title-row'>
                 <DataListItemCells
                     dataListCells={[
-                        <DataListCell key="primary content">
+                        <DataListCell key='primary content'>
                             <Flex spaceItems={{ default: 'spaceItemsMd' }} alignItems={{ default: 'alignItemsCenter' }}
                                 flexWrap={{ default: 'nowrap' }}>
                                 <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />
-                                <span id="collapse-all-text" className="pf-u-font-weight-bold">{intl.formatMessage(messages.latestCritical)}</span>
+                                <span id='collapse-all-text' className='pf-u-font-weight-bold'>{intl.formatMessage(messages.latestCritical)}</span>
                             </Flex>
                         </DataListCell>
                     ]}
@@ -87,16 +87,19 @@ const NewRules = () => {
                 dataListItemTemplateContent={
                     <Flex direction={{ default: 'column', md: 'row' }}
                         alignItems={{ md: 'alignItemsFlexStart' }}
-                        spaceItems={{ md: 'spaceItems2xl' }}>
-                        <Flex direction={{ default: 'column' }} flex={{ md: 'flex_3', xl: 'flexDefault' }}>
-                            <Title headingLevel='h4' size='xl' className='pf-u-font-weight-lights'>
-                                <span>
-                                    {capitalize(intl.formatMessage({
-                                        id: 'itemTitle',
-                                        description: 'itemTitle',
-                                        defaultMessage: item.name
-                                    }))}</span>
-                            </Title>
+                        spaceItems={{ md: 'spaceItems2xl' }}
+                        flexWrap={{ default: 'nowrap' }}>
+                        <Flex direction={{ default: 'column' }} flex={{ md: 'flex_3' }}>
+                            <FlexItem spacer={{ default: 'spacerXs' }}>
+                                <Title headingLevel='h4' size='xl' className='pf-u-font-weight-lights'>
+                                    <span>
+                                        {capitalize(intl.formatMessage({
+                                            id: 'itemTitle',
+                                            description: 'itemTitle',
+                                            defaultMessage: item.name
+                                        }))}</span>
+                                </Title>
+                            </FlexItem>
                             <TextContent className='ins-c-width-limiter'
                                 style={{
                                     '--ins-c-width-limiter--MaxWidth-on-lg': '50ch',
@@ -120,15 +123,15 @@ const NewRules = () => {
                                         </DescriptionListDescription>
                                     )}</DescriptionListGroup>
                             </DescriptionList>
-                            <Flex flexDefault={{ md: 'flex_1', xl: 'flexDefault' }}>
+                            <Flex flex={{ md: 'flex_1', xl: 'flexDefault' }}>
                                 <Button type='a' href={`${UI_BASE}/vulnerability/cves/${item.associated_cves[0]}`}
-                                    component='a' variant='secondary'>{intl.formatMessage(messages.viewDetails)}</Button>
+                                    component='a' variant='secondary' isSmall>{intl.formatMessage(messages.viewDetails)}</Button>
                                 <a href={`https://access.redhat.com/node/${item.node_id}`} rel='noreferrer' target='_blank'>
                                     {intl.formatMessage(messages.moreAbout)}
                                 </a>
                             </Flex>
                         </Flex>
-                        <Flex flex={{ default: 'flex_2', xl: 'flexDefault' }} alignItems={{ default: 'alignItemsCenter' }}>
+                        <Flex flex={{ default: 'flex_2' }} alignItems={{ default: 'alignItemsCenter' }}>
                             <Flex alignItems={{ default: 'alignItemsCenter' }} flexWrap={{ default: 'nowrap' }}>
                                 <FlexItem>
                                     <PieChart
@@ -141,7 +144,7 @@ const NewRules = () => {
                                         padding={pieChartPadding}
                                         height={80}
                                         width={80}
-                                        colorScale={severitColor[item.severity]} />
+                                        colorScale={severityColor[item.severity]} />
                                 </FlexItem>
                                 <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsNone' }}>
                                     <div className='pf-u-font-size-2xl'>{item.systems_affected}</div>

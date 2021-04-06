@@ -14,15 +14,15 @@ import {
     Grid
 } from '@patternfly/react-core/dist/esm/layouts';
 
-import BellIcon from '@patternfly/react-icons/dist/js/icons/bell-icon';
-import CogsIcon from '@patternfly/react-icons/dist/js/icons/cogs-icon';
-import EnvelopeIcon from '@patternfly/react-icons/dist/js/icons/envelope-icon';
+import BellIcon from '@patternfly/react-icons/dist/esm/icons/bell-icon';
+import CogsIcon from '@patternfly/react-icons/dist/esm/icons/cogs-icon';
+import EnvelopeIcon from '@patternfly/react-icons/dist/esm/icons/envelope-icon';
 // expandable card
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 // icons
 import FinishedIcon from '../../Icons/FinishedIcon';
 import React from 'react';
-import SlackHashIcon from '@patternfly/react-icons/dist/js/icons/slack-hash-icon';
+import SlackHashIcon from '@patternfly/react-icons/dist/esm/icons/slack-hash-icon';
 // template card
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import { UI_BASE } from '../../AppConstants';

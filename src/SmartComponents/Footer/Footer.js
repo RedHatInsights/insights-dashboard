@@ -45,6 +45,6 @@ export const DashboardFooter = ({ supportsSap }) => {
         : '';
 };
 
-DashboardFooter.propTypes = { supportsSap: propTypes.boolean };
+DashboardFooter.propTypes = { supportsSap: propTypes.bool };
 
 export default DashboardFooter;

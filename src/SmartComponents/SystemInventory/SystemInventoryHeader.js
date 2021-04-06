@@ -106,7 +106,7 @@ const SystemInventoryHeader = ({
                                                 { count: inventoryStaleSummary.total || 0 }
                                             ) }
                                             state="warning"
-                                            systemInventory="true"
+                                            systemInventory
                                         />
                                     </Button>
                                 }
@@ -119,7 +119,7 @@ const SystemInventoryHeader = ({
                                                 { count: inventoryWarningSummary.total || 0 }
                                             ) }
                                             state="critical"
-                                            systemInventory="true"
+                                            systemInventory
                                         />
                                     </Button>
                                 }

@@ -25,7 +25,7 @@ export const IconInline = ({ message, state, systemInventory }) => {
 IconInline.propTypes = {
     message: propTypes.string,
     state: propTypes.string,
-    systemInventory: propTypes.boolean
+    systemInventory: propTypes.bool
 };
 
 export default IconInline;
