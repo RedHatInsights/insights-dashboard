@@ -126,9 +126,9 @@ const NewRules = () => {
                             <Flex flex={{ md: 'flex_1', xl: 'flexDefault' }}>
                                 <Button type='a' href={`${UI_BASE}/vulnerability/cves/${item.associated_cves[0]}`}
                                     component='a' variant='secondary' isSmall>{intl.formatMessage(messages.viewDetails)}</Button>
-                                <a href={`https://access.redhat.com/node/${item.node_id}`} rel='noreferrer' target='_blank'>
+                                {item.node_id && <a href={`https://access.redhat.com/node/${item.node_id}`} rel='noreferrer' target='_blank'>
                                     {intl.formatMessage(messages.moreAbout)}
-                                </a>
+                                </a>}
                             </Flex>
                         </Flex>
                         <Flex flex={{ default: 'flex_2' }} alignItems={{ default: 'alignItemsCenter' }}>
