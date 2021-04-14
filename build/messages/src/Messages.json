@@ -4,16 +4,16 @@
     "description": "Advisor card CTA"
   },
   "advisorCardHeader1": {
-    "defaultMessage": "Advisory recommendations",
-    "description": "Advisory card header 1"
+    "defaultMessage": "Advisor recommendations",
+    "description": "Advisor card header 1"
   },
   "advisorCardHeader2": {
     "defaultMessage": "Recommendations by total risk",
-    "description": "Advisory card header 2"
+    "description": "Advisor card header 2"
   },
   "advisorCardHeader3": {
     "defaultMessage": "Recommendations by category",
-    "description": "Advisory card header 3"
+    "description": "Advisor card header 3"
   },
   "advisorCardMessage": {
     "defaultMessage": "Problematic conditions that cause an issue have been actively detected on your systems",
@@ -135,6 +135,10 @@
     "defaultMessage": "Expand",
     "description": "expand"
   },
+  "exploitedCveTooltip": {
+    "defaultMessage": "These CVEs are identified with a \"Known Exploit\" flag because Red Hat has determined that there are known examples of exploits for this particular CVEs. It does not reflect your environment. CVEs with this label should be addressed with higher priority.",
+    "description": "exploitedCveTooltip"
+  },
   "filterNotApplicable": {
     "defaultMessage": "Filter not applicable",
     "description": "Filter not applicable"
@@ -172,7 +176,7 @@
     "description": "Insights and Smart Management"
   },
   "knownExploitsOneOrMoreSystems": {
-    "defaultMessage": "{cves, plural, one {CVE} other {CVEs}} with <strong>known exploits</strong> impacting 1 or more systems",
+    "defaultMessage": "{cves, plural, one {CVE} other {CVEs}} with <strong>known exploits</strong> impacting 1 or more systems<tooltip></tooltip>",
     "description": "Vulnerability - known exploits link"
   },
   "lastxdays": {

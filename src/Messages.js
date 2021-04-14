@@ -135,7 +135,7 @@ export default defineMessages({
     knownExploitsOneOrMoreSystems: {
         id: 'knownExploitsOneOrMoreSystems',
         description: 'Vulnerability - known exploits link',
-        defaultMessage: '{cves, plural, one {CVE} other {CVEs}} with <strong>known exploits</strong> impacting 1 or more systems'
+        defaultMessage: '{cves, plural, one {CVE} other {CVEs}} with <strong>known exploits</strong> impacting 1 or more systems<tooltip></tooltip>'
     },
     vulnerabilityMessage: {
         id: 'vulnerabilityMessage',
@@ -572,17 +572,17 @@ export default defineMessages({
     // Card headers
     advisorCardHeader1: {
         id: 'advisorCardHeader1',
-        description: 'Advisory card header 1',
-        defaultMessage: 'Advisory recommendations'
+        description: 'Advisor card header 1',
+        defaultMessage: 'Advisor recommendations'
     },
     advisorCardHeader2: {
         id: 'advisorCardHeader2',
-        description: 'Advisory card header 2',
+        description: 'Advisor card header 2',
         defaultMessage: 'Recommendations by total risk'
     },
     advisorCardHeader3: {
         id: 'advisorCardHeader3',
-        description: 'Advisory card header 3',
+        description: 'Advisor card header 3',
         defaultMessage: 'Recommendations by category'
     },
     policiesCardHeader: {
@@ -668,5 +668,10 @@ export default defineMessages({
         id: 'latestCritical',
         description: 'latestCritical',
         defaultMessage: 'Latest critical notifications on your systems'
+    },
+    exploitedCveTooltip: {
+        id: 'exploitedCveTooltip',
+        description: 'exploitedCveTooltip',
+        defaultMessage: 'These CVEs are identified with a "Known Exploit" flag because Red Hat has determined that there are known examples of exploits for this particular CVEs. It does not reflect your environment. CVEs with this label should be addressed with higher priority.'
     }
 });
