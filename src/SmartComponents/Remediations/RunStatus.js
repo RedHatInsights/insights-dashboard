@@ -92,13 +92,13 @@ const RunStatus = ({ id, name, index }) => {
             }
         </div>
         <div className="ins-c-remediation__timestamp">
-            {name.length > 20 ? <Tooltip content={ name }>
+            {name.length > 65 ? <Tooltip content={ name }>
                 <Button id={ `remediation-link-${index}` } component="a" variant="link" isInline href={ `./insights/remediations/${id}` }>
-                    {`${name.substring(0, 20)}...`} {/* do not intl this */}
+                    {name}
                 </Button>
             </Tooltip> :
                 <Button id={ `remediation-link-${index}` } component="a" variant="link" isInline href={ `./insights/remediations/${id}` }>
-                    {name} {/* do not intl this */}
+                    {name}
                 </Button>}
             { loaded === undefined && <Skeleton size='md' /> }
             { loaded && hasData
