@@ -28,7 +28,7 @@ export const RHSM_API_QUERY_GRANULARITY_TYPES = {
 };
 
 export const SW_PATHS = {
-    APP: '/subscriptions',
-    RHEL: '/subscriptions/rhel-sw',
-    OPENSHIFT: '/subscriptions/openshift-sw'
+    APP: '/insights/subscriptions',
+    RHEL: '/insights/subscriptions/rhel',
+    OPENSHIFT: '/openshift/subscriptions/openshift-container'
 };
