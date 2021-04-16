@@ -2,6 +2,7 @@
 
 const BASE_URL = '/api';
 export const UI_BASE = './insights';
+export const UI_BASE_OPENSHIFT = './openshift';
 export const SELECTED_TAGS_SET = 'SELECTED_TAGS_SET';
 export const WORKLOADS_SET = 'WORKLOADS_SET';
 export const SID_SET = 'SID_SET';
