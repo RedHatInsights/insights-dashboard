@@ -184,7 +184,8 @@ const Advisor = () => {
                     body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-u-pb-0'>
                         <Flex
                             justifyContent={{ default: 'justifyContentCenter' }}
-                            spaceItems={{ default: 'spaceItems3xl' }}>
+                            spaceItems={{ default: 'spaceItemsLg', sm: 'spaceItems2xl' }}
+                        >
                             {trData.map(({ title, risk, value }) =>
                                 <a key={title} href={totalRiskUrl(value)}>
                                     <Flex
@@ -208,10 +209,8 @@ const Advisor = () => {
                             </CardTitle>
                             <CardBody className='pf-u-pt-sm'>
                                 <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsLg' }}>
-                                    <Flex
-                                        alignItems={{ default: 'alignItemsCenter' }}
-                                        spaceItems={{ default: 'spaceItemsXl' }}>
-                                        <FlexItem>
+                                    <div className="ins-c-dashboard__card-chart-container">
+                                        <div className="ins-c-dashboard__card-pie-chart">
                                             <PieChart
                                                 ariaDesc='Advisor Category pie chart'
                                                 ariaTitle='Advisor Category pie chartt'
@@ -219,19 +218,20 @@ const Advisor = () => {
                                                 data={categoryData}
                                                 colorScale={colorScale}
                                                 padding={pieChartPadding}
-                                                height={100}
-                                                width={100} />
-                                        </FlexItem>
-                                        <div className='ins-c-legend'>
-                                            {pieLegendData.map((item) =>
-                                                <a key={item.url} href={item.url} className='ins-c-legend__item'>
-                                                    <span className='ins-c-legend__dot'
-                                                        style={{ '--ins-c-legend__dot--BackgroundColor': `${item.fill}` }} />
-                                                    <span className='ins-c-legend__text'>{item.name}</span>
-                                                </a>
-                                            )}
+                                            />
                                         </div>
-                                    </Flex>
+                                        <div className="ins-c-dashboard__card-pie-chart-legend">
+                                            <div className='ins-c-legend ins-m-2-col'>
+                                                {pieLegendData.map((item) =>
+                                                    <a key={item.url} href={item.url} className='ins-c-legend__item'>
+                                                        <span className='ins-c-legend__dot'
+                                                            style={{ '--ins-c-legend__dot--BackgroundColor': `${item.fill}` }} />
+                                                        <span className='ins-c-legend__text'>{item.name}</span>
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </Flex>
                             </CardBody>
                         </Card>

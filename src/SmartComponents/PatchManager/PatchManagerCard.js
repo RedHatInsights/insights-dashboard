@@ -1,6 +1,6 @@
 import './PatchManagerCard.scss';
 
-import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
+import { Flex } from '@patternfly/react-core/dist/esm/layouts';
 import { PATCHMAN_ID, UI_BASE } from '../../AppConstants';
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
@@ -83,10 +83,8 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                         isInline>
                         <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
                     </Button>
-                    <Flex
-                        alignItems={{ default: 'alignItemsCenter' }}
-                        spaceItems={{ default: 'spaceItemsXl' }}>
-                        <FlexItem>
+                    <div className="ins-c-dashboard__card-chart-container">
+                        <div className="ins-c-dashboard__card-pie-chart">
                             <PieChart
                                 colorScale={isLoaded && (security === 0 && bugs === 0 && enhancements === 0) ? [global_disabled_color_100.value]
                                     : colorScale}
@@ -96,20 +94,20 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                                 data={pieChartData}
                                 labels={({ datum }) => `${datum.x}: ${datum.y}`}
                                 padding={pieChartPadding}
-                                height={100}
-                                width={100}
                             />
-                        </FlexItem>
-                        <div className='ins-c-legend'>
-                            {pieChartData.map((item, index) =>
-                                <a key={item.url} href={item.url} className='ins-c-legend__item'>
-                                    <span className='ins-c-legend__dot'
-                                        style={{ '--ins-c-legend__dot--BackgroundColor': `${colorScale[index]}` }} />
-                                    <span className='ins-c-legend__text'>{item.y} {capitalize(item.x)}</span>
-                                </a>
-                            )}
                         </div>
-                    </Flex>
+                        <div className='ins-c-dashboard__card-pie-chart-legend'>
+                            <div className="ins-c-legend">
+                                {pieChartData.map((item, index) =>
+                                    <a key={item.url} href={item.url} className='ins-c-legend__item'>
+                                        <span className='ins-c-legend__dot'
+                                            style={{ '--ins-c-legend__dot--BackgroundColor': `${colorScale[index]}` }} />
+                                        <span className='ins-c-legend__text'>{item.y} {capitalize(item.x)}</span>
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    </div>
                 </Flex>
             }
         </TemplateCardBody>}
