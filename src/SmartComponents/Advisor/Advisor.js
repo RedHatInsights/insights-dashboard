@@ -65,9 +65,9 @@ const Advisor = () => {
         key={text}
         position={TooltipPosition.top}
         content={<div>{text}</div>}>
-        <Button variant='plain' aria-label='Action' className='ins-c-info-icon'>
+        <span aria-label='Action' className='ins-c-info-icon'>
             <InfoIcon />
-        </Button>
+        </span>
     </Tooltip>;
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
 
@@ -176,8 +176,8 @@ const Advisor = () => {
                     appName='advisor-recommendation-by-total-risk'
                     className='ins-m-toggle-right-on-md'
                     title={<Flex flexWrap={{ default: 'nowrap' }}>
-                        {intl.formatMessage(messages.advisorCardHeader2)}
-                        {iconTooltip(intl.formatMessage(messages.totalRiskDef, { em: str => <em>{str}</em> }))}
+                        <h3>{intl.formatMessage(messages.advisorCardHeader2)}</h3>
+                        {iconTooltip(intl.formatMessage(messages.totalRiskDef))}
                     </Flex>}
                     isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor2') || 'true')}
                     isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor2', isExpanded)}
@@ -213,7 +213,7 @@ const Advisor = () => {
                                         <div className="ins-c-dashboard__card-pie-chart">
                                             <PieChart
                                                 ariaDesc='Advisor Category pie chart'
-                                                ariaTitle='Advisor Category pie chartt'
+                                                ariaTitle='Advisor Category pie chart'
                                                 constrainToVisibleArea={true}
                                                 data={categoryData}
                                                 colorScale={colorScale}
