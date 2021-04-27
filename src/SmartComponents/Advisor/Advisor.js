@@ -65,9 +65,9 @@ const Advisor = () => {
         key={text}
         position={TooltipPosition.top}
         content={<div>{text}</div>}>
-        <Button variant='plain' aria-label='Action' className='ins-c-info-icon'>
+        <span aria-label='Action' className='ins-c-info-icon'>
             <InfoIcon />
-        </Button>
+        </span>
     </Tooltip>;
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
 
@@ -176,15 +176,16 @@ const Advisor = () => {
                     appName='advisor-recommendation-by-total-risk'
                     className='ins-m-toggle-right-on-md'
                     title={<Flex flexWrap={{ default: 'nowrap' }}>
-                        {intl.formatMessage(messages.advisorCardHeader2)}
-                        {iconTooltip(intl.formatMessage(messages.totalRiskDef, { em: str => <em>{str}</em> }))}
+                        <h3>{intl.formatMessage(messages.advisorCardHeader2)}</h3>
+                        {iconTooltip(intl.formatMessage(messages.totalRiskDef))}
                     </Flex>}
                     isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor2') || 'true')}
                     isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor2', isExpanded)}
                     body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-u-pb-0'>
                         <Flex
                             justifyContent={{ default: 'justifyContentCenter' }}
-                            spaceItems={{ default: 'spaceItems3xl' }}>
+                            spaceItems={{ default: 'spaceItemsLg', sm: 'spaceItems2xl' }}
+                        >
                             {trData.map(({ title, risk, value }) =>
                                 <a key={title} href={totalRiskUrl(value)}>
                                     <Flex
@@ -208,30 +209,29 @@ const Advisor = () => {
                             </CardTitle>
                             <CardBody className='pf-u-pt-sm'>
                                 <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsLg' }}>
-                                    <Flex
-                                        alignItems={{ default: 'alignItemsCenter' }}
-                                        spaceItems={{ default: 'spaceItemsXl' }}>
-                                        <FlexItem>
+                                    <div className="ins-c-dashboard__card-chart-container">
+                                        <div className="ins-c-dashboard__card-pie-chart">
                                             <PieChart
                                                 ariaDesc='Advisor Category pie chart'
-                                                ariaTitle='Advisor Category pie chartt'
+                                                ariaTitle='Advisor Category pie chart'
                                                 constrainToVisibleArea={true}
                                                 data={categoryData}
                                                 colorScale={colorScale}
                                                 padding={pieChartPadding}
-                                                height={100}
-                                                width={100} />
-                                        </FlexItem>
-                                        <div className='ins-c-legend'>
-                                            {pieLegendData.map((item) =>
-                                                <a key={item.url} href={item.url} className='ins-c-legend__item'>
-                                                    <span className='ins-c-legend__dot'
-                                                        style={{ '--ins-c-legend__dot--BackgroundColor': `${item.fill}` }} />
-                                                    <span className='ins-c-legend__text'>{item.name}</span>
-                                                </a>
-                                            )}
+                                            />
                                         </div>
-                                    </Flex>
+                                        <div className="ins-c-dashboard__card-pie-chart-legend">
+                                            <div className='ins-c-legend ins-m-2-col'>
+                                                {pieLegendData.map((item) =>
+                                                    <a key={item.url} href={item.url} className='ins-c-legend__item'>
+                                                        <span className='ins-c-legend__dot'
+                                                            style={{ '--ins-c-legend__dot--BackgroundColor': `${item.fill}` }} />
+                                                        <span className='ins-c-legend__text'>{item.name}</span>
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </Flex>
                             </CardBody>
                         </Card>

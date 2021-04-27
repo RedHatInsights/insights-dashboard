@@ -7,6 +7,11 @@ export default defineMessages({
         description: 'Title of the dashboard',
         defaultMessage: 'Dashboard'
     },
+    newRulesDateTitle: {
+        id: 'newRulesDateTitle',
+        description: 'New rules date title',
+        defaultMessage: 'Newly released security rule'
+    },
     subscriptionsUtilizedTitle: {
         id: 'subscriptionsUtilizedTitle',
         description: 'Title of the subscriptions utilized card',

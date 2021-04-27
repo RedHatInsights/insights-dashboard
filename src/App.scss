@@ -256,9 +256,17 @@ html, body {
         // stylelint-disable no-descending-specificity
         tr > * {
             --pf-c-table--cell--PaddingTop: 0;
-            --pf-c-table--cell--PaddingRight: var(--pf-global--spacer--md);
+            --pf-c-table--cell--PaddingRight: var(--pf-global--spacer--sm);
             --pf-c-table--cell--PaddingBottom: 0;
-            --pf-c-table--cell--PaddingLeft: var(--pf-global--spacer--md);
+            --pf-c-table--cell--PaddingLeft: var(--pf-global--spacer--sm);
+        }
+
+        tr > :first-child {
+            --pf-c-table--cell--PaddingLeft: 0;
+        }
+
+        tr > :last-child {
+            --pf-c-table--cell--PaddingRight: 0;
         }
         // stylelint-enable
     }
@@ -266,8 +274,11 @@ html, body {
 
 .ins-c-legend {
     display: grid;
-    grid-template-columns: max-content 1fr;
     column-gap: var(--pf-global--spacer--md);
+
+    &.ins-m-2-col {
+        grid-template-columns: max-content 1fr;
+    }
 }
 
 .ins-c-legend__item {

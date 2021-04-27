@@ -94,8 +94,9 @@ const SystemInventoryHeader = ({
                         } */}
                     </Flex>
                     <Flex spaceItems={ { default: 'spaceItemsXl' } }
-                        alignItems={ { default: 'alignItemsCenter' } }
+                        alignItems={ { md: 'alignItemsCenter' } }
                         flex={ { default: 'flex_1' } }
+                        direction={ { default: 'column', md: 'row' } }
                     >
                         <Flex direction={ { default: 'column' } } spaceItems={ { default: 'spaceItemsNone' } }>
                             <FlexItem>

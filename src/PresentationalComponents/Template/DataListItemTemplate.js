@@ -35,13 +35,13 @@ export const DataListItemTemplate = ({
     const intl = useIntl();
 
     return <DataListItem
-        aria-labelledby={`ins-c-dashboard__list-item--${dataListItemTemplateName}`}
+        aria-labelledby={`itemDescription-${dataListItemTemplateKey}`}
         isExpanded={isExpanded}
         className={`ins-c-dashboard__list-item`}
         key={dataListItemTemplateKey}
         {...props}
     >
-        <DataListItemRow>
+        <DataListItemRow className="ins-c-dashboard-data-list__controller-row">
             <div className='pf-c-data-list__item-control'>
                 <div className='pf-c-data-list__toggle'
                     onClick={() => setIsExpanded(!isExpanded)}
@@ -63,47 +63,43 @@ export const DataListItemTemplate = ({
             </div>
             <DataListItemCells
                 dataListCells={[
-                    <DataListCell key={`key-${dataListItemTemplateKey}-datalist-cell`}>
-                        <Flex alignItems={{ default: 'alignItemsCenter' }}>
-                            <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsNone' }}
-                                flex={{ default: 'flex_1' }}>
-                                <span className='date pf-u-color-200 pf-u-font-size-sm'>
-                                    Newly released security rule &nbsp;<DateFormat type='onlyDate' date={dataListItemTemplateDate} />
-                                </span>
-                                <Title headingLevel='h4' size='md'
-                                    className='pf-u-font-weight-light ins-c-title-toggle' id={`itemDescription-${dataListItemTemplateKey}`}>
-                                    <span>
-                                        {capitalize(intl.formatMessage({
-                                            id: 'itemTitle',
-                                            description: 'itemTitle',
-                                            defaultMessage: dataListItemTemplateName
-                                        }))}
-                                    </span>
-                                </Title>
+                    <DataListCell key={`key-${dataListItemTemplateKey}-datalist-cell`} className="ins-c-dashboard-data-list__controller-row-cell">
+                        <div className='ins-c-new-rules-severities'>
+                            <Flex alignItems={{ default: 'alignItemsCenter' }} alignSelf={{ default: 'alignSelfStretch' }}>
+                                {dataListItemTemplateSeverity === 1 &&
+                                    <Label icon={<DashboardIcon type='lowSeverity' />}>{capitalize(intl.formatMessage(messages.low))}</Label>
+                                }
+                                {dataListItemTemplateSeverity === 2 &&
+                                    <Label color="blue" icon={<DashboardIcon type='moderateSeverity' />}>
+                                        {capitalize(intl.formatMessage(messages.moderate))}
+                                    </Label>
+                                }
+                                {dataListItemTemplateSeverity === 3 &&
+                                    <Label color="orange" icon={<DashboardIcon type='importantSeverity' />}>
+                                        {capitalize(intl.formatMessage(messages.important))}
+                                    </Label>
+                                }
+                                {dataListItemTemplateSeverity === 4 &&
+                                    <Label color="red" icon={<DashboardIcon type='criticalSeverity' />}>
+                                        {capitalize(intl.formatMessage(messages.critical))}
+                                    </Label>
+                                }
                             </Flex>
-                            <div className='ins-c-new-rules-severities'>
-                                <Flex alignItems={{ default: 'alignItemsCenter' }} alignSelf={{ default: 'alignSelfStretch' }}>
-                                    {dataListItemTemplateSeverity === 1 &&
-                                        <Label icon={<DashboardIcon type='lowSeverity' />}>{capitalize(intl.formatMessage(messages.low))}</Label>
-                                    }
-                                    {dataListItemTemplateSeverity === 2 &&
-                                        <Label color="blue" icon={<DashboardIcon type='moderateSeverity' />}>
-                                            {capitalize(intl.formatMessage(messages.moderate))}
-                                        </Label>
-                                    }
-                                    {dataListItemTemplateSeverity === 3 &&
-                                        <Label color="orange" icon={<DashboardIcon type='importantSeverity' />}>
-                                            {capitalize(intl.formatMessage(messages.important))}
-                                        </Label>
-                                    }
-                                    {dataListItemTemplateSeverity === 4 &&
-                                        <Label color="red" icon={<DashboardIcon type='criticalSeverity' />}>
-                                            {capitalize(intl.formatMessage(messages.critical))}
-                                        </Label>
-                                    }
-                                </Flex>
-                            </div>
-                        </Flex>
+                        </div>
+                        <span className='ins-c-dashboard-data-list__date pf-u-color-200 pf-u-font-size-sm'>
+                            {capitalize(intl.formatMessage(messages.newRulesDateTitle))}
+                            &nbsp;<DateFormat type='onlyDate' date={dataListItemTemplateDate} />
+                        </span>
+                        <Title headingLevel='h4' size='md'
+                            className='pf-u-font-weight-light ins-c-title-toggle' id={`itemDescription-${dataListItemTemplateKey}`}>
+                            <span>
+                                {capitalize(intl.formatMessage({
+                                    id: 'itemTitle',
+                                    description: 'itemTitle',
+                                    defaultMessage: dataListItemTemplateName
+                                }))}
+                            </span>
+                        </Title>
                     </DataListCell>
                 ]}
             />
