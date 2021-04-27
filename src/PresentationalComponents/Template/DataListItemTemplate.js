@@ -87,7 +87,8 @@ export const DataListItemTemplate = ({
                             </Flex>
                         </div>
                         <span className='ins-c-dashboard-data-list__date pf-u-color-200 pf-u-font-size-sm'>
-                            {capitalize(intl.formatMessage(messages.newRulesDateTitle))}&nbsp;<DateFormat type='onlyDate' date={dataListItemTemplateDate} />
+                            {capitalize(intl.formatMessage(messages.newRulesDateTitle))}
+                            &nbsp;<DateFormat type='onlyDate' date={dataListItemTemplateDate} />
                         </span>
                         <Title headingLevel='h4' size='md'
                             className='pf-u-font-weight-light ins-c-title-toggle' id={`itemDescription-${dataListItemTemplateKey}`}>
