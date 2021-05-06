@@ -177,47 +177,6 @@ const ZeroState = () => {
                 </GridItem>
             </Grid>
         </PageSection>
-        {/* <PageSection isWidthLimited className='pf-m-light'>
-            <Grid hasGutter>
-                <GridItem>
-                    <div className='ins-l-autofit pf-m-gutter'
-                        style={ {
-                            '--ins-l-autofit--GridTemplateColumns--min-on-sm': '360px',
-                            '--ins-l-autofit--GridTemplateColumns--min-on-lg': '440px'
-                        } }>
-                        <Flex direction={ { default: 'column' } }>
-                            <FlexItem>
-                                <Title headingLevel='h2' size='lg'>{intl.formatMessage(messages.zssampleTitleL)} </Title>
-                            </FlexItem>
-                            <FlexItem>
-                                <Card isFlat>
-                                    <SortableTable />
-                                </Card>
-                            </FlexItem>
-                        </Flex>
-                        <TextContent>
-                            <Title headingLevel='h2' size='lg'>{intl.formatMessage(messages.zssampleTitleR)}</Title>
-                            <h3>{intl.formatMessage(messages.zssampleBodyRightTitle)}</h3>
-                            <p>{intl.formatMessage(messages.zssampleBodyRight)}<a>{intl.formatMessage(messages.more)}</a></p>
-                            <h3 aria-hidden='true' id='list-label'>{intl.formatMessage(messages.zssampleBodyRightTitle2)} </h3>
-                            <ul aria-labelledby='list-label'>
-                                <li>Red Hat Enterprise Linux 7</li>
-                                <li>Red Hat Enterprise Linux 8</li>
-                                <li>Red Hat Atomic Host</li>
-                                <li>OpenShift Container Platform 4 (RHEL CoreOS)</li>
-                            </ul>
-                        </TextContent>
-                    </div>
-                </GridItem>
-                <GridItem style={ { 'text-align': 'center' } }>
-                    <Button isLarge variant='secondary' component='a'
-                        href={ `${UI_BASE}/registration` }
-                        target='_blank'>
-                        {intl.formatMessage(messages.zssampleActionButton)}
-                    </Button>
-                </GridItem>
-            </Grid>
-        </PageSection> */}
         <MarketingBanner
             isWidthLimited='true'
             hasGraphic
@@ -244,7 +203,7 @@ const ZeroState = () => {
                         component='a'
                         target='_blank'
                         rel='noreferrer'
-                        href={ `${UI_BASE}/security/insights/` }>
+                        href={ `./security/insights` }>
                         {intl.formatMessage(messages.securityRedirect)}
                     </Button>
                 </FlexItem>
