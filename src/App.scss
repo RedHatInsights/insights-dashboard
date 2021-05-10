@@ -9,7 +9,8 @@ $ins-c-width-limiter--breakpoint-map: build-breakpoint-map();
     height: auto;
 }
 
-html, body {
+html,
+body {
     height: 100vh;
     overflow: hidden;
 }
@@ -80,7 +81,7 @@ html, body {
 
     &::before {
         position: absolute;
-        content: '';
+        content: "";
         top: 0;
         right: 0;
         bottom: 0;
@@ -143,7 +144,6 @@ html, body {
 .ins-m-red {
     color: var(--pf-global--palette--red-100);
 }
-
 
 .pf-c-page__main-section {
     &.pf-m-dark-1000 {
@@ -295,7 +295,7 @@ html, body {
     margin-right: var(--pf-global--spacer--sm);
 
     &::before {
-        content: '';
+        content: "";
         display: block;
         width: 12px;
         height: 12px;
@@ -356,7 +356,10 @@ html, body {
     --ins-l-autofit--m-gutter--RowGap: var(--pf-global--gutter--md);
     --ins-l-autofit--GridTemplateColumns--min: 250px;
     --ins-l-autofit--GridTemplateColumns--minmax--min: var(--ins-l-autofit--GridTemplateColumns--min);
-    --ins-l-autofit--GridTemplateColumns: repeat(auto-fit, minmax(var(--ins-l-autofit--GridTemplateColumns--minmax--min), 1fr));
+    --ins-l-autofit--GridTemplateColumns: repeat(
+        auto-fit,
+        minmax(var(--ins-l-autofit--GridTemplateColumns--minmax--min), 1fr)
+    );
     --ins-l-autofit--GridTemplateRows: auto;
 
     display: grid;
@@ -376,7 +379,6 @@ html, body {
 }
 
 .pf-l-grid {
-
     &.pf-m-full-height {
         > .pf-c-card {
             align-self: stretch;
