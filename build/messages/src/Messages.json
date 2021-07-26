@@ -215,6 +215,10 @@
     "defaultMessage": "More about Red Hat's response",
     "description": "More about Red Hat's response"
   },
+  "newRulesDateTitle": {
+    "defaultMessage": "Newly released security rule",
+    "description": "New rules date title"
+  },
   "noSystemsDescription": {
     "defaultMessage": "With predictive analytics, avoid problems and unplanned downtime in your Red Hat environment. Insights is included with your Red Hat Enterprise Linux subscription.",
     "description": "Register systems to use Insights"
@@ -432,7 +436,7 @@
     "description": "Total risk"
   },
   "totalRiskDef": {
-    "defaultMessage": "A value derived from the <em>likelihood</em> that the condition will negatively affect your infrastructure, and the <em>impact</em> on system operation if that were to happen",
+    "defaultMessage": "A value derived from the <strong>likelihood</strong> that the condition will negatively affect your infrastructure, and the <strong>impact</strong> on system operation if that were to happen",
     "description": "Total risk definition"
   },
   "viewDetails": {
