@@ -383,7 +383,7 @@ export default defineMessages({
     totalRiskDef: {
         id: 'totalRiskDef',
         description: 'Total risk definition',
-        defaultMessage: 'A value derived from the <em>likelihood</em> that the condition will negatively affect your infrastructure, and the <em>impact</em> on system operation if that were to happen'
+        defaultMessage: 'A value derived from the <strong>likelihood</strong> that the condition will negatively affect your infrastructure, and the <strong>impact</strong> on system operation if that were to happen'
     },
     dashboardFiltration: {
         id: 'dashboardFiltration',

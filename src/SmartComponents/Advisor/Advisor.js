@@ -177,7 +177,7 @@ const Advisor = () => {
                     className='ins-m-toggle-right-on-md'
                     title={<Flex flexWrap={{ default: 'nowrap' }}>
                         <h3>{intl.formatMessage(messages.advisorCardHeader2)}</h3>
-                        {iconTooltip(intl.formatMessage(messages.totalRiskDef))}
+                        {iconTooltip(intl.formatMessage(messages.totalRiskDef, { strong: (str) => <strong>{str}</strong> }))}
                     </Flex>}
                     isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor2') || 'true')}
                     isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor2', isExpanded)}
