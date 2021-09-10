@@ -3,6 +3,7 @@ import './dashboard.scss';
 import { Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts';
 import { PageSection, PageSectionVariants, Title } from '@patternfly/react-core/dist/esm/components';
 import React, { Suspense, lazy, useContext, useEffect, useState } from 'react';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import API from '../../Utilities/Api';
 import Loading from '../../PresentationalComponents/Loading/Loading';
@@ -32,6 +33,7 @@ const Dashboard = ({ workloads }) => {
     const intl = useIntl();
     const [supportsSap, setSupportsSap] = useState(true);
     const newRules = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities.recent_rules);
+    const { isFedramp } = useChrome();
 
     useEffect(() => {
         const fetchSapSystems = async () => {
@@ -99,11 +101,13 @@ const Dashboard = ({ workloads }) => {
                                     <PatchManagerCard />
                                 }
                             </Suspense>
-                            <Suspense fallback={ <Loading /> }>
-                                {permission.subscriptions &&
+                            {!isFedramp && (
+                                <Suspense fallback={ <Loading /> }>
+                                    {permission.subscriptions &&
                                     <SubscriptionsUtilizedCard />
-                                }
-                            </Suspense>
+                                    }
+                                </Suspense>
+                            )}
                         </Masonry>
                     </Grid>
                 </PageSection>
