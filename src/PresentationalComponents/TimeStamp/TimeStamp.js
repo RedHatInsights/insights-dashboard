@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import './TimeStamp.scss';
 
 export const TimeStamp = ({ timestamp }) => (
-    <p className="ins-c-dashboard__time-stamp">
+    <p className="insd-c-dashboard__time-stamp">
         { timestamp }
     </p>
 );

@@ -61,7 +61,7 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
 
     if (systemsStatus === 'rejected') {
         return (
-            <TemplateCard appName='PatchManager' className={'ins-c-dashboard__card--Patch'}>
+            <TemplateCard appName='PatchManager' className={'insd-c-dashboard__card--Patch'}>
                 <TemplateCardHeader subtitle={intl.formatMessage(messages.patchTitle)} />
                 <TemplateCardBody><FailState appName='Patch' isSmall /></TemplateCardBody>
             </TemplateCard>
@@ -72,7 +72,7 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
         isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_patch') || 'true')}
         isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_patch', isExpanded)}
         title={intl.formatMessage(messages.patchTitle)}
-        className={'ins-c-dashboard__card--Patch ins-m-toggle-right-on-md'}
+        className={'insd-c-dashboard__card--Patch insd-m-toggle-right-on-md'}
         body={<TemplateCardBody>
             {!isLoaded ? <Loading /> :
                 <Flex direction={{ default: 'column' }}>
@@ -83,8 +83,8 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                         isInline>
                         <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
                     </Button>
-                    <div className="ins-c-dashboard__card-chart-container">
-                        <div className="ins-c-dashboard__card-pie-chart">
+                    <div className="insd-c-dashboard__card-chart-container">
+                        <div className="insd-c-dashboard__card-pie-chart">
                             <PieChart
                                 colorScale={isLoaded && (security === 0 && bugs === 0 && enhancements === 0) ? [global_disabled_color_100.value]
                                     : colorScale}
@@ -96,13 +96,13 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                                 padding={pieChartPadding}
                             />
                         </div>
-                        <div className='ins-c-dashboard__card-pie-chart-legend'>
-                            <div className="ins-c-legend">
+                        <div className='insd-c-dashboard__card-pie-chart-legend'>
+                            <div className="insd-c-legend">
                                 {pieChartData.map((item, index) =>
-                                    <a key={item.url} href={item.url} className='ins-c-legend__item'>
-                                        <span className='ins-c-legend__dot'
-                                            style={{ '--ins-c-legend__dot--BackgroundColor': `${colorScale[index]}` }} />
-                                        <span className='ins-c-legend__text'>{item.y} {capitalize(item.x)}</span>
+                                    <a key={item.url} href={item.url} className='insd-c-legend__item'>
+                                        <span className='insd-c-legend__dot'
+                                            style={{ '--insd-c-legend__dot--BackgroundColor': `${colorScale[index]}` }} />
+                                        <span className='insd-c-legend__text'>{item.y} {capitalize(item.x)}</span>
                                     </a>
                                 )}
                             </div>

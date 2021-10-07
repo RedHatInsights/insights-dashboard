@@ -2,7 +2,7 @@
 
 $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
 
-.ins-c-marketing-banner {
+.insd-c-marketing-banner {
   --ins-c-marketing-banner--before--Opacity: 0.3;
   --ins-c-marketing-banner--before--BackgroundSize: #{pf-size-prem(200px)};
 
@@ -36,7 +36,7 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
     $ins-c-marketing-banner--breakpoint-map
   );
 
-  &.ins-m-with-graphic {
+  &.insd-m-with-graphic {
     &:not(.pf-m-limit-width),
     .pf-c-page__main-body {
       display: grid;
@@ -77,13 +77,13 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
     }
   }
 
-  &.ins-m-full-bleed {
+  &.insd-m-full-bleed {
     --ins-c-marketing-banner--before--Offset--top: calc(var(--ins-c-marketing-banner--PaddingTop) * -1);
     --ins-c-marketing-banner--before--Offset--bottom: calc(var(--ins-c-marketing-banner--PaddingBottom) * -1);
     --ins-c-marketing-banner--before--Offset--left: calc(var(--ins-c-marketing-banner--PaddingLeft) * -1);
   }
 
-  &.ins-m-graphic-right {
+  &.insd-m-graphic-right {
     --ins-c-marketing-banner--before--Offset--right: calc(var(--ins-c-marketing-banner--PaddingRight) * -1);
     --ins-c-marketing-banner--before--Offset--left: 0;
 

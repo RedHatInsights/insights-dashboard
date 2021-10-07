@@ -9,17 +9,17 @@ import propTypes from 'prop-types';
 
 export const NumberData = ({ data, dataSize, percentageData, iconTooltipText }) => (
     <div>
-        <span className={ `ins-c-dashboard__number-data--${dataSize}` }>
+        <span className={ `insd-c-dashboard__number-data--${dataSize}` }>
             {data}
         </span>
         {percentageData &&
-            <span className="ins-c-dashboard__number-percentage">
+            <span className="insd-c-dashboard__number-percentage">
                 <span>{percentageData}</span>
                 <Tooltip
                     key={ `${iconTooltipText}` }
                     position={ TooltipPosition.top }
                     content={ <div>{iconTooltipText}</div> }>
-                    <Button variant="plain" aria-label="Action" className='ins-c-info-icon'>
+                    <Button variant="plain" aria-label="Action" className='insd-c-info-icon'>
                         <InfoIcon />
                     </Button>
                 </Tooltip>

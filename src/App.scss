@@ -2,8 +2,8 @@
 @import "~@patternfly/patternfly/sass-utilities/_all";
 @import "~@patternfly/patternfly/utilities/Alignment/alignment.css";
 
-$ins-l-autofit--breakpoint-map: build-breakpoint-map();
-$ins-c-width-limiter--breakpoint-map: build-breakpoint-map();
+$insd-l-autofit--breakpoint-map: build-breakpoint-map();
+$insd-c-width-limiter--breakpoint-map: build-breakpoint-map();
 
 #root.pf-c-page__main.dashboard {
     height: auto;
@@ -28,52 +28,7 @@ body {
     z-index: 1000;
 }
 
-.ins-c-summary {
-    &__accent {
-        color: var(--pf-global--palette--black-500);
-    }
-
-    &__emphasis {
-        @include rem("font-size", 32px);
-    }
-
-    &__icon {
-        &-critical {
-            fill: var(--pf-global--palette--red-100);
-        }
-        &-high {
-            fill: var(--pf-global--palette--orange-300);
-        }
-        &-medium {
-            fill: var(--pf-global--palette--gold-300);
-        }
-        &-low {
-            fill: var(--pf-global--palette--blue-300);
-        }
-
-        &-flag {
-            fill: var(--pf-global--palette--blue-500);
-        }
-        &-check {
-            fill: var(--pf-global--palette--green-300);
-        }
-
-        &-info {
-            fill: var(--pf-global--palette--blue-200);
-        }
-    }
-
-    &__title {
-        @include rem("margin-bottom", 10px);
-    }
-
-    .ins-c-summary__icon + .ins-c-summary__emphasis {
-        @include rem("margin-left", 10px);
-        @include rem("margin-right", 10px);
-    }
-}
-
-// ins-c-metrics ins-m-split ins-m-no-border-on-md
+// ins-c-metrics ins-m-split insd-m-no-border-on-md
 .ins-c-metrics {
     position: relative;
     display: flex;
@@ -156,19 +111,19 @@ body {
 }
 
 // width limiter
-.ins-c-width-limiter {
-    --ins-c-width-limiter--MaxWidth: auto;
-    --ins-c-width-limiter--MinWidth: 0;
+.insd-c-width-limiter {
+    --insd-c-width-limiter--MaxWidth: auto;
+    --insd-c-width-limiter--MinWidth: 0;
 
     @include pf-build-css-variable-stack(
         "max-width",
-        "--ins-c-width-limiter--MaxWidth",
-        $ins-c-width-limiter--breakpoint-map
+        "--insd-c-width-limiter--MaxWidth",
+        $insd-c-width-limiter--breakpoint-map
     );
     @include pf-build-css-variable-stack(
         "min-width",
-        "--ins-c-width-limiter--MinWidth",
-        $ins-c-width-limiter--breakpoint-map
+        "--insd-c-width-limiter--MinWidth",
+        $insd-c-width-limiter--breakpoint-map
     );
 }
 
@@ -176,7 +131,7 @@ body {
 .pf-c-data-list {
     --ins-c-data-list__item-row--MinHeight: auto;
 
-    &.ins-m-toggle-right-on-md {
+    &.insd-m-toggle-right-on-md {
         @media screen and (min-width: $pf-global--breakpoint--md) {
             .pf-c-data-list__item-control {
                 order: 1;
@@ -198,7 +153,7 @@ body {
         // stylelint-enable
     }
 
-    &.ins-m-no-border {
+    &.insd-m-no-border {
         .pf-c-data-list__item::before {
             content: none;
         }
@@ -208,12 +163,12 @@ body {
         }
     }
 
-    &.ins-m-no-padding {
+    &.insd-m-no-padding {
         --pf-c-data-list__item-row--PaddingRight: 0;
         --pf-c-data-list__item-row--PaddingLeft: 0;
     }
 
-    &.ins-m-no-top-border {
+    &.insd-m-no-top-border {
         --pf-c-data-list--BorderTopWidth: 0;
         --pf-c-data-list--BorderTopColor: transparent;
     }
@@ -225,7 +180,7 @@ body {
         --pf-c-card--BoxShadow: none;
     }
 
-    &.ins-m-toggle-right-on-md {
+    &.insd-m-toggle-right-on-md {
         @media screen and (min-width: $pf-global--breakpoint--md) {
             .pf-c-card__title {
                 flex: 1;
@@ -248,7 +203,7 @@ body {
         padding-left: 0;
     }
 
-    &.ins-m-no-styling {
+    &.insd-m-no-styling {
         tr:not(.pf-c-table__expandable-row) {
             border-bottom: none;
         }
@@ -272,46 +227,38 @@ body {
     }
 }
 
-.ins-c-legend {
-    display: grid;
-    column-gap: var(--pf-global--spacer--md);
-
-    &.ins-m-2-col {
-        grid-template-columns: max-content 1fr;
-    }
-}
-
-.ins-c-legend__item {
+.insd-c-legend {
+  display: grid;
+  column-gap: var(--pf-global--spacer--md);
+  &.insd-m-2-col {
+    grid-template-columns: max-content 1fr;
+  }
+  &__item {
     display: flex;
     flex-wrap: nowrap;
-}
-
-// dot
-.ins-c-legend__dot {
-    --ins-c-legend__dot--BackgroundColor: #000;
-
+  }
+  &__text {
+    white-space: nowrap;
+  }
+  &__dot {
+    --insd-c-legend__dot--BackgroundColor: #000;
     display: flex;
     align-items: center;
     margin-right: var(--pf-global--spacer--sm);
-
     &::before {
         content: "";
         display: block;
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background-color: var(--ins-c-legend__dot--BackgroundColor);
+        background-color: var(--insd-c-legend__dot--BackgroundColor);
     }
-
     // stylelint-disable no-descending-specificity
     > * {
         margin-left: var(--pf-global--spacer--sm);
     }
     // stylelint-enable
-}
-
-.ins-c-legend__text {
-    white-space: nowrap;
+  }
 }
 
 .pf-c-form-control {
@@ -325,18 +272,18 @@ body {
 // ==================================================================
 
 // columns
-.ins-l-columns {
-    --ins-l-columns--MarginBottom: var(--pf-global--spacer--md);
-    --ins-l-columns--Gap: var(--pf-global--gutter);
+.insd-l-columns {
+    --insd-l-columns--MarginBottom: var(--pf-global--spacer--md);
+    --insd-l-columns--Gap: var(--pf-global--gutter);
 
-    gap: var(--ins-l-columns--Gap);
+    gap: var(--insd-l-columns--Gap);
     column-fill: balance;
 
     @media screen and (min-width: $pf-global--breakpoint--md) {
         columns: 2;
     }
 
-    &.ins-m-3-col-on-xl {
+    &.insd-m-3-col-on-xl {
         @media screen and (min-width: $pf-global--breakpoint--xl) {
             columns: 3;
         }
@@ -344,37 +291,37 @@ body {
 
     // stylelint-disable no-descending-specificity
     > * {
-        margin-bottom: var(--ins-l-columns--MarginBottom);
+        margin-bottom: var(--insd-l-columns--MarginBottom);
         break-inside: avoid;
     }
     // stylelint-enable
 }
 
 // autofit
-.ins-l-autofit {
-    --ins-l-autofit--m-gutter--ColumnGap: var(--pf-global--gutter--md);
-    --ins-l-autofit--m-gutter--RowGap: var(--pf-global--gutter--md);
-    --ins-l-autofit--GridTemplateColumns--min: 250px;
-    --ins-l-autofit--GridTemplateColumns--minmax--min: var(--ins-l-autofit--GridTemplateColumns--min);
-    --ins-l-autofit--GridTemplateColumns: repeat(
+.insd-l-autofit {
+    --insd-l-autofit--m-gutter--ColumnGap: var(--pf-global--gutter--md);
+    --insd-l-autofit--m-gutter--RowGap: var(--pf-global--gutter--md);
+    --insd-l-autofit--GridTemplateColumns--min: 250px;
+    --insd-l-autofit--GridTemplateColumns--minmax--min: var(--insd-l-autofit--GridTemplateColumns--min);
+    --insd-l-autofit--GridTemplateColumns: repeat(
         auto-fit,
-        minmax(var(--ins-l-autofit--GridTemplateColumns--minmax--min), 1fr)
+        minmax(var(--insd-l-autofit--GridTemplateColumns--minmax--min), 1fr)
     );
-    --ins-l-autofit--GridTemplateRows: auto;
+    --insd-l-autofit--GridTemplateRows: auto;
 
     display: grid;
-    grid-template-columns: var(--ins-l-autofit--GridTemplateColumns);
-    grid-template-rows: var(--ins-l-autofit--GridTemplateRows);
+    grid-template-columns: var(--insd-l-autofit--GridTemplateColumns);
+    grid-template-rows: var(--insd-l-autofit--GridTemplateRows);
 
     &.pf-m-gutter {
-        row-gap: var(--ins-l-autofit--m-gutter--RowGap);
-        column-gap: var(--ins-l-autofit--m-gutter--ColumnGap);
+        row-gap: var(--insd-l-autofit--m-gutter--RowGap);
+        column-gap: var(--insd-l-autofit--m-gutter--ColumnGap);
     }
 
     @include pf-build-css-variable-stack(
-        "--ins-l-autofit--GridTemplateColumns--minmax--min",
-        "--ins-l-autofit--GridTemplateColumns--min",
-        $ins-l-autofit--breakpoint-map
+        "--insd-l-autofit--GridTemplateColumns--minmax--min",
+        "--insd-l-autofit--GridTemplateColumns--min",
+        $insd-l-autofit--breakpoint-map
     );
 }
 

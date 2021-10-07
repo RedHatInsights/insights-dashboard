@@ -1,6 +1,6 @@
 @import "~@patternfly/patternfly/sass-utilities/_all.scss";
 
-.ins-c-dashboard-data-list {
+.insd-c-dashboard-data-list {
     --pf-c-data-list__item-control--not-last-child--MarginRight: var(--pf-global--spacer--xs);
     --pf-c-data-list__item-control--PaddingTop: calc(var(--pf-global--spacer--sm));
     --pf-c-data-list__item-control--PaddingBottom: 0;
@@ -11,8 +11,8 @@
     --pf-c-data-list__expandable-content-body--PaddingRight: var(--pf-global--spacer--xl);
     --pf-c-data-list__expandable-content-body--PaddingLeft: var(--pf-global--spacer--xl);
     --pf-c-data-list__expandable-content-body--PaddingTop: 0;
-    --ins-c-dashboard-data-list__date--MarginTop: 0;
-    --ins-c-dashboard-data-list__item--m-expanded__date--MarginTop: var(--pf-global--spacer--md);
+    --insd-c-dashboard-data-list__date--MarginTop: 0;
+    --insd-c-dashboard-data-list__item--m-expanded__date--MarginTop: var(--pf-global--spacer--md);
 
     @media screen and (min-width: $pf-global--breakpoint--md) {
         --pf-c-data-list__item-control--MarginLeft: var(--pf-global--spacer--md);
@@ -26,7 +26,7 @@
         &.pf-m-expanded {
 
             @media screen and (min-width: $pf-global--breakpoint--md) {
-                --ins-c-dashboard-data-list__date--MarginTop: var(--ins-c-dashboard-data-list__item--m-expanded__date--MarginTop);
+                --insd-c-dashboard-data-list__date--MarginTop: var(--insd-c-dashboard-data-list__item--m-expanded__date--MarginTop);
             }
         }
     }
@@ -88,7 +88,7 @@
     }
 }
 
-.ins-c-dashboard-data-list__title-row {
+.insd-c-dashboard-data-list__title-row {
     --pf-c-data-list__item-control--PaddingTop: var(--pf-global--spacer--sm);
     --pf-c-data-list__item-control--PaddingBottom: var(--pf-global--spacer--sm);
     --pf-c-data-list--m-compact__cell--PaddingTop: var(--pf-global--spacer--md);
@@ -101,8 +101,8 @@
     --pf-c-data-list__item-content--md--PaddingBottom: 0;
 }
 
-.ins-c-dashboard-data-list__controller-row-cell {
-    .ins-c-new-rules-severities {
+.insd-c-dashboard-data-list__controller-row-cell {
+    .insd-c-new-rules-severities {
         margin: var(--pf-global--spacer--sm);
         margin-left: 0;
 
@@ -113,7 +113,7 @@
     }
 }
 
-.ins-c-dashboard-data-list__date {
+.insd-c-dashboard-data-list__date {
     display: inline-block;
-    margin-top: var(--ins-c-dashboard-data-list__date--MarginTop);
+    margin-top: var(--insd-c-dashboard-data-list__date--MarginTop);
 }

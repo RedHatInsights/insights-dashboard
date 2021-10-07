@@ -52,7 +52,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
     return (
         <ExpandableCardTemplate
             appName='Compliance'
-            className='ins-c-card__compliance ins-m-toggle-right-on-md'
+            className='ins-c-card__compliance insd-m-toggle-right-on-md'
             { ...complianceFetchStatus !== 'pending' ? {
                 'data-ouia-safe': true
             } : { 'data-ouia-safe': false } }
@@ -69,7 +69,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                             {complianceFetchStatus === 'fulfilled' &&
                                 (Array.isArray(complianceSummary.data) &&
                                     (complianceSummary.data.length > 0 ? <React.Fragment>
-                                        <DataList className='ins-m-no-padding ins-m-no-top-border' isCompact>
+                                        <DataList className='insd-m-no-padding insd-m-no-top-border' isCompact>
                                             {getTopThreePolicies(complianceSummary).map((policy, index) =>
                                                 <DataListItem key={ index }>
                                                     <DataListItemRow>

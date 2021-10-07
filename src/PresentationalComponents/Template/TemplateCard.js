@@ -18,7 +18,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 export const TemplateCard = ({ appName, children, ...props }) => (
-    <Card className={ `ins-c-dashboard__card ins-c-dashboard__card--${appName}` } { ...props }>
+    <Card className={ `insd-c-dashboard__card insd-c-dashboard__card--${appName}` } { ...props }>
         { children }
     </Card>
 );
@@ -58,7 +58,7 @@ TemplateCardActions.propTypes = {
 };
 
 export const TemplateCardHeader = ({ title, onDownload, subtitle, children, ...props }) => (
-    <CardHeader className='ins-c-dashboard__card--header'  { ...props }>
+    <CardHeader className='insd-c-dashboard__card--header'  { ...props }>
         <CardTitle>
             <Title headingLevel='h4' size='lg'>
                 { title }
@@ -87,7 +87,7 @@ TemplateCardHeader.propTypes = {
 };
 
 export const TemplateCardBody = ({ children, isHorizontalLayout, ...props }) => (
-    <CardBody className={ `ins-c-dashboard__card--body ${isHorizontalLayout ? ' ins-m-horizontal' : ''}` } { ...props }>
+    <CardBody className={ `insd-c-dashboard__card--body ${isHorizontalLayout ? ' insd-m-horizontal' : ''}` } { ...props }>
         { children }
     </CardBody>
 );
@@ -98,7 +98,7 @@ TemplateCardBody.propTypes = {
 };
 
 export const TemplateCardFooter = ({ children, ...props }) => (
-    <CardFooter className='ins-c-dashboard__card--footer' { ...props }>
+    <CardFooter className='insd-c-dashboard__card--footer' { ...props }>
         { children }
     </CardFooter>
 );

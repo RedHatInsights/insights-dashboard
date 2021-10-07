@@ -129,7 +129,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                             distance={-10}
                             entryDelay={200}
                         >
-                            <Button className='ins-c-subscriptions-utilized__chart-link'
+                            <Button className='insd-c-subscriptions-utilized__chart-link'
                                 variant='link'
                                 href={link} component='a'
                             >
@@ -168,7 +168,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
     }
 
     return <ExpandableCardTemplate appName='SubscriptionsUtilized'
-        className='ins-m-toggle-right-on-md'
+        className='insd-m-toggle-right-on-md'
         title={intl.formatMessage(messages.subscriptionsUtilizedTitle)}
         isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_subwatch') || 'true')}
         isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_subwatch', isExpanded)}
@@ -176,13 +176,13 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
             {supportsGlobalFilter(selectedTags, workloads, SID) ?
                 <React.Fragment>
                     {
-                        (productOptIn && <EmptyState className='ins-c-subscriptions-utilized__empty-state' variant={EmptyStateVariant.full}>
+                        (productOptIn && <EmptyState className='insd-c-subscriptions-utilized__empty-state' variant={EmptyStateVariant.full}>
                             <EmptyStateBody>
                                 {intl.formatMessage(messages.subscriptionsUtilizedLearnMore)}
                             </EmptyStateBody>
                             <EmptyStateSecondaryActions>
                                 <Button
-                                    className='ins-c-subscriptions-utilized__app-link'
+                                    className='insd-c-subscriptions-utilized__app-link'
                                     variant='link'
                                     href={SW_PATHS.APP}
                                     component='a'
@@ -192,7 +192,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                             </EmptyStateSecondaryActions>
                         </EmptyState>) ||
                         (productError && <FailState appName={intl.formatMessage(messages.subscriptionsUtilizedTitle)} isSmall />) ||
-                        (!charts.length && <EmptyState className='ins-c-subscriptions-utilized__empty-state' variant={EmptyStateVariant.full}>
+                        (!charts.length && <EmptyState className='insd-c-subscriptions-utilized__empty-state' variant={EmptyStateVariant.full}>
                             <EmptyStateBody>
                                 {intl.formatMessage(messages.subscriptionsUtilizedNoProductData)}
                             </EmptyStateBody>

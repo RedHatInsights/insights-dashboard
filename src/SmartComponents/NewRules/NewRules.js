@@ -41,10 +41,10 @@ const NewRules = () => {
     };
     const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
 
-    return <DataList className='ins-c-dashboard-data-list ins-m-toggle-right-on-md ins-m-no-border pf-m-compact'
+    return <DataList className='insd-c-dashboard-data-list insd-m-toggle-right-on-md insd-m-no-border pf-m-compact'
         gridBreakpoint='none'>
         <DataListItem aria-labelledby='collapse-all-text' isExpanded={isExpanded}>
-            <DataListItemRow className='ins-c-dashboard-data-list__title-row'>
+            <DataListItemRow className='insd-c-dashboard-data-list__title-row'>
                 <DataListItemCells
                     dataListCells={[
                         <DataListCell key='primary content'>
@@ -100,12 +100,12 @@ const NewRules = () => {
                                         }))}</span>
                                 </Title>
                             </FlexItem>
-                            <TextContent className='ins-c-width-limiter'
+                            <TextContent className='insd-c-width-limiter'
                                 style={{
-                                    '--ins-c-width-limiter--MaxWidth-on-lg': '50ch',
-                                    '--ins-c-width-limiter--MinWidth-on-lg': '50ch',
-                                    '--ins-c-width-limiter--MaxWidth-on-2xl': '70ch',
-                                    '--ins-c-width-limiter--MinWidth-on-2xl': '70ch'
+                                    '--insd-c-width-limiter--MaxWidth-on-lg': '50ch',
+                                    '--insd-c-width-limiter--MinWidth-on-lg': '50ch',
+                                    '--insd-c-width-limiter--MaxWidth-on-2xl': '70ch',
+                                    '--insd-c-width-limiter--MinWidth-on-2xl': '70ch'
                                 }}>
                                 <div>
                                     {capitalize(intl.formatMessage({

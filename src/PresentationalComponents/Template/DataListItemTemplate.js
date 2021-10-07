@@ -37,11 +37,11 @@ export const DataListItemTemplate = ({
     return <DataListItem
         aria-labelledby={`itemDescription-${dataListItemTemplateKey}`}
         isExpanded={isExpanded}
-        className={`ins-c-dashboard__list-item`}
+        className={`insd-c-dashboard__list-item`}
         key={dataListItemTemplateKey}
         {...props}
     >
-        <DataListItemRow className="ins-c-dashboard-data-list__controller-row">
+        <DataListItemRow className="insd-c-dashboard-data-list__controller-row">
             <div className='pf-c-data-list__item-control'>
                 <div className='pf-c-data-list__toggle'
                     onClick={() => setIsExpanded(!isExpanded)}
@@ -63,8 +63,8 @@ export const DataListItemTemplate = ({
             </div>
             <DataListItemCells
                 dataListCells={[
-                    <DataListCell key={`key-${dataListItemTemplateKey}-datalist-cell`} className="ins-c-dashboard-data-list__controller-row-cell">
-                        <div className='ins-c-new-rules-severities'>
+                    <DataListCell key={`key-${dataListItemTemplateKey}-datalist-cell`} className="insd-c-dashboard-data-list__controller-row-cell">
+                        <div className='insd-c-new-rules-severities'>
                             <Flex alignItems={{ default: 'alignItemsCenter' }} alignSelf={{ default: 'alignSelfStretch' }}>
                                 {dataListItemTemplateSeverity === 1 &&
                                     <Label icon={<DashboardIcon type='lowSeverity' />}>{capitalize(intl.formatMessage(messages.low))}</Label>
@@ -86,12 +86,12 @@ export const DataListItemTemplate = ({
                                 }
                             </Flex>
                         </div>
-                        <span className='ins-c-dashboard-data-list__date pf-u-color-200 pf-u-font-size-sm'>
+                        <span className='insd-c-dashboard-data-list__date pf-u-color-200 pf-u-font-size-sm'>
                             {capitalize(intl.formatMessage(messages.newRulesDateTitle))}
                             &nbsp;<DateFormat type='onlyDate' date={dataListItemTemplateDate} />
                         </span>
                         <Title headingLevel='h4' size='md'
-                            className='pf-u-font-weight-light ins-c-title-toggle' id={`itemDescription-${dataListItemTemplateKey}`}>
+                            className='pf-u-font-weight-light insd-c-title-toggle' id={`itemDescription-${dataListItemTemplateKey}`}>
                             <span>
                                 {capitalize(intl.formatMessage({
                                     id: 'itemTitle',

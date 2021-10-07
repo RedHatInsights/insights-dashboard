@@ -41,7 +41,7 @@ class CustomPoliciesCard extends React.Component {
                         {
                             title: (
                                 <React.Fragment>
-                                    <div className="ins-c-custom-policies__icon-group">
+                                    <div className="insd-c-custom-policies__icon-group">
                                         <SlackHashIcon/>
                                         <EnvelopeIcon/>
                                         <BellIcon/>
@@ -69,7 +69,7 @@ class CustomPoliciesCard extends React.Component {
                         {
                             title: (
                                 <React.Fragment>
-                                    <div className="ins-c-custom-policies__icon-group">
+                                    <div className="insd-c-custom-policies__icon-group">
                                         <SlackHashIcon/>
                                         <EnvelopeIcon/>
                                     </div>
@@ -91,10 +91,10 @@ class CustomPoliciesCard extends React.Component {
                     <TemplateCardActions downloadReport="true"/>
                     <TemplateCardHeader title='Custom policies'/>
                 </TemplateCardHead>
-                <TemplateCardBody className="ins-c-custom-policies__card-body">
+                <TemplateCardBody className="insd-c-custom-policies__card-body">
                     <Table
                         aria-label="custom-policies-table"
-                        className="ins-c-custom-policies__table"
+                        className="insd-c-table-custom-policies"
                         variant={ TableVariant.compact }
                         cells={ columns }
                         rows={ rows }

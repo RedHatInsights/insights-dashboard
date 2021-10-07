@@ -16,11 +16,11 @@ import propTypes from 'prop-types';
 
 export const AppBlock = ({ className, appName, icon, title, body, url, buttonText, ...props }) => {
     return (
-        <div className={ `ins-c-app-block ins-c-app-block--${appName} ${className}` }
-            id={ `ins-c-app-block--${appName}` }
+        <div className={ `insd-c-app-block insd-c-app-block--${appName} ${className}` }
+            id={ `insd-c-app-block--${appName}` }
             { ...props }
         >
-            <div className='ins-c-app-block__icon'>
+            <div className='insd-c-app-block__icon'>
                 { icon }
             </div>
             <Flex

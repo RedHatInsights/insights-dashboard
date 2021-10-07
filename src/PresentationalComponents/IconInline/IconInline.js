@@ -15,7 +15,7 @@ export const IconInline = ({ message, state, systemInventory }) => {
     const Icon = checkState[state] || React.Fragment;
 
     return (
-        <div className={ `ins-c-dashboard__info-inline ${systemInventory ? ' ins-m-padding-top' : ''}` }>
+        <div className={ `insd-c-dashboard__info-inline ${systemInventory ? ' insd-m-padding-top' : ''}` }>
             <Icon aria-hidden="true"/>
             <p>{ message }</p>
         </div>

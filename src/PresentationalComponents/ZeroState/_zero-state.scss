@@ -2,7 +2,7 @@
 
 $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
 
-.ins-c-marketing-page {
+.insd-c-marketing-page {
   --ins-m-marketing-page--RowGap: var(--pf-global--spacer--xl);
   --ins-m-marketing-page--ColumnGap: var(--pf-global--spacer--xl);
   --ins-m-marketing-page--section--PaddingTop: var(--pf-global--spacer--xl);
@@ -10,9 +10,9 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
   --ins-m-marketing-page--section--PaddingBottom: var(--pf-global--spacer--xl);
   --ins-m-marketing-page--section--PaddingLeft: var(--pf-global--spacer--2xl);
 
-  .ins-l-autofit {
-    --ins-l-autofit--m-gutter--RowGap: var(--ins-m-marketing-page--RowGap);
-    --ins-l-autofit--m-gutter--ColumnGap: var(--ins-m-marketing-page--ColumnGap);
+  .insd-l-autofit {
+    --insd-l-autofit--m-gutter--RowGap: var(--ins-m-marketing-page--RowGap);
+    --insd-l-autofit--m-gutter--ColumnGap: var(--ins-m-marketing-page--ColumnGap);
   }
 
   .pf-c-page__main-section {

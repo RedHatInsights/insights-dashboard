@@ -18,10 +18,10 @@ const DeniedState = ({ appName }) => {
     const intl = useIntl();
 
     return (
-        <Card className='ins-c-dashboard__card'>
-            <EmptyState variant={ EmptyStateVariant.full } className='ins-c-dashboard__denied-state'>
+        <Card className='insd-c-dashboard__card'>
+            <EmptyState variant={ EmptyStateVariant.full } className='insd-c-empty-state-denied'>
                 <Title headingLevel="h2" size="md"> {intl.formatMessage(messages.deniedStateTitle, { appName })} </Title>
-                <EmptyStateBody className='ins-c-dashboard__denied-state--body'>
+                <EmptyStateBody className='insd-c-empty-state-denied__body'>
                     {intl.formatMessage(messages.deniedStateBody)}
                 </EmptyStateBody>
             </EmptyState>
