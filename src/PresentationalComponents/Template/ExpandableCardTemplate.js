@@ -7,17 +7,17 @@ export const ExpandableCardTemplate = ({ className, appName, title, header, body
     const [expanded, setExpanded] = useState(isExpanded);
 
     return <Card
-        className={`ins-c-dashboard__card ins-c-dashboard__card--${appName} ${className}`}
-        id={`ins-c-dashboard__card--${appName}`}
+        className={`insd-c-dashboard__card insd-c-dashboard__card--${appName} ${className}`}
+        id={`insd-c-dashboard__card--${appName}`}
         isExpanded={expanded}
         {...props}>
         {hasDivider && <Divider inset={{ md: 'insetLg' }} />}
         <CardHeader
             onExpand={() => { setExpanded(!expanded); isExpandedCallback && isExpandedCallback(!expanded); }}
             toggleButtonProps={{
-                id: `ins-c-dashboard__card-title--${appName}-toggle-button`,
+                id: `insd-c-dashboard__card-title--${appName}-toggle-button`,
                 'aria-label': 'Details',
-                'aria-labelledby': `ins-c-dashboard__card-title--${appName} toggle-button`,
+                'aria-labelledby': `insd-c-dashboard__card-title--${appName} toggle-button`,
                 'aria-expanded': expanded
             }}>
             {title && <CardTitle>

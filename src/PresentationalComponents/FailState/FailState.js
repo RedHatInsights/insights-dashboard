@@ -19,7 +19,7 @@ const FailState = ({ appName, isSmall }) => {
     return (
         <EmptyState
             variant={ EmptyStateVariant.full }
-            className={ `ins-c-dashboard__error-state ${ isSmall && 'ins-c-dashboard__error-state--isSmall' }` }>
+            className={ `insd-c-dashboard__error-state ${ isSmall && 'insd-c-dashboard__error-state--isSmall' }` }>
             { isSmall
                 ? <EmptyStateBody>{intl.formatMessage(messages.errorStateTitle, { appName })}</EmptyStateBody>
                 : <Title headingLevel="h2" size="md"> {intl.formatMessage(messages.errorStateTitle, { appName })} </Title>

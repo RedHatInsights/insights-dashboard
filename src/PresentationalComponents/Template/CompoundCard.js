@@ -5,7 +5,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 export const CompoundCard = ({ className, children, ...props }) => <Card
-    className={`ins-c-dashboard-compound-card ins-c-dashboard__card ${className}`} {...props}>
+    className={`insd-c-dashboard-compound-card insd-c-dashboard__card ${className}`} {...props}>
     {children}
 </Card>;
 

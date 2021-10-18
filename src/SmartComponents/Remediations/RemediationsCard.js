@@ -32,7 +32,7 @@ const RemediationsCard = ({
     return (
         <ExpandableCardTemplate
             appName='remediations'
-            className='ins-c-card__remediations ins-m-toggle-right-on-md'
+            className='ins-c-card__remediations insd-m-toggle-right-on-md'
             title={ intl.formatMessage(messages.remediationsCardHeader) }
             isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_remediations') || 'true')}
             isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_remediations', isExpanded)}
@@ -49,10 +49,10 @@ const RemediationsCard = ({
                                         <RunStatus id={ element.id } name={ element.name } key={ element.id } index={ index + 1 } />
                                     )}
                                     {remediations.meta.total > remediations.meta.count &&
-                                        <div className='ins-c-remediations-container'>
-                                            <div className='ins-c-remediation__status'>
+                                        <div className='insd-c-remediations-container'>
+                                            <div className='insd-c-remediation__status'>
                                             </div>
-                                            <div className='ins-c-remediation__timestamp'>
+                                            <div className='insd-c-remediation__timestamp'>
                                                 <Button
                                                     id='remediations-link-more'
                                                     component='a'

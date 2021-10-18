@@ -86,7 +86,7 @@ const SortableTable = () => {
 const ZeroState = () => {
     const intl = useIntl();
 
-    return <div className='ins-c-marketing-page'>
+    return <div className='insd-c-marketing-page'>
         <MarketingBanner
             hasGraphic
             graphicRight
@@ -106,7 +106,7 @@ const ZeroState = () => {
                             </Title>
                         </FlexItem>
                         <FlexItem spacer={ { default: 'spacer2xl' } }>
-                            <div className='ins-c-width-limiter' style={ { '--ins-c-width-limiter--MaxWidth': '600px' } }>
+                            <div className='insd-c-width-limiter' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
                                 <p className='ins-c-text--black-400'>{intl.formatMessage(messages.singleConsistent)}</p>
                             </div>
                         </FlexItem>
@@ -193,8 +193,8 @@ const ZeroState = () => {
                     </Title>
                 </FlexItem>
                 <FlexItem spacer={ { default: 'spacerXl' } }>
-                    <p className='ins-c-width-limiter ins-c-text--black-400'
-                        style={ { '--ins-c-width-limiter--MaxWidth': '70ch' } }>
+                    <p className='insd-c-width-limiter ins-c-text--black-400'
+                        style={ { '--insd-c-width-limiter--MaxWidth': '70ch' } }>
                         {intl.formatMessage(messages.dataPrivacyAndControls)}
                     </p>
                 </FlexItem>
@@ -216,7 +216,7 @@ const ZeroState = () => {
                         <Title headingLevel='h3'>
                             {intl.formatMessage(messages.insightsandsmartmanagement)}
                         </Title>
-                        <div className='ins-c-width-limiter' style={ { '--ins-c-width-limiter--MaxWidth': '900px' } }>
+                        <div className='insd-c-width-limiter' style={ { '--insd-c-width-limiter--MaxWidth': '900px' } }>
                             <p>{intl.formatMessage(messages.smartManagement)}</p>
                         </div>
                     </TextContent>
@@ -227,7 +227,7 @@ const ZeroState = () => {
                             <img src={ ImgInsSmartMgmt } alt='Insights Smart Management' />
                         </GridItem>
                         <GridItem md={ 6 } lg={ 7 }>
-                            <div className='ins-c-width-limiter pf-u-pt-lg-on-lg' style={ { '--ins-c-width-limiter--MaxWidth': '600px' } }>
+                            <div className='insd-c-width-limiter pf-u-pt-lg-on-lg' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
                                 <List>
                                     <ListItem>{intl.formatMessage(messages.rhm1)}</ListItem>
                                     <ListItem>{intl.formatMessage(messages.rhm2)}</ListItem>

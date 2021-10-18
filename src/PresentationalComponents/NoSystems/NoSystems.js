@@ -33,7 +33,7 @@ const NoSystems = ({ workloadIs }) => {
     };
 
     return <Main>
-        <EmptyState variant={ EmptyStateVariant.small } className='ins-c-no-systems'>
+        <EmptyState variant={ EmptyStateVariant.small } className='insd-c-empty-state-no-systems'>
             <EmptyStateIcon icon={ workloadTypes[workloadIs]?.icon || ChartSpikeIcon } />
             <Title headingLevel='h5' size='lg'>
                 {workloadTypes[workloadIs]?.title || intl.formatMessage(messages.noSystemsTitle)}

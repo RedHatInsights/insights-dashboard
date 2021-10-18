@@ -65,7 +65,7 @@ const Advisor = () => {
         key={text}
         position={TooltipPosition.top}
         content={<div>{text}</div>}>
-        <span aria-label='Action' className='ins-c-info-icon'>
+        <span aria-label='Action' className='insd-c-info-icon'>
             <InfoIcon />
         </span>
     </Tooltip>;
@@ -132,14 +132,14 @@ const Advisor = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [recStats, recStatsStatus]);
 
-    return <CompoundCard className='ins-c-dashboard-card-parent ins-c-dashboard__card--compound--Advisor'>
+    return <CompoundCard className='insd-c-dashboard-card-parent insd-c-dashboard__card--compound--Advisor'>
         {advisorIncidentsStatus === 'pending' || recStatsStatus === 'pending' && <Loading />}
         {advisorIncidentsStatus === 'rejected' ?
             <TemplateCardBody><FailState appName='Advisor' /></TemplateCardBody>
             : <React.Fragment>
                 <ExpandableCardTemplate
                     appName='Advisor'
-                    className='ins-m-toggle-right-on-md'
+                    className='insd-m-toggle-right-on-md'
                     title={intl.formatMessage(messages.advisorCardHeader1)}
                     isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor1') || 'true')}
                     isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor1', isExpanded)}
@@ -158,8 +158,8 @@ const Advisor = () => {
                                     </span>
                                 </Flex>
                                 <TextContent
-                                    className='ins-c-width-limiter pf-u-text-align-center'
-                                    style={{ '--ins-c-width-limiter--MaxWidth': '34ch' }}>
+                                    className='insd-c-width-limiter pf-u-text-align-center'
+                                    style={{ '--insd-c-width-limiter--MaxWidth': '34ch' }}>
                                     <p className='pf-u-font-size-sm'>
                                         {intl.formatMessage(messages.advisorCardMessage)}
                                     </p>
@@ -174,7 +174,7 @@ const Advisor = () => {
                 <Divider inset={{ md: 'insetLg' }} />
                 <ExpandableCardTemplate
                     appName='advisor-recommendation-by-total-risk'
-                    className='ins-m-toggle-right-on-md'
+                    className='insd-m-toggle-right-on-md'
                     title={<Flex flexWrap={{ default: 'nowrap' }}>
                         <h3>{intl.formatMessage(messages.advisorCardHeader2)}</h3>
                         {iconTooltip(intl.formatMessage(messages.totalRiskDef, { strong: (str) => <strong>{str}</strong> }))}
@@ -209,8 +209,8 @@ const Advisor = () => {
                             </CardTitle>
                             <CardBody className='pf-u-pt-sm'>
                                 <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsLg' }}>
-                                    <div className="ins-c-dashboard__card-chart-container">
-                                        <div className="ins-c-dashboard__card-pie-chart">
+                                    <div className="insd-c-dashboard__card-chart-container">
+                                        <div className="insd-c-dashboard__card-pie-chart">
                                             <PieChart
                                                 ariaDesc='Advisor Category pie chart'
                                                 ariaTitle='Advisor Category pie chart'
@@ -220,13 +220,13 @@ const Advisor = () => {
                                                 padding={pieChartPadding}
                                             />
                                         </div>
-                                        <div className="ins-c-dashboard__card-pie-chart-legend">
-                                            <div className='ins-c-legend ins-m-2-col'>
+                                        <div className="insd-c-dashboard__card-pie-chart-legend">
+                                            <div className='insd-c-legend insd-m-2-col'>
                                                 {pieLegendData.map((item) =>
-                                                    <a key={item.url} href={item.url} className='ins-c-legend__item'>
-                                                        <span className='ins-c-legend__dot'
-                                                            style={{ '--ins-c-legend__dot--BackgroundColor': `${item.fill}` }} />
-                                                        <span className='ins-c-legend__text'>{item.name}</span>
+                                                    <a key={item.url} href={item.url} className='insd-c-legend__item'>
+                                                        <span className='insd-c-legend__dot'
+                                                            style={{ '--insd-c-legend__dot--BackgroundColor': `${item.fill}` }} />
+                                                        <span className='insd-c-legend__text'>{item.name}</span>
                                                     </a>
                                                 )}
                                             </div>

@@ -5,7 +5,7 @@ import DownloadIcon from '@patternfly/react-icons/dist/esm/icons/download-icon';
 import React from 'react';
 
 export const DownloadReport = () => (
-    <Button className="ins-c-download-report__button" variant="link" icon={ <DownloadIcon /> }>
+    <Button className="insd-c-button-report-download" variant="link" icon={ <DownloadIcon /> }>
         Report
     </Button>
 );

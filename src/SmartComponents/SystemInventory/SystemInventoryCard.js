@@ -51,7 +51,7 @@ const SystemInventoryCard = ({
         <TemplateCardHeader subtitle={ intl.formatMessage(messages.systemInventoryTitle) } />
         <TemplateCardBody
             isFilled={ hasAccess === false }
-            className={ `dashboard-card-system-inventory-body ${hasAccess === false ? ' dashboard-m-no-access' : ''}` }
+            className={ `insd-dashboard-card-system-inventory-body ${hasAccess === false ? ' dashboard-m-no-access' : ''}` }
         >
             {
                 hasAccess === false ?

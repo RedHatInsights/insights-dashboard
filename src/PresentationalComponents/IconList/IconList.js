@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import propTypes from 'prop-types';
 
 const IconList = ({ iconListStyle, className, children }) => {
-    const IconListClasses = classNames(className, 'ins-c-icon-list');
+    const IconListClasses = classNames(className, 'insd-c-icon-list');
 
     return <ul className={ IconListClasses } style={ iconListStyle }>
         {children}

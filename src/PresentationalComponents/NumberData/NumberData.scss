@@ -1,24 +1,24 @@
-.ins-c-dashboard__number-data--xl {
+.insd-c-dashboard__number-data--xl {
     font-size: calc(var(--pf-global--FontSize--2xl) * 2);
     line-height: 40px;
 }
 
-.ins-c-dashboard__number-data--lg {
+.insd-c-dashboard__number-data--lg {
     font-size: var(--pf-global--FontSize--2xl);
 }
 
-.ins-c-dashboard__number-data--md {
+.insd-c-dashboard__number-data--md {
     font-size: var(--pf-global--FontSize--lg);
     line-height: var(--pf-global--FontSize--lg);
 }
 
-.ins-c-dashboard__number-data--xl,
-.ins-c-dashboard__number-data--lg,
-.ins-c-dashboard__number-data--md {
+.insd-c-dashboard__number-data--xl,
+.insd-c-dashboard__number-data--lg,
+.insd-c-dashboard__number-data--md {
     font-family: var(--pf-global--FontFamily--redhatfont--heading--sans-serif);
 }
 
-.ins-c-dashboard__number-data--number-percentage {
+.insd-c-dashboard__number-data--number-percentage {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -28,7 +28,7 @@
     }
 }
 
-.ins-c-dashboard__number-percentage {
+.insd-c-dashboard__number-percentage {
     display: flex;
     align-items: baseline;
     margin-left: var(--pf-global--spacer--sm);

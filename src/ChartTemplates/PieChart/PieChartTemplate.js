@@ -13,7 +13,7 @@ export const PieChart = ({ ariaDesc, ariaTitle, constrainToVisibleArea, data, le
         href={ legendClick[index] } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
 
     return (
-        <div className="ins-c-pie-chart__row">
+        <div className="insd-c-pie-chart__row">
             <div style={ { width, height, position: 'relative' } }>
                 <ChartPie
                     ariaDesc={ ariaDesc }
@@ -40,7 +40,7 @@ export const PieChart = ({ ariaDesc, ariaTitle, constrainToVisibleArea, data, le
                 </table>
             </div>
             {legend &&
-                <div className="ins-c-pie-chart__legend" aria-label="Chart legend" style={ { width: legendWidth, height: legendHeight } }>
+                <div className="insd-c-pie-chart__legend" aria-label="Chart legend" style={ { width: legendWidth, height: legendHeight } }>
                     <ChartLegend
                         height={ legendHeight }
                         width={ legendWidth }

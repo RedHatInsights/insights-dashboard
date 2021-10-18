@@ -1,6 +1,6 @@
 @import "~@patternfly/patternfly/sass-utilities/_all.scss";
 
-.ins-c-dashboard-header.pf-c-page__main-section {
+.insd-c-dashboard-header.pf-c-page__main-section {
     @media screen and (min-width: $pf-global--breakpoint--md) {
         --pf-c-page__main-section--PaddingTop: var(--pf-global--spacer--sm);
         --pf-c-page__main-section--PaddingBottom: var(--pf-global--spacer--sm);

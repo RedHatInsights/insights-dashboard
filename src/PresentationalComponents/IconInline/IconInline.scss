@@ -6,7 +6,7 @@
     color: var(--pf-global--Color--100);
 }
 
-.ins-c-dashboard__info-inline {
+.insd-c-dashboard__info-inline {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -17,7 +17,7 @@
         color: var(--pf-global--primary-color--100);
     }
 
-    &.ins-m-padding-top  {
+    &.insd-m-padding-top  {
         padding-top: var(--pf-global--spacer--xs);
     }
 }

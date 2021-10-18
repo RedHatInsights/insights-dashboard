@@ -56,7 +56,7 @@ const Dashboard = ({ workloads }) => {
     return permission.hasSystems ?
         (!workloads?.SAP?.isSelected) || (workloads?.SAP?.isSelected && supportsSap) ?
             <React.Fragment>
-                <PageSection isWidthLimited variant={ PageSectionVariants.light } className="ins-c-dashboard-header">
+                <PageSection isWidthLimited variant={ PageSectionVariants.light } className="insd-c-dashboard-header">
                     <Title headingLevel="h1" size="2xl" className="pf-u-screen-reader">
                         {intl.formatMessage(messages.dashboardTitle)}
                     </Title>

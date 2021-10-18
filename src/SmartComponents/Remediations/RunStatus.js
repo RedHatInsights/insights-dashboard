@@ -27,7 +27,7 @@ const normalizeStatus = (status) => ({
 })[status];
 
 // Render the correct icon based on normalized status
-const statusIconClass = 'ins-c-remediation__status-icon';
+const statusIconClass = 'insd-c-remediation__status-icon';
 const renderStatusIcon = (status) => ({
     running: <InProgressIcon
         className={ `${statusIconClass} ${statusIconClass}--running` }
@@ -67,13 +67,13 @@ const RunStatus = ({ id, name, index }) => {
         fetchPlaybookRun();
     }, [id]);
 
-    return <div className="ins-c-remediations-container">
-        <div className="ins-c-remediation__status">
+    return <div className="insd-c-remediations-container">
+        <div className="insd-c-remediation__status">
             { loaded === undefined && <Skeleton size='md' /> }
             { (loaded && hasData) ?
                 <React.Fragment>
                     {renderStatusIcon(normalizeStatus(playbookRun[0].status))}
-                    <p className='ins-c-remediation__status-text'>
+                    <p className='insd-c-remediation__status-text'>
                         { intl.formatMessage(messages.remediationsPlaybookStatus, { status: normalizeStatus(playbookRun[0].status) }) }
                     </p>
                 </React.Fragment>
@@ -91,7 +91,7 @@ const RunStatus = ({ id, name, index }) => {
                 </React.Fragment>
             }
         </div>
-        <div className="ins-c-remediation__timestamp">
+        <div className="insd-c-remediation__timestamp">
             {name.length > 65 ? <Tooltip content={ name }>
                 <Button id={ `remediation-link-${index}` } component="a" variant="link" isInline href={ `./insights/remediations/${id}` }>
                     {name}

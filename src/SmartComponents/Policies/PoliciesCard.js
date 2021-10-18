@@ -57,12 +57,12 @@ const CustomPoliciesCard = () => {
 
     return <ExpandableCardTemplate
         appName='policies'
-        className='ins-m-toggle-right-on-md'
+        className='insd-m-toggle-right-on-md'
         title={ intl.formatMessage(messages.policiesCardHeader) }
         body={
-            <TemplateCardBody className="ins-c-custom-policies__card-body">
+            <TemplateCardBody className="insd-c-custom-policies__card-body">
                 <Grid hasGutter>
-                    <DataList className='ins-m-no-padding ins-m-no-top-border' isCompact>
+                    <DataList className='insd-m-no-padding insd-m-no-top-border' isCompact>
                         {datalist.map((item) =>
                             <DataListItem
                                 key={ item.key }
