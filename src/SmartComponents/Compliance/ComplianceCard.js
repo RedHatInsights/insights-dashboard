@@ -92,7 +92,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                                         </Button>
                                                                         <Flex>
                                                                             <FlexItem flex={ { default: 'flex_1' } }>
-                                                                                <p>description</p>
+                                                                                <p>RHEL { policy.attributes.os_version }</p>
                                                                             </FlexItem>
                                                                             <Flex flex={{ default: 'None' }}>
                                                                                 <FlexItem>
@@ -131,7 +131,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                         >
                                             {complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                                                 complianceSummary.data.length - 3 >= 1 &&
-                                                `${complianceSummary.data.length - 3} more compliance reports`
+                                                `${complianceSummary.data.length - 3} more reports`
                                             }
                                         </Button>
                                     </React.Fragment> : (
