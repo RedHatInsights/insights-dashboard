@@ -145,7 +145,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                             <EmptyStateSecondaryActions>
                                                 <Button
                                                     variant='link'
-                                                    href={ `${UI_BASE}/compliance/reports/` }
+                                                    href={ `${UI_BASE}/compliance/scappolicies/new` }
                                                     component='a'
                                                 >
                                                     {intl.formatMessage(messages.complianceEmptyStateAction1)}
