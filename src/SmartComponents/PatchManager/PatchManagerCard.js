@@ -32,15 +32,15 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
     const pieChartData = [
         {
             x: intl.formatMessage(messages.securityAdvisories, { count: security }), y: security, fill: chart_color_blue_400.value,
-            url: `${UI_BASE}/${PATCHMAN_ID}/advisories?offset=0&filter%5Badvisory_type%5D=3`
+            url: `${UI_BASE}/${PATCHMAN_ID}/advisories?offset=0&filter%5Badvisory_type_name%5D=security`
         },
         {
             x: intl.formatMessage(messages.bugfixAdvisories, { count: bugs }), y: bugs, fill: chart_color_blue_300.value,
-            url: `${UI_BASE}/${PATCHMAN_ID}/advisories?offset=0&filter%5Badvisory_type%5D=2`
+            url: `${UI_BASE}/${PATCHMAN_ID}/advisories?offset=0&filter%5Badvisory_type_name%5D=bugfix`
         },
         {
             x: intl.formatMessage(messages.enhancementAdvisories, { count: enhancements }), y: enhancements, fill: chart_color_blue_200.value,
-            url: `${UI_BASE}/${PATCHMAN_ID}/advisories?offset=0&filter%5Badvisory_type%5D=1`
+            url: `${UI_BASE}/${PATCHMAN_ID}/advisories?offset=0&filter%5Badvisory_type_name%5D=enhancement`
         }
     ];
 
