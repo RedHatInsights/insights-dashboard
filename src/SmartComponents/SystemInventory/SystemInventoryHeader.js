@@ -27,6 +27,7 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 // eslint-disable-next-line no-unused-vars
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook/RBACHook';
+import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -56,6 +57,8 @@ const SystemInventoryHeader = ({
     );
 
     const intl = useIntl();
+
+    const navigateTo = useChromePush();
 
     return <React.Fragment>
         {
@@ -101,7 +104,13 @@ const SystemInventoryHeader = ({
                         <Flex direction={ { default: 'column' } } spaceItems={ { default: 'spaceItemsNone' } }>
                             <FlexItem>
                                 {inventoryStaleFetchStatus === 'fulfilled' &&
-                                    <Button component="a" variant="link" href='./insights/inventory/?status=stale' isInline>
+                                    <Button
+                                        component="a"
+                                        variant="link"
+                                        onClick={e => navigateTo(e, './insights/inventory/?status=stale')}
+                                        href='./insights/inventory/?status=stale'
+                                        isInline
+                                    >
                                         <IconInline
                                             message={ intl.formatMessage(messages.systemInventoryStale,
                                                 { count: inventoryStaleSummary.total || 0 }
@@ -114,7 +123,13 @@ const SystemInventoryHeader = ({
                             </FlexItem>
                             <FlexItem>
                                 {inventoryWarningFetchStatus === 'fulfilled' &&
-                                    <Button component="a" variant="link" href='./insights/inventory/?status=stale_warning' isInline>
+                                    <Button
+                                        component="a"
+                                        variant="link"
+                                        onClick={e => navigateTo(e, './insights/inventory/?status=stale_warning')}
+                                        href='./insights/inventory/?status=stale_warning'
+                                        isInline
+                                    >
                                         <IconInline
                                             message={ intl.formatMessage(messages.systemInventoryStaleWarning,
                                                 { count: inventoryWarningSummary.total || 0 }
@@ -130,7 +145,12 @@ const SystemInventoryHeader = ({
                             }
                         </Flex>
                         <FlexItem align={{ md: 'alignRight' }}>
-                            <Button component='a' variant='primary' href={ `${UI_BASE}/registration` }>
+                            <Button
+                                component='a'
+                                variant='primary'
+                                onClick={e => navigateTo(e, `${UI_BASE}/registration`)}
+                                href={ `${UI_BASE}/registration` }
+                            >
                                 { intl.formatMessage(messages.systemInventoryCTA) }
                             </Button>
                         </FlexItem>
