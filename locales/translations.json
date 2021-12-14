@@ -131,5 +131,6 @@
   "zsrblb5": "Implement predictable processes. Shift teams to more predictable processes for continuous security visibility.",
   "zssampleActionButton": "Register systems to find issues across your infrastructure",
   "zssampleTitleL": "Latest security vulnerabilities affecting RHEL infrastructures",
-  "zssampleTitleR": "CVSS Base Score"
+  "zssampleTitleR": "CVSS Base Score",
+  "resourceOptimizationCardHeader": "Resource optimization"
 }

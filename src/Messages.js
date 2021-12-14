@@ -600,6 +600,11 @@ export default defineMessages({
         description: 'Remediations card header',
         defaultMessage: 'Remediations'
     },
+    resourceOptimizationCardHeader: {
+        id: 'resourceOptimizationCardHeader',
+        description: 'Resource optimization card header',
+        defaultMessage: 'Resource optimization'
+    },
 
     // Card CTAs
     advisorCardCTA: {

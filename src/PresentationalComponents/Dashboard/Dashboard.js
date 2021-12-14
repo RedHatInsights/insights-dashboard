@@ -17,6 +17,7 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { workloadsPropType } from '../../Utilities/Common';
+import ResourceOptimizationCard from '../../SmartComponents/ResourceOptimization/ResourceOptimizationCard';
 
 const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
 const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
@@ -99,6 +100,11 @@ const Dashboard = ({ workloads }) => {
                             <Suspense fallback={ <Loading /> }>
                                 {permission.patch &&
                                     <PatchManagerCard />
+                                }
+                            </Suspense>
+                            <Suspense fallback={ <Loading /> }>
+                                {permission.ros &&
+                                    <ResourceOptimizationCard/>
                                 }
                             </Suspense>
                             {!isFedramp && (
