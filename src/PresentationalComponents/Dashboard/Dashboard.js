@@ -28,6 +28,7 @@ const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/Subsc
 const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
 const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
 const Footer = lazy(() => import('../../SmartComponents/Footer/Footer'));
+const DriftCard = lazy(() => import('../../SmartComponents/Drift/DriftCard'));
 
 const Dashboard = ({ workloads }) => {
     const permission = useContext(PermissionContext);
@@ -106,6 +107,7 @@ const Dashboard = ({ workloads }) => {
                                 {permission.ros &&
                                     <ResourceOptimizationCard/>
                                 }
+                                {permission.drift && <DriftCard/>}
                             </Suspense>
                             {!isFedramp && (
                                 <Suspense fallback={ <Loading /> }>

@@ -18,7 +18,7 @@ const { config: webpackConfig, plugins } = config({
             secure: true,
             changeOrigin: true,
             autoRewrite: true,
-            ws: true,
+            ws: true
         }
     ] : []
 });
