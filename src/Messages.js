@@ -566,6 +566,16 @@ export default defineMessages({
         description: 'zero state sample call to action button',
         defaultMessage: 'Register systems to find issues across your infrastructure'
     },
+    rosSystemsNotConfiguredMessage: {
+        id: 'rosSystemsNotConfiguredMessage',
+        description: 'no systems configured with resource optimization message',
+        defaultMessage: 'No systems configured yet? Get started with resource optimization.'
+    },
+    rosSystemsGenericMessage: {
+        id: 'rosSystemsGenericMessage',
+        description: 'when systems details are available in the resource optimization message',
+        defaultMessage: 'Red Hat recommends to assess and monitor cloud usage and optimization on these systems.'
+    },
 
     // Card headers
     footerTitle: {
@@ -616,6 +626,16 @@ export default defineMessages({
         id: 'policiesCardCTA',
         description: 'Policies CTA',
         defaultMessage: 'View all policies'
+    },
+    rosCardConfigureSystemsCTA: {
+        id: 'rosCardConfigureSystemsCTA',
+        description: 'Resource Optimization Configure Systems CTA',
+        defaultMessage: 'Get started with configuration'
+    },
+    rosCardViewSystemsCTA: {
+        id: 'rosCardViewSystemsCTA',
+        description: 'Resource Optimization View Systems CTA',
+        defaultMessage: 'View systems'
     },
 
     // Card messages
