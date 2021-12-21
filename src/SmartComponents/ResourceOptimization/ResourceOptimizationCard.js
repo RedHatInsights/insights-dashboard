@@ -55,10 +55,10 @@ const ResourceOptimizationCard = ({
                                                     spaceItems={{ default: 'spaceItemsNone' }}
                                                     alignItems={{ default: 'alignItemsCenter' }}>
                                                     <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
-                                                    {rosIsConfigured.systems_stats.waiting_for_data}
+                                                        {rosIsConfigured.systems_stats.waiting_for_data}
                                                     </span>
                                                     <span className='pf-u-font-size-sm'>
-                                                    <span>{intl.formatMessage(messages.waitingForData)}</span>
+                                                        <span>{intl.formatMessage(messages.waitingForData)}</span>
                                                     </span>
                                                 </Flex>
                                             }
@@ -67,10 +67,10 @@ const ResourceOptimizationCard = ({
                                                 spaceItems={{ default: 'spaceItemsNone' }}
                                                 alignItems={{ default: 'alignItemsCenter' }}>
                                                 <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
-                                                {rosIsConfigured.systems_stats.with_suggestions}
+                                                    {rosIsConfigured.systems_stats.with_suggestions}
                                                 </span>
                                                 <span className='pf-u-font-size-sm'>
-                                                {intl.formatMessage(messages.systemsWithSuggestions)}
+                                                    {intl.formatMessage(messages.systemsWithSuggestions)}
                                                 </span>
                                             </Flex>
                                             <Flex
@@ -78,10 +78,10 @@ const ResourceOptimizationCard = ({
                                                 spaceItems={{ default: 'spaceItemsNone' }}
                                                 alignItems={{ default: 'alignItemsCenter' }}>
                                                 <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
-                                                {rosIsConfigured.count}
+                                                    {rosIsConfigured.count}
                                                 </span>
                                                 <span className='pf-u-font-size-sm'>
-                                                {intl.formatMessage(messages.totalSystems)}
+                                                    {intl.formatMessage(messages.totalSystems)}
                                                 </span>
                                             </Flex>
                                         </Flex>
