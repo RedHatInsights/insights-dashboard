@@ -48,40 +48,40 @@ const ResourceOptimizationCard = ({
                                         <Flex
                                             justifyContent={{ default: 'justifyContentCenter' }}
                                             spaceItems={{ default: 'spaceItemsLg', sm: 'spaceItems2xl' }}>
+                                            {
+                                                rosIsConfigured.systems_stats.waiting_for_data > 0 &&
+                                                <Flex
+                                                    direction={{ default: 'column' }}
+                                                    spaceItems={{ default: 'spaceItemsNone' }}
+                                                    alignItems={{ default: 'alignItemsCenter' }}>
+                                                    <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
+                                                    {rosIsConfigured.systems_stats.waiting_for_data}
+                                                    </span>
+                                                    <span className='pf-u-font-size-sm'>
+                                                    <span>{intl.formatMessage(messages.waitingForData)}</span>
+                                                    </span>
+                                                </Flex>
+                                            }
                                             <Flex
                                                 direction={{ default: 'column' }}
                                                 spaceItems={{ default: 'spaceItemsNone' }}
                                                 alignItems={{ default: 'alignItemsCenter' }}>
-                                                {/* fixme: Need to update it to use values from backend once the API is updated  */}
                                                 <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
-                                                2
+                                                {rosIsConfigured.systems_stats.with_suggestions}
                                                 </span>
                                                 <span className='pf-u-font-size-sm'>
-                                                Systems waiting for data
+                                                {intl.formatMessage(messages.systemsWithSuggestions)}
                                                 </span>
                                             </Flex>
                                             <Flex
                                                 direction={{ default: 'column' }}
                                                 spaceItems={{ default: 'spaceItemsNone' }}
                                                 alignItems={{ default: 'alignItemsCenter' }}>
-                                                {/* fixme: Need to update it to use values from backend once the API is updated  */}
                                                 <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
-                                                10
+                                                {rosIsConfigured.count}
                                                 </span>
                                                 <span className='pf-u-font-size-sm'>
-                                                Systems with suggestions
-                                                </span>
-                                            </Flex>
-                                            <Flex
-                                                direction={{ default: 'column' }}
-                                                spaceItems={{ default: 'spaceItemsNone' }}
-                                                alignItems={{ default: 'alignItemsCenter' }}>
-                                                {/* fixme: Need to update it to use values from backend once the API is updated  */}
-                                                <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
-                                                15
-                                                </span>
-                                                <span className='pf-u-font-size-sm'>
-                                                Total systems
+                                                {intl.formatMessage(messages.totalSystems)}
                                                 </span>
                                             </Flex>
                                         </Flex>

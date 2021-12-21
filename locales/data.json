@@ -60,6 +60,9 @@
     "rosSystemsNotConfiguredMessage": "No systems configured yet? Get started with resource optimization.",
     "rosCardConfigureSystemsCTA": "Get started with configuration",
     "rosSystemsGenericMessage": "Red Hat recommends to assess and monitor cloud usage and optimization on these systems.",
-    "rosCardViewSystemsCTA": "View systems"
+    "rosCardViewSystemsCTA": "View systems",
+    "waitingForData": "Systems waiting for data",
+    "systemsWithSuggestions": "Systems with suggestions",
+    "totalSystems": "Total systems"
   }
 }

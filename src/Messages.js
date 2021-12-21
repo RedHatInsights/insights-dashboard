@@ -576,6 +576,21 @@ export default defineMessages({
         description: 'when systems details are available in the resource optimization message',
         defaultMessage: 'Red Hat recommends to assess and monitor cloud usage and optimization on these systems.'
     },
+    waitingForData: {
+        id: 'waitingForData',
+        description: 'Resource Optimization - Waiting for data',
+        defaultMessage: 'Systems waiting for data'
+    },
+    systemsWithSuggestions: {
+        id: 'systemsWithSuggestions',
+        description: 'Resource Optimization - Systems with suggestions',
+        defaultMessage: 'Systems with suggestions'
+    },
+    totalSystems: {
+        id: 'totalSystems',
+        description: 'Resource Optimization - total Systems',
+        defaultMessage: 'Total systems'
+    },
 
     // Card headers
     footerTitle: {
