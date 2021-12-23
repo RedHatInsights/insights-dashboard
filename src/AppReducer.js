@@ -36,6 +36,8 @@ const initialState = Immutable({
     inventoryTotalFetchStatus: '',
     remediations: {},
     remediationsFetchStatus: '',
+    rosIsConfigured: {},
+    rosIsConfiguredFetchStatus: '',
     selectedTags: [],
     workloads: {},
     SID: {}
@@ -239,6 +241,17 @@ export const DashboardStore = (state = initialState, action) => {
             });
         case `${ActionTypes.REMEDIATIONS_FETCH}_REJECTED`:
             return state.set('remediationsFetchStatus', 'rejected');
+
+        // Resource Optimization
+        case `${ActionTypes.ROS_IS_CONFIGURED_FETCH}_PENDING`:
+            return state.set('rosIsConfiguredFetchStatus', 'pending');
+        case `${ActionTypes.ROS_IS_CONFIGURED_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                rosIsConfigured: action.payload,
+                rosIsConfiguredFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.ROS_IS_CONFIGURED_FETCH}_REJECTED`:
+            return state.set('rosIsConfiguredFetchStatus', 'rejected');
 
         default:
             return state;
