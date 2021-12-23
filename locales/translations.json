@@ -131,5 +131,13 @@
   "zsrblb5": "Implement predictable processes. Shift teams to more predictable processes for continuous security visibility.",
   "zssampleActionButton": "Register systems to find issues across your infrastructure",
   "zssampleTitleL": "Latest security vulnerabilities affecting RHEL infrastructures",
-  "zssampleTitleR": "CVSS Base Score"
+  "zssampleTitleR": "CVSS Base Score",
+  "resourceOptimizationCardHeader": "Resource optimization",
+  "rosSystemsNotConfiguredMessage": "No systems configured yet? Get started with resource optimization.",
+  "rosCardConfigureSystemsCTA": "Get started with configuration",
+  "rosSystemsGenericMessage": "Red Hat recommends to assess and monitor cloud usage and optimization on these systems.",
+  "rosCardViewSystemsCTA": "View systems",
+  "waitingForData": "Systems waiting for data",
+  "systemsWithSuggestions": "Systems with suggestions",
+  "totalSystems": "Total systems"
 }

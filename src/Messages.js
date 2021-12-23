@@ -566,6 +566,31 @@ export default defineMessages({
         description: 'zero state sample call to action button',
         defaultMessage: 'Register systems to find issues across your infrastructure'
     },
+    rosSystemsNotConfiguredMessage: {
+        id: 'rosSystemsNotConfiguredMessage',
+        description: 'no systems configured with resource optimization message',
+        defaultMessage: 'No systems configured yet? Get started with resource optimization.'
+    },
+    rosSystemsGenericMessage: {
+        id: 'rosSystemsGenericMessage',
+        description: 'when systems details are available in the resource optimization message',
+        defaultMessage: 'Red Hat recommends to assess and monitor cloud usage and optimization on these systems.'
+    },
+    waitingForData: {
+        id: 'waitingForData',
+        description: 'Resource Optimization - Waiting for data',
+        defaultMessage: 'Systems waiting for data'
+    },
+    systemsWithSuggestions: {
+        id: 'systemsWithSuggestions',
+        description: 'Resource Optimization - Systems with suggestions',
+        defaultMessage: 'Systems with suggestions'
+    },
+    totalSystems: {
+        id: 'totalSystems',
+        description: 'Resource Optimization - total Systems',
+        defaultMessage: 'Total systems'
+    },
 
     // Card headers
     footerTitle: {
@@ -600,6 +625,11 @@ export default defineMessages({
         description: 'Remediations card header',
         defaultMessage: 'Remediations'
     },
+    resourceOptimizationCardHeader: {
+        id: 'resourceOptimizationCardHeader',
+        description: 'Resource optimization card header',
+        defaultMessage: 'Resource optimization'
+    },
 
     // Card CTAs
     advisorCardCTA: {
@@ -611,6 +641,16 @@ export default defineMessages({
         id: 'policiesCardCTA',
         description: 'Policies CTA',
         defaultMessage: 'View all policies'
+    },
+    rosCardConfigureSystemsCTA: {
+        id: 'rosCardConfigureSystemsCTA',
+        description: 'Resource Optimization Configure Systems CTA',
+        defaultMessage: 'Get started with configuration'
+    },
+    rosCardViewSystemsCTA: {
+        id: 'rosCardViewSystemsCTA',
+        description: 'Resource Optimization View Systems CTA',
+        defaultMessage: 'View systems'
     },
 
     // Card messages

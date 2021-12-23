@@ -56,6 +56,13 @@
     "noSystemsRegister": "Register the system to Red Hat Insights",
     "noSystemsLink": "Getting started documentation",
     "advisorChartDescription": "This chart shows recommendations effecting your system",
-    "registerYourSystems": "Register your systems"
+    "registerYourSystems": "Register your systems",
+    "rosSystemsNotConfiguredMessage": "No systems configured yet? Get started with resource optimization.",
+    "rosCardConfigureSystemsCTA": "Get started with configuration",
+    "rosSystemsGenericMessage": "Red Hat recommends to assess and monitor cloud usage and optimization on these systems.",
+    "rosCardViewSystemsCTA": "View systems",
+    "waitingForData": "Systems waiting for data",
+    "systemsWithSuggestions": "Systems with suggestions",
+    "totalSystems": "Total systems"
   }
 }

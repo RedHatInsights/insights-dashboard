@@ -93,6 +93,11 @@ export const fetchRemediations = (options) => ({
     payload: fetchData(ActionTypes.REMEDIATIONS_FETCH_URL, {}, options)
 });
 
+export const fetchRosIsConfigured = (options) => ({
+    type: ActionTypes.ROS_IS_CONFIGURED_FETCH,
+    payload: fetchData(ActionTypes.ROS_IS_CONFIGURED_FETCH_URL, {}, options)
+});
+
 export const setSelectedTags = (tags) => ({
     type: ActionTypes.SELECTED_TAGS_SET,
     payload: tags

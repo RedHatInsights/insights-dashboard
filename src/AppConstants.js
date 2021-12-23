@@ -70,5 +70,10 @@ export const REMEDIATIONS_FETCH_URL = `${BASE_URL}${REMEDIATIONS_BASE}/remediati
 export const REMEDIATIONS_PLAYBOOK_RUNS_FETCH = 'REMEDIATIONS_PLAYBOOK_RUNS_FETCH';
 export const REMEDIATIONS_PLAYBOOK_RUNS_FETCH_URL = `${BASE_URL}${REMEDIATIONS_BASE}/remediations/`;
 
+// Resource Optimization Constants
+const ROS_BASE = '/ros/v1';
+export const ROS_IS_CONFIGURED_FETCH = 'ROS_IS_CONFIGURED_FETCH';
+export const ROS_IS_CONFIGURED_FETCH_URL = `${BASE_URL}${ROS_BASE}/is_configured`;
+
 // Workloads Constants
 export const SAP_FETCH_URL = `${BASE_URL}/inventory/v1/system_profile/sap_system`;
