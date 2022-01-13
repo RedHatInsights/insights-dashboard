@@ -35,5 +35,5 @@ webpackConfig.devServer.client.overlay = false;
 module.exports = (env) => {
     env && env.analyze === 'true' && plugins.push(new BundleAnalyzerPlugin());
 
-    return { ...webpackConfig, plugins: plugins.filter((plugin) => plugin.constructor.name !== 'HtmlWebpackPlugin') };
+    return { ...webpackConfig, plugins };
 };
