@@ -180,7 +180,7 @@ export default defineMessages({
     complianceEmptyStateTitle: {
         id: 'complianceEmptyStateTitle',
         description: 'Compliance - empty state title',
-        defaultMessage: 'No policies'
+        defaultMessage: 'No policies reported'
     },
     complianceEmptyStateBody: {
         id: 'complianceEmptyStateBody',
