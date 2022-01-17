@@ -22,7 +22,8 @@ const App = (props) => {
         remediations: false,
         patch: false,
         vulnerability: false,
-        subscriptions: false
+        subscriptions: false,
+        ros: false
     });
     const [isOrgAdmin, setIsOrgAdmin] = useState(false);
     const [arePermissionsReady, setArePermissionReady] = useState(false);
@@ -65,7 +66,9 @@ const App = (props) => {
                             permissionList.includes('remediations:*:read'),
                         patch: permissionList.includes('patch:*:*'),
                         vulnerability: permissionList.includes('vulnerability:*:*'),
-                        subscriptions: permissionList.includes('subscriptions:*:*')
+                        subscriptions: permissionList.includes('subscriptions:*:*'),
+                        ros: permissionList.includes('ros:*:*') ||
+                            permissionList.includes('ros:*:read')
                     });
                 }
 
@@ -98,6 +101,7 @@ const App = (props) => {
                     patch: permissions.patch,
                     vulnerability: permissions.vulnerability,
                     subscriptions: permissions.subscriptions,
+                    ros: permissions.ros,
                     isOrgAdmin,
                     hasSystems
                 } }>

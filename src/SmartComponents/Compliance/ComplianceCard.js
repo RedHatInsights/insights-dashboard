@@ -30,6 +30,7 @@ import { connect } from 'react-redux';
 import messages from '../../Messages';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
 import { useIntl } from 'react-intl';
+import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSummary, selectedTags, workloads, SID }) => {
     useEffect(() => {
@@ -48,6 +49,8 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
 
         return complianceTopThree;
     };
+
+    const navigateTo = useChromePush();
 
     return (
         <ExpandableCardTemplate
@@ -84,6 +87,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                                             id={ `compliance-link-${index + 1}` }
                                                                             className='ins-c-compliance__policy-link'
                                                                             component='a'
+                                                                            onClick={e => navigateTo(e, `${UI_BASE}/compliance/reports/${policy.id}`)}
                                                                             href={ `${UI_BASE}/compliance/reports/${policy.id}` }
                                                                             variant='link'
                                                                             isInline
@@ -125,6 +129,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                         <Button
                                             className='ins-c-compliance__policy-link'
                                             component='a'
+                                            onClick={e => navigateTo(e, `${UI_BASE}/compliance/reports/`)}
                                             href={ `${UI_BASE}/compliance/reports/` }
                                             variant='link'
                                             isInline
@@ -145,7 +150,8 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                             <EmptyStateSecondaryActions>
                                                 <Button
                                                     variant='link'
-                                                    href={ `${UI_BASE}/compliance/reports/` }
+                                                    onClick={e => navigateTo(e, `${UI_BASE}/compliance/scappolicies/new`)}
+                                                    href={ `${UI_BASE}/compliance/scappolicies/new` }
                                                     component='a'
                                                 >
                                                     {intl.formatMessage(messages.complianceEmptyStateAction1)}
@@ -165,8 +171,12 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                             {complianceFetchStatus === 'pending' && (<Loading />)}
                             {complianceFetchStatus === 'rejected' && <FailState appName='Compliance' />}
                         </React.Fragment>
-                        : <FilterNotSupported href={ `${UI_BASE}/compliance/` } title={ intl.formatMessage(messages.filterNotApplicable) }
-                            appName={ intl.formatMessage(messages.complianceTitle) } />
+                        : <FilterNotSupported
+                            onClick={e => navigateTo(e, `${UI_BASE}/compliance/`)}
+                            href={ `${UI_BASE}/compliance/` }
+                            title={ intl.formatMessage(messages.filterNotApplicable) }
+                            appName={ intl.formatMessage(messages.complianceTitle) }
+                        />
                     }
                 </TemplateCardBody>
             }

@@ -15,6 +15,7 @@ import TimesCircleIcon from '@patternfly/react-icons/dist/esm/icons/times-circle
 import { Tooltip } from '@patternfly/react-core/dist/esm/components/Tooltip/Tooltip';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 // Normalize the status so we don't show all API statuses
 const normalizeStatus = (status) => ({
@@ -67,6 +68,8 @@ const RunStatus = ({ id, name, index }) => {
         fetchPlaybookRun();
     }, [id]);
 
+    const navigateTo = useChromePush();
+
     return <div className="insd-c-remediations-container">
         <div className="insd-c-remediation__status">
             { loaded === undefined && <Skeleton size='md' /> }
@@ -93,11 +96,25 @@ const RunStatus = ({ id, name, index }) => {
         </div>
         <div className="insd-c-remediation__timestamp">
             {name.length > 65 ? <Tooltip content={ name }>
-                <Button id={ `remediation-link-${index}` } component="a" variant="link" isInline href={ `./insights/remediations/${id}` }>
+                <Button
+                    id={ `remediation-link-${index}` }
+                    component="a"
+                    variant="link"
+                    isInline
+                    onClick={e => navigateTo(e, `./insights/remediations/${id}`)}
+                    href={ `./insights/remediations/${id}` }
+                >
                     {name}
                 </Button>
             </Tooltip> :
-                <Button id={ `remediation-link-${index}` } component="a" variant="link" isInline href={ `./insights/remediations/${id}` }>
+                <Button
+                    id={ `remediation-link-${index}` }
+                    component="a"
+                    variant="link"
+                    isInline
+                    onClick={e => navigateTo(e, `./insights/remediations/${id}`)}
+                    href={ `./insights/remediations/${id}` }
+                >
                     {name}
                 </Button>}
             { loaded === undefined && <Skeleton size='md' /> }

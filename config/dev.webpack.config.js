@@ -5,10 +5,11 @@ const config = require('@redhat-cloud-services/frontend-components-config');
 const { config: webpackConfig, plugins } = config({
     rootFolder: resolve(__dirname, '../'),
     debug: true,
-    appUrl: '/insights/dashboard',
-    betaEnv: 'prod',
+    appUrl: process.env.BETA ? '/beta/insights/dashboard' : '/insights/dashboard',
+    env: `${process.env.ENVIRONMENT || 'stage'}-${process.env.BETA ? 'beta' : 'stable'}`,
     deployment: process.env.BETA ? 'beta/apps' : 'apps',
-    useProxy: process.env.API_ENDOINT ? true : false,
+    useProxy: true,
+    useChromeTemplate: true,
     localChrome: process.env.INSIGHTS_CHROME,
     customProxy: process.env.API_ENDOINT ? [
         {
@@ -27,6 +28,8 @@ plugins.push(
         root: resolve(__dirname, '../')
     })
 );
+
+webpackConfig.devServer.client.overlay = false;
 
 module.exports = (env) => {
     env && env.analyze === 'true' && plugins.push(new BundleAnalyzerPlugin());
