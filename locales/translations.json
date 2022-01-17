@@ -15,7 +15,7 @@
   "complianceEmptyStateAction1": "Create a policy",
   "complianceEmptyStateAction2": "Learn about OpenSCAP",
   "complianceEmptyStateBody": "The compliance service uses OpenSCAP policies to track your organization's adherence to compliance requirements",
-  "complianceEmptyStateTitle": "No policies",
+  "complianceEmptyStateTitle": "No policies reported",
   "complianceTitle": "Compliance",
   "compliantHostCount": "{count, plural, one {# system} other {# systems}}",
   "compliantScore": "{score}% compliant",
