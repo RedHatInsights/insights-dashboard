@@ -65,7 +65,8 @@ const App = (props) => {
                             permissionList.includes('remediations:remediation:read') ||
                             permissionList.includes('remediations:*:read'),
                         patch: permissionList.includes('patch:*:*'),
-                        vulnerability: permissionList.includes('vulnerability:*:*'),
+                        vulnerability: permissionList.includes('vulnerability:*:*') ||
+                            permissionList.includes('vulnerability:vulnerability_results:read'),
                         subscriptions: permissionList.includes('subscriptions:*:*'),
                         ros: permissionList.includes('ros:*:*') ||
                             permissionList.includes('ros:*:read')
