@@ -1,4 +1,5 @@
 import * as ActionTypes from './AppConstants';
+import { parseDriftData } from './SmartComponents/Drift/utils';
 
 import Immutable from 'seamless-immutable';
 
@@ -38,6 +39,9 @@ const initialState = Immutable({
     remediationsFetchStatus: '',
     rosIsConfigured: {},
     rosIsConfiguredFetchStatus: '',
+    driftEventFetchStatus: '',
+    driftEvents: '',
+    driftEventsRaw: '',
     selectedTags: [],
     workloads: {},
     SID: {}
@@ -253,8 +257,19 @@ export const DashboardStore = (state = initialState, action) => {
         case `${ActionTypes.ROS_IS_CONFIGURED_FETCH}_REJECTED`:
             return state.set('rosIsConfiguredFetchStatus', 'rejected');
 
+        // DRIFT
+        case `${ActionTypes.DRIFT_EVENTS_PAYLOAD_FETCH}_PENDING`:
+            return state.set('driftEventFetchStatus', 'pending');
+        case `${ActionTypes.DRIFT_EVENTS_PAYLOAD_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                driftEventsRaw: action.payload,
+                driftEvents: parseDriftData(action.payload),
+                driftEventFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.DRIFT_EVENTS_PAYLOAD_FETCH}_REJECTED`:
+            return state.set('driftEventFetchStatus', 'rejected');
+
         default:
             return state;
-
     }
 };
