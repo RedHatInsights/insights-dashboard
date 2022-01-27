@@ -172,6 +172,11 @@ body {
         --pf-c-data-list--BorderTopWidth: 0;
         --pf-c-data-list--BorderTopColor: transparent;
     }
+
+    &.insd-m-no-bottom-border {
+        --pf-c-data-list__item--BorderBottomWidth: 0;
+        --pf-c-data-list__item--BorderBottomColor: transparent;
+    }
 }
 
 // card

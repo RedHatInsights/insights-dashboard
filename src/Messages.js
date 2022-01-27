@@ -713,5 +713,70 @@ export default defineMessages({
         id: 'exploitedCveTooltip',
         description: 'exploitedCveTooltip',
         defaultMessage: 'These CVEs are identified with a "Known Exploit" flag because Red Hat has determined that there are known examples of exploits for this particular CVEs. It does not reflect your environment. CVEs with this label should be addressed with higher priority.'
+    },
+    driftNumberOfEvents: {
+        id: 'driftNumOfEvents',
+        description: 'driftNumOfEvents',
+        defaultMessage: 'Number of drift events received'
+    },
+    driftCardAppName: {
+        id: 'driftCardAppName',
+        description: 'driftCardAppName',
+        defaultMessage: 'Drift'
+    },
+    driftCardTitle: {
+        id: 'driftCardTitle',
+        description: 'driftCardTitle',
+        defaultMessage: 'Latest Configuration'
+    },
+    driftTop5: {
+        id: 'driftTop5',
+        description: 'driftTop5',
+        defaultMessage: 'Top 5 baselines with most drift'
+    },
+    driftEmptyStateTitle: {
+        id: 'driftEmptyStateTitle',
+        description: 'driftEmptyStateTitle',
+        defaultMessage: 'No drifts from baselines found'
+    },
+    driftEmptyStateBody: {
+        id: 'driftEmptyStateBody',
+        description: 'driftEmptyStateBody',
+        defaultMessage: 'You can create baselines and associate systems to it.'
+    },
+    driftInventigateButtton: {
+        id: 'driftInvestigateButton',
+        description: 'driftInvestigateButton',
+        defaultMessage: 'Investigate in Drift'
+    },
+    driftDropDown90days: {
+        id: 'driftDropdown90days',
+        description: 'driftDropdown90days',
+        defaultMessage: 'Last 90 days'
+    },
+    driftDropDown30days: {
+        id: 'driftDropdown30days',
+        description: 'driftDropdown30days',
+        defaultMessage: 'Last 30 days'
+    },
+    driftDropDown7days: {
+        id: 'driftDropdown7days',
+        description: 'driftDropdown7days',
+        defaultMessage: 'Last 7 days'
+    },
+    driftDropDown24hours: {
+        id: 'driftDropdown24hours',
+        description: 'driftDropdown24hours',
+        defaultMessage: 'Last 24 hours'
+    },
+    driftSystems: {
+        id: 'driftSystems',
+        description: 'driftSystems',
+        defaultMessage: '{systems, plural, =0 {No systems} one {# system} other {# systems}}'
+    },
+    driftCompare: {
+        id: 'driftCompare',
+        description: 'driftCompare',
+        defaultMessage: 'Compare'
     }
 });

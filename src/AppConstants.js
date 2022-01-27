@@ -77,3 +77,13 @@ export const ROS_IS_CONFIGURED_FETCH_URL = `${BASE_URL}${ROS_BASE}/is_configured
 
 // Workloads Constants
 export const SAP_FETCH_URL = `${BASE_URL}/inventory/v1/system_profile/sap_system`;
+
+// Drift Constants
+export const DRIFT_EVENTS_APP_ID = insights?.chrome.getEnvironment() === 'prod' ? '2212b1ce-4ed0-49a3-ba3c-bc147f1690fd' : 'ccb37fde-8564-4a7c-8720-d78a07e2fbde';
+export const DRIFT_EVENTS_PAYLOAD_FETCH_URL = `${BASE_URL}/notifications/v1.0/notifications/events`;
+export const DRIFT_EVENTS_PAYLOAD_FETCH = 'DRIFT_EVENTS_PAYLOAD_FETCH';
+export const DRIFT_URL = `/insights/drift`;
+export const DRIFT_BASELINES_URL = `${DRIFT_URL}/baselines`;
+export const DRIFT_COMPARE_URL = `${DRIFT_URL}/?baseline_ids`;
+export const TOP_BASELINES = 5;
+

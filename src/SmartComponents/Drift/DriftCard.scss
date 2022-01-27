@@ -1,0 +1,38 @@
+// Drift style
+
+.ins-c-drift__drop_down {
+  padding-right: var(--pf-l-flex--spacer--2xl);
+
+}
+
+.ins-c-drift__investigate_button {
+  margin-bottom: var(--pf-global--gutter);
+}
+
+.ins-c-drift__top_5 {
+  padding-top: var(--pf-global--gutter);
+}
+
+.ins-c-drift__system_len {
+  color: var(--pf-global--palette--red-100);
+  flex-grow: 1;
+  text-align: center;
+}
+
+.ins-c-drift__data_list_cell_system_len {
+  display: flex;
+  justify-content: center;
+}
+
+.ins-c-drift__data_list_cell_compare {
+  display: inline-block;
+  justify-items: right;
+}
+
+.ins-c-drift__text_compare {
+  float: right;
+}
+
+.ins-c-drift__drift_spinner {
+  margin-bottom: 1rem;
+}
