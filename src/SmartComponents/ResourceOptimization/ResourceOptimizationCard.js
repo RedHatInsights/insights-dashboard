@@ -25,8 +25,8 @@ const ResourceOptimizationCard = ({
     }, [fetchRosIsConfigured]);
 
     const navigateTo = useChromePush();
-    const waitingForDataUrl = `${UI_BASE}/ros?state=waiting`;
-    const suggestionsUrl = `${UI_BASE}/ros?state=suggestions`;
+    const waitingForDataUrl = `${UI_BASE}/ros?with_waiting_for_data=true`;
+    const suggestionsUrl = `${UI_BASE}/ros?with_suggestions=true`;
     const allSystemsUrl = `${UI_BASE}/ros`;
 
     return (
