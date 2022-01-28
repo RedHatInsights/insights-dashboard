@@ -33,11 +33,13 @@ import routerParams from '@redhat-cloud-services/frontend-components-utilities/R
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
+import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 const DriftCard = () => {
 
     const intl = useIntl();
     const dispatch = useDispatch();
+    const navigateTo = useChromePush();
     const [activeDrift, setActiveDrift] = useState({
         id: 'days-7',
         description: intl.formatMessage(messages.driftDropDown7days),
@@ -125,8 +127,8 @@ const DriftCard = () => {
                                                 variant="secondary"
                                                 component='a'
                                                 className='ins-c-drift__investigate_button'
-                                                href={ActionTypes.DRIFT_URL}
-                                                target='_blank'>
+                                                onClick={e => navigateTo(e, ActionTypes.DRIFT_URL)}
+                                                href={ActionTypes.DRIFT_URL}>
                                                 {intl.formatMessage(messages.driftInventigateButtton)}
                                             </Button>
                                         </Flex>
@@ -148,7 +150,11 @@ const DriftCard = () => {
                                                                         <Text
                                                                             component={TextVariants.a}
                                                                             href={`${ActionTypes.DRIFT_BASELINES_URL}/${baseline.baselineId}`}
-                                                                            target='_blank'>
+                                                                            onClick={(e) => navigateTo(
+                                                                                e,
+                                                                                `${ActionTypes.DRIFT_BASELINES_URL}/${baseline.baselineId}`
+                                                                            )}
+                                                                        >
                                                                             {baseline.baselineName}
                                                                         </Text>
                                                                     </DataListCell>
@@ -164,7 +170,11 @@ const DriftCard = () => {
                                                                             component={TextVariants.a}
                                                                             href={`${ActionTypes.DRIFT_COMPARE_URL}=${baseline.baselineId}`}
                                                                             className='ins-c-drift__text_compare'
-                                                                            target='_blank'>
+                                                                            onClick={(e) => navigateTo(
+                                                                                e,
+                                                                                `${ActionTypes.DRIFT_COMPARE_URL}=${baseline.baselineId}`
+                                                                            )}
+                                                                        >
                                                                             {intl.formatMessage(messages.driftCompare)}
                                                                         </Text>
                                                                     </DataListCell>
