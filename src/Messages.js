@@ -647,11 +647,6 @@ export default defineMessages({
         description: 'Resource Optimization Configure Systems CTA',
         defaultMessage: 'Get started with configuration'
     },
-    rosCardViewSystemsCTA: {
-        id: 'rosCardViewSystemsCTA',
-        description: 'Resource Optimization View Systems CTA',
-        defaultMessage: 'View systems'
-    },
 
     // Card messages
     advisorCardMessage: {
