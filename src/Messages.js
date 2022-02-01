@@ -727,7 +727,7 @@ export default defineMessages({
     driftCardTitle: {
         id: 'driftCardTitle',
         description: 'driftCardTitle',
-        defaultMessage: 'Latest Configuration'
+        defaultMessage: 'Latest configuration drift'
     },
     driftTop5: {
         id: 'driftTop5',
