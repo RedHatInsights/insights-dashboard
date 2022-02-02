@@ -50,7 +50,7 @@ const App = (props) => {
             user => setIsOrgAdmin(user.identity.user.is_org_admin)
         );
         // TODO: Update this function to query multiple apps instead of empty request (limited by API)
-        insights.chrome.getUserPermissions().then(
+        insights.chrome.getUserPermissions('', true).then(
             dashboardPermissions => {
                 const permissionList = dashboardPermissions.length && dashboardPermissions.map(permissions => permissions.permission);
                 if (permissionList.length) {
