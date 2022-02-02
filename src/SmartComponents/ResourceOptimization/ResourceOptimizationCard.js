@@ -25,6 +25,9 @@ const ResourceOptimizationCard = ({
     }, [fetchRosIsConfigured]);
 
     const navigateTo = useChromePush();
+    const waitingForDataUrl = `${UI_BASE}/ros?with_waiting_for_data=true`;
+    const suggestionsUrl = `${UI_BASE}/ros?with_suggestions=true`;
+    const allSystemsUrl = `${UI_BASE}/ros`;
 
     return (
         <ExpandableCardTemplate
@@ -50,17 +53,19 @@ const ResourceOptimizationCard = ({
                                             spaceItems={{ default: 'spaceItemsLg', sm: 'spaceItems2xl' }}>
                                             {
                                                 rosIsConfigured.systems_stats.waiting_for_data > 0 &&
-                                                <Flex
-                                                    direction={{ default: 'column' }}
-                                                    spaceItems={{ default: 'spaceItemsNone' }}
-                                                    alignItems={{ default: 'alignItemsCenter' }}>
-                                                    <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
-                                                        {rosIsConfigured.systems_stats.waiting_for_data}
-                                                    </span>
-                                                    <span className='pf-u-font-size-sm'>
-                                                        <span>{intl.formatMessage(messages.waitingForData)}</span>
-                                                    </span>
-                                                </Flex>
+                                                    <Flex
+                                                        direction={{ default: 'column' }}
+                                                        spaceItems={{ default: 'spaceItemsNone' }}
+                                                        alignItems={{ default: 'alignItemsCenter' }}>
+                                                        <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
+                                                            {rosIsConfigured.systems_stats.waiting_for_data}
+                                                        </span>
+                                                        <a onClick={e => navigateTo(e, waitingForDataUrl)} href={waitingForDataUrl}>
+                                                            <span className='pf-u-font-size-sm'>
+                                                                <span>{intl.formatMessage(messages.waitingForData)}</span>
+                                                            </span>
+                                                        </a>
+                                                    </Flex>
                                             }
                                             <Flex
                                                 direction={{ default: 'column' }}
@@ -69,9 +74,11 @@ const ResourceOptimizationCard = ({
                                                 <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
                                                     {rosIsConfigured.systems_stats.with_suggestions}
                                                 </span>
-                                                <span className='pf-u-font-size-sm'>
-                                                    {intl.formatMessage(messages.systemsWithSuggestions)}
-                                                </span>
+                                                <a onClick={e => navigateTo(e, suggestionsUrl)} href={suggestionsUrl}>
+                                                    <span className='pf-u-font-size-sm'>
+                                                        {intl.formatMessage(messages.systemsWithSuggestions)}
+                                                    </span>
+                                                </a>
                                             </Flex>
                                             <Flex
                                                 direction={{ default: 'column' }}
@@ -80,18 +87,13 @@ const ResourceOptimizationCard = ({
                                                 <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
                                                     {rosIsConfigured.count}
                                                 </span>
-                                                <span className='pf-u-font-size-sm'>
-                                                    {intl.formatMessage(messages.totalSystems)}
-                                                </span>
+                                                <a onClick={e => navigateTo(e, allSystemsUrl)} href={allSystemsUrl}>
+                                                    <span className='pf-u-font-size-sm'>
+                                                        {intl.formatMessage(messages.totalSystems)}
+                                                    </span>
+                                                </a>
                                             </Flex>
                                         </Flex>
-                                        <Button
-                                            variant='secondary'
-                                            isSmall component='a'
-                                            onClick={e => navigateTo(e, `${UI_BASE}/ros`)}
-                                            href={ `${UI_BASE}/ros`}>
-                                            {intl.formatMessage(messages.rosCardViewSystemsCTA)}
-                                        </Button>
                                     </Flex>
 
                                 </React.Fragment>
