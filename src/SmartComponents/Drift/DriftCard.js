@@ -2,7 +2,7 @@ import './DriftCard.scss';
 
 import * as AppActions from '../../AppActions';
 import * as ActionTypes from '../../AppConstants';
-import { getDate } from './utils';
+import { getDate, buildCompareUrl } from './utils';
 
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -25,7 +25,8 @@ import {
     TextVariants,
     Text,
     Bullseye,
-    Spinner
+    Spinner,
+    Tooltip
 } from '@patternfly/react-core';
 import { DriftEmptyState } from './DriftEmptyState';
 import { useDispatch } from 'react-redux';
@@ -166,17 +167,23 @@ const DriftCard = () => {
                                                                         </span>
                                                                     </DataListCell>
                                                                     <DataListCell key={index} className='ins-c-drift__data_list_cell_compare'>
-                                                                        <Text
-                                                                            component={TextVariants.a}
-                                                                            href={`${ActionTypes.DRIFT_COMPARE_URL}=${baseline.baselineId}`}
-                                                                            className='ins-c-drift__text_compare'
-                                                                            onClick={(e) => navigateTo(
-                                                                                e,
-                                                                                `${ActionTypes.DRIFT_COMPARE_URL}=${baseline.baselineId}`
-                                                                            )}
-                                                                        >
-                                                                            {intl.formatMessage(messages.driftCompare)}
-                                                                        </Text>
+                                                                        <Tooltip
+                                                                            content={
+                                                                                <div>
+                                                                                    {intl.formatMessage(messages.driftCompareTooltip)}
+                                                                                </div>}>
+                                                                            <Text
+                                                                                component={TextVariants.a}
+                                                                                href={buildCompareUrl(baseline.baselineId, baseline.systems)}
+                                                                                className='ins-c-drift__text_compare'
+                                                                                onClick={(e) => navigateTo(
+                                                                                    e,
+                                                                                    buildCompareUrl(baseline.baselineId, baseline.systems)
+                                                                                )}
+                                                                            >
+                                                                                {intl.formatMessage(messages.driftCompare)}
+                                                                            </Text>
+                                                                        </Tooltip>
                                                                     </DataListCell>
                                                                 </React.Fragment>
                                                             ]}

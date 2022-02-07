@@ -1,4 +1,5 @@
 import messages from '../../Messages';
+import * as ActionTypes from '../../AppConstants';
 
 export const groupPayload = (data) => {
     return data.reduce((acc, curr) => {
@@ -74,3 +75,14 @@ export const translateDriftDropdownItems = (intl) => ([
         endDate: getDate(0)
     }
 ]);
+
+export const buildCompareUrl = (baseline_id, system_ids) => {
+
+    let finalUrl = `${ActionTypes.DRIFT_URL}/?baseline_ids=${baseline_id}`;
+
+    system_ids.slice(0, ActionTypes.SYSTEMS_LIMIT).forEach(system_id => {
+        finalUrl = finalUrl.concat(`&system_ids=${system_id}`);
+    });
+
+    return finalUrl;
+};
