@@ -7,7 +7,7 @@ import { getDate, buildCompareUrl } from './utils';
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
-import { TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
+import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
 import { DriftDropDown } from './DriftDropDown';
 import messages from '../../Messages';
@@ -47,9 +47,9 @@ const DriftCard = () => {
         startDate: getDate(7),
         endDate: getDate(0)
     });
+    const [isCardExpanded, setIsCardExpanded] = useState(true);
     const driftEvents = useSelector(({ DashboardStore }) => DashboardStore.driftEvents);
     const driftEventFetchStatus = useSelector(({ DashboardStore }) => DashboardStore.driftEventFetchStatus);
-
     const fetchDriftData = useCallback((dropDownItem) => {
         dispatch(AppActions.fetchDrift({
             appIds: ActionTypes.DRIFT_EVENTS_APP_ID,
@@ -66,44 +66,33 @@ const DriftCard = () => {
 
     return (
         <ExpandableCardTemplate
-            className='insd-m-toggle-right-on-md '
+            className='insd-m-toggle-right-on-md'
             appName='Drift'
-            title={intl.formatMessage(messages.driftCardAppName)}
+            isExpanded={isCardExpanded}
+            isExpandedCallback={setIsCardExpanded}
+            title={
+                <Flex>
+                    <FlexItem>
+                        {intl.formatMessage(messages.driftCardTitle)}
+                    </FlexItem>
+                    {isCardExpanded ? (
+                        <FlexItem
+                            className='ins-c-drift__drop_down'
+                            align={{ default: 'alignRight' }}>
+                            <DriftDropDown fetchDriftData={fetchDriftData} selectedFilter={activeDrift} />
+                        </FlexItem>) : null}
+                </Flex>}
             body={
                 <React.Fragment>
                     {driftEventFetchStatus === 'pending' ?
                         (
                             <React.Fragment>
-                                <Flex>
-                                    <FlexItem>
-                                        <TemplateCardHeader
-                                            title={intl.formatMessage(messages.driftCardTitle)}
-                                        />
-                                    </FlexItem>
-                                    <FlexItem
-                                        className='ins-c-drift__drop_down'
-                                        align={{ default: 'alignRight' }}>
-                                        <DriftDropDown fetchDriftData={fetchDriftData} selectedFilter={activeDrift} />
-                                    </FlexItem>
-                                </Flex>
                                 <Bullseye>
                                     <Spinner className='ins-c-drift__drift_spinner' />
                                 </Bullseye>
                             </React.Fragment>
                         ) : (
                             <React.Fragment>
-                                <Flex>
-                                    <FlexItem>
-                                        <TemplateCardHeader
-                                            title={intl.formatMessage(messages.driftCardTitle)}
-                                        />
-                                    </FlexItem>
-                                    <FlexItem
-                                        className='ins-c-drift__drop_down'
-                                        align={{ default: 'alignRight' }}>
-                                        <DriftDropDown fetchDriftData={fetchDriftData} selectedFilter={activeDrift} />
-                                    </FlexItem>
-                                </Flex>
                                 {driftEvents.baselineDetail?.length > 0 ?
                                     (<TemplateCardBody>
                                         <Flex
