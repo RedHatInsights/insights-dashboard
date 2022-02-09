@@ -84,5 +84,6 @@ export const buildCompareUrl = (baseline_id, system_ids) => {
         finalUrl = finalUrl.concat(`&system_ids=${system_id}`);
     });
 
+    finalUrl = finalUrl.concat('&filter[show]=baseline');
     return finalUrl;
 };
