@@ -51,12 +51,6 @@ export function getDate(ago) {
 
 export const translateDriftDropdownItems = (intl) => ([
     {
-        id: 'days-90',
-        description: intl.formatMessage(messages.driftDropDown90days),
-        startDate: getDate(90),
-        endDate: getDate(0)
-    },
-    {
         id: 'days-30',
         description: intl.formatMessage(messages.driftDropDown30days),
         startDate: getDate(30),
