@@ -727,7 +727,7 @@ export default defineMessages({
     driftCardTitle: {
         id: 'driftCardTitle',
         description: 'driftCardTitle',
-        defaultMessage: 'Latest Configuration'
+        defaultMessage: 'Latest configuration drift'
     },
     driftTop5: {
         id: 'driftTop5',
@@ -778,5 +778,10 @@ export default defineMessages({
         id: 'driftCompare',
         description: 'driftCompare',
         defaultMessage: 'Compare'
+    },
+    driftCompareTooltip: {
+        id: 'driftCompareTooltip',
+        description: 'driftCompareTooltip',
+        defaultMessage: 'This will compare the baseline with up to 4 systems'
     }
 });

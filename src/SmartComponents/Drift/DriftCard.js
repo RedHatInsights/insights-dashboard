@@ -2,12 +2,12 @@ import './DriftCard.scss';
 
 import * as AppActions from '../../AppActions';
 import * as ActionTypes from '../../AppConstants';
-import { getDate } from './utils';
+import { getDate, buildCompareUrl } from './utils';
 
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
-import { TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
+import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
 import { DriftDropDown } from './DriftDropDown';
 import messages from '../../Messages';
@@ -25,7 +25,8 @@ import {
     TextVariants,
     Text,
     Bullseye,
-    Spinner
+    Spinner,
+    Tooltip
 } from '@patternfly/react-core';
 import { DriftEmptyState } from './DriftEmptyState';
 import { useDispatch } from 'react-redux';
@@ -33,20 +34,22 @@ import routerParams from '@redhat-cloud-services/frontend-components-utilities/R
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
+import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 const DriftCard = () => {
 
     const intl = useIntl();
     const dispatch = useDispatch();
+    const navigateTo = useChromePush();
     const [activeDrift, setActiveDrift] = useState({
         id: 'days-7',
         description: intl.formatMessage(messages.driftDropDown7days),
         startDate: getDate(7),
         endDate: getDate(0)
     });
+    const [isCardExpanded, setIsCardExpanded] = useState(true);
     const driftEvents = useSelector(({ DashboardStore }) => DashboardStore.driftEvents);
     const driftEventFetchStatus = useSelector(({ DashboardStore }) => DashboardStore.driftEventFetchStatus);
-
     const fetchDriftData = useCallback((dropDownItem) => {
         dispatch(AppActions.fetchDrift({
             appIds: ActionTypes.DRIFT_EVENTS_APP_ID,
@@ -63,44 +66,33 @@ const DriftCard = () => {
 
     return (
         <ExpandableCardTemplate
-            className='insd-m-toggle-right-on-md '
+            className='insd-m-toggle-right-on-md'
             appName='Drift'
-            title={intl.formatMessage(messages.driftCardAppName)}
+            isExpanded={isCardExpanded}
+            isExpandedCallback={setIsCardExpanded}
+            title={
+                <Flex>
+                    <FlexItem>
+                        {intl.formatMessage(messages.driftCardTitle)}
+                    </FlexItem>
+                    {isCardExpanded ? (
+                        <FlexItem
+                            className='ins-c-drift__drop_down'
+                            align={{ default: 'alignRight' }}>
+                            <DriftDropDown fetchDriftData={fetchDriftData} selectedFilter={activeDrift} />
+                        </FlexItem>) : null}
+                </Flex>}
             body={
                 <React.Fragment>
                     {driftEventFetchStatus === 'pending' ?
                         (
                             <React.Fragment>
-                                <Flex>
-                                    <FlexItem>
-                                        <TemplateCardHeader
-                                            title={intl.formatMessage(messages.driftCardTitle)}
-                                        />
-                                    </FlexItem>
-                                    <FlexItem
-                                        className='ins-c-drift__drop_down'
-                                        align={{ default: 'alignRight' }}>
-                                        <DriftDropDown fetchDriftData={fetchDriftData} selectedFilter={activeDrift} />
-                                    </FlexItem>
-                                </Flex>
                                 <Bullseye>
                                     <Spinner className='ins-c-drift__drift_spinner' />
                                 </Bullseye>
                             </React.Fragment>
                         ) : (
                             <React.Fragment>
-                                <Flex>
-                                    <FlexItem>
-                                        <TemplateCardHeader
-                                            title={intl.formatMessage(messages.driftCardTitle)}
-                                        />
-                                    </FlexItem>
-                                    <FlexItem
-                                        className='ins-c-drift__drop_down'
-                                        align={{ default: 'alignRight' }}>
-                                        <DriftDropDown fetchDriftData={fetchDriftData} selectedFilter={activeDrift} />
-                                    </FlexItem>
-                                </Flex>
                                 {driftEvents.baselineDetail?.length > 0 ?
                                     (<TemplateCardBody>
                                         <Flex
@@ -125,8 +117,8 @@ const DriftCard = () => {
                                                 variant="secondary"
                                                 component='a'
                                                 className='ins-c-drift__investigate_button'
-                                                href={ActionTypes.DRIFT_URL}
-                                                target='_blank'>
+                                                onClick={e => navigateTo(e, ActionTypes.DRIFT_URL)}
+                                                href={ActionTypes.DRIFT_URL}>
                                                 {intl.formatMessage(messages.driftInventigateButtton)}
                                             </Button>
                                         </Flex>
@@ -148,7 +140,11 @@ const DriftCard = () => {
                                                                         <Text
                                                                             component={TextVariants.a}
                                                                             href={`${ActionTypes.DRIFT_BASELINES_URL}/${baseline.baselineId}`}
-                                                                            target='_blank'>
+                                                                            onClick={(e) => navigateTo(
+                                                                                e,
+                                                                                `${ActionTypes.DRIFT_BASELINES_URL}/${baseline.baselineId}`
+                                                                            )}
+                                                                        >
                                                                             {baseline.baselineName}
                                                                         </Text>
                                                                     </DataListCell>
@@ -160,13 +156,23 @@ const DriftCard = () => {
                                                                         </span>
                                                                     </DataListCell>
                                                                     <DataListCell key={index} className='ins-c-drift__data_list_cell_compare'>
-                                                                        <Text
-                                                                            component={TextVariants.a}
-                                                                            href={`${ActionTypes.DRIFT_COMPARE_URL}=${baseline.baselineId}`}
-                                                                            className='ins-c-drift__text_compare'
-                                                                            target='_blank'>
-                                                                            {intl.formatMessage(messages.driftCompare)}
-                                                                        </Text>
+                                                                        <Tooltip
+                                                                            content={
+                                                                                <div>
+                                                                                    {intl.formatMessage(messages.driftCompareTooltip)}
+                                                                                </div>}>
+                                                                            <Text
+                                                                                component={TextVariants.a}
+                                                                                href={buildCompareUrl(baseline.baselineId, baseline.systems)}
+                                                                                className='ins-c-drift__text_compare'
+                                                                                onClick={(e) => navigateTo(
+                                                                                    e,
+                                                                                    buildCompareUrl(baseline.baselineId, baseline.systems)
+                                                                                )}
+                                                                            >
+                                                                                {intl.formatMessage(messages.driftCompare)}
+                                                                            </Text>
+                                                                        </Tooltip>
                                                                     </DataListCell>
                                                                 </React.Fragment>
                                                             ]}
