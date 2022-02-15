@@ -11,32 +11,22 @@ There is a [comprehensive quick start guide in the Storybook Documentation](http
 
 Note: You will need to set up the Insights environment if you want to develop with the app due to the consumption of the chroming service as well as setting up your global/app navigation through the API.
 
-## Build app
-1. ```npm install```
+## Developing
 
-2. ```npm start```
-    - starts webpack bundler and serves the files with webpack dev server
+### First time setup
+1. Make sure you have [`Node.js`](https://nodejs.org/en/) and [`npm`](https://www.npmjs.com/) installed
+2. Run [script to patch your `/etc/hosts`](https://github.com/RedHatInsights/insights-proxy/blob/master/scripts/patch-etc-hosts.sh)
+3. Make sure you are using [Red Hat proxy](http://hdn.corp.redhat.com/proxy.pac)
+4. Clone this repository
+5. Run ```npm install``` to install dependencies
 
-OR 
+### Running locally
+1. Run ```npm run start:proxy``` to start chrome proxy and webpack bundler which serves the files with webpack dev server
+2. App will be running at ```https://stage.foo.redhat.com:1337/insights/dashboard/```
+## Testing
+### Testing locally
+  - `npm run test` will run all tests
+  - `npm run lint` will run linter
 
-2. ```npm run start:proxy```
-  - starts webpack bundler and serves the files with webpack dev server and runs chrome proxy (prod env) (one less terminal required)
-
-3. visit ```https://prod.foo.redhat.com:1337/insights/dashboard/```
-### Testing
-- Travis is used to test the build for this code.
-
-  - `npm run test` will run linters and tests
-
-## Deploying
-
-### How it works
-
-- any push to the `{REPO}` `master` branch will deploy to a `{REPO}-build` `ci-beta` branch
-- any push to the `{REPO}` `ci-stable` branch will deploy to a `{REPO}-build` `ci-stable` branch
-- any push to the `{REPO}` `qa-beta` branch will deploy to a `{REPO}-build` `qa-beta` branch
-- any push to the `{REPO}` `qa-stable` branch will deploy to a `{REPO}-build` `qa-stable` branch
-- any push to the `{REPO}` `prod-beta` branch will deploy to a `{REPO}-build` `prod-beta` branch
-- any push to the `{REPO}` `prod-stable` branch will deploy to a `{REPO}-build` `prod-stable` branch
-- Pull requests (based on master) will not be pushed to `{REPO}-build` `master` branch
-  - If the PR is accepted and merged, master will be rebuilt and will deploy to `{REPO}-build` `ci-beta` branch
+### Automated testing
+After creating PR or pushing to environment branch (`master`, `master-stable`, `prod-beta`, `prod-stable`) Travis is used to test this and to deploy to the corresponding environment.
