@@ -739,10 +739,15 @@ export default defineMessages({
         description: 'driftEmptyStateTitle',
         defaultMessage: 'No drifts from baselines found'
     },
-    driftEmptyStateBody: {
-        id: 'driftEmptyStateBody',
-        description: 'driftEmptyStateBody',
+    driftEmptyStateBodyCreateBaseline: {
+        id: 'driftEmptyStateBodyCreateBaseline',
+        description: 'driftEmptyStateBodyCreateBaseline',
         defaultMessage: 'You can create baselines and associate systems to it.'
+    },
+    driftEmptyStateBodyEnableNotif: {
+        id: 'driftEmptyStateBodyEnableNotif',
+        description: 'driftEmptyStateBodyEnableNotif',
+        defaultMessage: 'Note that drift notifications must be enabled to get the dashboard populated.'
     },
     driftInventigateButtton: {
         id: 'driftInvestigateButton',
