@@ -42,9 +42,9 @@ const DriftCard = () => {
     const dispatch = useDispatch();
     const navigateTo = useChromePush();
     const [activeDrift, setActiveDrift] = useState({
-        id: 'days-7',
-        description: intl.formatMessage(messages.driftDropDown7days),
-        startDate: getDate(7),
+        id: 'hours-24',
+        description: intl.formatMessage(messages.driftDropDown24hours),
+        startDate: getDate(1),
         endDate: getDate(0)
     });
     const [isCardExpanded, setIsCardExpanded] = useState(true);
