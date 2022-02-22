@@ -107,7 +107,10 @@ const Dashboard = ({ workloads }) => {
                                 {permission.ros &&
                                     <ResourceOptimizationCard/>
                                 }
-                                {permission.drift && <DriftCard/>}
+                            </Suspense>
+                            <Suspense>
+                                {permission.drift && permission.notifications
+                                && <DriftCard/>}
                             </Suspense>
                             {!isFedramp && (
                                 <Suspense fallback={ <Loading /> }>
