@@ -125,7 +125,7 @@ const DriftCard = () => {
                                         <Divider />
                                         <TextContent
                                             className='insd-c-width-limiter ins-c-drift__top_5'>
-                                            <p className='pf-u-font-size-sm'>
+                                            <p className='pf-u-font-size-sm pf-u-font-weight-bold'>
                                                 {intl.formatMessage(messages.driftTop5)}
                                             </p>
                                         </TextContent>
