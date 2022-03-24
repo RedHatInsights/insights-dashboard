@@ -17,7 +17,7 @@ import {
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
 import React, { useEffect, useState } from 'react';
 import { SEVERITY_MAP, UI_BASE } from '../../AppConstants';
-import { capitalize, sapFilter } from '../../Utilities/Common';
+import { capitalize, globalFilters } from '../../Utilities/Common';
 import {
     global_disabled_color_100,
     global_palette_blue_100,
@@ -76,7 +76,7 @@ const Advisor = () => {
         const advisorFetchStatsRecs = options => dispatch(AppActions.advisorFetchStatsRecs(options));
         const advisorFetchStatsSystems = options => dispatch(AppActions.advisorFetchStatsSystems(options));
         const advisorFetchIncidents = options => dispatch(AppActions.advisorFetchIncidents(options));
-        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
+        const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
         advisorFetchStatsRecs(options);
         advisorFetchStatsSystems(options);
         advisorFetchIncidents(options);
