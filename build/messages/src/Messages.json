@@ -16,7 +16,7 @@
     "description": "Advisor card header 3"
   },
   "advisorCardMessage": {
-    "defaultMessage": "Problematic conditions that cause an issue have been actively detected on your systems",
+    "defaultMessage": "Problematic conditions that cause an issue have been actively detected on your systems.",
     "description": "Advisor card message"
   },
   "advisorChartDescription": {
@@ -64,7 +64,7 @@
     "description": "Compliance - empty state body"
   },
   "complianceEmptyStateTitle": {
-    "defaultMessage": "No policies",
+    "defaultMessage": "No policies reported",
     "description": "Compliance - empty state title"
   },
   "complianceTitle": {
@@ -122,6 +122,66 @@
   "deniedStateTitle": {
     "defaultMessage": "You do not have access to {appName}",
     "description": "Denied state title"
+  },
+  "driftCardAppName": {
+    "defaultMessage": "Drift",
+    "description": "driftCardAppName"
+  },
+  "driftCardTitle": {
+    "defaultMessage": "Latest configuration drift",
+    "description": "driftCardTitle"
+  },
+  "driftCompare": {
+    "defaultMessage": "Compare",
+    "description": "driftCompare"
+  },
+  "driftCompareTooltip": {
+    "defaultMessage": "This will compare the baseline with up to 4 systems",
+    "description": "driftCompareTooltip"
+  },
+  "driftDropdown24hours": {
+    "defaultMessage": "Last 24 hours",
+    "description": "driftDropdown24hours"
+  },
+  "driftDropdown30days": {
+    "defaultMessage": "Last 30 days",
+    "description": "driftDropdown30days"
+  },
+  "driftDropdown7days": {
+    "defaultMessage": "Last 7 days",
+    "description": "driftDropdown7days"
+  },
+  "driftDropdown90days": {
+    "defaultMessage": "Last 90 days",
+    "description": "driftDropdown90days"
+  },
+  "driftEmptyStateBodyCreateBaseline": {
+    "defaultMessage": "You can create baselines and associate systems to it.",
+    "description": "driftEmptyStateBodyCreateBaseline"
+  },
+  "driftEmptyStateBodyEnableNotif": {
+    "defaultMessage": "Note that drift notifications must be enabled to get the dashboard populated.",
+    "description": "driftEmptyStateBodyEnableNotif"
+  },
+  "driftEmptyStateTitle": {
+    "defaultMessage": "No drifts from baselines found",
+    "description": "driftEmptyStateTitle"
+  },
+  "driftInvestigateButton": {
+    "defaultMessage": "Investigate in Drift",
+    "description": "driftInvestigateButton"
+  },
+  "driftNumOfEvents": {
+    "defaultMessage": "Number of drift events received",
+    "description": "driftNumOfEvents"
+  },
+  "driftSystems": {
+    "defaultMessage": "{systems, plural, =0 {No systems} one {# system} other {# systems}}",
+    "description": "driftSystems"
+  },
+  "driftTop5": {
+    "defaultMessage": "Top 5 baselines with most drift",
+    "description": "driftTop5"
   },
   "enhancementAdvisories": {
     "defaultMessage": "{count, plural, one {enhancement} other {enhancements}}",
@@ -307,6 +367,10 @@
     "defaultMessage": "{total} more remediations",
     "description": "Remediations - remediations total"
   },
+  "resourceOptimizationCardHeader": {
+    "defaultMessage": "Resource optimization",
+    "description": "Resource optimization card header"
+  },
   "rhm1": {
     "defaultMessage": "Red Hat Management gives you the flexibility to manage Red Hat Enterprise Linux on-premise or in a hosted environment",
     "description": "zero state last box"
@@ -318,6 +382,18 @@
   "rhm3": {
     "defaultMessage": "Red Hat Management includes Red Hat Satellite and the new cloud management services for Red Hat Enterprise Linux",
     "description": "zero state last box"
+  },
+  "rosCardConfigureSystemsCTA": {
+    "defaultMessage": "Get started with configuration",
+    "description": "Resource Optimization Configure Systems CTA"
+  },
+  "rosSystemsGenericMessage": {
+    "defaultMessage": "Red Hat recommends to assess and monitor cloud usage and optimization on these systems.",
+    "description": "when systems details are available in the resource optimization message"
+  },
+  "rosSystemsNotConfiguredMessage": {
+    "defaultMessage": "No systems configured yet? Get started with resource optimization.",
+    "description": "no systems configured with resource optimization message"
   },
   "security": {
     "defaultMessage": "Security",
@@ -431,6 +507,10 @@
     "defaultMessage": "Systems exposed",
     "description": "Systems exposed"
   },
+  "systemsWithSuggestions": {
+    "defaultMessage": "Systems with suggestions",
+    "description": "Resource Optimization - Systems with suggestions"
+  },
   "totalRisk": {
     "defaultMessage": "Total risk",
     "description": "Total risk"
@@ -438,6 +518,10 @@
   "totalRiskDef": {
     "defaultMessage": "A value derived from the <strong>likelihood</strong> that the condition will negatively affect your infrastructure, and the <strong>impact</strong> on system operation if that were to happen",
     "description": "Total risk definition"
+  },
+  "totalSystems": {
+    "defaultMessage": "Total systems",
+    "description": "Resource Optimization - total Systems"
   },
   "viewDetails": {
     "defaultMessage": "View details",
@@ -462,6 +546,10 @@
   "vulnerabilityMessage": {
     "defaultMessage": "Red Hat recommends addressing these CVEs with high priority due to heightened risk associated with these security issues",
     "description": "Vulnerability message"
+  },
+  "waitingForData": {
+    "defaultMessage": "Systems waiting for data",
+    "description": "Resource Optimization - Waiting for data"
   },
   "zslblBody": {
     "defaultMessage": "Deliver more reliable IT solutions by identifying performance and configuration risks before downtime occurs. With less downtime, IT can focus on higher value projects and deepen their skills.",
