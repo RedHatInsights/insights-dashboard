@@ -4,7 +4,7 @@ import * as AppActions from '../../AppActions';
 
 import React, { Fragment, useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
-import { sapFilter, workloadsPropType } from '../../Utilities/Common';
+import { globalFilters, workloadsPropType } from '../../Utilities/Common';
 
 import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import FailState from '../../PresentationalComponents/FailState/FailState';
@@ -37,7 +37,7 @@ const SystemInventoryCard = ({
     ]);
 
     useEffect(() => {
-        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
+        const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
         fetchInventoryTotal(options);
         fetchInventory(options);
         fetchInventoryStale(options);

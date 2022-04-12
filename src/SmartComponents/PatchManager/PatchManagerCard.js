@@ -4,7 +4,7 @@ import { Flex } from '@patternfly/react-core/dist/esm/layouts';
 import { PATCHMAN_ID, UI_BASE } from '../../AppConstants';
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
-import { capitalize, sapFilter, workloadsPropType } from '../../Utilities/Common';
+import { capitalize, globalFilters, workloadsPropType } from '../../Utilities/Common';
 import { patchmanFetchBugs, patchmanFetchEnhancements, patchmanFetchSecurity, patchmanFetchSystems } from '../../AppActions';
 
 import { Button } from '@patternfly/react-core/dist/esm/components';
@@ -53,7 +53,7 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
     ];
 
     useEffect(() => {
-        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
+        const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
         fetchSystems(options);
         fetchSecurity(options);
         fetchBugs(options);

@@ -9,7 +9,7 @@ import {
     FlexItem
 } from '@patternfly/react-core/dist/esm/layouts';
 import React, { useEffect } from 'react';
-import { sapFilter, workloadsPropType } from '../../Utilities/Common';
+import { globalFilters, workloadsPropType } from '../../Utilities/Common';
 
 // components
 import {
@@ -48,7 +48,7 @@ const SystemInventoryHeader = ({
     ]);
 
     useEffect(() => {
-        const options = { ...sapFilter(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
+        const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
         fetchInventoryTotal(options);
         fetchInventory(options);
         fetchInventoryStale(options);
