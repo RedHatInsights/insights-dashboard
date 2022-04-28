@@ -80,7 +80,7 @@ const SystemInventoryCard = ({
                             />
                         }
                         {inventoryStaleFetchStatus === 'fulfilled' &&
-                            <Button component="a" variant="link" href='./insights/inventory/?status=stale' isInline>
+                            <Button component="a" variant="link" href='./insights/inventory/?status=stale&source=insights' isInline>
                                 <IconInline
                                     message={ intl.formatMessage(messages.systemInventoryStale,
                                         { count: inventoryStaleSummary.total || 0 }
@@ -91,7 +91,7 @@ const SystemInventoryCard = ({
                             </Button>
                         }
                         {inventoryWarningFetchStatus === 'fulfilled' &&
-                            <Button component="a" variant="link" href='./insights/inventory/?status=stale_warning' isInline>
+                            <Button component="a" variant="link" href='./insights/inventory/?status=stale_warning&source=insights' isInline>
                                 <IconInline
                                     message={ intl.formatMessage(messages.systemInventoryStaleWarning,
                                         { count: inventoryWarningSummary.total || 0 }
