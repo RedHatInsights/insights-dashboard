@@ -1,4 +1,4 @@
-import '../../../src/PresentationalComponents/NumberDescription/NumberDescription.scss';
+import '../../PresentationalComponents/NumberDescription/NumberDescription.scss';
 
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts/Flex/index';
 
