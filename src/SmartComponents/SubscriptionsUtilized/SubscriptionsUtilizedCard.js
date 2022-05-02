@@ -25,7 +25,7 @@ import FailState from '../../PresentationalComponents/FailState/FailState';
 import FilterNotSupported from '../../PresentationalComponents/FilterNotSupported';
 import Immutable from 'seamless-immutable';
 import Loading from '../../PresentationalComponents/Loading/Loading';
-import { ProgressTemplate } from '../../../../insights-dashboard/src/ChartTemplates/Progress/ProgressTemplate';
+import { ProgressTemplate } from '../../ChartTemplates/Progress/ProgressTemplate';
 import PropTypes from 'prop-types';
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import { connect } from 'react-redux';
