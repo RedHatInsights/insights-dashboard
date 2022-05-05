@@ -1,4 +1,4 @@
-import '../../../src/PresentationalComponents/NumberData/NumberData.scss';
+import '../../PresentationalComponents/NumberData/NumberData.scss';
 
 import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/esm/components/Tooltip/Tooltip';
 
