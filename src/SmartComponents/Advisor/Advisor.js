@@ -28,7 +28,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CompoundCard } from '../../PresentationalComponents/Template/CompoundCard';
-import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
+import { ExclamationCircleIcon } from '@patternfly/react-icons';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import { INCIDENT_URL } from './Constants';
@@ -155,7 +155,7 @@ const Advisor = () => {
                                     alignItems={{ default: 'alignItemsFlexCenter' }}
                                     justifyContent={{ default: 'justifyContentCenter' }}>
                                     {advisorIncidents?.meta?.count > 0 &&
-                                        <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />}
+                                        <ExclamationCircleIcon className='pf-u-font-size-xl pf-u-danger-color-100' />}
                                     <span className='pf-u-font-size-2xl pf-u-text-align-center pf-u-font-weight-normal'>
                                         {intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })}
                                     </span>
@@ -163,7 +163,7 @@ const Advisor = () => {
                                 <TextContent
                                     className='insd-c-width-limiter pf-u-text-align-center'
                                     style={{ '--insd-c-width-limiter--MaxWidth': '34ch' }}>
-                                    <p className='pf-u-font-size-sm'>
+                                    <p className='pf-u-font-size-md pf-u-text-center'>
                                         {intl.formatMessage(messages.advisorCardMessage)}
                                     </p>
                                 </TextContent>
