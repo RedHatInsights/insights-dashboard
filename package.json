@@ -52,22 +52,24 @@
       "<rootDir>/config/setupTests.js"
     ],
     "transformIgnorePatterns": [
-      "<rootDir>/node_modules/(?!(@patternfly/react-tokens/|@patternfly/react-icons/)).*$"
-    ]
+      "<rootDir>/node_modules/(?!(@patternfly/react-core/|@patternfly/react-tokens/|@patternfly/react-icons/|@patternfly/react-charts/)).*$"
+    ],
+    "testEnvironment": "jsdom"
   },
   "dependencies": {
     "@babel/runtime": "7.15.4",
     "@patternfly/patternfly": "4.132.2",
-    "@patternfly/react-charts": "6.15.20",
-    "@patternfly/react-core": "4.152.4",
-    "@patternfly/react-icons": "4.11.14",
-    "@patternfly/react-table": "4.29.58",
-    "@patternfly/react-tokens": "4.12.15",
-    "@redhat-cloud-services/frontend-components": "3.4.1",
-    "@redhat-cloud-services/frontend-components-charts": "3.2.1",
+    "@patternfly/react-charts": "6.59.2",
+    "@patternfly/react-core": "^4.221.3",
+    "@patternfly/react-icons": "^4.72.3",
+    "@patternfly/react-table": "^4.90.3",
+    "@patternfly/react-tokens": "^4.73.3",
+    "@redhat-cloud-services/frontend-components": "^3.9.2",
+    "@redhat-cloud-services/frontend-components-notifications": "^3.2.7",
     "@redhat-cloud-services/frontend-components-translations": "3.2.3",
     "@redhat-cloud-services/frontend-components-utilities": "3.2.3",
     "classnames": "2.3.1",
+    "enzyme-to-json": "3.6.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-intl": "5.20.10",
@@ -75,6 +77,7 @@
     "react-router-dom": "5.3.0",
     "redux": "4.1.1",
     "redux-logger": "3.0.6",
+    "redux-mock-store": "1.5.4",
     "redux-promise-middleware": "6.1.2",
     "seamless-immutable": "7.1.4"
   },
@@ -89,7 +92,8 @@
     "@babel/preset-flow": "7.14.5",
     "@babel/preset-react": "7.14.5",
     "@formatjs/cli": "4.2.33",
-    "@redhat-cloud-services/frontend-components-config": "4.5.11",
+    "@redhat-cloud-services/frontend-components-config": "^4.6.13",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "axios": "0.21.4",
     "babel-jest": "27.1.0",
     "babel-plugin-dual-import": "1.2.1",
@@ -97,7 +101,6 @@
     "babel-polyfill": "6.26.0",
     "css-loader": "6.2.0",
     "enzyme": "3.11.0",
-    "enzyme-adapter-react-16": "1.15.6",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-loader": "4.0.2",

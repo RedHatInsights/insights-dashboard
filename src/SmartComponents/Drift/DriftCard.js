@@ -136,7 +136,8 @@ const DriftCard = () => {
                                                         <DataListItemCells
                                                             dataListCells={[
                                                                 <React.Fragment key={index}>
-                                                                    <DataListCell key={index} wrapModifier={DataListWrapModifier.truncate}>
+                                                                    <DataListCell key={`title-${index}`}
+                                                                        wrapModifier={DataListWrapModifier.truncate}>
                                                                         <Text
                                                                             component={TextVariants.a}
                                                                             href={`${ActionTypes.DRIFT_BASELINES_URL}/${baseline.baselineId}`}
@@ -148,14 +149,16 @@ const DriftCard = () => {
                                                                             {baseline.baselineName}
                                                                         </Text>
                                                                     </DataListCell>
-                                                                    <DataListCell key={index} className='ins-c-drift__data_list_cell_system_len'>
+                                                                    <DataListCell key={`system-${index}`}
+                                                                        className='ins-c-drift__data_list_cell_system_len'>
                                                                         <span className='pf-u-font-weight-normal ins-c-drift__system_len'>
                                                                             <SortUpIcon  color='black'/>
                                                                             {intl.formatMessage(messages.driftSystems,
                                                                                 { systems: baseline.systems.length })}
                                                                         </span>
                                                                     </DataListCell>
-                                                                    <DataListCell key={index} className='ins-c-drift__data_list_cell_compare'>
+                                                                    <DataListCell key={`compare-${index}`}
+                                                                        className='ins-c-drift__data_list_cell_compare'>
                                                                         <Tooltip
                                                                             content={
                                                                                 <div>

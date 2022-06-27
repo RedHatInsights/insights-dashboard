@@ -9,7 +9,7 @@ export const TimeStamp = ({ timestamp }) => (
 );
 
 TimeStamp.propTypes = {
-    timestamp: propTypes.string
+    timestamp: propTypes.oneOfType([propTypes.string, propTypes.node])
 };
 
 export default TimeStamp;
