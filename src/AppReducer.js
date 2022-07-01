@@ -4,7 +4,7 @@ import { parseDriftData } from './SmartComponents/Drift/utils';
 import Immutable from 'seamless-immutable';
 
 // eslint-disable-next-line new-cap
-const initialState = Immutable({
+export const initialState = Immutable({
     complianceSummary: {},
     complianceFetchStatus: '',
     vulnerabilities: {},
