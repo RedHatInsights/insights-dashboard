@@ -17,7 +17,7 @@ objects:
           - v1
       frontend:
         paths:
-          - /insights/dashboard
+          - /apps/dashboard
 parameters:
   - name: ENV_NAME
     required: true
