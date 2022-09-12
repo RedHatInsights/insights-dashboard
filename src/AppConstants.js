@@ -59,9 +59,9 @@ export const INVENTORY_TOTAL_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?${I
 export const INVENTORY_FETCH = 'INVENTORY_FETCH';
 export const INVENTORY_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?registered_with=insights&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_STALE_FETCH = 'INVENTORY_STALE_FETCH';
-export const INVENTORY_STALE_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale&registered_with=insights&${INVENTORY_PER_PAGE}`;
+export const INVENTORY_STALE_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale&registered_with=puptoo&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_WARNING_FETCH = 'INVENTORY_WARNING_FETCH';
-export const INVENTORY_WARNING_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale_warning&registered_with=insights&${INVENTORY_PER_PAGE}`;
+export const INVENTORY_WARNING_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale_warning&registered_with=puptoo&${INVENTORY_PER_PAGE}`;
 
 // Remediations App Constants
 const REMEDIATIONS_BASE = '/remediations/v1';
