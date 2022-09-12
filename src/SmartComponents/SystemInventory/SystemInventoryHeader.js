@@ -107,8 +107,8 @@ const SystemInventoryHeader = ({
                                     <Button
                                         component="a"
                                         variant="link"
-                                        onClick={e => navigateTo(e, './insights/inventory/?status=stale')}
-                                        href='./insights/inventory/?status=stale'
+                                        onClick={e => navigateTo(e, './insights/inventory/?status=stale&source=puptoo')}
+                                        href='./insights/inventory/?status=stale&source=puptoo'
                                         isInline
                                     >
                                         <IconInline
@@ -126,8 +126,8 @@ const SystemInventoryHeader = ({
                                     <Button
                                         component="a"
                                         variant="link"
-                                        onClick={e => navigateTo(e, './insights/inventory/?status=stale_warning')}
-                                        href='./insights/inventory/?status=stale_warning'
+                                        onClick={e => navigateTo(e, './insights/inventory/?status=stale_warning&source=puptoo')}
+                                        href='./insights/inventory/?status=stale_warning&source=puptoo'
                                         isInline
                                     >
                                         <IconInline
