@@ -57,7 +57,7 @@ const INVENTORY_PER_PAGE = 'per_page=1';
 export const INVENTORY_TOTAL_FETCH = 'INVENTORY_TOTAL_FETCH';
 export const INVENTORY_TOTAL_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?${INVENTORY_PER_PAGE}`;
 export const INVENTORY_FETCH = 'INVENTORY_FETCH';
-export const INVENTORY_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?registered_with=insights&${INVENTORY_PER_PAGE}`;
+export const INVENTORY_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?registered_with=puptoo&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_STALE_FETCH = 'INVENTORY_STALE_FETCH';
 export const INVENTORY_STALE_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale&registered_with=puptoo&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_WARNING_FETCH = 'INVENTORY_WARNING_FETCH';
