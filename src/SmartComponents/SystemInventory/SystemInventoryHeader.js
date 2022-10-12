@@ -82,7 +82,7 @@ const SystemInventoryHeader = ({
                                 linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
                                     { count: inventorySummary.total || 0 }
                                 ) }
-                                link='./insights/inventory/?status=fresh&status=stale&source=insights'
+                                link='./insights/inventory/?status=fresh&status=stale&source=puptoo'
                             />
                         }
                         {/* {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
