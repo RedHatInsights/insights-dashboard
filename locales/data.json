@@ -1,9 +1,9 @@
 {
   "en": {
     "dashboardTitle": "Dashboard",
-    "subscriptionsUtilizedTitle": "Subscription Watch utilization summary",
-    "subscriptionsUtilizedLearnMore": "Activate Subscription Watch to monitor your subscription utilization.",
-    "subscriptionsUtilizedLearnMoreAction": "Learn about Subscription Watch",
+    "subscriptionsUtilizedTitle": "Subscriptions utilization summary",
+    "subscriptionsUtilizedLearnMore": "Activate Subscriptions to monitor your subscription utilization.",
+    "subscriptionsUtilizedLearnMoreAction": "Learn about Subscriptions",
     "subscriptionsUtilizedNoProductData": "No data available",
     "subscriptionsUtilizedProductOneTitle": "Red Hat OpenShift",
     "subscriptionsUtilizedProductOneDesc": "OpenShift cores: {totalReport}",
