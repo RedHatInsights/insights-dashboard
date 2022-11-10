@@ -27,7 +27,7 @@
     "start:proxy:beta": "NODE_ENV=development BETA=true webpack serve --config config/dev.webpack.config.js",
     "start": "npm run start:proxy",
     "start:beta": "npm run start:proxy:beta",
-    "test": "jest --verbose",
+    "test": "jest --coverage --verbose",
     "translations": "npm-run-all translations:*",
     "translations:extract": "npx formatjs extract ./src/*.js --out-file ./build/messages/src/Messages.json",
     "translations:compile": "npx formatjs compile ./build/messages/src/Messages.json --out-file ./locales/translations.json",
@@ -38,8 +38,8 @@
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**/*.{js|jsx}",
-      "!src/**/stories/*"
+      "src/**/*.{js,jsx}",
+      "!**/node_modules/**"
     ],
     "coverageDirectory": "./coverage/",
     "moduleNameMapper": {
