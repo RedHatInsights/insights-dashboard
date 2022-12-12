@@ -79,6 +79,10 @@
     "defaultMessage": "{score}% compliant",
     "description": "Compliance - compliant score"
   },
+  "configureIntigrations": {
+    "defaultMessage": "Configure Integrations",
+    "description": "configureIntigrations button label"
+  },
   "contactsales": {
     "defaultMessage": "Contact sales",
     "description": "Contact sales"
@@ -420,15 +424,15 @@
     "description": "Category chart  value"
   },
   "subscriptionsTitle": {
-    "defaultMessage": "Subscription Watch",
+    "defaultMessage": "Subscriptions",
     "description": "Title of the subscriptions utilized card"
   },
   "subscriptionsUtilizedLearnMore": {
-    "defaultMessage": "Activate Subscription Watch to monitor your subscription utilization.",
+    "defaultMessage": "Activate Subscriptions to monitor your subscription utilization.",
     "description": "Subscriptions utilized card - learn more description"
   },
   "subscriptionsUtilizedLearnMoreAction": {
-    "defaultMessage": "Learn about Subscription Watch",
+    "defaultMessage": "Learn about Subscriptions",
     "description": "Subscriptions utilized card - learn more action"
   },
   "subscriptionsUtilizedNoProductData": {
@@ -460,7 +464,7 @@
     "description": "Subscriptions utilized card - product two report total"
   },
   "subscriptionsUtilizedTitle": {
-    "defaultMessage": "Subscription Watch utilization summary",
+    "defaultMessage": "Subscriptions utilization summary",
     "description": "Title of the subscriptions utilized card"
   },
   "systemInventoryCTA": {

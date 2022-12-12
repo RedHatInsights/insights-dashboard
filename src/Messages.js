@@ -788,5 +788,10 @@ export default defineMessages({
         id: 'driftCompareTooltip',
         description: 'driftCompareTooltip',
         defaultMessage: 'This will compare the baseline with up to 4 systems'
+    },
+    configureIntegrations: {
+        id: 'configureIntigrations',
+        description: 'configureIntigrations button label',
+        defaultMessage: 'Configure Integrations'
     }
 });

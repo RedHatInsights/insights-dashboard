@@ -146,6 +146,16 @@ const SystemInventoryHeader = ({
                         </Flex>
                         <FlexItem align={{ md: 'alignRight' }}>
                             <Button
+                                className='pf-u-mr-sm pf-u-font-size-md'
+                                component='a'
+                                variant='secondary'
+                                isSmall
+                                onClick={e => navigateTo(e, `settings/integrations`)}
+                                href={ `settings/integrations` }
+                            >
+                                { intl.formatMessage(messages.configureIntegrations) }
+                            </Button>
+                            <Button
                                 component='a'
                                 variant='primary'
                                 onClick={e => navigateTo(e, `${UI_BASE}/registration`)}
