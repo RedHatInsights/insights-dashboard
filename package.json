@@ -125,8 +125,5 @@
   },
   "insights": {
     "appname": "dashboard"
-  },
-  "routes": {
-    "dashboard": "/dashboard"
   }
 }
