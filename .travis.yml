@@ -13,7 +13,7 @@ jobs:
     - stage: Test
       script: npm run test && npm run test:ct && npm run coverage
     - stage: Deploy
-      script: curl -sSL https://raw.githubusercontent.com/RedHatInsights/insights-frontend-builder-common/master/src/bootstrap.sh | bash -s
+      script: npm run travis:build && curl -sSL https://raw.githubusercontent.com/RedHatInsights/insights-frontend-builder-common/master/src/bootstrap.sh | bash -s
 env:
   global:
   - REPO="git@github.com:RedHatInsights/insights-dashboard-build"
