@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/RedHatInsights/insights-dashboard.svg?branch=master)](https://travis-ci.org/RedHatInsights/insights-dashboard)
+[![Build Status](https://travis-ci.org/RedHatInsights/insights-dashboard.svg?branch=master)](https://travis-ci.org/RedHatInsights/insights-dashboard) [![codecov](https://codecov.io/gh/RedHatInsights/insights-dashboard/branch/master/graph/badge.svg)](https://codecov.io/gh/RedHatInsights/insights-dashboard)
 
 # insights-dashboard
 Built to match the mockups here https://marvelapp.com/a5c8bcg/screen/66136610
