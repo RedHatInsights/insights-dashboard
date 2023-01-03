@@ -19,6 +19,7 @@
   "complianceTitle": "Compliance",
   "compliantHostCount": "{count, plural, one {# system} other {# systems}}",
   "compliantScore": "{score}% compliant",
+  "configureIntigrations": "Configure Integrations",
   "contactsales": "Contact sales",
   "critical": "Critical",
   "cveByCvssScoreTitle": "CVEs by CVSS score",

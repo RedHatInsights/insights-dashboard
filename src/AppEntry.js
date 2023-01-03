@@ -11,7 +11,7 @@ import messages from '../locales/data.json';
 const AppEntry = () =>
     <IntlProvider locale={ navigator.language.slice(0, 2) } messages={ messages } onError={ console.log }>
         <Provider store={ init().getStore() }>
-            <Router basename={ getBaseName(window.location.pathname) }>
+            <Router basename={ getBaseName(window.location.pathname, 1) }>
                 <App />
             </Router>
         </Provider>
