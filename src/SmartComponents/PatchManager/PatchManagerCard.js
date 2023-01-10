@@ -20,7 +20,6 @@ import { connect } from 'react-redux';
 import global_disabled_color_100 from '@patternfly/react-tokens/dist/esm/global_disabled_color_100';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
-import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 /**
  * Operating systems card for showing the ratio of operating systems used.
@@ -60,8 +59,6 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
         fetchEnhancements(options);
     }, [fetchSystems, fetchSecurity, fetchBugs, fetchEnhancements, workloads, SID, selectedTags]);
 
-    const navigateTo = useChromePush();
-
     if (systemsStatus === 'rejected') {
         return (
             <TemplateCard appName='PatchManager' className={'insd-c-dashboard__card--Patch'}>
@@ -81,7 +78,6 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                 <Flex direction={{ default: 'column' }}>
                     <Button
                         component='a'
-                        onClick={e => navigateTo(e, `${UI_BASE}/${PATCHMAN_ID}/systems`)}
                         href={`${UI_BASE}/${PATCHMAN_ID}/systems`}
                         variant='link'
                         isInline>
@@ -103,7 +99,7 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
                         <div className='insd-c-dashboard__card-pie-chart-legend'>
                             <div className="insd-c-legend">
                                 {pieChartData.map((item, index) =>
-                                    <a key={item.url} onClick={e => navigateTo(e, item.url)} href={item.url} className='insd-c-legend__item'>
+                                    <a key={item.url} href={item.url} className='insd-c-legend__item'>
                                         <span className='insd-c-legend__dot'
                                             style={{ '--insd-c-legend__dot--BackgroundColor': `${colorScale[index]}` }} />
                                         <span className='insd-c-legend__text'>{item.y} {capitalize(item.x)}</span>
