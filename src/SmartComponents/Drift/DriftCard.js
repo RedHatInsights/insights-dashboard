@@ -34,13 +34,11 @@ import routerParams from '@redhat-cloud-services/frontend-components-utilities/R
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
-import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 const DriftCard = () => {
 
     const intl = useIntl();
     const dispatch = useDispatch();
-    const navigateTo = useChromePush();
     const [activeDrift, setActiveDrift] = useState({
         id: 'hours-24',
         description: intl.formatMessage(messages.driftDropDown24hours),
@@ -117,7 +115,6 @@ const DriftCard = () => {
                                                 variant="secondary"
                                                 component='a'
                                                 className='ins-c-drift__investigate_button'
-                                                onClick={e => navigateTo(e, ActionTypes.DRIFT_URL)}
                                                 href={ActionTypes.DRIFT_URL}>
                                                 {intl.formatMessage(messages.driftInventigateButtton)}
                                             </Button>
@@ -141,10 +138,6 @@ const DriftCard = () => {
                                                                         <Text
                                                                             component={TextVariants.a}
                                                                             href={`${ActionTypes.DRIFT_BASELINES_URL}/${baseline.baselineId}`}
-                                                                            onClick={(e) => navigateTo(
-                                                                                e,
-                                                                                `${ActionTypes.DRIFT_BASELINES_URL}/${baseline.baselineId}`
-                                                                            )}
                                                                         >
                                                                             {baseline.baselineName}
                                                                         </Text>
@@ -168,10 +161,6 @@ const DriftCard = () => {
                                                                                 component={TextVariants.a}
                                                                                 href={buildCompareUrl(baseline.baselineId, baseline.systems)}
                                                                                 className='ins-c-drift__text_compare'
-                                                                                onClick={(e) => navigateTo(
-                                                                                    e,
-                                                                                    buildCompareUrl(baseline.baselineId, baseline.systems)
-                                                                                )}
                                                                             >
                                                                                 {intl.formatMessage(messages.driftCompare)}
                                                                             </Text>

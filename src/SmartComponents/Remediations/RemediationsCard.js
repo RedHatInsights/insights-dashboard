@@ -18,7 +18,6 @@ import { connect } from 'react-redux';
 import messages from '../../Messages';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
 import { useIntl } from 'react-intl';
-import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 const RemediationsCard = ({
     fetchRemediations, remediationsFetchStatus, remediations
@@ -29,8 +28,6 @@ const RemediationsCard = ({
     useEffect(() => {
         fetchRemediations();
     }, [fetchRemediations]);
-
-    const navigateTo = useChromePush();
 
     return (
         <ExpandableCardTemplate
@@ -59,7 +56,6 @@ const RemediationsCard = ({
                                                 <Button
                                                     id='remediations-link-more'
                                                     component='a'
-                                                    onClick={e => navigateTo(e, './insights/remediations')}
                                                     href='./insights/remediations'
                                                     variant='link'
                                                     isInline
