@@ -56,7 +56,7 @@ const Advisor = () => {
 
     const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length ?
         `&tags=${selectedTags?.join()}` : ''}${workloads?.SAP ? '&sap_system=true' : ''}${SID?.length ? `&sap_sids=${SID?.join()}` : ''}`;
-    const totalRiskUrl = risk => `${UI_BASE}/advisor/recommendations?total_risk=${risk}${urlRest}`;
+    const totalRiskUrl = risk => `${UI_BASE}/advisor/recommendations?sort=total_risk=${risk}${urlRest}`;
     const pieLegendData = categoryData.map(item => ({
         name: `${item.y} ${item.x} `, fill: `${item.fill}`,
         url: `${UI_BASE}/advisor/recommendations?category=${item.value}${urlRest}`
