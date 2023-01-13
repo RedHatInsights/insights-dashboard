@@ -28,10 +28,10 @@ import IconList from '../IconList/IconList';
 import IconListItem from '../IconList/IconListItem';
 import ImgInsSmartMgmt from '../../images/img__ins-and-sm.png';
 import MarketingBanner from '../MarketingBanner/MarketingBanner';
-import { UI_BASE } from '../../AppConstants';
-import { VULNERABILITIES_CVES_URL } from '../../AppConstants';
+import { UI_BASE, VULNERABILITIES_CVES_URL } from '../../AppConstants';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 // eslint-disable-next-line no-unused-vars
 const SortableTable = () => {
@@ -85,6 +85,15 @@ const SortableTable = () => {
 
 const ZeroState = () => {
     const intl = useIntl();
+    const { hideGlobalFilter } = useChrome();
+
+    useEffect(() => {
+        hideGlobalFilter?.();
+
+        return () => {
+            hideGlobalFilter?.(false);
+        };
+    }, []);
 
     return <div className='insd-c-marketing-page'>
         <MarketingBanner

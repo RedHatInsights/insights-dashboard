@@ -38,7 +38,6 @@ import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
-import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 const Advisor = () => {
     const colors = [global_palette_blue_100.value, global_palette_blue_200.value, global_palette_blue_300.value, global_palette_blue_400.value];
@@ -133,8 +132,6 @@ const Advisor = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [recStats, recStatsStatus]);
 
-    const navigateTo = useChromePush();
-
     return <CompoundCard className='insd-c-dashboard-card-parent insd-c-dashboard__card--compound--Advisor'>
         {advisorIncidentsStatus === 'pending' || recStatsStatus === 'pending' && <Loading />}
         {advisorIncidentsStatus === 'rejected' ?
@@ -171,7 +168,6 @@ const Advisor = () => {
                             <Button
                                 variant='secondary'
                                 isSmall component='a'
-                                onClick={e => navigateTo(e, `${UI_BASE}${INCIDENT_URL}`)}
                                 href={`${UI_BASE}${INCIDENT_URL}`}
                             >
                                 {intl.formatMessage(messages.advisorCardCTA)}
@@ -195,7 +191,7 @@ const Advisor = () => {
                             spaceItems={{ default: 'spaceItemsLg', sm: 'spaceItems2xl' }}
                         >
                             {trData.map(({ title, risk, value }) =>
-                                <a key={title} onClick={e => navigateTo(e, totalRiskUrl(value))} href={totalRiskUrl(value)}>
+                                <a key={title} href={totalRiskUrl(value)}>
                                     <Flex
                                         direction={{ default: 'column' }}
                                         spaceItems={{ default: 'spaceItemsNone' }}
@@ -233,7 +229,6 @@ const Advisor = () => {
                                                 {pieLegendData.map((item) =>
                                                     <a
                                                         key={item.url}
-                                                        onClick={e => navigateTo(e, item.url)}
                                                         href={item.url}
                                                         className='insd-c-legend__item'
                                                     >

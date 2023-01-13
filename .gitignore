@@ -21,3 +21,12 @@ coverage
 
 ## build stuff
 build
+
+# cypress
+cypress/downloads
+cypress/screenshots
+cypress/videos
+
+codecov*
+.nyc_output/
+reports/

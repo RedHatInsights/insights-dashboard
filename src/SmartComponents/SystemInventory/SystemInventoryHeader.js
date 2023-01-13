@@ -27,7 +27,6 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 // eslint-disable-next-line no-unused-vars
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook/RBACHook';
-import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -58,8 +57,6 @@ const SystemInventoryHeader = ({
 
     const intl = useIntl();
 
-    const navigateTo = useChromePush();
-
     return <React.Fragment>
         {
             hasAccess === false ?
@@ -82,7 +79,7 @@ const SystemInventoryHeader = ({
                                 linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
                                     { count: inventorySummary.total || 0 }
                                 ) }
-                                link='./insights/inventory/?status=fresh&status=stale&source=puptoo'
+                                link='./insights/inventory/?source=puptoo'
                             />
                         }
                         {/* {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
@@ -107,7 +104,6 @@ const SystemInventoryHeader = ({
                                     <Button
                                         component="a"
                                         variant="link"
-                                        onClick={e => navigateTo(e, './insights/inventory/?status=stale&source=puptoo')}
                                         href='./insights/inventory/?status=stale&source=puptoo'
                                         isInline
                                     >
@@ -126,7 +122,6 @@ const SystemInventoryHeader = ({
                                     <Button
                                         component="a"
                                         variant="link"
-                                        onClick={e => navigateTo(e, './insights/inventory/?status=stale_warning&source=puptoo')}
                                         href='./insights/inventory/?status=stale_warning&source=puptoo'
                                         isInline
                                     >
@@ -146,9 +141,17 @@ const SystemInventoryHeader = ({
                         </Flex>
                         <FlexItem align={{ md: 'alignRight' }}>
                             <Button
+                                className='pf-u-mr-sm pf-u-font-size-md'
+                                component='a'
+                                variant='secondary'
+                                isSmall
+                                href={ `settings/integrations` }
+                            >
+                                { intl.formatMessage(messages.configureIntegrations) }
+                            </Button>
+                            <Button
                                 component='a'
                                 variant='primary'
-                                onClick={e => navigateTo(e, `${UI_BASE}/registration`)}
                                 href={ `${UI_BASE}/registration` }
                             >
                                 { intl.formatMessage(messages.systemInventoryCTA) }
