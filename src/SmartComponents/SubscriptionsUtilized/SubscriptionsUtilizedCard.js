@@ -32,7 +32,6 @@ import { connect } from 'react-redux';
 import messages from '../../Messages';
 import moment from 'moment/moment';
 import { useIntl } from 'react-intl';
-import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 /**
  * Subscriptions utilized card for showing the portion of Subscriptions used.
@@ -95,8 +94,6 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
         subscriptionsUtilizedProductTwoFetchStatus
     ]);
 
-    const navigateTo = useChromePush();
-
     const { productError, productOptIn, productOne = {}, productTwo = {} } = products;
 
     const productTwoTooltip = (
@@ -134,7 +131,6 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                         >
                             <Button className='insd-c-subscriptions-utilized__chart-link'
                                 variant='link'
-                                onClick={e => navigateTo(e, link)}
                                 href={link} component='a'
                             >
                                 <ProgressTemplate
@@ -188,7 +184,6 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                                 <Button
                                     className='insd-c-subscriptions-utilized__app-link'
                                     variant='link'
-                                    onClick={e => navigateTo(e, SW_PATHS.APP)}
                                     href={SW_PATHS.APP}
                                     component='a'
                                 >
@@ -206,7 +201,6 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                     }
                 </React.Fragment>
                 : <FilterNotSupported
-                    onClick={e => navigateTo(e, SW_PATHS.APP)}
                     href={SW_PATHS.APP}
                     title={intl.formatMessage(messages.filterNotApplicable)}
                     appName={intl.formatMessage(messages.subscriptionsTitle)}

@@ -7,11 +7,8 @@ import CriticalIcon from '../../Icons/CriticalIcon';
 import { NumberData } from '../../PresentationalComponents/NumberData/NumberData';
 import React from 'react';
 import propTypes from 'prop-types';
-import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 export const NumberDescription = ({ data, dataSize, link, linkDescription, layout, critical, iconTooltipText }) => {
-    const navigateTo = useChromePush();
-
     return (
         <div className={ `${layout ? `pf-m-${layout}` : ''}` }>
             {critical === 'true' && (
@@ -22,7 +19,7 @@ export const NumberDescription = ({ data, dataSize, link, linkDescription, layou
                     <NumberData data={ data } dataSize={ dataSize } iconTooltipText={ iconTooltipText } />
                 </FlexItem>
                 <FlexItem>
-                    <Button component='a' onClick={e => navigateTo(e, link)} isInline variant="link" href={ link } >{linkDescription}</Button>
+                    <Button component='a' isInline variant="link" href={ link } >{linkDescription}</Button>
                 </FlexItem>
             </Flex>
         </div>

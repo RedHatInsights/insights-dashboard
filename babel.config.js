@@ -22,5 +22,12 @@ module.exports = {
           },
           'react-icons',
         ],
-    ]
+    ],
+    "env": {
+      "componentTest": {
+        plugins: [
+          "istanbul"
+        ]
+      }
+    }
 }

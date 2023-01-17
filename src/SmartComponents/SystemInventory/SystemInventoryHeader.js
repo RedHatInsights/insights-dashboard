@@ -27,7 +27,6 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 // eslint-disable-next-line no-unused-vars
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook/RBACHook';
-import { useChromePush } from '../../Utilities/hooks/useChromePush';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -57,8 +56,6 @@ const SystemInventoryHeader = ({
     );
 
     const intl = useIntl();
-
-    const navigateTo = useChromePush();
 
     return <React.Fragment>
         {
@@ -107,7 +104,6 @@ const SystemInventoryHeader = ({
                                     <Button
                                         component="a"
                                         variant="link"
-                                        onClick={e => navigateTo(e, './insights/inventory/?status=stale&source=puptoo')}
                                         href='./insights/inventory/?status=stale&source=puptoo'
                                         isInline
                                     >
@@ -126,7 +122,6 @@ const SystemInventoryHeader = ({
                                     <Button
                                         component="a"
                                         variant="link"
-                                        onClick={e => navigateTo(e, './insights/inventory/?status=stale_warning&source=puptoo')}
                                         href='./insights/inventory/?status=stale_warning&source=puptoo'
                                         isInline
                                     >
@@ -150,7 +145,6 @@ const SystemInventoryHeader = ({
                                 component='a'
                                 variant='secondary'
                                 isSmall
-                                onClick={e => navigateTo(e, `settings/integrations`)}
                                 href={ `settings/integrations` }
                             >
                                 { intl.formatMessage(messages.configureIntegrations) }
@@ -158,7 +152,6 @@ const SystemInventoryHeader = ({
                             <Button
                                 component='a'
                                 variant='primary'
-                                onClick={e => navigateTo(e, `${UI_BASE}/registration`)}
                                 href={ `${UI_BASE}/registration` }
                             >
                                 { intl.formatMessage(messages.systemInventoryCTA) }
