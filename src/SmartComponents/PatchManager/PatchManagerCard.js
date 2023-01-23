@@ -31,7 +31,7 @@ const PatchManagerCard = ({
 }) => {
     const intl = useIntl();
     const isLoaded = [systemsStatus, advisoriesStatus].every(item => item === 'fulfilled');
-    const security = advisories.security;
+    const { security, bugfix: bugs, enhancement: enhancements } = advisories || {};
     const bugs = advisories.bugfix;
     const enhancements = advisories.enhancement;
     const pieChartData = [
