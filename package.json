@@ -41,8 +41,8 @@
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**/*.{js|jsx}",
-      "!src/**/stories/*"
+      "src/**/*.{js,jsx}",
+      "!**/node_modules/**"
     ],
     "coverageDirectory": "./codecov-jest/",
     "moduleNameMapper": {
