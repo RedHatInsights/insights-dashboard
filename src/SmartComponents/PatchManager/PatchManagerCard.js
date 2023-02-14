@@ -5,7 +5,7 @@ import { PATCHMAN_ID, UI_BASE } from '../../AppConstants';
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { capitalize, globalFilters, workloadsPropType } from '../../Utilities/Common';
-import { patchmanFetchBugs, patchmanFetchEnhancements, patchmanFetchSecurity, patchmanFetchSystems } from '../../AppActions';
+import { patchmanFetchAdvisories, patchmanFetchSystems } from '../../AppActions';
 
 import { Button } from '@patternfly/react-core/dist/esm/components';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
@@ -22,13 +22,16 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 
 /**
- * Operating systems card for showing the ratio of operating systems used.
+ * Card for showing the systems and ratios of current advisories.
  */
-const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity, securityStatus,
-    security, bugs, fetchBugs, bugsStatus, enhancements, fetchEnhancements, enhancementsStatus,
-    selectedTags, workloads, SID }) => {
+const PatchManagerCard = ({
+    systems, systemsStatus, fetchSystems,
+    advisories, advisoriesStatus, fetchAdvisories,
+    selectedTags, workloads, SID
+}) => {
     const intl = useIntl();
-    const isLoaded = [systemsStatus, securityStatus, bugsStatus, enhancementsStatus].every(item => item === 'fulfilled');
+    const isLoaded = [systemsStatus, advisoriesStatus].every(item => item === 'fulfilled');
+    const { security, bugfix: bugs, enhancement: enhancements } = advisories || {};
     const pieChartData = [
         {
             x: intl.formatMessage(messages.securityAdvisories, { count: security }), y: security, fill: chart_color_blue_400.value,
@@ -54,10 +57,8 @@ const PatchManagerCard = ({ systems, systemsStatus, fetchSystems, fetchSecurity,
     useEffect(() => {
         const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
         fetchSystems(options);
-        fetchSecurity(options);
-        fetchBugs(options);
-        fetchEnhancements(options);
-    }, [fetchSystems, fetchSecurity, fetchBugs, fetchEnhancements, workloads, SID, selectedTags]);
+        fetchAdvisories(options);
+    }, [fetchSystems, fetchAdvisories, workloads, SID, selectedTags]);
 
     if (systemsStatus === 'rejected') {
         return (
@@ -118,15 +119,9 @@ PatchManagerCard.propTypes = {
     systems: PropTypes.any,
     systemsStatus: PropTypes.string,
     fetchSystems: PropTypes.func,
-    fetchSecurity: PropTypes.func,
-    security: PropTypes.any,
-    securityStatus: PropTypes.string,
-    fetchBugs: PropTypes.func,
-    bugs: PropTypes.any,
-    bugsStatus: PropTypes.string,
-    fetchEnhancements: PropTypes.func,
-    enhancements: PropTypes.any,
-    enhancementsStatus: PropTypes.string,
+    advisories: PropTypes.any,
+    advisoriesStatus: PropTypes.string,
+    fetchAdvisories: PropTypes.func,
     selectedTags: PropTypes.arrayOf(PropTypes.string),
     workloads: workloadsPropType,
     SID: PropTypes.arrayOf(PropTypes.string)
@@ -136,20 +131,14 @@ export default connect(
     ({ DashboardStore }) => ({
         systems: DashboardStore.patchmanSystems,
         systemsStatus: DashboardStore.patchmanSystemsStatus,
-        security: DashboardStore.patchmanSecurity,
-        securityStatus: DashboardStore.patchmanSecurityStatus,
-        bugs: DashboardStore.patchmanBugs,
-        bugsStatus: DashboardStore.patchmanBugsStatus,
-        enhancements: DashboardStore.patchmanEnhancements,
-        enhancementsStatus: DashboardStore.patchmanEnhancementsStatus,
+        advisories: DashboardStore.patchmanAdvisories,
+        advisoriesStatus: DashboardStore.patchmanAdvisoriesStatus,
         selectedTags: DashboardStore.selectedTags,
         workloads: DashboardStore.workloads,
         SID: DashboardStore.SID
     }),
     dispatch => ({
         fetchSystems: (options) => dispatch(patchmanFetchSystems(options)),
-        fetchSecurity: (options) => dispatch(patchmanFetchSecurity(options)),
-        fetchBugs: (options) => dispatch(patchmanFetchBugs(options)),
-        fetchEnhancements: (options) => dispatch(patchmanFetchEnhancements(options))
+        fetchAdvisories: (options) => dispatch(patchmanFetchAdvisories(options))
     })
 )(PatchManagerCard);
