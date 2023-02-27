@@ -3,7 +3,7 @@ import * as RHSM_TYPES from './Constants';
 
 describe('SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedHelpers', () => {
     it('should return a range of date and time that includes the prior date', () => {
-        expect(setRangedDateTime('20200401')).toMatchSnapshot('date and time');
+        expect(setRangedDateTime('2020-04-01')).toMatchSnapshot('date and time');
     });
 
     it('should return a predictable schema object', () => {
