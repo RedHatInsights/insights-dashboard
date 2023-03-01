@@ -1,26 +1,22 @@
-import moment from 'moment';
 import { RHSM_API_RESPONSE_DATA_TYPES } from './Constants';
 
 /**
- * Generate a range of dates.
+ * Generate a range of dates, from the start of 'date' minus 'subtract' days, to the end of 'date'
  *
  * @param {Date} date
  * @param {number} subtract
- * @param {string} measurement
  * @returns {{endDate: Date, startDate: Date}}
  */
-export const setRangedDateTime = (date = new Date(), subtract = 1, measurement = 'days') => ({
-    startDate: moment
-    .utc(date)
-    .startOf(measurement)
-    .subtract(subtract, measurement)
-    .toDate(),
-    endDate: moment
-    .utc(date)
-    .startOf(measurement)
-    .endOf('days')
-    .toDate()
-});
+export const setRangedDateTime = (date = new Date(), subtract = 1) => {
+    if (typeof(date) === 'string') {
+        date = new Date(date);
+    }
+
+    return {
+        startDate: new Date(new Date(date.setUTCHours(0, 0, 0, 0)).setUTCDate(date.getUTCDate() - subtract)),
+        endDate: new Date(date.setUTCHours(23, 59, 59, 999))
+    };
+};
 
 /**
  * Apply a set of schemas using either an array of objects in the
