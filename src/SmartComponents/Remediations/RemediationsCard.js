@@ -46,13 +46,7 @@ const RemediationsCard = ({
                             (remediations.data.length > 0 ?
                                 <React.Fragment>
                                     {remediations.data.map((element, index) =>
-                                        <RunStatus
-                                            id={ element.id }
-                                            name={ element.name }
-                                            key={ element.id }
-                                            index={ index + 1 }
-                                            playbook_runs={ element.playbook_runs }
-                                        />
+                                        <RunStatus id={ element.id } name={ element.name } key={ element.id } index={ index + 1 } />
                                     )}
                                     {remediations.meta.total > remediations.meta.count &&
                                         <div className='insd-c-remediations-container'>
