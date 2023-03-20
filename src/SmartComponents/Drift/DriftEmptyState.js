@@ -23,6 +23,7 @@ export const DriftEmptyState = () => {
             </EmptyStateBody>
             <Button
                 href={`${ActionTypes.DRIFT_BASELINES_URL}`}
+                component='a'
                 variant="primary">Go to Baselines
             </Button>
         </EmptyState>

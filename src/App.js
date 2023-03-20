@@ -6,6 +6,7 @@ import { setSIDs, setSelectedTags, setWorkloads } from './AppActions';
 
 import API from './Utilities/Api';
 import { INVENTORY_TOTAL_FETCH_URL } from './AppConstants';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import PageLoading from './PresentationalComponents/PageLoading/PageLoading';
 import PropTypes from 'prop-types';
 import { Routes } from './Routes';
@@ -13,6 +14,7 @@ import { Routes } from './Routes';
 export const PermissionContext = createContext();
 
 const App = (props) => {
+    const chrome = useChrome();
     const dispatch = useDispatch();
     const [permissions, setPermissions] = useState({
         customPolicies: false,
@@ -26,18 +28,16 @@ const App = (props) => {
         ros: false,
         notifications: false
     });
-    const [isOrgAdmin, setIsOrgAdmin] = useState(false);
     const [arePermissionsReady, setArePermissionReady] = useState(false);
     const [hasSystems, setHasSystems] = useState();
 
     async function initChrome() {
-        insights.chrome.init();
-        insights.chrome.identifyApp('dashboard');
+        chrome.identifyApp('dashboard');
 
-        insights.chrome?.globalFilterScope?.('insights');
-        if (insights.chrome?.globalFilterScope) {
-            insights.chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
-                const [workloads, SID, selectedTags] = insights.chrome?.mapGlobalFilter?.(data, false, true);
+        chrome?.globalFilterScope?.('insights');
+        if (chrome?.globalFilterScope) {
+            chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
+                const [workloads, SID, selectedTags] = chrome?.mapGlobalFilter?.(data, false, true);
                 batch(() => {
                     dispatch(setWorkloads(workloads));
                     dispatch(setSIDs(SID));
@@ -46,12 +46,8 @@ const App = (props) => {
             });
         }
 
-        // wait for auth first, otherwise the call to RBAC may 401
-        await window.insights.chrome.auth.getUser().then(
-            user => setIsOrgAdmin(user.identity.user.is_org_admin)
-        );
         // TODO: Update this function to query multiple apps instead of empty request (limited by API)
-        insights.chrome.getUserPermissions('', true).then(
+        chrome.getUserPermissions('', true).then(
             dashboardPermissions => {
                 const permissionList = dashboardPermissions.length && dashboardPermissions.map(permissions => permissions.permission);
                 if (permissionList.length) {
@@ -83,9 +79,9 @@ const App = (props) => {
         try {
             const { total } = (await API.get(`${INVENTORY_TOTAL_FETCH_URL}`))?.data || { total: 0 };
             setHasSystems(total > 0);
-            total === 0 && insights.chrome.hideGlobalFilter();
+            total === 0 && chrome.hideGlobalFilter();
         } catch (e) {
-            insights.chrome.hideGlobalFilter();
+            chrome.hideGlobalFilter();
         }
     }
 
@@ -108,7 +104,6 @@ const App = (props) => {
                     subscriptions: permissions.subscriptions,
                     ros: permissions.ros,
                     notifications: permissions.notifications,
-                    isOrgAdmin,
                     hasSystems
                 } }>
                 <Routes childProps={ props } />
