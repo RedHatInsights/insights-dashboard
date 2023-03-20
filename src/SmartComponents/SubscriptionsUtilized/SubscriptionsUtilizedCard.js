@@ -17,6 +17,7 @@ import React, { useEffect, useState } from 'react';
 import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/esm/components/Tooltip/Tooltip';
 import { filterChartData, setRangedDateTime } from './SubscriptionsUtilizedHelpers';
 import { supportsGlobalFilter, workloadsPropType } from '../../Utilities/Common';
+import { DateFormat } from '@redhat-cloud-services/frontend-components';
 
 import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import { EmptyStateSecondaryActions } from '@patternfly/react-core/dist/esm/components/EmptyState/EmptyStateSecondaryActions';
@@ -30,7 +31,6 @@ import PropTypes from 'prop-types';
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
-import moment from 'moment/moment';
 import { useIntl } from 'react-intl';
 
 /**
@@ -101,7 +101,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
             <li>{intl.formatMessage(messages.subscriptionsUtilizedProductTwoReport, { totalReport: productTwo.report })}</li>
             <li>{intl.formatMessage(messages.subscriptionsUtilizedProductCapacity, { totalCapacity: productTwo.capacity })}</li>
             <li>{intl.formatMessage(messages.subscriptionsUtilizedProductDate,
-                { formattedDate: moment.utc(productTwo.date).format('MMM D, YYYY') })}</li>
+                { formattedDate: <DateFormat type='exact' date={ productTwo.date } /> })}</li>
         </ul>
     );
     const productOneTooltip = (
@@ -109,7 +109,7 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
             <li>{intl.formatMessage(messages.subscriptionsUtilizedProductOneReport, { totalReport: productOne.report })}</li>
             <li>{intl.formatMessage(messages.subscriptionsUtilizedProductCapacity, { totalCapacity: productOne.capacity })}</li>
             <li>{intl.formatMessage(messages.subscriptionsUtilizedProductDate,
-                { formattedDate: moment.utc(productOne.date).format('MMM D, YYYY') })}</li>
+                { formattedDate: <DateFormat type='exact' date={ productOne.date } /> })}</li>
         </ul>
     );
 

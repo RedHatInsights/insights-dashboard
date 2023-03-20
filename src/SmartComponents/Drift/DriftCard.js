@@ -34,9 +34,12 @@ import routerParams from '@redhat-cloud-services/frontend-components-utilities/R
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const DriftCard = () => {
+    const chrome = useChrome();
 
+    const driftAppId = chrome.getEnvironment() === 'prod' ? '2212b1ce-4ed0-49a3-ba3c-bc147f1690fd' : 'ccb37fde-8564-4a7c-8720-d78a07e2fbde';
     const intl = useIntl();
     const dispatch = useDispatch();
     const [activeDrift, setActiveDrift] = useState({
@@ -50,7 +53,7 @@ const DriftCard = () => {
     const driftEventFetchStatus = useSelector(({ DashboardStore }) => DashboardStore.driftEventFetchStatus);
     const fetchDriftData = useCallback((dropDownItem) => {
         dispatch(AppActions.fetchDrift({
-            appIds: ActionTypes.DRIFT_EVENTS_APP_ID,
+            appIds: driftAppId,
             startDate: dropDownItem.startDate,
             endDate: dropDownItem.endDate,
             includePayload: true

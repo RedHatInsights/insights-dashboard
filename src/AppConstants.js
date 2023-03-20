@@ -35,15 +35,11 @@ export const ADVISOR_INCIDENTS_FETCH_URL = `${BASE_URL}/insights/v1/rule/?impact
 
 // Patchman App Constants
 export const PATCHMAN_ID = 'patch';
-export const PATCHMAN_VER = 'v1';
-export const PATCHMAN_SYSTEMS_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCHMAN_VER}/systems`;
+export const PATCHMAN_VER = 'v2';
+export const PATCHMAN_SYSTEMS_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCHMAN_VER}/systems/?limit=1`;
 export const PATCHMAN_SYSTEMS_FETCH = 'PATCHMAN_SYSTEMS_FETCH';
-export const PATCHMAN_SECURITY_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCHMAN_VER}/advisories?filter[advisory_type]=3&limit=1`;
-export const PATCHMAN_SECURITY_FETCH = 'PATCHMAN_SECURITY_FETCH';
-export const PATCHMAN_BUGS_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCHMAN_VER}/advisories?filter[advisory_type]=2&limit=1`;
-export const PATCHMAN_BUGS_FETCH = 'PATCHMAN_BUGS_FETCH';
-export const PATCHMAN_ENHANCEMENTS_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCHMAN_VER}/advisories/?filter[advisory_type]=1&limit=1`;
-export const PATCHMAN_ENHANCEMENTS_FETCH = 'PATCHMAN_ENHANCEMENTS_FETCH';
+export const PATCHMAN_ADVISORIES_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCHMAN_VER}/advisories/?limit=1`;
+export const PATCHMAN_ADVISORIES_FETCH = 'PATCHMAN_ADVISORIES_FETCH';
 
 // Subscriptions Utilized Constants
 export const SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH = 'SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH';
@@ -79,7 +75,6 @@ export const ROS_IS_CONFIGURED_FETCH_URL = `${BASE_URL}${ROS_BASE}/is_configured
 export const SAP_FETCH_URL = `${BASE_URL}/inventory/v1/system_profile/sap_system`;
 
 // Drift Constants
-export const DRIFT_EVENTS_APP_ID = insights?.chrome.getEnvironment() === 'prod' ? '2212b1ce-4ed0-49a3-ba3c-bc147f1690fd' : 'ccb37fde-8564-4a7c-8720-d78a07e2fbde';
 export const DRIFT_EVENTS_PAYLOAD_FETCH_URL = `${BASE_URL}/notifications/v1.0/notifications/events`;
 export const DRIFT_EVENTS_PAYLOAD_FETCH = 'DRIFT_EVENTS_PAYLOAD_FETCH';
 export const DRIFT_URL = `${UI_BASE}/drift`;

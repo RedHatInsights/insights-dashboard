@@ -1,9 +1,7 @@
 import * as ActionTypes from './AppConstants';
-
 import API from './Utilities/Api';
 
 const fetchData = async (url, headers, options) => {
-    await window.insights.chrome.auth.getUser();
     return (await API.get(url, headers, options)).data;
 };
 
@@ -37,19 +35,9 @@ export const patchmanFetchSystems = (options) => ({
     payload: fetchData(ActionTypes.PATCHMAN_SYSTEMS_FETCH_URL, {}, options)
 });
 
-export const patchmanFetchSecurity = (options) => ({
-    type: ActionTypes.PATCHMAN_SECURITY_FETCH,
-    payload: fetchData(ActionTypes.PATCHMAN_SECURITY_FETCH_URL, {}, options)
-});
-
-export const patchmanFetchBugs = (options) => ({
-    type: ActionTypes.PATCHMAN_BUGS_FETCH,
-    payload: fetchData(ActionTypes.PATCHMAN_BUGS_FETCH_URL, {}, options)
-});
-
-export const patchmanFetchEnhancements = (options) => ({
-    type: ActionTypes.PATCHMAN_ENHANCEMENTS_FETCH,
-    payload: fetchData(ActionTypes.PATCHMAN_ENHANCEMENTS_FETCH_URL, {}, options)
+export const patchmanFetchAdvisories = (options) => ({
+    type: ActionTypes.PATCHMAN_ADVISORIES_FETCH,
+    payload: fetchData(ActionTypes.PATCHMAN_ADVISORIES_FETCH_URL, {}, options)
 });
 
 export const subscriptionsUtilizedProductOneFetch = (id, options) => ({

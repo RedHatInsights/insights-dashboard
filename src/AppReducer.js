@@ -17,12 +17,10 @@ const initialState = Immutable({
     advisorIncidentsStatus: '',
     patchmanSystems: {},
     patchmanSystemsStatus: '',
-    patchmanSecurity: {},
-    patchmanSecurityStatus: '',
-    patchmanBugs: {},
-    patchmanBugsStatus: '',
-    patchmanEnhancements: {},
-    patchmanEnhancementsStatus: '',
+    patchmanAdvisoriesStatus: '',
+    patchmanSecurity: '',
+    patchmanBugs: '',
+    patchmanEnhancements: '',
     subscriptionsUtilizedProductOne: [],
     subscriptionsUtilizedProductOneFetchStatus: '',
     subscriptionsUtilizedProductTwo: [],
@@ -121,7 +119,6 @@ export const DashboardStore = (state = initialState, action) => {
         // Patch
         case `${ActionTypes.PATCHMAN_SYSTEMS_FETCH}_PENDING`:
             return state.set('patchmanSystemsStatus', 'pending');
-
         case `${ActionTypes.PATCHMAN_SYSTEMS_FETCH}_FULFILLED`:
             return Immutable.merge(state, {
                 patchmanSystems: action.payload.meta.total_items,
@@ -130,41 +127,15 @@ export const DashboardStore = (state = initialState, action) => {
         case `${ActionTypes.PATCHMAN_SYSTEMS_FETCH}_REJECTED`:
             return state.set('patchmanSystemsStatus', 'rejected');
 
-        case `${ActionTypes.PATCHMAN_SECURITY_FETCH}_PENDING`:
-            return state.set('patchmanSecurityStatus', 'pending');
-
-        case `${ActionTypes.PATCHMAN_SECURITY_FETCH}_FULFILLED`:
+        case `${ActionTypes.PATCHMAN_ADVISORIES_FETCH}_PENDING`:
+            return state.set('patchmanAdvisoriesStatus', 'pending');
+        case `${ActionTypes.PATCHMAN_ADVISORIES_FETCH}_FULFILLED`:
             return Immutable.merge(state, {
-                patchmanSecurity: action.payload.meta.total_items,
-                patchmanSecurityStatus: 'fulfilled'
+                patchmanAdvisories: action.payload.meta.subtotals,
+                patchmanAdvisoriesStatus: 'fulfilled'
             });
-
-        case `${ActionTypes.PATCHMAN_SECURITY_FETCH}_REJECTED`:
-            return state.set('patchmanBugsStatus', 'rejected');
-
-        case `${ActionTypes.PATCHMAN_BUGS_FETCH}_PENDING`:
-            return state.set('patchmanBugsStatus', 'pending');
-
-        case `${ActionTypes.PATCHMAN_BUGS_FETCH}_FULFILLED`:
-            return Immutable.merge(state, {
-                patchmanBugs: action.payload.meta.total_items,
-                patchmanBugsStatus: 'fulfilled'
-            });
-
-        case `${ActionTypes.PATCHMAN_BUGS_FETCH}_REJECTED`:
-            return state.set('patchmanBugsStatus', 'rejected');
-
-        case `${ActionTypes.PATCHMAN_ENHANCEMENTS_FETCH}_PENDING`:
-            return state.set('patchmanEnhancementsStatus', 'pending');
-
-        case `${ActionTypes.PATCHMAN_ENHANCEMENTS_FETCH}_FULFILLED`:
-            return Immutable.merge(state, {
-                patchmanEnhancements: action.payload.meta.total_items,
-                patchmanEnhancementsStatus: 'fulfilled'
-            });
-
-        case `${ActionTypes.PATCHMAN_ENHANCEMENTS_FETCH}_REJECTED`:
-            return state.set('patchmanEnhancementsStatus', 'rejected');
+        case `${ActionTypes.PATCHMAN_ADVISORIES_FETCH}_REJECTED`:
+            return state.set('patchmanAdvisoriesStatus', 'rejected');
 
         // SubsUtilized Product One
         case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH}_PENDING`:
