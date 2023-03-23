@@ -30,4 +30,3 @@ Note: You will need to set up the Insights environment if you want to develop wi
 
 ### Automated testing
 After creating PR or pushing to environment branch (`master`, `master-stable`, `prod-beta`, `prod-stable`) Travis is used to test this and to deploy to the corresponding environment.
-
