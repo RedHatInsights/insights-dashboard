@@ -3,6 +3,7 @@ const { resolve } = require('path');
 const config = require('@redhat-cloud-services/frontend-components-config');
 const { config: webpackConfig, plugins } = config({
     rootFolder: resolve(__dirname, '../'),
+    deployment: process.env.BETA ? 'beta/apps' : 'apps',
     debug: true
 });
 
@@ -15,6 +16,8 @@ plugins.push(
 // eslint-disable-next-line no-unused-vars
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // plugins.push(new BundleAnalyzerPlugin())
+
+console.log(process.env.BETA);
 
 module.exports = {
     ...webpackConfig,
