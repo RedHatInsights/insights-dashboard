@@ -17,8 +17,6 @@ plugins.push(
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // plugins.push(new BundleAnalyzerPlugin())
 
-console.log(process.env.BETA);
-
 module.exports = {
     ...webpackConfig,
     plugins
