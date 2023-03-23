@@ -3,16 +3,20 @@ import './App.scss';
 import React, { createContext, useEffect, useState } from 'react';
 import { batch, useDispatch } from 'react-redux';
 import { setSIDs, setSelectedTags, setWorkloads } from './AppActions';
+import { init, RegistryContext } from './Store/index';
 
 import API from './Utilities/Api';
 import { INVENTORY_TOTAL_FETCH_URL } from './AppConstants';
 import PageLoading from './PresentationalComponents/PageLoading/PageLoading';
 import PropTypes from 'prop-types';
 import { Routes } from './Routes';
+import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
 
 export const PermissionContext = createContext();
 
 const App = (props) => {
+    const [registry, setRegistry] = useState();
+
     const dispatch = useDispatch();
     const [permissions, setPermissions] = useState({
         customPolicies: false,
@@ -94,26 +98,41 @@ const App = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    useEffect(() => {
+        setRegistry(init());
+
+        return () => {
+            setRegistry(undefined);
+        };
+    }, []);
+
     return (
-        arePermissionsReady ?
-            <PermissionContext.Provider
-                value={ {
-                    customPolicies: permissions.customPolicies,
-                    compliance: permissions.compliance,
-                    drift: permissions.drift,
-                    advisor: permissions.advisor,
-                    remediations: permissions.remediations,
-                    patch: permissions.patch,
-                    vulnerability: permissions.vulnerability,
-                    subscriptions: permissions.subscriptions,
-                    ros: permissions.ros,
-                    notifications: permissions.notifications,
-                    isOrgAdmin,
-                    hasSystems
-                } }>
-                <Routes childProps={ props } />
-            </PermissionContext.Provider>
-            : <PageLoading />
+        registry ? (
+            <RegistryContext.Provider value={{
+                getRegistry: () => registry
+            }}>
+                <NotificationsPortal />
+                {arePermissionsReady ?
+                    <PermissionContext.Provider
+                        value={ {
+                            customPolicies: permissions.customPolicies,
+                            compliance: permissions.compliance,
+                            drift: permissions.drift,
+                            advisor: permissions.advisor,
+                            remediations: permissions.remediations,
+                            patch: permissions.patch,
+                            vulnerability: permissions.vulnerability,
+                            subscriptions: permissions.subscriptions,
+                            ros: permissions.ros,
+                            notifications: permissions.notifications,
+                            isOrgAdmin,
+                            hasSystems
+                        } }>
+                        <Routes childProps={ props } />
+                    </PermissionContext.Provider>
+                    : <PageLoading />}
+            </RegistryContext.Provider>
+        ) : null
     );
 };
 
