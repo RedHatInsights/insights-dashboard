@@ -62,9 +62,7 @@ export const INVENTORY_WARNING_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?s
 // Remediations App Constants
 const REMEDIATIONS_BASE = '/remediations/v1';
 export const REMEDIATIONS_FETCH = 'REMEDIATIONS_FETCH';
-export const REMEDIATIONS_FETCH_URL = `${BASE_URL}${REMEDIATIONS_BASE}/remediations?sort=-updated_at&limit=4&offset=0`;
-export const REMEDIATIONS_PLAYBOOK_RUNS_FETCH = 'REMEDIATIONS_PLAYBOOK_RUNS_FETCH';
-export const REMEDIATIONS_PLAYBOOK_RUNS_FETCH_URL = `${BASE_URL}${REMEDIATIONS_BASE}/remediations/`;
+export const REMEDIATIONS_FETCH_URL = `${BASE_URL}${REMEDIATIONS_BASE}/remediations?sort=-updated_at&limit=4&offset=0&fields[data]=playbook_runs`;
 
 // Resource Optimization Constants
 const ROS_BASE = '/ros/v1';
