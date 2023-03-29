@@ -1,15 +1,13 @@
 import './RunStatus.scss';
 
-import { DateFormat, Skeleton } from '@redhat-cloud-services/frontend-components';
-import React, { useEffect, useState } from 'react';
+import { DateFormat } from '@redhat-cloud-services/frontend-components';
+import React from 'react';
 
-import API from '../../Utilities/Api';
 import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import CheckCircleIcon from '@patternfly/react-icons/dist/esm/icons/check-circle-icon';
 import InProgressIcon from '@patternfly/react-icons/dist/esm/icons/in-progress-icon';
 import PropTypes from 'prop-types';
 import QuestionIcon from './../../Icons/QuestionIcon';
-import { REMEDIATIONS_PLAYBOOK_RUNS_FETCH_URL } from '../../AppConstants';
 import TimeStamp from './../../PresentationalComponents/TimeStamp/TimeStamp';
 import TimesCircleIcon from '@patternfly/react-icons/dist/esm/icons/times-circle-icon';
 import { Tooltip } from '@patternfly/react-core/dist/esm/components/Tooltip/Tooltip';
@@ -40,54 +38,23 @@ const renderStatusIcon = (status) => ({
         aria-label="Remediation failed" />
 })[status];
 
-const RunStatus = ({ id, name, index }) => {
-    const [playbookRun, setPlaybookRun] = useState({});
-    const [hasData, setHasData] = useState();
-    const [loaded, setLoaded] = useState();
-    const [isCriticalError, setIsCriticalError] = useState(false);
-
+const RunStatus = ({ id, name, index, playbook_runs: playbookRuns }) => {
+    const hasData = playbookRuns ? playbookRuns.data?.length > 0 : false;
     const intl = useIntl();
-
-    useEffect(() => {
-        const fetchPlaybookRun = async () => {
-            try {
-                const response = await API.get(`${REMEDIATIONS_PLAYBOOK_RUNS_FETCH_URL}${id}/playbook_runs?limit=1&offset=0&sort=-updated_at`);
-                setPlaybookRun(response.data.data);
-                setLoaded(true);
-                setHasData(response.data.data.length);
-            } catch (error) {
-                setLoaded(false);
-                setHasData(false);
-                setIsCriticalError(true);
-                // eslint-disable-next-line no-console
-                console.error('Error contacting remediations API');
-            }
-        };
-
-        fetchPlaybookRun();
-    }, [id]);
 
     return <div className="insd-c-remediations-container">
         <div className="insd-c-remediation__status">
-            { loaded === undefined && <Skeleton size='md' /> }
-            { (loaded && hasData) ?
+            { hasData ?
                 <React.Fragment>
-                    {renderStatusIcon(normalizeStatus(playbookRun[0].status))}
+                    {renderStatusIcon(normalizeStatus(playbookRuns.data[0].status))}
                     <p className='insd-c-remediation__status-text'>
-                        { intl.formatMessage(messages.remediationsPlaybookStatus, { status: normalizeStatus(playbookRun[0].status) }) }
+                        { intl.formatMessage(messages.remediationsPlaybookStatus, { status: normalizeStatus(playbookRuns.data[0].status) }) }
                     </p>
                 </React.Fragment>
-                : null
-            }
-            { loaded && !hasData &&
+                :
                 <React.Fragment>
                     <QuestionIcon />
                     <p>{intl.formatMessage(messages.remediationsPlaybookNoActivity)}</p>
-                </React.Fragment>
-            }
-            { isCriticalError &&
-                <React.Fragment>
-                    <span>{intl.formatMessage(messages.remediationsPlaybookFailure)}</span> {/* TODO Later for absolute failure */}
                 </React.Fragment>
             }
         </div>
@@ -112,9 +79,8 @@ const RunStatus = ({ id, name, index }) => {
                 >
                     {name}
                 </Button>}
-            { loaded === undefined && <Skeleton size='md' /> }
-            { loaded && hasData
-                ? <TimeStamp timestamp={ <DateFormat type='exact' date={ playbookRun[0].created_at } /> } />
+            { hasData
+                ? <TimeStamp timestamp={ <DateFormat type='exact' date={ playbookRuns.data[0].created_at } /> } />
                 : null
             }
         </div>
@@ -125,7 +91,8 @@ RunStatus.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
     intl: PropTypes.any,
-    index: PropTypes.any
+    index: PropTypes.any,
+    playbook_runs: PropTypes.any
 };
 
 export default RunStatus;
