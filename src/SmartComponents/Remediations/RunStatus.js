@@ -38,7 +38,7 @@ const renderStatusIcon = (status) => ({
         aria-label="Remediation failed" />
 })[status];
 
-const RunStatus = ({ id, name, index, playbookRuns }) => {
+const RunStatus = ({ id, name, index, playbook_runs: playbookRuns }) => {
     const hasData = playbookRuns ? playbookRuns.data?.length > 0 : false;
     const intl = useIntl();
 
@@ -92,7 +92,7 @@ RunStatus.propTypes = {
     name: PropTypes.string,
     intl: PropTypes.any,
     index: PropTypes.any,
-    playbookRuns: PropTypes.any
+    playbook_runs: PropTypes.any
 };
 
 export default RunStatus;
