@@ -15,6 +15,7 @@ import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { workloadsPropType } from '../../Utilities/Common';
 import ResourceOptimizationCard from '../../SmartComponents/ResourceOptimization/ResourceOptimizationCard';
+import AppZeroState from '../AppZeroState/AppZeroState';
 
 const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
 const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
@@ -39,7 +40,7 @@ const Dashboard = (/*{ workloads }*/) => {
         992: 1
     };
 
-    return permission.hasSystems ?
+    return !permission.hasSystems ?
         <React.Fragment>
             <PageSection isWidthLimited variant={ PageSectionVariants.light } className="insd-c-dashboard-header">
                 <Title headingLevel="h1" size="2xl" className="pf-u-screen-reader">
@@ -107,7 +108,11 @@ const Dashboard = (/*{ workloads }*/) => {
             </PageSection>
             <Footer supportsSap={ true }/>
         </React.Fragment>
-        : <ZeroState />;
+        : <React.Fragment>
+            <AppZeroState />
+            <ZeroState/>
+
+        </React.Fragment>;
 };
 
 Dashboard.propTypes = {

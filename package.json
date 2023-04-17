@@ -73,6 +73,7 @@
     "@redhat-cloud-services/frontend-components-utilities": "3.2.3",
     "classnames": "2.3.1",
     "enzyme-to-json": "3.6.2",
+    "patternfly": "^3.59.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-intl": "5.20.10",

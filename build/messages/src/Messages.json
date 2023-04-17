@@ -219,6 +219,10 @@
     "defaultMessage": "This functionality is not supported within {appname}. Remove all filters to show dashboard results.",
     "description": "This functionality is not supported within"
   },
+  "getStartedInsights": {
+    "defaultMessage": "Get started with Insights by registering your systems with us.",
+    "description": "Get started using Insights"
+  },
   "important": {
     "defaultMessage": "Important",
     "description": "Important"
@@ -230,6 +234,10 @@
   "incidents": {
     "defaultMessage": "{incidents, plural, one {# incident} other {# incidents}} detected",
     "description": "Advisor - incidents "
+  },
+  "insightsDescription": {
+    "defaultMessage": "Single, consistent management solution across on-premise, hybrid cloud, and public cloud. Included with Red Hat Enterprise Linux subscription. Single, consistent management solution across on-premise, hybrid cloud, and public cloud.",
+    "description": "insights Description"
   },
   "insightsForSap": {
     "defaultMessage": "Insights for SAP",
@@ -302,6 +310,10 @@
   "noSystemsTitle": {
     "defaultMessage": "Get started with Insights",
     "description": "No systems"
+  },
+  "notMember": {
+    "defaultMessage": "not a member? Start a trial!",
+    "description": "Not a member"
   },
   "patchTitle": {
     "defaultMessage": "Patch",
@@ -422,6 +434,10 @@
   "stability": {
     "defaultMessage": "Stability",
     "description": "Category chart  value"
+  },
+  "startUsiningInisghts": {
+    "defaultMessage": "Start using Insights now",
+    "description": "Start using insights now"
   },
   "subscriptionsTitle": {
     "defaultMessage": "Subscriptions",
