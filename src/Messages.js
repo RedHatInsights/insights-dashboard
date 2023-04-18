@@ -440,15 +440,15 @@ export default defineMessages({
         description: 'Contact sales',
         defaultMessage: 'Contact sales'
     },
-    smartManagement: {
-        id: 'smartManagement',
-        description: 'Smart Management subscription',
-        defaultMessage: 'Smart Management subscription enables push-button remediation of issues identified by Insights. Any issues identified by Insights are accompanied by remediation instructions, and with Smart Management, remediation is available at scale.'
+    satellite: {
+        id: 'satellite',
+        description: 'satellite subscription',
+        defaultMessage: 'Satellite subscription enables push-button remediation of issues identified by Insights. Any issues identified by Insights are accompanied by remediation instructions, and with Smart Management, remediation is available at scale.'
     },
-    insightsandsmartmanagement: {
-        id: 'insightsandsmartmanagement',
-        description: 'Insights and Smart Management',
-        defaultMessage: 'Insights and Smart Management'
+    insightsandsatellite: {
+        id: 'insightsandsatellite',
+        description: 'Insights and Satellite',
+        defaultMessage: 'Insights and Satellite'
     },
     rhm1: {
         id: 'rhm1',
