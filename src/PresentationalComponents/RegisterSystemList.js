@@ -10,8 +10,7 @@ const registerSystemsList = (item) => {
             <ClipboardCopy
                 hoverTip="Copy"
                 clickTip="Copied"
-                variant="inline-compact"
-                isCode
+                isReadOnly
                 className='pf-u-p-sm'
             >
                 {item.command}

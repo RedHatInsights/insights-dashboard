@@ -25,7 +25,7 @@ const testObject = [
 
 const testBullets = ['What problems do we solve', 'What solution do we provide'];
 
-const AppZeroState = ({ appName = 'Insights', description = messages.insightsDescription, commands = testObject, bulletPoints = testBullets }) => {
+const ZeroStateBanner = ({ appName = 'Insights', description = messages.insightsDescription, commands = testObject, bulletPoints = testBullets }) => {
     const intl = useIntl();
     const { hideGlobalFilter } = useChrome();
 
@@ -113,9 +113,9 @@ const AppZeroState = ({ appName = 'Insights', description = messages.insightsDes
     </div>;
 };
 
-export default AppZeroState;
+export default ZeroStateBanner;
 
-AppZeroState.propTypes = {
+ZeroStateBanner.propTypes = {
     appName: propTypes.string,
     description: propTypes.object,
     commands: propTypes.array,
