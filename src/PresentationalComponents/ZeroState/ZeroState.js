@@ -176,17 +176,17 @@ const ZeroState = () => {
                 <FlexItem spacer={ { default: 'spacerXl' } }>
                     <TextContent>
                         <Title headingLevel='h3'>
-                            {intl.formatMessage(messages.insightsandsmartmanagement)}
+                            {intl.formatMessage(messages.insightsandsatellite)}
                         </Title>
                         <div className='insd-c-width-limiter' style={ { '--insd-c-width-limiter--MaxWidth': '900px' } }>
-                            <p>{intl.formatMessage(messages.smartManagement)}</p>
+                            <p>{intl.formatMessage(messages.satellite)}</p>
                         </div>
                     </TextContent>
                 </FlexItem>
                 <FlexItem>
                     <Grid hasGutter>
                         <GridItem md={ 6 } lg={ 5 } mdRowSpan={ 3 }>
-                            <img src={ ImgInsSmartMgmt } alt='Insights Smart Management' />
+                            <img src={ ImgInsSmartMgmt } alt='Insights Satellite' />
                         </GridItem>
                         <GridItem md={ 6 } lg={ 7 }>
                             <div className='insd-c-width-limiter pf-u-pt-lg-on-lg' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
@@ -205,7 +205,7 @@ const ZeroState = () => {
                                         component='a'
                                         target='_blank'
                                         rel='noreferrer'
-                                        href='https://www.redhat.com/en/technologies/management/smart-management'>
+                                        href='https://www.redhat.com/en/technologies/management/satellite'>
                                         {intl.formatMessage(messages.learnmore)}
                                     </Button>
                                 </FlexItem>
