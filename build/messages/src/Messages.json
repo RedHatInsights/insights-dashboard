@@ -312,7 +312,7 @@
     "description": "No systems"
   },
   "notMember": {
-    "defaultMessage": "not a member? Start a trial!",
+    "defaultMessage": "Not a member? Start a trial!",
     "description": "Not a member"
   },
   "patchTitle": {

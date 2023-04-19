@@ -321,7 +321,7 @@ export default defineMessages({
     notMember: {
         id: 'notMember',
         description: 'Not a member',
-        defaultMessage: 'not a member? Start a trial!'
+        defaultMessage: 'Not a member? Start a trial!'
     },
     noSystemsDescription: {
         id: 'noSystemsDescription',
