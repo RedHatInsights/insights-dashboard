@@ -257,6 +257,11 @@ export default defineMessages({
         description: 'System Inventory - title',
         defaultMessage: 'Insights system inventory'
     },
+    startUsiningInisghts: {
+        id: 'startUsiningInisghts',
+        description: 'Start using insights now',
+        defaultMessage: 'Start using Insights now'
+    },
     systemInventoryNotUsingClient: {
         id: 'systemInventoryNotUsingClient',
         description: 'Number of systems not running insights client',
@@ -307,6 +312,16 @@ export default defineMessages({
         id: 'noSystemsTitle',
         description: 'No systems',
         defaultMessage: 'Get started with Insights'
+    },
+    getStartedInsights: {
+        id: 'getStartedInsights',
+        description: 'Get started using Insights',
+        defaultMessage: 'Get started with Insights by registering your systems with us.'
+    },
+    notMember: {
+        id: 'notMember',
+        description: 'Not a member',
+        defaultMessage: 'Not a member? Start a trial!'
     },
     noSystemsDescription: {
         id: 'noSystemsDescription',
@@ -435,20 +450,25 @@ export default defineMessages({
         description: 'Learn more about Insights',
         defaultMessage: 'Learn more about Insights'
     },
+    insightsDescription: {
+        id: 'insightsDescription',
+        description: 'insights Description',
+        defaultMessage: 'Single, consistent management solution across on-premise, hybrid cloud, and public cloud. Included with Red Hat Enterprise Linux subscription. Single, consistent management solution across on-premise, hybrid cloud, and public cloud.'
+    },
     contactsales: {
         id: 'contactsales',
         description: 'Contact sales',
         defaultMessage: 'Contact sales'
     },
-    smartManagement: {
-        id: 'smartManagement',
-        description: 'Smart Management subscription',
-        defaultMessage: 'Smart Management subscription enables push-button remediation of issues identified by Insights. Any issues identified by Insights are accompanied by remediation instructions, and with Smart Management, remediation is available at scale.'
+    satellite: {
+        id: 'satellite',
+        description: 'satellite subscription',
+        defaultMessage: 'Satellite subscription enables push-button remediation of issues identified by Insights. Any issues identified by Insights are accompanied by remediation instructions, and with Smart Management, remediation is available at scale.'
     },
-    insightsandsmartmanagement: {
-        id: 'insightsandsmartmanagement',
-        description: 'Insights and Smart Management',
-        defaultMessage: 'Insights and Smart Management'
+    insightsandsatellite: {
+        id: 'insightsandsatellite',
+        description: 'Insights and Satellite',
+        defaultMessage: 'Insights and Satellite'
     },
     rhm1: {
         id: 'rhm1',
