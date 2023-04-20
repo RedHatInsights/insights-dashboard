@@ -235,9 +235,9 @@
     "defaultMessage": "Insights for SAP",
     "description": "Insights for SAP"
   },
-  "insightsandsmartmanagement": {
-    "defaultMessage": "Insights and Smart Management",
-    "description": "Insights and Smart Management"
+  "insightsandsatellite": {
+    "defaultMessage": "Insights and Satellite",
+    "description": "Insights and Satellite"
   },
   "knownExploitsOneOrMoreSystems": {
     "defaultMessage": "{cves, plural, one {CVE} other {CVEs}} with <strong>known exploits</strong> impacting 1 or more systems<tooltip></tooltip>",
@@ -399,6 +399,10 @@
     "defaultMessage": "No systems configured yet? Get started with resource optimization.",
     "description": "no systems configured with resource optimization message"
   },
+  "satellite": {
+    "defaultMessage": "Satellite subscription enables push-button remediation of issues identified by Insights. Any issues identified by Insights are accompanied by remediation instructions, and with Smart Management, remediation is available at scale.",
+    "description": "satellite subscription"
+  },
   "security": {
     "defaultMessage": "Security",
     "description": "Category chart  value"
@@ -414,10 +418,6 @@
   "singleConsistent": {
     "defaultMessage": "Single, consistent management solution across on-premise, hybrid cloud, and public cloud. Included with Red Hat Enterprise Linux subscription.",
     "description": "Single, consistent management solution"
-  },
-  "smartManagement": {
-    "defaultMessage": "Smart Management subscription enables push-button remediation of issues identified by Insights. Any issues identified by Insights are accompanied by remediation instructions, and with Smart Management, remediation is available at scale.",
-    "description": "Smart Management subscription"
   },
   "stability": {
     "defaultMessage": "Stability",
