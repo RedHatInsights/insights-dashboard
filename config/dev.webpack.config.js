@@ -5,7 +5,7 @@ const config = require('@redhat-cloud-services/frontend-components-config');
 const { config: webpackConfig, plugins } = config({
     rootFolder: resolve(__dirname, '../'),
     debug: true,
-    appUrl: process.env.BETA ? '/beta/insights/dashboard' : '/insights/dashboard',
+    appUrl: process.env.BETA ? ['/beta/insights/dashboard', '/preview/insights/dashboard'] : '/insights/dashboard',
     env: `${process.env.ENVIRONMENT || 'stage'}-${process.env.BETA ? 'beta' : 'stable'}`,
     deployment: process.env.BETA ? 'beta/apps' : 'apps',
     useProxy: true,
