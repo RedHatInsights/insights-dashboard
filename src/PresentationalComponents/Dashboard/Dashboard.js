@@ -107,7 +107,9 @@ const Dashboard = (/*{ workloads }*/) => {
             </PageSection>
             <Footer supportsSap={ true }/>
         </React.Fragment>
-        : <ZeroState />;
+        :
+        <ZeroState/>;
+
 };
 
 Dashboard.propTypes = {

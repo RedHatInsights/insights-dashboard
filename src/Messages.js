@@ -257,6 +257,11 @@ export default defineMessages({
         description: 'System Inventory - title',
         defaultMessage: 'Insights system inventory'
     },
+    startUsiningInisghts: {
+        id: 'startUsiningInisghts',
+        description: 'Start using insights now',
+        defaultMessage: 'Start using Insights now'
+    },
     systemInventoryNotUsingClient: {
         id: 'systemInventoryNotUsingClient',
         description: 'Number of systems not running insights client',
@@ -307,6 +312,16 @@ export default defineMessages({
         id: 'noSystemsTitle',
         description: 'No systems',
         defaultMessage: 'Get started with Insights'
+    },
+    getStartedInsights: {
+        id: 'getStartedInsights',
+        description: 'Get started using Insights',
+        defaultMessage: 'Get started with Insights by registering your systems with us.'
+    },
+    notMember: {
+        id: 'notMember',
+        description: 'Not a member',
+        defaultMessage: 'Not a member? Start a trial!'
     },
     noSystemsDescription: {
         id: 'noSystemsDescription',
@@ -434,6 +449,11 @@ export default defineMessages({
         id: 'learnmoreRHI',
         description: 'Learn more about Insights',
         defaultMessage: 'Learn more about Insights'
+    },
+    insightsDescription: {
+        id: 'insightsDescription',
+        description: 'insights Description',
+        defaultMessage: 'Single, consistent management solution across on-premise, hybrid cloud, and public cloud. Included with Red Hat Enterprise Linux subscription. Single, consistent management solution across on-premise, hybrid cloud, and public cloud.'
     },
     contactsales: {
         id: 'contactsales',
