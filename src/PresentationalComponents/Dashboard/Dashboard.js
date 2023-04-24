@@ -3,7 +3,6 @@ import './dashboard.scss';
 import { Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts';
 import { PageSection, PageSectionVariants, Title } from '@patternfly/react-core/dist/esm/components';
 import React, { Suspense, lazy, useContext } from 'react';
-import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import Masonry from 'react-masonry-css';
@@ -21,7 +20,6 @@ const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/Compl
 const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
 const SystemInventoryHeader = lazy(() => import('../../SmartComponents/SystemInventory/SystemInventoryHeader'));
 const NewRules = lazy(() => import('../../SmartComponents/NewRules/NewRules'));
-const SubscriptionsUtilizedCard = lazy(() => import('../../SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedCard'));
 const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
 const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
 const Footer = lazy(() => import('../../SmartComponents/Footer/Footer'));
@@ -32,7 +30,6 @@ const Dashboard = (/*{ workloads }*/) => {
     const permission = useContext(PermissionContext);
     const intl = useIntl();
     const newRules = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities.recent_rules);
-    const { isFedramp } = useChrome();
 
     const breakpointColumnsObj = {
         default: 2,
@@ -95,13 +92,6 @@ const Dashboard = (/*{ workloads }*/) => {
                             {permission.drift && permission.notifications
                             && <DriftCard/>}
                         </Suspense>
-                        {!isFedramp && (
-                            <Suspense fallback={ <Loading /> }>
-                                {permission.subscriptions &&
-                                <SubscriptionsUtilizedCard />
-                                }
-                            </Suspense>
-                        )}
                     </Masonry>
                 </Grid>
             </PageSection>
