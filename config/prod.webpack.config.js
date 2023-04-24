@@ -12,7 +12,8 @@ plugins.push(
         root: resolve(__dirname, '../'),
         exposes: {
             //ZeroStateBanner
-            './ZeroStateBanner': resolve(__dirname, '../src/PresentationalComponents/ZeroState/ZeroStateBanner.js')
+            './ZeroStateBanner': resolve(__dirname, '../src/PresentationalComponents/ZeroState/ZeroStateBanner.js'),
+            './RootApp': resolve(__dirname, '../src/AppEntry.js')
         }
     })
 );
