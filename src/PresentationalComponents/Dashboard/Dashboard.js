@@ -36,7 +36,7 @@ const Dashboard = (/*{ workloads }*/) => {
         992: 1
     };
 
-    return permission.hasSystems ?
+    return !permission.hasSystems ?
         <React.Fragment>
             <PageSection isWidthLimited variant={ PageSectionVariants.light } className="insd-c-dashboard-header">
                 <Title headingLevel="h1" size="2xl" className="pf-u-screen-reader">

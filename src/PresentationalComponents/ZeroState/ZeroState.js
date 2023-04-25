@@ -32,6 +32,7 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import ZeroStateBanner from './ZeroStateBanner';
+import ZeroStateFooter from './ZeroStateFooter';
 
 // eslint-disable-next-line no-unused-vars
 const SortableTable = () => {
@@ -97,6 +98,7 @@ const ZeroState = () => {
 
     return <div className='insd-c-marketing-page'>
         <ZeroStateBanner/>
+        <ZeroStateFooter/>
         <PageSection isWidthLimited>
             <Grid lg={ 6 } hasGutter>
                 <GridItem>

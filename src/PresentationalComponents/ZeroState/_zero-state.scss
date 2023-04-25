@@ -31,3 +31,7 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
     --pf-l-grid--m-gutter--GridGap: var(--pf-global--spacer--xl);
   }
 }
+
+.footer {
+  background: var(--pf-global--BackgroundColor--100);
+}
