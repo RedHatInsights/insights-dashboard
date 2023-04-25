@@ -16,16 +16,14 @@ import { useIntl } from 'react-intl';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import registerSystemsList from '../RegisterSystemList';
 import propTypes from 'prop-types';
+import zeroStateConstants from './zeroStateConstants';
 
-//An array like this would be passed into the app
-const testObject = [
-    { intructions: 'Install the client on the RHEL system', command: '[root@server] testing install insights-clint' },
-    { intructions: 'Install the client on the RHEL system', command: '[root@server] testing install insights-clint' },
-    { intructions: 'Install the client on the RHEL system', command: '[root@server] testing install insights-clint' }];
-
-const testBullets = ['What problems do we solve', 'What solution do we provide'];
-
-const ZeroStateBanner = ({ appName = 'Insights', description = messages.insightsDescription, commands = testObject, bulletPoints = testBullets }) => {
+const ZeroStateBanner = ({
+    appName = 'Insights',
+    description = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.description,
+    commands = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.commands,
+    bulletPoints = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.bulletPoints
+}) => {
     const intl = useIntl();
     const { hideGlobalFilter } = useChrome();
 
