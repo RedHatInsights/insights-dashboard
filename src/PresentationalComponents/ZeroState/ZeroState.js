@@ -98,8 +98,8 @@ const ZeroState = () => {
     }, []);
 
     return <div className='insd-c-marketing-page'>
-        {/* <ZeroStateBanner/> */}
-        {/* <ZeroStateFooter/> */}
+        <ZeroStateBanner/>
+        <ZeroStateFooter/>
         <MarketingBanner
             hasGraphic
             graphicRight

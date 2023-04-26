@@ -34,4 +34,8 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
 
 .footer {
   background: var(--pf-global--BackgroundColor--100);
+  a{
+    text-decoration: none;
+    color: #151515;
+  }
 }
