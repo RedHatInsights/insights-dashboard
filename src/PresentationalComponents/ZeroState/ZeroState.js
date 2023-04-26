@@ -31,8 +31,6 @@ import { UI_BASE, VULNERABILITIES_CVES_URL } from '../../AppConstants';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
-import ZeroStateBanner from './ZeroStateBanner';
-import ZeroStateFooter from './ZeroStateFooter';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 
 // eslint-disable-next-line no-unused-vars
@@ -98,8 +96,6 @@ const ZeroState = () => {
     }, []);
 
     return <div className='insd-c-marketing-page'>
-        <ZeroStateBanner/>
-        <ZeroStateFooter/>
         <MarketingBanner
             hasGraphic
             graphicRight
