@@ -14,7 +14,7 @@ import zeroStateConstants from './zeroStateConstants';
 import propTypes from 'prop-types';
 
 const ZeroStateFooter = ({
-    appName = 'Vulnerability',
+    appName,
     documentation = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].documentation
 }) => {
     return (

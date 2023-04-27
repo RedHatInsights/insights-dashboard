@@ -19,7 +19,7 @@ import propTypes from 'prop-types';
 import zeroStateConstants from './zeroStateConstants';
 
 const ZeroStateBanner = ({
-    appName = 'Insights',
+    appName,
     description = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.description,
     commands = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.commands,
     bulletPoints = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.bulletPoints,
