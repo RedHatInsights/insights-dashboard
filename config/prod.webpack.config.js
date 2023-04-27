@@ -16,7 +16,12 @@ plugins.push(
             './AppSection': resolve(__dirname, '../src/PresentationalComponents/ZeroState/AppSection.js'),
             './ZeroStateFooter': resolve(__dirname, '../src/PresentationalComponents/ZeroState/ZeroStateFooter.js'),
             './RootApp': resolve(__dirname, '../src/AppEntry.js')
-        }
+        },
+        shared: [
+            {
+                'react-router-dom': { singleton: true, requiredVersion: '*' }
+            }
+        ]
     })
 );
 

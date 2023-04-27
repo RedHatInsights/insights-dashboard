@@ -8,8 +8,7 @@ import API from './Utilities/Api';
 import { INVENTORY_TOTAL_FETCH_URL } from './AppConstants';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import PageLoading from './PresentationalComponents/PageLoading/PageLoading';
-import PropTypes from 'prop-types';
-import { Routes } from './Routes';
+import { DashboardRoutes } from './DashboardRoutes';
 
 export const PermissionContext = createContext();
 
@@ -106,14 +105,10 @@ const App = (props) => {
                     notifications: permissions.notifications,
                     hasSystems
                 } }>
-                <Routes childProps={ props } />
+                <DashboardRoutes childProps={ props } />
             </PermissionContext.Provider>
             : <PageLoading />
     );
-};
-
-App.propTypes = {
-    history: PropTypes.object
 };
 
 export default App;
