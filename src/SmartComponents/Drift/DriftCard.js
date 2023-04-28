@@ -30,7 +30,6 @@ import {
 } from '@patternfly/react-core';
 import { DriftEmptyState } from './DriftEmptyState';
 import { useDispatch } from 'react-redux';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
@@ -194,4 +193,4 @@ DriftCard.propTypes = {
     intl: PropTypes.any
 };
 
-export default routerParams(DriftCard);
+export default DriftCard;

@@ -16,7 +16,6 @@ import { RemediationsEmptyState } from './RemediationsEmptyState';
 import RunStatus from './RunStatus';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
 import { useIntl } from 'react-intl';
 
 const RemediationsCard = ({
@@ -103,7 +102,7 @@ const mapDispatchToProps = dispatch => ({
     fetchRemediations: () => dispatch(AppActions.fetchRemediations())
 });
 
-export default routerParams(connect(
+export default connect(
     mapStateToProps,
-    mapDispatchToProps
-)(RemediationsCard));
+    mapDispatchToProps)
+(RemediationsCard);
