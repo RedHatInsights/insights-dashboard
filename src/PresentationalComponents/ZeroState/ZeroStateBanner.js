@@ -19,10 +19,11 @@ import propTypes from 'prop-types';
 import zeroStateConstants from './zeroStateConstants';
 
 const ZeroStateBanner = ({
-    appName = 'Insights',
+    appName,
     description = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.description,
     commands = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.commands,
-    bulletPoints = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.bulletPoints
+    bulletPoints = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.bulletPoints,
+    customInstructions
 }) => {
     const intl = useIntl();
     const { hideGlobalFilter } = useChrome();
@@ -76,35 +77,39 @@ const ZeroStateBanner = ({
                                 registerSystemsList(item)
                             ))}
                         </Flex>
-                        : <Flex
-                            direction={ { default: 'column' } }
-                            alignItems={{ default: 'alignItemsCenter' }}
-                            alignSelf={{ default: 'alignSelfCenter' }} >
-                            <FlexItem className='pf-u-pt-lg'>
-                                <Title headingLevel='h1' size='2xl' style={{ color: '#151515' }}>
-                                    {intl.formatMessage(messages.startUsiningInisghts)}
-                                </Title>
-                            </FlexItem>
-                            <FlexItem>
-                                <div className='insd-c-width-limiter' style={ { '--insd-c-width-limiter--MaxWidth': '600px', color: '#151515' } }>
-                                    <p >{intl.formatMessage(messages.getStartedInsights)}</p>
-                                </div>
-                            </FlexItem>
-                            <FlexItem>
-                                <Button
-                                    onClick={updateRegisterButton}
-                                    className='pf-u-p-md pf-u-font-size-md'> Register your systems</Button>
-                            </FlexItem>
-                            <FlexItem>
-                                <a
-                                    component='a'
-                                    target='_blank'
-                                    rel='noreferrer'
-                                    href='https://www.redhat.com/en/technologies/management/insights' >{intl.formatMessage(messages.notMember)}</a>
-                            </FlexItem>
-                        </Flex>}
+                        : (!registerButton && customInstructions) ?   customInstructions(setRegisterButton)
+                            :
+                            <Flex
+                                direction={ { default: 'column' } }
+                                alignItems={{ default: 'alignItemsCenter' }}
+                                alignSelf={{ default: 'alignSelfCenter' }} >
+                                <FlexItem className='pf-u-pt-lg'>
+                                    <Title headingLevel='h1' size='2xl' style={{ color: '#151515' }}>
+                                        {intl.formatMessage(messages.startUsiningInisghts)}
+                                    </Title>
+                                </FlexItem>
+                                <FlexItem>
+                                    <div className='insd-c-width-limiter' style={ { '--insd-c-width-limiter--MaxWidth': '600px', color: '#151515' } }>
+                                        <p >{intl.formatMessage(messages.getStartedInsights)}</p>
+                                    </div>
+                                </FlexItem>
+                                <FlexItem>
+                                    <Button
+                                        onClick={updateRegisterButton}
+                                        className='pf-u-p-md pf-u-font-size-md'> Register your systems</Button>
+                                </FlexItem>
+                                <FlexItem>
+                                    <a
+                                        component='a'
+                                        target='_blank'
+                                        rel='noreferrer'
+                                        href='https://www.redhat.com/en/technologies/management/insights' >
+                                        {intl.formatMessage(messages.notMember)}
+                                    </a>
+                                </FlexItem>
+                            </Flex>
+                    }
                 </GridItem>
-
             </Grid>
         </MarketingBanner>
 
@@ -117,5 +122,6 @@ ZeroStateBanner.propTypes = {
     appName: propTypes.string,
     description: propTypes.object,
     commands: propTypes.array,
-    bulletPoints: propTypes.array
+    bulletPoints: propTypes.array,
+    customInstructions: propTypes.any
 };

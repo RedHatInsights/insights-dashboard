@@ -27,11 +27,11 @@ import IconList from '../IconList/IconList';
 import IconListItem from '../IconList/IconListItem';
 import ImgInsSmartMgmt from '../../images/img__ins-and-sm.png';
 import MarketingBanner from '../MarketingBanner/MarketingBanner';
-import { VULNERABILITIES_CVES_URL } from '../../AppConstants';
+import { UI_BASE, VULNERABILITIES_CVES_URL } from '../../AppConstants';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
-import ZeroStateBanner from './ZeroStateBanner';
+import { ArrowRightIcon } from '@patternfly/react-icons';
 
 // eslint-disable-next-line no-unused-vars
 const SortableTable = () => {
@@ -96,7 +96,54 @@ const ZeroState = () => {
     }, []);
 
     return <div className='insd-c-marketing-page'>
-        <ZeroStateBanner/>
+        <MarketingBanner
+            hasGraphic
+            graphicRight
+            dark1000
+            fullBleed
+            isWidthLimited
+            style={ {
+                '--ins-c-marketing-banner--graphic--width-on-md': '200px',
+                '--ins-c-marketing-banner--graphic--width-on-xl': '400px'
+            } }>
+            <Grid>
+                <GridItem>
+                    <Flex direction={ { default: 'column' } }>
+                        <FlexItem>
+                            <Title headingLevel='h1' size='2xl'>
+                                {intl.formatMessage(messages.noSystemsTitle)}
+                            </Title>
+                        </FlexItem>
+                        <FlexItem spacer={ { default: 'spacer2xl' } }>
+                            <div className='insd-c-width-limiter' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
+                                <p className='ins-c-text--black-400'>{intl.formatMessage(messages.singleConsistent)}</p>
+                            </div>
+                        </FlexItem>
+                        <FlexItem>
+                            <Button
+                                isLarge
+                                component='a'
+                                variant='primary'
+                                href={ `${UI_BASE}/registration` }>
+                                {intl.formatMessage(messages.registerYourSystems)}
+                            </Button>
+                        </FlexItem>
+                        <FlexItem>
+                            <Button
+                                className='pf-m-plain'
+                                component='a'
+                                variant='secondary'
+                                target='_blank'
+                                rel='noreferrer'
+                                href='https://www.redhat.com/en/technologies/management/insights'>
+                                {intl.formatMessage(messages.learnmoreRHI)}&nbsp;&nbsp;&nbsp;
+                                <ArrowRightIcon />
+                            </Button>
+                        </FlexItem>
+                    </Flex>
+                </GridItem>
+            </Grid>
+        </MarketingBanner>
         <PageSection isWidthLimited>
             <Grid lg={ 6 } hasGutter>
                 <GridItem>

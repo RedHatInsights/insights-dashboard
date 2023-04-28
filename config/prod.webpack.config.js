@@ -13,6 +13,7 @@ plugins.push(
         exposes: {
             //ZeroStateBanner
             './ZeroStateBanner': resolve(__dirname, '../src/PresentationalComponents/ZeroState/ZeroStateBanner.js'),
+            './ZeroStateFooter': resolve(__dirname, '../src/PresentationalComponents/ZeroState/ZeroStateFooter.js'),
             './RootApp': resolve(__dirname, '../src/AppEntry.js')
         }
     })
