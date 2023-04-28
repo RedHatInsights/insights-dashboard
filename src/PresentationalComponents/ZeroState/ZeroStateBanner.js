@@ -47,7 +47,7 @@ const ZeroStateBanner = ({
                 '--ins-c-marketing-banner--graphic--width-on-xl': '400px'
             } }>
             <Grid lg={ 6 } hasGutter className='pf-u-pt-xl pf-u-pb-xl'>
-                <GridItem className='pf-u-pl-lg pf-u-pr-lg' >
+                <GridItem className='pf-u-pl-lg pf-u-pr-lg'>
                     <Flex direction={ { default: 'column' } }>
                         <FlexItem>
                             <Title headingLevel='h1' size='4xl'>

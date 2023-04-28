@@ -813,5 +813,52 @@ export default defineMessages({
         id: 'configureIntigrations',
         description: 'configureIntigrations button label',
         defaultMessage: 'Configure Integrations'
+    },
+
+    //Zero state app descriptions
+    advisorZeroState: {
+        id: 'advisorZeroState',
+        description: 'Zero state description for Advisor app',
+        defaultMessage: 'Using Red Hat\'s expertise, analyze your RHEL hosts to identify and resolve risks to availability, performance, and stability in your environment.'
+    },
+    complianceZeroState: {
+        id: 'complianceZeroState',
+        description: 'Zero state description for Compliance app',
+        defaultMessage: 'Monitor regulatory compliance policies of registered RHEL systems you must adhere to via OpenSCAP.'
+    },
+    driftZeroState: {
+        id: 'driftZeroState',
+        description: 'Zero state description for Drift app',
+        defaultMessage: 'Drift assists in performing root-cause analysis of issues during troubleshooting. It empowers system administrators to compare and track configuration changes in RHEL systems, define baselines, and ensure systems are compliant.'
+    },
+    imageBuilderZeroState: {
+        id: 'imageBuilderZeroState',
+        description: 'Zero state description for Image Builder app',
+        defaultMessage: 'Build and customize RHEL images for cloud and on-premise environments.'
+    },
+    patchZeroState: {
+        id: 'patchZeroState',
+        description: 'Zero state description for Patch app',
+        defaultMessage: 'The patch service gives you the information you need to confidently update your RHEL systems with Red Hat product advisories and packages.'
+    },
+    policiesZeroState: {
+        id: 'policiesZeroState',
+        description: 'Zero state description for Policies app',
+        defaultMessage: 'Policies allow users to create and manage rule conditions to evaluate against system configuration and get automatically alerted whenever they trigger.'
+    },
+    malwareZeroState: {
+        id: 'malwaretZeroState',
+        description: 'Zero state description for Malware app',
+        defaultMessage: 'The malware detection service monitors your RHEL hosts for the presence of known malware signatures to indicate potential threats that you can proactively address with your information security team.'
+    },
+    resourceOptimizationZeroState: {
+        id: 'resourceOptimizationZeroState',
+        description: 'Zero state description for Resource Optimization app',
+        defaultMessage: 'Resource Optimization enables users to assess and monitor their public RHEL cloud usage and provides guidance for opportunities for optimization.'
+    },
+    vulnerabilityZeroState: {
+        id: 'vulnerabilityZeroState',
+        description: 'Zero state description for Vulnerability app',
+        defaultMessage: 'Understand the security exposure of your registered RHEL systems and take appropriate steps to protect your organization.'
     }
 });

@@ -3,7 +3,23 @@ import messages from '../../Messages';
 
 const ADVISOR_ZERO_STATE = {
     header: {},
-    otherApps: {},
+    otherApps: [
+        {
+            title: 'Vulnerability',
+            description: messages.vulnerabilityZeroState,
+            link: '/insights/vulnerability'
+        },
+        {
+            title: 'Patch',
+            description: messages.patchZeroState,
+            link: '/insights/patch'
+        },
+        {
+            title: 'Resource Optimization',
+            description: messages.resourceOptimizationZeroState,
+            link: '/insights/ros'
+        }
+    ],
     documentation: [
         {
             title: 'Assessing RHEL Configuration Issues',
@@ -26,7 +42,23 @@ const ADVISOR_ZERO_STATE = {
 
 const COMPLIANCE_ZERO_STATE = {
     header: {},
-    otherApps: {},
+    otherApps: [
+        {
+            title: 'Policies',
+            description: messages.policiesZeroState,
+            link: '/insights/policies'
+        },
+        {
+            title: 'Vulnerability',
+            description: messages.vulnerabilityZeroState,
+            link: '/insights/vulnerability'
+        },
+        {
+            title: 'Malware',
+            description: messages.malwareZeroState,
+            link: '/insights/malware'
+        }
+    ],
     documentation: [
         {
             title: 'Assessing and Monitoring Security Policy Compliance',
@@ -53,7 +85,18 @@ const COMPLIANCE_ZERO_STATE = {
 
 const DRIFT_ZERO_STATE = {
     header: {},
-    otherApps: {},
+    otherApps: [
+        {
+            title: 'Policies',
+            description: messages.policiesZeroState,
+            link: '/insights/policies'
+        },
+        {
+            title: 'Advisor',
+            description: messages.advisorZeroState,
+            link: '/insights/advisor'
+        }
+    ],
     documentation: [
         {
             title: 'Comparing System Configurations and Baselines',
@@ -99,7 +142,23 @@ const INSIGHTS_ZERO_STATE = {
 
 const PATCH_ZERO_STATE = {
     header: {},
-    otherApps: {},
+    otherApps: [
+        {
+            title: 'Vulnerability',
+            description: messages.vulnerabilityZeroState,
+            link: '/insights/vulnerability'
+        },
+        {
+            title: 'Advisor',
+            description: messages.advisorZeroState,
+            link: '/insights/advisor'
+        },
+        {
+            title: 'Image Builder',
+            description: messages.imageBuilderZeroState,
+            link: '/insights/image-builder'
+        }
+    ],
     documentation: [
         {
             title: 'System Patching Using Ansible Playbooks',
@@ -118,7 +177,23 @@ const PATCH_ZERO_STATE = {
 
 const POLICIES_ZERO_STATE = {
     header: {},
-    otherApps: {},
+    otherApps: [
+        {
+            title: 'Compliance',
+            description: messages.complianceZeroState,
+            link: '/insights/compliance'
+        },
+        {
+            title: 'Advisor',
+            description: messages.advisorZeroState,
+            link: '/insights/advisor'
+        },
+        {
+            title: 'Resource Optimization',
+            description: messages.resourceOptimizationZeroState,
+            link: '/insights/ros'
+        }
+    ],
     documentation: [
         {
             title: 'Monitoring and Reacting to Configuration Changes',
@@ -137,7 +212,18 @@ const POLICIES_ZERO_STATE = {
 
 const MALWARE_ZERO_STATE = {
     header: {},
-    otherApps: {},
+    otherApps: [
+        {
+            title: 'Vulnerability',
+            description: messages.vulnerabilityZeroState,
+            link: '/insights/vulnerability'
+        },
+        {
+            title: 'Compliance',
+            description: messages.complianceZeroState,
+            link: '/insights/compliance'
+        }
+    ],
     documentation: [
         {
             title: 'Assessing and Reporting Malware Signatures',
@@ -148,7 +234,18 @@ const MALWARE_ZERO_STATE = {
 
 const RESOURCE_OPTIMIZATION_ZERO_STATE = {
     header: {},
-    otherApps: {},
+    otherApps: [
+        {
+            title: 'Advisor',
+            description: messages.advisorZeroState,
+            link: '/insights/advisor'
+        },
+        {
+            title: 'Drift',
+            description: messages.driftZeroState,
+            link: '/insights/drift'
+        }
+    ],
     documentation: [
         {
             title: 'Assessing and Monitoring RHEL Resource Optimization',
@@ -167,7 +264,23 @@ const RESOURCE_OPTIMIZATION_ZERO_STATE = {
 
 const VULNERABILITY_ZERO_STATE = {
     header: {},
-    otherApps: {},
+    otherApps: [
+        {
+            title: 'Patch',
+            description: messages.patchZeroState,
+            link: '/insights/patch'
+        },
+        {
+            title: 'Malware',
+            description: messages.malwareZeroState,
+            link: '/insights/malware'
+        },
+        {
+            title: 'Compliance',
+            description: messages.complianceZeroState,
+            link: '/insights/compliance'
+        }
+    ],
     documentation: [
         {
             title: 'Assessing and Monitoring Security Vulnerabilities',
