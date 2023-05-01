@@ -56,7 +56,7 @@ const ZeroStateBanner = ({
                         </FlexItem>
                         <FlexItem spacer={ { default: 'spacerXl' } }>
                             <div className='insd-c-width-limiter' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
-                                <p >{intl.formatMessage(description)}</p>
+                                <p>{description}</p>
                             </div>
                         </FlexItem>
                         <FlexItem>

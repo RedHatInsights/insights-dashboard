@@ -2,7 +2,29 @@
 import messages from '../../Messages';
 
 const ADVISOR_ZERO_STATE = {
-    header: {},
+    header: {
+        description:
+      'Using Red Hat’s expertise, analyze your RHEL hosts to identify and resolve risks to availability, performance, and stability in your environment.',
+        commands: [
+            {
+                instructions: 'Register your host',
+                command: 'RHEL 7:  insights-client --register'
+            },
+            {
+                instructions: 'Register your host',
+                command: 'RHEL 8+: rhc --register'
+            },
+            {
+                instructions:
+          'See More details at our Client Configuration Guide for Red Hat Insights',
+                link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/assembly-client-cg-installation_insights-cg-overview#doc-wrapper'
+            }
+        ],
+        bulletPoints: [
+            'Detect misconfigurations, known problematic configurations, or highlight best practices',
+            'Prioritize & remediate risks via manual guidance or Ansible Automation'
+        ]
+    },
     otherApps: [
         {
             title: 'Vulnerability',
@@ -41,7 +63,36 @@ const ADVISOR_ZERO_STATE = {
 };
 
 const COMPLIANCE_ZERO_STATE = {
-    header: {},
+    header: {
+        description:
+      'Monitor regulatory compliance policies of registered RHEL systems you must adhere to via OpenSCAP.',
+        commands: [
+            {
+                instructions: 'Install the supported SSG package on the host',
+                link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/proc-compl-getting-started_compl-getting-started'
+            },
+            {
+                instructions: ' Register your host with Insights',
+                command: 'RHEL 7:  insights-client --register'
+            },
+            {
+                instructions: ' Register your host with Insights',
+                command: 'RHEL 8+: rhc --register'
+            },
+            {
+                instructions: 'Initiate the compliance scan',
+                command: 'RHEL 7:  insights-client --compliance'
+            },
+            {
+                instructions: 'Initiate the compliance scan',
+                command: 'RHEL 8+: rhc --compliance'
+            }
+        ],
+        bulletPoints: [
+            'Easily configure, customize and deploy policies at scale',
+            'Generate reports for stakeholders and remediate via Ansible Automation.'
+        ]
+    },
     otherApps: [
         {
             title: 'Policies',
@@ -84,7 +135,22 @@ const COMPLIANCE_ZERO_STATE = {
 };
 
 const DRIFT_ZERO_STATE = {
-    header: {},
+    header: {
+        description:
+      'Drift assists in performing root-cause analysis of issues during troubleshooting. It empowers system administrators to compare and track configuration changes in RHEL systems, define baselines, and ensure systems are compliant.',
+        commands: [
+            {
+                instructions: 'Register your host',
+                command: 'RHEL 7:  insights-client --register'
+            },
+            { instructions: 'Register your host', command: 'RHEL 8+: rhc –register' },
+            { plainText: 'Select two or more hosts to compare in the drift UI' }
+        ],
+        bulletPoints: [
+            'Compare system configuration over time or to other systems',
+            'Define baselines as standard configuration systems must adhere to'
+        ]
+    },
     otherApps: [
         {
             title: 'Policies',
@@ -141,7 +207,22 @@ const INSIGHTS_ZERO_STATE = {
 };
 
 const PATCH_ZERO_STATE = {
-    header: {},
+    header: {
+        description:
+      'Red Hat Insights gives you the information you need to confidently update your RHEL systems with Red Hat product advisories and packages.',
+        commands: [
+            {
+                instructions: 'Register your host',
+                command: 'RHEL 7:  insights-client --register'
+            },
+            { instructions: 'Register your host', command: 'RHEL 8+: rhc –register' }
+        ],
+        bulletPoints: [
+            'View and report on Red Hat product advisories that impact your RHEL environment and apply patches with Ansible Remediation.',
+            'Inspect the packages and versions deployed across your RHEL environment.',
+            'Add custom repositories and use that content to build customized RHEL images.'
+        ]
+    },
     otherApps: [
         {
             title: 'Vulnerability',
@@ -176,7 +257,31 @@ const PATCH_ZERO_STATE = {
 };
 
 const POLICIES_ZERO_STATE = {
-    header: {},
+    header: {
+        description:
+      'Policies allow users to create and manage rule conditions to evaluate against system configuration and get automatically alerted whenever they trigger. It assists in operational management with simple tasks such as:',
+        commands: [
+            {
+                instructions: 'Register your host',
+                command: 'RHEL 7: - insights-client --register'
+            },
+            {
+                instructions: 'Register your host',
+                command: 'RHEL 8+: rhc --register'
+            },
+            {
+                plainText:
+          'Create condition(s) based on system facts or tags with the help of the wizard'
+            }
+        ],
+        bulletPoints: [
+            'Raising an alert when some conditions are met on system configuration',
+            'Emailing a team when security packages are out of date on a system',
+            'Notifying on Slack when system resources are configured above thresholds',
+            'Creating an issue in external ticketing systems when policies are breached',
+            'Triggering actions on system inventory automatically'
+        ]
+    },
     otherApps: [
         {
             title: 'Compliance',
@@ -211,7 +316,22 @@ const POLICIES_ZERO_STATE = {
 };
 
 const MALWARE_ZERO_STATE = {
-    header: {},
+    header: {
+        description:
+      'The malware detection service monitors your RHEL hosts for the presence of known malware signatures to indicate potential threats that you can proactively address with your information security team.',
+        commands: [
+            { instructions: 'Register your RHEL 8+ host', command: 'rhc --register' },
+            { instructions: 'Install the yara package', command: 'dnf install yara' },
+            {
+                instructions: 'Run a malware detection scan',
+                command: 'insights-client --collector malware-detection'
+            }
+        ],
+        bulletPoints: [
+            'Identify and report on potential malware threats in your RHEL infrastructure',
+            'Access reference information for known Linux malware threats'
+        ]
+    },
     otherApps: [
         {
             title: 'Vulnerability',
@@ -233,7 +353,36 @@ const MALWARE_ZERO_STATE = {
 };
 
 const RESOURCE_OPTIMIZATION_ZERO_STATE = {
-    header: {},
+    header: {
+        description:
+      'Resource Optimization enables users to assess and monitor their public RHEL cloud usage and provides guidance for opportunities for optimization. ',
+        commands: [
+            { plainText: 'Download Ansible Playbook or run the following steps:' },
+            {
+                plainText:
+          'Install & configure Performance Co-Pilot with use for Insights'
+            },
+            {
+                link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux/assembly-ros-install#installing_resource_optimization_without_installing_or_using_ansible'
+            },
+            {
+                instructions: 'Register your host',
+                command: 'RHEL 7: - insights-client --register'
+            },
+            {
+                instructions: 'Register your host',
+                command: 'RHEL 8+: rhc --register'
+            },
+            {
+                plainText:
+          'Note: After configuration it may take up to 24 hours until suggestions are available'
+            }
+        ],
+        bulletPoints: [
+            'Track your system resource utilizations to make better business decisions',
+            'Identify states such as oversized, undersized, idle, or under pressure & made adjustments to optimize'
+        ]
+    },
     otherApps: [
         {
             title: 'Advisor',
@@ -263,7 +412,24 @@ const RESOURCE_OPTIMIZATION_ZERO_STATE = {
 };
 
 const VULNERABILITY_ZERO_STATE = {
-    header: {},
+    header: {
+        description:
+      'Understand the security exposure of your registered RHEL systems and take appropriate steps to protect your organization.',
+        commands: [
+            {
+                instructions: 'Register your host',
+                command: 'RHEL 7: insights-client --register'
+            },
+            {
+                instructions: 'Register your host',
+                command: 'RHEL 8+: rhc --register'
+            }
+        ],
+        bulletPoints: [
+            'Identify, triage, and prioritize CVEs affecting your systems.',
+            'Generate reports for stakeholders and remediate via Ansible Automation.'
+        ]
+    },
     otherApps: [
         {
             title: 'Patch',
