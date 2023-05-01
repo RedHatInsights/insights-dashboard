@@ -10,25 +10,38 @@ const registerSystemsList = (item) => {
             <a
                 target='_blank'
                 href={`${item.link}`}
-                rel="noreferrer">
+                rel="noreferrer"
+                className='pf-u-pl-lg'
+            >
                 {item.instructions}
             </a>
         </React.Fragment> :
-        item.plainText ?
-            <React.Fragment>
-                <p>{item.plainText}</p>
-            </React.Fragment> :
-            <React.Fragment>
-                <p>{item.instructions}</p>
-                <ClipboardCopy
-                    hoverTip="Copy"
-                    clickTip="Copied"
-                    isReadOnly
-                    className='pf-u-p-sm'
-                >
-                    {item.command}
-                </ClipboardCopy>
-            </React.Fragment>;
+        item.numberedLink ?
+            <div>
+                {item.step}
+                <a
+                    target='_blank'
+                    href={`${item.numberedLink}`}
+                    rel="noreferrer">
+                    {item.instructions}
+                </a>
+            </div>
+            :
+            item.plainText ?
+                <React.Fragment>
+                    <p className={ item.plainText.length < 4 ? 'pf-u-pl-lg' : ''}>{item.plainText}</p>
+                </React.Fragment> :
+                <React.Fragment>
+                    <p className='pf-u-mb-0 pf-u-pl-md'>{item.instructions}</p>
+                    <ClipboardCopy
+                        hoverTip="Copy"
+                        clickTip="Copied"
+                        isReadOnly
+                        className='pf-u-p-sm pf-u-pt-xs pf-u-pl-md'
+                    >
+                        {item.command}
+                    </ClipboardCopy>
+                </React.Fragment>;
 };
 
 export default registerSystemsList;

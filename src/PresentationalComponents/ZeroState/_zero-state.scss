@@ -31,20 +31,31 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
     --pf-l-grid--m-gutter--GridGap: var(--pf-global--spacer--xl);
   }
 
-.insd-c-icon-list {
-  --insd-c-icon-list--item--before--Content--url: "../../images/icon__plus-solid_warning.svg";
-  li {
-    &::before {
-      content: url(../../images/icon__plus-solid_warning.svg);
+}
+
+.warning{
+  .insd-c-icon-list {
+    --insd-c-icon-list--item--before--Content--url: "../../images/icon__plus-solid_warning.svg";
+    li {
+      &::before {
+        content: url(../../images/icon__plus-solid_warning.svg);
+        }
       }
     }
-  }
 }
 
 .footer {
-  background: var(--pf-global--BackgroundColor--100);
   a{
     text-decoration: none;
     color: #151515;
   }
+}
+
+.bannerRight {
+  height:100%;
+  justify-content: center;
+}
+.bannerBefore{
+  max-height: 300px;
+  min-height: fit-content;
 }

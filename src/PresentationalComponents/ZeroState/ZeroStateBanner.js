@@ -39,7 +39,7 @@ const ZeroStateBanner = ({
     const [registerButton, setRegisterButton] = useState(false);
     const updateRegisterButton = ()=> setRegisterButton(!registerButton);
 
-    return <div className='insd-c-marketing-page'>
+    return <div className='insd-c-marketing-page warning'>
         <MarketingBanner
             dark1000
             style={ {
@@ -51,7 +51,7 @@ const ZeroStateBanner = ({
                     <Flex direction={ { default: 'column' } }>
                         <FlexItem>
                             <Title headingLevel='h1' size='4xl'>
-                                {appName}
+                                {appName.replace('_', ' ')}
                             </Title>
                         </FlexItem>
                         <FlexItem spacer={ { default: 'spacerXl' } }>
@@ -69,7 +69,7 @@ const ZeroStateBanner = ({
                     </Flex>
                 </GridItem>
 
-                <GridItem style={{ backgroundColor: '#fff' }} >
+                <GridItem style={{ backgroundColor: '#fff' }} className={!registerButton ? 'bannerBefore' : ''} >
                     {registerButton ?
                         <Flex className='pf-u-p-lg' direction={{ default: 'column' }} style={{ color: '#151515' }}>
                             <a className='pf-u-pb-sm' onClick={updateRegisterButton} >Go Back</a>
@@ -77,15 +77,17 @@ const ZeroStateBanner = ({
                                 registerSystemsList(item)
                             ))}
                         </Flex>
-                        : (!registerButton && customInstructions) ?   customInstructions(setRegisterButton)
+                        : (!registerButton && customInstructions) ?
+                            customInstructions(setRegisterButton)
                             :
                             <Flex
                                 direction={ { default: 'column' } }
                                 alignItems={{ default: 'alignItemsCenter' }}
-                                alignSelf={{ default: 'alignSelfCenter' }} >
+                                alignSelf={{ default: 'alignSelfCenter' }}
+                                className='bannerRight' >
                                 <FlexItem className='pf-u-pt-lg'>
                                     <Title headingLevel='h1' size='2xl' style={{ color: '#151515' }}>
-                                        {intl.formatMessage(messages.startUsiningInisghts)}
+                                        {`Start using ${appName.replace('_', ' ')} now`}
                                     </Title>
                                 </FlexItem>
                                 <FlexItem>
