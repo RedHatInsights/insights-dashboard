@@ -2,6 +2,12 @@
 
 $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
 
+.pf-c-page__main-section {
+  &.pf-m-dark-1000 {
+      --pf-c-page__main-section--BackgroundColor: var(--pf-global--palette--black-1000);
+  }
+}
+
 .insd-c-marketing-page {
   --ins-m-marketing-page--RowGap: var(--pf-global--spacer--xl);
   --ins-m-marketing-page--ColumnGap: var(--pf-global--spacer--xl);
