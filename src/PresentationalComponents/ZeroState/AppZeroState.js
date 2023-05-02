@@ -3,14 +3,17 @@ import AppSection from './AppSection';
 import ZeroStateBanner from './ZeroStateBanner';
 import ZeroStateFooter from './ZeroStateFooter';
 import propTypes from 'prop-types';
+import { IntlProvider } from '@redhat-cloud-services/frontend-components-translations';
 
 const AppZeroState = ({ app }) => {
     return (
-        <React.Fragment>
-            <ZeroStateBanner appName={app} />
-            <AppSection appName={app}/>
-            <ZeroStateFooter appName={app} />
-        </React.Fragment>
+        <IntlProvider>
+            <React.Fragment>
+                <ZeroStateBanner appName={app} />
+                <AppSection appName={app}/>
+                <ZeroStateFooter appName={app} />
+            </React.Fragment>
+        </IntlProvider>
     );
 };
 
