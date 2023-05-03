@@ -12,11 +12,14 @@ import {
 import React from 'react';
 import zeroStateConstants from './zeroStateConstants';
 import propTypes from 'prop-types';
+import  useChrome  from '@redhat-cloud-services/frontend-components/useChrome';
 
 const ZeroStateFooter = ({
     appName,
     documentation = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].documentation
 }) => {
+    const chrome = useChrome();
+
     return (
         <PageSection className='footer'>
             <Card>
@@ -24,7 +27,7 @@ const ZeroStateFooter = ({
                     <GridItem>
                         <Flex direction={{ default: 'column' }}>
                             <FlexItem>
-                                <Title headingLevel='h3' size='lg'>{appName} documentation</Title>
+                                <Title headingLevel='h3' size='lg'>{appName.replace('_', ' ')} documentation</Title>
                             </FlexItem>
                             {documentation.map(item => (
                                 <FlexItem key={item.title} >
@@ -80,23 +83,26 @@ const ZeroStateFooter = ({
                             <FlexItem>
                                 <a component='a'
                                     target='_blank'
-                                    rel='noreferrer' href={'https://console.redhat.com/openshift'}>OpenShift</a>
+                                    rel='noreferrer'
+                                    href={` ${chrome.isBeta() ? '/beta' : ''}/openshift`}>OpenShift</a>
                             </FlexItem>
                             <FlexItem>
                                 <a component='a'
                                     target='_blank'
                                     rel='noreferrer'
-                                    href={'https://console.redhat.com/application-services/overview'}>Application and Data Services</a>
+                                    href={`${chrome.isBeta() ? '/beta' : ''}/application-services/overview`}>Application and Data Services</a>
                             </FlexItem>
                             <FlexItem>
                                 <a component='a'
                                     target='_blank'
-                                    rel='noreferrer' href={'https://console.redhat.com/edge/'}>Edge Managment</a>
+                                    rel='noreferrer'
+                                    href={`${chrome.isBeta() ? '/beta' : ''}/edge/`}>Edge Managment</a>
                             </FlexItem>
                             <FlexItem>
                                 <a component='a'
                                     target='_blank'
-                                    rel='noreferrer' href={'https://console.redhat.com/ansible/ansible-dashboard'}>Ansible Automation Platform</a>
+                                    rel='noreferrer'
+                                    href={`${chrome.isBeta() ? '/beta' : ''}/ansible/ansible-dashboard`}>Ansible Automation Platform</a>
                             </FlexItem>
                         </Flex>
                     </GridItem>
