@@ -1,10 +1,10 @@
-import { Button, Text, TextContent, TextVariants } from '@patternfly/react-core/dist/esm/components';
+import { Button, Text, TextContent, TextVariants, Title } from '@patternfly/react-core/dist/esm/components';
 import propTypes from 'prop-types';
 import { GridItem } from '@patternfly/react-core';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
+import useChrome  from '@redhat-cloud-services/frontend-components/useChrome';
 
 const AppSectionItems = ({ app }) => {
     const intl = useIntl();
@@ -19,7 +19,7 @@ const AppSectionItems = ({ app }) => {
                 <Text>
                     {intl.formatMessage(app.description)}
                 </Text>
-                <Text component={TextVariants.p}>
+                <Title headingLevel='h4'>
                     <Button
                         variant='link'
                         isLarge
@@ -29,7 +29,7 @@ const AppSectionItems = ({ app }) => {
                     >
                         Get started <ArrowRightIcon />
                     </Button>
-                </Text>
+                </Title>
             </TextContent>
         </GridItem>
     );
