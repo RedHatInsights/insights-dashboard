@@ -1,4 +1,4 @@
-import { Card, CardBody, CardTitle, PageSection } from '@patternfly/react-core/dist/esm/components';
+import { Card, CardBody, CardTitle, PageSection, Title } from '@patternfly/react-core/dist/esm/components';
 import propTypes from 'prop-types';
 import { Grid } from '@patternfly/react-core';
 import React from 'react';
@@ -11,7 +11,11 @@ const AppSection = ({ appName }) => {
     return (
         <PageSection isWidthLimited>
             <Card>
-                <CardTitle>Other Applications</CardTitle>
+                <CardTitle>
+                    <Title headingLevel='h3'>
+                        Other Applications
+                    </Title>
+                </CardTitle>
                 <CardBody>
                     <Grid hasGutter style={{ marginTop: '16px', marginBottom: '16px' }}>
                         {appSectionList.map((app) => {

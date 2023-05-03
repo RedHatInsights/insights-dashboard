@@ -55,14 +55,16 @@ const ZeroStateBanner = ({
                             </Title>
                         </FlexItem>
                         <FlexItem spacer={ { default: 'spacerXl' } }>
-                            <div className='insd-c-width-limiter' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
-                                <p>{description}</p>
-                            </div>
+                            <Title headingLevel='h4' style={{ maxWidth: '600px' }}>{description}</Title>
                         </FlexItem>
                         <FlexItem>
                             <IconList className='pf-u-pl-sm ' >
                                 {bulletPoints.map(item => (
-                                    <IconListItem key={item} >{item}</IconListItem>
+                                    <IconListItem key={item}>
+                                        <Title headingLevel='h4'>
+                                            {item}
+                                        </Title>
+                                    </IconListItem>
                                 ))}
                             </IconList>
                         </FlexItem>
@@ -91,8 +93,8 @@ const ZeroStateBanner = ({
                                     </Title>
                                 </FlexItem>
                                 <FlexItem>
-                                    <div className='insd-c-width-limiter' style={ { '--insd-c-width-limiter--MaxWidth': '600px', color: '#151515' } }>
-                                        <p >{intl.formatMessage(messages.getStartedInsights)}</p>
+                                    <div  style={{ maxWidth: '600px', color: '#151515', textAlign: 'center' }}>
+                                        <p>{intl.formatMessage(messages.getStartedInsights)}</p>
                                     </div>
                                 </FlexItem>
                                 <FlexItem>

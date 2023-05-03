@@ -147,7 +147,7 @@ const DRIFT_ZERO_STATE = {
                 instructions: 'RHEL 8 or newer',
                 command: 'rhc --register'
             },
-            { plainText: ' 2. Select two or more hosts to compare in the drift UI' }
+            { plainText: ' 2. Select two or more hosts to compare in the Drift UI' }
         ],
         bulletPoints: [
             'Compare system configuration over time or to other systems.',

@@ -18,13 +18,13 @@ const ZeroStateFooter = ({
     documentation = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].documentation
 }) => {
     return (
-        <PageSection className='footer pf-u-p-lg'>
+        <PageSection className='footer'>
             <Card>
                 <Grid lg={ 4 } hasGutter className='pf-u-p-xl'>
                     <GridItem>
                         <Flex direction={{ default: 'column' }}>
                             <FlexItem>
-                                <Title headingLevel='h1' size='lg'>{appName} documentation</Title>
+                                <Title headingLevel='h3' size='lg'>{appName} documentation</Title>
                             </FlexItem>
                             {documentation.map(item => (
                                 <FlexItem key={item.title} >
@@ -39,7 +39,7 @@ const ZeroStateFooter = ({
                     <GridItem >
                         <Flex direction={{ default: 'column' }} spacer={{ default: 'spacerSm' }}>
                             <FlexItem>
-                                <Title headingLevel='h1' size='lg'>Learn about Insights</Title>
+                                <Title headingLevel='h3' size='lg'>Learn about Insights</Title>
                             </FlexItem>
                             <FlexItem>
                                 <a component='a'
@@ -75,7 +75,7 @@ const ZeroStateFooter = ({
                     <GridItem>
                         <Flex direction={{ default: 'column' }}>
                             <FlexItem>
-                                <Title headingLevel='h1' size='lg'>Other bundles</Title>
+                                <Title headingLevel='h3' size='lg'>Other bundles</Title>
                             </FlexItem>
                             <FlexItem>
                                 <a component='a'
