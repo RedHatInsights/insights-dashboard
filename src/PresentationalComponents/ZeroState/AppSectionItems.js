@@ -25,7 +25,7 @@ const AppSectionItems = ({ app }) => {
                         isLarge
                         isInline
                         component='a'
-                        href={`${chrome.isBeta() ? '/preview' : ''}${app.link}`}
+                        href={`${(chrome.isBeta() || app.link === '/settings/content') ? '/preview' : ''}${app.link}`}
                     >
                         Get started <ArrowRightIcon />
                     </Button>

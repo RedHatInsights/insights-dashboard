@@ -1,4 +1,6 @@
 {
+  "ImagesZeroState": "Red Hat Image Builder enables you to create customized images optimized for your target environment. Save time by uploading to multiple target environments in a single build.",
+  "activationKeyZeroState": "Register systems to Subscription Manager and get the correct content for your image.",
   "advisorCardCTA": "View incidents",
   "advisorCardHeader1": "Advisor recommendations",
   "advisorCardHeader2": "Recommendations by total risk",
@@ -24,6 +26,7 @@
   "configureIntigrations": "Configure Integrations",
   "contactsales": "Contact sales",
   "critical": "Critical",
+  "customContentZeroState": "Add custom repositories to images built with Image Builder.",
   "cveByCvssScoreTitle": "CVEs by CVSS score",
   "cvesImpactingOneOrMoreSystems": "{cves, plural, one {CVE} other {CVEs}} with <strong>security rules</strong> impacting 1 or more systems",
   "cvesImpactingSystems": "{cves, plural, one {CVE} other {CVEs}} impacting your systems",

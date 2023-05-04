@@ -21,7 +21,7 @@ const ZeroStateFooter = ({
     const chrome = useChrome();
 
     return (
-        <PageSection className='footer'>
+        <PageSection className='footer' isWidthLimited>
             <Card>
                 <Grid lg={ 4 } hasGutter className='pf-u-p-xl'>
                     <GridItem>
