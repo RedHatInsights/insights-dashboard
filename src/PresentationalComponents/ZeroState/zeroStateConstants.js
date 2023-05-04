@@ -6,16 +6,23 @@ const ADVISOR_ZERO_STATE = {
         description:
       `Using Red Hat’s expertise, analyze your RHEL hosts to identify and resolve risks to your environment's availability, performance, and stability.`,
         commands: [
-            { plainText: ' 1. Register your host' },
+            { plainText: ' 1. Register your host:' },
             {
-                instructions: 'RHEL 7',
+                instructions: 'RHEL 7 & 8:',
                 command: 'insights-client --register'
 
             },
             {
-                instructions: 'RHEL 8 or newer',
+                instructions: 'RHEL 9 or newer:',
                 command: 'rhc --register'
+            },
+            {
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                partOne: 'View the',
+                anchorText: 'Client Configuration Guide',
+                partTwo: ' for more details.'
             }
+
         ],
         bulletPoints: [
             'Detect misconfigurations, known problematic configurations, or highlight best practices.',
@@ -69,22 +76,30 @@ const COMPLIANCE_ZERO_STATE = {
                 instructions: 'Install the supported SSG package on the host',
                 numberedLink: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/proc-compl-getting-started_compl-getting-started'
             },
-            { plainText: ' 2. Register your host' },
+            { plainText: ' 2. Register your host:' },
             {
-                instructions: 'RHEL 7',
+                instructions: 'RHEL 7 & 8:',
                 command: 'insights-client --register'
             },
             {
-                instructions: 'RHEL 8 or newer',
+                instructions: 'RHEL 9 or newer:',
                 command: 'rhc --register'
             },
-            { plainText: ' 3. Initiate the compliance scan' },
             {
-                instructions: 'RHEL 7',
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                partOne: 'View the',
+                anchorText: 'Client Configuration Guide',
+                partTwo: ' for more details.'
+            },
+            { plainText: ' 3. Create a Compliance Policy and assign your systems to it' },
+            { plainText: ' 4. Initiate the compliance scan' },
+
+            {
+                instructions: 'RHEL 7 & 8:',
                 command: 'insights-client --compliance'
             },
             {
-                instructions: 'RHEL 8 or newer',
+                instructions: 'RHEL 9 or newer:',
                 command: 'rhc --compliance'
             }
         ],
@@ -140,12 +155,18 @@ const DRIFT_ZERO_STATE = {
         commands: [
             { plainText: ' 1. Register your host' },
             {
-                instructions: 'RHEL 7',
+                instructions: 'RHEL 7 & 8:',
                 command: 'insights-client --register'
             },
             {
-                instructions: 'RHEL 8 or newer',
+                instructions: 'RHEL 9 or newer:',
                 command: 'rhc --register'
+            },
+            {
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                partOne: 'View the',
+                anchorText: 'Client Configuration Guide',
+                partTwo: ' for more details.'
             },
             { plainText: ' 2. Select two or more hosts to compare in the Drift UI' }
         ],
@@ -213,14 +234,20 @@ const CONTENT_MANAGEMENT_ZERO_STATE = {
     header: {
         description: 'Red Hat Insights gives you the information to confidently update your RHEL systems with Red Hat product advisories and packages.',
         commands: [
-            { plainText: ' 1. Register your host' },
+            { plainText: ' 1. Register your host:' },
             {
-                instructions: 'RHEL 7',
+                instructions: 'RHEL 7 & 8:',
                 command: 'insights-client --register'
             },
             {
-                instructions: 'RHEL 8 or newer',
+                instructions: 'RHEL 9 or newer:',
                 command: 'rhc --register'
+            },
+            {
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                partOne: 'View the',
+                anchorText: 'Client Configuration Guide',
+                partTwo: ' for more details.'
             }
         ],
         bulletPoints: [
@@ -267,15 +294,21 @@ const POLICIES_ZERO_STATE = {
         description:
       'Policies allow users to create and manage rule conditions to evaluate against system configuration and get automatically alerted whenever they trigger. It assists in operational management with simple tasks such as:',
         commands: [
-            { plainText: ' 1. Register your host' },
+            { plainText: ' 1. Register your host:' },
             {
-                instructions: 'RHEL 7',
+                instructions: 'RHEL 7 & 8:',
                 command: 'insights-client --register'
 
             },
             {
-                instructions: 'RHEL 8 or newer',
+                instructions: 'RHEL 9 or newer:',
                 command: 'rhc --register'
+            },
+            {
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                partOne: 'View the',
+                anchorText: 'Client Configuration Guide',
+                partTwo: ' for more details.'
             },
             {
                 plainText:
@@ -327,10 +360,26 @@ const MALWARE_ZERO_STATE = {
     header: {
         description: 'The malware detection service monitors your RHEL hosts for known malware signatures to indicate potential threats you can proactively address with your information security team.',
         commands: [
-            { instructions: 'Register your RHEL 8+ host', command: 'rhc --register' },
-            { instructions: 'Install the yara package', command: 'dnf install yara' },
+            { plainText: ' 1. Register your host:' },
             {
-                instructions: 'Run a malware detection scan',
+                instructions: 'RHEL 7 & 8:',
+                command: 'insights-client --register'
+
+            },
+            {
+                instructions: 'RHEL 9 or newer:',
+                command: 'rhc --register'
+            },
+            {
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                partOne: 'View the',
+                anchorText: 'Client Configuration Guide',
+                partTwo: ' for more details.'
+            },
+            { instructions: '2. Install the yara package', command: 'dnf install yara', noPadding: true },
+            {
+                instructions: '3. Run a malware detection scan',
+                noPadding: true,
                 command: 'insights-client --collector malware-detection'
             }
         ],
@@ -374,15 +423,21 @@ const RESOURCE_OPTIMIZATION_ZERO_STATE = {
             },
             { plainText: 'or' },
             { instructions: 'Complete the manual install', link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux/assembly-ros-install#installing_resource_optimization_without_installing_or_using_ansible' },
-            { plainText: '2. Register your host' },
+            { plainText: '2. Register your host:' },
             {
-                instructions: 'RHEL 7',
+                instructions: 'RHEL 7 & 8:',
                 command: 'insights-client --register'
 
             },
             {
-                instructions: 'RHEL 8 or newer',
+                instructions: 'RHEL 9 or newer:',
                 command: 'rhc --register'
+            },
+            {
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                partOne: 'View the',
+                anchorText: 'Client Configuration Guide',
+                partTwo: ' for more details.'
             },
             {
                 plainText:
@@ -427,14 +482,20 @@ const VULNERABILITY_ZERO_STATE = {
         description:
       'Understand the security exposure of your registered RHEL systems and take appropriate steps to protect your organization.',
         commands: [
-            { plainText: ' 1. Register your host' },
+            { plainText: ' 1. Register your host:' },
             {
-                instructions: 'RHEL 7',
+                instructions: 'RHEL 7 & 8:',
                 command: 'insights-client --register'
             },
             {
-                instructions: 'RHEL 8 or newer',
+                instructions: 'RHEL 9 or newer:',
                 command: 'rhc --register'
+            },
+            {
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                partOne: 'View the',
+                anchorText: 'Client Configuration Guide',
+                partTwo: ' for more details.'
             }
         ],
         bulletPoints: [
@@ -478,6 +539,90 @@ const VULNERABILITY_ZERO_STATE = {
         }
     ]
 };
+const IMAGES_ZERO_STATE = {
+    header: {
+        description:
+      `Red Hat Image Builder enables you to create customized images optimized for your target environment. Save time by uploading to multiple target environments in a single build.`,
+        bulletPoints: [
+            'Upload to target cloud environments, such as Amazon Web Services, Microsoft Azure, and Google Cloud Platform.',
+            'Download customized images and upload them to the VMware vSphere client.',
+            'Create customized Bare Metal and Guest images.'
+        ],
+        commands: [
+            { plainText: ' Images is supposed to have a custom input via customButton prop' }
+        ]
+    },
+    otherApps: [
+        {
+            title: 'Create an Activation Key',
+            description: messages.activationKeyZeroState,
+            link: '/settings/connector/activation-keys'
+        },
+        {
+            title: 'Link Custom content (Preview Only)',
+            description: messages.customContentZeroState,
+            link: '/settings/content'
+        }
+    ],
+    documentation: [
+        {
+            title: 'Creating customized Images with Image Builder',
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/creating_customized_rhel_images_using_the_image_builder_service/index'
+        }
+    ]
+};
+
+const REMEDIATIONS_ZERO_STATE = {
+    header: {
+        description:
+      `The applications across Red Hat Insights provide guidance to remediate risk. Many of these risks or recommendations can be acted on directly via automatically generated Ansible remediations.`,
+        bulletPoints: [
+            'Create or modify remediation playbooks to address identified risks',
+            'Download playbooks or execute directly to remediate risk'
+        ],
+        commands: [
+            { plainText: ' 1. Register your host:' },
+            {
+                instructions: 'RHEL 7 & 8:',
+                command: 'insights-client --register'
+            },
+            {
+                instructions: 'RHEL 9 or newer:',
+                command: 'rhc --register'
+            },
+            {
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                partOne: 'View the',
+                anchorText: 'Client Configuration Guide',
+                partTwo: ' for more details.'
+            },
+            { plainText: ' 2. Once registered, view the analysis of that host in one Red Hat Insights applications to select items for remediation. ' }
+        ]
+    },
+    otherApps: [
+        {
+            title: 'Advisor',
+            description: messages.advisorZeroState,
+            link: '/insights/advisor'
+        },
+        {
+            title: 'Vulnerability',
+            description: messages.vulnerabilityZeroState,
+            link: '/insights/vulnerability'
+        },
+        {
+            title: 'Patch',
+            description: messages.patchZeroState,
+            link: '/insights/patch'
+        }
+    ],
+    documentation: [
+        {
+            title: 'Red Hat Insights Remediations Guide',
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/red_hat_insights_remediations_guide/index'
+        }
+    ]
+};
 
 export default {
     ADVISOR_ZERO_STATE,
@@ -488,5 +633,7 @@ export default {
     POLICIES_ZERO_STATE,
     MALWARE_ZERO_STATE,
     RESOURCE_OPTIMIZATION_ZERO_STATE,
-    VULNERABILITY_ZERO_STATE
+    VULNERABILITY_ZERO_STATE,
+    IMAGES_ZERO_STATE,
+    REMEDIATIONS_ZERO_STATE
 };

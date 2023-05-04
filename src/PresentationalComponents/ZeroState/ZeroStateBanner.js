@@ -23,7 +23,9 @@ const ZeroStateBanner = ({
     description = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.description,
     commands = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.commands,
     bulletPoints = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.bulletPoints,
-    customInstructions
+    customInstructions,
+    customButton,
+    customText
 }) => {
     const intl = useIntl();
     const { hideGlobalFilter } = useChrome();
@@ -94,13 +96,15 @@ const ZeroStateBanner = ({
                                 </FlexItem>
                                 <FlexItem>
                                     <div  style={{ maxWidth: '600px', color: '#151515', textAlign: 'center' }}>
-                                        <p>{intl.formatMessage(messages.getStartedInsights)}</p>
+                                        <p>{customText ? customText : intl.formatMessage(messages.getStartedInsights)}</p>
                                     </div>
                                 </FlexItem>
                                 <FlexItem>
-                                    <Button
-                                        onClick={updateRegisterButton}
-                                        className='pf-u-p-md pf-u-font-size-md'> Register your systems</Button>
+                                    { customButton ? customButton :
+                                        <Button
+                                            onClick={updateRegisterButton}
+                                            className='pf-u-p-md pf-u-font-size-md'> Register your systems
+                                        </Button>}
                                 </FlexItem>
                                 <FlexItem>
                                     <a
@@ -127,5 +131,7 @@ ZeroStateBanner.propTypes = {
     description: propTypes.object,
     commands: propTypes.array,
     bulletPoints: propTypes.array,
-    customInstructions: propTypes.any
+    customInstructions: propTypes.any,
+    customButton: propTypes.any,
+    customText: propTypes.string
 };

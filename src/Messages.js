@@ -860,5 +860,20 @@ export default defineMessages({
         id: 'vulnerabilityZeroState',
         description: 'Zero state description for Vulnerability app',
         defaultMessage: 'Understand the security exposure of your registered RHEL systems and take appropriate steps to protect your organization.'
+    },
+    imagesZeroState: {
+        id: 'ImagesZeroState',
+        description: 'Zero state description for Images app',
+        defaultMessage: 'Red Hat Image Builder enables you to create customized images optimized for your target environment. Save time by uploading to multiple target environments in a single build.'
+    },
+    activationKeyZeroState: {
+        id: 'activationKeyZeroState',
+        description: 'Zero state description for Activation Key app',
+        defaultMessage: 'Register systems to Subscription Manager and get the correct content for your image.'
+    },
+    customContentZeroState: {
+        id: 'customContentZeroState',
+        description: 'Zero state description for Custom content app',
+        defaultMessage: 'Add custom repositories to images built with Image Builder.'
     }
 });

@@ -1,4 +1,12 @@
 {
+  "ImagesZeroState": {
+    "defaultMessage": "Red Hat Image Builder enables you to create customized images optimized for your target environment. Save time by uploading to multiple target environments in a single build.",
+    "description": "Zero state description for Images app"
+  },
+  "activationKeyZeroState": {
+    "defaultMessage": "Register systems to Subscription Manager and get the correct content for your image.",
+    "description": "Zero state description for Activation Key app"
+  },
   "advisorCardCTA": {
     "defaultMessage": "View incidents",
     "description": "Advisor card CTA"
@@ -98,6 +106,10 @@
   "critical": {
     "defaultMessage": "Critical",
     "description": "Critical"
+  },
+  "customContentZeroState": {
+    "defaultMessage": "Add custom repositories to images built with Image Builder.",
+    "description": "Zero state description for Custom content app"
   },
   "cveByCvssScoreTitle": {
     "defaultMessage": "CVEs by CVSS score",
