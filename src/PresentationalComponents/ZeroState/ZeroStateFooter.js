@@ -84,25 +84,25 @@ const ZeroStateFooter = ({
                                 <a component='a'
                                     target='_blank'
                                     rel='noreferrer'
-                                    href={` ${chrome.isBeta() ? '/beta' : ''}/openshift`}>OpenShift</a>
+                                    href={` ${chrome.isBeta() ? '/preview' : ''}/openshift`}>OpenShift</a>
                             </FlexItem>
                             <FlexItem>
                                 <a component='a'
                                     target='_blank'
                                     rel='noreferrer'
-                                    href={`${chrome.isBeta() ? '/beta' : ''}/application-services/overview`}>Application and Data Services</a>
+                                    href={`${chrome.isBeta() ? '/preview' : ''}/application-services/overview`}>Application and Data Services</a>
                             </FlexItem>
                             <FlexItem>
                                 <a component='a'
                                     target='_blank'
                                     rel='noreferrer'
-                                    href={`${chrome.isBeta() ? '/beta' : ''}/edge/`}>Edge Managment</a>
+                                    href={`${chrome.isBeta() ? '/preview' : ''}/edge/`}>Edge Managment</a>
                             </FlexItem>
                             <FlexItem>
                                 <a component='a'
                                     target='_blank'
                                     rel='noreferrer'
-                                    href={`${chrome.isBeta() ? '/beta' : ''}/ansible/ansible-dashboard`}>Ansible Automation Platform</a>
+                                    href={`${chrome.isBeta() ? '/preview' : ''}/ansible/ansible-dashboard`}>Ansible Automation Platform</a>
                             </FlexItem>
                         </Flex>
                     </GridItem>
