@@ -25,7 +25,8 @@ const ZeroStateBanner = ({
     bulletPoints = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.bulletPoints,
     customInstructions,
     customButton,
-    customText
+    customText,
+    customTitle
 }) => {
     const intl = useIntl();
     const { hideGlobalFilter } = useChrome();
@@ -91,7 +92,7 @@ const ZeroStateBanner = ({
                                 className='bannerRight' >
                                 <FlexItem className='pf-u-pt-lg'>
                                     <Title headingLevel='h1' size='2xl' style={{ color: '#151515' }}>
-                                        {`Start using ${appName.replace('_', ' ')} now`}
+                                        {customTitle ? customTitle : `Start using ${appName.replace('_', ' ')} now`}
                                     </Title>
                                 </FlexItem>
                                 <FlexItem>
@@ -133,5 +134,6 @@ ZeroStateBanner.propTypes = {
     bulletPoints: propTypes.array,
     customInstructions: propTypes.any,
     customButton: propTypes.any,
-    customText: propTypes.string
+    customText: propTypes.string,
+    customTitle: propTypes.string
 };
