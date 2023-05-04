@@ -463,7 +463,7 @@ export default defineMessages({
     satellite: {
         id: 'satellite',
         description: 'satellite subscription',
-        defaultMessage: 'Satellite subscription enables push-button remediation of issues identified by Insights. Any issues identified by Insights are accompanied by remediation instructions, and with Smart Management, remediation is available at scale.'
+        defaultMessage: 'Satellite subscription enables push-button remediation of issues identified by Insights. Any issues identified by Insights are accompanied by remediation instructions, and with Satellite, remediation is available at scale.'
     },
     insightsandsatellite: {
         id: 'insightsandsatellite',
