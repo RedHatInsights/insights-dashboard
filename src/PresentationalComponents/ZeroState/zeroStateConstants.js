@@ -479,6 +479,62 @@ const VULNERABILITY_ZERO_STATE = {
     ]
 };
 
+const REMEDIATION_ZERO_STATE = {
+    header: {
+        description: 'After identifying the highest remediation priorities in your Red Hat Enterprise Linux (RHEL) infrastructure, you can create, and then execute, remediation playbooks to fix those issues.',
+        commands: [
+            { plainText: ' 1. Register your host' },
+            {
+                instructions: 'RHEL 7',
+                command: 'insights-client --register'
+            },
+            {
+                instructions: 'RHEL 8 or newer',
+                command: 'rhc --register'
+            }
+        ],
+        bulletPoints: [
+            'You can download and run the playbook using your organizations Ansible workflow',
+            'execute the playbook on remote systems from the Insights for Red Hat Enterprise Linux application.'
+        ]
+    },
+    otherApps: [
+        {
+            title: 'Patch',
+            description: messages.patchZeroState,
+            link: '/insights/patch'
+        },
+        {
+            title: 'Malware',
+            description: messages.malwareZeroState,
+            link: '/insights/malware'
+        },
+        {
+            title: 'Compliance',
+            description: messages.complianceZeroState,
+            link: '/insights/compliance'
+        }
+    ],
+    documentation: [
+        {
+            title: 'Assessing and Monitoring Security Vulnerabilities',
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems'
+        },
+        {
+            title: 'Generating Vulnerability Service Reports',
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/generating_vulnerability_service_reports'
+        },
+        {
+            title: 'Vulnerability APIs',
+            link: 'https://console.redhat.com/docs/api/vulnerability'
+        },
+        {
+            title: 'Configuring notifications & Integration',
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/2023/html/configuring_notifications_and_integrations_on_the_red_hat_hybrid_cloud_console/index'
+        }
+    ]
+};
+
 export default {
     ADVISOR_ZERO_STATE,
     COMPLIANCE_ZERO_STATE,
@@ -488,5 +544,6 @@ export default {
     POLICIES_ZERO_STATE,
     MALWARE_ZERO_STATE,
     RESOURCE_OPTIMIZATION_ZERO_STATE,
-    VULNERABILITY_ZERO_STATE
+    VULNERABILITY_ZERO_STATE,
+    REMEDIATION_ZERO_STATE
 };
