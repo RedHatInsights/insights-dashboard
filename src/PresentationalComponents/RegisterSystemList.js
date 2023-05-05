@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
 import { ClipboardCopy } from '@patternfly/react-core';
 
 const registerSystemsList = (item) => {
-    //This is just a full length link. Expects link and instructions
+    //This is just a full length link. Expects link and instructions obj
     return item.link ? (
         <React.Fragment>
             <a
