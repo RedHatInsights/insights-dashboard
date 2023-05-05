@@ -6,23 +6,19 @@ const ADVISOR_ZERO_STATE = {
         description:
       `Using Red Hat’s expertise, analyze your RHEL hosts to identify and resolve risks to your environment's availability, performance, and stability.`,
         commands: [
-            { plainText: ' 1. Register your host:' },
+            { plainText: ' 1. Register your host' },
             {
-                instructions: 'RHEL 7 & 8:',
-                command: 'insights-client --register'
-
+                instructions: 'RHEL 7, 8 and 9:',
+                command: 'subscription-manager register'
             },
-            {
-                instructions: 'RHEL 9 or newer:',
-                command: 'rhc --register'
-            },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
-                partOne: 'View the',
+                partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
             }
-
         ],
         bulletPoints: [
             'Detect misconfigurations, known problematic configurations, or highlight best practices.',
@@ -76,32 +72,24 @@ const COMPLIANCE_ZERO_STATE = {
                 instructions: 'Install the supported SSG package on the host',
                 numberedLink: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/proc-compl-getting-started_compl-getting-started'
             },
-            { plainText: ' 2. Register your host:' },
+            { plainText: ' 2. Register your host' },
             {
-                instructions: 'RHEL 7 & 8:',
-                command: 'insights-client --register'
+                instructions: 'RHEL 7, 8 and 9:',
+                command: 'subscription-manager register'
             },
-            {
-                instructions: 'RHEL 9 or newer:',
-                command: 'rhc --register'
-            },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
-                partOne: 'View the',
+                partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
             },
-            { plainText: ' 3. Create a Compliance Policy and assign your systems to it' },
-            { plainText: ' 4. Initiate the compliance scan' },
-
-            {
-                instructions: 'RHEL 7 & 8:',
-                command: 'insights-client --compliance'
-            },
-            {
-                instructions: 'RHEL 9 or newer:',
-                command: 'rhc --compliance'
-            }
+            { plainText: ' 3. Install OpenSCAP' },
+            { singleClipboardCommand: 'yum -y install openscap openscap-scanner scap-security-guide ' },
+            { plainText: ' 4. Create a Compliance Policy and assign your systems to it' },
+            { plainText: ' 5. Initiate the compliance scan' },
+            { singleClipboardCommand: ' insights-client --compliance' }
         ],
         bulletPoints: [
             'Easily configure, customize, and deploy policies at scale.',
@@ -155,20 +143,19 @@ const DRIFT_ZERO_STATE = {
         commands: [
             { plainText: ' 1. Register your host' },
             {
-                instructions: 'RHEL 7 & 8:',
-                command: 'insights-client --register'
+                instructions: 'RHEL 7, 8 and 9:',
+                command: 'subscription-manager register'
             },
-            {
-                instructions: 'RHEL 9 or newer:',
-                command: 'rhc --register'
-            },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
-                partOne: 'View the',
+                partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
             },
             { plainText: ' 2. Select two or more hosts to compare in the Drift UI' }
+
         ],
         bulletPoints: [
             'Compare system configuration over time or to other systems.',
@@ -234,18 +221,16 @@ const CONTENT_MANAGEMENT_ZERO_STATE = {
     header: {
         description: 'Red Hat Insights gives you the information to confidently update your RHEL systems with Red Hat product advisories and packages.',
         commands: [
-            { plainText: ' 1. Register your host:' },
+            { plainText: ' 1. Register your host' },
             {
-                instructions: 'RHEL 7 & 8:',
-                command: 'insights-client --register'
+                instructions: 'RHEL 7, 8 and 9:',
+                command: 'subscription-manager register'
             },
-            {
-                instructions: 'RHEL 9 or newer:',
-                command: 'rhc --register'
-            },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
-                partOne: 'View the',
+                partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
             }
@@ -294,26 +279,20 @@ const POLICIES_ZERO_STATE = {
         description:
       'Policies allow users to create and manage rule conditions to evaluate against system configuration and get automatically alerted whenever they trigger. It assists in operational management with simple tasks such as:',
         commands: [
-            { plainText: ' 1. Register your host:' },
+            { plainText: ' 1. Register your host' },
             {
-                instructions: 'RHEL 7 & 8:',
-                command: 'insights-client --register'
-
+                instructions: 'RHEL 7, 8 and 9:',
+                command: 'subscription-manager register'
             },
-            {
-                instructions: 'RHEL 9 or newer:',
-                command: 'rhc --register'
-            },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
-                partOne: 'View the',
+                partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
             },
-            {
-                plainText:
-          ' 2. Create condition(s) based on system facts or tags with the help of the wizard'
-            }
+            { plainText: ' 2. Create condition(s) based on system facts or tags via the policy creation wizard.' }
         ],
         bulletPoints: [
             'Raising an alert when some conditions are met on system configuration',
@@ -360,23 +339,22 @@ const MALWARE_ZERO_STATE = {
     header: {
         description: 'The malware detection service monitors your RHEL hosts for known malware signatures to indicate potential threats you can proactively address with your information security team.',
         commands: [
-            { plainText: ' 1. Register your host:' },
+            { plainText: ' 1. Register your host' },
             {
-                instructions: 'RHEL 7 & 8:',
-                command: 'insights-client --register'
+                instructions: 'RHEL 8 and 9:',
+                command: 'subscription-manager register'
 
             },
             {
-                instructions: 'RHEL 9 or newer:',
-                command: 'rhc --register'
+                singleClipboardCommand: 'insights-client --register'
             },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
-                partOne: 'View the',
+                partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
             },
-            { instructions: '2. Install the yara package', command: 'dnf install yara', noPadding: true },
+            { instructions: '2. Install the yara package', command: 'dnf -y install yara', noPadding: true },
             {
                 instructions: '3. Run a malware detection scan',
                 noPadding: true,
@@ -423,19 +401,16 @@ const RESOURCE_OPTIMIZATION_ZERO_STATE = {
             },
             { plainText: 'or' },
             { instructions: 'Complete the manual install', link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux/assembly-ros-install#installing_resource_optimization_without_installing_or_using_ansible' },
-            { plainText: '2. Register your host:' },
+            { plainText: '2. Register your host' },
             {
-                instructions: 'RHEL 7 & 8:',
-                command: 'insights-client --register'
-
+                instructions: 'RHEL 7, 8 and 9:',
+                command: 'subscription-manager register'
             },
-            {
-                instructions: 'RHEL 9 or newer:',
-                command: 'rhc --register'
-            },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
-                partOne: 'View the',
+                partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
             },
@@ -482,18 +457,16 @@ const VULNERABILITY_ZERO_STATE = {
         description:
       'Understand the security exposure of your registered RHEL systems and take appropriate steps to protect your organization.',
         commands: [
-            { plainText: ' 1. Register your host:' },
+            { plainText: ' 1. Register your host' },
             {
-                instructions: 'RHEL 7 & 8:',
-                command: 'insights-client --register'
+                instructions: 'RHEL 7, 8 and 9:',
+                command: 'subscription-manager register'
             },
-            {
-                instructions: 'RHEL 9 or newer:',
-                command: 'rhc --register'
-            },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
-                partOne: 'View the',
+                partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
             }
@@ -581,22 +554,24 @@ const REMEDIATIONS_ZERO_STATE = {
             'Download playbooks or execute directly to remediate risk'
         ],
         commands: [
-            { plainText: ' 1. Register your host:' },
+            { plainText: ' 1. Register your host' },
             {
-                instructions: 'RHEL 7 & 8:',
-                command: 'insights-client --register'
+                instructions: 'RHEL 7, 8 and 9:',
+                command: 'subscription-manager register'
             },
-            {
-                instructions: 'RHEL 9 or newer:',
-                command: 'rhc --register'
-            },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
-                partOne: 'View the',
+                partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
             },
-            { plainText: ' 2. Once registered, view the analysis of that host in one Red Hat Insights applications to select items for remediation. ' }
+            { plainText: ' 2. For RHEL 8 and 9 hosts, install and connect with remote host configuration (rhc)' },
+            { singleClipboardCommand: 'dnf -y install rhc' },
+            { singleClipboardCommand: 'rhc connect' },
+            { plainText: ' 3. Once registered, view the analysis of that host in one of the Red Hat Insights applications to select items for remediation.  ' }
+
         ]
     },
     otherApps: [

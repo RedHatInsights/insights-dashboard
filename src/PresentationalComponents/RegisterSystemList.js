@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
 import { ClipboardCopy } from '@patternfly/react-core';
 
 const registerSystemsList = (item) => {
-    //This is just a full length link
+    //This is just a full length link. Expects link and instructions
     return item.link ? (
         <React.Fragment>
             <a
@@ -18,6 +18,7 @@ const registerSystemsList = (item) => {
             </a>
         </React.Fragment>
         //Some mocks require a number and then a link with certain padding
+        //Expects step, numberedLink, and instructions
     ) : item.numberedLink ? (
         <div>
             {item.step}
@@ -25,6 +26,7 @@ const registerSystemsList = (item) => {
                 {item.instructions}
             </a>
         </div>
+        //Expects a single plantext obj
     ) : item.plainText ? (
         <React.Fragment>
             <p className={item.plainText.length < 4 ? 'pf-u-pl-lg' : ''}>
@@ -38,8 +40,21 @@ const registerSystemsList = (item) => {
                 {item.partOne} <a href={item.linkWithinText}>{item.anchorText}</a> {item.partTwo}
             </p>
         </React.Fragment>
+        //Expects a signle singleClipboardCommand obj
+    ) : item.singleClipboardCommand ? (
+        <React.Fragment>
+            <ClipboardCopy
+                hoverTip="Copy"
+                clickTip="Copied"
+                isReadOnly
+                className="pf-u-p-sm pf-u-pt-xs pf-u-pl-md"
+            >
+                {item.singleClipboardCommand}
+            </ClipboardCopy>
+        </React.Fragment>
     ) : (
         //Plain text and then the clipboard component below
+        //Expects intstructions and command obj
         <React.Fragment>
             <p className={(item.noPadding ? 'pf-u-pl-0' : `pf-u-pl-md`) + ' pf-u-mb-0 '}>{item.instructions}</p>
             <ClipboardCopy
