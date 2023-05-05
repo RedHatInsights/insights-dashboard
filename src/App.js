@@ -90,6 +90,8 @@ const App = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    //REMOVE ME: This comment is intended to be removed after summit 2023.
+
     return (
         arePermissionsReady ?
             <PermissionContext.Provider
