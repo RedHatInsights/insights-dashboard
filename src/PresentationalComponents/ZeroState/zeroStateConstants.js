@@ -11,7 +11,7 @@ const ADVISOR_ZERO_STATE = {
                 instructions: 'RHEL 7, 8 and 9:',
                 command: 'subscription-manager register'
             },
-            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
@@ -77,7 +77,7 @@ const COMPLIANCE_ZERO_STATE = {
                 instructions: 'RHEL 7, 8 and 9:',
                 command: 'subscription-manager register'
             },
-            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
@@ -146,7 +146,7 @@ const DRIFT_ZERO_STATE = {
                 instructions: 'RHEL 7, 8 and 9:',
                 command: 'subscription-manager register'
             },
-            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
@@ -226,7 +226,7 @@ const CONTENT_MANAGEMENT_ZERO_STATE = {
                 instructions: 'RHEL 7, 8 and 9:',
                 command: 'subscription-manager register'
             },
-            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
@@ -284,7 +284,7 @@ const POLICIES_ZERO_STATE = {
                 instructions: 'RHEL 7, 8 and 9:',
                 command: 'subscription-manager register'
             },
-            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
@@ -345,6 +345,7 @@ const MALWARE_ZERO_STATE = {
                 command: 'subscription-manager register'
 
             },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 8' },
             {
                 singleClipboardCommand: 'insights-client --register'
             },
@@ -406,7 +407,7 @@ const RESOURCE_OPTIMIZATION_ZERO_STATE = {
                 instructions: 'RHEL 7, 8 and 9:',
                 command: 'subscription-manager register'
             },
-            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
@@ -462,7 +463,7 @@ const VULNERABILITY_ZERO_STATE = {
                 instructions: 'RHEL 7, 8 and 9:',
                 command: 'subscription-manager register'
             },
-            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
@@ -559,7 +560,7 @@ const REMEDIATIONS_ZERO_STATE = {
                 instructions: 'RHEL 7, 8 and 9:',
                 command: 'subscription-manager register'
             },
-            { singleClipboardCommand: 'yum -y install insights-client # necessary on RHEL 7 only' },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
