@@ -26,7 +26,8 @@ const ZeroStateBanner = ({
     customInstructions,
     customButton,
     customText,
-    customTitle
+    customTitle,
+    appId
 }) => {
     const intl = useIntl();
     const { hideGlobalFilter } = useChrome();
@@ -103,6 +104,7 @@ const ZeroStateBanner = ({
                                 <FlexItem>
                                     { customButton ? customButton :
                                         <Button
+                                            id={appId}
                                             onClick={updateRegisterButton}
                                             className='pf-u-p-md pf-u-font-size-md'> Register your systems
                                         </Button>}
