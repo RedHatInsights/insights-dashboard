@@ -5,7 +5,8 @@ import ZeroStateFooter from './ZeroStateFooter';
 import propTypes from 'prop-types';
 import { IntlProvider } from '@redhat-cloud-services/frontend-components-translations';
 
-const AppZeroState = ({ app, customInstructions, customButton, customText, customTitle }) => {
+const AppZeroState = ({ app, customInstructions, customButton, customText, customTitle,
+    appId }) => {
     return (
         <IntlProvider>
             <React.Fragment>
@@ -15,6 +16,7 @@ const AppZeroState = ({ app, customInstructions, customButton, customText, custo
                     customButton={customButton}
                     customText={customText}
                     customTitle={customTitle}
+                    appId={appId}
                 />
                 <AppSection appName={app}/>
                 <ZeroStateFooter appName={app} />
@@ -30,5 +32,6 @@ AppZeroState.propTypes = {
     customInstructions: propTypes.any,
     customButton: propTypes.any,
     customText: propTypes.string,
-    customTitle: propTypes.string
+    customTitle: propTypes.string,
+    appId: propTypes.string
 };
