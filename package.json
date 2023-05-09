@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.15.4",
-    "@patternfly/patternfly": "4.132.2",
+    "@patternfly/patternfly": "4.224.2",
     "@patternfly/react-charts": "6.59.2",
     "@patternfly/react-core": "^4.221.3",
     "@patternfly/react-icons": "^4.72.3",
