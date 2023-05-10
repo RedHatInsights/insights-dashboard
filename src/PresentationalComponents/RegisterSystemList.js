@@ -18,7 +18,7 @@ const registerSystemsList = (item) => {
             </a>
         </React.Fragment>
         //Some mocks require a number and then a link with certain padding
-        //Expects step, numberedLink, and instructions
+        //Expects step, numberedLink, and instructions.
     ) : item.numberedLink ? (
         <div>
             {item.step}
