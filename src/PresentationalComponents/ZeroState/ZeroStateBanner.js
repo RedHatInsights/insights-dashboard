@@ -137,5 +137,6 @@ ZeroStateBanner.propTypes = {
     customInstructions: propTypes.any,
     customButton: propTypes.any,
     customText: propTypes.string,
-    customTitle: propTypes.string
+    customTitle: propTypes.string,
+    appId: propTypes.string
 };
