@@ -707,7 +707,12 @@ export default defineMessages({
     systemsExposed: {
         id: 'systemsExposed',
         description: 'Systems exposed',
-        defaultMessage: 'Systems exposed'
+        defaultMessage: '{count, plural, one {# system} other {# systems}} exposed'
+    },
+    systemsExposedDescription: {
+        id: 'systemsExposedDescription',
+        description: 'Systems exposed description',
+        defaultMessage: 'The count of the systems exposed is the total across all CVEs listed under the Associated CVEs section for this rule.'
     },
     collapse: {
         id: 'collapse',
