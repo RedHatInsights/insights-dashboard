@@ -15,8 +15,6 @@ before(() => {
 describe('Dashboard', () => {
     beforeEach(() => {
         hostsInterceptors.successful();
-    });
-    it('renders correctly', () => {
         mount(
             <IntlProvider messages={messages}>
                 <Provider store={ init().getStore() }>
@@ -26,5 +24,11 @@ describe('Dashboard', () => {
                 </Provider>
             </IntlProvider>
         );
+    });
+    it('the amount of stale systems is correct', () => {
+        cy.get('div[class="insd-c-dashboard__info-inline  insd-m-padding-top"]').eq(0).should('have.text', '630 stale systems');
+    });
+    it('the amount of stale systems to remove is correct', () => {
+        cy.get('div[class="insd-c-dashboard__info-inline  insd-m-padding-top"]').eq(1).should('have.text', '630 systems to be removed');
     });
 });
