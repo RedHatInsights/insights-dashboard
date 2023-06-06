@@ -265,7 +265,7 @@ const CONTENT_MANAGEMENT_ZERO_STATE = {
         },
         {
             title: 'Patch APIs',
-            link: 'https://console.redhat.com/docs/api/patch/v2'
+            link: 'https://console.redhat.com/docs/api/patch/v3'
         },
         {
             title: 'Configuring notifications & Integration',
