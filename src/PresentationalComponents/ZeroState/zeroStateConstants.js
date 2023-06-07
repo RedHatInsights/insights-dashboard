@@ -70,7 +70,7 @@ const COMPLIANCE_ZERO_STATE = {
             {
                 step: '1. ',
                 instructions: 'Install the supported SSG package on the host',
-                numberedLink: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/proc-compl-getting-started_compl-getting-started'
+                numberedLink: 'https://access.redhat.com/articles/6644131'
             },
             { plainText: ' 2. Register your host' },
             {
@@ -265,7 +265,7 @@ const CONTENT_MANAGEMENT_ZERO_STATE = {
         },
         {
             title: 'Patch APIs',
-            link: 'https://console.redhat.com/docs/api/patch/v2'
+            link: 'https://console.redhat.com/docs/api/patch/v3'
         },
         {
             title: 'Configuring notifications & Integration',
