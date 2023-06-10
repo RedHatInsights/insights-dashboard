@@ -6,7 +6,7 @@ before(() => {
     cy.mockWindowChrome();
 });
 
-describe('Dashboard', () => {
+describe('New Rules component renders', () => {
     beforeEach(() => {
         hostsInterceptors.successful();
         cy.mountWithContext(NewRules, Loading);

@@ -1,0 +1,52 @@
+{
+    "cves_by_severity": {
+      "0to3.9": {
+        "count": 365,
+        "known_exploits": 0,
+        "percentage": 11.0
+      },
+      "4to7.9": {
+        "count": 2408,
+        "known_exploits": 14,
+        "percentage": 74.0
+      },
+      "8to10": {
+        "count": 488,
+        "known_exploits": 27,
+        "percentage": 15.0
+      },
+      "na": {
+        "count": 0,
+        "known_exploits": 0,
+        "percentage": 0.0
+      }
+    },
+    "cves_total": 3261,
+    "exploited_cves_count": 41,
+    "meta": {
+      "permissions": [
+        "remediations:remediation:read",
+        "remediations:remediation:write",
+        "inventory:hosts:write",
+        "inventory:hosts:read",
+        "inventory:groups:write",
+        "inventory:groups:read",
+        "inventory:*:read",
+        "vulnerability:*:*",
+        "remediations:*:read",
+        "remediations:*:write",
+        "vulnerability:vulnerability_results:read",
+        "vulnerability:system.opt_out:read",
+        "vulnerability:report_and_export:read",
+        "vulnerability:advanced_report:read"
+      ]
+    },
+    "recent_cves": {
+      "last30days": 2,
+      "last7days": 0,
+      "last90days": 46
+    },
+    "recent_rules": [],
+    "rules_cves_total": 56,
+    "system_count": 6535
+  }

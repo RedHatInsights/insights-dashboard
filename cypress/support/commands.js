@@ -30,22 +30,39 @@ import { init } from '../../src/Store';
 import messages from '../../locales/data.json';
 import IntlProvider from '@redhat-cloud-services/frontend-components-translations/Provider';
 import { mount } from '@cypress/react';
+import { Grid } from '@patternfly/react-core/dist/esm/layouts';
 
-Cypress.Commands.add('mountWithContext', (Component, FallBackComponent) => {
+Cypress.Commands.add('mountWithContext',
+    (Component,
+        FallBackComponent,
+        OptionalContainerComponent,
+        containerComponentProps,
+        PatternflyGrid
+    ) => {
 
-    return mount(
-        <IntlProvider messages={messages}>
-            <Provider store={ init().getStore() }>
-                {FallBackComponent ?
-                    (<Suspense fallback={FallBackComponent}>
-                        <Component />
-                    </Suspense>) :
-                    (<Component />)
-                }
-            </Provider>
-        </IntlProvider>
-    );
-});
+        return mount(
+            <IntlProvider messages={messages}>
+                <Provider store={init().getStore()}>
+                    {OptionalContainerComponent && PatternflyGrid ?
+                        <Grid hasGutter>
+                            <OptionalContainerComponent {...containerComponentProps}>
+                        ({FallBackComponent ?
+                                    (<Suspense fallback={FallBackComponent}>
+                                        <Component />
+                                    </Suspense>) :
+                                    (<Component />)
+                                }) </OptionalContainerComponent>
+                        </Grid> :
+                        FallBackComponent ?
+                            (<Suspense fallback={FallBackComponent}>
+                                <Component />
+                            </Suspense>) :
+                            (<Component />)
+                    }
+                </Provider>
+            </IntlProvider>
+        );
+    });
 
 Cypress.Commands.add('mockWindowChrome', () => {
     cy.window().then(
