@@ -16,6 +16,12 @@ webpackConfig.module.rules.push({
     }
 });
 
+webpackConfig.module.rules.push({
+    test: /cypress\/.*\.js$/,
+    exclude: /(node_modules|bower_components)/i,
+    use: ['babel-loader']
+});
+
 module.exports = {
     ...webpackConfig,
     plugins
