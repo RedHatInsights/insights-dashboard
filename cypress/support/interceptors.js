@@ -43,7 +43,7 @@ export const cvesInterceptors = {
         cy.intercept('GET', '/api/vulnerability/v1/dashboard*', {
             statusCode: 200,
             body: {
-                cves_by_severity: {},
+                cves_by_severity: cvesFixtures.cves_by_severity,
                 cves_total: 0,
                 exploited_cves_count: 0,
                 meta: {

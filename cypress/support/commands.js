@@ -46,18 +46,18 @@ Cypress.Commands.add('mountWithContext',
                     {OptionalContainerComponent && PatternflyGrid ?
                         <Grid hasGutter>
                             <OptionalContainerComponent {...containerComponentProps}>
-                        ({FallBackComponent ?
-                                    (<Suspense fallback={FallBackComponent}>
+                                {FallBackComponent ?
+                                    <Suspense fallback={FallBackComponent}>
                                         <Component />
-                                    </Suspense>) :
-                                    (<Component />)
-                                }) </OptionalContainerComponent>
+                                    </Suspense> :
+                                    <Component />
+                                } </OptionalContainerComponent>
                         </Grid> :
                         FallBackComponent ?
-                            (<Suspense fallback={FallBackComponent}>
+                            <Suspense fallback={FallBackComponent}>
                                 <Component />
-                            </Suspense>) :
-                            (<Component />)
+                            </Suspense> :
+                            <Component />
                     }
                 </Provider>
             </IntlProvider>
