@@ -24,24 +24,19 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 // one of the fec dependencies talks to window.insights.chrome
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { init } from '../../src/Store';
 import messages from '../../locales/data.json';
 import IntlProvider from '@redhat-cloud-services/frontend-components-translations/Provider';
 import { mount } from '@cypress/react';
 
-Cypress.Commands.add('mountWithContext', (Component, FallBackComponent) => {
+Cypress.Commands.add('mountWithContext', (Component, props) => {
 
     return mount(
         <IntlProvider messages={messages}>
             <Provider store={ init().getStore() }>
-                {FallBackComponent ?
-                    (<Suspense fallback={FallBackComponent}>
-                        <Component />
-                    </Suspense>) :
-                    (<Component />)
-                }
+                <Component {...props}/>
             </Provider>
         </IntlProvider>
     );
