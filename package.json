@@ -97,7 +97,7 @@
     "@cypress/code-coverage": "^3.10.0",
     "@cypress/react": "^7.0.2",
     "@formatjs/cli": "4.2.33",
-    "@redhat-cloud-services/frontend-components-config": "^4.6.13",
+    "@redhat-cloud-services/frontend-components-config": "^5.0.2",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "axios": "0.21.4",
     "babel-jest": "27.1.0",
