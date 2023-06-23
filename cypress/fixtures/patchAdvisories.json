@@ -1,0 +1,12 @@
+{
+    "meta": {
+        "total_items": 3682,
+        "subtotals": {
+            "bugfix": 2235,
+            "enhancement": 343,
+            "other": 71,
+            "security": 1033
+        },
+        "has_systems": true
+    }
+}

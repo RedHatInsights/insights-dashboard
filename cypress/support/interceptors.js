@@ -2,6 +2,8 @@
 import { DEFAULT_ROW_COUNT } from '@redhat-cloud-services/frontend-components-utilities';
 import hostsFixtures from '../fixtures/hosts.json';
 import cvesFixtures from '../fixtures/cves.json';
+import patchAdvisoriesFixtures from '../fixtures/patchAdvisories.json';
+import patchSystemsFixtures from '../fixtures/patchSystems.json';
 
 export const hostsInterceptors = {
     successful: (fixtures = hostsFixtures) => {
@@ -78,5 +80,18 @@ export const cvesInterceptors = {
         cy.intercept('GET', '/api/vulnerability/v1/dashboard*', { statusCode: 500 }).as(
             'getCVES'
         );
+    }
+};
+
+export const patchInterceptors = {
+    successful: (fixtures = { patchSystemsFixtures, patchAdvisoriesFixtures }) => {
+        cy.intercept('GET', '/api/patch/v3/systems/**', {
+            statusCode: 200,
+            body: fixtures.patchSystemsFixtures
+        }).as('getPatchSystems');
+        cy.intercept('GET', '/api/patch/v3/advisories/**', {
+            statusCode: 200,
+            body: fixtures.patchAdvisoriesFixtures
+        }).as('getPatchAdvisories');
     }
 };
