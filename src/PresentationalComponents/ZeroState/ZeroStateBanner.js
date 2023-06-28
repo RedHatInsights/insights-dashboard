@@ -114,7 +114,7 @@ const ZeroStateBanner = ({
                                         component='a'
                                         target='_blank'
                                         rel='noreferrer'
-                                        href='https://www.redhat.com/en/technologies/management/insights' >
+                                        href='https://www.redhat.com/en/products/trials?products=rhel' >
                                         {intl.formatMessage(messages.notMember)}
                                     </a>
                                 </FlexItem>
