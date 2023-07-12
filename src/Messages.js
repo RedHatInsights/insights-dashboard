@@ -321,7 +321,7 @@ export default defineMessages({
     notMember: {
         id: 'notMember',
         description: 'Not a member',
-        defaultMessage: 'Not a member? Start a trial!'
+        defaultMessage: 'Don\'t have a RHEL subscription? Start a trial.'
     },
     noSystemsDescription: {
         id: 'noSystemsDescription',
