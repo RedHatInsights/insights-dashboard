@@ -4,7 +4,8 @@ const config = require('@redhat-cloud-services/frontend-components-config');
 const { config: webpackConfig, plugins } = config({
     rootFolder: resolve(__dirname, '../'),
     deployment: process.env.BETA === 'true' ? 'beta/apps' : 'apps',
-    debug: true
+    debug: true,
+    ...process.env.BETA === 'true' && { deployment: 'beta/apps' }
 });
 
 plugins.push(
