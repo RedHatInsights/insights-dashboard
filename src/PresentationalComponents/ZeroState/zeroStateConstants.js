@@ -516,7 +516,7 @@ const VULNERABILITY_ZERO_STATE = {
 const IMAGES_ZERO_STATE = {
     header: {
         description:
-      `Red Hat Image Builder enables you to create customized images optimized for your target environment. Save time by uploading to multiple target environments in a single build.`,
+      `Create customized images optimized for your target environment and save time by uploading to multiple target environments in a single build.`,
         bulletPoints: [
             'Upload to target cloud environments, such as Amazon Web Services, Microsoft Azure, and Google Cloud Platform.',
             'Download customized images and upload them to the VMware vSphere client.',
@@ -600,6 +600,60 @@ const REMEDIATIONS_ZERO_STATE = {
     ]
 };
 
+const INVENTORY_ZERO_STATE = {
+    header: {
+        description:
+      `Track and manage RHEL systems owned by your organization, and get discovered information and findings about your resources in a one-stop inventory.`,
+        commands: [
+            { plainText: ' 1. Register your host' },
+            {
+                instructions: 'RHEL 7, 8 and 9:',
+                command: 'subscription-manager register'
+            },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
+            { singleClipboardCommand: 'insights-client --register' },
+            {
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                partOne: 'Need help? Some systems from different sources require some additional steps. View the',
+                anchorText: 'Client Configuration Guide',
+                partTwo: ' for more details.'
+            }
+        ],
+        bulletPoints: [
+            'List all managed RHEL systems in one inventory.',
+            'Access all discovered information, including system facts and system tags.',
+            'Aggregate all findings (e.g. recommendations) per system.'
+        ]
+    },
+    otherApps: [
+        {
+            title: 'Advisor',
+            description: messages.advisorZeroState,
+            link: '/insights/advisor'
+        },
+        {
+            title: 'Vulnerability',
+            description: messages.vulnerabilityZeroState,
+            link: '/insights/vulnerability'
+        },
+        {
+            title: 'Patch',
+            description: messages.patchZeroState,
+            link: '/insights/patch'
+        }
+    ],
+    documentation: [
+        {
+            title: 'Getting Started with Red Hat Insights',
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/getting_started_with_red_hat_insights'
+        },
+        {
+            title: 'Inventory API',
+            link: 'https://console.redhat.com/docs/api/inventory'
+        }
+    ]
+};
+
 export default {
     ADVISOR_ZERO_STATE,
     COMPLIANCE_ZERO_STATE,
@@ -611,5 +665,6 @@ export default {
     RESOURCE_OPTIMIZATION_ZERO_STATE,
     VULNERABILITY_ZERO_STATE,
     IMAGES_ZERO_STATE,
-    REMEDIATIONS_ZERO_STATE
+    REMEDIATIONS_ZERO_STATE,
+    INVENTORY_ZERO_STATE
 };
