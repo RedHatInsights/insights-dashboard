@@ -880,5 +880,10 @@ export default defineMessages({
         id: 'customContentZeroState',
         description: 'Zero state description for Custom content app',
         defaultMessage: 'Add custom repositories to images built with Image Builder.'
+    },
+    remediationsZeroState: {
+        id: 'remediationsContentZeroState',
+        description: 'Zero state description for Remediations app',
+        defaultMessage: 'Receive guidance to remediate risk, and act on those recommendations directly with automatically generated Ansible remediations.'
     }
 });
