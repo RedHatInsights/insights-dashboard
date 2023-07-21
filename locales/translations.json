@@ -99,6 +99,7 @@
   "remediationsAppBlockBody": "Fully automate resolution procedures tailored to each system. Either remediate issues manually or create Ansible Playbooks.",
   "remediationsAppBlockHeader": "Remediations",
   "remediationsCardHeader": "Remediations",
+  "remediationsContentZeroState": "Receive guidance to remediate risk, and act on those recommendations directly with automatically generated Ansible remediations.",
   "remediationsNoActivity": "Failure",
   "remediationsNoDataBody": "Create an Ansible Playbook to remediate or mitigate vulnerabilities or configuration issues.",
   "remediationsNoDataTitle": "You haven't created any remediation Playbooks yet",

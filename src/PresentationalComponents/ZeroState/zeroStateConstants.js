@@ -654,6 +654,52 @@ const INVENTORY_ZERO_STATE = {
     ]
 };
 
+const TASKS_ZERO_STATE = {
+    header: {
+        description: 'Perform simple analyses on your Insights-connected hosts through the Red Hat Hybrid Cloud Console.',
+        commands: [
+            { plainText: ' 1. Register your host' },
+            {
+                instructions: 'RHEL 7, 8 and 9:',
+                command: 'subscription-manager register'
+            },
+            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
+            { singleClipboardCommand: 'insights-client --register' },
+            {
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/red_hat_insights_remediations_guide/host-communication-with-insights_red-hat-insights-remediation-guide',
+                partOne: '2. Follow',
+                anchorText: 'Enabling communication with Insights',
+                partTwo: ' to enable remote execution of playbooks.'
+            }
+        ],
+        bulletPoints: [
+            'Use Insights Tasks to run a pre-upgrade analysis on your RHEL 7 or RHEL 8 hosts to identify and remediate known issues.'
+        ]
+    },
+    otherApps: [
+        {
+            title: 'Advisor',
+            description: messages.advisorZeroState,
+            link: '/insights/advisor'
+        },
+        {
+            title: 'Remediations',
+            description: messages.remediationsZeroState,
+            link: '/insights/remediations'
+        }
+    ],
+    documentation: [
+        {
+            title: 'Remote Host Configuration and Management',
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems'
+        },
+        {
+            title: 'Take the unknowns out of RHEL upgrades with Red Hat Insights',
+            link: 'https://www.redhat.com/en/blog/take-unknowns-out-rhel-upgrades-red-hat-insights'
+        }
+    ]
+};
+
 export default {
     ADVISOR_ZERO_STATE,
     COMPLIANCE_ZERO_STATE,
@@ -666,5 +712,6 @@ export default {
     VULNERABILITY_ZERO_STATE,
     IMAGES_ZERO_STATE,
     REMEDIATIONS_ZERO_STATE,
-    INVENTORY_ZERO_STATE
+    INVENTORY_ZERO_STATE,
+    TASKS_ZERO_STATE
 };

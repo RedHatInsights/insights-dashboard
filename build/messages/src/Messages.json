@@ -399,6 +399,10 @@
     "defaultMessage": "Remediations",
     "description": "Remediations card header"
   },
+  "remediationsContentZeroState": {
+    "defaultMessage": "Receive guidance to remediate risk, and act on those recommendations directly with automatically generated Ansible remediations.",
+    "description": "Zero state description for Remediations app"
+  },
   "remediationsNoActivity": {
     "defaultMessage": "Failure",
     "description": "Remediations playbook - failed getting data"
