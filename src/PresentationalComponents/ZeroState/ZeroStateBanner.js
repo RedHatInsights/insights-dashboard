@@ -26,7 +26,8 @@ const ZeroStateBanner = ({
     customInstructions,
     customButton,
     customText,
-    customTitle
+    customTitle,
+    appId
 }) => {
     const intl = useIntl();
     const { hideGlobalFilter } = useChrome();
@@ -103,6 +104,7 @@ const ZeroStateBanner = ({
                                 <FlexItem>
                                     { customButton ? customButton :
                                         <Button
+                                            id={appId}
                                             onClick={updateRegisterButton}
                                             className='pf-u-p-md pf-u-font-size-md'> Register your systems
                                         </Button>}
@@ -112,7 +114,7 @@ const ZeroStateBanner = ({
                                         component='a'
                                         target='_blank'
                                         rel='noreferrer'
-                                        href='https://www.redhat.com/en/technologies/management/insights' >
+                                        href='https://www.redhat.com/en/products/trials?products=rhel' >
                                         {intl.formatMessage(messages.notMember)}
                                     </a>
                                 </FlexItem>
@@ -135,5 +137,6 @@ ZeroStateBanner.propTypes = {
     customInstructions: propTypes.any,
     customButton: propTypes.any,
     customText: propTypes.string,
-    customTitle: propTypes.string
+    customTitle: propTypes.string,
+    appId: propTypes.string
 };

@@ -35,7 +35,7 @@ export const ADVISOR_INCIDENTS_FETCH_URL = `${BASE_URL}/insights/v1/rule/?impact
 
 // Patchman App Constants
 export const PATCHMAN_ID = 'patch';
-export const PATCHMAN_VER = 'v2';
+export const PATCHMAN_VER = 'v3';
 export const PATCHMAN_SYSTEMS_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCHMAN_VER}/systems/?limit=1`;
 export const PATCHMAN_SYSTEMS_FETCH = 'PATCHMAN_SYSTEMS_FETCH';
 export const PATCHMAN_ADVISORIES_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCHMAN_VER}/advisories/?limit=1`;

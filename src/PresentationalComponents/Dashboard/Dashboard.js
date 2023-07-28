@@ -2,7 +2,7 @@ import './dashboard.scss';
 
 import { Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts';
 import { PageSection, PageSectionVariants, Title } from '@patternfly/react-core/dist/esm/components';
-import React, { Suspense, lazy, useContext } from 'react';
+import React, { Suspense, lazy, useContext, useEffect } from 'react';
 
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import Masonry from 'react-masonry-css';
@@ -14,6 +14,7 @@ import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { workloadsPropType } from '../../Utilities/Common';
 import ResourceOptimizationCard from '../../SmartComponents/ResourceOptimization/ResourceOptimizationCard';
+import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
 
 const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
 const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
@@ -30,11 +31,14 @@ const Dashboard = (/*{ workloads }*/) => {
     const permission = useContext(PermissionContext);
     const intl = useIntl();
     const newRules = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities.recent_rules);
-
+    const chrome = useChrome();
     const breakpointColumnsObj = {
         default: 2,
         992: 1
     };
+    useEffect(()=>{
+        chrome.updateDocumentTitle(`Dashboard | Red Hat Insights`);
+    }, [chrome]);
 
     return permission.hasSystems ?
         <React.Fragment>
