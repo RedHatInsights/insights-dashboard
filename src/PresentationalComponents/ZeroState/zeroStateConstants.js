@@ -549,10 +549,10 @@ const IMAGES_ZERO_STATE = {
 const REMEDIATIONS_ZERO_STATE = {
     header: {
         description:
-      `The applications across Red Hat Insights provide guidance to remediate risk. Many of these risks or recommendations can be acted on directly via automatically generated Ansible remediations.`,
+      `Use remediation guidance provided by Red Hat Insights services to take manual actions or create playbooks for resolution at scale.`,
         bulletPoints: [
-            'Create or modify remediation playbooks to address identified risks',
-            'Download playbooks or execute directly to remediate risk'
+            'Download playbooks or execute directly to remediate risk',
+            'Execute remediations playbooks directly via Red Hat Satellite or remote host configuration (rhc)'
         ],
         commands: [
             { plainText: ' 1. Register your host' },
