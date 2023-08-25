@@ -382,7 +382,7 @@ const MALWARE_ZERO_STATE = {
     documentation: [
         {
             title: 'Assessing and Reporting Malware Signatures',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_reporting_malware_signatures_on_rhel_systems_with_the_insights_for_rhel_malware_service'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_reporting_malware_signatures_on_rhel_systems'
         }
     ]
 };
