@@ -399,6 +399,10 @@
     "defaultMessage": "Remediations",
     "description": "Remediations card header"
   },
+  "remediationsContentZeroState": {
+    "defaultMessage": "Receive guidance to remediate risk, and act on those recommendations directly with automatically generated Ansible remediations.",
+    "description": "Zero state description for Remediations app"
+  },
   "remediationsNoActivity": {
     "defaultMessage": "Failure",
     "description": "Remediations playbook - failed getting data"
@@ -568,8 +572,12 @@
     "description": "Patch - systems affected"
   },
   "systemsExposed": {
-    "defaultMessage": "Systems exposed",
+    "defaultMessage": "{count, plural, one {# system} other {# systems}} exposed",
     "description": "Systems exposed"
+  },
+  "systemsExposedDescription": {
+    "defaultMessage": "The count of the systems exposed is the total across all CVEs listed under the Associated CVEs section for this rule.",
+    "description": "Systems exposed description"
   },
   "systemsWithSuggestions": {
     "defaultMessage": "Systems with suggestions",
@@ -608,7 +616,7 @@
     "description": "Vulnerability - learn more link"
   },
   "vulnerabilityMessage": {
-    "defaultMessage": "Red Hat recommends addressing these CVEs with high priority due to heightened risk associated with these security issues",
+    "defaultMessage": "Red Hat recommends addressing these CVEs with high priority due to heightened risk associated with these security issues. This dataset summary only shows CVEs with Errata.",
     "description": "Vulnerability message"
   },
   "vulnerabilityZeroState": {

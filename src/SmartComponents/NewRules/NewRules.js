@@ -12,6 +12,7 @@ import {
     DescriptionListDescription,
     DescriptionListGroup,
     DescriptionListTerm,
+    Text,
     TextContent,
     Title
 } from '@patternfly/react-core/dist/esm/components';
@@ -21,25 +22,18 @@ import React, { useState } from 'react';
 import AngleRightIcon from '@patternfly/react-icons/dist/esm/icons/angle-right-icon';
 import { DataListItemTemplate } from '../../PresentationalComponents/Template/DataListItemTemplate';
 import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
-import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import { UI_BASE } from '../../AppConstants';
 import { capitalize } from '../../Utilities/Common';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
+import { ExclamationCircleIcon } from '@patternfly/react-icons';
 
 const NewRules = () => {
     const intl = useIntl();
     const [isExpanded, setIsExpanded] = useState(JSON.parse(localStorage.getItem('dashboard_expanded_cta') || 'true'));
     const vulnerabilities = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities);
     let { recent_rules: newRules } = vulnerabilities;
-    const severityColor = {
-        1: ['#2b9af3', '#06c'],
-        2: ['#f4c145', '#c58c00'],
-        3: ['#ec7a08', '#8f4700'],
-        4: ['#c9190b', '#470000']
-    };
-    const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
 
     return <DataList className='insd-c-dashboard-data-list insd-m-toggle-right-on-md insd-m-no-border pf-m-compact'
         gridBreakpoint='none'>
@@ -124,33 +118,23 @@ const NewRules = () => {
                                     )}</DescriptionListGroup>
                             </DescriptionList>
                             <Flex flex={{ md: 'flex_1', xl: 'flexDefault' }}>
-                                <Button type='a' href={`${UI_BASE}/vulnerability/cves/${item.associated_cves[0]}`}
-                                    component='a' variant='secondary' isSmall>{intl.formatMessage(messages.viewDetails)}</Button>
                                 {item.node_id && <a href={`https://access.redhat.com/node/${item.node_id}`} rel='noreferrer' target='_blank'>
                                     {intl.formatMessage(messages.moreAbout)}
                                 </a>}
                             </Flex>
                         </Flex>
                         <Flex flex={{ default: 'flex_2' }} alignItems={{ default: 'alignItemsCenter' }}>
-                            <Flex alignItems={{ default: 'alignItemsCenter' }} flexWrap={{ default: 'nowrap' }}>
-                                <FlexItem>
-                                    <PieChart
-                                        ariaDesc='--'
-                                        ariaTitle='--'
-                                        data={[{ x: 'Total systems', y: vulnerabilities.system_count },
-                                            { x: 'Systems affected', y: item.systems_affected }
-                                        ]}
-                                        labels={({ datum }) => `${datum.x}: ${datum.y}`}
-                                        padding={pieChartPadding}
-                                        height={80}
-                                        width={80}
-                                        colorScale={severityColor[item.severity]} />
-                                </FlexItem>
-                                <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsNone' }}>
-                                    <div className='pf-u-font-size-2xl'>{item.systems_affected}</div>
-                                    <div>{intl.formatMessage(messages.systemsExposed)}</div>
-                                </Flex>
-                            </Flex>
+                            <TextContent>
+                                <Text component="h4" className="pf-u-mb-xs">
+                                    <ExclamationCircleIcon
+                                        color="var(--pf-global--danger-color--100)"
+                                        className="pf-u-mr-sm"
+                                        style={{ verticalAlign: -1 }}
+                                    />
+                                    {intl.formatMessage(messages.systemsExposed, { count: item.systems_affected })}
+                                </Text>
+                                {intl.formatMessage(messages.systemsExposedDescription)}
+                            </TextContent>
                         </Flex>
                     </Flex>
                 } />

@@ -3,7 +3,7 @@ const { resolve } = require('path');
 const config = require('@redhat-cloud-services/frontend-components-config');
 const { config: webpackConfig, plugins } = config({
     rootFolder: resolve(__dirname, '../'),
-    deployment: process.env.BETA ? 'beta/apps' : 'apps',
+    deployment: process.env.BETA === 'true' ? 'beta/apps' : 'apps',
     debug: true
 });
 
@@ -16,7 +16,12 @@ plugins.push(
             './AppSection': resolve(__dirname, '../src/PresentationalComponents/ZeroState/AppSection.js'),
             './ZeroStateFooter': resolve(__dirname, '../src/PresentationalComponents/ZeroState/ZeroStateFooter.js'),
             './RootApp': resolve(__dirname, '../src/AppEntry.js')
-        }
+        },
+        shared: [
+            {
+                'react-router-dom': { singleton: true, requiredVersion: '*' }
+            }
+        ]
     })
 );
 
