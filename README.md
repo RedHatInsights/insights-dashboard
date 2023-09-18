@@ -31,3 +31,7 @@ Note: You will need to set up the Insights environment if you want to develop wi
 
 ### Automated testing
 After creating PR or pushing to environment branch (`master`, `master-stable`, `prod-beta`, `prod-stable`) Travis is used to test this and to deploy to the corresponding environment.
+
+#### Branch Notes
+We are currently migrating to a two branch system. As some old jobs may rely on the old prod-branches, prod-branches are currently up for assurance, but are now read-only.
+For releasing, only commit hashes on master and master-stable are required, with an update to app-interface.
