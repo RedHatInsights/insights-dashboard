@@ -29,8 +29,7 @@ import { Provider } from 'react-redux';
 import { init } from '../../src/Store';
 import messages from '../../locales/data.json';
 import IntlProvider from '@redhat-cloud-services/frontend-components-translations/Provider';
-import { mount } from '@cypress/react';
-import { Grid } from '@patternfly/react-core/dist/esm/layouts';
+import { mount } from '@cypress/react18';
 
 Cypress.Commands.add('mountWithContext', (Component, props) => {
 
