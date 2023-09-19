@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.15.4",
+    "@cfaester/enzyme-adapter-react-18": "^0.7.1",
     "@patternfly/patternfly": "5.0.4",
     "@patternfly/react-charts": "7.0.1",
     "@patternfly/react-core": "^5.0.1",
@@ -75,7 +76,7 @@
     "enzyme-to-json": "3.6.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-intl": "5.20.10",
+    "react-intl": "6.4.7",
     "react-redux": "8.1.2",
     "react-router-dom": "^6.6.1",
     "redux": "4.2.1",
@@ -97,7 +98,6 @@
     "@cypress/code-coverage": "^3.10.0",
     "@formatjs/cli": "4.2.33",
     "@redhat-cloud-services/frontend-components-config": "^4.6.13",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "axios": "0.21.4",
     "babel-jest": "27.1.0",
     "babel-plugin-dual-import": "1.2.1",
@@ -126,7 +126,7 @@
     "stylelint": "13.13.1",
     "stylelint-config-recommended-scss": "4.3.0",
     "stylelint-scss": "3.20.1",
-    "typescript": "4.4.2",
+    "typescript": "5.2.2",
     "webpack-bundle-analyzer": "4.4.2"
   },
   "insights": {
