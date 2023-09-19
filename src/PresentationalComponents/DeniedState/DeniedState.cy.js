@@ -1,5 +1,5 @@
 const { IntlProvider } = require('@redhat-cloud-services/frontend-components-translations');
-const { mount } = require('cypress/react');
+const { mount } = require('cypress/react18');
 const { default: DeniedState } = require('./DeniedState');
 import React from 'react';
 
