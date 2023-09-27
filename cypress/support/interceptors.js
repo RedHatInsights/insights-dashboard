@@ -4,6 +4,9 @@ import hostsFixtures from '../fixtures/hosts.json';
 import cvesFixtures from '../fixtures/cves.json';
 import patchAdvisoriesFixtures from '../fixtures/patchAdvisories.json';
 import patchSystemsFixtures from '../fixtures/patchSystems.json';
+import rulesFixtures from '../fixtures/rules.json';
+import basicSystems from '../fixtures/systems.json';
+import rulesAdditional from '../fixtures/rulesAdditional.json';
 
 export const hostsInterceptors = {
     successful: (fixtures = hostsFixtures) => {
@@ -93,5 +96,27 @@ export const patchInterceptors = {
             statusCode: 200,
             body: fixtures.patchAdvisoriesFixtures
         }).as('getPatchAdvisories');
+    }
+};
+
+export const rulesInterceptors = {
+    successful: (fixtures = { rulesFixtures, rulesAdditional }) => {
+        cy.intercept('GET', '/api/insights/v1/stats/rules/**', {
+            statusCode: 200,
+            body: fixtures.rulesFixtures
+        }).as('getRules');
+        cy.intercept('GET', '/api/insights/v1/rule/?impacting=true&limit=1&incident=true**', {
+            statusCode: 200,
+            body: fixtures.rulesAdditional
+        }).as('getRule');
+    }
+};
+
+export const systemsInterceptors = {
+    successful: (fixtures = { basicSystems }) => {
+        cy.intercept('GET', '/api/insights/v1/stats/systems/**', {
+            statusCode: 200,
+            body: fixtures.basicSystems
+        }).as('getSystems');
     }
 };

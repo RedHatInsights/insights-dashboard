@@ -14,6 +14,14 @@ const breakpointColumnsObj = {
     992: 1
 };
 
+const defaultValues = {
+    categoryTypes: [
+        { name: 'Security advisories', value: '1033' },
+        { name: 'Bug fixes', value: '2235' },
+        { name: 'Enhancements', value: '343' }
+    ]
+};
+
 const MountVulnerabilityCard = () => {
     return (
         <Grid hasGutter>
@@ -48,13 +56,10 @@ describe('Dashboard Patch', () => {
         cy.get('div.insd-c-legend')
         .children().should('have.length', 3);
     });
-    it('the first metric is correct', () => {
-        cy.get('span.insd-c-legend__text').eq(0).should('contain', 'Security advisories').and('contain', '1033');
-    });
-    it('the second metric is correct', () => {
-        cy.get('span.insd-c-legend__text').eq(1).should('contain', 'Bug fixes').and('contain', '2235');
-    });
-    it('the third metric is correct', () => {
-        cy.get('span.insd-c-legend__text').eq(2).should('contain', 'Enhancements').and('contain', '343');
+
+    defaultValues.categoryTypes.forEach((type, index) => {
+        it(`metric ${type.name} is correct`, () => {
+            cy.get('span.insd-c-legend__text').eq(index).should('contain', type.name).and('contain', type.value);
+        });
     });
 });

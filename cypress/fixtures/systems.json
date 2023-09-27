@@ -1,0 +1,15 @@
+{
+    "total": 762,
+    "total_risk": {
+        "1": 353,
+        "2": 459,
+        "3": 420,
+        "4": 2
+    },
+    "category": {
+        "Availability": 373,
+        "Performance": 520,
+        "Security": 206,
+        "Stability": 137
+    }
+}

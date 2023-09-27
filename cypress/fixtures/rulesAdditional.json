@@ -1,0 +1,63 @@
+{
+    "meta": {
+        "count": 19
+    },
+    "links": {
+        "first": "/api/insights/v1/rule/?impacting=true&incident=true&limit=1&offset=0",
+        "next": "/api/insights/v1/rule/?impacting=true&incident=true&limit=1&offset=1",
+        "previous": "/api/insights/v1/rule/?impacting=true&incident=true&limit=1&offset=0",
+        "last": "/api/insights/v1/rule/?impacting=true&incident=true&limit=1&offset=18"
+    },
+    "data": [
+        {
+            "rule_id": "crashkernel_reservation_value|CRASHKERNEL_AUTO_FAILURE_V2",
+            "created_at": "2020-09-25T07:37:09.745864Z",
+            "updated_at": "2021-09-14T18:03:16.993062Z",
+            "description": "Kdump auto crashkernel reservation failed because the total memory does not meet the minimum requirement",
+            "active": true,
+            "category": {
+                "id": 1,
+                "name": "Availability"
+            },
+            "impact": {
+                "name": "Diagnostics Failure",
+                "impact": 1
+            },
+            "likelihood": 4,
+            "node_id": "1186753",
+            "tags": "incident kdump",
+            "playbook_count": 1,
+            "reboot_required": true,
+            "publish_date": "2020-10-01T19:04:00Z",
+            "summary": "Kdump fails to collect vmcore when the reserved size does not meet the minimum requirement.\n",
+            "generic": "Automatic reservation did not work because the total memory does not meet the minimum requirement for kdump.\n",
+            "reason": "{{?pydata.error_key == \"CRASHKERNEL_RECOMMENDED_VALUE_V2\"}}\nThis **{{=pydata.value[3]}}** system is running with a total memory of **{{=pydata.value[0]}}MB**. The kdump reserved size is **{{=pydata.value[1]}}MB** while the minimum amount of reserved memory required for memory **{{=pydata.value[0]}}MB** is **{{=pydata.value[2]}}MB**. \n\n{{?pydata.version == 7}}\n* [Minimum Amount of Reserved Memory Required for kdump](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/kernel_administration_guide/kernel_crash_dump_guide#sect-kdump-memory-requirements)\n{{?}}\n{{?pydata.version == 8}}\n* [Minimum Amount of Reserved Memory Required for kdump](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/installing-and-configuring-kdump_managing-monitoring-and-updating-the-kernel#memory-requirements-for-kdump_supported-kdump-configurations-and-targets)\n{{?}}\n{{?}}\n\n{{?pydata.error_key == \"CRASHKERNEL_AUTO_FAILURE_V2\"}}\nThis **{{=pydata.value[2]}}** system is running with a total memory of **{{=pydata.value[0]}}MB**. The **crashkernel** is configured as **auto** and the minimum amount of memory required for automatic memory reservation is **{{=pydata.auto_minimum}}MB**. As the total memory does not meet the requirement, kdump auto crashkernel reservation failed with following log:\n  ~~~\n  {{=pydata.msg}}\n  ~~~\n\n{{?pydata.version == 7}}\n* [Minimum Amount of Memory Required for Automatic Memory Reservation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/kernel_administration_guide/kernel_crash_dump_guide#sect-kdump-memory-thresholds)\n\n* [Minimum Amount of Reserved Memory Required for kdump](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/kernel_administration_guide/kernel_crash_dump_guide#sect-kdump-memory-requirements)\n{{?}}\n{{?pydata.version == 8}}\n* [Minimum Amount of Memory Required for Automatic Memory Reservation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/installing-and-configuring-kdump_managing-monitoring-and-updating-the-kernel#minimum-threshold-for-automatic-memory-reservation_supported-kdump-configurations-and-targets)\n\n* [Minimum Amount of Reserved Memory Required for kdump](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/installing-and-configuring-kdump_managing-monitoring-and-updating-the-kernel#memory-requirements-for-kdump_supported-kdump-configurations-and-targets)\n{{?}}\n{{?}}\n",
+            "more_info": "{{?pydata.version == 7}}\n* [How should the crashkernel parameter be configured for using kdump on RHEL7 ?](https://access.redhat.com/solutions/916043)\n{{?}}\n{{?pydata.version == 8}}\n* [How should the crashkernel parameter be configured for using kdump on Red Hat Enterprise Linux 8 ?](https://access.redhat.com/solutions/3698411)\n{{?}}\n",
+            "impacted_systems_count": 1,
+            "reports_shown": true,
+            "rule_status": "enabled",
+            "resolution_set": [
+                {
+                    "system_type": 105,
+                    "resolution": "Red Hat recommends that you change the **crashkernel** setting in the `grub.conf` file.\n\n{{?pydata.error_key == \"CRASHKERNEL_RECOMMENDED_VALUE_V2\"}}\n1. Update the value of the **\"crashkernel\"** kernel parameter:\n  ~~~\n  # grubby --update-kernel=ALL --args=crashkernel={{=pydata.value[2]}}M\n  ~~~\n1. Reboot the system:\n  ~~~\n  # reboot\n  ~~~\n{{?}}\n\n\n{{?pydata.error_key == \"CRASHKERNEL_AUTO_FAILURE_V2\"}}\n1. Update the value of the **\"crashkernel\"** kernel parameter:\n  ~~~\n  # grubby --update-kernel=ALL --args=crashkernel={{=pydata.value[1]}}M\n  ~~~\n1. Reboot the system:\n  ~~~\n  # reboot\n  ~~~\n{{?}}\n\n\nAfter applying the remediation, refresh the results of Advisor analysis by running the `insights-client` command on the system. \n~~~ \n# insights-client \n~~~ \n",
+                    "resolution_risk": {
+                        "name": "Update Kernel Boot Options",
+                        "risk": 3
+                    },
+                    "has_playbook": true
+                }
+            ],
+            "total_risk": 2,
+            "hosts_acked_count": 0,
+            "rating": 0,
+            "pathway": {
+                "name": "Update kernel boot options",
+                "component": "grub",
+                "resolution_risk": {
+                    "name": "Update Kernel Boot Options",
+                    "risk": 3
+                }
+            }
+        }
+    ]
+}
