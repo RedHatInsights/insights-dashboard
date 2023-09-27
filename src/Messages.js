@@ -145,7 +145,7 @@ export default defineMessages({
     vulnerabilityMessage: {
         id: 'vulnerabilityMessage',
         description: 'Vulnerability message',
-        defaultMessage: 'Red Hat recommends addressing these CVEs with high priority due to heightened risk associated with these security issues'
+        defaultMessage: 'Red Hat recommends addressing these CVEs with high priority due to heightened risk associated with these security issues. This dataset summary only shows CVEs with Errata.'
     },
     vulnerabilityCardCTAText: {
         id: 'vulnerabilityCardCTAText',
@@ -321,7 +321,7 @@ export default defineMessages({
     notMember: {
         id: 'notMember',
         description: 'Not a member',
-        defaultMessage: 'Not a member? Start a trial!'
+        defaultMessage: 'Don\'t have a RHEL subscription? Start a trial.'
     },
     noSystemsDescription: {
         id: 'noSystemsDescription',
@@ -880,5 +880,10 @@ export default defineMessages({
         id: 'customContentZeroState',
         description: 'Zero state description for Custom content app',
         defaultMessage: 'Add custom repositories to images built with Image Builder.'
+    },
+    remediationsZeroState: {
+        id: 'remediationsContentZeroState',
+        description: 'Zero state description for Remediations app',
+        defaultMessage: 'Receive guidance to remediate risk, and act on those recommendations directly with automatically generated Ansible remediations.'
     }
 });

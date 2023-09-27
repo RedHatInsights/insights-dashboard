@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/RedHatInsights/insights-dashboard.svg?branch=master)](https://travis-ci.org/RedHatInsights/insights-dashboard) [![codecov](https://codecov.io/gh/RedHatInsights/insights-dashboard/branch/master/graph/badge.svg)](https://codecov.io/gh/RedHatInsights/insights-dashboard)
 
+
 # insights-dashboard
 Built to match the mockups here https://marvelapp.com/a5c8bcg/screen/66136610
 
@@ -30,3 +31,7 @@ Note: You will need to set up the Insights environment if you want to develop wi
 
 ### Automated testing
 After creating PR or pushing to environment branch (`master`, `master-stable`, `prod-beta`, `prod-stable`) Travis is used to test this and to deploy to the corresponding environment.
+
+#### Branch Notes
+We are currently migrating to a two branch system. As some old jobs may rely on the old prod-branches, prod-branches are currently up for assurance, but are now read-only.
+For releasing, only commit hashes on master and master-stable are required, with an update to app-interface.

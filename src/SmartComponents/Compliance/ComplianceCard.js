@@ -28,7 +28,6 @@ import PropTypes from 'prop-types';
 import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
 import { useIntl } from 'react-intl';
 
 const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSummary, selectedTags, workloads, SID }) => {
@@ -199,7 +198,7 @@ const mapDispatchToProps = dispatch => ({
     fetchCompliance: (url) => dispatch(AppActions.fetchComplianceSummary(url))
 });
 
-export default routerParams(connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ComplianceCard));
+)(ComplianceCard);

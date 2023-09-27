@@ -7,6 +7,7 @@ import { IntlProvider } from '@redhat-cloud-services/frontend-components-transla
 
 const AppZeroState = ({ app, customInstructions, customButton, customText, customTitle,
     appId }) => {
+
     return (
         <IntlProvider>
             <React.Fragment>

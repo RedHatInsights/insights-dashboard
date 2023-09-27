@@ -7,7 +7,6 @@ import { useIntl } from 'react-intl';
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
@@ -134,7 +133,7 @@ const mapDispatchToProps = dispatch => ({
     fetchRosIsConfigured: () => dispatch(AppActions.fetchRosIsConfigured())
 });
 
-export default routerParams(connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ResourceOptimizationCard));
+)(ResourceOptimizationCard);
