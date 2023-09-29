@@ -29,6 +29,7 @@ import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 
 const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSummary, selectedTags, workloads, SID }) => {
     useEffect(() => {
@@ -79,16 +80,15 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                                         direction={ { default: 'column' } }
                                                                         spaceItems={ { default: 'spaceItemsNone' } }
                                                                     >
-                                                                        <Button
+                                                                        <InsightsLink
+                                                                            app='compliance'
+                                                                            to={`/reports/${policy.id}`}
+                                                                            className='ins-c-compliance__policy-link
+                                                                            pf-c-button pf-m-link pf-m-inline'
                                                                             id={ `compliance-link-${index + 1}` }
-                                                                            className='ins-c-compliance__policy-link'
-                                                                            component='a'
-                                                                            href={ `${UI_BASE}/compliance/reports/${policy.id}` }
-                                                                            variant='link'
-                                                                            isInline
                                                                         >
                                                                             {policy.attributes.name}
-                                                                        </Button>
+                                                                        </InsightsLink>
                                                                         <Flex>
                                                                             <FlexItem flex={ { default: 'flex_1' } }>
                                                                                 <p>RHEL { policy.attributes.os_version }</p>
@@ -121,18 +121,12 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                 </DataListItem>
                                             )}
                                         </DataList>
-                                        <Button
-                                            className='ins-c-compliance__policy-link'
-                                            component='a'
-                                            href={ `${UI_BASE}/compliance/reports/` }
-                                            variant='link'
-                                            isInline
-                                        >
+                                        <InsightsLink app='compliance' to='/reports' className='pf-c-button pf-m-link pf-m-inline'>
                                             {complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                                                 complianceSummary.data.length - 3 >= 1 &&
                                                 `${complianceSummary.data.length - 3} more reports`
                                             }
-                                        </Button>
+                                        </InsightsLink>
                                     </React.Fragment> : (
                                         <EmptyState className='ins-c-compliance__empty-state' variant={ EmptyStateVariant.full }>
                                             <Title headingLevel='h5' size='md'>
@@ -142,13 +136,9 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                 {intl.formatMessage(messages.complianceEmptyStateBody)}
                                             </EmptyStateBody>
                                             <EmptyStateSecondaryActions>
-                                                <Button
-                                                    variant='link'
-                                                    href={ `${UI_BASE}/compliance/scappolicies/new` }
-                                                    component='a'
-                                                >
+                                                <InsightsLink app='compliance' to='/scappolicies/new' className='pf-c-button pf-m-link'>
                                                     {intl.formatMessage(messages.complianceEmptyStateAction1)}
-                                                </Button>
+                                                </InsightsLink>
                                                 <Button
                                                     variant='link'
                                                     component='a'

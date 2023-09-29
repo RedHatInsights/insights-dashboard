@@ -8,7 +8,6 @@ import {
     TemplateCardBody
 } from '../../PresentationalComponents/Template/TemplateCard';
 
-import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import PropTypes from 'prop-types';
@@ -17,6 +16,7 @@ import RunStatus from './RunStatus';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 
 const RemediationsCard = ({
     fetchRemediations, remediationsFetchStatus, remediations
@@ -58,17 +58,15 @@ const RemediationsCard = ({
                                             <div className='insd-c-remediation__status'>
                                             </div>
                                             <div className='insd-c-remediation__timestamp'>
-                                                <Button
-                                                    id='remediations-link-more'
-                                                    component='a'
-                                                    href='./insights/remediations'
-                                                    variant='link'
-                                                    isInline
-                                                >
+                                                <InsightsLink
+                                                    app='remediations'
+                                                    to='/'
+                                                    className="pf-c-button pf-m-link pf-m-inline"
+                                                    id='remediations-link-more'>
                                                     {intl.formatMessage(messages.remediationsTotal,
                                                         { total: remediations.meta.total - remediations.meta.count }
                                                     )}
-                                                </Button>
+                                                </InsightsLink>
                                             </div>
                                         </div>
                                     }

@@ -1,13 +1,11 @@
 import './PatchManagerCard.scss';
 
 import { Flex } from '@patternfly/react-core/dist/esm/layouts';
-import { PATCHMAN_ID, UI_BASE } from '../../AppConstants';
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { capitalize, globalFilters, workloadsPropType } from '../../Utilities/Common';
 import { patchmanFetchAdvisories, patchmanFetchSystems } from '../../AppActions';
 
-import { Button } from '@patternfly/react-core/dist/esm/components';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import Loading from '../../PresentationalComponents/Loading/Loading';
@@ -20,6 +18,7 @@ import { connect } from 'react-redux';
 import global_disabled_color_100 from '@patternfly/react-tokens/dist/esm/global_disabled_color_100';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 
 /**
  * Card for showing the systems and ratios of current advisories.
@@ -35,15 +34,15 @@ const PatchManagerCard = ({
     const pieChartData = [
         {
             x: intl.formatMessage(messages.securityAdvisories, { count: security }), y: security, fill: chart_color_blue_400.value,
-            url: `${UI_BASE}/${PATCHMAN_ID}/advisories?offset=0&filter%5Badvisory_type_name%5D=security`
+            url: `/advisories?offset=0&filter%5Badvisory_type_name%5D=security`
         },
         {
             x: intl.formatMessage(messages.bugfixAdvisories, { count: bugs }), y: bugs, fill: chart_color_blue_300.value,
-            url: `${UI_BASE}/${PATCHMAN_ID}/advisories?offset=0&filter%5Badvisory_type_name%5D=bugfix`
+            url: `/advisories?offset=0&filter%5Badvisory_type_name%5D=bugfix`
         },
         {
             x: intl.formatMessage(messages.enhancementAdvisories, { count: enhancements }), y: enhancements, fill: chart_color_blue_200.value,
-            url: `${UI_BASE}/${PATCHMAN_ID}/advisories?offset=0&filter%5Badvisory_type_name%5D=enhancement`
+            url: `/advisories?offset=0&filter%5Badvisory_type_name%5D=enhancement`
         }
     ];
 
@@ -77,13 +76,9 @@ const PatchManagerCard = ({
         body={<TemplateCardBody>
             {!isLoaded ? <Loading /> :
                 <Flex direction={{ default: 'column' }}>
-                    <Button
-                        component='a'
-                        href={`${UI_BASE}/${PATCHMAN_ID}/systems`}
-                        variant='link'
-                        isInline>
+                    <InsightsLink app='patch' to='/systems' className='pf-c-button pf-m-link pf-m-inline'>
                         <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
-                    </Button>
+                    </InsightsLink>
                     <div className="insd-c-dashboard__card-chart-container">
                         <div className="insd-c-dashboard__card-pie-chart">
                             <PieChart
@@ -100,11 +95,11 @@ const PatchManagerCard = ({
                         <div className='insd-c-dashboard__card-pie-chart-legend'>
                             <div className="insd-c-legend">
                                 {pieChartData.map((item, index) =>
-                                    <a key={item.url} href={item.url} className='insd-c-legend__item'>
+                                    <InsightsLink app='patch' key={item.url} to={item.url} className='insd-c-legend__item'>
                                         <span className='insd-c-legend__dot'
                                             style={{ '--insd-c-legend__dot--BackgroundColor': `${colorScale[index]}` }} />
                                         <span className='insd-c-legend__text'>{item.y} {capitalize(item.x)}</span>
-                                    </a>
+                                    </InsightsLink>
                                 )}
                             </div>
                         </div>

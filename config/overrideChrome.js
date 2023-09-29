@@ -3,5 +3,8 @@ export default () => ({
     isBeta: () => false,
     appAction: () => {},
     appObjectId: () => {},
-    on: () => {}
+    on: () => {},
+    getApp: () => 'dashboard',
+    getBundle: () => 'insights',
+    getUserPermissions: () => [{ permission: 'inventory:*:*' }]
 });
