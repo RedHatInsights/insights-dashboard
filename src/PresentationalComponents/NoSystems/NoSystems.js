@@ -16,9 +16,9 @@ import React from 'react';
 import { Stack } from '@patternfly/react-core/dist/esm/layouts/Stack/Stack';
 import { StackItem } from '@patternfly/react-core/dist/esm/layouts/Stack/StackItem';
 import { Title } from '@patternfly/react-core/dist/esm/components/Title/Title';
-import { UI_BASE } from '../../AppConstants';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 
 const NoSystems = ({ workloadIs }) => {
     const intl = useIntl();
@@ -45,9 +45,11 @@ const NoSystems = ({ workloadIs }) => {
                     </StackItem>
                 </Stack>
             </EmptyStateBody>
-            <Button component='a' href={ `${UI_BASE}/registration` } variant='primary'>
-                {intl.formatMessage(messages.registerYourSystems)}
-            </Button>
+            <InsightsLink app='registration' to="/">
+                <Button variant='primary'>
+                    {intl.formatMessage(messages.registerYourSystems)}
+                </Button>
+            </InsightsLink>
         </EmptyState>
     </Main>;
 };

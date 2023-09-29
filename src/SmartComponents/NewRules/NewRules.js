@@ -22,12 +22,12 @@ import React, { useState } from 'react';
 import AngleRightIcon from '@patternfly/react-icons/dist/esm/icons/angle-right-icon';
 import { DataListItemTemplate } from '../../PresentationalComponents/Template/DataListItemTemplate';
 import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
-import { UI_BASE } from '../../AppConstants';
 import { capitalize } from '../../Utilities/Common';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { ExclamationCircleIcon } from '@patternfly/react-icons';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 
 const NewRules = () => {
     const intl = useIntl();
@@ -113,7 +113,7 @@ const NewRules = () => {
                                     <DescriptionListTerm>Associated CVEs</DescriptionListTerm>
                                     {item.associated_cves.map((cve) =>
                                         <DescriptionListDescription key={cve.key}>
-                                            <a href={`${UI_BASE}/vulnerability/cves/${cve}`}>{cve}</a>
+                                            <InsightsLink app='vulnerability' to={`/cves/${cve}`}>{cve}</InsightsLink>
                                         </DescriptionListDescription>
                                     )}</DescriptionListGroup>
                             </DescriptionList>

@@ -10,8 +10,8 @@ import { connect } from 'react-redux';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
-import { UI_BASE } from '../../AppConstants';
 import { Button } from '@patternfly/react-core';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 
 const ResourceOptimizationCard = ({
     fetchRosIsConfigured, rosIsConfiguredFetchStatus, rosIsConfigured
@@ -22,9 +22,9 @@ const ResourceOptimizationCard = ({
         fetchRosIsConfigured();
     }, [fetchRosIsConfigured]);
 
-    const waitingForDataUrl = `${UI_BASE}/ros?with_waiting_for_data=true`;
-    const suggestionsUrl = `${UI_BASE}/ros?with_suggestions=true`;
-    const allSystemsUrl = `${UI_BASE}/ros`;
+    const waitingForDataUrl = `/?with_waiting_for_data=true`;
+    const suggestionsUrl = `/?with_suggestions=true`;
+    const allSystemsUrl = `/`;
 
     return (
         <ExpandableCardTemplate
@@ -57,11 +57,11 @@ const ResourceOptimizationCard = ({
                                                         <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
                                                             {rosIsConfigured.systems_stats.waiting_for_data}
                                                         </span>
-                                                        <a href={waitingForDataUrl}>
+                                                        <InsightsLink app='ros' to={waitingForDataUrl}>
                                                             <span className='pf-u-font-size-sm'>
                                                                 <span>{intl.formatMessage(messages.waitingForData)}</span>
                                                             </span>
-                                                        </a>
+                                                        </InsightsLink>
                                                     </Flex>
                                             }
                                             <Flex
@@ -71,11 +71,11 @@ const ResourceOptimizationCard = ({
                                                 <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
                                                     {rosIsConfigured.systems_stats.with_suggestions}
                                                 </span>
-                                                <a href={suggestionsUrl}>
+                                                <InsightsLink app='ros' to={suggestionsUrl}>
                                                     <span className='pf-u-font-size-sm'>
                                                         {intl.formatMessage(messages.systemsWithSuggestions)}
                                                     </span>
-                                                </a>
+                                                </InsightsLink>
                                             </Flex>
                                             <Flex
                                                 direction={{ default: 'column' }}
@@ -84,11 +84,11 @@ const ResourceOptimizationCard = ({
                                                 <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
                                                     {rosIsConfigured.count}
                                                 </span>
-                                                <a href={allSystemsUrl}>
+                                                <InsightsLink app='ros' to={allSystemsUrl}>
                                                     <span className='pf-u-font-size-sm'>
                                                         {intl.formatMessage(messages.totalSystems)}
                                                     </span>
-                                                </a>
+                                                </InsightsLink>
                                             </Flex>
                                         </Flex>
                                     </Flex>
@@ -99,12 +99,13 @@ const ResourceOptimizationCard = ({
                                     alignItems={{ default: 'alignItemsCenter' }}
                                 >
                                     <FlexItem>{ intl.formatMessage(messages.rosSystemsNotConfiguredMessage)}</FlexItem>
-                                    <Button
-                                        variant='secondary'
-                                        isSmall component='a'
-                                        href={ `${UI_BASE}/ros`}>
-                                        {intl.formatMessage(messages.rosCardConfigureSystemsCTA)}
-                                    </Button>
+                                    <InsightsLink app='ros' to='/'>
+                                        <Button
+                                            variant='secondary'
+                                            isSmall>
+                                            {intl.formatMessage(messages.rosCardConfigureSystemsCTA)}
+                                        </Button>
+                                    </InsightsLink>
                                 </Flex>
                         )
 

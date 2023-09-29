@@ -40,7 +40,7 @@ const Dashboard = (/*{ workloads }*/) => {
         chrome.updateDocumentTitle(`Dashboard | Red Hat Insights`);
     }, [chrome]);
 
-    return permission.hasSystems ?
+    return permission.hasSystems  ?
         <React.Fragment>
             <PageSection isWidthLimited variant={ PageSectionVariants.light } className="insd-c-dashboard-header">
                 <Title headingLevel="h1" size="2xl" className="pf-u-screen-reader">

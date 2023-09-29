@@ -27,6 +27,8 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 // eslint-disable-next-line no-unused-vars
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook/RBACHook';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
+import { Link } from 'react-router-dom';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -79,7 +81,8 @@ const SystemInventoryHeader = ({
                                 linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
                                     { count: inventorySummary.total || 0 }
                                 ) }
-                                link='./insights/inventory/?source=puptoo'
+                                app='inventory'
+                                link='/?source=puptoo'
                             />
                         }
                         {/* {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
@@ -101,38 +104,28 @@ const SystemInventoryHeader = ({
                         <Flex direction={ { default: 'column' } } spaceItems={ { default: 'spaceItemsNone' } }>
                             <FlexItem>
                                 {inventoryStaleFetchStatus === 'fulfilled' &&
-                                    <Button
-                                        component="a"
-                                        variant="link"
-                                        href='./insights/inventory/?status=stale&source=puptoo'
-                                        isInline
-                                    >
-                                        <IconInline
-                                            message={ intl.formatMessage(messages.systemInventoryStale,
-                                                { count: inventoryStaleSummary.total || 0 }
-                                            ) }
-                                            state="warning"
-                                            systemInventory
-                                        />
-                                    </Button>
+                                <InsightsLink app='inventory' to='/?status=stale&source=puptoo' className="pf-c-button pf-m-link pf-m-inline">
+                                    <IconInline
+                                        message={ intl.formatMessage(messages.systemInventoryStale,
+                                            { count: inventoryStaleSummary.total || 0 }
+                                        ) }
+                                        state="warning"
+                                        systemInventory
+                                    />
+                                </InsightsLink>
                                 }
                             </FlexItem>
                             <FlexItem>
                                 {inventoryWarningFetchStatus === 'fulfilled' &&
-                                    <Button
-                                        component="a"
-                                        variant="link"
-                                        href='./insights/inventory/?status=stale_warning&source=puptoo'
-                                        isInline
-                                    >
-                                        <IconInline
-                                            message={ intl.formatMessage(messages.systemInventoryStaleWarning,
-                                                { count: inventoryWarningSummary.total || 0 }
-                                            ) }
-                                            state="critical"
-                                            systemInventory
-                                        />
-                                    </Button>
+                                <InsightsLink app='inventory' to='/?status=stale_warning&source=puptoo' className="pf-c-button pf-m-link pf-m-inline">
+                                    <IconInline
+                                        message={ intl.formatMessage(messages.systemInventoryStaleWarning,
+                                            { count: inventoryWarningSummary.total || 0 }
+                                        ) }
+                                        state="critical"
+                                        systemInventory
+                                    />
+                                </InsightsLink>
                                 }
                             </FlexItem>
                             {inventoryTotalFetchStatus === 'rejected' &&
@@ -140,22 +133,22 @@ const SystemInventoryHeader = ({
                             }
                         </Flex>
                         <FlexItem align={{ md: 'alignRight' }}>
-                            <Button
-                                className='pf-u-mr-sm pf-u-font-size-md'
-                                component='a'
-                                variant='secondary'
-                                isSmall
-                                href={ `settings/integrations` }
-                            >
-                                { intl.formatMessage(messages.configureIntegrations) }
-                            </Button>
-                            <Button
-                                component='a'
-                                variant='primary'
-                                href={ `${UI_BASE}/registration` }
-                            >
-                                { intl.formatMessage(messages.systemInventoryCTA) }
-                            </Button>
+                            <Link to="/settings/integrations">
+                                <Button
+                                    className='pf-u-mr-sm pf-u-font-size-md'
+                                    variant='secondary'
+                                    isSmall
+                                >
+                                    { intl.formatMessage(messages.configureIntegrations) }
+                                </Button>
+                            </Link>
+                            <InsightsLink app='registration' to="/">
+                                <Button
+                                    variant='primary'
+                                >
+                                    { intl.formatMessage(messages.systemInventoryCTA) }
+                                </Button>
+                            </InsightsLink>
                         </FlexItem>
                     </Flex>
                 </Flex>

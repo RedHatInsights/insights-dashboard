@@ -32,6 +32,7 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { ArrowRightIcon } from '@patternfly/react-icons';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 
 // eslint-disable-next-line no-unused-vars
 const SortableTable = () => {
@@ -120,13 +121,16 @@ const ZeroState = () => {
                             </div>
                         </FlexItem>
                         <FlexItem>
-                            <Button
-                                isLarge
-                                component='a'
-                                variant='primary'
-                                href={ `${UI_BASE}/registration` }>
-                                {intl.formatMessage(messages.registerYourSystems)}
-                            </Button>
+                            <InsightsLink app='registration' to="/">
+                                <Button
+                                    isLarge
+                                    component='a'
+                                    variant='primary'
+                                    style={{ color: 'white' }}
+                                    href={ `${UI_BASE}/registration` }>
+                                    {intl.formatMessage(messages.registerYourSystems)}
+                                </Button>
+                            </InsightsLink>
                         </FlexItem>
                         <FlexItem>
                             <Button

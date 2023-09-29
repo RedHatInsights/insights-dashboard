@@ -25,9 +25,9 @@ import React from 'react';
 import SlackHashIcon from '@patternfly/react-icons/dist/esm/icons/slack-hash-icon';
 // template card
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
-import { UI_BASE } from '../../AppConstants';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 
 /**
  * Custom policies card with a table
@@ -94,9 +94,9 @@ const CustomPoliciesCard = () => {
                             </DataListItem>
                         )}
                     </DataList>
-                    <Button component='a' href={ `${UI_BASE}/policies` } variant='link' isInline>
+                    <InsightsLink app='policies' to='/' className="pf-c-button pf-m-inline pf-m-link">
                         {intl.formatMessage(messages.policiesCardCTA)}
-                    </Button>
+                    </InsightsLink>
                 </Grid>
 
             </TemplateCardBody>

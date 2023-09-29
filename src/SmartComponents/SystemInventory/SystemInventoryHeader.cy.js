@@ -3,6 +3,7 @@ import SystemInventoryHeader from './SystemInventoryHeader';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 
 import { hostsInterceptors } from '../../../cypress/support/interceptors';
+import { BrowserRouter } from 'react-router-dom';
 
 before(() => {
     cy.mockWindowChrome();
@@ -10,9 +11,12 @@ before(() => {
 
 const ComponentForMount = () => {
     return (
-        <Suspense fallback={ <Loading /> }>
-            <SystemInventoryHeader />
-        </Suspense>);
+        <BrowserRouter>
+            <Suspense fallback={ <Loading /> }>
+                <SystemInventoryHeader />
+            </Suspense>);
+        </BrowserRouter>
+    );
 };
 
 describe('Dashboard', () => {

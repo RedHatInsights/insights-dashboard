@@ -3,7 +3,6 @@ import './RunStatus.scss';
 import { DateFormat } from '@redhat-cloud-services/frontend-components';
 import React from 'react';
 
-import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import CheckCircleIcon from '@patternfly/react-icons/dist/esm/icons/check-circle-icon';
 import InProgressIcon from '@patternfly/react-icons/dist/esm/icons/in-progress-icon';
 import PropTypes from 'prop-types';
@@ -13,6 +12,7 @@ import TimesCircleIcon from '@patternfly/react-icons/dist/esm/icons/times-circle
 import { Tooltip } from '@patternfly/react-core/dist/esm/components/Tooltip/Tooltip';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 
 // Normalize the status so we don't show all API statuses
 const normalizeStatus = (status) => ({
@@ -60,25 +60,14 @@ const RunStatus = ({ id, name, index, playbook_runs: playbookRuns }) => {
         </div>
         <div className="insd-c-remediation__timestamp">
             {name.length > 65 ? <Tooltip content={ name }>
-                <Button
-                    id={ `remediation-link-${index}` }
-                    component="a"
-                    variant="link"
-                    isInline
-                    href={ `./insights/remediations/${id}` }
-                >
+                <InsightsLink app='remediations' to={ `/${id}` } className="pf-c-button pf-m-inline pf-m-link" id={ `remediation-link-${index}` }>
                     {name}
-                </Button>
+                </InsightsLink>
             </Tooltip> :
-                <Button
-                    id={ `remediation-link-${index}` }
-                    component="a"
-                    variant="link"
-                    isInline
-                    href={ `./insights/remediations/${id}` }
-                >
+                <InsightsLink app='remediations' to={ `/${id}` } className="pf-c-button pf-m-inline pf-m-link" id={ `remediation-link-${index}` }>
                     {name}
-                </Button>}
+                </InsightsLink>
+            }
             { hasData
                 ? <TimeStamp timestamp={ <DateFormat type='exact' date={ playbookRuns.data[0].created_at } /> } />
                 : null

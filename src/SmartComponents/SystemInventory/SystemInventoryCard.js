@@ -6,7 +6,6 @@ import React, { Fragment, useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { globalFilters, workloadsPropType } from '../../Utilities/Common';
 
-import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
 import { NotAuthorized } from '@redhat-cloud-services/frontend-components/NotAuthorized';
@@ -17,6 +16,7 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 // eslint-disable-next-line no-unused-vars
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -73,33 +73,34 @@ const SystemInventoryCard = ({
                                 linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
                                     { count: inventorySummary.total || 0 }
                                 ) }
-                                link='./insights/inventory'
+                                app="inventory"
+                                link='/'
                                 iconTooltipText={ intl.formatMessage(messages.systemInventoryNotUsingClient,
                                     { count: inventoryTotalSummary.total - inventorySummary.total || 0 }
                                 ) }
                             />
                         }
                         {inventoryStaleFetchStatus === 'fulfilled' &&
-                            <Button component="a" variant="link" href='./insights/inventory/?status=stale' isInline>
-                                <IconInline
-                                    message={ intl.formatMessage(messages.systemInventoryStale,
-                                        { count: inventoryStaleSummary.total || 0 }
-                                    ) }
-                                    state="warning"
-                                    systemInventory="true"
-                                />
-                            </Button>
+                        <InsightsLink app='inventory' to='/?status=stale' className="pf-c-button pf-m-link pf-m-inline">
+                            <IconInline
+                                message={ intl.formatMessage(messages.systemInventoryStale,
+                                    { count: inventoryStaleSummary.total || 0 }
+                                ) }
+                                state="warning"
+                                systemInventory="true"
+                            />
+                        </InsightsLink>
                         }
                         {inventoryWarningFetchStatus === 'fulfilled' &&
-                            <Button component="a" variant="link" href='./insights/inventory/?status=stale_warning' isInline>
-                                <IconInline
-                                    message={ intl.formatMessage(messages.systemInventoryStaleWarning,
-                                        { count: inventoryWarningSummary.total || 0 }
-                                    ) }
-                                    state="critical"
-                                    systemInventory="true"
-                                />
-                            </Button>
+                        <InsightsLink app='inventory' to='/?status=stale_warning' className="pf-c-button pf-m-link pf-m-inline">
+                            <IconInline
+                                message={ intl.formatMessage(messages.systemInventoryStaleWarning,
+                                    { count: inventoryWarningSummary.total || 0 }
+                                ) }
+                                state="critical"
+                                systemInventory="true"
+                            />
+                        </InsightsLink>
                         }
                         {inventoryTotalFetchStatus === 'rejected' &&
                             <FailState appName='Inventory' isSmall />

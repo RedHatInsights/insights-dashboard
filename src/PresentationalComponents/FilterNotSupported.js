@@ -6,29 +6,25 @@ import {
     EmptyStateIcon
 } from '@patternfly/react-core/dist/esm/components/EmptyState';
 
-import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SearchIcon from '@patternfly/react-icons/dist/esm/icons/search-icon';
 import { Title } from '@patternfly/react-core/dist/esm/components/Title/Title';
 import messages from '../Messages';
 import { useIntl } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 const FilterNotSupported = ({ href, title, appName }) => {
     const intl = useIntl();
 
     return <EmptyState>
         <EmptyStateIcon className='fontSizeOverride' icon={ SearchIcon } />
-        <Title headingLevel="h4" size="md">{title} </Title>
+        <Title headingLevel="h4" size="md">{title}</Title>
         <EmptyStateBody>
             {intl.formatMessage(appName !== 'Vulnerability' ? messages.functionalityNotSupported : messages.filteredResultsInApp, {
-                appname: <Button
-                    component="a"
-                    href={ href }
-                    variant="link"
-                    isInline>
+                appname: <Link to={href} className='pf-c-button pf-m-link pf-m-inline'>
                     {appName}
-                </Button>
+                </Link>
             })}
         </EmptyStateBody>
     </EmptyState>;

@@ -7,8 +7,9 @@ import CriticalIcon from '../../Icons/CriticalIcon';
 import { NumberData } from '../../PresentationalComponents/NumberData/NumberData';
 import React from 'react';
 import propTypes from 'prop-types';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 
-export const NumberDescription = ({ data, dataSize, link, linkDescription, layout, critical, iconTooltipText }) => {
+export const NumberDescription = ({ data, dataSize, app, link, linkDescription, layout, critical, iconTooltipText }) => {
     return (
         <div className={ `${layout ? `pf-m-${layout}` : ''}` }>
             {critical === 'true' && (
@@ -19,7 +20,9 @@ export const NumberDescription = ({ data, dataSize, link, linkDescription, layou
                     <NumberData data={ data } dataSize={ dataSize } iconTooltipText={ iconTooltipText } />
                 </FlexItem>
                 <FlexItem>
-                    <Button component='a' isInline variant="link" href={ link } >{linkDescription}</Button>
+                    <InsightsLink app={app} to={link}>
+                        <Button isInline variant="link">{linkDescription}</Button>
+                    </InsightsLink>
                 </FlexItem>
             </Flex>
         </div>
@@ -34,7 +37,8 @@ NumberDescription.propTypes = {
     layout: propTypes.string,
     critical: propTypes.string,
     iconTooltipText: propTypes.node,
-    flexDirection: propTypes.object
+    flexDirection: propTypes.object,
+    app: propTypes.string
 };
 
 export default NumberDescription;

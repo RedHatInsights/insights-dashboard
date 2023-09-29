@@ -72,7 +72,7 @@ export const translateDriftDropdownItems = (intl) => ([
 
 export const buildCompareUrl = (baseline_id, system_ids) => {
 
-    let finalUrl = `${ActionTypes.DRIFT_URL}/?baseline_ids=${baseline_id}`;
+    let finalUrl = `/?baseline_ids=${baseline_id}`;
 
     system_ids.slice(0, ActionTypes.SYSTEMS_LIMIT).forEach(system_id => {
         finalUrl = finalUrl.concat(`&system_ids=${system_id}`);

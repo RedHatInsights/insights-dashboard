@@ -16,7 +16,7 @@ import {
 } from '@patternfly/react-core/dist/esm/components';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
 import React, { useEffect, useState } from 'react';
-import { SEVERITY_MAP, UI_BASE } from '../../AppConstants';
+import { SEVERITY_MAP } from '../../AppConstants';
 import { capitalize, globalFilters } from '../../Utilities/Common';
 import {
     global_disabled_color_100,
@@ -38,6 +38,7 @@ import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 
 const Advisor = () => {
     const colors = [global_palette_blue_100.value, global_palette_blue_200.value, global_palette_blue_300.value, global_palette_blue_400.value];
@@ -56,10 +57,10 @@ const Advisor = () => {
 
     const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${selectedTags?.length ?
         `&tags=${selectedTags?.join()}` : ''}${workloads?.SAP ? '&sap_system=true' : ''}${SID?.length ? `&sap_sids=${SID?.join()}` : ''}`;
-    const totalRiskUrl = risk => `${UI_BASE}/advisor/recommendations?sort=-total_risk&total_risk=${risk}${urlRest}`;
+    const totalRiskUrl = risk => `/recommendations?sort=-total_risk&total_risk=${risk}${urlRest}`;
     const pieLegendData = categoryData.map(item => ({
         name: `${item.y} ${item.x} `, fill: `${item.fill}`,
-        url: `${UI_BASE}/advisor/recommendations?sort=-category&category=${item.value}${urlRest}`
+        url: `/recommendations?sort=-category&category=${item.value}${urlRest}`
     }));
     const iconTooltip = text => <Tooltip
         key={text}
@@ -165,13 +166,14 @@ const Advisor = () => {
                                     </p>
                                 </TextContent>
                             </FlexItem>
-                            <Button
-                                variant='secondary'
-                                isSmall component='a'
-                                href={`${UI_BASE}${INCIDENT_URL}`}
-                            >
-                                {intl.formatMessage(messages.advisorCardCTA)}
-                            </Button>
+                            <InsightsLink app='advisor' to={INCIDENT_URL}>
+                                <Button
+                                    variant='secondary'
+                                    isSmall
+                                >
+                                    {intl.formatMessage(messages.advisorCardCTA)}
+                                </Button>
+                            </InsightsLink>
                         </Flex>
                     </TemplateCardBody>
                     } />
@@ -191,7 +193,7 @@ const Advisor = () => {
                             spaceItems={{ default: 'spaceItemsLg', sm: 'spaceItems2xl' }}
                         >
                             {trData.map(({ title, risk, value }) =>
-                                <a key={title} href={totalRiskUrl(value)}>
+                                <InsightsLink key={title} app='advisor' to={totalRiskUrl(value)}>
                                     <Flex
                                         direction={{ default: 'column' }}
                                         spaceItems={{ default: 'spaceItemsNone' }}
@@ -203,7 +205,7 @@ const Advisor = () => {
                                             {title}
                                         </span>
                                     </Flex>
-                                </a>)}
+                                </InsightsLink>)}
                         </Flex>
                         <Card component='div'>
                             <CardTitle>
@@ -227,15 +229,16 @@ const Advisor = () => {
                                         <div className="insd-c-dashboard__card-pie-chart-legend">
                                             <div className='insd-c-legend insd-m-2-col'>
                                                 {pieLegendData.map((item) =>
-                                                    <a
+                                                    <InsightsLink
                                                         key={item.url}
-                                                        href={item.url}
+                                                        app='advisor'
+                                                        to={item.url}
                                                         className='insd-c-legend__item'
                                                     >
                                                         <span className='insd-c-legend__dot'
                                                             style={{ '--insd-c-legend__dot--BackgroundColor': `${item.fill}` }} />
                                                         <span className='insd-c-legend__text'>{item.name}</span>
-                                                    </a>
+                                                    </InsightsLink>
                                                 )}
                                             </div>
                                         </div>
