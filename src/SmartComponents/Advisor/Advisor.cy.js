@@ -2,17 +2,10 @@ import React, { Suspense } from 'react';
 import Advisor from './Advisor';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { cvesInterceptors, rulesInterceptors, systemsInterceptors } from '../../../cypress/support/interceptors';
-import Masonry from 'react-masonry-css';
-import { Grid } from '@patternfly/react-core/dist/esm/layouts';
 
 before(() => {
     cy.mockWindowChrome();
 });
-
-const breakpointColumnsObj = {
-    default: 2,
-    992: 1
-};
 
 const defaultValues = {
     categoryTypes: [
@@ -24,17 +17,9 @@ const defaultValues = {
 
 const AdvisorCard = () => {
     return (
-        <Grid hasGutter>
-            <Masonry
-                breakpointCols={breakpointColumnsObj}
-                className="ins-l-masonry"
-                columnClassName="ins-l-masonry_column"
-            >
-                <Suspense fallback={ <Loading /> }>
-                    <Advisor />
-                </Suspense>;
-            </Masonry>
-        </Grid>
+        <Suspense fallback={ <Loading /> }>
+            <Advisor />
+        </Suspense>
     );
 };
 
