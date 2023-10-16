@@ -92,7 +92,7 @@ const ZeroStateBanner = ({
                                 alignSelf={{ default: 'alignSelfCenter' }}
                                 className='bannerRight' >
                                 <FlexItem className='pf-u-pt-lg'>
-                                    <Title headingLevel='h1' size='2xl' style={{ color: '#151515' }}>
+                                    <Title headingLevel='h1' size='2xl' style={{ color: '#151515' }} ouiaId='ZeroStateCustomAppTitle'>
                                         {customTitle ? customTitle : `Start using ${appName.replace('_', ' ')} now`}
                                     </Title>
                                 </FlexItem>
