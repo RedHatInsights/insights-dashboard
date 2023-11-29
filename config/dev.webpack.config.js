@@ -7,7 +7,6 @@ const { config: webpackConfig, plugins } = config({
     debug: true,
     appUrl: process.env.BETA ? ['/beta/insights/dashboard', '/preview/insights/dashboard'] : '/insights/dashboard',
     env: `${process.env.ENVIRONMENT || 'stage'}-${process.env.BETA ? 'beta' : 'stable'}`,
-    deployment: process.env.BETA ? 'beta/apps' : 'apps',
     useProxy: true,
     useChromeTemplate: true,
     localChrome: process.env.INSIGHTS_CHROME,
