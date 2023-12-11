@@ -30,16 +30,24 @@ import { init } from '../../src/Store';
 import messages from '../../locales/data.json';
 import IntlProvider from '@redhat-cloud-services/frontend-components-translations/Provider';
 import { mount } from '@cypress/react';
-import { Grid } from '@patternfly/react-core/dist/esm/layouts';
+import FlagProvider from '@unleash/proxy-client-react';
 
 Cypress.Commands.add('mountWithContext', (Component, props) => {
 
     return mount(
-        <IntlProvider messages={messages}>
-            <Provider store={ init().getStore() }>
-                <Component {...props}/>
-            </Provider>
-        </IntlProvider>
+        <FlagProvider
+            config={{
+                url: 'http://localhost:8002/feature_flags',
+                clientKey: 'abc',
+                appName: 'abc'
+            }}
+        >
+            <IntlProvider messages={messages}>
+                <Provider store={ init().getStore() }>
+                    <Component {...props}/>
+                </Provider>
+            </IntlProvider>
+        </FlagProvider>
     );
 });
 
