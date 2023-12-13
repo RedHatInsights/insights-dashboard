@@ -1,7 +1,8 @@
 /* eslint-disable camelcase */
 import { DEFAULT_ROW_COUNT } from '@redhat-cloud-services/frontend-components-utilities';
 import hostsFixtures from '../fixtures/hosts.json';
-import cvesFixtures from '../fixtures/cves.json';
+import dashboardFixtures from '../fixtures/vulnerabilityDashboard.json';
+import cvesFixtures from '../fixtures/vulnerabilityCves.json';
 
 export const hostsInterceptors = {
     successful: (fixtures = hostsFixtures) => {
@@ -32,18 +33,18 @@ export const hostsInterceptors = {
     }
 };
 
-export const cvesInterceptors = {
-    successful: (fixtures = cvesFixtures) => {
+export const vulnerabilityInterceptors = {
+    successful: (fixtures = dashboardFixtures) => {
         cy.intercept('GET', '/api/vulnerability/v1/dashboard*', {
             statusCode: 200,
             body: fixtures
-        }).as('getCVES');
+        }).as('getVulnerabilityDashboard');
     },
     'successful empty': () => {
         cy.intercept('GET', '/api/vulnerability/v1/dashboard*', {
             statusCode: 200,
             body: {
-                cves_by_severity: cvesFixtures.cves_by_severity,
+                cves_by_severity: dashboardFixtures.cves_by_severity,
                 cves_total: 0,
                 exploited_cves_count: 0,
                 meta: {
@@ -69,14 +70,63 @@ export const cvesInterceptors = {
                 rules_cves_total: 0,
                 system_count: 0
             }
-        }).as('getCVES');
+        }).as('getVulnerabilityDashboard');
     },
     'failed with server error': () => {
         Cypress.on('uncaught:exception', () => {
             return false;
         });
         cy.intercept('GET', '/api/vulnerability/v1/dashboard*', { statusCode: 500 }).as(
-            'getCVES'
+            'getVulnerabilityDashboard'
         );
+    },
+    cvesSuccessful: () => {
+        cy.intercept('GET', '/api/vulnerability/v1/vulnerabilities/cves*', {
+            statusCode: 200,
+            body: cvesFixtures
+        }).as('getCVES');
+    },
+    cvesWithoutEdgeSystemsSuccessful: () => {
+        cy.intercept('GET', '/api/vulnerability/v1/vulnerabilities/cves*', {
+            statusCode: 200,
+            body: { ...cvesFixtures, meta: { ...cvesFixtures.meta, system_count_per_type: { edge: 0, rpmdnf: 10 } } }
+        }).as('getCVES');
+    }
+};
+
+export const featureFlagsInterceptors = {
+    edgeParityEnabled: () => {
+        cy.intercept('GET', '/feature_flags*', {
+            statusCode: 200,
+            body: {
+                toggles: [
+                    {
+                        name: 'vulnerability.edge_parity',
+                        enabled: true,
+                        variant: {
+                            name: 'disabled',
+                            enabled: true
+                        }
+                    }
+                ]
+            }
+        }).as('getFeatureFlag');
+    },
+    edgeParityDisabled: () => {
+        cy.intercept('GET', '/feature_flags*', {
+            statusCode: 200,
+            body: {
+                toggles: [
+                    {
+                        name: 'vulnerability.edge_parity',
+                        enabled: false,
+                        variant: {
+                            name: 'disabled',
+                            enabled: false
+                        }
+                    }
+                ]
+            }
+        }).as('getFeatureFlag');
     }
 };
