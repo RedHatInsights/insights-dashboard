@@ -29,6 +29,7 @@ import { useIntl } from 'react-intl';
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook/RBACHook';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 import { Link } from 'react-router-dom';
+import { useFeatureFlag } from '../../Utilities/Hooks';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -48,13 +49,15 @@ const SystemInventoryHeader = ({
         'inventory:hosts:read'
     ]);
 
+    const edgeFeatureFlag = useFeatureFlag('edgeParity.inventory-list');
+
     useEffect(() => {
         const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
-        fetchInventoryTotal(options);
+        fetchInventoryTotal(options, edgeFeatureFlag);
         fetchInventory(options);
         fetchInventoryStale(options);
         fetchInventoryWarning(options);
-    }, [fetchInventoryTotal, fetchInventory, fetchInventoryStale, fetchInventoryWarning, selectedTags, workloads, SID]
+    }, [fetchInventoryTotal, fetchInventory, fetchInventoryStale, fetchInventoryWarning, selectedTags, workloads, SID, edgeFeatureFlag]
     );
 
     const intl = useIntl();
@@ -76,7 +79,7 @@ const SystemInventoryHeader = ({
                     <Flex spaceItems={ { default: 'spaceItemsXl' } }>
                         {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
                             <NumberDescription
-                                data={ inventorySummary.total.toLocaleString() || 0 }
+                                data={ inventoryTotalSummary.total.toLocaleString() || 0 }
                                 dataSize="lg"
                                 linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
                                     { count: inventorySummary.total || 0 }
@@ -193,6 +196,6 @@ export default connect(
         fetchInventory: (params) => dispatch(AppActions.fetchInventorySummary(params)),
         fetchInventoryStale: (params) => dispatch(AppActions.fetchInventoryStaleSummary(params)),
         fetchInventoryWarning: (params) => dispatch(AppActions.fetchInventoryWarningSummary(params)),
-        fetchInventoryTotal: (params) => dispatch(AppActions.fetchInventoryTotalSummary(params))
+        fetchInventoryTotal: (params, edgeFeatureFlag) => dispatch(AppActions.fetchInventoryTotalSummary(params, edgeFeatureFlag))
     })
 )(SystemInventoryHeader);

@@ -52,6 +52,7 @@ export const INVENTORY_BASE = '/inventory/v1';
 const INVENTORY_PER_PAGE = 'per_page=1';
 export const INVENTORY_TOTAL_FETCH = 'INVENTORY_TOTAL_FETCH';
 export const INVENTORY_TOTAL_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?${INVENTORY_PER_PAGE}`;
+export const INVENTORY_TOTAL_FETCH_WITH_EDGE_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?filter[system_profile][host_type][]=edge&filter[system_profile][host_type][]=nil&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_FETCH = 'INVENTORY_FETCH';
 export const INVENTORY_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?registered_with=puptoo&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_STALE_FETCH = 'INVENTORY_STALE_FETCH';
