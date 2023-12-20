@@ -61,9 +61,15 @@ export const fetchInventorySummary = (options) => ({
     payload: fetchData(ActionTypes.INVENTORY_FETCH_URL, {}, options)
 });
 
-export const fetchInventoryTotalSummary = (options) => ({
+export const fetchInventoryTotalSummary = (options, edgeFeatureFlag) => ({
     type: ActionTypes.INVENTORY_TOTAL_FETCH,
-    payload: fetchData(ActionTypes.INVENTORY_TOTAL_FETCH_URL, {}, options)
+    payload: fetchData(
+        edgeFeatureFlag
+            ? ActionTypes.INVENTORY_TOTAL_FETCH_WITH_EDGE_URL
+            : ActionTypes.INVENTORY_TOTAL_FETCH_URL,
+        {},
+        options
+    )
 });
 
 export const fetchInventoryStaleSummary = (options) => ({
