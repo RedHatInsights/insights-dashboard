@@ -39,6 +39,7 @@ const SystemInventoryHeader = ({
     fetchInventoryStale, inventoryStaleFetchStatus, inventoryStaleSummary,
     fetchInventoryWarning, inventoryWarningFetchStatus, inventoryWarningSummary,
     fetchInventoryTotal, inventoryTotalFetchStatus, inventoryTotalSummary,
+    fetchEdgeTotal, edgeTotalFetchStatus, edgeTotalSummary,
     selectedTags, workloads, SID
 }) => {
 
@@ -53,11 +54,13 @@ const SystemInventoryHeader = ({
 
     useEffect(() => {
         const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
-        fetchInventoryTotal(options, edgeFeatureFlag);
+        fetchInventoryTotal(options);
         fetchInventory(options);
         fetchInventoryStale(options);
         fetchInventoryWarning(options);
-    }, [fetchInventoryTotal, fetchInventory, fetchInventoryStale, fetchInventoryWarning, selectedTags, workloads, SID, edgeFeatureFlag]
+        edgeFeatureFlag && fetchEdgeTotal(options);
+    }, [fetchInventoryTotal, fetchInventory, fetchInventoryStale, fetchInventoryWarning,
+        fetchEdgeTotal, selectedTags, workloads, SID, edgeFeatureFlag]
     );
 
     const intl = useIntl();
@@ -77,9 +80,9 @@ const SystemInventoryHeader = ({
                     direction={ { default: 'column', md: 'row' } }
                 >
                     <Flex spaceItems={ { default: 'spaceItemsXl' } }>
-                        {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
+                        {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' && edgeTotalFetchStatus === 'fulfilled' &&
                             <NumberDescription
-                                data={ inventoryTotalSummary.total.toLocaleString() || 0 }
+                                data={ (inventorySummary.total + (edgeFeatureFlag ? edgeTotalSummary.count : 0)).toLocaleString() || 0 }
                                 dataSize="lg"
                                 linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
                                     { count: inventorySummary.total || 0 }
@@ -172,6 +175,9 @@ SystemInventoryHeader.propTypes = {
     fetchInventoryTotal: PropTypes.func,
     inventoryTotalSummary: PropTypes.object,
     inventoryTotalFetchStatus: PropTypes.string,
+    fetchEdgeTotal: PropTypes.function,
+    edgeTotalSummary: PropTypes.object,
+    edgeTotalFetchStatus: PropTypes.string,
     intl: PropTypes.any,
     selectedTags: PropTypes.arrayOf(PropTypes.string),
     workloads: workloadsPropType,
@@ -188,6 +194,8 @@ export default connect(
         inventoryWarningFetchStatus: DashboardStore.inventoryWarningFetchStatus,
         inventoryTotalSummary: DashboardStore.inventoryTotalSummary,
         inventoryTotalFetchStatus: DashboardStore.inventoryTotalFetchStatus,
+        edgeTotalSummary: DashboardStore.edgeTotalSummary,
+        edgeTotalFetchStatus: DashboardStore.edgeTotalFetchStatus,
         selectedTags: DashboardStore.selectedTags,
         workloads: DashboardStore.workloads,
         SID: DashboardStore.SID
@@ -196,6 +204,7 @@ export default connect(
         fetchInventory: (params) => dispatch(AppActions.fetchInventorySummary(params)),
         fetchInventoryStale: (params) => dispatch(AppActions.fetchInventoryStaleSummary(params)),
         fetchInventoryWarning: (params) => dispatch(AppActions.fetchInventoryWarningSummary(params)),
-        fetchInventoryTotal: (params, edgeFeatureFlag) => dispatch(AppActions.fetchInventoryTotalSummary(params, edgeFeatureFlag))
+        fetchInventoryTotal: (params) => dispatch(AppActions.fetchInventoryTotalSummary(params)),
+        fetchEdgeTotal: (params) => dispatch(AppActions.fetchEdgeTotal(params))
     })
 )(SystemInventoryHeader);
