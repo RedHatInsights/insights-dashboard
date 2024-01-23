@@ -10,8 +10,8 @@ import {
     DataListItemCells,
     DataListItemRow,
     EmptyState,
+    EmptyStateActions,
     EmptyStateBody,
-    EmptyStateSecondaryActions,
     EmptyStateVariant,
     Title
 } from '@patternfly/react-core/dist/esm/components';
@@ -62,6 +62,13 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
             header={
                 <TemplateCardActions />
             }
+
+            // { iconInlineMessage &&
+            //     <IconInline message={ iconInlineMessage } state={ iconInlineState }/>
+            // }
+            // { downloadReport &&
+            //     <DownloadReport />
+            // }
             body={
                 <TemplateCardBody>
                     {supportsGlobalFilter(selectedTags, workloads, SID) ?
@@ -135,7 +142,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                             <EmptyStateBody>
                                                 {intl.formatMessage(messages.complianceEmptyStateBody)}
                                             </EmptyStateBody>
-                                            <EmptyStateSecondaryActions>
+                                            <EmptyStateActions>
                                                 <InsightsLink app='compliance' to='/scappolicies/new' className='pf-c-button pf-m-link'>
                                                     {intl.formatMessage(messages.complianceEmptyStateAction1)}
                                                 </InsightsLink>
@@ -146,7 +153,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                 >
                                                     {intl.formatMessage(messages.complianceEmptyStateAction2)}
                                                 </Button>
-                                            </EmptyStateSecondaryActions>
+                                            </EmptyStateActions>
                                         </EmptyState>
                                     ))
                                 )

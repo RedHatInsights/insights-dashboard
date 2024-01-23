@@ -9,7 +9,7 @@ import { useIntl } from 'react-intl';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
-import { DriftDropDown } from './DriftDropDown';
+import  DriftDropDown  from './DriftDropDown';
 import messages from '../../Messages';
 import SortUpIcon from '@patternfly/react-icons/dist/esm/icons/sort-up-icon';
 import {

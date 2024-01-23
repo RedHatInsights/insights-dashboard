@@ -169,7 +169,7 @@ const Advisor = () => {
                             <InsightsLink app='advisor' to={INCIDENT_URL}>
                                 <Button
                                     variant='secondary'
-                                    isSmall
+                                    size='sm'
                                 >
                                     {intl.formatMessage(messages.advisorCardCTA)}
                                 </Button>

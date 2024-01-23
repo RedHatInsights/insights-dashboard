@@ -4,14 +4,11 @@ import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { translateDriftDropdownItems } from './utils';
 
-import {
-    Dropdown,
-    DropdownToggle,
-    DropdownItem
-} from '@patternfly/react-core';
-import CaretDownIcon from '@patternfly/react-icons/dist/esm/icons/caret-down-icon';
+import { CaretDownIcon } from '@patternfly/react-icons';
+import { Dropdown, DropdownItem } from '@patternfly/react-core';
+import { DropdownToggle } from '@patternfly/react-core/dist/esm/deprecated/components/Dropdown';
 
-export const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
+const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
 
     const intl = useIntl();
     const dropdownItems = useRef([]);
@@ -19,7 +16,7 @@ export const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
 
     useEffect(() => {
         dropdownItems.current = translateDriftDropdownItems(intl);
-    }, []);
+    }, [intl]);
 
     const onItemClick = (item, itemRef) => {
         fetchDriftData(item);
@@ -51,3 +48,5 @@ DriftDropDown.propTypes = {
         description: PropTypes.string
     })
 };
+
+export default DriftDropDown;

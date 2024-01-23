@@ -17,8 +17,6 @@ import React, { useEffect, useState } from 'react';
 import {
     SortByDirection,
     Table,
-    TableBody,
-    TableHeader,
     sortable
 } from '@patternfly/react-table/dist/esm/components/Table/index';
 
@@ -33,6 +31,7 @@ import { useIntl } from 'react-intl';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
+import { TableBody, TableHeader } from '@patternfly/react-table/deprecated';
 
 // eslint-disable-next-line no-unused-vars
 const SortableTable = () => {
@@ -56,7 +55,6 @@ const SortableTable = () => {
     { title: <span>{dateFormatter(row.attributes.public_date)}</span> },
     { title: <span>{row.attributes.impact}</span> },
     { title: <span>{row.attributes.cvss3_score}</span> }]);
-    // const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchCves = async () => {

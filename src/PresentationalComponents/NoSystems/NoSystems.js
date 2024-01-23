@@ -1,12 +1,5 @@
 import './NoSystems.scss';
 
-import {
-    EmptyState,
-    EmptyStateBody,
-    EmptyStateIcon,
-    EmptyStateVariant
-} from '@patternfly/react-core/dist/esm/components/EmptyState';
-
 import { Button } from '@patternfly/react-core/dist/esm/components/Button';
 import ChartSpikeIcon from '@patternfly/react-icons/dist/esm/icons/chartSpike-icon';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
@@ -19,6 +12,7 @@ import { Title } from '@patternfly/react-core/dist/esm/components/Title/Title';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
+import { EmptyState, EmptyStateBody, EmptyStateIcon, EmptyStateVariant } from '@patternfly/react-core';
 
 const NoSystems = ({ workloadIs }) => {
     const intl = useIntl();

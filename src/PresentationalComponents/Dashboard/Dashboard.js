@@ -17,8 +17,8 @@ import ResourceOptimizationCard from '../../SmartComponents/ResourceOptimization
 import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
 
 const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
-const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
-const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
+// const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
+// const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
 const SystemInventoryHeader = lazy(() => import('../../SmartComponents/SystemInventory/SystemInventoryHeader'));
 const NewRules = lazy(() => import('../../SmartComponents/NewRules/NewRules'));
 const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
@@ -62,21 +62,21 @@ const Dashboard = (/*{ workloads }*/) => {
                         className="ins-l-masonry"
                         columnClassName="ins-l-masonry_column"
                     >
-                        <Suspense fallback={ <Loading /> }>
+                        {/* <Suspense fallback={ <Loading /> }>
                             {permission.vulnerability &&
                                 <VulnerabilityCard />
                             }
-                        </Suspense>
+                        </Suspense> */}
                         <Suspense fallback={ <Loading /> }>
                             {permission.advisor &&
                                 <AdvisorCard />
                             }
                         </Suspense>
-                        <Suspense fallback={ <Loading /> }>
+                        {/* <Suspense fallback={ <Loading /> }>
                             {permission.compliance &&
                                 <ComplianceCard />
                             }
-                        </Suspense>
+                        </Suspense> */}
                         <Suspense fallback={ <Loading /> }>
                             {permission.remediations &&
                                 <RemediationsCard />

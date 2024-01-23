@@ -143,7 +143,7 @@ const SystemInventoryHeader = ({
                                 <Button
                                     className='pf-u-mr-sm pf-u-font-size-md'
                                     variant='secondary'
-                                    isSmall
+                                    size='sm'
                                 >
                                     { intl.formatMessage(messages.configureIntegrations) }
                                 </Button>

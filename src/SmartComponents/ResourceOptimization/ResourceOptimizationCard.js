@@ -102,7 +102,7 @@ const ResourceOptimizationCard = ({
                                     <InsightsLink app='ros' to='/'>
                                         <Button
                                             variant='secondary'
-                                            isSmall>
+                                            size='sm'>
                                             {intl.formatMessage(messages.rosCardConfigureSystemsCTA)}
                                         </Button>
                                     </InsightsLink>
