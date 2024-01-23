@@ -1,18 +1,12 @@
 import './NoSystems.scss';
-
-import { Button } from '@patternfly/react-core/dist/esm/components/Button';
-import ChartSpikeIcon from '@patternfly/react-icons/dist/esm/icons/chartSpike-icon';
-import { Main } from '@redhat-cloud-services/frontend-components/Main';
-import PlusCircleIcon from '@patternfly/react-icons/dist/esm/icons/plus-circle-icon';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Stack } from '@patternfly/react-core/dist/esm/layouts/Stack/Stack';
-import { StackItem } from '@patternfly/react-core/dist/esm/layouts/Stack/StackItem';
-import { Title } from '@patternfly/react-core/dist/esm/components/Title/Title';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
-import { EmptyState, EmptyStateBody, EmptyStateIcon, EmptyStateVariant } from '@patternfly/react-core';
+import { Button, EmptyState, EmptyStateBody, EmptyStateIcon, EmptyStateVariant, Stack, StackItem, Title } from '@patternfly/react-core';
+import { Section } from '@redhat-cloud-services/frontend-components';
+import { ChartSpikeIcon, PlusCircleIcon } from '@patternfly/react-icons';
 
 const NoSystems = ({ workloadIs }) => {
     const intl = useIntl();
@@ -26,7 +20,7 @@ const NoSystems = ({ workloadIs }) => {
         }
     };
 
-    return <Main>
+    return <Section>
         <EmptyState variant={ EmptyStateVariant.small } className='insd-c-empty-state-no-systems'>
             <EmptyStateIcon icon={ workloadTypes[workloadIs]?.icon || ChartSpikeIcon } />
             <Title headingLevel='h5' size='lg'>
@@ -45,7 +39,7 @@ const NoSystems = ({ workloadIs }) => {
                 </Button>
             </InsightsLink>
         </EmptyState>
-    </Main>;
+    </Section>;
 };
 
 NoSystems.propTypes = {
