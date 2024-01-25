@@ -1,6 +1,6 @@
 import './CustomPoliciesCard.scss';
 
-import { TableVariant } from '@patternfly/react-table';
+import { Table, TableBody, TableHeader, TableVariant } from '@patternfly/react-table';
 import {
     TemplateCard,
     TemplateCardActions,
@@ -15,7 +15,6 @@ import EnvelopeIcon from '@patternfly/react-icons/dist/esm/icons/envelope-icon';
 import FinishedIcon from './../../Icons/FinishedIcon';
 import React from 'react';
 import SlackHashIcon from '@patternfly/react-icons/dist/esm/icons/slack-hash-icon';
-import { Table, TableBody, TableHeader } from '@patternfly/react-table/deprecated';
 
 /**
  * Custom policies card with a table

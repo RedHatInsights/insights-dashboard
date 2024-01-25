@@ -27,11 +27,11 @@ export const AppBlock = ({ className, appName, icon, title, body, url, buttonTex
                 direction={ { default: 'column' } }
                 spaceItems={ { default: 'spaceItemsNone' } }
             >
-                <Title headingLevel='h3' size='xs' className='pf-v5-u-pt-sm'>
+                <Title headingLevel='h3' size='xs' className='pf-u-pt-sm'>
                     { title }
                 </Title>
                 <FlexItem spacer={ { default: 'spacerSm' } }>
-                    <p className='pf-v5-u-color-200 pf-v5-u-font-size-sm'>{ body }</p>
+                    <p className='pf-u-color-200 pf-u-font-size-sm'>{ body }</p>
                 </FlexItem>
                 <Button variant='link' href={ `${UI_BASE}/${url}` } isInline icon={<ArrowRightIcon />} iconPosition='right'>
                     <span>{ buttonText ? { buttonText } : 'Get started' }</span>

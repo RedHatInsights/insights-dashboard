@@ -81,7 +81,7 @@ const SystemInventoryCard = ({
                             />
                         }
                         {inventoryStaleFetchStatus === 'fulfilled' &&
-                        <InsightsLink app='inventory' to='/?status=stale' className="pf-v5-c-button pf-m-link pf-m-inline">
+                        <InsightsLink app='inventory' to='/?status=stale' className="pf-c-button pf-m-link pf-m-inline">
                             <IconInline
                                 message={ intl.formatMessage(messages.systemInventoryStale,
                                     { count: inventoryStaleSummary.total || 0 }
@@ -92,7 +92,7 @@ const SystemInventoryCard = ({
                         </InsightsLink>
                         }
                         {inventoryWarningFetchStatus === 'fulfilled' &&
-                        <InsightsLink app='inventory' to='/?status=stale_warning' className="pf-v5-c-button pf-m-link pf-m-inline">
+                        <InsightsLink app='inventory' to='/?status=stale_warning' className="pf-c-button pf-m-link pf-m-inline">
                             <IconInline
                                 message={ intl.formatMessage(messages.systemInventoryStaleWarning,
                                     { count: inventoryWarningSummary.total || 0 }

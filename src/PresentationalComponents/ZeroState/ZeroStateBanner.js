@@ -50,8 +50,8 @@ const ZeroStateBanner = ({
                 '--ins-c-marketing-banner--graphic--width-on-md': '200px',
                 '--ins-c-marketing-banner--graphic--width-on-xl': '400px'
             } }>
-            <Grid lg={ 6 } hasGutter className='pf-v5-u-pt-xl pf-v5-u-pb-xl'>
-                <GridItem className='pf-v5-u-pl-lg pf-v5-u-pr-lg'>
+            <Grid lg={ 6 } hasGutter className='pf-u-pt-xl pf-u-pb-xl'>
+                <GridItem className='pf-u-pl-lg pf-u-pr-lg'>
                     <Flex direction={ { default: 'column' } }>
                         <FlexItem>
                             <Title headingLevel='h1' size='4xl'>
@@ -62,7 +62,7 @@ const ZeroStateBanner = ({
                             <Title headingLevel='h4' style={{ maxWidth: '600px' }}>{description}</Title>
                         </FlexItem>
                         <FlexItem>
-                            <IconList className='pf-v5-u-pl-sm ' >
+                            <IconList className='pf-u-pl-sm ' >
                                 {bulletPoints.map(item => (
                                     <IconListItem key={item}>
                                         <Title headingLevel='h4'>
@@ -77,8 +77,8 @@ const ZeroStateBanner = ({
 
                 <GridItem style={{ backgroundColor: '#fff' }} className={!registerButton ? 'bannerBefore' : ''} >
                     {registerButton ?
-                        <Flex className='pf-v5-u-p-lg' direction={{ default: 'column' }} style={{ color: '#151515' }}>
-                            <a className='pf-v5-u-pb-sm' onClick={updateRegisterButton} >Go Back</a>
+                        <Flex className='pf-u-p-lg' direction={{ default: 'column' }} style={{ color: '#151515' }}>
+                            <a className='pf-u-pb-sm' onClick={updateRegisterButton} >Go Back</a>
                             {commands.map(item => (
                                 registerSystemsList(item)
                             ))}
@@ -91,7 +91,7 @@ const ZeroStateBanner = ({
                                 alignItems={{ default: 'alignItemsCenter' }}
                                 alignSelf={{ default: 'alignSelfCenter' }}
                                 className='bannerRight' >
-                                <FlexItem className='pf-v5-u-pt-lg'>
+                                <FlexItem className='pf-u-pt-lg'>
                                     <Title headingLevel='h1' size='2xl' style={{ color: '#151515' }} ouiaId='ZeroStateCustomAppTitle'>
                                         {customTitle ? customTitle : `Start using ${appName.replace('_', ' ')} now`}
                                     </Title>
@@ -106,7 +106,7 @@ const ZeroStateBanner = ({
                                         <Button
                                             id={appId}
                                             onClick={updateRegisterButton}
-                                            className='pf-v5-u-p-md pf-v5-u-font-size-md'> Register your systems
+                                            className='pf-u-p-md pf-u-font-size-md'> Register your systems
                                         </Button>}
                                 </FlexItem>
                                 <FlexItem>

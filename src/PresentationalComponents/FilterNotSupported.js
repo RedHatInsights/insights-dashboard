@@ -2,20 +2,21 @@ import './FilterNotSupported.scss';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SearchIcon from '@patternfly/react-icons/dist/esm/icons/search-icon';
-import {  } from '@patternfly/react-core/dist/esm/components/Title/Title';
+import { Title } from '@patternfly/react-core/dist/esm/components/Title/Title';
 import messages from '../Messages';
 import { useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { EmptyState, EmptyStateBody, EmptyStateIcon, EmptyStateHeader } from '@patternfly/react-core';
+import { EmptyState, EmptyStateBody, EmptyStateIcon } from '@patternfly/react-core';
 
 const FilterNotSupported = ({ href, title, appName }) => {
     const intl = useIntl();
 
     return <EmptyState>
-        <EmptyStateHeader titleText={<>{title}</>} icon={<EmptyStateIcon className='fontSizeOverride' icon={ SearchIcon } />} headingLevel="h4" />
+        <EmptyStateIcon className='fontSizeOverride' icon={ SearchIcon } />
+        <Title headingLevel="h4" size="md">{title}</Title>
         <EmptyStateBody>
             {intl.formatMessage(appName !== 'Vulnerability' ? messages.functionalityNotSupported : messages.filteredResultsInApp, {
-                appname: <Link to={href} className='pf-v5-c-button pf-m-link pf-m-inline'>
+                appname: <Link to={href} className='pf-c-button pf-m-link pf-m-inline'>
                     {appName}
                 </Link>
             })}

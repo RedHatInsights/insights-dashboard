@@ -43,7 +43,7 @@ const Dashboard = (/*{ workloads }*/) => {
     return permission.hasSystems  ?
         <React.Fragment>
             <PageSection isWidthLimited variant={ PageSectionVariants.light } className="insd-c-dashboard-header">
-                <Title headingLevel="h1" size="2xl" className="pf-v5-u-screen-reader">
+                <Title headingLevel="h1" size="2xl" className="pf-u-screen-reader">
                     {intl.formatMessage(messages.dashboardTitle)}
                 </Title>
                 <Suspense fallback={ <Loading /> }>

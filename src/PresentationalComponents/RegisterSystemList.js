@@ -12,7 +12,7 @@ const registerSystemsList = (item) => {
                 target="_blank"
                 href={`${item.link}`}
                 rel="noreferrer"
-                className="pf-v5-u-pl-lg"
+                className="pf-u-pl-lg"
             >
                 {item.instructions}
             </a>
@@ -29,14 +29,14 @@ const registerSystemsList = (item) => {
         //Expects a single plantext obj
     ) : item.plainText ? (
         <React.Fragment>
-            <p className={item.plainText.length < 4 ? 'pf-v5-u-pl-lg' : ''}>
+            <p className={item.plainText.length < 4 ? 'pf-u-pl-lg' : ''}>
                 {item.plainText}
             </p>
         </React.Fragment>
         //A string with a link inline and within it
     ) : item.linkWithinText ? (
         <React.Fragment>
-            <p className='pf-v5-u-pl-md'>
+            <p className='pf-u-pl-md'>
                 {item.partOne} <a href={item.linkWithinText}>{item.anchorText}</a> {item.partTwo}
             </p>
         </React.Fragment>
@@ -47,7 +47,7 @@ const registerSystemsList = (item) => {
                 hoverTip="Copy"
                 clickTip="Copied"
                 isReadOnly
-                className="pf-v5-u-p-sm pf-v5-u-pt-xs pf-v5-u-pl-md"
+                className="pf-u-p-sm pf-u-pt-xs pf-u-pl-md"
             >
                 {item.singleClipboardCommand}
             </ClipboardCopy>
@@ -56,12 +56,12 @@ const registerSystemsList = (item) => {
         //Plain text and then the clipboard component below
         //Expects intstructions and command obj
         <React.Fragment>
-            <p className={(item.noPadding ? 'pf-v5-u-pl-0' : `pf-v5-u-pl-md`) + ' pf-v5-u-mb-0 '}>{item.instructions}</p>
+            <p className={(item.noPadding ? 'pf-u-pl-0' : `pf-u-pl-md`) + ' pf-u-mb-0 '}>{item.instructions}</p>
             <ClipboardCopy
                 hoverTip="Copy"
                 clickTip="Copied"
                 isReadOnly
-                className="pf-v5-u-p-sm pf-v5-u-pt-xs pf-v5-u-pl-md"
+                className="pf-u-p-sm pf-u-pt-xs pf-u-pl-md"
             >
                 {item.command}
             </ClipboardCopy>

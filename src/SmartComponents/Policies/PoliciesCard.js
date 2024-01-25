@@ -78,7 +78,7 @@ const CustomPoliciesCard = () => {
                                                     spaceItems={ { default: 'spaceItemsNone' } }
                                                 >
                                                     <Title headingLevel="h4" size="md"
-                                                        className='pf-v5-u-font-weight-light' id={ 'data-list-cell-' + item.key }>
+                                                        className='pf-u-font-weight-light' id={ 'data-list-cell-' + item.key }>
                                                         { item.title }
                                                     </Title>
                                                     <Flex alignItems={ { default: 'alignItemsCenter' } }>
@@ -94,7 +94,7 @@ const CustomPoliciesCard = () => {
                             </DataListItem>
                         )}
                     </DataList>
-                    <InsightsLink app='policies' to='/' className="pf-v5-c-button pf-m-inline pf-m-link">
+                    <InsightsLink app='policies' to='/' className="pf-c-button pf-m-inline pf-m-link">
                         {intl.formatMessage(messages.policiesCardCTA)}
                     </InsightsLink>
                 </Grid>

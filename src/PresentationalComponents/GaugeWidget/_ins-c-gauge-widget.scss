@@ -7,32 +7,32 @@
 
   // Gauge widget first-child
   --ins-c-gauge-widget__graph--Width:                       #{pf-size-prem(200px)};
-  --ins-c-gauge-widget__graph--MarginRight:                 var(--pf-v5-global--spacer--md);
+  --ins-c-gauge-widget__graph--MarginRight:                 var(--pf-global--spacer--md);
 
   // Legend
   --ins-c-gauge-widget__legend--FlexBasis--sm:              #{pf-size-prem(140px)};
   --ins-c-gauge-widget__legend--FlexBasis:                  #{pf-size-prem(160px)};
 
   // Legend list
-  --ins-c-gauge-widget__legend-list--MarginTop:             var(--pf-v5-global--spacer--sm);
-  --ins-c-gauge-widget__legend-list--MarginBottom:          var(--pf-v5-global--spacer--sm);
+  --ins-c-gauge-widget__legend-list--MarginTop:             var(--pf-global--spacer--sm);
+  --ins-c-gauge-widget__legend-list--MarginBottom:          var(--pf-global--spacer--sm);
 
   // Count
-  --ins-c-gauge-widget__legend-list-count--Color:           var(--pf-v5-global--Color--100);
-  --ins-c-gauge-widget__legend-list-count--MarginRight:     var(--pf-v5-global--spacer--sm);
+  --ins-c-gauge-widget__legend-list-count--Color:           var(--pf-global--Color--100);
+  --ins-c-gauge-widget__legend-list-count--MarginRight:     var(--pf-global--spacer--sm);
   --ins-c-gauge-widget__legend-list-count--FlexBasis:       auto;
 
   // Legend items
-  --ins-c-gauge-widget__legend-item--MarginTop:             var(--pf-v5-global--spacer--md);
+  --ins-c-gauge-widget__legend-item--MarginTop:             var(--pf-global--spacer--md);
 
   // Percentage
-  --ins-c-gauge-widget__metrics-percentage:                 var(--pf-v5-global--FontSize--4xl);
+  --ins-c-gauge-widget__metrics-percentage:                 var(--pf-global--FontSize--4xl);
 
   // Change items
-  --ins-c-gauge-widget__metrics-change-text--MarginRight:   var(--pf-v5-global--spacer--sm);
+  --ins-c-gauge-widget__metrics-change-text--MarginRight:   var(--pf-global--spacer--sm);
 
   // Timeframe
-  --ins-c-gauge-widget__metrics-change-timeframe--Color:    #{$pf-v5-color-black-500};
+  --ins-c-gauge-widget__metrics-change-timeframe--Color:    #{$pf-color-black-500};
 
 
   // ==================================================================
@@ -40,19 +40,19 @@
   // ==================================================================
 
   // Affect - positive
-  --ins-c-guage-widget__metrics-change--m-positive: var(--pf-v5-global--success-color--100);
+  --ins-c-guage-widget__metrics-change--m-positive: var(--pf-global--success-color--100);
 
   // Affect - negative
-  --ins-c-guage-widget__metrics-change--m-negative: var(--pf-v5-global--danger-color--100);
+  --ins-c-guage-widget__metrics-change--m-negative: var(--pf-global--danger-color--100);
 
   // Legend - emphasis
-  --ins-c-gauge-widget__legend--m-emphasis--FontSize: var(--pf-v5-global--FontSize--2xl);
+  --ins-c-gauge-widget__legend--m-emphasis--FontSize: var(--pf-global--FontSize--2xl);
 
   // Legend - dark text
-  --ins-c-gauge-widget__legend--m-dark--Color: #{$pf-v5-color-black-500};
+  --ins-c-gauge-widget__legend--m-dark--Color: #{$pf-color-black-500};
 
   // Legend - list item padding
-  --ins-c-gauge-widget__legend-list-item--m-special--MarginBottom: var(--pf-v5-global--spacer--md);
+  --ins-c-gauge-widget__legend-list-item--m-special--MarginBottom: var(--pf-global--spacer--md);
 
 
   // Base styling
@@ -60,11 +60,11 @@
   flex-flow: row wrap;
 
   // @mobile only
-  @media screen and (max-width: $pf-v5-global--breakpoint--sm) {
+  @media screen and (max-width: $pf-global--breakpoint--sm) {
     justify-content: center;
   }
 
-  @media screen and (min-width: $pf-v5-global--breakpoint--lg) {
+  @media screen and (min-width: $pf-global--breakpoint--lg) {
     flex-wrap: nowrap;
   }
 }
@@ -81,7 +81,7 @@
   margin-right: var(--ins-c-gauge-widget__graph--MarginRight);
 
   // @desktop
-  @media screen and (min-width: $pf-v5-global--breakpoint--sm) {
+  @media screen and (min-width: $pf-global--breakpoint--sm) {
     justify-self: left;
     width: var(--ins-c-gauge-widget__graph--Width);
   }
@@ -142,7 +142,7 @@
   flex: 1 0 var(--ins-c-gauge-widget__legend--FlexBasis--sm);
   align-self: center;
 
-  @media screen and (min-width: $pf-v5-global--breakpoint--md) {
+  @media screen and (min-width: $pf-global--breakpoint--md) {
     flex-basis:  var(--ins-c-gauge-widget__legend--FlexBasis);
   }
 
@@ -207,7 +207,7 @@
   .ins-c-gauge-widget__metrics {
    color: #343435;
  }
-  .ins-c-gauge-widget__disabled--legend .pf-v5-l-stack {
+  .ins-c-gauge-widget__disabled--legend .pf-l-stack {
    display: flex;
    align-items: center;
    justify-content: center;

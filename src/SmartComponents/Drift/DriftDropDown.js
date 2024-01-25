@@ -5,7 +5,8 @@ import { useIntl } from 'react-intl';
 import { translateDriftDropdownItems } from './utils';
 
 import { CaretDownIcon } from '@patternfly/react-icons';
-import { Dropdown, DropdownItem, DropdownToggle } from '@patternfly/react-core/dist/esm/deprecated/components/Dropdown';
+import { Dropdown, DropdownItem } from '@patternfly/react-core';
+import { DropdownToggle } from '@patternfly/react-core/dist/esm/deprecated/components/Dropdown';
 
 const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
 
@@ -25,7 +26,7 @@ const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
 
     return <Dropdown
         toggle={
-            <DropdownToggle onToggle={(_event, val) => setIsOpen(val)} toggleIndicator={CaretDownIcon}>
+            <DropdownToggle onToggle={setIsOpen} toggleIndicator={CaretDownIcon}>
                 {selectedFilter.description}
             </DropdownToggle>
         }

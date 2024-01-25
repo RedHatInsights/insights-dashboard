@@ -1,9 +1,9 @@
-.pf-v5-c-button.pf-m-link {
-    font-size: var(--pf-v5-global--FontSize--sm);
+.pf-c-button.pf-m-link {
+    font-size: var(--pf-global--FontSize--sm);
 }
 
-.pf-v5-c-button__icon {
-    color: var(--pf-v5-global--Color--100);
+.pf-c-button__icon {
+    color: var(--pf-global--Color--100);
 }
 
 .insd-c-dashboard__info-inline {
@@ -12,12 +12,12 @@
     align-items: center;
 
     p {
-        font-size: var(--pf-v5-global--FontSize--sm);
-        margin-left: var(--pf-v5-global--spacer--sm);
-        color: var(--pf-v5-global--primary-color--100);
+        font-size: var(--pf-global--FontSize--sm);
+        margin-left: var(--pf-global--spacer--sm);
+        color: var(--pf-global--primary-color--100);
     }
 
     &.insd-m-padding-top  {
-        padding-top: var(--pf-v5-global--spacer--xs);
+        padding-top: var(--pf-global--spacer--xs);
     }
 }

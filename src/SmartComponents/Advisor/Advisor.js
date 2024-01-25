@@ -144,7 +144,7 @@ const Advisor = () => {
                     title={intl.formatMessage(messages.advisorCardHeader1)}
                     isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor1') || 'true')}
                     isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor1', isExpanded)}
-                    body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-v5-u-pb-2xl'>
+                    body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-u-pb-2xl'>
                         <Flex
                             direction={{ default: 'column' }}
                             alignItems={{ default: 'alignItemsCenter' }}>
@@ -153,15 +153,15 @@ const Advisor = () => {
                                     alignItems={{ default: 'alignItemsFlexCenter' }}
                                     justifyContent={{ default: 'justifyContentCenter' }}>
                                     {advisorIncidents?.meta?.count > 0 &&
-                                        <ExclamationCircleIcon className='pf-v5-u-font-size-xl pf-v5-u-danger-color-100' />}
-                                    <span className='pf-v5-u-font-size-2xl pf-v5-u-text-align-center pf-v5-u-font-weight-normal'>
+                                        <ExclamationCircleIcon className='pf-u-font-size-xl pf-u-danger-color-100' />}
+                                    <span className='pf-u-font-size-2xl pf-u-text-align-center pf-u-font-weight-normal'>
                                         {intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })}
                                     </span>
                                 </Flex>
                                 <TextContent
-                                    className='insd-c-width-limiter pf-v5-u-text-align-center'
+                                    className='insd-c-width-limiter pf-u-text-align-center'
                                     style={{ '--insd-c-width-limiter--MaxWidth': '34ch' }}>
-                                    <p className='pf-v5-u-font-size-md pf-v5-u-text-center'>
+                                    <p className='pf-u-font-size-md pf-u-text-center'>
                                         {intl.formatMessage(messages.advisorCardMessage)}
                                     </p>
                                 </TextContent>
@@ -187,7 +187,7 @@ const Advisor = () => {
                     </Flex>}
                     isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor2') || 'true')}
                     isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor2', isExpanded)}
-                    body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-v5-u-pb-0'>
+                    body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-u-pb-0'>
                         <Flex
                             justifyContent={{ default: 'justifyContentCenter' }}
                             spaceItems={{ default: 'spaceItemsLg', sm: 'spaceItems2xl' }}
@@ -198,10 +198,10 @@ const Advisor = () => {
                                         direction={{ default: 'column' }}
                                         spaceItems={{ default: 'spaceItemsNone' }}
                                         alignItems={{ default: 'alignItemsCenter' }}>
-                                        <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-normal'>
+                                        <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-normal'>
                                             {risk}
                                         </span>
-                                        <span className='pf-v5-u-font-size-sm'>
+                                        <span className='pf-u-font-size-sm'>
                                             {title}
                                         </span>
                                     </Flex>
@@ -213,7 +213,7 @@ const Advisor = () => {
                                     {intl.formatMessage(messages.advisorCardHeader3)}
                                 </Title>
                             </CardTitle>
-                            <CardBody className='pf-v5-u-pt-sm'>
+                            <CardBody className='pf-u-pt-sm'>
                                 <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsLg' }}>
                                     <div className="insd-c-dashboard__card-chart-container">
                                         <div className="insd-c-dashboard__card-pie-chart">

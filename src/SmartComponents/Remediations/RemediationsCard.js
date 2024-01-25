@@ -61,7 +61,7 @@ const RemediationsCard = ({
                                                 <InsightsLink
                                                     app='remediations'
                                                     to='/'
-                                                    className="pf-v5-c-button pf-m-link pf-m-inline"
+                                                    className="pf-c-button pf-m-link pf-m-inline"
                                                     id='remediations-link-more'>
                                                     {intl.formatMessage(messages.remediationsTotal,
                                                         { total: remediations.meta.total - remediations.meta.count }
