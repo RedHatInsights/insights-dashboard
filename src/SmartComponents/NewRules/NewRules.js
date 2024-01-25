@@ -12,6 +12,7 @@ import {
     DescriptionListDescription,
     DescriptionListGroup,
     DescriptionListTerm,
+    Icon,
     Text,
     TextContent,
     Title
@@ -126,11 +127,13 @@ const NewRules = () => {
                         <Flex flex={{ default: 'flex_2' }} alignItems={{ default: 'alignItemsCenter' }}>
                             <TextContent>
                                 <Text component="h4" className="pf-u-mb-xs">
-                                    <ExclamationCircleIcon
-                                        color="var(--pf-global--danger-color--100)"
-                                        className="pf-u-mr-sm"
+                                    <Icon
                                         style={{ verticalAlign: -1 }}
-                                    />
+                                        color="var(--pf-v5-global--danger-color--100)"
+                                        className="pf-v5-u-mr-sm"
+                                    >
+                                        <ExclamationCircleIcon/>
+                                    </Icon>
                                     {intl.formatMessage(messages.systemsExposed, { count: item.systems_affected })}
                                 </Text>
                                 {intl.formatMessage(messages.systemsExposedDescription)}

@@ -4,7 +4,7 @@ import React from 'react';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
-import { Button, EmptyState, EmptyStateBody, EmptyStateIcon, EmptyStateVariant, Stack, StackItem, Title } from '@patternfly/react-core';
+import { Button, EmptyState, EmptyStateBody, EmptyStateIcon, EmptyStateVariant, Stack, StackItem, EmptyStateHeader, EmptyStateFooter,  } from '@patternfly/react-core';
 import { Section } from '@redhat-cloud-services/frontend-components';
 import { ChartSpikeIcon, PlusCircleIcon } from '@patternfly/react-icons';
 
@@ -21,24 +21,21 @@ const NoSystems = ({ workloadIs }) => {
     };
 
     return <Section>
-        <EmptyState variant={ EmptyStateVariant.small } className='insd-c-empty-state-no-systems'>
-            <EmptyStateIcon icon={ workloadTypes[workloadIs]?.icon || ChartSpikeIcon } />
-            <Title headingLevel='h5' size='lg'>
-                {workloadTypes[workloadIs]?.title || intl.formatMessage(messages.noSystemsTitle)}
-            </Title>
+        <EmptyState variant={ EmptyStateVariant.sm } className='insd-c-empty-state-no-systems'>
+            <EmptyStateHeader titleText={<>{workloadTypes[workloadIs]?.title || intl.formatMessage(messages.noSystemsTitle)}</>} icon={<EmptyStateIcon icon={ workloadTypes[workloadIs]?.icon || ChartSpikeIcon } />} headingLevel='h5' />
             <EmptyStateBody>
                 <Stack hasGutter>
                     <StackItem>
                         {workloadTypes[workloadIs]?.body || intl.formatMessage(messages.noSystemsDescription)}
                     </StackItem>
                 </Stack>
-            </EmptyStateBody>
+            </EmptyStateBody><EmptyStateFooter>
             <InsightsLink app='registration' to="/">
                 <Button variant='primary'>
                     {intl.formatMessage(messages.registerYourSystems)}
                 </Button>
             </InsightsLink>
-        </EmptyState>
+        </EmptyStateFooter></EmptyState>
     </Section>;
 };
 

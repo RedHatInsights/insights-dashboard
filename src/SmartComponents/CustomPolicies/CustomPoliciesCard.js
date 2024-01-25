@@ -1,6 +1,13 @@
 import './CustomPoliciesCard.scss';
 
-import { Table, TableBody, TableHeader, TableVariant } from '@patternfly/react-table';
+import {
+	TableVariant
+} from '@patternfly/react-table';
+import {
+	Table,
+	TableBody,
+	TableHeader
+} from '@patternfly/react-table/deprecated';
 import {
     TemplateCard,
     TemplateCardActions,
