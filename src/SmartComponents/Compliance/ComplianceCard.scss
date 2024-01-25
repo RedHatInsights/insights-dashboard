@@ -2,17 +2,17 @@
 .ins-c-compliance__policy-link {
     white-space: pre-wrap;
     text-align: left;
-    margin-top: var(--pf-global--spacer--md);
+    margin-top: var(--pf-v5-global--spacer--md);
   }
 
   .ins-c-compliance__empty-state {
-    &.pf-c-empty-state {
+    &.pf-v5-c-empty-state {
       padding: 0;
     }
 
 
-    .pf-c-empty-state__secondary {
-      margin-top: var(--pf-global--spacer--md);
+    .pf-v5-c-empty-state__secondary {
+      margin-top: var(--pf-v5-global--spacer--md);
     }
   }
 
@@ -24,19 +24,19 @@
 
   .ins-c-compliance__row:not(:first-child),
   .ins-c-compliance__row:only-of-type {
-    padding-top: var(--pf-global--spacer--lg);
+    padding-top: var(--pf-v5-global--spacer--lg);
   }
 
   .ins-c-compliance__row-item {
     max-width: 200px;
-    font-size: var(--pf-global--FontSize--sm);
+    font-size: var(--pf-v5-global--FontSize--sm);
 
-    >.pf-l-split .pf-l-split__item {
-      font-size: var(--pf-global--FontSize--sm);
+    >.pf-v5-l-split .pf-v5-l-split__item {
+      font-size: var(--pf-v5-global--FontSize--sm);
     }
   }
 
   .ins-c-compliance__row-item:first-child {
     width: 65px;
-    margin-right: var(--pf-global--spacer--lg);
+    margin-right: var(--pf-v5-global--spacer--lg);
   }

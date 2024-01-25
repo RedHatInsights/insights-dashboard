@@ -54,11 +54,11 @@ const ResourceOptimizationCard = ({
                                                         direction={{ default: 'column' }}
                                                         spaceItems={{ default: 'spaceItemsNone' }}
                                                         alignItems={{ default: 'alignItemsCenter' }}>
-                                                        <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
+                                                        <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-bold'>
                                                             {rosIsConfigured.systems_stats.waiting_for_data}
                                                         </span>
                                                         <InsightsLink app='ros' to={waitingForDataUrl}>
-                                                            <span className='pf-u-font-size-sm'>
+                                                            <span className='pf-v5-u-font-size-sm'>
                                                                 <span>{intl.formatMessage(messages.waitingForData)}</span>
                                                             </span>
                                                         </InsightsLink>
@@ -68,11 +68,11 @@ const ResourceOptimizationCard = ({
                                                 direction={{ default: 'column' }}
                                                 spaceItems={{ default: 'spaceItemsNone' }}
                                                 alignItems={{ default: 'alignItemsCenter' }}>
-                                                <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
+                                                <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-bold'>
                                                     {rosIsConfigured.systems_stats.with_suggestions}
                                                 </span>
                                                 <InsightsLink app='ros' to={suggestionsUrl}>
-                                                    <span className='pf-u-font-size-sm'>
+                                                    <span className='pf-v5-u-font-size-sm'>
                                                         {intl.formatMessage(messages.systemsWithSuggestions)}
                                                     </span>
                                                 </InsightsLink>
@@ -81,11 +81,11 @@ const ResourceOptimizationCard = ({
                                                 direction={{ default: 'column' }}
                                                 spaceItems={{ default: 'spaceItemsNone' }}
                                                 alignItems={{ default: 'alignItemsCenter' }}>
-                                                <span className='pf-u-font-size-2xl pf-u-color-100 pf-u-font-weight-bold'>
+                                                <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-bold'>
                                                     {rosIsConfigured.count}
                                                 </span>
                                                 <InsightsLink app='ros' to={allSystemsUrl}>
-                                                    <span className='pf-u-font-size-sm'>
+                                                    <span className='pf-v5-u-font-size-sm'>
                                                         {intl.formatMessage(messages.totalSystems)}
                                                     </span>
                                                 </InsightsLink>

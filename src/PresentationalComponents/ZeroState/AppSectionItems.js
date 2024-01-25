@@ -19,7 +19,7 @@ const AppSectionItems = ({ app }) => {
                     {intl.formatMessage(app.description)}
                 </Text>
                 <Title headingLevel='h4'>
-                    <Link to={app.link} className='pf-c-button pf-m-link pf-m-inline pf-m-display-lg'>
+                    <Link to={app.link} className='pf-v5-c-button pf-m-link pf-m-inline pf-m-display-lg'>
                         Get started <ArrowRightIcon />
                     </Link>
                 </Title>

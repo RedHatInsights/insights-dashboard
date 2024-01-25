@@ -12,6 +12,6 @@ describe('DeniedState', () => {
                 <DeniedState appName={'Foobar'}/>
             </IntlProvider>
         );
-        cy.get('.pf-c-empty-state').find('.pf-c-title').should('have.text', ' You do not have access to Foobar ');
+        cy.get('.pf-v5-c-empty-state').find('.pf-v5-c-title').should('have.text', ' You do not have access to Foobar ');
     });
 });

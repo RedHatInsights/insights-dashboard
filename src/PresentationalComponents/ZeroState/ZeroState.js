@@ -16,7 +16,6 @@ import { Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts/Grid/ind
 import React, { useEffect, useState } from 'react';
 import {
     SortByDirection,
-    Table,
     sortable
 } from '@patternfly/react-table/dist/esm/components/Table/index';
 
@@ -31,7 +30,7 @@ import { useIntl } from 'react-intl';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
-import { TableBody, TableHeader } from '@patternfly/react-table/deprecated';
+import { Table, TableBody, TableHeader } from '@patternfly/react-table/deprecated';
 
 // eslint-disable-next-line no-unused-vars
 const SortableTable = () => {
@@ -121,7 +120,7 @@ const ZeroState = () => {
                         <FlexItem>
                             <InsightsLink app='registration' to="/">
                                 <Button
-                                    isLarge
+                                    size='lg'
                                     component='a'
                                     variant='primary'
                                     style={{ color: 'white' }}
@@ -238,7 +237,7 @@ const ZeroState = () => {
                             <img src={ ImgInsSmartMgmt } alt='Insights Satellite' />
                         </GridItem>
                         <GridItem md={ 6 } lg={ 7 }>
-                            <div className='insd-c-width-limiter pf-u-pt-lg-on-lg' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
+                            <div className='insd-c-width-limiter pf-v5-u-pt-lg-on-lg' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
                                 <List>
                                     <ListItem>{intl.formatMessage(messages.rhm1)}</ListItem>
                                     <ListItem>{intl.formatMessage(messages.rhm2)}</ListItem>
@@ -246,7 +245,7 @@ const ZeroState = () => {
                                 </List>
                             </div>
                         </GridItem>
-                        <GridItem md={ 6 } lg={ 7 } className='pf-u-pl-lg'>
+                        <GridItem md={ 6 } lg={ 7 } className='pf-v5-u-pl-lg'>
                             <Flex>
                                 <FlexItem>
                                     <Button

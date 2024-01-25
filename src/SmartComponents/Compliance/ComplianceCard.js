@@ -91,7 +91,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                                             app='compliance'
                                                                             to={`/reports/${policy.id}`}
                                                                             className='ins-c-compliance__policy-link
-                                                                            pf-c-button pf-m-link pf-m-inline'
+                                                                            pf-v5-c-button pf-m-link pf-m-inline'
                                                                             id={ `compliance-link-${index + 1}` }
                                                                         >
                                                                             {policy.attributes.name}
@@ -128,7 +128,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                 </DataListItem>
                                             )}
                                         </DataList>
-                                        <InsightsLink app='compliance' to='/reports' className='pf-c-button pf-m-link pf-m-inline'>
+                                        <InsightsLink app='compliance' to='/reports' className='pf-v5-c-button pf-m-link pf-m-inline'>
                                             {complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                                                 complianceSummary.data.length - 3 >= 1 &&
                                                 `${complianceSummary.data.length - 3} more reports`
@@ -143,7 +143,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                 {intl.formatMessage(messages.complianceEmptyStateBody)}
                                             </EmptyStateBody>
                                             <EmptyStateActions>
-                                                <InsightsLink app='compliance' to='/scappolicies/new' className='pf-c-button pf-m-link'>
+                                                <InsightsLink app='compliance' to='/scappolicies/new' className='pf-v5-c-button pf-m-link'>
                                                     {intl.formatMessage(messages.complianceEmptyStateAction1)}
                                                 </InsightsLink>
                                                 <Button

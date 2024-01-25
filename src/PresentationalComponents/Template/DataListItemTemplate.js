@@ -42,8 +42,8 @@ export const DataListItemTemplate = ({
         {...props}
     >
         <DataListItemRow className="insd-c-dashboard-data-list__controller-row">
-            <div className='pf-c-data-list__item-control'>
-                <div className='pf-c-data-list__toggle'
+            <div className='pf-v5-c-data-list__item-control'>
+                <div className='pf-v5-c-data-list__toggle'
                     onClick={() => setIsExpanded(!isExpanded)}
                     isExpanded={isExpanded}
                     id={`data-list-toggle-${dataListItemTemplateName}`}
@@ -51,11 +51,11 @@ export const DataListItemTemplate = ({
                     <Button id={`data-list-item-${dataListItemTemplateName}-toggle`} variant={ButtonVariant.plain} aria-expanded={isExpanded}
                         type='button'
                         className='pf-m-link'                    >
-                        <span className='pf-c-data-list__toggle-text pf-c-button pf-m-inline pf-m-link'>
+                        <span className='pf-v5-c-data-list__toggle-text pf-v5-c-button pf-m-inline pf-m-link'>
                             {isExpanded && intl.formatMessage(messages.collapse)}
                             {!isExpanded && intl.formatMessage(messages.expand)}
                         </span>
-                        <div className='pf-c-data-list__toggle-icon'>
+                        <div className='pf-v5-c-data-list__toggle-icon'>
                             <AngleRightIcon />
                         </div>
                     </Button>
@@ -86,12 +86,12 @@ export const DataListItemTemplate = ({
                                 }
                             </Flex>
                         </div>
-                        <span className='insd-c-dashboard-data-list__date pf-u-color-200 pf-u-font-size-sm'>
+                        <span className='insd-c-dashboard-data-list__date pf-v5-u-color-200 pf-v5-u-font-size-sm'>
                             {capitalize(intl.formatMessage(messages.newRulesDateTitle))}
                             &nbsp;<DateFormat type='onlyDate' date={dataListItemTemplateDate} />
                         </span>
                         <Title headingLevel='h4' size='md'
-                            className='pf-u-font-weight-light insd-c-title-toggle' id={`itemDescription-${dataListItemTemplateKey}`}>
+                            className='pf-v5-u-font-weight-light insd-c-title-toggle' id={`itemDescription-${dataListItemTemplateKey}`}>
                             <span>
                                 {capitalize(intl.formatMessage({
                                     id: 'itemTitle',
