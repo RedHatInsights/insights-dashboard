@@ -241,7 +241,7 @@ const ZeroState = () => {
                             <img src={ ImgInsSmartMgmt } alt='Insights Satellite' />
                         </GridItem>
                         <GridItem md={ 6 } lg={ 7 }>
-                            <div className='insd-c-width-limiter pf-u-pt-lg-on-lg' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
+                            <div className='insd-c-width-limiter pf-v5-u-pt-lg-on-lg' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
                                 <List>
                                     <ListItem>{intl.formatMessage(messages.rhm1)}</ListItem>
                                     <ListItem>{intl.formatMessage(messages.rhm2)}</ListItem>
@@ -249,7 +249,7 @@ const ZeroState = () => {
                                 </List>
                             </div>
                         </GridItem>
-                        <GridItem md={ 6 } lg={ 7 } className='pf-u-pl-lg'>
+                        <GridItem md={ 6 } lg={ 7 } className='pf-v5-u-pl-lg'>
                             <Flex>
                                 <FlexItem>
                                     <Button

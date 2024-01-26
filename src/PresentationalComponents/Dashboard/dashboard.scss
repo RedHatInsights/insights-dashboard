@@ -5,24 +5,24 @@
 @import "~@patternfly/patternfly/utilities/Spacing/spacing";
 
 // All buttons should be text-align left and font-size 14px
-.pf-c-button.pf-m-link {
+.pf-v5-c-button.pf-m-link {
   text-align: left;
   font-size: 14px;
 }
 
 .insd-c-dashboard-data-list__pie-chart {
-  > .pf-c-chart > svg {
+  > .pf-v5-c-chart > svg {
     max-width: #{pf-size-prem(80px)};
 
-    @media screen and (min-width: $pf-global--breakpoint--md) {
+    @media screen and (min-width: $pf-v5-global--breakpoint--md) {
       max-width: #{pf-size-prem(80px)};
     }
   }
 }
 
 .insd-c-dashboard__card {
-  .pf-c-chart {
-    @media screen and (min-width: $pf-global--breakpoint--lg) {
+  .pf-v5-c-chart {
+    @media screen and (min-width: $pf-v5-global--breakpoint--lg) {
       width: 80px;
       height: 80px;
     }
@@ -30,10 +30,10 @@
 }
 
 .insd-c-dashboard__card-chart-container {
-  --insd-c-dashboard__card-chart-container--item--spacer: var(--pf-global--spacer--lg);
+  --insd-c-dashboard__card-chart-container--item--spacer: var(--pf-v5-global--spacer--lg);
   --insd-c-dashboard__card-chart-container--item--FlexDirection: column;
 
-  @media screen and (min-width: $pf-global--breakpoint--sm) {
+  @media screen and (min-width: $pf-v5-global--breakpoint--sm) {
     --insd-c-dashboard__card-chart-container--item--FlexDirection: row;
   }
 
@@ -43,7 +43,7 @@
   row-gap: var(--insd-c-dashboard__card-chart-container--item--spacer);
 
   > * {
-    @media screen and (min-width: $pf-global--breakpoint--sm) {
+    @media screen and (min-width: $pf-v5-global--breakpoint--sm) {
       margin-right: var(--insd-c-dashboard__card-chart-container--item--spacer);
       margin-bottom: 0;
     }
@@ -66,12 +66,12 @@
   align-self: stretch;
   justify-content: center;
 
-  @media screen and (min-width: $pf-global--breakpoint--sm) {
+  @media screen and (min-width: $pf-v5-global--breakpoint--sm) {
     align-self: center;
     justify-content: flex-start;
   }
 
-  > .pf-c-table {
+  > .pf-v5-c-table {
     width: Min(32ch, 100%);
   }
 }
@@ -80,55 +80,55 @@
   display: -webkit-box; /* Not needed if autoprefixing */
   display: -ms-flexbox; /* Not needed if autoprefixing */
   display: flex;
-  margin-left: calc(var(--pf-global--spacer--lg) * -1); /* gutter size offset */
-  margin-bottom: calc(var(--pf-global--spacer--lg) * -1); /* gutter size offset */
+  margin-left: calc(var(--pf-v5-global--spacer--lg) * -1); /* gutter size offset */
+  margin-bottom: calc(var(--pf-v5-global--spacer--lg) * -1); /* gutter size offset */
   width: auto;
 }
 
-.pf-c-card {
-  --pf-c-card--child--PaddingRight: var(--pf-global--spacer--xl);
-  --pf-c-card--child--PaddingLeft: var(--pf-global--spacer--xl);
+.pf-v5-c-card {
+  --pf-v5-c-card--child--PaddingRight: var(--pf-v5-global--spacer--xl);
+  --pf-v5-c-card--child--PaddingLeft: var(--pf-v5-global--spacer--xl);
 }
 
 .ins-l-masonry_column {
-  padding-left: var(--pf-global--spacer--lg); /* gutter size */
+  padding-left: var(--pf-v5-global--spacer--lg); /* gutter size */
   background-clip: padding-box;
-  .pf-c-card {
-    margin-bottom: var(--pf-global--spacer--lg);
+  .pf-v5-c-card {
+    margin-bottom: var(--pf-v5-global--spacer--lg);
 
-    .pf-c-card {
+    .pf-v5-c-card {
       margin-bottom: 0;
     }
   }
 }
 
-.pf-c-drawer__content {
+.pf-v5-c-drawer__content {
   > div {
     display: contents;
   }
 }
 
-.pf-c-page__sidebar {
+.pf-v5-c-page__sidebar {
   display: none;
 }
 
 .insd-c-dashboard-card-parent {
   > *:last-child,
-  .pf-c-card__expandable-content,
-  .pf-c-card__expandable-content .pf-c-card__body {
+  .pf-v5-c-card__expandable-content,
+  .pf-v5-c-card__expandable-content .pf-v5-c-card__body {
     flex: 1;
   }
 
-  .pf-c-card__expandable-content {
+  .pf-v5-c-card__expandable-content {
     display: flex;
     flex-direction: column;
   }
 }
 
-.pf-c-page__main-section {
-  --pf-c-page--section--m-limit-width--MaxWidth: 1920px;
+.pf-v5-c-page__main-section {
+  --pf-v5-c-page--section--m-limit-width--MaxWidth: 1920px;
 }
 
-.pf-l-grid {
-  --pf-l-grid--m-gutter--GridGap: var(--pf-global--spacer--lg);
+.pf-v5-l-grid {
+  --pf-v5-l-grid--m-gutter--GridGap: var(--pf-v5-global--spacer--lg);
 }

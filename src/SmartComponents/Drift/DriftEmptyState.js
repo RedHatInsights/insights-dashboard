@@ -1,4 +1,4 @@
-import { Button, EmptyState, EmptyStateBody, Text, EmptyStateHeader, EmptyStateFooter,  } from '@patternfly/react-core';
+import { Button, EmptyState, EmptyStateBody, Text, EmptyStateHeader, EmptyStateFooter  } from '@patternfly/react-core';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import messages from '../../Messages';
@@ -19,11 +19,11 @@ export const DriftEmptyState = () => {
                     {intl.formatMessage(messages.driftEmptyStateBodyEnableNotif)}
                 </Text>
             </EmptyStateBody><EmptyStateFooter>
-            <Button
-                href={`${ActionTypes.DRIFT_BASELINES_URL}`}
-                component='a'
-                variant="primary">Go to Baselines
-            </Button>
-        </EmptyStateFooter></EmptyState>
+                <Button
+                    href={`${ActionTypes.DRIFT_BASELINES_URL}`}
+                    component='a'
+                    variant="primary">Go to Baselines
+                </Button>
+            </EmptyStateFooter></EmptyState>
     );
 };

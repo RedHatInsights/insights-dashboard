@@ -16,7 +16,7 @@ export const DashboardFooter = ({ supportsSap }) => {
     const intl = useIntl();
 
     return (permission.hasSystems && supportsSap) && (!permission.remediations || !permission.compliance) ?
-        <PageSection isWidthLimited className='insd-c-dashboard-footer pf-u-pt-lg' variant={PageSectionVariants.light}>
+        <PageSection isWidthLimited className='insd-c-dashboard-footer pf-v5-u-pt-lg' variant={PageSectionVariants.light}>
             <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsXl' }}>
                 <Title headingLevel="h2" size="xl">
                     {intl.formatMessage(messages.footerTitle)}

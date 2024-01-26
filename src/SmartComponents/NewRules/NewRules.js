@@ -45,14 +45,14 @@ const NewRules = () => {
                         <DataListCell key='primary content'>
                             <Flex spaceItems={{ default: 'spaceItemsMd' }} alignItems={{ default: 'alignItemsCenter' }}
                                 flexWrap={{ default: 'nowrap' }}>
-                                <ExclamationTriangleIcon className='pf-u-font-size-xl pf-u-warning-color-100' />
-                                <span id='collapse-all-text' className='pf-u-font-weight-bold'>{intl.formatMessage(messages.latestCritical)}</span>
+                                <ExclamationTriangleIcon className='pf-v5-u-font-size-xl pf-v5-u-warning-color-100' />
+                                <span id='collapse-all-text' className='pf-v5-u-font-weight-bold'>{intl.formatMessage(messages.latestCritical)}</span>
                             </Flex>
                         </DataListCell>
                     ]}
                 />
-                <div className='pf-c-data-list__item-control'>
-                    <div className='pf-c-data-list__toggle'
+                <div className='pf-v5-c-data-list__item-control'>
+                    <div className='pf-v5-c-data-list__toggle'
                         onClick={() => { localStorage.setItem('dashboard_expanded_cta', `${!isExpanded}`); setIsExpanded(!isExpanded); }}
                         isExpanded={isExpanded}
                         id={`data-list-toggle`}
@@ -60,11 +60,11 @@ const NewRules = () => {
                         <Button id={`data-list-item-toggle`} variant={ButtonVariant.plain} aria-expanded={isExpanded}
                             type='button'
                             className='pf-m-link'>
-                            <span className='pf-c-data-list__toggle-text pf-c-button pf-m-inline pf-m-link'>
+                            <span className='pf-v5-c-data-list__toggle-text pf-v5-c-button pf-m-inline pf-m-link'>
                                 {isExpanded && intl.formatMessage(messages.collapseAll)}
                                 {!isExpanded && intl.formatMessage(messages.expand)}
                             </span>
-                            <div className='pf-c-data-list__toggle-icon'>
+                            <div className='pf-v5-c-data-list__toggle-icon'>
                                 <AngleRightIcon />
                             </div>
                         </Button>
@@ -86,7 +86,7 @@ const NewRules = () => {
                         flexWrap={{ default: 'nowrap' }}>
                         <Flex direction={{ default: 'column' }} flex={{ md: 'flex_3' }}>
                             <FlexItem spacer={{ default: 'spacerXs' }}>
-                                <Title headingLevel='h4' size='xl' className='pf-u-font-weight-lights'>
+                                <Title headingLevel='h4' size='xl' className='pf-v5-u-font-weight-lights'>
                                     <span>
                                         {capitalize(intl.formatMessage({
                                             id: 'itemTitle',
@@ -126,7 +126,7 @@ const NewRules = () => {
                         </Flex>
                         <Flex flex={{ default: 'flex_2' }} alignItems={{ default: 'alignItemsCenter' }}>
                             <TextContent>
-                                <Text component="h4" className="pf-u-mb-xs">
+                                <Text component="h4" className="pf-v5-u-mb-xs">
                                     <Icon
                                         style={{ verticalAlign: -1 }}
                                         color="var(--pf-v5-global--danger-color--100)"
