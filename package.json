@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.15.4",
+    "@cypress/react18": "^2.0.0",
     "@patternfly/patternfly": "5.1.0",
     "@patternfly/react-charts": "7.1.2",
     "@patternfly/react-core": "^5.1.2",
