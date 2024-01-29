@@ -120,5 +120,19 @@ NewAppZeroState.propTypes = {
     customFetchResults: propTypes.bool
 };
 AppZeroState.propTypes = {
-    children: propTypes.any
+    children: propTypes.any,
+    app: propTypes.oneOf([
+        'Advisor',
+        'Compliance',
+        'Drift',
+        'Insights',
+        'Content_management',
+        'Policies',
+        'Malware',
+        'Resource_optimization',
+        'Vulnerability',
+        'Images',
+        'Remediations',
+        'Inventory',
+        'Tasks'])
 };
