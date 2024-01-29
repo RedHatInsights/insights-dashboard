@@ -2,7 +2,13 @@ import './SubscriptionsUtilizedCard.scss';
 
 import * as AppActions from '../../AppActions';
 
-import { EmptyState, EmptyStateBody, EmptyStateVariant, EmptyStateActions, EmptyStateFooter } from '@patternfly/react-core/dist/esm/components/EmptyState/index';
+import {
+    EmptyState,
+    EmptyStateBody,
+    EmptyStateVariant,
+    EmptyStateFooter,
+    EmptyStateActions
+} from '@patternfly/react-core/dist/esm/components/EmptyState/index';
 import {
     RHSM_API_PRODUCT_ID_TYPES,
     RHSM_API_QUERY_GRANULARITY_TYPES,
@@ -14,13 +20,12 @@ import {
     SW_PATHS
 } from './Constants';
 import React, { useEffect, useState } from 'react';
-import { Tooltip, TooltipPosition, EmptyStateActions } from '@patternfly/react-core/dist/esm/components/Tooltip/Tooltip';
+import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/esm/components/Tooltip/Tooltip';
 import { filterChartData, setRangedDateTime } from './SubscriptionsUtilizedHelpers';
 import { supportsGlobalFilter, workloadsPropType } from '../../Utilities/Common';
 import { DateFormat } from '@redhat-cloud-services/frontend-components';
 
-import { Button, EmptyStateActions } from '@patternfly/react-core/dist/esm/components/Button/Button';
-import { EmptyStateActions } from '@patternfly/react-core/dist/esm/components/EmptyState/EmptyStateSecondaryActions';
+import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import FilterNotSupported from '../../PresentationalComponents/FilterNotSupported';
@@ -180,17 +185,17 @@ const SubscriptionsUtilizedCard = ({ subscriptionsUtilizedProductOne, subscripti
                             <EmptyStateBody>
                                 {intl.formatMessage(messages.subscriptionsUtilizedLearnMore)}
                             </EmptyStateBody><EmptyStateFooter>
-                            <EmptyStateActions>
-                                <Button
-                                    className='insd-c-subscriptions-utilized__app-link'
-                                    variant='link'
-                                    href={SW_PATHS.APP}
-                                    component='a'
-                                >
-                                    {intl.formatMessage(messages.subscriptionsUtilizedLearnMoreAction)}
-                                </Button>
-                            </EmptyStateActions>
-                        </EmptyStateFooter></EmptyState>) ||
+                                <EmptyStateActions>
+                                    <Button
+                                        className='insd-c-subscriptions-utilized__app-link'
+                                        variant='link'
+                                        href={SW_PATHS.APP}
+                                        component='a'
+                                    >
+                                        {intl.formatMessage(messages.subscriptionsUtilizedLearnMoreAction)}
+                                    </Button>
+                                </EmptyStateActions>
+                            </EmptyStateFooter></EmptyState>) ||
                         (productError && <FailState appName={intl.formatMessage(messages.subscriptionsUtilizedTitle)} isSmall />) ||
                         (!charts.length && <EmptyState className='insd-c-subscriptions-utilized__empty-state' variant={EmptyStateVariant.full}>
                             <EmptyStateBody>
