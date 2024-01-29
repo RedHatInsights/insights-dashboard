@@ -123,7 +123,10 @@ const SystemInventoryHeader = ({
                             </FlexItem>
                             <FlexItem>
                                 {inventoryWarningFetchStatus === 'fulfilled' &&
-                                <InsightsLink app='inventory' to='/?status=stale_warning&source=puptoo' className="pf-v5-c-button pf-m-link pf-m-inline">
+                                <InsightsLink
+                                    app='inventory'
+                                    to='/?status=stale_warning&source=puptoo'
+                                    className="pf-v5-c-button pf-m-link pf-m-inline">
                                     <IconInline
                                         message={ intl.formatMessage(messages.systemInventoryStaleWarning,
                                             { count: inventoryWarningSummary.total || 0 }

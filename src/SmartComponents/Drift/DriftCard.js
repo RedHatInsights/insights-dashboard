@@ -58,11 +58,11 @@ const DriftCard = () => {
             includePayload: true
         }));
         setActiveDrift(dropDownItem);
-    }, [dispatch]);
+    }, [dispatch, driftAppId]);
 
     useEffect(() => {
         fetchDriftData(activeDrift);
-    }, [fetchDriftData, activeDrift.id]);
+    }, [fetchDriftData, activeDrift]);
 
     return (
         <ExpandableCardTemplate

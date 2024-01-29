@@ -1,12 +1,12 @@
 import './CustomPoliciesCard.scss';
 
 import {
-	TableVariant
+    TableVariant
 } from '@patternfly/react-table';
 import {
-	Table,
-	TableBody,
-	TableHeader
+    Table,
+    TableBody,
+    TableHeader
 } from '@patternfly/react-table/deprecated';
 import {
     TemplateCard,

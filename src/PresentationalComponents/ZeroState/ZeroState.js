@@ -15,8 +15,8 @@ import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts/Flex/ind
 import { Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts/Grid/index';
 import React, { useEffect, useState } from 'react';
 import {
-	SortByDirection,
-	sortable
+    SortByDirection,
+    sortable
 } from '@patternfly/react-table/dist/esm/components/Table/index';
 
 import API from '../../Utilities/Api';
@@ -31,9 +31,9 @@ import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 import {
-	TableBody,
-	TableHeader,
-	Table
+    TableBody,
+    TableHeader,
+    Table
 } from '@patternfly/react-table/dist/esm/deprecated/components/Table/index';
 
 // eslint-disable-next-line no-unused-vars
@@ -95,7 +95,7 @@ const ZeroState = () => {
         return () => {
             hideGlobalFilter?.(false);
         };
-    }, []);
+    }, [hideGlobalFilter]);
 
     return <div className='insd-c-marketing-page'>
         <MarketingBanner
