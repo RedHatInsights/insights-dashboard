@@ -61,7 +61,6 @@
   },
   "dependencies": {
     "@babel/runtime": "7.15.4",
-    "@cypress/react18": "^2.0.0",
     "@patternfly/patternfly": "5.1.0",
     "@patternfly/react-charts": "7.1.2",
     "@patternfly/react-core": "^5.1.2",
@@ -107,6 +106,7 @@
     "babel-polyfill": "6.26.0",
     "css-loader": "6.2.0",
     "cypress": "^12.1.0",
+    "@cypress/react18": "^2.0.0",
     "enzyme": "3.11.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",

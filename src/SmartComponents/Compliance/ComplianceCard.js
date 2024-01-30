@@ -62,13 +62,6 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
             header={
                 <TemplateCardActions />
             }
-
-            // { iconInlineMessage &&
-            //     <IconInline message={ iconInlineMessage } state={ iconInlineState }/>
-            // }
-            // { downloadReport &&
-            //     <DownloadReport />
-            // }
             body={
                 <TemplateCardBody>
                     {supportsGlobalFilter(selectedTags, workloads, SID) ?

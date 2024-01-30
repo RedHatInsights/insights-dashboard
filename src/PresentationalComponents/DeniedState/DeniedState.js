@@ -9,7 +9,6 @@ import {
 import { Card } from '@patternfly/react-core/dist/esm/components/Card/Card';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {  } from '@patternfly/react-core/dist/esm/components/Title/Title';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 

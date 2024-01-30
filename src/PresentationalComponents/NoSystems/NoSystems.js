@@ -40,13 +40,15 @@ const NoSystems = ({ workloadIs }) => {
                         {workloadTypes[workloadIs]?.body || intl.formatMessage(messages.noSystemsDescription)}
                     </StackItem>
                 </Stack>
-            </EmptyStateBody><EmptyStateFooter>
+            </EmptyStateBody>
+            <EmptyStateFooter>
                 <InsightsLink app='registration' to="/">
                     <Button variant='primary'>
                         {intl.formatMessage(messages.registerYourSystems)}
                     </Button>
                 </InsightsLink>
-            </EmptyStateFooter></EmptyState>
+            </EmptyStateFooter>
+        </EmptyState>
     </Section>;
 };
 
