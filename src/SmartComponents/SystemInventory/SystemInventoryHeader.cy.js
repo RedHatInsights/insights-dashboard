@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import SystemInventoryHeader from './SystemInventoryHeader';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 
-import { hostsInterceptors } from '../../../cypress/support/interceptors';
+import { hostsInterceptors, edgeInterceptors, unleashInterceptors } from '../../../cypress/support/interceptors';
 import { BrowserRouter } from 'react-router-dom';
 
 before(() => {
@@ -22,7 +22,12 @@ const ComponentForMount = () => {
 describe('Dashboard', () => {
     beforeEach(() => {
         hostsInterceptors.successful();
+        edgeInterceptors.successful();
+        unleashInterceptors.successful();
         cy.mountWithContext(ComponentForMount);
+    });
+    it('renders correct total with edge hosts', () => {
+        cy.get('span[class="insd-c-dashboard__number-data--lg"]').should('have.text', '880');
     });
     it('the amount of stale systems is correct', () => {
         cy.get('div[class="insd-c-dashboard__info-inline  insd-m-padding-top"]').eq(0).should('have.text', '630 stale systems');

@@ -61,15 +61,10 @@ export const fetchInventorySummary = (options) => ({
     payload: fetchData(ActionTypes.INVENTORY_FETCH_URL, {}, options)
 });
 
-export const fetchInventoryTotalSummary = (options, edgeFeatureFlag) => ({
+export const fetchInventoryTotalSummary = (options) => ({
     type: ActionTypes.INVENTORY_TOTAL_FETCH,
     payload: fetchData(
-        edgeFeatureFlag
-            ? ActionTypes.INVENTORY_TOTAL_FETCH_WITH_EDGE_URL
-            : ActionTypes.INVENTORY_TOTAL_FETCH_URL,
-        {},
-        options
-    )
+        ActionTypes.INVENTORY_TOTAL_FETCH_URL, {}, options)
 });
 
 export const fetchInventoryStaleSummary = (options) => ({
@@ -80,6 +75,11 @@ export const fetchInventoryStaleSummary = (options) => ({
 export const fetchInventoryWarningSummary = (options) => ({
     type: ActionTypes.INVENTORY_WARNING_FETCH,
     payload: fetchData(ActionTypes.INVENTORY_WARNING_FETCH_URL, {}, options)
+});
+
+export const fetchEdgeTotal = (options) => ({
+    type: ActionTypes.EDGE_TOTAL_FETCH,
+    payload: fetchData(ActionTypes.EDGE_TOTAL_FETCH_URL, {}, options)
 });
 
 export const fetchRemediations = (options) => ({

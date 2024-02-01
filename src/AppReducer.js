@@ -33,6 +33,8 @@ const initialState = Immutable({
     inventoryWarningFetchStatus: '',
     inventoryTotalSummary: {},
     inventoryTotalFetchStatus: '',
+    edgeTotalSummary: {},
+    edgeTotalFetchStatus: '',
     remediations: {},
     remediationsFetchStatus: '',
     rosIsConfigured: {},
@@ -205,6 +207,17 @@ export const DashboardStore = (state = initialState, action) => {
             });
         case `${ActionTypes.INVENTORY_TOTAL_FETCH}_REJECTED`:
             return state.set('inventoryTotalFetchStatus', 'rejected');
+
+        // EDGE
+        case `${ActionTypes.EDGE_TOTAL_FETCH}_PENDING`:
+            return state.set('edgeTotalFetchStatus', 'pending');
+        case `${ActionTypes.EDGE_TOTAL_FETCH}_FULFILLED`:
+            return Immutable.merge(state, {
+                edgeTotalSummary: action.payload,
+                edgeTotalFetchStatus: 'fulfilled'
+            });
+        case `${ActionTypes.EDGE_TOTAL_FETCH}_REJECTED`:
+            return state.set('edgeTotalFetchStatus', 'rejected');
 
         // REMEDIATIONS
         case `${ActionTypes.REMEDIATIONS_FETCH}_PENDING`:

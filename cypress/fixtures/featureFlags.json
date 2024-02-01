@@ -1,0 +1,12 @@
+{
+  "toggles": [
+      {
+        "name": "edgeParity.inventory-list",
+        "enabled": true,
+        "variant": {
+            "name": "disabled",
+            "enabled": true
+        }
+    }
+  ]
+}

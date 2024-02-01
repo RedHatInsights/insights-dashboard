@@ -3,6 +3,8 @@ import { DEFAULT_ROW_COUNT } from '@redhat-cloud-services/frontend-components-ut
 import hostsFixtures from '../fixtures/hosts.json';
 import dashboardFixtures from '../fixtures/vulnerabilityDashboard.json';
 import cvesFixtures from '../fixtures/vulnerabilityCves.json';
+import edgeFixtures from '../fixtures/edgeHosts.json';
+import featureFlags from '../fixtures/featureFlags.json';
 
 export const hostsInterceptors = {
     successful: (fixtures = hostsFixtures) => {
@@ -30,6 +32,24 @@ export const hostsInterceptors = {
         cy.intercept('GET', '/api/inventory/v1/hosts*', { statusCode: 500 }).as(
             'getHosts'
         );
+    }
+};
+
+export const edgeInterceptors = {
+    successful: (fixtures = edgeFixtures) => {
+        cy.intercept('GET', '/api/edge/v1/devices/devicesview*', {
+            statusCode: 200,
+            body: fixtures
+        }).as('getEdgeHosts');
+    }
+};
+
+export const unleashInterceptors = {
+    successful: (fixtures = featureFlags) => {
+        cy.intercept('GET', '/feature_flags*', {
+            statusCode: 200,
+            body: fixtures
+        }).as('getFeatureFlags');
     }
 };
 
