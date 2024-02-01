@@ -9,15 +9,20 @@ import {
     ListItem,
     PageSection,
     TextContent,
-    Title
-} from '@patternfly/react-core/dist/esm/components/index';
-import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts/Flex/index';
-import { Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts/Grid/index';
+    Title,
+    Grid,
+    GridItem,
+    Flex,
+    FlexItem
+} from '@patternfly/react-core';
 import React, { useEffect, useState } from 'react';
 import {
     SortByDirection,
-    sortable
-} from '@patternfly/react-table/dist/esm/components/Table/index';
+    sortable,
+    TableBody,
+    TableHeader,
+    Table
+} from '@patternfly/react-table';
 
 import API from '../../Utilities/Api';
 import IconList from '../IconList/IconList';
@@ -30,11 +35,6 @@ import { useIntl } from 'react-intl';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
-import {
-    TableBody,
-    TableHeader,
-    Table
-} from '@patternfly/react-table/dist/esm/deprecated/components/Table/index';
 
 // eslint-disable-next-line no-unused-vars
 const SortableTable = () => {

@@ -7,7 +7,10 @@ import {
     EmptyStateBody,
     EmptyStateVariant,
     EmptyStateFooter,
-    EmptyStateActions
+    EmptyStateActions,
+    Tooltip,
+    TooltipPosition,
+    Button
 } from '@patternfly/react-core/dist/esm/components/EmptyState/index';
 import {
     RHSM_API_PRODUCT_ID_TYPES,
@@ -20,12 +23,10 @@ import {
     SW_PATHS
 } from './Constants';
 import React, { useEffect, useState } from 'react';
-import { Tooltip, TooltipPosition } from '@patternfly/react-core/dist/esm/components/Tooltip/Tooltip';
 import { filterChartData, setRangedDateTime } from './SubscriptionsUtilizedHelpers';
 import { supportsGlobalFilter, workloadsPropType } from '../../Utilities/Common';
 import { DateFormat } from '@redhat-cloud-services/frontend-components';
 
-import { Button } from '@patternfly/react-core/dist/esm/components/Button/Button';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import FilterNotSupported from '../../PresentationalComponents/FilterNotSupported';

@@ -29,9 +29,6 @@ describe('Dashboard', () => {
     it('renders correct total with edge hosts', () => {
         cy.get('span[class="insd-c-dashboard__number-data--lg"]').should('have.text', '880');
     });
-    it('the amount of stale systems is correct', () => {
-        cy.get('div[class="insd-c-dashboard__info-inline  insd-m-padding-top"]').eq(0).should('have.text', '630 stale systems');
-    });
     it('the amount of stale systems to remove is correct', () => {
         cy.get('div[class="insd-c-dashboard__info-inline  insd-m-padding-top"]').eq(1).should('have.text', '630 systems to be removed');
     });

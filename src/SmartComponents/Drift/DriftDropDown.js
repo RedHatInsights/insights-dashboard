@@ -7,9 +7,9 @@ import { translateDriftDropdownItems } from './utils';
 import { CaretDownIcon } from '@patternfly/react-icons';
 import {
     Dropdown,
-    DropdownItem
-} from '@patternfly/react-core/deprecated';
-import { DropdownToggle } from '@patternfly/react-core/dist/esm/deprecated/components/Dropdown';
+    DropdownItem,
+    DropdownToggle
+} from '@patternfly/react-core';
 
 const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
 
