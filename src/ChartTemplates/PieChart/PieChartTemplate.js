@@ -10,7 +10,7 @@ export const PieChart = ({ ariaDesc, ariaTitle, constrainToVisibleArea, data, le
     colorScale, legend, legendWidth, legendHeight, legendClick }) => {
     // eslint-disable-next-line react/prop-types
     const LegendLabel = ({ index, ...rest }) => <a id={ `${ariaTitle.toLowerCase().replace(/\s/g, '-')}-legend-${index + 1}` }
-        href={ legendClick[index] } className="pf-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
+        href={ legendClick[index] } className="pf-v5-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
 
     return (
         <div className="insd-c-pie-chart__row">

@@ -4,16 +4,16 @@
   display: grid;
   grid-template-columns: [icon] max-content [text] auto;
   align-self: start;
-  gap: var(--pf-global--gutter--md);
+  gap: var(--pf-v5-global--gutter--md);
 
   > * {
       grid-column: text;
   }
 
-  .pf-c-button__icon {
-      --pf-c-button__icon--m-end--MarginLeft: var(--pf-global--spacer--md);
+  .pf-v5-c-button__icon {
+      --pf-v5-c-button__icon--m-end--MarginLeft: var(--pf-v5-global--spacer--md);
 
-      color: var(--pf-global--link--Color);
+      color: var(--pf-v5-global--link--Color);
   }
   &__icon {
     display: flex;
@@ -24,9 +24,9 @@
     width: #{pf-size-prem(60px)};
     height: #{pf-size-prem(60px)};
     border-radius: 50%;
-    background: var(--pf-global--BackgroundColor--200);
+    background: var(--pf-v5-global--BackgroundColor--200);
     > svg {
-        font-size: var(--pf-global--icon--FontSize--lg);
+        font-size: var(--pf-v5-global--icon--FontSize--lg);
         align-self: center;
     }
   }

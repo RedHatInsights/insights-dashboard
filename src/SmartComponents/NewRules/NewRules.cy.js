@@ -12,7 +12,7 @@ describe('New Rules component renders', () => {
         cy.mountWithContext(NewRules, Loading);
     });
     it('the amount of stale systems is correct', () => {
-        cy.get('div[class="pf-l-flex pf-m-space-items-md pf-m-align-items-center pf-m-nowrap"]').eq(0)
+        cy.get('div[class="pf-v5-l-flex pf-m-space-items-md pf-m-align-items-center pf-m-nowrap"]').eq(0)
         .should('have.text', 'Latest critical notifications on your systems');
     });
 });

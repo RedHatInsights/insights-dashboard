@@ -124,7 +124,7 @@ class GaugeWidget extends Component {
         if (this.state.variant === 'notSetUp' || this.state.variant === 'notEntitled') {
             return (
                 <div className={ gaugeWidgetClasses } id={ this.props.id } aria-label={ `${this.props.label} is ${variantType}` }>
-                    <div className='ins-c-gauge-widget__graph pf-u-text-align-center'>
+                    <div className='ins-c-gauge-widget__graph pf-v5-u-text-align-center'>
                         <div className='ins-c-gauge-widget__metrics'>
                             <div className='ins-c-gauge-widget__metrics-percentage'> 0% </div>
                         </div>
@@ -144,7 +144,7 @@ class GaugeWidget extends Component {
         } else {
             return (
                 <div className={ gaugeWidgetClasses } id={ this.props.id }>
-                    <div className='pf-u-text-align-center'>
+                    <div className='pf-v5-u-text-align-center'>
                         <div className='ins-c-gauge-widget__metrics'>
                             <div className='ins-c-gauge-widget__metrics-percentage'>
                                 {this.props.value}%

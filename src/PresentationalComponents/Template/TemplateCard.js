@@ -1,21 +1,10 @@
 import './TemplateCard.scss';
-
-import {
-    Button,
-    Card,
-    CardActions,
-    CardBody,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-    Title
-} from '@patternfly/react-core/dist/esm/components/';
-
 import { DownloadIcon } from '@patternfly/react-icons';
 import DownloadReport from '../DownloadReport/DownloadReport';
 import IconInline from '../IconInline/IconInline';
 import React from 'react';
 import propTypes from 'prop-types';
+import { Button, Card, CardBody, CardFooter, CardHeader, CardTitle, Title } from '@patternfly/react-core';
 
 export const TemplateCard = ({ appName, children, ...props }) => (
     <Card className={ `insd-c-dashboard__card insd-c-dashboard__card--${appName}` } { ...props }>
@@ -39,7 +28,7 @@ TemplateCardHead.propTypes = {
 };
 
 export const TemplateCardActions = ({ children, downloadReport, iconInlineMessage, iconInlineState, ...props }) => (
-    <CardActions { ...props }>
+    <div { ...props }>
         { iconInlineMessage &&
             <IconInline message={ iconInlineMessage } state={ iconInlineState }/>
         }
@@ -47,7 +36,7 @@ export const TemplateCardActions = ({ children, downloadReport, iconInlineMessag
             <DownloadReport />
         }
         {children}
-    </CardActions>
+    </div>
 );
 
 TemplateCardActions.propTypes = {
@@ -69,12 +58,10 @@ export const TemplateCardHeader = ({ title, onDownload, subtitle, children, ...p
                 </div>
             }
         </CardTitle>
-        <CardActions>
-            { children }
-            { onDownload &&
+        { children }
+        { onDownload &&
                 <Button variant='link' icon={ <DownloadIcon/> } onClick={ onDownload }>Report</Button>
-            }
-        </CardActions>
+        }
     </CardHeader>
 );
 

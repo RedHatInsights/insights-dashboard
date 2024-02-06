@@ -23,7 +23,7 @@ const ZeroStateFooter = ({
     return (
         <PageSection className='footer' isWidthLimited>
             <Card>
-                <Grid lg={ 4 } hasGutter className='pf-u-p-xl'>
+                <Grid lg={ 4 } hasGutter className='pf-v5-u-p-xl'>
                     <GridItem>
                         <Flex direction={{ default: 'column' }}>
                             <FlexItem>

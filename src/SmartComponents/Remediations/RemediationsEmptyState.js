@@ -1,23 +1,19 @@
 import './RemediationsEmptyState.scss';
 
-import { EmptyState, EmptyStateVariant } from '@patternfly/react-core/dist/esm/components/EmptyState/EmptyState';
-
 import { EmptyStateBody } from '@patternfly/react-core/dist/esm/components/EmptyState/EmptyStateBody';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Title } from '@patternfly/react-core/dist/esm/components/Title/Title';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
+import { EmptyState, EmptyStateHeader, EmptyStateVariant } from '@patternfly/react-core';
 
 export const RemediationsEmptyState = () => {
 
     const intl = useIntl();
 
     return (
-        <EmptyState variant={ EmptyStateVariant.small }>
-            <Title headingLevel='h6' size='md'>
-                { intl.formatMessage(messages.remediationsNoDataTitle)}
-            </Title>
+        <EmptyState variant={ EmptyStateVariant.sm }>
+            <EmptyStateHeader titleText={<>{ intl.formatMessage(messages.remediationsNoDataTitle)}</>} headingLevel='h6' />
             <EmptyStateBody>
                 { intl.formatMessage(messages.remediationsNoDataBody)}
             </EmptyStateBody>

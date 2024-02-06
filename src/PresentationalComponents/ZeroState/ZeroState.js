@@ -9,18 +9,20 @@ import {
     ListItem,
     PageSection,
     TextContent,
-    Title
-} from '@patternfly/react-core/dist/esm/components/index';
-import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts/Flex/index';
-import { Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts/Grid/index';
+    Title,
+    Grid,
+    GridItem,
+    Flex,
+    FlexItem
+} from '@patternfly/react-core';
 import React, { useEffect, useState } from 'react';
 import {
     SortByDirection,
-    Table,
+    sortable,
     TableBody,
     TableHeader,
-    sortable
-} from '@patternfly/react-table/dist/esm/components/Table/index';
+    Table
+} from '@patternfly/react-table';
 
 import API from '../../Utilities/Api';
 import IconList from '../IconList/IconList';
@@ -56,7 +58,6 @@ const SortableTable = () => {
     { title: <span>{dateFormatter(row.attributes.public_date)}</span> },
     { title: <span>{row.attributes.impact}</span> },
     { title: <span>{row.attributes.cvss3_score}</span> }]);
-    // const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchCves = async () => {
@@ -94,7 +95,7 @@ const ZeroState = () => {
         return () => {
             hideGlobalFilter?.(false);
         };
-    }, []);
+    }, [hideGlobalFilter]);
 
     return <div className='insd-c-marketing-page'>
         <MarketingBanner
@@ -123,7 +124,7 @@ const ZeroState = () => {
                         <FlexItem>
                             <InsightsLink app='registration' to="/">
                                 <Button
-                                    isLarge
+                                    size="lg"
                                     component='a'
                                     variant='primary'
                                     style={{ color: 'white' }}
@@ -240,7 +241,7 @@ const ZeroState = () => {
                             <img src={ ImgInsSmartMgmt } alt='Insights Satellite' />
                         </GridItem>
                         <GridItem md={ 6 } lg={ 7 }>
-                            <div className='insd-c-width-limiter pf-u-pt-lg-on-lg' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
+                            <div className='insd-c-width-limiter pf-v5-u-pt-lg-on-lg' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
                                 <List>
                                     <ListItem>{intl.formatMessage(messages.rhm1)}</ListItem>
                                     <ListItem>{intl.formatMessage(messages.rhm2)}</ListItem>
@@ -248,7 +249,7 @@ const ZeroState = () => {
                                 </List>
                             </div>
                         </GridItem>
-                        <GridItem md={ 6 } lg={ 7 } className='pf-u-pl-lg'>
+                        <GridItem md={ 6 } lg={ 7 } className='pf-v5-u-pl-lg'>
                             <Flex>
                                 <FlexItem>
                                     <Button

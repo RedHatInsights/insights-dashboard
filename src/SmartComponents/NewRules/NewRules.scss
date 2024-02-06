@@ -4,15 +4,15 @@
 
 .insd-c-dashboard-data-list {
   &.ins-c-toggle-right {
-    .pf-c-data-list__item-control {
-      --pf-c-data-list__item-control--MarginRight: 0;
+    .pf-v5-c-data-list__item-control {
+      --pf-v5-c-data-list__item-control--MarginRight: 0;
     }
   }
 
-  .pf-c-data-list__toggle {
+  .pf-v5-c-data-list__toggle {
     display: flex;
 
-    > .pf-c-button {
+    > .pf-v5-c-button {
       align-self: center;
     }
   }

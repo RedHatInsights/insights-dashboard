@@ -1,19 +1,11 @@
 import './PageLoading.scss';
 
-import {
-    EmptyState,
-    EmptyStateIcon,
-    Title
-} from '@patternfly/react-core/dist/esm/components';
-
 import React from 'react';
 import { Spinner } from '@patternfly/react-core/dist/esm/components/Spinner';
+import { EmptyState, EmptyStateHeader, EmptyStateIcon } from '@patternfly/react-core';
 
 const PageLoading = () => <EmptyState>
-    <EmptyStateIcon variant="container" component={ Spinner } />
-    <Title size="lg" headingLevel="h4">
-        Loading
-    </Title>
+    <EmptyStateHeader titleText="Loading" headingLevel='h4' icon={<EmptyStateIcon icon={Spinner} />}/>
 </EmptyState>;
 
 export default PageLoading;

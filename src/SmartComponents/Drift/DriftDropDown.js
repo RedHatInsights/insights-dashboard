@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { translateDriftDropdownItems } from './utils';
 
+import { CaretDownIcon } from '@patternfly/react-icons';
 import {
     Dropdown,
-    DropdownToggle,
-    DropdownItem
+    DropdownItem,
+    DropdownToggle
 } from '@patternfly/react-core';
-import CaretDownIcon from '@patternfly/react-icons/dist/esm/icons/caret-down-icon';
 
-export const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
+const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
 
     const intl = useIntl();
     const dropdownItems = useRef([]);
@@ -19,7 +19,7 @@ export const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
 
     useEffect(() => {
         dropdownItems.current = translateDriftDropdownItems(intl);
-    }, []);
+    }, [intl]);
 
     const onItemClick = (item, itemRef) => {
         fetchDriftData(item);
@@ -29,7 +29,7 @@ export const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
 
     return <Dropdown
         toggle={
-            <DropdownToggle onToggle={setIsOpen} toggleIndicator={CaretDownIcon}>
+            <DropdownToggle onToggle={(_event, val) => setIsOpen(val)} toggleIndicator={CaretDownIcon}>
                 {selectedFilter.description}
             </DropdownToggle>
         }
@@ -51,3 +51,5 @@ DriftDropDown.propTypes = {
         description: PropTypes.string
     })
 };
+
+export default DriftDropDown;

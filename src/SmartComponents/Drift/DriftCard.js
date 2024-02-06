@@ -9,7 +9,7 @@ import { useIntl } from 'react-intl';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
-import { DriftDropDown } from './DriftDropDown';
+import  DriftDropDown  from './DriftDropDown';
 import messages from '../../Messages';
 import SortUpIcon from '@patternfly/react-icons/dist/esm/icons/sort-up-icon';
 import {
@@ -58,11 +58,11 @@ const DriftCard = () => {
             includePayload: true
         }));
         setActiveDrift(dropDownItem);
-    }, [dispatch]);
+    }, [dispatch, driftAppId]);
 
     useEffect(() => {
         fetchDriftData(activeDrift);
-    }, [fetchDriftData, activeDrift.id]);
+    }, [fetchDriftData, activeDrift]);
 
     return (
         <ExpandableCardTemplate
@@ -102,13 +102,13 @@ const DriftCard = () => {
                                                 <Flex
                                                     alignItems={{ default: 'alignItemsFlexCenter' }}
                                                     justifyContent={{ default: 'justifyContentCenter' }}>
-                                                    <span className='pf-u-font-size-2xl pf-u-text-align-center pf-u-font-weight-normal'>
+                                                    <span className='pf-v5-u-font-size-2xl pf-v5-u-text-align-center pf-v5-u-font-weight-normal'>
                                                         {driftEvents.numEvents}
                                                     </span>
                                                 </Flex>
                                                 <TextContent
-                                                    className='insd-c-width-limiter pf-u-text-align-center'>
-                                                    <p className='pf-u-font-size-sm'>
+                                                    className='insd-c-width-limiter pf-v5-u-text-align-center'>
+                                                    <p className='pf-v5-u-font-size-sm'>
                                                         {intl.formatMessage(messages.driftNumberOfEvents)}
                                                     </p>
                                                 </TextContent>
@@ -124,7 +124,7 @@ const DriftCard = () => {
                                         <Divider />
                                         <TextContent
                                             className='insd-c-width-limiter ins-c-drift__top_5'>
-                                            <p className='pf-u-font-size-sm pf-u-font-weight-bold'>
+                                            <p className='pf-v5-u-font-size-sm pf-v5-u-font-weight-bold'>
                                                 {intl.formatMessage(messages.driftTop5)}
                                             </p>
                                         </TextContent>
@@ -146,7 +146,7 @@ const DriftCard = () => {
                                                                     </DataListCell>
                                                                     <DataListCell key={`system-${index}`}
                                                                         className='ins-c-drift__data_list_cell_system_len'>
-                                                                        <span className='pf-u-font-weight-normal ins-c-drift__system_len'>
+                                                                        <span className='pf-v5-u-font-weight-normal ins-c-drift__system_len'>
                                                                             <SortUpIcon  color='black'/>
                                                                             {intl.formatMessage(messages.driftSystems,
                                                                                 { systems: baseline.systems.length })}

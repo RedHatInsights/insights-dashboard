@@ -3,7 +3,7 @@
     flex-direction: row;
   
     &:not(:last-child) {
-        padding-bottom: var(--pf-global--spacer--md);
+        padding-bottom: var(--pf-v5-global--spacer--md);
     }
 }
   
@@ -15,7 +15,7 @@
     min-width: 110px;
 
     > p {
-        margin-left: var(--pf-global--spacer--sm);
-        font-size: var(--pf-global--FontSize--sm);
+        margin-left: var(--pf-v5-global--spacer--sm);
+        font-size: var(--pf-v5-global--FontSize--sm);
     }
 }

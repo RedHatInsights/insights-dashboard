@@ -7,20 +7,20 @@
   padding-left: 0;
   padding-right: 0;
 
-  .pf-c-progress {
+  .pf-v5-c-progress {
     color: inherit;
   }
 }
 
 .insd-c-subscriptions-utilized__empty-state {
-  &.pf-c-empty-state {
+  &.pf-v5-c-empty-state {
     padding: 0;
     text-align: left;
   }
 
-  .pf-c-empty-state__secondary {
+  .pf-v5-c-empty-state__secondary {
     justify-content: inherit;
-    margin-top: var(--pf-global--spacer--md);
+    margin-top: var(--pf-v5-global--spacer--md);
     text-align: left;
   }
 }
