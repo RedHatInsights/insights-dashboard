@@ -29,7 +29,7 @@ import { useIntl } from 'react-intl';
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook/RBACHook';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 import { Link } from 'react-router-dom';
-import { useFeatureFlag } from '../../Utilities/Hooks';
+import { EdgeDevicesWarning } from './EdgeDevicesWarning';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -39,7 +39,6 @@ const SystemInventoryHeader = ({
     fetchInventoryStale, inventoryStaleFetchStatus, inventoryStaleSummary,
     fetchInventoryWarning, inventoryWarningFetchStatus, inventoryWarningSummary,
     fetchInventoryTotal, inventoryTotalFetchStatus, inventoryTotalSummary,
-    fetchEdgeTotal, edgeTotalFetchStatus, edgeTotalSummary,
     selectedTags, workloads, SID
 }) => {
 
@@ -50,17 +49,13 @@ const SystemInventoryHeader = ({
         'inventory:hosts:read'
     ]);
 
-    const edgeFeatureFlag = useFeatureFlag('edgeParity.inventory-list');
-
     useEffect(() => {
         const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
         fetchInventoryTotal(options);
         fetchInventory(options);
         fetchInventoryStale(options);
         fetchInventoryWarning(options);
-        edgeFeatureFlag && fetchEdgeTotal(options);
-    }, [fetchInventoryTotal, fetchInventory, fetchInventoryStale, fetchInventoryWarning,
-        fetchEdgeTotal, selectedTags, workloads, SID, edgeFeatureFlag]
+    }, [fetchInventoryTotal, fetchInventory, fetchInventoryStale, fetchInventoryWarning, selectedTags, workloads, SID]
     );
 
     const intl = useIntl();
@@ -75,92 +70,95 @@ const SystemInventoryHeader = ({
                     variant='xs'
                     description={ <div>{intl.formatMessage(messages.systemInventoryNoAccess)}</div> }
                 /> :
-                <Flex spaceItems={ { md: 'spaceItemsXl' } }
-                    alignItems={ { md: 'alignItemsCenter' } }
-                    direction={ { default: 'column', md: 'row' } }
-                >
-                    <Flex spaceItems={ { default: 'spaceItemsXl' } }>
-                        {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' && edgeTotalFetchStatus === 'fulfilled' &&
-                            <NumberDescription
-                                data={ (inventorySummary.total + (edgeFeatureFlag ? edgeTotalSummary.count : 0)).toLocaleString() || 0 }
-                                dataSize="lg"
-                                linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
-                                    { count: inventorySummary.total || 0 }
-                                ) }
-                                app='inventory'
-                                link='/?source=puptoo'
-                            />
-                        }
-                        {/* {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
-                            <NumberDescription
-                                data={ inventoryTotalSummary.total - inventorySummary.total || 0 }
-                                dataSize="lg"
-                                linkDescription={ intl.formatMessage(messages.systemInventoryUnregisteredDescription,
-                                    { count: inventoryTotalSummary.total || 0 }
-                                ) }
-                                link='./insights/inventory'
-                            />
-                        } */}
-                    </Flex>
-                    <Flex spaceItems={ { default: 'spaceItemsXl' } }
+                <React.Fragment>
+                    <EdgeDevicesWarning />
+                    <Flex spaceItems={ { md: 'spaceItemsXl' } }
                         alignItems={ { md: 'alignItemsCenter' } }
-                        flex={ { default: 'flex_1' } }
                         direction={ { default: 'column', md: 'row' } }
                     >
-                        <Flex direction={ { default: 'column' } } spaceItems={ { default: 'spaceItemsNone' } }>
-                            <FlexItem>
-                                {inventoryStaleFetchStatus === 'fulfilled' &&
-                                <InsightsLink app='inventory' to='/?status=stale&source=puptoo' className="pf-v5-c-button pf-m-link pf-m-inline">
-                                    <IconInline
-                                        message={ intl.formatMessage(messages.systemInventoryStale,
-                                            { count: inventoryStaleSummary.total || 0 }
-                                        ) }
-                                        state="warning"
-                                        systemInventory
-                                    />
-                                </InsightsLink>
-                                }
-                            </FlexItem>
-                            <FlexItem>
-                                {inventoryWarningFetchStatus === 'fulfilled' &&
-                                <InsightsLink
+                        <Flex spaceItems={ { default: 'spaceItemsXl' } }>
+                            {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
+                                <NumberDescription
+                                    data={ inventorySummary.total.toLocaleString() || 0 }
+                                    dataSize="lg"
+                                    linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
+                                        { count: inventorySummary.total || 0 }
+                                    ) }
                                     app='inventory'
-                                    to='/?status=stale_warning&source=puptoo'
-                                    className="pf-v5-c-button pf-m-link pf-m-inline">
-                                    <IconInline
-                                        message={ intl.formatMessage(messages.systemInventoryStaleWarning,
-                                            { count: inventoryWarningSummary.total || 0 }
-                                        ) }
-                                        state="critical"
-                                        systemInventory
-                                    />
-                                </InsightsLink>
-                                }
-                            </FlexItem>
-                            {inventoryTotalFetchStatus === 'rejected' &&
-                                <FailState appName='Inventory' isSmall />
+                                    link='/?source=puptoo'
+                                />
                             }
+                            {/* {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
+                                <NumberDescription
+                                    data={ inventoryTotalSummary.total - inventorySummary.total || 0 }
+                                    dataSize="lg"
+                                    linkDescription={ intl.formatMessage(messages.systemInventoryUnregisteredDescription,
+                                        { count: inventoryTotalSummary.total || 0 }
+                                    ) }
+                                    link='./insights/inventory'
+                                />
+                            } */}
                         </Flex>
-                        <FlexItem align={{ md: 'alignRight' }}>
-                            <Link to="/settings/integrations">
-                                <Button
-                                    className='pf-v5-u-mr-sm pf-v5-u-font-size-md'
-                                    variant='secondary'
-                                    size='sm'
-                                >
-                                    { intl.formatMessage(messages.configureIntegrations) }
-                                </Button>
-                            </Link>
-                            <InsightsLink app='registration' to="/">
-                                <Button
-                                    variant='primary'
-                                >
-                                    { intl.formatMessage(messages.systemInventoryCTA) }
-                                </Button>
-                            </InsightsLink>
-                        </FlexItem>
+                        <Flex spaceItems={ { default: 'spaceItemsXl' } }
+                            alignItems={ { md: 'alignItemsCenter' } }
+                            flex={ { default: 'flex_1' } }
+                            direction={ { default: 'column', md: 'row' } }
+                        >
+                            <Flex direction={ { default: 'column' } } spaceItems={ { default: 'spaceItemsNone' } }>
+                                <FlexItem>
+                                    {inventoryStaleFetchStatus === 'fulfilled' &&
+                                    <InsightsLink app='inventory' to='/?status=stale&source=puptoo' className="pf-v5-c-button pf-m-link pf-m-inline">
+                                        <IconInline
+                                            message={ intl.formatMessage(messages.systemInventoryStale,
+                                                { count: inventoryStaleSummary.total || 0 }
+                                            ) }
+                                            state="warning"
+                                            systemInventory
+                                        />
+                                    </InsightsLink>
+                                    }
+                                </FlexItem>
+                                <FlexItem>
+                                    {inventoryWarningFetchStatus === 'fulfilled' &&
+                                    <InsightsLink
+                                        app='inventory'
+                                        to='/?status=stale_warning&source=puptoo'
+                                        className="pf-v5-c-button pf-m-link pf-m-inline">
+                                        <IconInline
+                                            message={ intl.formatMessage(messages.systemInventoryStaleWarning,
+                                                { count: inventoryWarningSummary.total || 0 }
+                                            ) }
+                                            state="critical"
+                                            systemInventory
+                                        />
+                                    </InsightsLink>
+                                    }
+                                </FlexItem>
+                                {inventoryTotalFetchStatus === 'rejected' &&
+                                    <FailState appName='Inventory' isSmall />
+                                }
+                            </Flex>
+                            <FlexItem align={{ md: 'alignRight' }}>
+                                <Link to="/settings/integrations">
+                                    <Button
+                                        className='pf-v5-u-mr-sm pf-v5-u-font-size-md'
+                                        variant='secondary'
+                                        size='sm'
+                                    >
+                                        { intl.formatMessage(messages.configureIntegrations) }
+                                    </Button>
+                                </Link>
+                                <InsightsLink app='registration' to="/">
+                                    <Button
+                                        variant='primary'
+                                    >
+                                        { intl.formatMessage(messages.systemInventoryCTA) }
+                                    </Button>
+                                </InsightsLink>
+                            </FlexItem>
+                        </Flex>
                     </Flex>
-                </Flex>
+                </React.Fragment>
         }
     </React.Fragment>;
 };
@@ -178,7 +176,7 @@ SystemInventoryHeader.propTypes = {
     fetchInventoryTotal: PropTypes.func,
     inventoryTotalSummary: PropTypes.object,
     inventoryTotalFetchStatus: PropTypes.string,
-    fetchEdgeTotal: PropTypes.function,
+    fetchEdgeTotal: PropTypes.func,
     edgeTotalSummary: PropTypes.object,
     edgeTotalFetchStatus: PropTypes.string,
     intl: PropTypes.any,
@@ -197,8 +195,6 @@ export default connect(
         inventoryWarningFetchStatus: DashboardStore.inventoryWarningFetchStatus,
         inventoryTotalSummary: DashboardStore.inventoryTotalSummary,
         inventoryTotalFetchStatus: DashboardStore.inventoryTotalFetchStatus,
-        edgeTotalSummary: DashboardStore.edgeTotalSummary,
-        edgeTotalFetchStatus: DashboardStore.edgeTotalFetchStatus,
         selectedTags: DashboardStore.selectedTags,
         workloads: DashboardStore.workloads,
         SID: DashboardStore.SID
@@ -207,7 +203,6 @@ export default connect(
         fetchInventory: (params) => dispatch(AppActions.fetchInventorySummary(params)),
         fetchInventoryStale: (params) => dispatch(AppActions.fetchInventoryStaleSummary(params)),
         fetchInventoryWarning: (params) => dispatch(AppActions.fetchInventoryWarningSummary(params)),
-        fetchInventoryTotal: (params) => dispatch(AppActions.fetchInventoryTotalSummary(params)),
-        fetchEdgeTotal: (params) => dispatch(AppActions.fetchEdgeTotal(params))
+        fetchInventoryTotal: (params) => dispatch(AppActions.fetchInventoryTotalSummary(params))
     })
 )(SystemInventoryHeader);
