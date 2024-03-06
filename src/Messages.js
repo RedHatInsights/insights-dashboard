@@ -885,5 +885,11 @@ export default defineMessages({
         id: 'remediationsContentZeroState',
         description: 'Zero state description for Remediations app',
         defaultMessage: 'Receive guidance to remediate risk, and act on those recommendations directly with automatically generated Ansible remediations.'
+    },
+
+    edgeWarning: {
+        id: 'edgeWarning',
+        description: 'Warning text for edge devices',
+        defaultMessage: 'Immutable (OSTree) systems are included in the inventory totals.'
     }
 });
