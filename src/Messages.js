@@ -890,6 +890,6 @@ export default defineMessages({
     edgeWarning: {
         id: 'edgeWarning',
         description: 'Warning text for edge devices',
-        defaultMessage: 'Immutable (OSTree) systems are included in the inventory totals.'
+        defaultMessage: 'Immutable (OSTree) systems are not included in the inventory totals.'
     }
 });
