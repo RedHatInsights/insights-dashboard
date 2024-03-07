@@ -50,14 +50,15 @@ export const SUBSCRIPTIONS_UTILIZED_CAPACITY_FETCH_URL = `${BASE_URL}/rhsm-subsc
 // Inventory Constants
 export const INVENTORY_BASE = '/inventory/v1';
 const INVENTORY_PER_PAGE = 'per_page=1';
+const INVENTORY_CONVENTIONAL_FILTER = 'filter[system_profile][host_type]=nil';
 export const INVENTORY_TOTAL_FETCH = 'INVENTORY_TOTAL_FETCH';
 export const INVENTORY_TOTAL_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?${INVENTORY_PER_PAGE}`;
 export const INVENTORY_FETCH = 'INVENTORY_FETCH';
-export const INVENTORY_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?registered_with=puptoo&filter[system_profile][host_type]=nil&${INVENTORY_PER_PAGE}`;
+export const INVENTORY_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?registered_with=puptoo&${INVENTORY_CONVENTIONAL_FILTER}&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_STALE_FETCH = 'INVENTORY_STALE_FETCH';
-export const INVENTORY_STALE_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale&registered_with=puptoo&${INVENTORY_PER_PAGE}`;
+export const INVENTORY_STALE_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale&registered_with=puptoo&${INVENTORY_CONVENTIONAL_FILTER}&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_WARNING_FETCH = 'INVENTORY_WARNING_FETCH';
-export const INVENTORY_WARNING_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale_warning&registered_with=puptoo&${INVENTORY_PER_PAGE}`;
+export const INVENTORY_WARNING_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale_warning&registered_with=puptoo&${INVENTORY_CONVENTIONAL_FILTER}&${INVENTORY_PER_PAGE}`;
 
 // Edge constants
 export const EDGE_BASE = '/edge/v1';
