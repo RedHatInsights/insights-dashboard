@@ -31,8 +31,6 @@ const App = (props) => {
     const [hasSystems, setHasSystems] = useState();
 
     async function initChrome() {
-        chrome.identifyApp('dashboard');
-
         chrome?.globalFilterScope?.('insights');
         if (chrome?.globalFilterScope) {
             chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
