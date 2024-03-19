@@ -40,69 +40,71 @@ const Dashboard = (/*{ workloads }*/) => {
         chrome.updateDocumentTitle(`Dashboard | Red Hat Insights`);
     }, [chrome]);
 
-    return permission.hasSystems  ?
-        <React.Fragment>
-            <PageSection isWidthLimited variant={ PageSectionVariants.light } className="insd-c-dashboard-header">
-                <Title headingLevel="h1" size="2xl" className="pf-v5-u-screen-reader">
-                    {intl.formatMessage(messages.dashboardTitle)}
-                </Title>
-                <Suspense fallback={ <Loading /> }>
-                    <SystemInventoryHeader />
-                </Suspense>
-            </PageSection>
-            <PageSection isFilled={true} isWidthLimited>
-                <Grid hasGutter>
+    return permission.hasSystems === 'undefined' ?
+        <Loading/> :
+        permission.hasSystems  ?
+            <React.Fragment>
+                <PageSection isWidthLimited variant={ PageSectionVariants.light } className="insd-c-dashboard-header">
+                    <Title headingLevel="h1" size="2xl" className="pf-v5-u-screen-reader">
+                        {intl.formatMessage(messages.dashboardTitle)}
+                    </Title>
                     <Suspense fallback={ <Loading /> }>
-                        {newRules?.length > 0 && permission.vulnerability && <GridItem>
-                            <NewRules />
-                        </GridItem> }
+                        <SystemInventoryHeader/>
                     </Suspense>
-                    <Masonry
-                        breakpointCols={breakpointColumnsObj}
-                        className="ins-l-masonry"
-                        columnClassName="ins-l-masonry_column"
-                    >
+                </PageSection>
+                <PageSection isFilled={true} isWidthLimited>
+                    <Grid hasGutter>
                         <Suspense fallback={ <Loading /> }>
-                            {permission.vulnerability &&
+                            {newRules?.length > 0 && permission.vulnerability && <GridItem>
+                                <NewRules />
+                            </GridItem> }
+                        </Suspense>
+                        <Masonry
+                            breakpointCols={breakpointColumnsObj}
+                            className="ins-l-masonry"
+                            columnClassName="ins-l-masonry_column"
+                        >
+                            <Suspense fallback={ <Loading /> }>
+                                {permission.vulnerability &&
                                 <VulnerabilityCard />
-                            }
-                        </Suspense>
-                        <Suspense fallback={ <Loading /> }>
-                            {permission.advisor &&
+                                }
+                            </Suspense>
+                            <Suspense fallback={ <Loading /> }>
+                                {permission.advisor &&
                                 <AdvisorCard />
-                            }
-                        </Suspense>
-                        <Suspense fallback={ <Loading /> }>
-                            {permission.compliance &&
+                                }
+                            </Suspense>
+                            <Suspense fallback={ <Loading /> }>
+                                {permission.compliance &&
                                 <ComplianceCard />
-                            }
-                        </Suspense>
-                        <Suspense fallback={ <Loading /> }>
-                            {permission.remediations &&
+                                }
+                            </Suspense>
+                            <Suspense fallback={ <Loading /> }>
+                                {permission.remediations &&
                                 <RemediationsCard />
-                            }
-                        </Suspense>
-                        <Suspense fallback={ <Loading /> }>
-                            {permission.patch &&
+                                }
+                            </Suspense>
+                            <Suspense fallback={ <Loading /> }>
+                                {permission.patch &&
                                 <PatchManagerCard />
-                            }
-                        </Suspense>
-                        <Suspense fallback={ <Loading /> }>
-                            {permission.ros &&
+                                }
+                            </Suspense>
+                            <Suspense fallback={ <Loading /> }>
+                                {permission.ros &&
                                 <ResourceOptimizationCard/>
-                            }
-                        </Suspense>
-                        <Suspense>
-                            {permission.drift && permission.notifications
+                                }
+                            </Suspense>
+                            <Suspense>
+                                {permission.drift && permission.notifications
                             && <DriftCard/>}
-                        </Suspense>
-                    </Masonry>
-                </Grid>
-            </PageSection>
-            <Footer supportsSap={ true }/>
-        </React.Fragment>
-        :
-        <ZeroState/>;
+                            </Suspense>
+                        </Masonry>
+                    </Grid>
+                </PageSection>
+                <Footer supportsSap={ true }/>
+            </React.Fragment>
+            :
+            <ZeroState/>;
 
 };
 
