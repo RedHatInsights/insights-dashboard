@@ -261,7 +261,7 @@ const CONTENT_MANAGEMENT_ZERO_STATE = {
     documentation: [
         {
             title: 'System Patching Using Ansible Playbooks',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/system_patching_using_ansible_playbooks_via_remediations'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/system_patching_using_remediation_playbooks/index'
         },
         {
             title: 'Patch APIs',
@@ -541,7 +541,7 @@ const IMAGES_ZERO_STATE = {
     documentation: [
         {
             title: 'Creating customized Images with Image Builder',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/creating_customized_rhel_images_using_the_image_builder_service/index'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/creating_customized_images_by_using_insights_image_builder'
         }
     ]
 };
