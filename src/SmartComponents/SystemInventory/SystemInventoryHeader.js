@@ -5,7 +5,7 @@ import {
     Flex,
     FlexItem
 } from '@patternfly/react-core/dist/esm/layouts';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { workloadsPropType } from '../../Utilities/Common';
 
 // components
@@ -42,7 +42,13 @@ const SystemInventoryHeader = ({
         'inventory:hosts:*',
         'inventory:hosts:read'
     ]);
-    const [isLoading, inventorySummary, inventoryWarningSummary, error] = useBatchInventoryFetch(workloads, SID, selectedTags);
+
+    const [
+        isLoading,
+        inventorySummary,
+        inventoryWarningSummary,
+        inventoryStaleSum,
+        error] = useBatchInventoryFetch(workloads, SID, selectedTags, hasAccess);
 
     const intl = useIntl();
 
@@ -98,7 +104,7 @@ const SystemInventoryHeader = ({
                                             className="pf-v5-c-button pf-m-link pf-m-inline">
                                             <IconInline
                                                 message={ intl.formatMessage(messages.systemInventoryStale,
-                                                    { count: inventorySummary.total || 0 }
+                                                    { count: inventoryStaleSum.total || 0 }
                                                 ) }
                                                 state="warning"
                                                 systemInventory
