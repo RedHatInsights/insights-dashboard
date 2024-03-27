@@ -54,7 +54,7 @@ const ZeroStateFooter = ({
                                 <a component='a'
                                     target='_blank'
                                     rel='noreferrer'
-                                    href={'https://access.redhat.com/documentation/en-us/red_hat_insights/2023'}>Product documentation</a>
+                                    href={'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest'}>Product documentation</a>
                             </FlexItem>
                             <FlexItem>
                                 <a component='a'
