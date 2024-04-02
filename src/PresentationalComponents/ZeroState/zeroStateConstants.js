@@ -14,7 +14,7 @@ const ADVISOR_ZERO_STATE = {
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -45,11 +45,11 @@ const ADVISOR_ZERO_STATE = {
     documentation: [
         {
             title: 'Assessing RHEL Configuration Issues',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_rhel_configuration_issues_using_the_red_hat_insights_advisor_service/index'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_rhel_configuration_issues_using_the_red_hat_insights_advisor_service/index'
         },
         {
             title: 'Generating Advisor Service Reports',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/generating_advisor_service_reports/index'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/generating_advisor_service_reports/index'
         },
         {
             title: 'Advisor APIs',
@@ -57,7 +57,7 @@ const ADVISOR_ZERO_STATE = {
         },
         {
             title: 'Configuring notifications & Integration',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/2023/html/configuring_notifications_and_integrations_on_the_red_hat_hybrid_cloud_console/index'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
 };
@@ -80,7 +80,7 @@ const COMPLIANCE_ZERO_STATE = {
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -116,11 +116,11 @@ const COMPLIANCE_ZERO_STATE = {
     documentation: [
         {
             title: 'Assessing and Monitoring Security Policy Compliance',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems'
         },
         {
             title: 'Generating Compliance Service Reports',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/generating_compliance_service_reports'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/generating_compliance_service_reports'
         },
         {
             title: 'Insights Compliance - Supported configurations',
@@ -132,7 +132,7 @@ const COMPLIANCE_ZERO_STATE = {
         },
         {
             title: 'Configuring notifications & integration',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/2023/html/configuring_notifications_and_integrations_on_the_red_hat_hybrid_cloud_console/index'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
 };
@@ -149,7 +149,7 @@ const DRIFT_ZERO_STATE = {
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -177,7 +177,7 @@ const DRIFT_ZERO_STATE = {
     documentation: [
         {
             title: 'Comparing System Configurations and Baselines',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest'
         },
         {
             title: 'Drift - Comparison API',
@@ -189,7 +189,7 @@ const DRIFT_ZERO_STATE = {
         },
         {
             title: 'Configuring notifications & integration',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/2023/html/configuring_notifications_and_integrations_on_the_red_hat_hybrid_cloud_console/index'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
 };
@@ -229,7 +229,7 @@ const CONTENT_MANAGEMENT_ZERO_STATE = {
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -261,7 +261,7 @@ const CONTENT_MANAGEMENT_ZERO_STATE = {
     documentation: [
         {
             title: 'System Patching Using Ansible Playbooks',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/system_patching_using_ansible_playbooks_via_remediations'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/system_patching_using_remediation_playbooks/index'
         },
         {
             title: 'Patch APIs',
@@ -269,7 +269,7 @@ const CONTENT_MANAGEMENT_ZERO_STATE = {
         },
         {
             title: 'Configuring notifications & Integration',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/2023/html/configuring_notifications_and_integrations_on_the_red_hat_hybrid_cloud_console/index'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
 };
@@ -287,7 +287,7 @@ const POLICIES_ZERO_STATE = {
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -322,7 +322,7 @@ const POLICIES_ZERO_STATE = {
     documentation: [
         {
             title: 'Monitoring and Reacting to Configuration Changes',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/monitoring_and_reacting_to_configuration_changes_using_policies'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/monitoring_and_reacting_to_configuration_changes_using_policies'
         },
         {
             title: 'Policies APIs',
@@ -330,7 +330,7 @@ const POLICIES_ZERO_STATE = {
         },
         {
             title: 'Configuring notifications & Integration',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/2023/html/configuring_notifications_and_integrations_on_the_red_hat_hybrid_cloud_console/index'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
 };
@@ -350,7 +350,7 @@ const MALWARE_ZERO_STATE = {
                 singleClipboardCommand: 'insights-client --register'
             },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -382,7 +382,7 @@ const MALWARE_ZERO_STATE = {
     documentation: [
         {
             title: 'Assessing and Reporting Malware Signatures',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_reporting_malware_signatures_on_rhel_systems'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_reporting_malware_signatures_on_rhel_systems'
         }
     ]
 };
@@ -398,10 +398,10 @@ const RESOURCE_OPTIMIZATION_ZERO_STATE = {
             },
             {
                 instructions: 'Download Ansible Playbook',
-                link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux/assembly-ros-install#installing_resource_optimization_when_ansible_is_already_installed'
+                link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux/assembly-ros-install#installing_resource_optimization_when_ansible_is_already_installed'
             },
             { plainText: 'or' },
-            { instructions: 'Complete the manual install', link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux/assembly-ros-install#installing_resource_optimization_without_installing_or_using_ansible' },
+            { instructions: 'Complete the manual install', link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux/assembly-ros-install#installing_resource_optimization_without_installing_or_using_ansible' },
             { plainText: '2. Register your host' },
             {
                 instructions: 'RHEL 7, 8 and 9:',
@@ -410,7 +410,7 @@ const RESOURCE_OPTIMIZATION_ZERO_STATE = {
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -440,7 +440,7 @@ const RESOURCE_OPTIMIZATION_ZERO_STATE = {
     documentation: [
         {
             title: 'Assessing and Monitoring RHEL Resource Optimization',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux'
         },
         {
             title: 'Resource Optimization APIs',
@@ -448,7 +448,7 @@ const RESOURCE_OPTIMIZATION_ZERO_STATE = {
         },
         {
             title: 'Configuring notifications & Integration',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/2023/html/configuring_notifications_and_integrations_on_the_red_hat_hybrid_cloud_console/index'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
 };
@@ -466,7 +466,7 @@ const VULNERABILITY_ZERO_STATE = {
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -497,11 +497,11 @@ const VULNERABILITY_ZERO_STATE = {
     documentation: [
         {
             title: 'Assessing and Monitoring Security Vulnerabilities',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems'
         },
         {
             title: 'Generating Vulnerability Service Reports',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/generating_vulnerability_service_reports'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/generating_vulnerability_service_reports'
         },
         {
             title: 'Vulnerability APIs',
@@ -509,7 +509,7 @@ const VULNERABILITY_ZERO_STATE = {
         },
         {
             title: 'Configuring notifications & Integration',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/2023/html/configuring_notifications_and_integrations_on_the_red_hat_hybrid_cloud_console/index'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
 };
@@ -541,7 +541,7 @@ const IMAGES_ZERO_STATE = {
     documentation: [
         {
             title: 'Creating customized Images with Image Builder',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/creating_customized_rhel_images_using_the_image_builder_service/index'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/creating_customized_images_by_using_insights_image_builder'
         }
     ]
 };
@@ -563,7 +563,7 @@ const REMEDIATIONS_ZERO_STATE = {
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -595,7 +595,7 @@ const REMEDIATIONS_ZERO_STATE = {
     documentation: [
         {
             title: 'Red Hat Insights Remediations Guide',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/red_hat_insights_remediations_guide/index'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/red_hat_insights_remediations_guide/index'
         }
     ]
 };
@@ -613,7 +613,7 @@ const INVENTORY_ZERO_STATE = {
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -645,7 +645,7 @@ const INVENTORY_ZERO_STATE = {
     documentation: [
         {
             title: 'Getting Started with Red Hat Insights',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/getting_started_with_red_hat_insights'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/getting_started_with_red_hat_insights'
         },
         {
             title: 'Inventory API',
@@ -666,7 +666,7 @@ const TASKS_ZERO_STATE = {
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/red_hat_insights_remediations_guide/host-communication-with-insights_red-hat-insights-remediation-guide',
+                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/red_hat_insights_remediations_guide/host-communication-with-insights_red-hat-insights-remediation-guide',
                 partOne: '2. Follow',
                 anchorText: 'Enabling communication with Insights',
                 partTwo: ' to enable remote execution of playbooks.'
@@ -691,7 +691,7 @@ const TASKS_ZERO_STATE = {
     documentation: [
         {
             title: 'Remote Host Configuration and Management',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems'
+            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems'
         },
         {
             title: 'Take the unknowns out of RHEL upgrades with Red Hat Insights',
