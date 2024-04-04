@@ -192,7 +192,7 @@ const ZeroState = () => {
             </Grid>
         </PageSection>
         <MarketingBanner
-            isWidthLimited='true'
+            isWidthLimited={true}
             hasGraphic
             graphicRight
             dark1000

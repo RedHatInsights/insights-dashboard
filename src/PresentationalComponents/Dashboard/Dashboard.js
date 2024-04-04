@@ -47,7 +47,7 @@ const Dashboard = (/*{ workloads }*/) => {
                     {intl.formatMessage(messages.dashboardTitle)}
                 </Title>
                 <Suspense fallback={ <Loading /> }>
-                    <SystemInventoryHeader />
+                    <SystemInventoryHeader/>
                 </Suspense>
             </PageSection>
             <PageSection isFilled={true} isWidthLimited>
