@@ -26,6 +26,7 @@ const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/P
 const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
 const Footer = lazy(() => import('../../SmartComponents/Footer/Footer'));
 const DriftCard = lazy(() => import('../../SmartComponents/Drift/DriftCard'));
+const FleetAnalysis = lazy(()=> import('../../SmartComponents/FleetAnalysis/FleetAnalysis'));
 
 //We will be using this later. commenting out for now.
 const Dashboard = (/*{ workloads }*/) => {
@@ -53,17 +54,19 @@ const Dashboard = (/*{ workloads }*/) => {
             </PageSection>
             <PageSection isFilled={true} isWidthLimited>
                 <Grid hasGutter>
-                    <Suspense fallback={ <Loading /> }>
+                    <FleetAnalysis/>
+                    {/* <Suspense fallback={ <Loading /> }>
                         {newRules?.length > 0 && permission.vulnerability && <GridItem>
                             <NewRules />
                         </GridItem> }
-                    </Suspense>
+                    </Suspense> */}
                     <Masonry
                         breakpointCols={breakpointColumnsObj}
                         className="ins-l-masonry"
                         columnClassName="ins-l-masonry_column"
                     >
-                        <Suspense fallback={ <Loading /> }>
+
+                        {/* <Suspense fallback={ <Loading /> }>
                             {permission.vulnerability &&
                                 <VulnerabilityCard />
                             }
@@ -97,7 +100,7 @@ const Dashboard = (/*{ workloads }*/) => {
                         <Suspense>
                             {permission.drift && permission.notifications
                             && <DriftCard/>}
-                        </Suspense>
+                        </Suspense> */}
                     </Masonry>
                 </Grid>
             </PageSection>
