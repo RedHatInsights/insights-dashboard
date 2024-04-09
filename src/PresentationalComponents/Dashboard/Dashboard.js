@@ -55,18 +55,18 @@ const Dashboard = (/*{ workloads }*/) => {
             <PageSection isFilled={true} isWidthLimited>
                 <Grid hasGutter>
                     <FleetAnalysis/>
-                    {/* <Suspense fallback={ <Loading /> }>
+                    <Suspense fallback={ <Loading /> }>
                         {newRules?.length > 0 && permission.vulnerability && <GridItem>
                             <NewRules />
                         </GridItem> }
-                    </Suspense> */}
+                    </Suspense>
                     <Masonry
                         breakpointCols={breakpointColumnsObj}
                         className="ins-l-masonry"
                         columnClassName="ins-l-masonry_column"
                     >
 
-                        {/* <Suspense fallback={ <Loading /> }>
+                        <Suspense fallback={ <Loading /> }>
                             {permission.vulnerability &&
                                 <VulnerabilityCard />
                             }
@@ -100,7 +100,7 @@ const Dashboard = (/*{ workloads }*/) => {
                         <Suspense>
                             {permission.drift && permission.notifications
                             && <DriftCard/>}
-                        </Suspense> */}
+                        </Suspense>
                     </Masonry>
                 </Grid>
             </PageSection>

@@ -1,51 +1,272 @@
-import { DataList,
-    DataListAction,
+import {
+    DataList,
+    // DataListAction,
     DataListCell,
     DataListContent,
     DataListItem,
     DataListItemCells,
     DataListItemRow,
     DataListToggle,
-    Dropdown,
-    DropdownItem,
-    DropdownList,
-    Flex,
-    FlexItem,
-    MenuToggle,
-    Spinner
+    // Dropdown,
+    // DropdownItem,
+    // DropdownList,
+    // Flex,
+    // FlexItem,
+    // MenuToggle,
+    Spinner,
+    Title
 } from '@patternfly/react-core';
-import { CodeBranchIcon, EllipsisVIcon } from '@patternfly/react-icons';
 import React from 'react';
 import { useGrabFleetData } from './helpers';
+import { OptimizeIcon } from '@patternfly/react-icons';
 const FleetAnalysis = () => {
-
-    const [
-        isLoading,
-        fleetData,
-        error
-    ] = useGrabFleetData();
+    const [isLoading, fleetData, error] = useGrabFleetData();
     console.log(fleetData, 'fleetData here');
 
-    const [isOpen1, setIsOpen1] = React.useState(false);
-    const [isOpen2, setIsOpen2] = React.useState(false);
-    const [isOpen3, setIsOpen3] = React.useState(false);
-    const [expanded, setExpanded] = React.useState(['ex-toggle1', 'ex-toggle3']);
+    // const [isOpen1, setIsOpen1] = React.useState(false);
+    // const [isOpen2, setIsOpen2] = React.useState(false);
+    // const [isOpen3, setIsOpen3] = React.useState(false);
+    const [expanded, setExpanded] = React.useState([]);
 
-    const onToggle1 = () => {
-        setIsOpen1(!isOpen1);
-    };
-
-    const onSelect1 = () => {
-        setIsOpen1(!isOpen1);
-    };
-
-    const toggle = id => {
+    const toggle = (id) => {
         const index = expanded.indexOf(id);
-        const newExpanded = index >= 0 ? [...expanded.slice(0, index), ...expanded.slice(index + 1, expanded.length)] : [...expanded, id];
+        const newExpanded =
+      index >= 0
+          ? [
+              ...expanded.slice(0, index),
+              ...expanded.slice(index + 1, expanded.length)
+          ]
+          : [...expanded, id];
         setExpanded(newExpanded);
     };
 
-    return <React.Fragment>
+    return (
+        <React.Fragment>
+            {isLoading ? (
+                <Spinner />
+            ) : (
+                <DataList aria-label='Expandable data list example' isCompact>
+                    {/* <DataListItem className='pf-v5-u-mb-0'> */}
+                    <Title headingLevel="h6"
+                        style={{ backgroundColor: 'purple', color: 'white' }}>
+                        <OptimizeIcon className='pf-v5-u-mr-md pf-v5-u-ml-md'/>
+                         AI Fleet Analysis
+                    </Title>
+
+                    <DataListItem
+                        aria-labelledby='ex-item2'
+                        isExpanded={expanded.includes('ex-toggle1')}
+                    >
+                        <DataListItemRow>
+                            <DataListToggle
+                                onClick={() => toggle('ex-toggle1')}
+                                isExpanded={expanded.includes('ex-toggle1')}
+                                id='ex-toggle1'
+                                aria-controls='ex-expand2'
+                            />
+                            <DataListItemCells
+                                dataListCells={[
+                                    <DataListCell isIcon key='icon'>
+                                        {/* <CodeBranchIcon /> */}
+                                    </DataListCell>,
+                                    <DataListCell key='secondary content'>
+                                        <Title headingLevel="h6">{fleetData[0].issue}</Title>
+                                    </DataListCell>,
+                                    <DataListCell key='secondary content 2'>
+                                        <Title headingLevel="h6">Impacted Systems</Title>
+                                        <ul>
+                                            <li>
+                                                <p className='pf-v5-u-mb-md'
+                                                    style={{ textDecorationLine: 'underline' }}> {fleetData[0].impacted_systems[0]}</p>
+                                            </li>
+                                            <li>
+                                                <p
+                                                    style={{ textDecorationLine: 'underline' }}> {fleetData[0].impacted_systems[1]}</p>
+                                            </li>
+                                        </ul>
+
+                                    </DataListCell>
+                                ]}
+                            />
+
+                        </DataListItemRow>
+                        <DataListContent
+                            aria-label='Second expandable content details'
+                            id='ex-expand2'
+                            isHidden={!expanded.includes('ex-toggle1')}
+                        >
+
+                            <Title headingLevel="h6" style={{ textDecorationLine: 'underline' }}>Recommend Remediation</Title>
+                            <p>{fleetData[0].recommended_remediation}</p>
+
+                            <Title headingLevel="h6" style={{ textDecorationLine: 'underline' }}>Technical Details</Title>
+                            <p>{fleetData[0].issue_technical_details}</p>
+                        </DataListContent>
+                    </DataListItem>
+
+                    <DataListItem
+                        aria-labelledby='ex-item2'
+                        isExpanded={expanded.includes('ex-toggle2')}
+                    >
+                        <DataListItemRow>
+                            <DataListToggle
+                                onClick={() => toggle('ex-toggle2')}
+                                isExpanded={expanded.includes('ex-toggle2')}
+                                id='ex-toggle2'
+                                aria-controls='ex-expand2'
+                            />
+                            <DataListItemCells
+                                dataListCells={[
+                                    <DataListCell isIcon key='icon'>
+                                        {/* <CodeBranchIcon /> */}
+                                    </DataListCell>,
+                                    <DataListCell key='secondary content'>
+                                        <Title headingLevel="h6">{fleetData[1].issue}</Title>
+                                    </DataListCell>,
+                                    <DataListCell key='secondary content 2'>
+                                        <Title headingLevel="h6">Impacted Systems</Title>
+                                        <ul>
+                                            <li>
+                                                <p className='pf-v5-u-mb-md'
+                                                    style={{ textDecorationLine: 'underline' }}> {fleetData[1].impacted_systems[0]}</p>
+                                            </li>
+                                            <li>
+                                                <p
+                                                    style={{ textDecorationLine: 'underline' }}> {fleetData[1].impacted_systems[1]}</p>
+                                            </li>
+                                        </ul>
+
+                                    </DataListCell>
+                                ]}
+                            />
+
+                        </DataListItemRow>
+                        <DataListContent
+                            aria-label='Second expandable content details'
+                            id='ex-expand2'
+                            isHidden={!expanded.includes('ex-toggle2')}
+                        >
+
+                            <Title headingLevel="h6" style={{ textDecorationLine: 'underline' }}>Recommend Remediation</Title>
+                            <p>{fleetData[1].recommended_remediation}</p>
+
+                            <Title headingLevel="h6" style={{ textDecorationLine: 'underline' }}>Technical Details</Title>
+                            <p>{fleetData[1].issue_technical_details}</p>
+                        </DataListContent>
+                    </DataListItem>
+
+                    <DataListItem
+                        aria-labelledby='ex-item2'
+                        isExpanded={expanded.includes('ex-toggle3')}
+                    >
+                        <DataListItemRow>
+                            <DataListToggle
+                                onClick={() => toggle('ex-toggle3')}
+                                isExpanded={expanded.includes('ex-toggle3')}
+                                id='ex-toggle3'
+                                aria-controls='ex-expand2'
+                            />
+                            <DataListItemCells
+                                dataListCells={[
+                                    <DataListCell isIcon key='icon'>
+                                        {/* <CodeBranchIcon /> */}
+                                    </DataListCell>,
+                                    <DataListCell key='secondary content'>
+                                        <Title headingLevel="h6">{fleetData[2].issue}</Title>
+                                    </DataListCell>,
+                                    <DataListCell key='secondary content 2'>
+                                        <Title headingLevel="h6">Impacted Systems</Title>
+                                        <ul>
+                                            <li>
+                                                <p className='pf-v5-u-mb-md'
+                                                    style={{ textDecorationLine: 'underline' }}> {fleetData[2].impacted_systems[0]}</p>
+                                            </li>
+                                            <li>
+                                                <p
+                                                    style={{ textDecorationLine: 'underline' }}> {fleetData[2].impacted_systems[1]}</p>
+                                            </li>
+                                        </ul>
+
+                                    </DataListCell>
+                                ]}
+                            />
+
+                        </DataListItemRow>
+                        <DataListContent
+                            aria-label='Second expandable content details'
+                            id='ex-expand2'
+                            isHidden={!expanded.includes('ex-toggle3')}
+                        >
+
+                            <Title headingLevel="h6" style={{ textDecorationLine: 'underline' }}>Recommend Remediation</Title>
+                            <p>{fleetData[2].recommended_remediation}</p>
+
+                            <Title headingLevel="h6" style={{ textDecorationLine: 'underline' }}>Technical Details</Title>
+                            <p>{fleetData[2].issue_technical_details}</p>
+                        </DataListContent>
+                    </DataListItem>
+
+                    <DataListItem
+                        aria-labelledby='ex-item2'
+                        isExpanded={expanded.includes('ex-toggle4')}
+                    >
+                        <DataListItemRow>
+                            <DataListToggle
+                                onClick={() => toggle('ex-toggle4')}
+                                isExpanded={expanded.includes('ex-toggle4')}
+                                id='ex-toggle4'
+                                aria-controls='ex-expand2'
+                            />
+                            <DataListItemCells
+                                dataListCells={[
+                                    <DataListCell isIcon key='icon'>
+                                        {/* <CodeBranchIcon /> */}
+                                    </DataListCell>,
+                                    <DataListCell key='secondary content'>
+                                        <Title headingLevel="h6">{fleetData[3].issue}</Title>
+                                    </DataListCell>,
+                                    <DataListCell key='secondary content 2'>
+                                        <Title headingLevel="h6">Impacted Systems</Title>
+                                        <ul>
+                                            <li>
+                                                <p className='pf-v5-u-mb-md'
+                                                    style={{ textDecorationLine: 'underline' }}> {fleetData[3].impacted_systems[0]}</p>
+                                            </li>
+                                            <li>
+                                                <p
+                                                    style={{ textDecorationLine: 'underline' }}> {fleetData[3].impacted_systems[1]}</p>
+                                            </li>
+                                        </ul>
+
+                                    </DataListCell>
+                                ]}
+                            />
+
+                        </DataListItemRow>
+                        <DataListContent
+                            aria-label='Second expandable content details'
+                            id='ex-expand2'
+                            isHidden={!expanded.includes('ex-toggle4')}
+                        >
+
+                            <Title headingLevel="h6" style={{ textDecorationLine: 'underline' }}>Recommend Remediation</Title>
+                            <p>{fleetData[3].recommended_remediation}</p>
+
+                            <Title headingLevel="h6" style={{ textDecorationLine: 'underline' }}>Technical Details</Title>
+                            <p>{fleetData[3].issue_technical_details}</p>
+                        </DataListContent>
+                    </DataListItem>
+                </DataList>
+
+            )}
+        </React.Fragment>
+    );
+};
+
+export default FleetAnalysis;
+
+{
+    /* <React.Fragment>
         {isLoading ? <Spinner/>
             : <DataList >
                 {fleetData.map((item) => {
@@ -83,62 +304,5 @@ const FleetAnalysis = () => {
                     </DataListItem>;
                 })}
             </DataList>}
-    </React.Fragment>;
-};
-
-export default FleetAnalysis;
-{/* <DataListItem aria-labelledby="ex-item1" isExpanded={expanded.includes('ex-toggle1')}>
-                    <DataListItemRow>
-                        <DataListToggle
-                            onClick={() => toggle('ex-toggle1')}
-                            isExpanded={expanded.includes('ex-toggle1')}
-                            id="ex-toggle1" aria-controls="ex-expand1" />
-                        <DataListItemCells
-                            dataListCells={[
-                                <DataListCell isIcon key="icon">
-                                    blablabla
-                                </DataListCell>,
-                                <DataListCell key="primary content">
-                                    <div id="ex-item1">Primary content</div>
-                                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                                    <a href="#">link</a>
-                                </DataListCell>,
-                                <DataListCell key="secondary content">
-                                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                                </DataListCell>,
-                                <DataListCell key="secondary content 2">
-                                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                                </DataListCell>]
-                            }
-                        />
-                        {/* <DataListAction aria-labelledby="ex-item1 ex-action1" id="ex-action1" aria-label="Actions" isPlainButtonAction>
-                            <Dropdown popperProps={{
-                                position: 'right'
-                            }} onSelect={onSelect1}
-                            toggle={toggleRef => <MenuToggle ref={toggleRef} isExpanded={isOpen1}
-                                onClick={onToggle1} variant="plain" aria-label="Data list exapndable example kebaby toggle 1">
-                                <EllipsisVIcon aria-hidden="true" />
-                            </MenuToggle>} isOpen={isOpen1} onOpenChange={isOpen => setIsOpen1(isOpen)}>
-                                <DropdownList>
-                                    <DropdownItem key="action">Action</DropdownItem>
-                                    {{}}
-                                    <DropdownItem key="link" to="#" onClick={event => event.preventDefault()}>
-                      Link
-                                    </DropdownItem>
-                                    <DropdownItem key="disabled action" isDisabled>
-                      Disabled Action
-                                    </DropdownItem>
-                                    <DropdownItem key="disabled link" isDisabled to="#" onClick={event => event.preventDefault()}>
-                      Disabled Link
-                                    </DropdownItem>
-                                </DropdownList>
-                            </Dropdown>
-                        </DataListAction> */}
-//     </DataListItemRow>
-//     <DataListContent aria-label="First expandable content details" id="ex-expand1" isHidden={!expanded.includes('ex-toggle1')}>
-//         <p>
-//         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-//         dolore magna aliqua.
-//         </p>
-//     </DataListContent>
-// </DataListItem> */}
+    </React.Fragment>; */
+}
