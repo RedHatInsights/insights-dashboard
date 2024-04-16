@@ -12,7 +12,6 @@ jest.mock('@redhat-cloud-services/frontend-components-utilities/interceptors', (
     }))
 }));
 jest.mock('@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate');
-jest.mock('@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate');
 
 describe('CentOsCard', () => {
     it('renders loading state first',  () => {
