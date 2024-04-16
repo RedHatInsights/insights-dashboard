@@ -25,9 +25,14 @@ const CentOsCard = () => {
 
     useEffect(() => {
         const getCentOsCount = async () => {
-            const response = await axios.get(INVENTORY_CENTOS_FETCH_URL);
+            try {
+                const response = await axios.get(INVENTORY_CENTOS_FETCH_URL);
 
-            setTotalCentOsHosts(response.total);
+                setTotalCentOsHosts(response.total);
+            } catch (error) {
+                setTotalCentOsHosts(0);
+            }
+
             setIsLoading(false);
         };
 
