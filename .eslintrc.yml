@@ -14,6 +14,8 @@ extends:
   - 'prettier'
   - 'plugin:react/recommended'
   - "plugin:cypress/recommended"
+  - 'plugin:testing-library/react'
+  - 'plugin:jest-dom/recommended'
 parserOptions:
   ecmaVersion: 7
   sourceType: module
