@@ -34,7 +34,7 @@ const App = (props) => {
         chrome?.globalFilterScope?.('insights');
         if (chrome?.globalFilterScope) {
             chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
-                const [workloads, SID, selectedTags] = chrome?.mapGlobalFilter?.(data, false, true);
+                const [workloads, SID, selectedTags] = chrome.mapGlobalFilter(data, false, true);
                 batch(() => {
                     dispatch(setWorkloads(workloads));
                     dispatch(setSIDs(SID));

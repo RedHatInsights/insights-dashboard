@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedHelpers should return a predictable schema object: schema 1`] = `
-Array [
-  Object {
+[
+  {
     "cores": undefined,
     "date": undefined,
     "has_data": undefined,
@@ -13,14 +13,14 @@ Array [
 `;
 
 exports[`SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedHelpers should return a range of date and time that includes the prior date: date and time 1`] = `
-Object {
+{
   "endDate": 2020-04-01T23:59:59.999Z,
   "startDate": 2020-03-31T00:00:00.000Z,
 }
 `;
 
 exports[`SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedHelpers should return filtered chart data: filtered 1`] = `
-Object {
+{
   "capacity": 10,
   "date": undefined,
   "percentage": 3000,
@@ -28,10 +28,10 @@ Object {
 }
 `;
 
-exports[`SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedHelpers should return zeroed data when HAS_DATA is true: hasData FALSE 1`] = `Object {}`;
+exports[`SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedHelpers should return zeroed data when HAS_DATA is true: hasData FALSE 1`] = `{}`;
 
 exports[`SmartComponents/SubscriptionsUtilized/SubscriptionsUtilizedHelpers should return zeroed data when HAS_DATA is true: hasData TRUE 1`] = `
-Object {
+{
   "capacity": 0,
   "date": undefined,
   "percentage": 0,

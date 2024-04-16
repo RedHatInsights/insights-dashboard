@@ -45,7 +45,6 @@ export const DataListItemTemplate = ({
             <div className='pf-v5-c-data-list__item-control'>
                 <div className='pf-v5-c-data-list__toggle'
                     onClick={() => setIsExpanded(!isExpanded)}
-                    isExpanded={isExpanded}
                     id={`data-list-toggle-${dataListItemTemplateName}`}
                     aria-controls={`data-list-item-${dataListItemTemplateName}`}>
                     <Button id={`data-list-item-${dataListItemTemplateName}-toggle`} variant={ButtonVariant.plain} aria-expanded={isExpanded}
