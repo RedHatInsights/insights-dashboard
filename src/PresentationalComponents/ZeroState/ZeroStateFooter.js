@@ -31,7 +31,7 @@ const ZeroStateFooter = ({
                             </FlexItem>
                             {documentation.map(item => (
                                 <FlexItem key={item.title} >
-                                    <a component='a'
+                                    <a
                                         target='_blank'
                                         rel="noreferrer"
                                         href={item.link} >{item.title}</a>
@@ -45,31 +45,31 @@ const ZeroStateFooter = ({
                                 <Title headingLevel='h3' size='lg'>Learn about Insights</Title>
                             </FlexItem>
                             <FlexItem>
-                                <a component='a'
+                                <a
                                     target='_blank'
                                     rel='noreferrer'
                                     href={'https://www.redhat.com/en/technologies/management/insights'}>Product page</a>
                             </FlexItem>
                             <FlexItem>
-                                <a component='a'
+                                <a
                                     target='_blank'
                                     rel='noreferrer'
                                     href={'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest'}>Product documentation</a>
                             </FlexItem>
                             <FlexItem>
-                                <a component='a'
+                                <a
                                     target='_blank'
                                     rel='noreferrer' href={'https://www.redhat.com/en/technologies/management/insights/data-application-security'} >
                                 Data privacy and controls in Insights
                                 </a>
                             </FlexItem>
                             <FlexItem>
-                                <a component='a'
+                                <a
                                     target='_blank'
                                     rel='noreferrer' href={'https://console.redhat.com/docs/api'}>APIs</a>
                             </FlexItem>
                             <FlexItem>
-                                <a component='a'
+                                <a
                                     target='_blank'
                                     rel='noreferrer' href={'https://www.redhat.com/en/blog/channel/red-hat-insights'}>Blog</a>
                             </FlexItem>
@@ -81,25 +81,25 @@ const ZeroStateFooter = ({
                                 <Title headingLevel='h3' size='lg'>Other bundles</Title>
                             </FlexItem>
                             <FlexItem>
-                                <a component='a'
+                                <a
                                     target='_blank'
                                     rel='noreferrer'
                                     href={` ${chrome.isBeta() ? '/preview' : ''}/openshift`}>OpenShift</a>
                             </FlexItem>
                             <FlexItem>
-                                <a component='a'
+                                <a
                                     target='_blank'
                                     rel='noreferrer'
                                     href={`${chrome.isBeta() ? '/preview' : ''}/application-services/overview`}>Application and Data Services</a>
                             </FlexItem>
                             <FlexItem>
-                                <a component='a'
+                                <a
                                     target='_blank'
                                     rel='noreferrer'
                                     href={`${chrome.isBeta() ? '/preview' : ''}/edge/`}>Edge Managment</a>
                             </FlexItem>
                             <FlexItem>
-                                <a component='a'
+                                <a
                                     target='_blank'
                                     rel='noreferrer'
                                     href={`${chrome.isBeta() ? '/preview' : ''}/ansible/ansible-dashboard`}>Ansible Automation Platform</a>

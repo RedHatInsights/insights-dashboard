@@ -54,7 +54,6 @@ const NewRules = () => {
                 <div className='pf-v5-c-data-list__item-control'>
                     <div className='pf-v5-c-data-list__toggle'
                         onClick={() => { localStorage.setItem('dashboard_expanded_cta', `${!isExpanded}`); setIsExpanded(!isExpanded); }}
-                        isExpanded={isExpanded}
                         id={`data-list-toggle`}
                         aria-controls={`data-list-item`}>
                         <Button id={`data-list-item-toggle`} variant={ButtonVariant.plain} aria-expanded={isExpanded}

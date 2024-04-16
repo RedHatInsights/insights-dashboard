@@ -111,7 +111,6 @@ const ZeroStateBanner = ({
                                 </FlexItem>
                                 <FlexItem>
                                     <a
-                                        component='a'
                                         target='_blank'
                                         rel='noreferrer'
                                         href='https://www.redhat.com/en/products/trials?products=rhel' >
