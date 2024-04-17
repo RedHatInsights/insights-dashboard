@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { workloadsPropType } from '../../Utilities/Common';
 import ResourceOptimizationCard from '../../SmartComponents/ResourceOptimization/ResourceOptimizationCard';
 import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
+import { CentOsCard } from '../../SmartComponents/CentOs';
 
 const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
 const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
@@ -77,6 +78,7 @@ const Dashboard = (/*{ workloads }*/) => {
                                 <ComplianceCard />
                             }
                         </Suspense>
+                        <CentOsCard />
                         <Suspense fallback={ <Loading /> }>
                             {permission.remediations &&
                                 <RemediationsCard />

@@ -59,6 +59,7 @@ export const INVENTORY_STALE_FETCH = 'INVENTORY_STALE_FETCH';
 export const INVENTORY_STALE_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale&registered_with=puptoo&${INVENTORY_CONVENTIONAL_FILTER}&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_WARNING_FETCH = 'INVENTORY_WARNING_FETCH';
 export const INVENTORY_WARNING_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale_warning&registered_with=puptoo&${INVENTORY_CONVENTIONAL_FILTER}&${INVENTORY_PER_PAGE}`;
+export const INVENTORY_CENTOS_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?per_page=1&page=1&filter[system_profile][operating_system][CentOS Linux][version][gte]=0`;
 
 // Edge constants
 export const EDGE_BASE = '/edge/v1';

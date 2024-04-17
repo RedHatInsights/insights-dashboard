@@ -31,6 +31,7 @@ globals:
   render: true
   shallow: true
   React: true
+  jest: true
 rules:
   no-console: 1
   array-bracket-spacing: 2

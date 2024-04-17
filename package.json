@@ -54,9 +54,7 @@
     "setupFiles": [
       "<rootDir>/config/setupTests.js"
     ],
-    "transformIgnorePatterns": [
-      "<rootDir>/node_modules/(?!(@patternfly/react-core/|@patternfly/react-tokens/|@patternfly/react-icons/|@patternfly/react-charts/)).*$"
-    ],
+    "transformIgnorePatterns": [],
     "testEnvironment": "jsdom"
   },
   "dependencies": {

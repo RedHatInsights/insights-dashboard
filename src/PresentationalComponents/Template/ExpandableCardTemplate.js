@@ -1,4 +1,4 @@
-import { Card, CardExpandableContent, CardHeader, CardTitle, Divider, Title } from '@patternfly/react-core/dist/esm/components';
+import { Card, CardExpandableContent, CardHeader, CardTitle, Divider, Title } from '@patternfly/react-core';
 import React, { useState } from 'react';
 
 import propTypes from 'prop-types';
