@@ -38,7 +38,7 @@ const Dashboard = (/*{ workloads }*/) => {
         992: 1
     };
     useEffect(()=>{
-        chrome.updateDocumentTitle(`Dashboard | Red Hat Insights`);
+        chrome.updateDocumentTitle(`Dashboard | RHEL`);
     }, [chrome]);
 
     return permission.hasSystems  ?
