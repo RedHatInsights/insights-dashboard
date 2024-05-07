@@ -130,7 +130,7 @@ const SystemInventoryHeader = ({
                                     </FlexItem>
                                 </Flex>
                                 <FlexItem align={{ md: 'alignRight' }}>
-                                    <Link to="/settings/integrations">
+                                    <Link to="/settings/integrations?category=Communications">
                                         <Button
                                             className='pf-v5-u-mr-sm pf-v5-u-font-size-md'
                                             variant='secondary'
