@@ -1,13 +1,12 @@
 import './dashboard.scss';
 
-import { Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts';
-import { PageSection, PageSectionVariants, Title } from '@patternfly/react-core/dist/esm/components';
+import { Grid, GridItem } from '@patternfly/react-core';
+import { PageSection, PageSectionVariants, Title } from '@patternfly/react-core';
 import React, { Suspense, lazy, useContext, useEffect } from 'react';
 
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import Masonry from 'react-masonry-css';
 import { PermissionContext } from '../../App';
-import ZeroState from '../ZeroState/ZeroState';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
@@ -41,70 +40,67 @@ const Dashboard = (/*{ workloads }*/) => {
         chrome.updateDocumentTitle(`Dashboard | RHEL`);
     }, [chrome]);
 
-    return permission.hasSystems  ?
-        <React.Fragment>
-            <PageSection isWidthLimited variant={ PageSectionVariants.light } className="insd-c-dashboard-header">
-                <Title headingLevel="h1" size="2xl" className="pf-v5-u-screen-reader">
-                    {intl.formatMessage(messages.dashboardTitle)}
-                </Title>
+    return (<React.Fragment>
+        <PageSection isWidthLimited variant={ PageSectionVariants.light } className="insd-c-dashboard-header">
+            <Title headingLevel="h1" size="2xl" className="pf-v5-u-screen-reader">
+                {intl.formatMessage(messages.dashboardTitle)}
+            </Title>
+            <Suspense fallback={ <Loading /> }>
+                <SystemInventoryHeader/>
+            </Suspense>
+        </PageSection>
+        <PageSection isFilled={true} isWidthLimited>
+            <Grid hasGutter>
                 <Suspense fallback={ <Loading /> }>
-                    <SystemInventoryHeader/>
+                    {newRules?.length > 0 && permission.vulnerability && <GridItem>
+                        <NewRules />
+                    </GridItem> }
                 </Suspense>
-            </PageSection>
-            <PageSection isFilled={true} isWidthLimited>
-                <Grid hasGutter>
+                <Masonry
+                    breakpointCols={breakpointColumnsObj}
+                    className="ins-l-masonry"
+                    columnClassName="ins-l-masonry_column"
+                >
                     <Suspense fallback={ <Loading /> }>
-                        {newRules?.length > 0 && permission.vulnerability && <GridItem>
-                            <NewRules />
-                        </GridItem> }
-                    </Suspense>
-                    <Masonry
-                        breakpointCols={breakpointColumnsObj}
-                        className="ins-l-masonry"
-                        columnClassName="ins-l-masonry_column"
-                    >
-                        <Suspense fallback={ <Loading /> }>
-                            {permission.vulnerability &&
+                        {permission.vulnerability &&
                                 <VulnerabilityCard />
-                            }
-                        </Suspense>
-                        <Suspense fallback={ <Loading /> }>
-                            {permission.advisor &&
+                        }
+                    </Suspense>
+                    <Suspense fallback={ <Loading /> }>
+                        {permission.advisor &&
                                 <AdvisorCard />
-                            }
-                        </Suspense>
-                        <Suspense fallback={ <Loading /> }>
-                            {permission.compliance &&
+                        }
+                    </Suspense>
+                    <Suspense fallback={ <Loading /> }>
+                        {permission.compliance &&
                                 <ComplianceCard />
-                            }
-                        </Suspense>
-                        <CentOsCard />
-                        <Suspense fallback={ <Loading /> }>
-                            {permission.remediations &&
+                        }
+                    </Suspense>
+                    <CentOsCard />
+                    <Suspense fallback={ <Loading /> }>
+                        {permission.remediations &&
                                 <RemediationsCard />
-                            }
-                        </Suspense>
-                        <Suspense fallback={ <Loading /> }>
-                            {permission.patch &&
+                        }
+                    </Suspense>
+                    <Suspense fallback={ <Loading /> }>
+                        {permission.patch &&
                                 <PatchManagerCard />
-                            }
-                        </Suspense>
-                        <Suspense fallback={ <Loading /> }>
-                            {permission.ros &&
+                        }
+                    </Suspense>
+                    <Suspense fallback={ <Loading /> }>
+                        {permission.ros &&
                                 <ResourceOptimizationCard/>
-                            }
-                        </Suspense>
-                        <Suspense>
-                            {permission.drift && permission.notifications
+                        }
+                    </Suspense>
+                    <Suspense>
+                        {permission.drift && permission.notifications
                             && <DriftCard/>}
-                        </Suspense>
-                    </Masonry>
-                </Grid>
-            </PageSection>
-            <Footer supportsSap={ true }/>
-        </React.Fragment>
-        :
-        <ZeroState/>;
+                    </Suspense>
+                </Masonry>
+            </Grid>
+        </PageSection>
+        <Footer supportsSap={ true }/>
+    </React.Fragment>);
 
 };
 

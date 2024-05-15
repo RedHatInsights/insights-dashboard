@@ -1,7 +1,7 @@
 import './App.scss';
 
 import React, { createContext, useEffect, useState } from 'react';
-import { batch, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setSIDs, setSelectedTags, setWorkloads } from './AppActions';
 
 import API from './Utilities/Api';
@@ -9,6 +9,7 @@ import { INVENTORY_TOTAL_FETCH_URL } from './AppConstants';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import PageLoading from './PresentationalComponents/PageLoading/PageLoading';
 import { DashboardRoutes } from './DashboardRoutes';
+import ZeroState from './PresentationalComponents/ZeroState/ZeroState';
 
 export const PermissionContext = createContext();
 
@@ -29,17 +30,17 @@ const App = (props) => {
     });
     const [arePermissionsReady, setArePermissionReady] = useState(false);
     const [hasSystems, setHasSystems] = useState();
+    const [hasSystemsReady, setHasSystemsReady] = useState();
 
     async function initChrome() {
         chrome?.globalFilterScope?.('insights');
         if (chrome?.globalFilterScope) {
             chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
                 const [workloads, SID, selectedTags] = chrome.mapGlobalFilter(data, false, true);
-                batch(() => {
-                    dispatch(setWorkloads(workloads));
-                    dispatch(setSIDs(SID));
-                    dispatch(setSelectedTags(selectedTags));
-                });
+
+                dispatch(setWorkloads(workloads));
+                dispatch(setSIDs(SID));
+                dispatch(setSelectedTags(selectedTags));
             });
         }
 
@@ -80,6 +81,8 @@ const App = (props) => {
         } catch (e) {
             chrome.hideGlobalFilter();
         }
+
+        setHasSystemsReady(true);
     }
 
     useEffect(() => {
@@ -87,25 +90,30 @@ const App = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    if (!arePermissionsReady || !hasSystemsReady) {
+        return <PageLoading />;
+    }
+
+    if (hasSystemsReady && !hasSystems) {
+        return <ZeroState />;
+    }
+
     return (
-        arePermissionsReady ?
-            <PermissionContext.Provider
-                value={ {
-                    customPolicies: permissions.customPolicies,
-                    compliance: permissions.compliance,
-                    drift: permissions.drift,
-                    advisor: permissions.advisor,
-                    remediations: permissions.remediations,
-                    patch: permissions.patch,
-                    vulnerability: permissions.vulnerability,
-                    subscriptions: permissions.subscriptions,
-                    ros: permissions.ros,
-                    notifications: permissions.notifications,
-                    hasSystems
-                } }>
-                <DashboardRoutes childProps={ props } />
-            </PermissionContext.Provider>
-            : <PageLoading />
+        <PermissionContext.Provider
+            value={ {
+                customPolicies: permissions.customPolicies,
+                compliance: permissions.compliance,
+                drift: permissions.drift,
+                advisor: permissions.advisor,
+                remediations: permissions.remediations,
+                patch: permissions.patch,
+                vulnerability: permissions.vulnerability,
+                subscriptions: permissions.subscriptions,
+                ros: permissions.ros,
+                notifications: permissions.notifications
+            } }>
+            <DashboardRoutes childProps={ props } />
+        </PermissionContext.Provider>
     );
 };
 
