@@ -30,7 +30,7 @@ const App = (props) => {
     });
     const [arePermissionsReady, setArePermissionReady] = useState(false);
     const [hasSystems, setHasSystems] = useState();
-    const [hasSystemsReady, setHasSystemsReady] = useState();
+    const [systemsLoading, setSystemsLoading] = useState();
 
     async function initChrome() {
         chrome?.globalFilterScope?.('insights');
@@ -82,7 +82,7 @@ const App = (props) => {
             chrome.hideGlobalFilter();
         }
 
-        setHasSystemsReady(true);
+        setSystemsLoading(true);
     }
 
     useEffect(() => {
@@ -90,11 +90,11 @@ const App = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (!arePermissionsReady || !hasSystemsReady) {
+    if (!arePermissionsReady || !systemsLoading) {
         return <PageLoading />;
     }
 
-    if (hasSystemsReady && !hasSystems) {
+    if (!hasSystems) {
         return <ZeroState />;
     }
 
