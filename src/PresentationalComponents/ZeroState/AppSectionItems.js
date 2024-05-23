@@ -1,4 +1,4 @@
-import { Text, TextContent, TextVariants, Title } from '@patternfly/react-core/dist/esm/components';
+import { Text, TextContent, TextVariants, Title } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { GridItem } from '@patternfly/react-core';
 import { ArrowRightIcon } from '@patternfly/react-icons';

@@ -1,6 +1,6 @@
 import './App.scss';
 
-import React, { createContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setSIDs, setSelectedTags, setWorkloads } from './AppActions';
 
@@ -9,30 +9,16 @@ import { INVENTORY_TOTAL_FETCH_URL } from './AppConstants';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import PageLoading from './PresentationalComponents/PageLoading/PageLoading';
 import { DashboardRoutes } from './DashboardRoutes';
-import ZeroState from './PresentationalComponents/ZeroState/ZeroState';
-
-export const PermissionContext = createContext();
+import ZeroStateWrapper from './PresentationalComponents/ZeroState/AppZeroState';
+import PermissionsProvider from './PresentationalComponents/PermissionsProvider/PermissionsProvider';
 
 const App = (props) => {
     const chrome = useChrome();
     const dispatch = useDispatch();
-    const [permissions, setPermissions] = useState({
-        customPolicies: false,
-        compliance: false,
-        drift: false,
-        advisor: false,
-        remediations: false,
-        patch: false,
-        vulnerability: false,
-        subscriptions: false,
-        ros: false,
-        notifications: false
-    });
-    const [arePermissionsReady, setArePermissionReady] = useState(false);
-    const [hasSystems, setHasSystems] = useState();
-    const [systemsLoading, setSystemsLoading] = useState();
+    const [hasSystems, setHasSystems] = useState(false);
+    const [systemsLoading, setSystemsLoading] = useState(true);
 
-    async function initChrome() {
+    useEffect(() => {
         chrome?.globalFilterScope?.('insights');
         if (chrome?.globalFilterScope) {
             chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
@@ -44,77 +30,28 @@ const App = (props) => {
             });
         }
 
-        // TODO: Update this function to query multiple apps instead of empty request (limited by API)
-        chrome.getUserPermissions('', true).then(
-            dashboardPermissions => {
-                const permissionList = dashboardPermissions.length && dashboardPermissions.map(permissions => permissions.permission);
-                if (permissionList.length) {
-                    setPermissions({
-                        customPolicies: permissionList.includes('custom-policies:*:*'),
-                        compliance: permissionList.includes('compliance:*:*'),
-                        drift: permissionList.includes('drift:*:*'),
-                        advisor: permissionList.includes('insights:*:*') ||
-                            permissionList.includes('advisor:*:*'),
-                        remediations: permissionList.includes('remediations:*:*') ||
-                            permissionList.includes('remediations:remediation:*') ||
-                            permissionList.includes('remediations:remediation:read') ||
-                            permissionList.includes('remediations:*:read'),
-                        patch: permissionList.includes('patch:*:*'),
-                        vulnerability: permissionList.includes('vulnerability:*:*') ||
-                            permissionList.includes('vulnerability:vulnerability_results:read'),
-                        subscriptions: permissionList.includes('subscriptions:*:*') ||
-                            permissionList.includes('subscriptions:reports:read'),
-                        ros: permissionList.includes('ros:*:*') ||
-                            permissionList.includes('ros:*:read'),
-                        notifications: permissionList.includes('notifications:*:*') ||
-                            permissionList.includes('notifications:events:read')
-                    });
-                }
-
-                setArePermissionReady(true);
-            }
-        );
-        try {
-            const { total } = (await API.get(`${INVENTORY_TOTAL_FETCH_URL}`))?.data || { total: 0 };
-            setHasSystems(total > 0);
-            total === 0 && chrome.hideGlobalFilter();
-        } catch (e) {
+        API.get(`${INVENTORY_TOTAL_FETCH_URL}`).then(({ data }) => {
+            setHasSystems(data?.total > 0);
+            data?.total === 0 && chrome.hideGlobalFilter();
+            setSystemsLoading(false);
+        }).catch(() => {
             chrome.hideGlobalFilter();
-        }
-
-        setSystemsLoading(true);
-    }
-
-    useEffect(() => {
-        initChrome();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+            setSystemsLoading(false);
+        });
     }, []);
 
-    if (!arePermissionsReady || !systemsLoading) {
-        return <PageLoading />;
-    }
-
-    if (!hasSystems) {
-        return <ZeroState />;
-    }
-
-    return (
-        <PermissionContext.Provider
-            value={ {
-                customPolicies: permissions.customPolicies,
-                compliance: permissions.compliance,
-                drift: permissions.drift,
-                advisor: permissions.advisor,
-                remediations: permissions.remediations,
-                patch: permissions.patch,
-                vulnerability: permissions.vulnerability,
-                subscriptions: permissions.subscriptions,
-                ros: permissions.ros,
-                notifications: permissions.notifications
-            } }>
-            <DashboardRoutes childProps={ props } />
-        </PermissionContext.Provider>
-    );
+    return systemsLoading ? <PageLoading />
+        : (
+            <PermissionsProvider>
+                <ZeroStateWrapper
+                    app='Dashboard'
+                    appId='dashboard'
+                    customFetchResults={hasSystems}
+                >
+                    <DashboardRoutes childProps={ props } />
+                </ZeroStateWrapper>
+            </PermissionsProvider>
+        );
 };
 
 export default App;

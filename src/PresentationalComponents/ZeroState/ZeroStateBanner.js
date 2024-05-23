@@ -2,10 +2,12 @@ import '../ZeroState/_zero-state.scss';
 
 import {
     Button,
-    Title
-} from '@patternfly/react-core/dist/esm/components/index';
-import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts/Flex/index';
-import { Grid, GridItem } from '@patternfly/react-core/dist/esm/layouts/Grid/index';
+    Title,
+    Grid,
+    GridItem,
+    Flex,
+    FlexItem
+} from '@patternfly/react-core';
 import React, { useEffect, useState } from 'react';
 
 import IconList from '../IconList/IconList';

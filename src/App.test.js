@@ -10,7 +10,7 @@ import '@testing-library/jest-dom';
 
 jest.mock('./Utilities/Api', () => ({
     ...jest.requireActual('./Utilities/Api'),
-    get: jest.fn(() => ({
+    get: jest.fn(() => Promise.resolve({
         data: { total: 0 }
     }))
 })

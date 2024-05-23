@@ -6,7 +6,7 @@ import React, { Suspense, lazy, useContext, useEffect } from 'react';
 
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import Masonry from 'react-masonry-css';
-import { PermissionContext } from '../../App';
+import { PermissionContext } from '../PermissionsProvider/PermissionsProvider';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
