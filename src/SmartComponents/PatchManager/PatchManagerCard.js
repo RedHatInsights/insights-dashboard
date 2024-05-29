@@ -11,7 +11,7 @@ import FailState from '../../PresentationalComponents/FailState/FailState';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import PropTypes from 'prop-types';
-import {chart_color_blue_200, chart_color_blue_300, chart_color_blue_400, global_disabled_color_100} from '@patternfly/react-tokens';
+import { chart_color_blue_200, chart_color_blue_300, chart_color_blue_400, global_disabled_color_100 } from '@patternfly/react-tokens';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
