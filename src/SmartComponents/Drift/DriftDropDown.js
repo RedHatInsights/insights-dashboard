@@ -9,7 +9,7 @@ import {
     Dropdown,
     DropdownItem,
     DropdownToggle
-} from '@patternfly/react-core';
+} from '@patternfly/react-core/deprecated';
 
 const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
 

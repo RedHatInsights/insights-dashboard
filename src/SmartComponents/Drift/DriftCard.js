@@ -9,7 +9,7 @@ import { useIntl } from 'react-intl';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
-import  DriftDropDown  from './DriftDropDown';
+import DriftDropDown from './DriftDropDown';
 import messages from '../../Messages';
 import SortUpIcon from '@patternfly/react-icons/dist/esm/icons/sort-up-icon';
 import {
@@ -20,7 +20,6 @@ import {
     DataListItemRow,
     DataListCell,
     DataListItemCells,
-    DataListWrapModifier,
     Button,
     TextVariants,
     Text,
@@ -136,7 +135,7 @@ const DriftCard = () => {
                                                             dataListCells={[
                                                                 <React.Fragment key={index}>
                                                                     <DataListCell key={`title-${index}`}
-                                                                        wrapModifier={DataListWrapModifier.truncate}>
+                                                                        wrapModifier={'truncate'}>
                                                                         <Text
                                                                             component={TextVariants.a}
                                                                             href={`${ActionTypes.DRIFT_BASELINES_URL}/${baseline.baselineId}`}
@@ -147,7 +146,7 @@ const DriftCard = () => {
                                                                     <DataListCell key={`system-${index}`}
                                                                         className='ins-c-drift__data_list_cell_system_len'>
                                                                         <span className='pf-v5-u-font-weight-normal ins-c-drift__system_len'>
-                                                                            <SortUpIcon  color='black'/>
+                                                                            <SortUpIcon color='black' />
                                                                             {intl.formatMessage(messages.driftSystems,
                                                                                 { systems: baseline.systems.length })}
                                                                         </span>

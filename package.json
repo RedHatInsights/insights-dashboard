@@ -13,30 +13,26 @@
   "license": "Apache-2.0",
   "author": "Red Hat",
   "scripts": {
-    "analyze": "NODE_ENV=production webpack --config config/dev.webpack.config.js --env prod=true --env analyze=true --mode production",
-    "build": "NODE_ENV=production webpack --config config/prod.webpack.config.js",
+    "build": "fec build",
     "lint": "npm-run-all lint:*",
     "lint-fix": "eslint config src --fix",
     "lint:js": "eslint config src",
     "lint:js:fix": "eslint config src --fix",
     "lint:sass": "stylelint 'src/**/*.scss' --config .stylelintrc.json",
     "nightly": "npm run travis:verify",
-    "prod": "NODE_ENV=production webpack serve --config config/dev.webpack.config.js",
     "server:ctr": "node src/server/generateServerKey.js",
-    "start:proxy": "NODE_ENV=development webpack serve --config config/dev.webpack.config.js",
-    "start:proxy:beta": "NODE_ENV=development BETA=true webpack serve --config config/dev.webpack.config.js",
-    "start": "npm run start:proxy",
-    "start:beta": "npm run start:proxy:beta",
+    "start": "fec dev",
+    "start:proxy": "PROXY=true fec dev",
     "test": "jest --verbose",
     "test:ct": "BABEL_ENV=componentTest cypress run --component",
     "test:openct": "cypress open --component",
     "translations": "npm-run-all translations:*",
     "translations:extract": "npx formatjs extract ./src/*.js --out-file ./build/messages/src/Messages.json",
     "translations:compile": "npx formatjs compile ./build/messages/src/Messages.json --out-file ./locales/translations.json",
-    "travis:build": "NODE_ENV=production webpack --config config/prod.webpack.config.js",
-    "travis:verify": "npm-run-all travis:build lint test",
+    "travis:verify": "npm-run-all build lint test",
     "verify": "npm-run-all build lint test",
-    "coverage": "bash coverage.sh"
+    "coverage": "bash coverage.sh && npm run coverage:clean",
+    "postinstall": "ts-patch install"
   },
   "jest": {
     "collectCoverage": true,
@@ -95,7 +91,8 @@
     "@cypress/code-coverage": "^3.10.0",
     "@cypress/react18": "^2.0.0",
     "@formatjs/cli": "4.2.33",
-    "@redhat-cloud-services/frontend-components-config": "^4.6.13",
+    "@redhat-cloud-services/frontend-components-config": "^6.0.13",
+    "@redhat-cloud-services/tsc-transform-imports": "^1.0.10",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^15.0.2",
     "@testing-library/user-event": "^14.5.2",
@@ -128,8 +125,8 @@
     "stylelint": "13.13.1",
     "stylelint-config-recommended-scss": "4.3.0",
     "stylelint-scss": "3.20.1",
-    "typescript": "5.3.3",
-    "webpack-bundle-analyzer": "4.4.2"
+    "ts-patch": "^3.1.2",
+    "typescript": "5.3.3"
   },
   "insights": {
     "appname": "dashboard"
