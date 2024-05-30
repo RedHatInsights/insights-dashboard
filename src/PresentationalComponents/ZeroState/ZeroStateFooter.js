@@ -3,12 +3,10 @@ import '../ZeroState/_zero-state.scss';
 
 import {
     Flex,
-    FlexItem
-} from '@patternfly/react-core/dist/esm/layouts/Flex/index';
-import {
+    FlexItem,
     Grid,
     GridItem
-} from '@patternfly/react-core/dist/esm/layouts/Grid/index';
+} from '@patternfly/react-core';
 import React from 'react';
 import zeroStateConstants from './zeroStateConstants';
 import propTypes from 'prop-types';

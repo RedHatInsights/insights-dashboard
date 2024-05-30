@@ -15,75 +15,18 @@ import {
     Flex,
     FlexItem
 } from '@patternfly/react-core';
-import React, { useEffect, useState } from 'react';
-import {
-    SortByDirection,
-    sortable,
-    TableBody,
-    TableHeader,
-    Table
-} from '@patternfly/react-table';
+import React, { useEffect } from 'react';
 
-import API from '../../Utilities/Api';
 import IconList from '../IconList/IconList';
 import IconListItem from '../IconList/IconListItem';
 import ImgInsSmartMgmt from '../../images/img__ins-and-sm.png';
 import MarketingBanner from '../MarketingBanner/MarketingBanner';
-import { UI_BASE, VULNERABILITIES_CVES_URL } from '../../AppConstants';
+import { UI_BASE } from '../../AppConstants';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
-
-// eslint-disable-next-line no-unused-vars
-const SortableTable = () => {
-    const columns = [
-        { title: 'CVE ID', transforms: [sortable] },
-        { title: 'Publish Date', transforms: [sortable] },
-        { title: 'Impact', transforms: [sortable] },
-        { title: 'CVSS Base Score', transforms: [sortable] }
-    ];
-    const [rows, setRows] = useState([]);
-    const [sortBy, setSort] = useState({});
-    const dateFormatter = (date) => {
-        const newDate = (new Date(date)).toString().split(' ');
-        return `${newDate[2]} ${newDate[1]} ${newDate[3]}`;
-    };
-
-    const rowBuilder = data => data.map(row => [{
-        title: <a href={ ` https://access.redhat.com/security/cve/${row.id}` }
-            target='_blank' rel='noreferrer'>{row.id}</a>
-    },
-    { title: <span>{dateFormatter(row.attributes.public_date)}</span> },
-    { title: <span>{row.attributes.impact}</span> },
-    { title: <span>{row.attributes.cvss3_score}</span> }]);
-
-    useEffect(() => {
-        const fetchCves = async () => {
-            try {
-                const cves = (await API.get(VULNERABILITIES_CVES_URL, {}, { sort: '-public_date', limit: 4 })).data;
-                setRows(rowBuilder(cves.data));
-            } catch (error) {
-                throw `${error}`;
-            }
-        };
-
-        fetchCves();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const onSort = (_event, index, direction) => {
-        const sortedRows = rows.sort((a, b) => (a[index] < b[index] ? -1 : a[index] > b[index] ? 1 : 0));
-        setSort({ index, direction });
-        setRows(direction === SortByDirection.asc ? sortedRows : sortedRows.reverse());
-    };
-
-    return <Table aria-label='Sortable Table' sortBy={ sortBy } onSort={ onSort } cells={ columns } rows={ rows }>
-        <TableHeader />
-        <TableBody />
-    </Table>;
-};
 
 const ZeroState = () => {
     const intl = useIntl();

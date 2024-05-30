@@ -1,4 +1,4 @@
-import { Card, CardBody, CardTitle, PageSection, Title } from '@patternfly/react-core/dist/esm/components';
+import { Card, CardBody, CardTitle, PageSection, Title } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { Grid } from '@patternfly/react-core';
 import React from 'react';

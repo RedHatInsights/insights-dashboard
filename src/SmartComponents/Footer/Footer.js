@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { AppBlock } from '../../PresentationalComponents/Template/AppBlockTemplate';
 import ComplianceIcon from '../../images/Icon-Red_Hat-Software_and_technologies-App_Secured-A-Red-RGB.svg';
 import { Flex } from '@patternfly/react-core/dist/esm/layouts';
-import { PermissionContext } from '../../App';
+import { PermissionContext } from '../../PresentationalComponents/PermissionsProvider/PermissionsProvider';
 import RemediationsIcon from '../../images/Icon-Red_Hat-Software_and_Technologies-Automation-A-Red-RGB.svg';
 import { UI_BASE } from '../../AppConstants';
 import messages from '../../Messages';
