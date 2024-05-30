@@ -42,7 +42,7 @@ const CentOsCard = () => {
     return (
         <ExpandableCardTemplate
             appName="tasks"
-            className="centos-warning"
+            className="centos-warning insd-m-toggle-right-on-md"
             title="Convert your CentOS systems to RHEL"
             body={
                 <TemplateCardBody>
