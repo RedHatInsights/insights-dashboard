@@ -15,16 +15,16 @@ module.exports = {
                     singleton: true,
                     import: false,
                     version: packageJson.dependencies['react-router-dom'],
-                    requiredVersion: '>=6.0.0 <7.0.0',
-                },
-            },
+                    requiredVersion: '>=6.0.0 <7.0.0'
+                }
+            }
         ],
-    },
-    exposes: {
-        './AppZeroState': resolve(__dirname, '../src/PresentationalComponents/ZeroState/AppZeroState.js'),
-        './ZeroStateBanner': resolve(__dirname, '../src/PresentationalComponents/ZeroState/ZeroStateBanner.js'),
-        './AppSection': resolve(__dirname, '../src/PresentationalComponents/ZeroState/AppSection.js'),
-        './ZeroStateFooter': resolve(__dirname, '../src/PresentationalComponents/ZeroState/ZeroStateFooter.js'),
-        './RootApp': resolve(__dirname, '../src/AppEntry.js')
-    },
+        exposes: {
+            './AppZeroState': resolve(__dirname, './src/PresentationalComponents/ZeroState/AppZeroState.js'),
+            './ZeroStateBanner': resolve(__dirname, './src/PresentationalComponents/ZeroState/ZeroStateBanner.js'),
+            './AppSection': resolve(__dirname, './src/PresentationalComponents/ZeroState/AppSection.js'),
+            './ZeroStateFooter': resolve(__dirname, './src/PresentationalComponents/ZeroState/ZeroStateFooter.js'),
+            './RootApp': resolve(__dirname, './src/AppEntry.js')
+        }
+    }
 };
