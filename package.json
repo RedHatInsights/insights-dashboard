@@ -31,7 +31,7 @@
     "translations:compile": "npx formatjs compile ./build/messages/src/Messages.json --out-file ./locales/translations.json",
     "travis:verify": "npm-run-all build lint test",
     "verify": "npm-run-all build lint test",
-    "coverage": "bash coverage.sh && npm run coverage:clean",
+    "coverage": "bash coverage.sh",
     "postinstall": "ts-patch install"
   },
   "jest": {
