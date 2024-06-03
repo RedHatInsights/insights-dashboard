@@ -25,7 +25,8 @@ import {
     Text,
     Bullseye,
     Spinner,
-    Tooltip
+    Tooltip,
+    DataListWrapModifier
 } from '@patternfly/react-core';
 import { DriftEmptyState } from './DriftEmptyState';
 import { useDispatch } from 'react-redux';
@@ -135,7 +136,7 @@ const DriftCard = () => {
                                                             dataListCells={[
                                                                 <React.Fragment key={index}>
                                                                     <DataListCell key={`title-${index}`}
-                                                                        wrapModifier={'truncate'}>
+                                                                        wrapModifier={DataListWrapModifier.truncate}>
                                                                         <Text
                                                                             component={TextVariants.a}
                                                                             href={`${ActionTypes.DRIFT_BASELINES_URL}/${baseline.baselineId}`}
