@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import AppSection from './AppSection';
 import ZeroStateBanner from './ZeroStateBanner';
 import ZeroStateFooter from './ZeroStateFooter';
 import propTypes from 'prop-types';
 import { IntlProvider } from '@redhat-cloud-services/frontend-components-translations';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
+import ZeroState from './ZeroState';
 
 //current stand in as we migrate away from the old version
 const AppZeroState = ({ children, ...props }) => {
@@ -52,21 +53,23 @@ const NewAppZeroState = ({
     }, [axios, customFetchResults, hasSystems]);
 
     return (
-        //If hasSystems is true, render routes
         hasSystems ? children :
             <IntlProvider>
-                <React.Fragment>
-                    <ZeroStateBanner
-                        appName={app}
-                        customInstructions={customInstructions}
-                        customButton={customButton}
-                        customText={customText}
-                        customTitle={customTitle}
-                        appId={appId}
-                    />
-                    <AppSection appName={app}/>
-                    <ZeroStateFooter appName={app} />
-                </React.Fragment>
+                {app.toLowerCase() === 'dashboard'
+                    ? <ZeroState />
+                    :  <Fragment>
+                        <ZeroStateBanner
+                            appName={app}
+                            customInstructions={customInstructions}
+                            customButton={customButton}
+                            customText={customText}
+                            customTitle={customTitle}
+                            appId={appId}
+                        />
+                        <AppSection appName={app}/>
+                        <ZeroStateFooter appName={app} />
+                    </Fragment>
+                }
             </IntlProvider>
     );
 };
