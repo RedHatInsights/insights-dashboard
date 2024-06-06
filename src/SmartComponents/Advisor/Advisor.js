@@ -24,7 +24,8 @@ import {
     global_palette_blue_200,
     global_palette_blue_300,
     global_palette_blue_400
-} from '@patternfly/react-tokens/dist/esm/';
+} from '@patternfly/react-tokens';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CompoundCard } from '../../PresentationalComponents/Template/CompoundCard';
