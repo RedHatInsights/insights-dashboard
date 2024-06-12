@@ -14,7 +14,7 @@ export const useBatchInventoryFetch = (workloads, SID, selectedTags, hasAccess) 
 
     useEffect(() => {
         //add options to url
-        const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
+        const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags[0] } };
         mounted.current = true;
         const fetchData = async () => {
             try {
