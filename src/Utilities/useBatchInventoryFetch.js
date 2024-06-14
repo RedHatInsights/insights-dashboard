@@ -14,14 +14,17 @@ export const useBatchInventoryFetch = (workloads, SID, selectedTags, hasAccess) 
 
     useEffect(() => {
         //add options to url
-        const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags[0] } };
+        const options = { ...globalFilters(workloads, SID) };
+        const tags = `${selectedTags?.length > 0 ? `&tags=${selectedTags?.join('&tags=')}` : ''}`;
         mounted.current = true;
         const fetchData = async () => {
             try {
                 setIsLoading(true);
-                const inventorySum = options !== 'undefined' && await axios.get(`${INVENTORY_FETCH_URL}`, { params: { ...options } });
-                const inventoryWarningSum = options !== 'undefined' && await axios.get(`${INVENTORY_WARNING_FETCH_URL}`, { params: { ...options } });
-                const inventoryStaleSum = options !== 'undefined' && await axios.get(`${INVENTORY_STALE_FETCH_URL}`, { params: { ...options } });
+                const inventorySum = options !== 'undefined' && await axios.get(`${INVENTORY_FETCH_URL}${tags}`, { params: { ...options } });
+                const inventoryWarningSum = options !== 'undefined' && await axios.get(`${INVENTORY_WARNING_FETCH_URL}${tags}`,
+                    { params: { ...options } });
+                const inventoryStaleSum = options !== 'undefined' && await axios.get(`${INVENTORY_STALE_FETCH_URL}${tags}`,
+                    { params: { ...options } });
 
                 mounted.current &&
                     (
