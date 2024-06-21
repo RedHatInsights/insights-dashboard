@@ -10,7 +10,6 @@ const store = init().getStore();
 const locale = navigator.language.slice(0, 2);
 
 const AppEntry = () => (
-
     <IntlProvider locale={ locale } messages={ messages }>
         <Provider store={ store }>
             <App />

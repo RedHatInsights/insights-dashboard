@@ -1,6 +1,5 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import SystemInventoryHeader from './SystemInventoryHeader';
-import Loading from '../../PresentationalComponents/Loading/Loading';
 
 import { hostsInterceptors, edgeInterceptors, unleashInterceptors } from '../../../cypress/support/interceptors';
 import { BrowserRouter } from 'react-router-dom';
@@ -12,9 +11,7 @@ before(() => {
 const ComponentForMount = () => {
     return (
         <BrowserRouter>
-            <Suspense fallback={ <Loading /> }>
-                <SystemInventoryHeader />
-            </Suspense>);
+            <SystemInventoryHeader />
         </BrowserRouter>
     );
 };

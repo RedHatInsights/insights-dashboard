@@ -8,11 +8,9 @@ const ZeroState = lazy(() => import(/* webpackChunkName: "ZeroStateRoute" */ './
 
 export const DashboardRoutes = () => {
     return (
-        <Suspense fallback={<Loading />}>
-            <Routes>
-                <Route path='/start' element={<ZeroState />} />
-                <Route path='/*' element={<Dashboard />} />
-            </Routes>
-        </Suspense>
+        <Routes>
+            <Route path='/start' element={<Suspense fallback={<Loading />}><ZeroState /></Suspense>} />
+            <Route path='/*' element={<Suspense fallback={<Loading />}><Dashboard /></Suspense>} />
+        </Routes>
     );
 };

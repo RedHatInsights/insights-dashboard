@@ -1,10 +1,6 @@
-import './dashboard.scss';
-
+import React, { useContext, useEffect } from 'react';
 import { Grid, GridItem } from '@patternfly/react-core';
 import { PageSection, PageSectionVariants, Title } from '@patternfly/react-core';
-import React, { Suspense, lazy, useContext, useEffect } from 'react';
-
-import Loading from '../../PresentationalComponents/Loading/Loading';
 import Masonry from 'react-masonry-css';
 import { PermissionContext } from '../PermissionsProvider/PermissionsProvider';
 import { connect } from 'react-redux';
@@ -15,16 +11,16 @@ import { workloadsPropType } from '../../Utilities/Common';
 import ResourceOptimizationCard from '../../SmartComponents/ResourceOptimization/ResourceOptimizationCard';
 import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
 import { CentOsCard } from '../../SmartComponents/CentOs';
-
-const AdvisorCard = lazy(() => import('../../SmartComponents/Advisor/Advisor'));
-const ComplianceCard = lazy(() => import('../../SmartComponents/Compliance/ComplianceCard'));
-const VulnerabilityCard = lazy(() => import('../../SmartComponents/Vulnerability/VulnerabilityCard'));
-const SystemInventoryHeader = lazy(() => import('../../SmartComponents/SystemInventory/SystemInventoryHeader'));
-const NewRules = lazy(() => import('../../SmartComponents/NewRules/NewRules'));
-const PatchManagerCard = lazy(() => import('../../SmartComponents/PatchManager/PatchManagerCard'));
-const RemediationsCard = lazy(() => import('../../SmartComponents/Remediations/RemediationsCard'));
-const Footer = lazy(() => import('../../SmartComponents/Footer/Footer'));
-const DriftCard = lazy(() => import('../../SmartComponents/Drift/DriftCard'));
+import AdvisorCard from '../../SmartComponents/Advisor/Advisor';
+import ComplianceCard from '../../SmartComponents/Compliance/ComplianceCard';
+import VulnerabilityCard from '../../SmartComponents/Vulnerability/VulnerabilityCard';
+import SystemInventoryHeader from '../../SmartComponents/SystemInventory/SystemInventoryHeader';
+import NewRules from '../../SmartComponents/NewRules/NewRules';
+import PatchManagerCard from '../../SmartComponents/PatchManager/PatchManagerCard';
+import RemediationsCard from '../../SmartComponents/Remediations/RemediationsCard';
+import Footer from '../../SmartComponents/Footer/Footer';
+import DriftCard from '../../SmartComponents/Drift/DriftCard';
+import './dashboard.scss';
 
 //We will be using this later. commenting out for now.
 const Dashboard = (/*{ workloads }*/) => {
@@ -45,57 +41,48 @@ const Dashboard = (/*{ workloads }*/) => {
             <Title headingLevel="h1" size="2xl" className="pf-v5-u-screen-reader">
                 {intl.formatMessage(messages.dashboardTitle)}
             </Title>
-            <Suspense fallback={ <Loading /> }>
-                <SystemInventoryHeader/>
-            </Suspense>
+            <SystemInventoryHeader/>
         </PageSection>
         <PageSection isFilled={true} isWidthLimited>
             <Grid hasGutter>
-                <Suspense fallback={ <Loading /> }>
-                    {newRules?.length > 0 && permission.vulnerability && <GridItem>
-                        <NewRules />
-                    </GridItem> }
-                </Suspense>
+                {newRules?.length > 0 && permission.vulnerability && <GridItem>
+                    <NewRules />
+                </GridItem> }
+
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
                     className="ins-l-masonry"
                     columnClassName="ins-l-masonry_column"
                 >
-                    <Suspense fallback={ <Loading /> }>
-                        {permission.vulnerability &&
-                                <VulnerabilityCard />
-                        }
-                    </Suspense>
-                    <Suspense fallback={ <Loading /> }>
-                        {permission.advisor &&
-                                <AdvisorCard />
-                        }
-                    </Suspense>
-                    <Suspense fallback={ <Loading /> }>
-                        {permission.compliance &&
-                                <ComplianceCard />
-                        }
-                    </Suspense>
+                    {permission.vulnerability &&
+                        <VulnerabilityCard />
+                    }
+
+                    {permission.advisor &&
+                        <AdvisorCard />
+                    }
+
+                    {permission.compliance &&
+                        <ComplianceCard />
+                    }
+
                     <CentOsCard />
-                    <Suspense fallback={ <Loading /> }>
-                        {permission.remediations &&
-                                <RemediationsCard />
-                        }
-                    </Suspense>
-                    <Suspense fallback={ <Loading /> }>
-                        {permission.patch &&
-                                <PatchManagerCard />
-                        }
-                    </Suspense>
-                    <Suspense fallback={ <Loading /> }>
-                        {permission.ros &&
-                                <ResourceOptimizationCard/>
-                        }
-                    </Suspense>
-                    <Suspense>
-                        {permission.drift && permission.notifications
-                            && <DriftCard/>}
-                    </Suspense>
+
+                    {permission.remediations &&
+                        <RemediationsCard />
+                    }
+
+                    {permission.patch &&
+                        <PatchManagerCard />
+                    }
+
+                    {permission.ros &&
+                        <ResourceOptimizationCard/>
+                    }
+
+                    {permission.drift && permission.notifications
+                        && <DriftCard/>}
+
                 </Masonry>
             </Grid>
         </PageSection>
