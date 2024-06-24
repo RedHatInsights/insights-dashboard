@@ -1,7 +1,7 @@
 import './App.scss';
 
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, batch } from 'react-redux';
 import { setSIDs, setSelectedTags, setWorkloads } from './AppActions';
 
 import API from './Utilities/Api';
@@ -23,10 +23,11 @@ const App = (props) => {
         if (chrome?.globalFilterScope) {
             chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
                 const [workloads, SID, selectedTags] = chrome.mapGlobalFilter(data, false, true);
-
-                dispatch(setWorkloads(workloads));
-                dispatch(setSIDs(SID));
-                dispatch(setSelectedTags(selectedTags));
+                batch(() => {
+                    dispatch(setWorkloads(workloads));
+                    dispatch(setSIDs(SID));
+                    dispatch(setSelectedTags(selectedTags));
+                });
             });
         }
 
