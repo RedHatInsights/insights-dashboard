@@ -92,6 +92,6 @@ describe('CentOsCard', () => {
         await userEvent.click(screen.getByRole('button', {
             name: /start converting centos systems/i
         }));
-        expect(navigateFn).toBeCalledWith('/available/convert-to-rhel-preanalysis');
+        expect(navigateFn).toBeCalledWith('/available/convert-to-rhel-analysis');
     });
 });
