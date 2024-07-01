@@ -84,7 +84,7 @@ const CentOsCard = () => {
                                         <Button
                                             variant="secondary"
                                             onClick={() =>
-                                                navigate('/available/convert-to-rhel-preanalysis')
+                                                navigate('/available/convert-to-rhel-analysis')
                                             }
                                         >
                                             Start converting CentOS systems
@@ -120,7 +120,7 @@ const CentOsCard = () => {
                                     <Button
                                         variant="secondary"
                                         onClick={() =>
-                                            navigate('/available/convert-to-rhel-preanalysis')
+                                            navigate('/available/convert-to-rhel-analysis')
                                         }
                                     >
                                         Start converting CentOS systems
