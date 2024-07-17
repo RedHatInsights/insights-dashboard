@@ -15,6 +15,7 @@ import { INVENTORY_CENTOS_FETCH_URL } from '../../AppConstants';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import { EOLCountdownAlert } from './EOLCountdownAlert';
+import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 
 const CentOsCard = () => {
     const axios = useAxiosWithPlatformInterceptors();
@@ -119,11 +120,14 @@ const CentOsCard = () => {
                                 <FlexItem>
                                     <Button
                                         variant="secondary"
-                                        onClick={() =>
-                                            navigate('/available/convert-to-rhel-analysis')
-                                        }
+                                        component='a'
+                                        icon={<ExternalLinkAltIcon />}
+                                        iconPosition="end"
+                                        target='_blank'
+                                        // eslint-disable-next-line max-len
+                                        href="https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/converting_from_a_linux_distribution_to_rhel_using_the_convert2rhel_utility_in_red_hat_insights/preparation-for-a-rhel-conversion-using-insights_converting-from-a-linux-distribution-to-rhel-in-insights"
                                     >
-                                        Start converting CentOS systems
+                                        Prepare CentOS systems to convert via Insights
                                     </Button>
                                 </FlexItem>
                             </>
