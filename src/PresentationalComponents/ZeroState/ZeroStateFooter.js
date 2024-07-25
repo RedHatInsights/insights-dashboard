@@ -10,14 +10,11 @@ import {
 import React from 'react';
 import zeroStateConstants from './zeroStateConstants';
 import propTypes from 'prop-types';
-import  useChrome  from '@redhat-cloud-services/frontend-components/useChrome';
 
 const ZeroStateFooter = ({
     appName,
     documentation = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].documentation
 }) => {
-    const chrome = useChrome();
-
     return (
         <PageSection className='footer' isWidthLimited>
             <Card>
@@ -82,25 +79,25 @@ const ZeroStateFooter = ({
                                 <a
                                     target='_blank'
                                     rel='noreferrer'
-                                    href={` ${chrome.isBeta() ? '/preview' : ''}/openshift`}>OpenShift</a>
+                                    href='/openshift'>OpenShift</a>
                             </FlexItem>
                             <FlexItem>
                                 <a
                                     target='_blank'
                                     rel='noreferrer'
-                                    href={`${chrome.isBeta() ? '/preview' : ''}/application-services/overview`}>Application and Data Services</a>
+                                    href='/application-services/overview'>Application and Data Services</a>
                             </FlexItem>
                             <FlexItem>
                                 <a
                                     target='_blank'
                                     rel='noreferrer'
-                                    href={`${chrome.isBeta() ? '/preview' : ''}/edge/`}>Edge Managment</a>
+                                    href='/edge'>Edge Managment</a>
                             </FlexItem>
                             <FlexItem>
                                 <a
                                     target='_blank'
                                     rel='noreferrer'
-                                    href={`${chrome.isBeta() ? '/preview' : ''}/ansible/ansible-dashboard`}>Ansible Automation Platform</a>
+                                    href='/ansible/ansible-dashboard'>Ansible Automation Platform</a>
                             </FlexItem>
                         </Flex>
                     </GridItem>
