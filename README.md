@@ -24,14 +24,17 @@ Note: You will need to set up the Insights environment if you want to develop wi
 ### Running locally
 1. Run ```npm run start:proxy``` to start chrome proxy and webpack bundler which serves the files with webpack dev server
 2. App will be running at ```https://stage.foo.redhat.com:1337/insights/dashboard/```
+
 ## Testing
+
 ### Testing locally
   - `npm run test` will run all tests
   - `npm run lint` will run linter
 
-### Automated testing
-After creating PR or pushing to environment branch (`master`, `master-stable`, `prod-beta`, `prod-stable`) Travis is used to test this and to deploy to the corresponding environment.
+## Deploying
+The app uses containerized builds which are configured in [`app-interface`](https://gitlab.cee.redhat.com/service/app-interface/-/blob/master/data/services/insights/frontend-base/deploy.yml).
 
-#### Branch Notes
-We are currently migrating to a two branch system. As some old jobs may rely on the old prod-branches, prod-branches are currently up for assurance, but are now read-only.
-For releasing, only commit hashes on master and master-stable are required, with an update to app-interface.
+| Environment | Available at                     | Deployed version
+| :---------- | :--------------------------------| :----------
+| stage       | https://console.stage.redhat.com | master branch
+| production  | https://console.redhat.com       | up to the commit configured in `app-interface`
