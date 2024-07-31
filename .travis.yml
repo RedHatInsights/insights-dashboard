@@ -2,8 +2,9 @@ language: node_js
 sudo: required
 notifications:
   email: false
+dist: focal
 node_js:
-- '16'
+- '18'
 install:
   - npm ci
 jobs:
@@ -12,8 +13,6 @@ jobs:
       script: npm run lint
     - stage: Test
       script: npm run test && npm run test:ct && npm run coverage
-    - stage: Deploy
-      script: npm run travis:verify && curl -sSL https://raw.githubusercontent.com/RedHatInsights/insights-frontend-builder-common/master/src/bootstrap.sh | bash -s
 env:
   global:
   - REPO="git@github.com:RedHatInsights/insights-dashboard-build"
