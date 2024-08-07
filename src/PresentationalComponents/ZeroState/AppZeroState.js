@@ -22,7 +22,8 @@ const NewAppZeroState = ({
     customTitle,
     appId,
     children,
-    customFetchResults
+    customFetchResults,
+    customSection
 }) => {
     const axios = useAxiosWithPlatformInterceptors();
     const [hasSystems, setHasSystems] = useState(true);
@@ -66,6 +67,7 @@ const NewAppZeroState = ({
                             customTitle={customTitle}
                             appId={appId}
                         />
+                        {customSection && customSection}
                         <AppSection appName={app}/>
                         <ZeroStateFooter appName={app} />
                     </Fragment>
@@ -122,7 +124,8 @@ NewAppZeroState.propTypes = {
     customTitle: propTypes.string,
     appId: propTypes.string,
     children: propTypes.any,
-    customFetchResults: propTypes.bool
+    customFetchResults: propTypes.bool,
+    customSection: propTypes.any
 };
 AppZeroState.propTypes = {
     children: propTypes.any,
