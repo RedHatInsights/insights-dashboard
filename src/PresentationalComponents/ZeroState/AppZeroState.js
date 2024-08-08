@@ -125,7 +125,7 @@ NewAppZeroState.propTypes = {
     appId: propTypes.string,
     children: propTypes.any,
     customFetchResults: propTypes.bool,
-    customSection: propTypes.any
+    customSection: propTypes.node
 };
 AppZeroState.propTypes = {
     children: propTypes.any,
