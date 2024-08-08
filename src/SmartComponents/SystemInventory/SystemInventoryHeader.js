@@ -10,7 +10,8 @@ import { workloadsPropType } from '../../Utilities/Common';
 
 // components
 import {
-    Button
+    Button,
+    Skeleton
 } from '@patternfly/react-core/dist/esm/components';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 // icons
@@ -27,7 +28,6 @@ import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLin
 import { Link } from 'react-router-dom';
 import { EdgeDevicesWarning } from './EdgeDevicesWarning';
 import { useBatchInventoryFetch } from '../../Utilities/useBatchInventoryFetch';
-import { Spinner } from '@redhat-cloud-services/frontend-components';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -64,21 +64,24 @@ const SystemInventoryHeader = ({
                 /> :
                 <React.Fragment>
                     <EdgeDevicesWarning />
-                    {!isLoading && !error ?
+                    {!error ?
                         <Flex spaceItems={ { md: 'spaceItemsXl' } }
                             alignItems={ { md: 'alignItemsCenter' } }
                             direction={ { default: 'column', md: 'row' } }
                         >
                             <Flex spaceItems={ { default: 'spaceItemsXl' } }>
-                                <NumberDescription
-                                    data={ inventorySummary.total.toLocaleString() || 0 }
-                                    dataSize="lg"
-                                    linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
-                                        { count: inventorySummary.total || 0 }
-                                    ) }
-                                    app='inventory'
-                                    link='/?source=puptoo'
-                                />
+                                {isLoading
+                                    ? <Skeleton fontSize="4xl" width="200px" />
+                                    : <NumberDescription
+                                        data={inventorySummary?.total.toLocaleString() || 0 }
+                                        dataSize="lg"
+                                        linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
+                                            { count: inventorySummary?.total || 0 }
+                                        ) }
+                                        app='inventory'
+                                        link='/?source=puptoo'
+                                    />
+                                }
                                 {/* {inventoryFetchStatus === 'fulfilled' && inventoryTotalFetchStatus === 'fulfilled' &&
                             <NumberDescription
                                 data={ inventoryTotalSummary.total - inventorySummary.total || 0 }
@@ -97,36 +100,38 @@ const SystemInventoryHeader = ({
                             >
                                 <Flex direction={ { default: 'column' } } spaceItems={ { default: 'spaceItemsNone' } }>
                                     <FlexItem>
-
-                                        <InsightsLink
-                                            app='inventory'
-                                            to='/?status=stale&source=puptoo'
-                                            className="pf-v5-c-button pf-m-link pf-m-inline">
-                                            <IconInline
-                                                message={ intl.formatMessage(messages.systemInventoryStale,
-                                                    { count: inventoryStaleSum.total || 0 }
-                                                ) }
-                                                state="warning"
-                                                systemInventory
-                                            />
-                                        </InsightsLink>
-
+                                        {isLoading
+                                            ? <Skeleton width="200px" style={{ marginBottom: 4, marginTop: 4 }} />
+                                            : <InsightsLink
+                                                app='inventory'
+                                                to='/?status=stale&source=puptoo'
+                                                className="pf-v5-c-button pf-m-link pf-m-inline">
+                                                <IconInline
+                                                    message={ intl.formatMessage(messages.systemInventoryStale,
+                                                        { count: inventoryStaleSum?.total || 0 }
+                                                    ) }
+                                                    state="warning"
+                                                    systemInventory
+                                                />
+                                            </InsightsLink>
+                                        }
                                     </FlexItem>
                                     <FlexItem>
-
-                                        <InsightsLink
-                                            app='inventory'
-                                            to='/?status=stale_warning&source=puptoo'
-                                            className="pf-v5-c-button pf-m-link pf-m-inline">
-                                            <IconInline
-                                                message={ intl.formatMessage(messages.systemInventoryStaleWarning,
-                                                    { count: inventoryWarningSummary.total || 0 }
-                                                ) }
-                                                state="critical"
-                                                systemInventory
-                                            />
-                                        </InsightsLink>
-
+                                        {isLoading
+                                            ? <Skeleton width="200px" />
+                                            : <InsightsLink
+                                                app='inventory'
+                                                to='/?status=stale_warning&source=puptoo'
+                                                className="pf-v5-c-button pf-m-link pf-m-inline">
+                                                <IconInline
+                                                    message={ intl.formatMessage(messages.systemInventoryStaleWarning,
+                                                        { count: inventoryWarningSummary?.total || 0 }
+                                                    ) }
+                                                    state="critical"
+                                                    systemInventory
+                                                />
+                                            </InsightsLink>
+                                        }
                                     </FlexItem>
                                 </Flex>
                                 <FlexItem align={{ md: 'alignRight' }}>
@@ -149,9 +154,7 @@ const SystemInventoryHeader = ({
                                 </FlexItem>
                             </Flex>
                         </Flex>
-                        : error ?
-                            <FailState appName='Inventory' isSmall />
-                            :  <Spinner/>
+                        : <FailState appName='Inventory' isSmall />
                     }
                 </React.Fragment>
         }
