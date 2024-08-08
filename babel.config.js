@@ -1,19 +1,23 @@
 module.exports = {
-    "presets": [
-        "@babel/env",
-        "@babel/react",
-        "@babel/flow"
+    presets: [
+        [
+            '@babel/env',
+            {
+                targets: '> 0.25%, not dead'
+            }
+        ],
+        '@babel/react',
+        '@babel/flow'
     ],
-    "plugins": [
-        "@babel/plugin-transform-runtime",
-        "@babel/plugin-syntax-dynamic-import",
-        "@babel/plugin-proposal-object-rest-spread",
+    plugins: [
+        '@babel/plugin-transform-runtime',
+        '@babel/plugin-syntax-dynamic-import'
     ],
-    "env": {
-      "componentTest": {
-        plugins: [
-          "istanbul"
-        ]
-      }
+    env: {
+        componentTest: {
+            plugins: [
+                'istanbul'
+            ]
+        }
     }
-}
+};
