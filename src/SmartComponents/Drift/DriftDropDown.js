@@ -29,7 +29,7 @@ const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
 
     return <Dropdown
         toggle={
-            <DropdownToggle onToggle={(_event, val) => setIsOpen(val)} toggleIndicator={CaretDownIcon}>
+            <DropdownToggle onToggle={(_event, val) => setIsOpen(val)} toggleIndicator={CaretDownIcon} style={{ fontWeight: 300 }}>
                 {selectedFilter.description}
             </DropdownToggle>
         }
@@ -38,7 +38,9 @@ const DriftDropDown = ({ fetchDriftData, selectedFilter }) => {
             <DropdownItem
                 key={key}
                 ref={(el) => dropdownItems.current[key].el = el}
-                onClick={() => onItemClick(item, dropdownItems.current[key].el)}>
+                onClick={() => onItemClick(item, dropdownItems.current[key].el)}
+                style={{ fontWeight: 300 }}
+            >
                 {item.description}
             </DropdownItem>
         ))}
