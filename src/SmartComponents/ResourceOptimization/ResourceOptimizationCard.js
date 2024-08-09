@@ -63,32 +63,32 @@ const ResourceOptimizationCard = ({
                                                         </InsightsLink>
                                                     </Flex>
                                             }
+                                            <InsightsLink app='ros' to={suggestionsUrl}>
                                             <Flex
                                                 direction={{ default: 'column' }}
                                                 spaceItems={{ default: 'spaceItemsNone' }}
                                                 alignItems={{ default: 'alignItemsCenter' }}>
-                                                <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-bold'>
+                                                    <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-normal'>
                                                     {rosIsConfigured.systems_stats.with_suggestions}
                                                 </span>
-                                                <InsightsLink app='ros' to={suggestionsUrl}>
                                                     <span className='pf-v5-u-font-size-sm'>
                                                         {intl.formatMessage(messages.systemsWithSuggestions)}
                                                     </span>
+                                                </Flex>
                                                 </InsightsLink>
-                                            </Flex>
+                                            <InsightsLink app='ros' to={allSystemsUrl}>
                                             <Flex
                                                 direction={{ default: 'column' }}
                                                 spaceItems={{ default: 'spaceItemsNone' }}
                                                 alignItems={{ default: 'alignItemsCenter' }}>
-                                                <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-bold'>
+                                                    <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-normal'>
                                                     {rosIsConfigured.count}
                                                 </span>
-                                                <InsightsLink app='ros' to={allSystemsUrl}>
                                                     <span className='pf-v5-u-font-size-sm'>
                                                         {intl.formatMessage(messages.totalSystems)}
                                                     </span>
+                                                </Flex>
                                                 </InsightsLink>
-                                            </Flex>
                                         </Flex>
                                     </Flex>
 
