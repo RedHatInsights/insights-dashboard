@@ -44,6 +44,8 @@ const CentOsCard = () => {
         <ExpandableCardTemplate
             appName="tasks"
             className="centos-warning insd-m-toggle-right-on-md"
+            isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_centos') || 'true')}
+            isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_centos', isExpanded)}
             title="Convert your CentOS systems to RHEL"
             body={
                 <TemplateCardBody>
