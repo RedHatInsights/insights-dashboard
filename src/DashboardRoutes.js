@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 
-import Loading from './PresentationalComponents/Loading/Loading';
 import { Route, Routes } from 'react-router-dom';
+import { Spinner } from '@patternfly/react-core';
 
 const Dashboard = lazy(() => import(/* webpackChunkName: 'DashboardRoute' */ './PresentationalComponents/Dashboard/Dashboard'));
 const ZeroState = lazy(() => import(/* webpackChunkName: "ZeroStateRoute" */ './PresentationalComponents/ZeroState/ZeroState'));
@@ -9,8 +9,8 @@ const ZeroState = lazy(() => import(/* webpackChunkName: "ZeroStateRoute" */ './
 export const DashboardRoutes = () => {
     return (
         <Routes>
-            <Route path='/start' element={<Suspense fallback={<Loading />}><ZeroState /></Suspense>} />
-            <Route path='/*' element={<Suspense fallback={<Loading />}><Dashboard /></Suspense>} />
+            <Route path='/start' element={<Suspense fallback={<Spinner className="pf-u-mt-md" />}><ZeroState /></Suspense>} />
+            <Route path='/*' element={<Suspense fallback={<Spinner className="pf-u-mt-md" />}><Dashboard /></Suspense>} />
         </Routes>
     );
 };

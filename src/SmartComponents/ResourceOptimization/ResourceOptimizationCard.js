@@ -8,9 +8,8 @@ import { TemplateCardBody } from '../../PresentationalComponents/Template/Templa
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FailState from '../../PresentationalComponents/FailState/FailState';
-import Loading from '../../PresentationalComponents/Loading/Loading';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
-import { Button } from '@patternfly/react-core';
+import { Button, Spinner } from '@patternfly/react-core';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 
 const ResourceOptimizationCard = ({
@@ -110,7 +109,7 @@ const ResourceOptimizationCard = ({
                         )
 
                     }
-                    {rosIsConfiguredFetchStatus === 'pending' && <Loading />}
+                    {rosIsConfiguredFetchStatus === 'pending' && <Spinner />}
                     {rosIsConfiguredFetchStatus === 'rejected' && <FailState appName='Resource optimization' />}
                 </TemplateCardBody>
             }

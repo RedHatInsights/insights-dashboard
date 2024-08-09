@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
+import { Spinner } from '@patternfly/react-core';
 
 const RemediationsCard = ({
     fetchRemediations, remediationsFetchStatus, remediations
@@ -40,6 +41,7 @@ const RemediationsCard = ({
             }
             body={
                 <TemplateCardBody>
+                    {remediationsFetchStatus === 'pending' && <Spinner />}
                     {remediationsFetchStatus === 'fulfilled' &&
                         (Array.isArray(remediations.data) &&
                             (remediations.data.length > 0 ?

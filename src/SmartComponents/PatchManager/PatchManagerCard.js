@@ -8,7 +8,6 @@ import { patchmanFetchAdvisories, patchmanFetchSystems } from '../../AppActions'
 
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
-import Loading from '../../PresentationalComponents/Loading/Loading';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import PropTypes from 'prop-types';
 import { chart_color_blue_200, chart_color_blue_300, chart_color_blue_400, global_disabled_color_100 } from '@patternfly/react-tokens';
@@ -16,6 +15,7 @@ import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
+import { Spinner } from '@patternfly/react-core';
 
 /**
  * Card for showing the systems and ratios of current advisories.
@@ -71,7 +71,7 @@ const PatchManagerCard = ({
         title={intl.formatMessage(messages.patchTitle)}
         className={'insd-c-dashboard__card--Patch insd-m-toggle-right-on-md'}
         body={<TemplateCardBody>
-            {!isLoaded ? <Loading /> :
+            {!isLoaded ? <Spinner /> :
                 <Flex direction={{ default: 'column' }}>
                     <InsightsLink app='patch' to='/systems' className='pf-v5-c-button pf-m-link pf-m-inline'>
                         <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
