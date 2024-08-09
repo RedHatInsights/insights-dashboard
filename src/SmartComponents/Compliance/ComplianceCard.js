@@ -13,6 +13,7 @@ import {
     EmptyStateActions,
     EmptyStateBody,
     EmptyStateVariant,
+    Spinner,
     Title
 } from '@patternfly/react-core/dist/esm/components';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
@@ -23,7 +24,6 @@ import { supportsGlobalFilter, workloadsPropType } from '../../Utilities/Common'
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import FilterNotSupported from '../../PresentationalComponents/FilterNotSupported';
-import Loading from '../../PresentationalComponents/Loading/Loading';
 import PropTypes from 'prop-types';
 import { UI_BASE } from '../../AppConstants';
 import { connect } from 'react-redux';
@@ -151,7 +151,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                     ))
                                 )
                             }
-                            {complianceFetchStatus === 'pending' && (<Loading />)}
+                            {complianceFetchStatus === 'pending' && (<Spinner />)}
                             {complianceFetchStatus === 'rejected' && <FailState appName='Compliance' />}
                         </React.Fragment>
                         : <FilterNotSupported
