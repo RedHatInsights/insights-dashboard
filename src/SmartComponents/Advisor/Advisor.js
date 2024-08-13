@@ -165,7 +165,7 @@ const Advisor = () => {
                                                     <ExclamationCircleIcon className='pf-v5-u-font-size-xl pf-v5-u-danger-color-100 pf-u-mr-sm' />
                                             }
                                             <span className='pf-v5-u-font-size-2xl pf-v5-u-text-align-center pf-v5-u-font-weight-normal'>
-                                                {intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })}
+                                                {intl.formatMessage(messages.incidents, { incidents: advisorIncidents.meta.count })}
                                             </span>
                                         </React.Fragment>
                                         : <Skeleton fontSize="2xl" width="250px" />
