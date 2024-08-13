@@ -64,31 +64,33 @@ const ResourceOptimizationCard = ({
                                                     </Flex>
                                             }
                                             <InsightsLink app='ros' to={suggestionsUrl}>
-                                            <Flex
-                                                direction={{ default: 'column' }}
-                                                spaceItems={{ default: 'spaceItemsNone' }}
-                                                alignItems={{ default: 'alignItemsCenter' }}>
+                                                <Flex
+                                                    direction={{ default: 'column' }}
+                                                    spaceItems={{ default: 'spaceItemsNone' }}
+                                                    alignItems={{ default: 'alignItemsCenter' }}
+                                                >
                                                     <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-normal'>
-                                                    {rosIsConfigured.systems_stats.with_suggestions}
-                                                </span>
+                                                        {rosIsConfigured.systems_stats.with_suggestions}
+                                                    </span>
                                                     <span className='pf-v5-u-font-size-sm'>
                                                         {intl.formatMessage(messages.systemsWithSuggestions)}
                                                     </span>
                                                 </Flex>
-                                                </InsightsLink>
+                                            </InsightsLink>
                                             <InsightsLink app='ros' to={allSystemsUrl}>
-                                            <Flex
-                                                direction={{ default: 'column' }}
-                                                spaceItems={{ default: 'spaceItemsNone' }}
-                                                alignItems={{ default: 'alignItemsCenter' }}>
+                                                <Flex
+                                                    direction={{ default: 'column' }}
+                                                    spaceItems={{ default: 'spaceItemsNone' }}
+                                                    alignItems={{ default: 'alignItemsCenter' }}
+                                                >
                                                     <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-normal'>
-                                                    {rosIsConfigured.count}
-                                                </span>
+                                                        {rosIsConfigured.count}
+                                                    </span>
                                                     <span className='pf-v5-u-font-size-sm'>
                                                         {intl.formatMessage(messages.totalSystems)}
                                                     </span>
                                                 </Flex>
-                                                </InsightsLink>
+                                            </InsightsLink>
                                         </Flex>
                                     </Flex>
 
