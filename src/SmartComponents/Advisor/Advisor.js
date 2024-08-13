@@ -9,13 +9,15 @@ import {
     CardBody,
     CardTitle,
     Divider,
+    Skeleton,
+    Spinner,
     TextContent,
     Title,
     Tooltip,
     TooltipPosition
 } from '@patternfly/react-core/dist/esm/components';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { SEVERITY_MAP } from '../../AppConstants';
 import { capitalize, globalFilters } from '../../Utilities/Common';
 import {
@@ -44,7 +46,6 @@ import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLin
 const Advisor = () => {
     const colors = [global_palette_blue_100.value, global_palette_blue_200.value, global_palette_blue_300.value, global_palette_blue_400.value];
     const intl = useIntl();
-    const [trData, setTRData] = useState([]);
     const [categoryData, setCategoryData] = useState([]);
     const [colorScale, setColorScale] = useState();
     const dispatch = useDispatch();
@@ -83,32 +84,35 @@ const Advisor = () => {
         advisorFetchIncidents(options);
     }, [selectedTags, workloads, SID, dispatch]);
 
+    const { total_risk, category } = recStats;
+
+    const trData = useMemo(() => [
+        {
+            title: `${capitalize(intl.formatMessage(messages.critical))} `,
+            risk: `${total_risk?.[SEVERITY_MAP.critical]}`,
+            value: SEVERITY_MAP.critical
+        },
+        {
+            title: `${capitalize(intl.formatMessage(messages.important))} `,
+            risk: `${total_risk?.[SEVERITY_MAP.important]}`,
+            value: SEVERITY_MAP.important
+        },
+        {
+            title: `${capitalize(intl.formatMessage(messages.moderate))} `,
+            risk: `${total_risk?.[SEVERITY_MAP.moderate]}`,
+            value: SEVERITY_MAP.moderate
+        },
+        {
+            title: `${capitalize(intl.formatMessage(messages.low))} `,
+            risk: `${total_risk?.[SEVERITY_MAP.low]}`,
+            value: SEVERITY_MAP.low
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    ], [recStatsStatus]);
+
     useEffect(() => {
         if (recStatsStatus === 'fulfilled') {
-            const { total_risk, category } = recStats;
             const categoryCount = category.Stability + category.Availability + category.Performance + category.Security;
-            setTRData([
-                {
-                    title: `${capitalize(intl.formatMessage(messages.critical))} `,
-                    risk: `${total_risk[SEVERITY_MAP.critical]}`,
-                    value: SEVERITY_MAP.critical
-                },
-                {
-                    title: `${capitalize(intl.formatMessage(messages.important))} `,
-                    risk: `${total_risk[SEVERITY_MAP.important]}`,
-                    value: SEVERITY_MAP.important
-                },
-                {
-                    title: `${capitalize(intl.formatMessage(messages.moderate))} `,
-                    risk: `${total_risk[SEVERITY_MAP.moderate]}`,
-                    value: SEVERITY_MAP.moderate
-                },
-                {
-                    title: `${capitalize(intl.formatMessage(messages.low))} `,
-                    risk: `${total_risk[SEVERITY_MAP.low]}`,
-                    value: SEVERITY_MAP.low
-                }
-            ]);
 
             setCategoryData([
                 {
@@ -152,12 +156,20 @@ const Advisor = () => {
                             <FlexItem>
                                 <Flex
                                     alignItems={{ default: 'alignItemsFlexCenter' }}
-                                    justifyContent={{ default: 'justifyContentCenter' }}>
-                                    {advisorIncidents?.meta?.count > 0 &&
-                                        <ExclamationCircleIcon className='pf-v5-u-font-size-xl pf-v5-u-danger-color-100' />}
-                                    <span className='pf-v5-u-font-size-2xl pf-v5-u-text-align-center pf-v5-u-font-weight-normal'>
-                                        {intl.formatMessage(messages.incidents, { incidents: advisorIncidents?.meta?.count })}
-                                    </span>
+                                    justifyContent={{ default: 'justifyContentCenter' }}
+                                >
+                                    {advisorIncidentsStatus === 'fulfilled'
+                                        ? <React.Fragment>
+                                            {
+                                                advisorIncidents?.meta?.count > 0 &&
+                                                    <ExclamationCircleIcon className='pf-v5-u-font-size-xl pf-v5-u-danger-color-100 pf-u-mr-sm' />
+                                            }
+                                            <span className='pf-v5-u-font-size-2xl pf-v5-u-text-align-center pf-v5-u-font-weight-normal'>
+                                                {intl.formatMessage(messages.incidents, { incidents: advisorIncidents.meta.count })}
+                                            </span>
+                                        </React.Fragment>
+                                        : <Skeleton fontSize="2xl" width="250px" />
+                                    }
                                 </Flex>
                                 <TextContent
                                     className='insd-c-width-limiter pf-v5-u-text-align-center'
@@ -200,7 +212,7 @@ const Advisor = () => {
                                         spaceItems={{ default: 'spaceItemsNone' }}
                                         alignItems={{ default: 'alignItemsCenter' }}>
                                         <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-normal'>
-                                            {risk}
+                                            {recStatsStatus === 'fulfilled' ? risk : <Skeleton fontSize="3xl" width="50px" />}
                                         </span>
                                         <span className='pf-v5-u-font-size-sm'>
                                             {title}
@@ -214,36 +226,39 @@ const Advisor = () => {
                                     {intl.formatMessage(messages.advisorCardHeader3)}
                                 </Title>
                             </CardTitle>
-                            <CardBody className='pf-v5-u-pt-sm'>
+                            <CardBody className='pf-v5-u-pt-sm' style={{ minHeight: 135 }}>
                                 <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsLg' }}>
-                                    <div className="insd-c-dashboard__card-chart-container">
-                                        <div className="insd-c-dashboard__card-pie-chart">
-                                            <PieChart
-                                                ariaDesc='Advisor Category pie chart'
-                                                ariaTitle='Advisor Category pie chart'
-                                                constrainToVisibleArea={true}
-                                                data={categoryData}
-                                                colorScale={colorScale}
-                                                padding={pieChartPadding}
-                                            />
-                                        </div>
-                                        <div className="insd-c-dashboard__card-pie-chart-legend">
-                                            <div className='insd-c-legend insd-m-2-col'>
-                                                {pieLegendData.map((item) =>
-                                                    <InsightsLink
-                                                        key={item.url}
-                                                        app='advisor'
-                                                        to={item.url}
-                                                        className='insd-c-legend__item'
-                                                    >
-                                                        <span className='insd-c-legend__dot'
-                                                            style={{ '--insd-c-legend__dot--BackgroundColor': `${item.fill}` }} />
-                                                        <span className='insd-c-legend__text'>{item.name}</span>
-                                                    </InsightsLink>
-                                                )}
+                                    {recStatsStatus === 'fulfilled' ?
+                                        <div className="insd-c-dashboard__card-chart-container">
+                                            <div className="insd-c-dashboard__card-pie-chart">
+                                                <PieChart
+                                                    ariaDesc='Advisor Category pie chart'
+                                                    ariaTitle='Advisor Category pie chart'
+                                                    constrainToVisibleArea={true}
+                                                    data={categoryData}
+                                                    colorScale={colorScale}
+                                                    padding={pieChartPadding}
+                                                />
+                                            </div>
+                                            <div className="insd-c-dashboard__card-pie-chart-legend">
+                                                <div className='insd-c-legend insd-m-2-col'>
+                                                    {pieLegendData.map((item) =>
+                                                        <InsightsLink
+                                                            key={item.url}
+                                                            app='advisor'
+                                                            to={item.url}
+                                                            className='insd-c-legend__item'
+                                                        >
+                                                            <span className='insd-c-legend__dot'
+                                                                style={{ '--insd-c-legend__dot--BackgroundColor': `${item.fill}` }} />
+                                                            <span className='insd-c-legend__text'>{item.name}</span>
+                                                        </InsightsLink>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        : <Spinner style={{ marginTop: 15 }}/>
+                                    }
                                 </Flex>
                             </CardBody>
                         </Card>
