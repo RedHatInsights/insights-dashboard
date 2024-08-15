@@ -42,7 +42,7 @@
     ],
     "coverageDirectory": "./codecov-jest/",
     "moduleNameMapper": {
-      "\\.(css|scss)$": "identity-obj-proxy"
+    "\\.(css|less|scss|sass|svg|png)$": "identity-obj-proxy"
     },
     "roots": [
       "<rootDir>/src/"
