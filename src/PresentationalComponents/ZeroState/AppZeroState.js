@@ -1,11 +1,10 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AppSection from './AppSection';
 import ZeroStateBanner from './ZeroStateBanner';
 import ZeroStateFooter from './ZeroStateFooter';
 import propTypes from 'prop-types';
 import { IntlProvider } from '@redhat-cloud-services/frontend-components-translations';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
-import ZeroState from './ZeroState';
 
 const standardApiReq = '/api/inventory/v1/hosts?page=1&per_page=1';
 
@@ -54,8 +53,6 @@ const AppZeroState = ({
             {(children && hasSystems) ? (
 
                 children
-            ) : app.toLowerCase() === 'dashboard' ? (
-                <ZeroState />
             ) : (
                 <>
                     <ZeroStateBanner
