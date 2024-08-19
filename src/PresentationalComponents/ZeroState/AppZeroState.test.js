@@ -2,7 +2,6 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import AppZeroState from './AppZeroState';
-import { IntlProvider } from 'react-intl';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 jest.mock(
@@ -12,11 +11,6 @@ jest.mock(
         useAxiosWithPlatformInterceptors: jest.fn()
     })
 );
-
-// const intlProviderConfig = {
-//     locale: 'en',
-//     messages: {}
-// };
 
 describe('AppZeroState component', () => {
 
@@ -74,5 +68,23 @@ describe('AppZeroState component', () => {
         expect(zeroStateBanner).toBeInTheDocument();
         expect(customSection).toBeInTheDocument();
 
+    });
+
+    it('DOES NOT RENDER zero state if there ARE children and SOME systems', async () => {
+        render(
+            <MemoryRouter initialEntries={['/some-path']}>
+                <Routes>
+                    <Route path="/some-path" element={
+                        <AppZeroState app="Advisor" customFetchResults={true} customSection={<div aria-label='custom-section'>hi</div>}>
+                            <div>
+                                <div>testing here</div>
+                            </div>
+                        </AppZeroState>
+                    } />
+                </Routes>
+            </MemoryRouter>
+        );
+        const children = await screen.findByText('testing here');
+        expect(children).toBeInTheDocument();
     });
 });
