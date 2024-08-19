@@ -75,18 +75,14 @@ const AppZeroState = ({
 export default AppZeroState;
 
 AppZeroState.propTypes = {
-    app: propTypes.string,
+    children: propTypes.any,
     customInstructions: propTypes.any,
     customButton: propTypes.any,
     customText: propTypes.string,
     customTitle: propTypes.string,
     appId: propTypes.string,
-    children: propTypes.any,
     customFetchResults: propTypes.bool,
-    customSection: propTypes.node
-};
-AppZeroState.propTypes = {
-    children: propTypes.any,
+    customSection: propTypes.node,
     app: propTypes.oneOf([
         'Advisor',
         'Compliance',
@@ -100,5 +96,6 @@ AppZeroState.propTypes = {
         'Images',
         'Remediations',
         'Inventory',
-        'Tasks'])
+        'Tasks'
+    ])
 };
