@@ -13,27 +13,40 @@ jest.mock(
     })
 );
 
-const intlProviderConfig = {
-    locale: 'en',
-    messages: {}
-};
+// const intlProviderConfig = {
+//     locale: 'en',
+//     messages: {}
+// };
 
-describe('NewAppZeroState component', () => {
+describe('AppZeroState component', () => {
 
-    it('renders zero state', async () => {
+    it('renders zero state if there ARE children but NO systems', async () => {
         render(
             <MemoryRouter initialEntries={['/some-path']}>
-                <IntlProvider {...intlProviderConfig}>
-                    <Routes>
-                        <Route path="/some-path" element={
-                            <AppZeroState app="Advisor" customFetchResults={false}>
-                                <div>
-                                    <div>testing here</div>
-                                </div>
-                            </AppZeroState>
-                        } />
-                    </Routes>
-                </IntlProvider>
+                <Routes>
+                    <Route path="/some-path" element={
+                        <AppZeroState app="Advisor" customFetchResults={false}>
+                            <div>
+                                <div>testing here</div>
+                            </div>
+                        </AppZeroState>
+                    } />
+                </Routes>
+            </MemoryRouter>
+        );
+
+        const zeroStateBanner = await screen.findByLabelText('ZeroStateBanner');
+        expect(zeroStateBanner).toBeInTheDocument();
+    });
+
+    it('renders zero state if there NO children and NO systems', async () => {
+        render(
+            <MemoryRouter initialEntries={['/some-path']}>
+                <Routes>
+                    <Route path="/some-path" element={
+                        <AppZeroState app="Advisor" customFetchResults={false}/>
+                    } />
+                </Routes>
             </MemoryRouter>
         );
         const zeroStateBanner = await screen.findByLabelText('ZeroStateBanner');
@@ -43,17 +56,15 @@ describe('NewAppZeroState component', () => {
     it('renders zero state with custom component', async () => {
         render(
             <MemoryRouter initialEntries={['/some-path']}>
-                <IntlProvider {...intlProviderConfig}>
-                    <Routes>
-                        <Route path="/some-path" element={
-                            <AppZeroState app="Advisor" customFetchResults={false} customSection={<div aria-label='custom-section'>hi</div>}>
-                                <div>
-                                    <div>testing here</div>
-                                </div>
-                            </AppZeroState>
-                        } />
-                    </Routes>
-                </IntlProvider>
+                <Routes>
+                    <Route path="/some-path" element={
+                        <AppZeroState app="Advisor" customFetchResults={false} customSection={<div aria-label='custom-section'>hi</div>}>
+                            <div>
+                                <div>testing here</div>
+                            </div>
+                        </AppZeroState>
+                    } />
+                </Routes>
             </MemoryRouter>
         );
 

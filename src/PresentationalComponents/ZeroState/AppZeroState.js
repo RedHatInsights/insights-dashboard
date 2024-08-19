@@ -7,14 +7,9 @@ import { IntlProvider } from '@redhat-cloud-services/frontend-components-transla
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 import ZeroState from './ZeroState';
 
-//current stand in as we migrate away from the old version
-const AppZeroState = ({ children, ...props }) => {
-    return (children ? <NewAppZeroState {...props}>{children}</NewAppZeroState> : <OldAppZeroState {...props} />);
-};
-
 const standardApiReq = '/api/inventory/v1/hosts?page=1&per_page=1';
 
-const NewAppZeroState = ({
+const AppZeroState = ({
     app,
     customInstructions,
     customButton,
@@ -51,72 +46,38 @@ const NewAppZeroState = ({
         return () => {
             mounted.current = false;
         };
-    }, [axios, customFetchResults, hasSystems]);
+    }, [axios, children, customFetchResults, hasSystems]);
 
-    return (
-        hasSystems ? children :
-            <IntlProvider>
-                {app.toLowerCase() === 'dashboard'
-                    ? <ZeroState />
-                    :  <Fragment>
-                        <ZeroStateBanner
-                            appName={app}
-                            customInstructions={customInstructions}
-                            customButton={customButton}
-                            customText={customText}
-                            customTitle={customTitle}
-                            appId={appId}
-                        />
-                        {customSection && customSection}
-                        <AppSection appName={app}/>
-                        <ZeroStateFooter appName={app} />
-                    </Fragment>
-                }
-            </IntlProvider>
-    );
-};
-
-//We will slowly migrate away from this
-const OldAppZeroState = ({
-    app,
-    customInstructions,
-    customButton,
-    customText,
-    customTitle,
-    appId
-}) => {
+    //If there are children, act as a wrapper, otherwise a component
     return (
         <IntlProvider>
-            <React.Fragment>
-                <ZeroStateBanner
-                    appName={app}
-                    customInstructions={customInstructions}
-                    customButton={customButton}
-                    customText={customText}
-                    customTitle={customTitle}
-                    appId={appId}
-                />
-                <AppSection appName={app}/>
-                <ZeroStateFooter appName={app} />
-            </React.Fragment>
+            {(children && hasSystems) ? (
+
+                children
+            ) : app.toLowerCase() === 'dashboard' ? (
+                <ZeroState />
+            ) : (
+                <>
+                    <ZeroStateBanner
+                        appName={app}
+                        customInstructions={customInstructions}
+                        customButton={customButton}
+                        customText={customText}
+                        customTitle={customTitle}
+                        appId={appId}
+                    />
+                    {customSection && customSection}
+                    <AppSection appName={app} />
+                    <ZeroStateFooter appName={app} />
+                </>
+            )}
         </IntlProvider>
     );
 };
 
 export default AppZeroState;
 
-OldAppZeroState.propTypes = {
-    app: propTypes.string,
-    customInstructions: propTypes.any,
-    customButton: propTypes.any,
-    customText: propTypes.string,
-    customTitle: propTypes.string,
-    appId: propTypes.string,
-    children: propTypes.any,
-    fetchSystem: propTypes.bool
-};
-
-NewAppZeroState.propTypes = {
+AppZeroState.propTypes = {
     app: propTypes.string,
     customInstructions: propTypes.any,
     customButton: propTypes.any,
