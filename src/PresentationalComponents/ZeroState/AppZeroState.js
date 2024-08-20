@@ -5,6 +5,7 @@ import ZeroStateFooter from './ZeroStateFooter';
 import propTypes from 'prop-types';
 import { IntlProvider } from '@redhat-cloud-services/frontend-components-translations';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
+import zeroStateAppList from './zeroStateConstants';
 
 const standardApiReq = '/api/inventory/v1/hosts?page=1&per_page=1';
 
@@ -74,6 +75,8 @@ const AppZeroState = ({
 
 export default AppZeroState;
 
+const appNames = Object.keys(zeroStateAppList).map(key => key.split('_')[0]);
+
 AppZeroState.propTypes = {
     children: propTypes.any,
     customInstructions: propTypes.any,
@@ -83,19 +86,5 @@ AppZeroState.propTypes = {
     appId: propTypes.string,
     customFetchResults: propTypes.bool,
     customSection: propTypes.node,
-    app: propTypes.oneOf([
-        'Advisor',
-        'Compliance',
-        'Drift',
-        'Insights',
-        'Content_management',
-        'Policies',
-        'Malware',
-        'Resource_optimization',
-        'Vulnerability',
-        'Images',
-        'Remediations',
-        'Inventory',
-        'Tasks'
-    ])
+    app: propTypes.oneOf(appNames)
 };

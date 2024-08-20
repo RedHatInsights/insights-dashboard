@@ -4,6 +4,7 @@ import React from 'react';
 import AppZeroState from './AppZeroState';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
+import zeroStateAppList from './zeroStateConstants';
 
 jest.mock('@redhat-cloud-services/frontend-components-utilities/interceptors', () => ({
     __esModule: true,
@@ -13,6 +14,9 @@ jest.mock('@redhat-cloud-services/frontend-components-utilities/interceptors', (
     }))
 }));
 
+const appNames = Object.keys(zeroStateAppList).map(key => key.split('_')[0]);
+const randomApp = appNames[Math.floor(Math.random() * appNames.length)];
+
 describe('AppZeroState component', () => {
 
     it('renders zero state if there ARE children but NO systems', async () => {
@@ -20,7 +24,7 @@ describe('AppZeroState component', () => {
             <MemoryRouter initialEntries={['/some-path']}>
                 <Routes>
                     <Route path="/some-path" element={
-                        <AppZeroState app="Advisor" customFetchResults={false}>
+                        <AppZeroState app={randomApp} customFetchResults={false}>
                             <div>
                                 <div>testing here</div>
                             </div>
@@ -39,7 +43,7 @@ describe('AppZeroState component', () => {
             <MemoryRouter initialEntries={['/some-path']}>
                 <Routes>
                     <Route path="/some-path" element={
-                        <AppZeroState app="Advisor" customFetchResults={false}/>
+                        <AppZeroState app={randomApp} customFetchResults={false}/>
                     } />
                 </Routes>
             </MemoryRouter>
@@ -53,7 +57,7 @@ describe('AppZeroState component', () => {
             <MemoryRouter initialEntries={['/some-path']}>
                 <Routes>
                     <Route path="/some-path" element={
-                        <AppZeroState app="Advisor" customFetchResults={false} customSection={<div aria-label='custom-section'>hi</div>}>
+                        <AppZeroState app={randomApp} customFetchResults={false} customSection={<div aria-label='custom-section'>hi</div>}>
                             <div>
                                 <div>testing here</div>
                             </div>
@@ -76,7 +80,7 @@ describe('AppZeroState component', () => {
             <MemoryRouter initialEntries={['/some-path']}>
                 <Routes>
                     <Route path="/some-path" element={
-                        <AppZeroState app="Advisor" customFetchResults={true} customSection={<div aria-label='custom-section'>hi</div>}>
+                        <AppZeroState app={randomApp} customFetchResults={true} customSection={<div aria-label='custom-section'>hi</div>}>
                             <div>
                                 <div>testing here</div>
                             </div>
@@ -100,7 +104,7 @@ describe('AppZeroState component', () => {
             <MemoryRouter initialEntries={['/some-path']}>
                 <Routes>
                     <Route path="/some-path" element={
-                        <AppZeroState app="Advisor" />
+                        <AppZeroState app={randomApp} />
                     } />
                 </Routes>
             </MemoryRouter>
@@ -120,7 +124,7 @@ describe('AppZeroState component', () => {
             <MemoryRouter initialEntries={['/some-path']}>
                 <Routes>
                     <Route path="/some-path" element={
-                        <AppZeroState app="Advisor" >
+                        <AppZeroState app={randomApp} >
                             <div>
                                 <div>testing here</div>
                             </div>
