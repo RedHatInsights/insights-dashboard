@@ -3,14 +3,15 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import AppZeroState from './AppZeroState';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 
-jest.mock(
-    '@redhat-cloud-services/frontend-components-utilities/interceptors',
-    () => ({
-        __esModule: true,
-        useAxiosWithPlatformInterceptors: jest.fn()
-    })
-);
+jest.mock('@redhat-cloud-services/frontend-components-utilities/interceptors', () => ({
+    __esModule: true,
+    useAxiosWithPlatformInterceptors: jest.fn(() => ({
+        get: jest.fn()
+
+    }))
+}));
 
 describe('AppZeroState component', () => {
 
@@ -86,5 +87,55 @@ describe('AppZeroState component', () => {
         );
         const children = await screen.findByText('testing here');
         expect(children).toBeInTheDocument();
+
+        const zeroStateBanner = screen.queryByLabelText('ZeroStateBanner');
+        expect(zeroStateBanner).not.toBeInTheDocument();
     });
+
+    it('DOES render zero state when there are no systems in default request', async () => {
+        const mockedGet = jest.spyOn(useAxiosWithPlatformInterceptors(), 'get')
+        .mockResolvedValue({ data: { total: 0 } });
+
+        render(
+            <MemoryRouter initialEntries={['/some-path']}>
+                <Routes>
+                    <Route path="/some-path" element={
+                        <AppZeroState app="Advisor" />
+                    } />
+                </Routes>
+            </MemoryRouter>
+        );
+
+        const zeroStateBanner = await screen.findByLabelText('ZeroStateBanner');
+        expect(zeroStateBanner).toBeInTheDocument();
+
+        mockedGet.mockRestore();
+    });
+
+    it('DOES NOT render zero state when there ARE systems in default request', async () => {
+        const mockedGet = jest.spyOn(useAxiosWithPlatformInterceptors(), 'get')
+        .mockResolvedValue({ data: { data: { total: 1 } } });
+
+        render(
+            <MemoryRouter initialEntries={['/some-path']}>
+                <Routes>
+                    <Route path="/some-path" element={
+                        <AppZeroState app="Advisor" >
+                            <div>
+                                <div>testing here</div>
+                            </div>
+                        </AppZeroState>
+                    } />
+                </Routes>
+            </MemoryRouter>
+        );
+
+        const children = await screen.findByText('testing here');
+        expect(children).toBeInTheDocument();
+
+        const zeroStateBanner = screen.queryByLabelText('ZeroStateBanner');
+        expect(zeroStateBanner).not.toBeInTheDocument();
+        mockedGet.mockRestore();
+    });
+
 });
