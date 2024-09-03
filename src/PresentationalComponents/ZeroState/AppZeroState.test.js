@@ -98,7 +98,7 @@ describe('AppZeroState component', () => {
 
     it('DOES render zero state when there are no systems in default request', async () => {
         const mockedGet = jest.spyOn(useAxiosWithPlatformInterceptors(), 'get')
-        .mockResolvedValue({ data: { total: 0 } });
+        .mockResolvedValue({ total: 0 });
 
         render(
             <MemoryRouter initialEntries={['/some-path']}>
@@ -118,7 +118,7 @@ describe('AppZeroState component', () => {
 
     it('DOES NOT render zero state when there ARE systems in default request', async () => {
         const mockedGet = jest.spyOn(useAxiosWithPlatformInterceptors(), 'get')
-        .mockResolvedValue({ data: { data: { total: 1 } } });
+        .mockResolvedValue({ total: 1 });
 
         render(
             <MemoryRouter initialEntries={['/some-path']}>
