@@ -47,7 +47,7 @@ const DriftCard = () => {
         startDate: getDate(1),
         endDate: getDate(0)
     });
-    const [isCardExpanded, setIsCardExpanded] = useState(true);
+    const [isCardExpanded, setIsCardExpanded] = useState(JSON.parse(localStorage.getItem('dashboard_expanded_drift') || 'true'));
     const driftEvents = useSelector(({ DashboardStore }) => DashboardStore.driftEvents);
     const driftEventFetchStatus = useSelector(({ DashboardStore }) => DashboardStore.driftEventFetchStatus);
     const fetchDriftData = useCallback((dropDownItem) => {
@@ -69,7 +69,10 @@ const DriftCard = () => {
             className='insd-m-toggle-right-on-md'
             appName='Drift'
             isExpanded={isCardExpanded}
-            isExpandedCallback={setIsCardExpanded}
+            isExpandedCallback={isExpanded => {
+                localStorage.setItem('dashboard_expanded_drift', isExpanded);
+                setIsCardExpanded(isExpanded);
+            }}
             title={
                 <Flex>
                     <FlexItem>
