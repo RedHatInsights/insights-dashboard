@@ -45,7 +45,7 @@ const ZeroStateBanner = ({
     const [registerButton, setRegisterButton] = useState(false);
     const updateRegisterButton = ()=> setRegisterButton(!registerButton);
 
-    return <div className='insd-c-marketing-page warning'>
+    return <div aria-label='ZeroStateBanner' className='insd-c-marketing-page warning'>
         <MarketingBanner
             dark1000
             style={ {

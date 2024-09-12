@@ -63,32 +63,34 @@ const ResourceOptimizationCard = ({
                                                         </InsightsLink>
                                                     </Flex>
                                             }
-                                            <Flex
-                                                direction={{ default: 'column' }}
-                                                spaceItems={{ default: 'spaceItemsNone' }}
-                                                alignItems={{ default: 'alignItemsCenter' }}>
-                                                <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-bold'>
-                                                    {rosIsConfigured.systems_stats.with_suggestions}
-                                                </span>
-                                                <InsightsLink app='ros' to={suggestionsUrl}>
+                                            <InsightsLink app='ros' to={suggestionsUrl}>
+                                                <Flex
+                                                    direction={{ default: 'column' }}
+                                                    spaceItems={{ default: 'spaceItemsNone' }}
+                                                    alignItems={{ default: 'alignItemsCenter' }}
+                                                >
+                                                    <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-normal'>
+                                                        {rosIsConfigured.systems_stats.with_suggestions}
+                                                    </span>
                                                     <span className='pf-v5-u-font-size-sm'>
                                                         {intl.formatMessage(messages.systemsWithSuggestions)}
                                                     </span>
-                                                </InsightsLink>
-                                            </Flex>
-                                            <Flex
-                                                direction={{ default: 'column' }}
-                                                spaceItems={{ default: 'spaceItemsNone' }}
-                                                alignItems={{ default: 'alignItemsCenter' }}>
-                                                <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-bold'>
-                                                    {rosIsConfigured.count}
-                                                </span>
-                                                <InsightsLink app='ros' to={allSystemsUrl}>
+                                                </Flex>
+                                            </InsightsLink>
+                                            <InsightsLink app='ros' to={allSystemsUrl}>
+                                                <Flex
+                                                    direction={{ default: 'column' }}
+                                                    spaceItems={{ default: 'spaceItemsNone' }}
+                                                    alignItems={{ default: 'alignItemsCenter' }}
+                                                >
+                                                    <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-normal'>
+                                                        {rosIsConfigured.count}
+                                                    </span>
                                                     <span className='pf-v5-u-font-size-sm'>
                                                         {intl.formatMessage(messages.totalSystems)}
                                                     </span>
-                                                </InsightsLink>
-                                            </Flex>
+                                                </Flex>
+                                            </InsightsLink>
                                         </Flex>
                                     </Flex>
 

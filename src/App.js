@@ -9,8 +9,8 @@ import { INVENTORY_TOTAL_FETCH_URL } from './AppConstants';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import PageLoading from './PresentationalComponents/PageLoading/PageLoading';
 import { DashboardRoutes } from './DashboardRoutes';
-import ZeroStateWrapper from './PresentationalComponents/ZeroState/AppZeroState';
 import PermissionsProvider from './PresentationalComponents/PermissionsProvider/PermissionsProvider';
+import ZeroState from './PresentationalComponents/ZeroState/ZeroState';
 
 const App = (props) => {
     const chrome = useChrome();
@@ -44,13 +44,7 @@ const App = (props) => {
     return systemsLoading ? <PageLoading />
         : (
             <PermissionsProvider>
-                <ZeroStateWrapper
-                    app='Dashboard'
-                    appId='dashboard'
-                    customFetchResults={hasSystems}
-                >
-                    <DashboardRoutes childProps={ props } />
-                </ZeroStateWrapper>
+                {hasSystems ? <DashboardRoutes childProps={ props } /> : <ZeroState/>}
             </PermissionsProvider>
         );
 };
