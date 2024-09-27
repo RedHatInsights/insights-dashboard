@@ -21,6 +21,7 @@ import RemediationsCard from '../../SmartComponents/Remediations/RemediationsCar
 import Footer from '../../SmartComponents/Footer/Footer';
 import DriftCard from '../../SmartComponents/Drift/DriftCard';
 import './dashboard.scss';
+import { useFeatureFlag } from '../../Utilities/Hooks';
 
 //We will be using this later. commenting out for now.
 const Dashboard = (/*{ workloads }*/) => {
@@ -35,6 +36,7 @@ const Dashboard = (/*{ workloads }*/) => {
     useEffect(()=>{
         chrome.updateDocumentTitle(`Dashboard | RHEL`);
     }, [chrome]);
+    const isDriftSunset = useFeatureFlag('insights.drift.isSunset');
 
     return (<React.Fragment>
         <PageSection isWidthLimited variant={ PageSectionVariants.light } className="insd-c-dashboard-header">
@@ -80,7 +82,7 @@ const Dashboard = (/*{ workloads }*/) => {
                         <ResourceOptimizationCard/>
                     }
 
-                    {permission.drift && permission.notifications
+                    {permission.drift && permission.notifications && !isDriftSunset
                         && <DriftCard/>}
 
                 </Masonry>
