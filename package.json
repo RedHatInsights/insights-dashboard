@@ -54,7 +54,7 @@
     "testEnvironment": "jsdom"
   },
   "dependencies": {
-    "@babel/runtime": "7.15.4",
+    "@babel/runtime": "7.25.6",
     "@patternfly/patternfly": "5.2.1",
     "@patternfly/react-charts": "7.1.2",
     "@patternfly/react-core": "^5.2.3",
