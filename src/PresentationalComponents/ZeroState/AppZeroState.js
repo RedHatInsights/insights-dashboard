@@ -32,7 +32,7 @@ const AppZeroState = ({
                     mounted.current && setHasSystems(customFetchResults);
                 } else {
                     axios.get(`${standardApiReq}`)
-                    .then(({ data }) => {
+                    .then((data) => {
                         mounted.current && setHasSystems(data.total > 0);
                     });
                 }

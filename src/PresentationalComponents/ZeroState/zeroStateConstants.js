@@ -137,63 +137,6 @@ const COMPLIANCE_ZERO_STATE = {
     ]
 };
 
-const DRIFT_ZERO_STATE = {
-    header: {
-        description: 'Drift assists in performing root-cause analysis of issues during troubleshooting. It empowers system administrators to compare and track configuration changes in RHEL systems, define baselines, and ensure systems are compliant.',
-        commands: [
-            { plainText: ' 1. Register your host' },
-            {
-                instructions: 'RHEL 7, 8 and 9:',
-                command: 'subscription-manager register'
-            },
-            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
-            { singleClipboardCommand: 'insights-client --register' },
-            {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
-                partOne: 'Need help? Some systems from different sources require some additional steps. View the',
-                anchorText: 'Client Configuration Guide',
-                partTwo: ' for more details.'
-            },
-            { plainText: ' 2. Select two or more hosts to compare in the Drift UI' }
-
-        ],
-        bulletPoints: [
-            'Compare system configuration over time or to other systems.',
-            'Define baselines as standard configuration systems must adhere to.'
-        ]
-    },
-    otherApps: [
-        {
-            title: 'Policies',
-            description: messages.policiesZeroState,
-            link: '/insights/policies'
-        },
-        {
-            title: 'Advisor',
-            description: messages.advisorZeroState,
-            link: '/insights/advisor'
-        }
-    ],
-    documentation: [
-        {
-            title: 'Comparing System Configurations and Baselines',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest'
-        },
-        {
-            title: 'Drift - Comparison API',
-            link: 'https://console.redhat.com/docs/api/drift'
-        },
-        {
-            title: 'Drift - Baseline API',
-            link: 'https://console.redhat.com/docs/api/system-baseline'
-        },
-        {
-            title: 'Configuring notifications & integration',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
-        }
-    ]
-};
-
 const INSIGHTS_ZERO_STATE = {
     header: {
         description: messages.insightsDescription,
@@ -430,11 +373,6 @@ const RESOURCE_OPTIMIZATION_ZERO_STATE = {
             title: 'Advisor',
             description: messages.advisorZeroState,
             link: '/insights/advisor'
-        },
-        {
-            title: 'Drift',
-            description: messages.driftZeroState,
-            link: '/insights/drift'
         }
     ],
     documentation: [
@@ -703,7 +641,6 @@ const TASKS_ZERO_STATE = {
 export default {
     ADVISOR_ZERO_STATE,
     COMPLIANCE_ZERO_STATE,
-    DRIFT_ZERO_STATE,
     INSIGHTS_ZERO_STATE,
     CONTENT_MANAGEMENT_ZERO_STATE,
     POLICIES_ZERO_STATE,

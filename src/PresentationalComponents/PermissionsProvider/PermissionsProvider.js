@@ -30,8 +30,10 @@ const PermissionsProvider = ({ children }) => {
                         customPolicies: permissionList.includes('custom-policies:*:*'),
                         compliance: permissionList.includes('compliance:*:*'),
                         drift: permissionList.includes('drift:*:*'),
-                        advisor: permissionList.includes('insights:*:*') ||
-                            permissionList.includes('advisor:*:*'),
+                        advisor: permissionList.includes('insights:*:*') || (
+                            (permissionList.includes('inventory:*:read') || permissionList.includes('inventory:hosts:read')) &&
+                            (permissionList.includes('advisor:*:*') || permissionList.includes('advisor:*:read'))
+                        ),
                         remediations: permissionList.includes('remediations:*:*') ||
                             permissionList.includes('remediations:remediation:*') ||
                             permissionList.includes('remediations:remediation:read') ||
