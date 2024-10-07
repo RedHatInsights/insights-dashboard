@@ -450,11 +450,7 @@ export default defineMessages({
         description: 'Learn more about Insights',
         defaultMessage: 'Learn more about Insights'
     },
-    insightsDescription: {
-        id: 'insightsDescription',
-        description: 'insights Description',
-        defaultMessage: 'Single, consistent management solution across on-premise, hybrid cloud, and public cloud. Included with Red Hat Enterprise Linux subscription. Single, consistent management solution across on-premise, hybrid cloud, and public cloud.'
-    },
+    insightsDescription: 'Single, consistent management solution across on-premise, hybrid cloud, and public cloud. Included with Red Hat Enterprise Linux subscription. Single, consistent management solution across on-premise, hybrid cloud, and public cloud.',
     contactsales: {
         id: 'contactsales',
         description: 'Contact sales',

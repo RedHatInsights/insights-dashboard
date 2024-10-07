@@ -4,7 +4,7 @@ import React from 'react';
 import AppZeroState from './AppZeroState';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
-import zeroStateAppList from './zeroStateConstants';
+import { createAppNamesList } from './zeroStateHelpers';
 
 jest.mock('@redhat-cloud-services/frontend-components-utilities/interceptors', () => ({
     __esModule: true,
@@ -14,7 +14,7 @@ jest.mock('@redhat-cloud-services/frontend-components-utilities/interceptors', (
     }))
 }));
 
-const appNames = Object.keys(zeroStateAppList).map(key => key.split('_')[0]);
+const appNames = createAppNamesList();
 const randomApp = appNames[Math.floor(Math.random() * appNames.length)];
 
 describe('AppZeroState component', () => {

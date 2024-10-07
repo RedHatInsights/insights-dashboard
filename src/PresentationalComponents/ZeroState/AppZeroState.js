@@ -5,7 +5,7 @@ import ZeroStateFooter from './ZeroStateFooter';
 import propTypes from 'prop-types';
 import { IntlProvider } from '@redhat-cloud-services/frontend-components-translations';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
-import zeroStateAppList from './zeroStateConstants';
+import { createAppNamesList } from './zeroStateHelpers';
 
 const standardApiReq = '/api/inventory/v1/hosts?page=1&per_page=1';
 
@@ -75,7 +75,7 @@ const AppZeroState = ({
 
 export default AppZeroState;
 
-const appNames = Object.keys(zeroStateAppList).map(key => key.split('_')[0]);
+const appNames = createAppNamesList();
 
 AppZeroState.propTypes = {
     children: propTypes.any,
