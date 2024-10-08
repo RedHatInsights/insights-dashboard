@@ -157,7 +157,8 @@ const INSIGHTS_ZERO_STATE = {
         ],
         bulletPoints: ['What problems do we solve', 'What solution do we provide']
     },
-    otherApps: {}
+    otherApps: [],
+    documentation: []
 };
 
 const CONTENT_MANAGEMENT_ZERO_STATE = {

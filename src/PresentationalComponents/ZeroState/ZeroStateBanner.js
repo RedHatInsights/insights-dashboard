@@ -22,15 +22,15 @@ import zeroStateConstants from './zeroStateConstants';
 
 const ZeroStateBanner = ({
     appName,
-    description = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.description,
-    commands = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.commands,
-    bulletPoints = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.bulletPoints,
     customInstructions,
     customButton,
     customText,
     customTitle,
     appId
 }) => {
+    const description = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.description;
+    const commands = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.commands;
+    const bulletPoints = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.bulletPoints;
     const intl = useIntl();
     const { hideGlobalFilter } = useChrome();
 
