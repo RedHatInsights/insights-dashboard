@@ -92,11 +92,6 @@ export const fetchRosIsConfigured = (options) => ({
     payload: fetchData(ActionTypes.ROS_IS_CONFIGURED_FETCH_URL, {}, options)
 });
 
-export const fetchDrift = (options) => ({
-    type: ActionTypes.DRIFT_EVENTS_PAYLOAD_FETCH,
-    payload: fetchData(ActionTypes.DRIFT_EVENTS_PAYLOAD_FETCH_URL, {}, options)
-});
-
 export const setSelectedTags = (tags) => ({
     type: ActionTypes.SELECTED_TAGS_SET,
     payload: tags

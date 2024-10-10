@@ -10,7 +10,6 @@ const PermissionsProvider = ({ children }) => {
     const [permissions, setPermissions] = useState({
         customPolicies: false,
         compliance: false,
-        drift: false,
         advisor: false,
         remediations: false,
         patch: false,
@@ -29,7 +28,6 @@ const PermissionsProvider = ({ children }) => {
                     setPermissions({
                         customPolicies: permissionList.includes('custom-policies:*:*'),
                         compliance: permissionList.includes('compliance:*:*'),
-                        drift: permissionList.includes('drift:*:*'),
                         advisor: permissionList.includes('insights:*:*') || (
                             (permissionList.includes('inventory:*:read') || permissionList.includes('inventory:hosts:read')) &&
                             (permissionList.includes('advisor:*:*') || permissionList.includes('advisor:*:read'))
@@ -60,7 +58,6 @@ const PermissionsProvider = ({ children }) => {
             value={ {
                 customPolicies: permissions.customPolicies,
                 compliance: permissions.compliance,
-                drift: permissions.drift,
                 advisor: permissions.advisor,
                 remediations: permissions.remediations,
                 patch: permissions.patch,

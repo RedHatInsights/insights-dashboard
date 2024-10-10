@@ -735,81 +735,7 @@ export default defineMessages({
         description: 'exploitedCveTooltip',
         defaultMessage: 'These CVEs are identified with a "Known Exploit" flag because Red Hat has determined that there are known examples of exploits for this particular CVEs. It does not reflect your environment. CVEs with this label should be addressed with higher priority.'
     },
-    driftNumberOfEvents: {
-        id: 'driftNumOfEvents',
-        description: 'driftNumOfEvents',
-        defaultMessage: 'Number of drift events received'
-    },
-    driftCardAppName: {
-        id: 'driftCardAppName',
-        description: 'driftCardAppName',
-        defaultMessage: 'Drift'
-    },
-    driftCardTitle: {
-        id: 'driftCardTitle',
-        description: 'driftCardTitle',
-        defaultMessage: 'Latest configuration drift'
-    },
-    driftTop5: {
-        id: 'driftTop5',
-        description: 'driftTop5',
-        defaultMessage: 'Top 5 baselines with most drift'
-    },
-    driftEmptyStateTitle: {
-        id: 'driftEmptyStateTitle',
-        description: 'driftEmptyStateTitle',
-        defaultMessage: 'No drifts from baselines found'
-    },
-    driftEmptyStateBodyCreateBaseline: {
-        id: 'driftEmptyStateBodyCreateBaseline',
-        description: 'driftEmptyStateBodyCreateBaseline',
-        defaultMessage: 'You can create baselines and associate systems to it.'
-    },
-    driftEmptyStateBodyEnableNotif: {
-        id: 'driftEmptyStateBodyEnableNotif',
-        description: 'driftEmptyStateBodyEnableNotif',
-        defaultMessage: 'Note that drift notifications must be enabled to get the dashboard populated.'
-    },
-    driftInventigateButtton: {
-        id: 'driftInvestigateButton',
-        description: 'driftInvestigateButton',
-        defaultMessage: 'Investigate in Drift'
-    },
-    driftDropDown90days: {
-        id: 'driftDropdown90days',
-        description: 'driftDropdown90days',
-        defaultMessage: 'Last 90 days'
-    },
-    driftDropDown30days: {
-        id: 'driftDropdown30days',
-        description: 'driftDropdown30days',
-        defaultMessage: 'Last 30 days'
-    },
-    driftDropDown7days: {
-        id: 'driftDropdown7days',
-        description: 'driftDropdown7days',
-        defaultMessage: 'Last 7 days'
-    },
-    driftDropDown24hours: {
-        id: 'driftDropdown24hours',
-        description: 'driftDropdown24hours',
-        defaultMessage: 'Last 24 hours'
-    },
-    driftSystems: {
-        id: 'driftSystems',
-        description: 'driftSystems',
-        defaultMessage: '{systems, plural, =0 {No systems} one {# system} other {# systems}}'
-    },
-    driftCompare: {
-        id: 'driftCompare',
-        description: 'driftCompare',
-        defaultMessage: 'Compare'
-    },
-    driftCompareTooltip: {
-        id: 'driftCompareTooltip',
-        description: 'driftCompareTooltip',
-        defaultMessage: 'This will compare the baseline with up to 4 systems'
-    },
+
     configureIntegrations: {
         id: 'configureIntigrations',
         description: 'configureIntigrations button label',
@@ -826,11 +752,6 @@ export default defineMessages({
         id: 'complianceZeroState',
         description: 'Zero state description for Compliance app',
         defaultMessage: 'Monitor regulatory compliance policies of registered RHEL systems you must adhere to via OpenSCAP.'
-    },
-    driftZeroState: {
-        id: 'driftZeroState',
-        description: 'Zero state description for Drift app',
-        defaultMessage: 'Drift assists in performing root-cause analysis of issues during troubleshooting. It empowers system administrators to compare and track configuration changes in RHEL systems, define baselines, and ensure systems are compliant.'
     },
     imageBuilderZeroState: {
         id: 'imageBuilderZeroState',
