@@ -79,11 +79,3 @@ export const ROS_IS_CONFIGURED_FETCH_URL = `${BASE_URL}${ROS_BASE}/is_configured
 // Workloads Constants
 export const SAP_FETCH_URL = `${BASE_URL}/inventory/v1/system_profile/sap_system`;
 
-// Drift Constants
-export const DRIFT_EVENTS_PAYLOAD_FETCH_URL = `${BASE_URL}/notifications/v1.0/notifications/events`;
-export const DRIFT_EVENTS_PAYLOAD_FETCH = 'DRIFT_EVENTS_PAYLOAD_FETCH';
-export const DRIFT_URL = `${UI_BASE}/drift`;
-export const DRIFT_BASELINES_URL = `${DRIFT_URL}/baselines`;
-export const TOP_BASELINES = 5;
-export const SYSTEMS_LIMIT = 4;
-
