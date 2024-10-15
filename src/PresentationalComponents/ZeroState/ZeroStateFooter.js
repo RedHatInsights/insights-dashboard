@@ -91,7 +91,7 @@ const ZeroStateFooter = ({
                                 <a
                                     target='_blank'
                                     rel='noreferrer'
-                                    href='/edge'>Edge Managment</a>
+                                    href='/edge'>Edge Management</a>
                             </FlexItem>
                             <FlexItem>
                                 <a
