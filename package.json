@@ -63,7 +63,7 @@
     "@patternfly/react-tokens": "^5.1.2",
     "@redhat-cloud-services/frontend-components": "^4.2.10",
     "@redhat-cloud-services/frontend-components-notifications": "^4.1.0",
-    "@redhat-cloud-services/frontend-components-translations": "^3.2.7",
+    "@redhat-cloud-services/frontend-components-translations": "^3.2.9",
     "@redhat-cloud-services/frontend-components-utilities": "4.0.2",
     "@unleash/proxy-client-react": "^4.1.2",
     "classnames": "2.3.1",
