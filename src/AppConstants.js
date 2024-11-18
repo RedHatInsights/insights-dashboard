@@ -15,8 +15,7 @@ export const SEVERITY_MAP = {
 
 // Compliance App Constants
 export const COMPLIANCE_FETCH = 'COMPLIANCE_SUMMARY_FETCH';
-export const COMPLIANCE_SEARCH = encodeURIComponent('(has_policy_test_results=true AND external=false) OR (has_policy=false AND has_test_results=true)');
-export const COMPLIANCE_FETCH_URL = `${BASE_URL}/compliance/profiles?search=${COMPLIANCE_SEARCH}`;
+export const COMPLIANCE_FETCH_URL = `${BASE_URL}/compliance/v2/reports?filter=with_reported_systems=true`;
 
 // Vulnerability App Constants
 const VULN_BASE = '/vulnerability/v1';
