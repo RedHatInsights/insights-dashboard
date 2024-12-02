@@ -42,7 +42,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
         * Returns the first two -- if there are at least two entries -- items as a shallow copy of
         * complianceSummary
         */
-    const getTopThreePolicies = function (compliance) {
+    const getTopThreeReports = function (compliance) {
         const complianceTopThree = compliance.data.length > 1 ? compliance.data.slice(0, 3) :
             compliance.data.slice();
 
@@ -70,7 +70,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                 (Array.isArray(complianceSummary.data) &&
                                     (complianceSummary.data.length > 0 ? <React.Fragment>
                                         <DataList className='insd-m-no-padding insd-m-no-top-border' isCompact>
-                                            {getTopThreePolicies(complianceSummary).map((policy, index) =>
+                                            {getTopThreeReports(complianceSummary).map((report, index) =>
                                                 <DataListItem key={ index }>
                                                     <DataListItemRow>
                                                         <DataListItemCells
@@ -82,33 +82,26 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                                     >
                                                                         <InsightsLink
                                                                             app='compliance'
-                                                                            to={`/reports/${policy.id}`}
+                                                                            to={`/reports/${report.id}`}
                                                                             className='ins-c-compliance__policy-link
                                                                             pf-v5-c-button pf-m-link pf-m-inline'
                                                                             id={ `compliance-link-${index + 1}` }
                                                                         >
-                                                                            {policy.attributes.name}
+                                                                            {report.title}
                                                                         </InsightsLink>
                                                                         <Flex>
                                                                             <FlexItem flex={ { default: 'flex_1' } }>
-                                                                                <p>RHEL { policy.attributes.os_version }</p>
+                                                                                <p>RHEL { report.os_major_version }</p>
                                                                             </FlexItem>
                                                                             <Flex flex={{ default: 'None' }}>
                                                                                 <FlexItem>
                                                                                     {intl.formatMessage(messages.compliantHostCount,
-                                                                                        { count: policy.attributes.test_result_host_count }
+                                                                                        { count: report.reported_system_count }
                                                                                     )}
                                                                                 </FlexItem>
                                                                                 <FlexItem>
                                                                                     {intl.formatMessage(messages.compliantScore,
-                                                                                        {
-                                                                                            score: +(policy.attributes.test_result_host_count &&
-                                                                                                (100 * (
-                                                                                                    policy.attributes.compliant_host_count /
-                                                                                                    policy.attributes.test_result_host_count
-                                                                                                ))
-                                                                                            ).toFixed(1)
-                                                                                        }
+                                                                                        { score: report.percent_compliant }
                                                                                     )}
                                                                                 </FlexItem>
                                                                             </Flex>
