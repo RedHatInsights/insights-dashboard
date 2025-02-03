@@ -15,8 +15,6 @@ jobs:
       script: npm run test && npm run test:ct && npm run coverage
 env:
   global:
-  - REPO="git@github.com:RedHatInsights/insights-dashboard-build"
-  - REPO_DIR="insights-dashboard-build"
   - BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
   - NODE_OPTIONS="--max-old-space-size=4096 --max_old_space_size=4096"
 cache:
