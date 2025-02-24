@@ -17,7 +17,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .DS_Store
-coverage
 
 ## build stuff
 build
@@ -27,9 +26,10 @@ cypress/downloads
 cypress/screenshots
 cypress/videos
 
-codecov*
 .nyc_output/
-reports/
+codecov
+coverage/*
+coverage-*
 
 # cache
 .cache/
