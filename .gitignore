@@ -27,7 +27,7 @@ cypress/screenshots
 cypress/videos
 
 .nyc_output/
-codecov
+coverage
 coverage/*
 coverage-*
 
