@@ -38,7 +38,8 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
-      "!**/node_modules/**"
+      "!**/node_modules/**",
+      "!src/**/*.cy.js"
     ],
     "coverageDirectory": "coverage-jest",
     "moduleNameMapper": {
