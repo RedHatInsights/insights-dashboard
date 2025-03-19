@@ -1,0 +1,55 @@
+{
+    "meta": {
+        "count": 4
+    },
+    "links": {
+        "first": "/api/insights/v1/rule/?impacting=true&incident=true&limit=1&offset=0",
+        "next": "/api/insights/v1/rule/?impacting=true&incident=true&limit=1&offset=1",
+        "previous": "/api/insights/v1/rule/?impacting=true&incident=true&limit=1&offset=0",
+        "last": "/api/insights/v1/rule/?impacting=true&incident=true&limit=1&offset=3"
+    },
+    "data": [
+        {
+            "rule_id": "ae_eol|AE_EOL_ERROR",
+            "created_at": "2024-06-20T08:33:10.144017Z",
+            "updated_at": "2025-03-07T08:33:28.746553Z",
+            "description": "Red Hat has discontinued technical support services as well as software maintenance services for the End-Of-Life Ansible Engine",
+            "active": true,
+            "category": {
+                "id": 1,
+                "name": "Availability"
+            },
+            "impact": {
+                "name": "Unsupported Software",
+                "impact": 3
+            },
+            "likelihood": 4,
+            "node_id": "",
+            "tags": "ansible incident",
+            "playbook_count": 0,
+            "reboot_required": false,
+            "publish_date": "2021-05-19T03:03:00Z",
+            "summary": "This Ansible Engine has exceeded its End-of-Life. Red Hat has discontinued technical support services as well as software maintenance services for it.\n",
+            "generic": "This Ansible Engine has exceeded its End-of-Life. Red Hat has discontinued technical support services as well as software maintenance services for it.\n",
+            "reason": "The following Red Hat product{{?Object.keys(pydata.product).length>1}}s{{?}}\ninstalled on this host {{?Object.keys(pydata.product).length>1}}have{{??}}has{{?}} exceeded the End-Of-Life(EOL). As per the related life cycle policy, Red Hat has discontinued technical support services as well as software maintenance services for {{?Object.keys(pydata.product).length>1}}them{{??}}it{{?}}.\n\n{{ for (var idx in pydata.product) { }}\n* The **{{=pydata.product[idx]['name']}} {{=pydata.product[idx]['version']}}** exceeded the **{{=pydata.product[idx]['phase']}}** phase (``{{=pydata.product[idx]['eol']}}``) for ``{{=pydata.product[idx]['days']}}`` day{{?pydata.product[idx]['days']>1}}s{{?}}\n\n  See [{{=pydata.product[idx]['name']}} Life Cycle Policy]({{=pydata.brief[pydata.product[idx]['name']]}})\n{{ } }}\n",
+            "more_info": "For more information regarding Red Hat product life cycles, refer to:\n- [Life Cycle and Update Policies](https://access.redhat.com/support/policy/update_policies).\n- [Product Life Cycles](https://access.redhat.com/product-life-cycles).\n{{? \"upgrade_satellite_to\" in pydata}}\nFor Redis on Satellite, refer to:\n- [Redis 6 not installed by default while installing Red Hat Satellite 6](https://access.redhat.com/solutions/6978060.)\n{{?}}\n",
+            "impacted_systems_count": 70,
+            "reports_shown": true,
+            "rule_status": "enabled",
+            "resolution_set": [
+                {
+                    "system_type": 105,
+                    "resolution": "Red Hat recommends that you upgrade the following product{{?Object.keys(pydata.product).length>1}}s{{?}} to the current supported version.\n{{? \"upgrade_satellite_to\" in pydata}}\nKindly upgrade your satellite to {{=pydata.upgrade_satellite_to}} in order to remediate this issue.\n{{??}}\n{{ for (var idx in pydata.brief) { }}\n* {{=idx}}\n\n  Check the [{{=idx}} Life Cycle Policy]({{=pydata.brief[idx]}}) for details.\n{{ } }}\n{{?}}\n\n\nAfter applying the remediation, refresh the results of Advisor analysis by running the `insights-client` command on the system. \n~~~ \n# insights-client \n~~~ \n",
+                    "resolution_risk": {
+                        "name": "Upgrade Product",
+                        "risk": 3
+                    },
+                    "has_playbook": false
+                }
+            ],
+            "total_risk": 3,
+            "hosts_acked_count": 0,
+            "rating": 0
+        }
+    ]
+}

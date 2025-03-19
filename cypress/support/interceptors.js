@@ -1,7 +1,10 @@
 /* eslint-disable camelcase */
 import { DEFAULT_ROW_COUNT } from '@redhat-cloud-services/frontend-components-utilities';
 import hostsFixtures from '../fixtures/hosts.json';
-import dashboardFixtures from '../fixtures/vulnerabilityDashboard.json';
+import vulnerabilityDashboardFixtures from '../fixtures/vulnerabilityDashboard.json';
+import advisorRulesDashboardFixtures from '../fixtures/advisorRulesDashboard.json';
+import advisorRuleDashboardFixtures from '../fixtures/advisorRuleDashboard.json';
+import advisorSystemsDashboardFixtures from '../fixtures/advisorSystemsDashboard.json';
 import cvesFixtures from '../fixtures/vulnerabilityCves.json';
 import edgeFixtures from '../fixtures/edgeHosts.json';
 import featureFlags from '../fixtures/featureFlags.json';
@@ -54,7 +57,7 @@ export const unleashInterceptors = {
 };
 
 export const vulnerabilityInterceptors = {
-    successful: (fixtures = dashboardFixtures) => {
+    successful: (fixtures = vulnerabilityDashboardFixtures) => {
         cy.intercept('GET', '/api/vulnerability/v1/dashboard*', {
             statusCode: 200,
             body: fixtures
@@ -64,7 +67,7 @@ export const vulnerabilityInterceptors = {
         cy.intercept('GET', '/api/vulnerability/v1/dashboard*', {
             statusCode: 200,
             body: {
-                cves_by_severity: dashboardFixtures.cves_by_severity,
+                cves_by_severity: vulnerabilityDashboardFixtures.cves_by_severity,
                 cves_total: 0,
                 exploited_cves_count: 0,
                 meta: {
@@ -113,6 +116,27 @@ export const vulnerabilityInterceptors = {
         }).as('getCVES');
     }
 };
+
+export const advisorInterceptors = {
+    rules: (fixtures = advisorRulesDashboardFixtures) => {
+        cy.intercept('GET', '/api/insights/v1/stats/rules*', {
+            statusCode: 200,
+            body: fixtures
+        }).as('getAdvisorRulesDashboard');
+    },
+    systems: (fixtures = advisorSystemsDashboardFixtures) => {
+        cy.intercept('GET', 'api/insights/v1/stats/systems*', {
+            statusCode: 200,
+            body: fixtures
+        }).as('getAvisorSystemsDashboard');
+    },
+    rule: (fixtures = advisorRuleDashboardFixtures) => {
+        cy.intercept('GET', 'api/insights/v1/rule/?impacting=true&limit=1&incident=true', {
+            statusCode: 200,
+            body: fixtures
+        }).as('getAdvisorRuleDashboard');
+    }
+}
 
 export const featureFlagsInterceptors = {
     edgeParityEnabled: () => {
