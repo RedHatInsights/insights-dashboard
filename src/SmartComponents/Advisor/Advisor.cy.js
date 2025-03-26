@@ -14,6 +14,15 @@ const breakpointColumnsObj = {
     default: 2,
     992: 1
 };
+const CRITICAL_RECOMMENDATIONS_NUM = 3;
+const IMPORTANT_RECOMMENDATIONS_NUM = 16;
+const MODERATE_RECOMMENDATIONS_NUM = 10;
+const LOW_RECOMMENDATIONS_NUM = 0;
+const INCIDENTS_DETECTED_NUM = 4;
+const AVAILABILITY_RECOMMENDATIONS_NUM = 18;
+const STABILITY_RECOMMENDATIONS_NUM = 4;
+const PERFORMANCE_RECOMMENDATIONS_NUM = 2;
+const SECURITY_RECOMMENDATIONS_NUM = 5;
 
 const MountAdvisorCard = () => {
     return (
@@ -43,37 +52,19 @@ describe('Advisor component renders', () => {
 
     it('The count is correct', () => {
         // Advisor recommendations section
-        cy.get('span:contains("incidents detected")').invoke('text').should((text) => {
-            expect(parseInt(text.split(' ')[0].trim(), 10)).to.equal(4);
-        });
+        cy.get('span:contains("incidents detected")').first().should('include.text', INCIDENTS_DETECTED_NUM);
 
         // Recommendations by total risk section
-        cy.get('a:contains("Critical")').find('span').first().invoke('text').should((text) => {
-            expect(parseInt(text.trim(), 10)).to.equal(3);
-        });
-        cy.get('a:contains("Important")').find('span').first().invoke('text').should((text) => {
-            expect(parseInt(text.trim(), 10)).to.equal(16);
-        });
-        cy.get('a:contains("Moderate")').find('span').first().invoke('text').should((text) => {
-            expect(parseInt(text.trim(), 10)).to.equal(10);
-        });
-        cy.get('a:contains("Low")').find('span').first().invoke('text').should((text) => {
-            expect(parseInt(text.trim(), 10)).to.equal(0);
-        });
+        cy.get('a:contains("Critical")').find('span').first().should('have.text', CRITICAL_RECOMMENDATIONS_NUM);
+        cy.get('a:contains("Important")').find('span').first().should('have.text', IMPORTANT_RECOMMENDATIONS_NUM);
+        cy.get('a:contains("Moderate")').find('span').first().should('have.text', MODERATE_RECOMMENDATIONS_NUM);
+        cy.get('a:contains("Low")').find('span').first().should('have.text', LOW_RECOMMENDATIONS_NUM);
 
         // Recommendations by category section
-        cy.get('a:contains("Availability")').find('span').eq(1).invoke('text').should((text) => {
-            expect(parseInt(text.split(' ')[0].trim(), 10)).to.equal(18);
-        });
-        cy.get('a:contains("Stability")').find('span').eq(1).invoke('text').should((text) => {
-            expect(parseInt(text.split(' ')[0].trim(), 10)).to.equal(4);
-        });
-        cy.get('a:contains("Performance")').find('span').eq(1).invoke('text').should((text) => {
-            expect(parseInt(text.split(' ')[0].trim(), 10)).to.equal(2);
-        });
-        cy.get('a:contains("Security")').find('span').eq(1).invoke('text').should((text) => {
-            expect(parseInt(text.split(' ')[0].trim(), 10)).to.equal(5);
-        });
+        cy.get('a:contains("Availability")').find('span').eq(1).should('include.text', AVAILABILITY_RECOMMENDATIONS_NUM);
+        cy.get('a:contains("Stability")').find('span').eq(1).should('include.text', STABILITY_RECOMMENDATIONS_NUM);
+        cy.get('a:contains("Performance")').find('span').eq(1).should('include.text', PERFORMANCE_RECOMMENDATIONS_NUM);
+        cy.get('a:contains("Security")').find('span').eq(1).should('include.text', SECURITY_RECOMMENDATIONS_NUM);
     });
 
     it('Check that links point to the right URLs.', () => {
