@@ -30,7 +30,10 @@ import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLin
 
 const ZeroState = () => {
     const intl = useIntl();
+    const getEnvironment = useChrome();
+    const isItLessEnv = getEnvironment() === 'ephem' || 'int' || 'frhStage' || 'frh';
     const { hideGlobalFilter } = useChrome();
+    // eslint-disable-next-line max-len
 
     useEffect(() => {
         hideGlobalFilter?.();
@@ -71,7 +74,7 @@ const ZeroState = () => {
                                     component='a'
                                     variant='primary'
                                     style={{ color: 'white' }}
-                                    href={ `${UI_BASE}/registration` }>
+                                    href={ isItLessEnv ? `${UI_BASE}/satellite` : `${UI_BASE}/registration` }>
                                     {intl.formatMessage(messages.registerYourSystems)}
                                 </Button>
                             </InsightsLink>
