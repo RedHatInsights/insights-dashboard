@@ -33,7 +33,6 @@ const ZeroState = () => {
     const getEnvironment = useChrome();
     const isItLessEnv = getEnvironment() === 'ephem' || 'int' || 'frhStage' || 'frh';
     const { hideGlobalFilter } = useChrome();
-    // eslint-disable-next-line max-len
 
     useEffect(() => {
         hideGlobalFilter?.();
