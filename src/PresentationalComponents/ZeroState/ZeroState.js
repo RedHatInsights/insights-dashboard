@@ -27,11 +27,11 @@ import { useIntl } from 'react-intl';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
+import { useFlag } from '@unleash/proxy-client-react';
 
 const ZeroState = () => {
     const intl = useIntl();
-    const getEnvironment = useChrome();
-    const isItLessEnv = getEnvironment() === 'ephem' || 'int' || 'frhStage' || 'frh';
+    const isItLess = useFlag('insights-dashboard-itless');
     const { hideGlobalFilter } = useChrome();
 
     useEffect(() => {
@@ -73,7 +73,7 @@ const ZeroState = () => {
                                     component='a'
                                     variant='primary'
                                     style={{ color: 'white' }}
-                                    href={ isItLessEnv ? `${UI_BASE}/satellite` : `${UI_BASE}/registration` }>
+                                    href={ isItLess ? `${UI_BASE}/satellite` : `${UI_BASE}/registration` }>
                                     {intl.formatMessage(messages.registerYourSystems)}
                                 </Button>
                             </InsightsLink>
