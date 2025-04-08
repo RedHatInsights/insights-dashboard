@@ -1,16 +1,16 @@
 module.exports = {
-    "presets": [
-        "@babel/env",
-        "@babel/react",
+    presets: [
+        '@babel/env',
+        '@babel/react'
     ],
-    "plugins": [
-        "@babel/plugin-transform-runtime",
+    plugins: [
+        '@babel/plugin-transform-runtime'
     ],
-    "env": {
-      "componentTest": {
-        plugins: [
-          "istanbul"
-        ]
-      }
+    env: {
+        componentTest: {
+            plugins: [
+                'istanbul'
+            ]
+        }
     }
-}
+};
