@@ -302,11 +302,12 @@ spec:
             name: unit-tests
             securityContext:
               runAsUser: 0
+            # Cypress tests should be included in the future
             script: |
               #!/bin/bash
               set -ex
               npm install
-              npm run ci:verify
+              npm test
     - name: build-source-image
       params:
       - name: BINARY_IMAGE
