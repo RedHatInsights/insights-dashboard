@@ -31,6 +31,7 @@
     "translations": "npm-run-all translations:*",
     "translations:extract": "npx formatjs extract ./src/*.js --out-file ./build/messages/src/Messages.json",
     "translations:compile": "npx formatjs compile ./build/messages/src/Messages.json --out-file ./locales/translations.json",
+    "travis:verify": "npm run test:coverage",
     "ci:verify": "npm run test:coverage",
     "verify": "npm-run-all build lint test"
   },

@@ -270,9 +270,9 @@ spec:
       description: Validates frontend unit tests
       params:
         - name: SOURCE_ARTIFACT
-          value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
+          value: $(tasks.clone-repository.results.SOURCE_ARTIFACT)
       runAfter:
-        - prefetch-dependencies
+        - clone-repository
       workspaces:
       - name: basic-auth
         workspace: git-auth
@@ -300,20 +300,13 @@ spec:
           - image: registry.access.redhat.com/ubi8/nodejs-20
             workingDir: /var/workdir
             name: unit-tests
-            # computeResources:
-            #   requests:
-            #     memory: 4Gi
-            #     cpu: 500m
-            #   limits:
-            #     memory: 8Gi
-            #     cpu: 1000m
             securityContext:
               runAsUser: 0
             script: |
               #!/bin/bash
               set -ex
               npm install
-              npm test
+              npm run ci:verify
     - name: build-source-image
       params:
       - name: BINARY_IMAGE
