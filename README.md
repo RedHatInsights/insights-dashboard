@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/RedHatInsights/insights-dashboard.svg?branch=master)](https://travis-ci.org/RedHatInsights/insights-dashboard) [![codecov](https://codecov.io/gh/RedHatInsights/insights-dashboard/branch/master/graph/badge.svg)](https://codecov.io/gh/RedHatInsights/insights-dashboard)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/RedhatInsights/insights-dashboard/test.yml?branch=master)](https://github.com/RedHatInsights/insights-dashboard/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/RedHatInsights/insights-dashboard/branch/master/graph/badge.svg)](https://codecov.io/gh/RedHatInsights/insights-dashboard)
 
 
 # insights-dashboard
