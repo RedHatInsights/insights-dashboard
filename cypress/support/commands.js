@@ -29,7 +29,7 @@ import { Provider } from 'react-redux';
 import { init } from '../../src/Store';
 import messages from '../../locales/data.json';
 import IntlProvider from '@redhat-cloud-services/frontend-components-translations/Provider';
-import { mount } from '@cypress/react18';
+import { mount } from 'cypress/react';
 import FlagProvider from '@unleash/proxy-client-react';
 
 Cypress.Commands.add('mountWithContext', (Component, props) => {
