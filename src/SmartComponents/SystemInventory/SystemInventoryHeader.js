@@ -26,7 +26,6 @@ import { useIntl } from 'react-intl';
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook/RBACHook';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 import { Link } from 'react-router-dom';
-import { EdgeDevicesWarning } from './EdgeDevicesWarning';
 import { useBatchInventoryFetch } from '../../Utilities/useBatchInventoryFetch';
 
 /**
@@ -63,7 +62,6 @@ const SystemInventoryHeader = ({
                     description={ <div>{intl.formatMessage(messages.systemInventoryNoAccess)}</div> }
                 /> :
                 <React.Fragment>
-                    <EdgeDevicesWarning />
                     {!error ?
                         <Flex spaceItems={ { md: 'spaceItemsXl' } }
                             alignItems={ { md: 'alignItemsCenter' } }
@@ -162,9 +160,6 @@ const SystemInventoryHeader = ({
 };
 
 SystemInventoryHeader.propTypes = {
-    fetchEdgeTotal: PropTypes.func,
-    edgeTotalSummary: PropTypes.object,
-    edgeTotalFetchStatus: PropTypes.string,
     intl: PropTypes.any,
     selectedTags: PropTypes.arrayOf(PropTypes.string),
     workloads: workloadsPropType,
