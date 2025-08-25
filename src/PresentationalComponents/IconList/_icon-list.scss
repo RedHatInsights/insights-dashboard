@@ -1,8 +1,8 @@
-@import "~@patternfly/patternfly/sass-utilities/_all.scss";
+@import "~@patternfly/patternfly/sass-utilities";
 
 .insd-c-icon-list {
-  --insd-c-icon-list--RowGap: var(--pf-v5-global--spacer--lg);
-  --insd-c-icon-list--item--ColumnGap: var(--pf-v5-global--spacer--md);
+  --insd-c-icon-list--RowGap: var(--pf-t--global--spacer--lg);
+  --insd-c-icon-list--item--ColumnGap: var(--pf-t--global--spacer--md);
   --insd-c-icon-list--item--before--Content--width: 1rem;
   --insd-c-icon-list--item--before--Content--height: 1rem;
   --insd-c-icon-list--item--before--Content--url: "../../images/icon__plus-solid.svg";
@@ -22,7 +22,7 @@
       content: url(../../images/icon__plus-solid.svg);
       width: var(--insd-c-icon-list--item--before--Content--width);
       height: var(--insd-c-icon-list--item--before--Content--height);
-      color: var(--pf-v5-global--palette-red--100);
+      color: var(--pf-t--color--red--50);
       transform: translateY(2px);
     }
   }

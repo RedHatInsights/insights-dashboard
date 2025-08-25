@@ -39,7 +39,7 @@ const App = (props) => {
             chrome.hideGlobalFilter();
             setSystemsLoading(false);
         });
-    }, []);
+    }, [chrome, dispatch]);
 
     return systemsLoading ? <PageLoading />
         : (

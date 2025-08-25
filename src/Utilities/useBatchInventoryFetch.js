@@ -45,7 +45,7 @@ export const useBatchInventoryFetch = (workloads, SID, selectedTags, hasAccess) 
         return () => {
             mounted.current = false;
         };
-    }, [workloads, SID, selectedTags, hasAccess]);
+    }, [workloads, SID, selectedTags, hasAccess, axios]);
 
     return [
         isLoading,

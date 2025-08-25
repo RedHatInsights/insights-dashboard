@@ -9,7 +9,7 @@ const AppSection = ({ appName }) => {
     const appSectionList = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].otherApps;
 
     return (
-        <PageSection isWidthLimited>
+        <PageSection hasBodyWrapper isWidthLimited>
             <Card>
                 <CardTitle>
                     <Title headingLevel='h3'>

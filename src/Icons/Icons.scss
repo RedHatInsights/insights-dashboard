@@ -1,9 +1,9 @@
 .insd-c-dashboard {
     &__icon {
-        &-finished { fill: var(--pf-v5-global--success-color--200); }
-        &-running { fill: var(--pf-v5-global--primary-color--100); }
-        &-warning { fill: var(--pf-v5-global--warning-color--100); }
-        &-critical { fill: var(--pf-v5-global--danger-color--100); }
-        &-info { fill: var(--pf-v5-global--info-color--100); }
+        &-finished { fill: var(--pf-t--global--icon--color--status--success--default); }
+        &-running { fill: var(--pf-t--global--icon--color--status--custom--default); }
+        &-warning { fill: var(--pf-t--global--icon--color--status--warning--default); }
+        &-critical { fill: var(--pf-t--global--icon--color--status--danger--default); }
+        &-info { fill: var(--pf-t--global--icon--color--status--info--default); }
     }
 }

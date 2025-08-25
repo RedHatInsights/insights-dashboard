@@ -1,8 +1,11 @@
 import './PieChartTemplate.scss';
 
-import { ChartLabel } from '@patternfly/react-charts/dist/esm/components/ChartLabel/ChartLabel';
-import { ChartLegend } from '@patternfly/react-charts/dist/esm/components/ChartLegend/ChartLegend';
-import { ChartPie } from '@patternfly/react-charts/dist/esm/components/ChartPie/ChartPie';
+import {
+    ChartLabel,
+    ChartLegend,
+    ChartPie
+} from '@patternfly/react-charts/victory';
+
 import React from 'react';
 import propTypes from 'prop-types';
 
@@ -10,7 +13,7 @@ export const PieChart = ({ ariaDesc, ariaTitle, constrainToVisibleArea, data, le
     colorScale, legend, legendWidth, legendHeight, legendClick }) => {
     // eslint-disable-next-line react/prop-types
     const LegendLabel = ({ index, ...rest }) => <a id={ `${ariaTitle.toLowerCase().replace(/\s/g, '-')}-legend-${index + 1}` }
-        href={ legendClick[index] } className="pf-v5-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
+        href={ legendClick[index] } className="pf-v6-c-button pf-m-link pf-m-inline"><ChartLabel { ...rest } /></a>;
 
     return (
         <div className="insd-c-pie-chart__row">

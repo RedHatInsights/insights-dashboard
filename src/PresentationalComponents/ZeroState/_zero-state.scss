@@ -1,40 +1,35 @@
-@import "~@patternfly/patternfly/sass-utilities/_all.scss";
+@import "~@patternfly/patternfly/sass-utilities";
 
 $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
 
-.pf-v5-c-page__main-section {
+.pf-v6-c-page__main-section {
   &.pf-m-dark-1000 {
-      --pf-v5-c-page__main-section--BackgroundColor: var(--pf-v5-global--palette--black-1000);
+      --pf-v6-c-page__main-section--BackgroundColor: var(--pf-t--color--black);
   }
 }
 
 .insd-c-marketing-page {
-  --ins-m-marketing-page--RowGap: var(--pf-v5-global--spacer--xl);
-  --ins-m-marketing-page--ColumnGap: var(--pf-v5-global--spacer--xl);
-  --ins-m-marketing-page--section--PaddingTop: var(--pf-v5-global--spacer--xl);
-  --ins-m-marketing-page--section--PaddingRight: var(--pf-v5-global--spacer--2xl);
-  --ins-m-marketing-page--section--PaddingBottom: var(--pf-v5-global--spacer--xl);
-  --ins-m-marketing-page--section--PaddingLeft: var(--pf-v5-global--spacer--2xl);
+  --ins-m-marketing-page--RowGap: var(--pf-t--global--spacer--xl);
+  --ins-m-marketing-page--ColumnGap: var(--pf-t--global--spacer--xl);
+  --ins-m-marketing-page--section--PaddingTop: var(--pf-t--global--spacer--xl);
+  --ins-m-marketing-page--section--PaddingRight: var(--pf-t--global--spacer--2xl);
+  --ins-m-marketing-page--section--PaddingBottom: var(--pf-t--global--spacer--xl);
+  --ins-m-marketing-page--section--PaddingLeft: var(--pf-t--global--spacer--2xl);
 
   .insd-l-autofit {
     --insd-l-autofit--m-gutter--RowGap: var(--ins-m-marketing-page--RowGap);
     --insd-l-autofit--m-gutter--ColumnGap: var(--ins-m-marketing-page--ColumnGap);
   }
 
-  .pf-v5-c-page__main-section {
-    --pf-v5-c-page__main-section--PaddingTop: var(--ins-m-marketing-page--section--PaddingTop);
-    --pf-v5-c-page__main-section--PaddingRight: var(--ins-m-marketing-page--section--PaddingRight);
-    --pf-v5-c-page__main-section--PaddingBottom: var(--ins-m-marketing-page--section--PaddingBottom);
-    --pf-v5-c-page__main-section--PaddingLeft: var(--ins-m-marketing-page--section--PaddingLeft);
+  .pf-v6-c-page__main-section:not(.insd-m-dark-1000) {
+    padding-top: var(--ins-m-marketing-page--section--PaddingTop);
+    padding-right: var(--ins-m-marketing-page--section--PaddingRight);
+    padding-bottom: var(--ins-m-marketing-page--section--PaddingBottom);
+    padding-left: var(--ins-m-marketing-page--section--PaddingLeft);
   }
 
-  .ins-c-marketing-banner {
-    --ins-c-marketing-banner--PaddingTop: var(--pf-v5-global--spacer--2xl);
-    --ins-c-marketing-banner--PaddingBottom: var(--pf-v5-global--spacer--2xl);
-  }
-
-  .pf-v5-l-grid {
-    --pf-v5-l-grid--m-gutter--GridGap: var(--pf-v5-global--spacer--xl);
+  .pf-v6-l-grid {
+    --pf-v6-l-grid--m-gutter--GridGap: var(--pf-t--global--spacer--xl);
   }
 
 }

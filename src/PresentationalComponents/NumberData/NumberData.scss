@@ -1,21 +1,15 @@
 .insd-c-dashboard__number-data--xl {
-    font-size: calc(var(--pf-v5-global--FontSize--2xl) * 2);
+    font-size: calc(var(--pf-t--global--font--size--2xl) * 2);
     line-height: 40px;
 }
 
 .insd-c-dashboard__number-data--lg {
-    font-size: var(--pf-v5-global--FontSize--2xl);
+    font-size: var(--pf-t--global--font--size--2xl);
 }
 
 .insd-c-dashboard__number-data--md {
-    font-size: var(--pf-v5-global--FontSize--lg);
-    line-height: var(--pf-v5-global--FontSize--lg);
-}
-
-.insd-c-dashboard__number-data--xl,
-.insd-c-dashboard__number-data--lg,
-.insd-c-dashboard__number-data--md {
-    font-family: var(--pf-v5-global--FontFamily--redhatfont--heading--sans-serif);
+    font-size: var(-pf-t--global--font--size--lg);
+    line-height: var(--pf-t--global--font--size--lg);
 }
 
 .insd-c-dashboard__number-data--number-percentage {
@@ -31,8 +25,8 @@
 .insd-c-dashboard__number-percentage {
     display: flex;
     align-items: baseline;
-    margin-left: var(--pf-v5-global--spacer--sm);
-    font-size: var(--pf-v5-global--FontSize--sm);
+    margin-left: var(--pf-t--global--spacer--sm);
+    font-size: var(--pf-t--global--font--size--sm);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -41,7 +35,7 @@
     span {
         display: inline-block;
         max-width: 85%;
-        margin-right: var(--pf-v5-global--spacer--sm);
+        margin-right: var(--pf-t--global--spacer--sm);
         overflow: hidden;
         text-overflow: ellipsis;
     }

@@ -1,8 +1,8 @@
-@import "~@patternfly/patternfly/sass-utilities/_all.scss";
+@import "~@patternfly/patternfly/sass-utilities";
 
-.insd-c-dashboard-header.pf-v5-c-page__main-section {
-    @media screen and (min-width: $pf-v5-global--breakpoint--md) {
-        --pf-v5-c-page__main-section--PaddingTop: var(--pf-v5-global--spacer--sm);
-        --pf-v5-c-page__main-section--PaddingBottom: var(--pf-v5-global--spacer--sm);
+.insd-c-dashboard-header.pf-v6-c-page__main-section {
+    @media screen and (min-width: $pf-v6-global--breakpoint--md) {
+        --pf-v6-c-page__main-section--PaddingTop: var(--pf-t--global--spacer--sm);
+        --pf-v6-c-page__main-section--PaddingBottom: var(--pf-t--global--spacer--sm);
     }
 }

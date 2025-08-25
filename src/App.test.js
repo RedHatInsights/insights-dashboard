@@ -50,7 +50,6 @@ describe('App', () => {
             expect(screen.getByLabelText('Dashboard page')).toBeVisible()
         );
     });
-
     it('Should show loading page unless API request to check registered systems finish', async () =>  {
         Api.get.mockImplementation(() => new Promise((resolve) => {
             setTimeout(() => {

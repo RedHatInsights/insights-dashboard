@@ -1,18 +1,16 @@
-@import "~@patternfly/patternfly/sass-utilities/_all";
-@import "~@patternfly/patternfly/utilities/Text/text.scss";
-@import "~@patternfly/patternfly/utilities/Display/display.scss";
+@import "~@patternfly/patternfly/sass-utilities";
 
 .insd-c-dashboard-data-list {
   &.ins-c-toggle-right {
-    .pf-v5-c-data-list__item-control {
-      --pf-v5-c-data-list__item-control--MarginRight: 0;
+    .pf-v6-c-data-list__item-control {
+      --pf-v6-c-data-list__item-control--MarginRight: 0;
     }
   }
 
-  .pf-v5-c-data-list__toggle {
+  .pf-v6-c-data-list__toggle {
     display: flex;
 
-    > .pf-v5-c-button {
+    > .pf-v6-c-button {
       align-self: center;
     }
   }

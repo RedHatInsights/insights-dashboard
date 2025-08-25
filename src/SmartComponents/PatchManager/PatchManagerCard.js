@@ -1,6 +1,5 @@
 import './PatchManagerCard.scss';
 
-import { Flex } from '@patternfly/react-core/dist/esm/layouts';
 import React, { useEffect } from 'react';
 import { TemplateCard, TemplateCardBody, TemplateCardHeader } from '../../PresentationalComponents/Template/TemplateCard';
 import { capitalize, globalFilters, workloadsPropType } from '../../Utilities/Common';
@@ -10,12 +9,17 @@ import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import PropTypes from 'prop-types';
-import { chart_color_blue_200, chart_color_blue_300, chart_color_blue_400, global_disabled_color_100 } from '@patternfly/react-tokens';
+import {
+    chart_color_blue_200,
+    chart_color_blue_300,
+    chart_color_blue_400,
+    t_global_text_color_disabled
+} from '@patternfly/react-tokens';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
-import { Spinner } from '@patternfly/react-core';
+import { Flex, Spinner } from '@patternfly/react-core';
 
 /**
  * Card for showing the systems and ratios of current advisories.
@@ -73,13 +77,13 @@ const PatchManagerCard = ({
         body={<TemplateCardBody>
             {!isLoaded ? <Spinner /> :
                 <Flex direction={{ default: 'column' }}>
-                    <InsightsLink app='patch' to='/systems' className='pf-v5-c-button pf-m-link pf-m-inline'>
+                    <InsightsLink app='patch' to='/systems' className='pf-v6-c-button pf-m-link pf-m-inline'>
                         <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
                     </InsightsLink>
                     <div className="insd-c-dashboard__card-chart-container">
                         <div className="insd-c-dashboard__card-pie-chart">
                             <PieChart
-                                colorScale={isLoaded && (security === 0 && bugs === 0 && enhancements === 0) ? [global_disabled_color_100.value]
+                                colorScale={isLoaded && (security === 0 && bugs === 0 && enhancements === 0) ? [t_global_text_color_disabled.value]
                                     : colorScale}
                                 ariaDesc='Patch systems chart'
                                 ariaTitle='Patch systems chart'

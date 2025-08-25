@@ -8,24 +8,25 @@ import {
     Card,
     CardBody,
     CardTitle,
+    Content,
     Divider,
+    Flex,
+    FlexItem,
     Skeleton,
     Spinner,
-    TextContent,
     Title,
     Tooltip,
     TooltipPosition
-} from '@patternfly/react-core/dist/esm/components';
-import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
+} from '@patternfly/react-core';
 import React, { useEffect, useMemo, useState } from 'react';
 import { SEVERITY_MAP } from '../../AppConstants';
 import { capitalize, globalFilters } from '../../Utilities/Common';
 import {
-    global_disabled_color_100,
-    global_palette_blue_100,
-    global_palette_blue_200,
-    global_palette_blue_300,
-    global_palette_blue_400
+    t_global_text_color_disabled,
+    chart_color_blue_100,
+    chart_color_blue_200,
+    chart_color_blue_300,
+    chart_color_blue_400
 } from '@patternfly/react-tokens';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -44,7 +45,7 @@ import { useIntl } from 'react-intl';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 
 const Advisor = () => {
-    const colors = [global_palette_blue_100.value, global_palette_blue_200.value, global_palette_blue_300.value, global_palette_blue_400.value];
+    const colors = [chart_color_blue_100.value, chart_color_blue_200.value, chart_color_blue_300.value, chart_color_blue_400.value];
     const intl = useIntl();
     const [categoryData, setCategoryData] = useState([]);
     const [colorScale, setColorScale] = useState();
@@ -133,7 +134,7 @@ const Advisor = () => {
                 }
             ]);
 
-            setColorScale(categoryCount === 0 ? [global_disabled_color_100.value] : colors);
+            setColorScale(categoryCount === 0 ? [t_global_text_color_disabled.value] : colors);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [recStats, recStatsStatus]);
@@ -145,11 +146,12 @@ const Advisor = () => {
             : <React.Fragment>
                 <ExpandableCardTemplate
                     appName='Advisor'
+                    isPlain
                     className='insd-m-toggle-right-on-md'
                     title={intl.formatMessage(messages.advisorCardHeader1)}
                     isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor1') || 'true')}
                     isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor1', isExpanded)}
-                    body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-v5-u-pb-2xl'>
+                    body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-v6-u-pb-2xl'>
                         <Flex
                             direction={{ default: 'column' }}
                             alignItems={{ default: 'alignItemsCenter' }}>
@@ -162,22 +164,25 @@ const Advisor = () => {
                                         ? <React.Fragment>
                                             {
                                                 advisorIncidents?.meta?.count > 0 &&
-                                                    <ExclamationCircleIcon className='pf-v5-u-font-size-xl pf-v5-u-danger-color-100 pf-u-mr-sm' />
+                                                    <ExclamationCircleIcon
+                                                        fill="var(--pf-t--global--icon--color--status--danger--default)"
+                                                        className='pf-v6-u-font-size-xl pf-u-mr-sm'
+                                                    />
                                             }
-                                            <span className='pf-v5-u-font-size-2xl pf-v5-u-text-align-center pf-v5-u-font-weight-normal'>
+                                            <span className='pf-v6-u-font-size-2xl pf-v6-u-text-align-center pf-v6-u-font-weight-normal'>
                                                 {intl.formatMessage(messages.incidents, { incidents: advisorIncidents.meta.count })}
                                             </span>
                                         </React.Fragment>
                                         : <Skeleton fontSize="2xl" width="250px" />
                                     }
                                 </Flex>
-                                <TextContent
-                                    className='insd-c-width-limiter pf-v5-u-text-align-center'
+                                <Content
+                                    className='insd-c-width-limiter pf-v6-u-text-align-center'
                                     style={{ '--insd-c-width-limiter--MaxWidth': '34ch' }}>
-                                    <p className='pf-v5-u-font-size-md pf-v5-u-text-center'>
+                                    <p className='pf-v6-u-font-size-md pf-v6-u-text-center'>
                                         {intl.formatMessage(messages.advisorCardMessage)}
                                     </p>
-                                </TextContent>
+                                </Content>
                             </FlexItem>
                             <InsightsLink app='advisor' to={INCIDENT_URL}>
                                 <Button
@@ -193,6 +198,7 @@ const Advisor = () => {
                 <Divider inset={{ md: 'insetLg' }} />
                 <ExpandableCardTemplate
                     appName='advisor-recommendation-by-total-risk'
+                    isPlain
                     className='insd-m-toggle-right-on-md'
                     title={<Flex flexWrap={{ default: 'nowrap' }}>
                         <h3>{intl.formatMessage(messages.advisorCardHeader2)}</h3>
@@ -200,7 +206,7 @@ const Advisor = () => {
                     </Flex>}
                     isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor2') || 'true')}
                     isExpandedCallback={isExpanded => localStorage.setItem('dashboard_expanded_advisor2', isExpanded)}
-                    body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-v5-u-pb-0'>
+                    body={<TemplateCardBody className='ins-c-advisor-recs__card-body pf-v6-u-pb-0'>
                         <Flex
                             justifyContent={{ default: 'justifyContentCenter' }}
                             spaceItems={{ default: 'spaceItemsLg', sm: 'spaceItems2xl' }}
@@ -211,22 +217,22 @@ const Advisor = () => {
                                         direction={{ default: 'column' }}
                                         spaceItems={{ default: 'spaceItemsNone' }}
                                         alignItems={{ default: 'alignItemsCenter' }}>
-                                        <span className='pf-v5-u-font-size-2xl pf-v5-u-color-100 pf-v5-u-font-weight-normal'>
+                                        <span className='pf-v6-u-font-size-2xl pf-v6-u-color-100 pf-v6-u-font-weight-normal'>
                                             {recStatsStatus === 'fulfilled' ? risk : <Skeleton fontSize="3xl" width="50px" />}
                                         </span>
-                                        <span className='pf-v5-u-font-size-sm'>
+                                        <span className='pf-v6-u-font-size-sm'>
                                             {title}
                                         </span>
                                     </Flex>
                                 </InsightsLink>)}
                         </Flex>
-                        <Card component='div'>
+                        <Card component='div' isPlain>
                             <CardTitle>
                                 <Title headingLevel='h4' size='lg'>
                                     {intl.formatMessage(messages.advisorCardHeader3)}
                                 </Title>
                             </CardTitle>
-                            <CardBody className='pf-v5-u-pt-sm' style={{ minHeight: 135 }}>
+                            <CardBody className='pf-v6-u-pt-sm' style={{ minHeight: 135 }}>
                                 <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsLg' }}>
                                     {recStatsStatus === 'fulfilled' ?
                                         <div className="insd-c-dashboard__card-chart-container">

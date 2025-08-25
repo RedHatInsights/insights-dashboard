@@ -19,9 +19,7 @@ export const NumberData = ({ data, dataSize, percentageData, iconTooltipText }) 
                     key={ `${iconTooltipText}` }
                     position={ TooltipPosition.top }
                     content={ <div>{iconTooltipText}</div> }>
-                    <Button variant="plain" aria-label="Action" className='insd-c-info-icon'>
-                        <InfoIcon />
-                    </Button>
+                    <Button icon={<InfoIcon />} variant="plain" aria-label="Action" className='insd-c-info-icon' />
                 </Tooltip>
             </span>
         }

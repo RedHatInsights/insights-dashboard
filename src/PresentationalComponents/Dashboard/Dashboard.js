@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Grid, GridItem } from '@patternfly/react-core';
-import { PageSection, PageSectionVariants, Title } from '@patternfly/react-core';
+import { PageSection, Title } from '@patternfly/react-core';
 import Masonry from 'react-masonry-css';
 import { PermissionContext } from '../PermissionsProvider/PermissionsProvider';
 import { connect } from 'react-redux';
@@ -18,11 +18,9 @@ import SystemInventoryHeader from '../../SmartComponents/SystemInventory/SystemI
 import NewRules from '../../SmartComponents/NewRules/NewRules';
 import PatchManagerCard from '../../SmartComponents/PatchManager/PatchManagerCard';
 import RemediationsCard from '../../SmartComponents/Remediations/RemediationsCard';
-import Footer from '../../SmartComponents/Footer/Footer';
 import './dashboard.scss';
 
-//We will be using this later. commenting out for now.
-const Dashboard = (/*{ workloads }*/) => {
+const Dashboard = () => {
     const permission = useContext(PermissionContext);
     const intl = useIntl();
     const newRules = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities.recent_rules);
@@ -36,13 +34,13 @@ const Dashboard = (/*{ workloads }*/) => {
     }, [chrome]);
 
     return (<React.Fragment>
-        <PageSection isWidthLimited variant={ PageSectionVariants.light } className="insd-c-dashboard-header">
-            <Title headingLevel="h1" size="2xl" className="pf-v5-u-screen-reader">
+        <PageSection hasBodyWrapper isWidthLimited  className="insd-c-dashboard-header">
+            <Title headingLevel="h1" size="2xl" className="pf-v6-u-screen-reader">
                 {intl.formatMessage(messages.dashboardTitle)}
             </Title>
             <SystemInventoryHeader/>
         </PageSection>
-        <PageSection isFilled={true} isWidthLimited>
+        <PageSection hasBodyWrapper isFilled={true} isWidthLimited>
             <Grid hasGutter>
                 {newRules?.length > 0 && permission.vulnerability && <GridItem>
                     <NewRules />
@@ -81,7 +79,6 @@ const Dashboard = (/*{ workloads }*/) => {
                 </Masonry>
             </Grid>
         </PageSection>
-        <Footer supportsSap={ true }/>
     </React.Fragment>);
 
 };

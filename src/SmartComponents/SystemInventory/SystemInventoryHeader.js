@@ -103,7 +103,7 @@ const SystemInventoryHeader = ({
                                             : <InsightsLink
                                                 app='inventory'
                                                 to='/?status=stale&source=puptoo'
-                                                className="pf-v5-c-button pf-m-link pf-m-inline">
+                                                className="pf-v6-c-button pf-m-link pf-m-inline">
                                                 <IconInline
                                                     message={ intl.formatMessage(messages.systemInventoryStale,
                                                         { count: inventoryStaleSum?.total || 0 }
@@ -120,7 +120,7 @@ const SystemInventoryHeader = ({
                                             : <InsightsLink
                                                 app='inventory'
                                                 to='/?status=stale_warning&source=puptoo'
-                                                className="pf-v5-c-button pf-m-link pf-m-inline">
+                                                className="pf-v6-c-button pf-m-link pf-m-inline">
                                                 <IconInline
                                                     message={ intl.formatMessage(messages.systemInventoryStaleWarning,
                                                         { count: inventoryWarningSummary?.total || 0 }
@@ -135,7 +135,7 @@ const SystemInventoryHeader = ({
                                 <FlexItem align={{ md: 'alignRight' }}>
                                     <Link to="/settings/integrations?category=Communications">
                                         <Button
-                                            className='pf-v5-u-mr-sm pf-v5-u-font-size-md'
+                                            className='pf-v6-u-mr-sm pf-v6-u-font-size-md'
                                             variant='secondary'
                                             size='sm'
                                         >

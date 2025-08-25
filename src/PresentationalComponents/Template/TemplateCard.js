@@ -1,6 +1,5 @@
 import './TemplateCard.scss';
 import { DownloadIcon } from '@patternfly/react-icons';
-import DownloadReport from '../DownloadReport/DownloadReport';
 import IconInline from '../IconInline/IconInline';
 import React from 'react';
 import propTypes from 'prop-types';
@@ -27,13 +26,10 @@ TemplateCardHead.propTypes = {
     children: propTypes.any
 };
 
-export const TemplateCardActions = ({ children, downloadReport, iconInlineMessage, iconInlineState, ...props }) => (
+export const TemplateCardActions = ({ children, iconInlineMessage, iconInlineState, ...props }) => (
     <div { ...props }>
         { iconInlineMessage &&
             <IconInline message={ iconInlineMessage } state={ iconInlineState }/>
-        }
-        { downloadReport &&
-            <DownloadReport />
         }
         {children}
     </div>
@@ -41,7 +37,6 @@ export const TemplateCardActions = ({ children, downloadReport, iconInlineMessag
 
 TemplateCardActions.propTypes = {
     children: propTypes.any,
-    downloadReport: propTypes.any,
     iconInlineMessage: propTypes.string,
     iconInlineState: propTypes.string
 };
