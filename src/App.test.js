@@ -7,6 +7,13 @@ import { init } from './Store';
 import Api from './Utilities/Api';
 import { IntlProvider } from '@redhat-cloud-services/frontend-components-translations';
 import '@testing-library/jest-dom';
+import mockChrome from '../config/mockChrome';
+
+jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
+    __esModule: true,
+    default: () => mockChrome,
+    useChrome: () => mockChrome
+}));
 
 jest.mock('./Utilities/Api', () => ({
     ...jest.requireActual('./Utilities/Api'),

@@ -51,8 +51,7 @@ const PermissionsProvider = ({ children }) => {
                 setArePermissionReady(true);
             }
         );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [chrome]);
 
     return arePermissionsReady ? (
         <PermissionContext.Provider
