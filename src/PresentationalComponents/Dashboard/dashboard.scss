@@ -29,14 +29,14 @@
   --insd-c-dashboard__card-chart-container--item--spacer: var(--pf-t--global--spacer--lg);
   --insd-c-dashboard__card-chart-container--item--FlexDirection: column;
 
-  @media screen and (min-width: $pf-v6-global--breakpoint--sm) {
-    --insd-c-dashboard__card-chart-container--item--FlexDirection: row;
-  }
-
   display: flex;
   align-items: center;
   flex-direction: var(--insd-c-dashboard__card-chart-container--item--FlexDirection);
   row-gap: var(--insd-c-dashboard__card-chart-container--item--spacer);
+
+  @media screen and (min-width: $pf-v6-global--breakpoint--sm) {
+    --insd-c-dashboard__card-chart-container--item--FlexDirection: row;
+  }
 
   > * {
     @media screen and (min-width: $pf-v6-global--breakpoint--sm) {

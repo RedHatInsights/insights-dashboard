@@ -1,4 +1,4 @@
-@import "~@patternfly/patternfly/sass-utilities/scss-variables.scss";
+@use "~@patternfly/patternfly/sass-utilities/scss-variables.scss";
 
 .insd-c-dashboard-data-list {
     --pf-v6-c-data-list__item-control--not-last-child--MarginRight: var(--pf-t--global--spacer--xs);
@@ -14,7 +14,7 @@
     --insd-c-dashboard-data-list__date--MarginTop: 0;
     --insd-c-dashboard-data-list__item--m-expanded__date--MarginTop: var(--pf-t--global--spacer--md);
 
-    @media screen and (min-width: $pf-v6-global--breakpoint--md) {
+    @media screen and (min-width: scss-variables.$pf-v6-global--breakpoint--md) {
         --pf-v6-c-data-list__item-control--MarginLeft: var(--pf-t--global--spacer--md);
         --pf-v6-c-data-list__toggle--MarginLeft: var(--pf-t--global--spacer--sm);
         --pf-v6-c-data-list__item-control--PaddingTop: calc(var(--pf-t--global--spacer--sm) + var(--pf-t--global--spacer--xs));
@@ -25,7 +25,7 @@
     .pf-v6-c-data-list__item {
         &.pf-m-expanded {
 
-            @media screen and (min-width: $pf-v6-global--breakpoint--md) {
+            @media screen and (min-width: scss-variables.$pf-v6-global--breakpoint--md) {
                 --insd-c-dashboard-data-list__date--MarginTop: var(--insd-c-dashboard-data-list__item--m-expanded__date--MarginTop);
             }
         }
@@ -43,7 +43,7 @@
     .pf-v6-c-data-list__item-control-button {
         display: none;
 
-        @media screen and (min-width: $pf-v6-global--breakpoint--md) {
+        @media screen and (min-width: scss-variables.$pf-v6-global--breakpoint--md) {
             display: inline-block;
         }
     }
@@ -61,7 +61,7 @@
         position: relative;
         margin-right: var(--pf-t--global--spacer--sm);
 
-        @media screen and (min-width: $pf-v6-global--breakpoint--md) {
+        @media screen and (min-width: scss-variables.$pf-v6-global--breakpoint--md) {
             display: inline-flex;
             min-width: 6ch;
             text-align: right;
@@ -75,7 +75,7 @@
     }
 
     .pf-v6-c-data-list__expandable-content-body {
-        @media screen and (min-width: $pf-v6-global--breakpoint--md) {
+        @media screen and (min-width: scss-variables.$pf-v6-global--breakpoint--md) {
 
             --pf-v6-c-data-list__expandable-content-body--PaddingTop: var(--pf-t--global--spacer--sm);
 
@@ -106,7 +106,7 @@
         margin: var(--pf-t--global--spacer--sm);
         margin-left: 0;
 
-        @media screen and (min-width: $pf-v6-global--breakpoint--md) {
+        @media screen and (min-width: scss-variables.$pf-v6-global--breakpoint--md) {
             float: right;
             margin-left: var(--pf-t--global--spacer--sm);
         }

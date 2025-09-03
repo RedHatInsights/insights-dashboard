@@ -3,7 +3,10 @@
 $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
 
 .insd-c-marketing-banner {
-  padding: 0;
+  padding-top: var(--ins-c-marketing-banner--PaddingTop);
+  padding-bottom: var(--ins-c-marketing-banner--PaddingBottom);
+  padding-left: var(--ins-c-marketing-banner--PaddingLeft);
+  padding-right: var(--ins-c-marketing-banner--PaddingRight);
 
   --ins-c-marketing-banner--before--Opacity: 0.3;
   --ins-c-marketing-banner--before--BackgroundSize: #{pf-size-prem(200px)};
@@ -37,11 +40,6 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
     "--ins-c-marketing-banner--graphic--width",
     $ins-c-marketing-banner--breakpoint-map
   );
-
-  padding-top: var(--ins-c-marketing-banner--PaddingTop);
-  padding-bottom: var(--ins-c-marketing-banner--PaddingBottom);
-  padding-left: var(--ins-c-marketing-banner--PaddingLeft);
-  padding-right: var(--ins-c-marketing-banner--PaddingRight);
 
   &.insd-m-with-graphic {
     &:not(.pf-m-limit-width),
