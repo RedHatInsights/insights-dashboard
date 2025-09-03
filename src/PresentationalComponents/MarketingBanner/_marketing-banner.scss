@@ -38,6 +38,11 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
     $ins-c-marketing-banner--breakpoint-map
   );
 
+  padding-top: var(--ins-c-marketing-banner--PaddingTop);
+  padding-bottom: var(--ins-c-marketing-banner--PaddingBottom);
+  padding-left: var(--ins-c-marketing-banner--PaddingLeft);
+  padding-right: var(--ins-c-marketing-banner--PaddingRight);
+
   &.insd-m-with-graphic {
     &:not(.pf-m-limit-width),
     .pf-v6-c-page__main-body {
@@ -45,10 +50,6 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
       grid-template-columns: 1fr;
       grid-template-areas: "content";
       grid-gap: var(--ins-m-marketing-page--ColumnGap);
-      padding-top: var(--ins-c-marketing-banner--PaddingTop);
-      padding-bottom: var(--ins-c-marketing-banner--PaddingBottom);
-      padding-left: var(--ins-c-marketing-banner--PaddingLeft);
-      padding-right: var(--ins-c-marketing-banner--PaddingRight);
 
       @media screen and (min-width: $pf-v6-global--breakpoint--md) {
         grid-template-areas: var(--ins-c-marketing-banner--m-with-graphic--GridTemplateAreas);
@@ -102,15 +103,6 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
   }
 
   &[class*="pf-m-dark-"].pf-v6-c-page__main-section {
-    .pf-v6-c-button.pf-m-primary {
-      color: var(--pf-t--global--icon--color--status--info--default);
-
-      &:hover,
-      &:focus,
-      &:active {
-        color: var(--pf-t--global--icon--color--status--info--default);
-      }
-    }
     .pf-v6-c-button.pf-m-secondary {
       color: var(--pf-t--color--white);
     }

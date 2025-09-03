@@ -21,7 +21,7 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
     --insd-l-autofit--m-gutter--ColumnGap: var(--ins-m-marketing-page--ColumnGap);
   }
 
-  .pf-v6-c-page__main-section:not(.insd-m-dark-1000) {
+  .pf-v6-c-page__main-section:not(.insd-m-dark-1000):not(:has(.pf-v6-c-card)) {
     padding-top: var(--ins-m-marketing-page--section--PaddingTop);
     padding-right: var(--ins-m-marketing-page--section--PaddingRight);
     padding-bottom: var(--ins-m-marketing-page--section--PaddingBottom);
@@ -32,6 +32,9 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
     --pf-v6-l-grid--m-gutter--GridGap: var(--pf-t--global--spacer--xl);
   }
 
+}
+.marketing-banner-content {
+  color: var(--pf-t--color--white);
 }
 
 .warning{
