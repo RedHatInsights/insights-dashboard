@@ -1,4 +1,4 @@
-@import "~@patternfly/patternfly/sass-utilities";
+@use "~@patternfly/patternfly/sass-utilities" as *;
 
 .insd-c-dashboard-header.pf-v6-c-page__main-section {
     @media screen and (min-width: $pf-v6-global--breakpoint--md) {

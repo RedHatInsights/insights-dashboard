@@ -1,4 +1,4 @@
-@import "~@patternfly/patternfly/sass-utilities/scss-variables.scss";
+@use "~@patternfly/patternfly/sass-utilities/scss-variables.scss" as *;
 
 // All buttons should be text-align left and font-size 14px
 .pf-v6-c-button.pf-m-link {

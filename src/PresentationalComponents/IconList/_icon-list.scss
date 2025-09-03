@@ -1,4 +1,4 @@
-@import "~@patternfly/patternfly/sass-utilities";
+@use "~@patternfly/patternfly/sass-utilities" as *;
 
 .insd-c-icon-list {
   --insd-c-icon-list--RowGap: var(--pf-t--global--spacer--lg);

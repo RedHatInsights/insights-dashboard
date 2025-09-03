@@ -1,4 +1,4 @@
-@import "~@patternfly/patternfly/sass-utilities";
+@use "~@patternfly/patternfly/sass-utilities" as *;
 
 .pf-v6-c-label__icon {
   display: flex;

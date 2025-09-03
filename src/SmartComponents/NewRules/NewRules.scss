@@ -1,4 +1,4 @@
-@import "~@patternfly/patternfly/sass-utilities";
+@use "~@patternfly/patternfly/sass-utilities" as *;
 
 .insd-c-dashboard-data-list {
   &.ins-c-toggle-right {
