@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import { Button, Flex, FlexItem, Spinner } from '@patternfly/react-core';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
+import StatsLink from './StatsLink';
 
 const ResourceOptimizationCard = ({
     fetchRosIsConfigured, rosIsConfiguredFetchStatus, rosIsConfigured
@@ -46,53 +47,26 @@ const ResourceOptimizationCard = ({
                                         <Flex
                                             justifyContent={{ default: 'justifyContentCenter' }}
                                             spaceItems={{ default: 'spaceItemsLg', sm: 'spaceItems2xl' }}>
-                                            {
-                                                rosIsConfigured.systems_stats.waiting_for_data > 0 &&
-                                                    <Flex
-                                                        direction={{ default: 'column' }}
-                                                        spaceItems={{ default: 'spaceItemsNone' }}
-                                                        alignItems={{ default: 'alignItemsCenter' }}>
-                                                        <span className='pf-v6-u-font-size-2xl pf-v6-u-color-100 pf-v6-u-font-weight-bold'>
-                                                            {rosIsConfigured.systems_stats.waiting_for_data}
-                                                        </span>
-                                                        <InsightsLink app='ros' to={waitingForDataUrl}>
-                                                            <span className='pf-v6-u-font-size-sm'>
-                                                                <span>{intl.formatMessage(messages.waitingForData)}</span>
-                                                            </span>
-                                                        </InsightsLink>
-                                                    </Flex>
-                                            }
-                                            <InsightsLink app='ros' to={suggestionsUrl}>
-                                                <Flex
-                                                    direction={{ default: 'column' }}
-                                                    spaceItems={{ default: 'spaceItemsNone' }}
-                                                    alignItems={{ default: 'alignItemsCenter' }}
-                                                >
-                                                    <span className='pf-v6-u-font-size-2xl pf-v6-u-color-100 pf-v6-u-font-weight-normal'>
-                                                        {rosIsConfigured.systems_stats.with_suggestions}
-                                                    </span>
-                                                    <span className='pf-v6-u-font-size-sm'>
-                                                        {intl.formatMessage(messages.systemsWithSuggestions)}
-                                                    </span>
-                                                </Flex>
-                                            </InsightsLink>
-                                            <InsightsLink app='ros' to={allSystemsUrl}>
-                                                <Flex
-                                                    direction={{ default: 'column' }}
-                                                    spaceItems={{ default: 'spaceItemsNone' }}
-                                                    alignItems={{ default: 'alignItemsCenter' }}
-                                                >
-                                                    <span className='pf-v6-u-font-size-2xl pf-v6-u-color-100 pf-v6-u-font-weight-normal'>
-                                                        {rosIsConfigured.count}
-                                                    </span>
-                                                    <span className='pf-v6-u-font-size-sm'>
-                                                        {intl.formatMessage(messages.totalSystems)}
-                                                    </span>
-                                                </Flex>
-                                            </InsightsLink>
+                                            {rosIsConfigured.systems_stats.waiting_for_data > 0 && (
+                                                <StatsLink
+                                                    to={waitingForDataUrl}
+                                                    value={rosIsConfigured.systems_stats.waiting_for_data}
+                                                    label={intl.formatMessage(messages.waitingForData)}
+                                                    fontWeight='bold'
+                                                />
+                                            )}
+                                            <StatsLink
+                                                to={suggestionsUrl}
+                                                value={rosIsConfigured.systems_stats.with_suggestions}
+                                                label={intl.formatMessage(messages.systemsWithSuggestions)}
+                                            />
+                                            <StatsLink
+                                                to={allSystemsUrl}
+                                                value={rosIsConfigured.count}
+                                                label={intl.formatMessage(messages.totalSystems)}
+                                            />
                                         </Flex>
                                     </Flex>
-
                                 </React.Fragment>
                                 : <Flex
                                     direction={{ default: 'column' }}
