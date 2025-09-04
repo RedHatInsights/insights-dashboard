@@ -5,9 +5,6 @@ import * as AppActions from '../../AppActions';
 
 import {
     Button,
-    Card,
-    CardBody,
-    CardTitle,
     Content,
     Divider,
     Flex,
@@ -201,7 +198,9 @@ const Advisor = () => {
                     isPlain
                     className='insd-m-toggle-right-on-md'
                     title={<Flex flexWrap={{ default: 'nowrap' }}>
-                        <h3>{intl.formatMessage(messages.advisorCardHeader2)}</h3>
+                        <Title headingLevel='h3'>
+                            {intl.formatMessage(messages.advisorCardHeader2)}
+                        </Title>
                         {iconTooltip(intl.formatMessage(messages.totalRiskDef, { strong: (str) => <strong>{str}</strong> }))}
                     </Flex>}
                     isExpanded={JSON.parse(localStorage.getItem('dashboard_expanded_advisor2') || 'true')}
@@ -226,13 +225,11 @@ const Advisor = () => {
                                     </Flex>
                                 </InsightsLink>)}
                         </Flex>
-                        <Card component='div' isPlain>
-                            <CardTitle>
-                                <Title headingLevel='h4' size='lg'>
-                                    {intl.formatMessage(messages.advisorCardHeader3)}
-                                </Title>
-                            </CardTitle>
-                            <CardBody className='pf-v6-u-pt-sm' style={{ minHeight: 135 }}>
+                        <Content className="pf-v6-u-pt-lg pf-v6-u-pb-lg">
+                            <Title headingLevel='h3' className="pf-v6-u-mb-md">
+                                {intl.formatMessage(messages.advisorCardHeader3)}
+                            </Title>
+                            <Content>
                                 <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsLg' }}>
                                     {recStatsStatus === 'fulfilled' ?
                                         <div className="insd-c-dashboard__card-chart-container">
@@ -266,8 +263,8 @@ const Advisor = () => {
                                         : <Spinner style={{ marginTop: 15 }}/>
                                     }
                                 </Flex>
-                            </CardBody>
-                        </Card>
+                            </Content>
+                        </Content>
                     </TemplateCardBody>
                     } />
             </React.Fragment>}
