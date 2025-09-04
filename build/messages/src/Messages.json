@@ -139,14 +139,6 @@
     "defaultMessage": "Data privacy and controls in Insights",
     "description": "Data privacy and controls title"
   },
-  "deniedStateBody": {
-    "defaultMessage": "Contact your organization administrator(s) for more information",
-    "description": "Denied access body"
-  },
-  "deniedStateTitle": {
-    "defaultMessage": "You do not have access to {appName}",
-    "description": "Denied state title"
-  },
   "driftCardAppName": {
     "defaultMessage": "Drift",
     "description": "driftCardAppName"
@@ -267,10 +259,6 @@
     "defaultMessage": "Single, consistent management solution across on-premise, hybrid cloud, and public cloud. Included with Red Hat Enterprise Linux subscription. Single, consistent management solution across on-premise, hybrid cloud, and public cloud.",
     "description": "insights Description"
   },
-  "insightsForSap": {
-    "defaultMessage": "Insights for SAP",
-    "description": "Insights for SAP"
-  },
   "insightsandsatellite": {
     "defaultMessage": "Insights and Satellite",
     "description": "Insights and Satellite"
@@ -323,10 +311,6 @@
     "defaultMessage": "Newly released security rule",
     "description": "New rules date title"
   },
-  "noSystemsDescription": {
-    "defaultMessage": "With predictive analytics, avoid problems and unplanned downtime in your Red Hat environment. Insights is included with your Red Hat Enterprise Linux subscription.",
-    "description": "Register systems to use Insights"
-  },
   "noSystemsInstall": {
     "defaultMessage": "Install the client on the RHEL system",
     "description": "Install the client"
@@ -370,10 +354,6 @@
   "policiesZeroState": {
     "defaultMessage": "Policies allow users to create and manage rule conditions to evaluate against system configuration and get automatically alerted whenever they trigger.",
     "description": "Zero state description for Policies app"
-  },
-  "providesAdditionalSAPworkload": {
-    "defaultMessage": "Insights provides additional SAP workload-focused enhancements to provide a curated view of the health across the SAP Landscape on Red Hat Enterprise Linux. This functionality further enables Insights detection and remediation capabilities for workload optimization, performance, stability, compliance & security. <break></break> Insights has not detected any hosts running a SAP workload. To take advantage of these features, please install the Insights-client on an RHEL host running SAP & these systems will be automatically profiled.",
-    "description": "Insights provides additional SAP"
   },
   "recommendations": {
     "defaultMessage": "recommendations",

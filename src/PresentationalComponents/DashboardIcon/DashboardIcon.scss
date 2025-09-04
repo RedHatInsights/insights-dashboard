@@ -1,6 +1,6 @@
-@import "~@patternfly/patternfly/sass-utilities/all";
+@use "~@patternfly/patternfly/sass-utilities" as *;
 
-.pf-v5-c-label__icon {
+.pf-v6-c-label__icon {
   display: flex;
   align-items: center;
 }

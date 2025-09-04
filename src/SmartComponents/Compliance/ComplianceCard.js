@@ -13,10 +13,11 @@ import {
     EmptyStateActions,
     EmptyStateBody,
     EmptyStateVariant,
+    Flex,
+    FlexItem,
     Spinner,
     Title
-} from '@patternfly/react-core/dist/esm/components';
-import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
+} from '@patternfly/react-core';
 import React, { useEffect } from 'react';
 import { TemplateCardActions, TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
 import { supportsGlobalFilter, workloadsPropType } from '../../Utilities/Common';
@@ -84,7 +85,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                                             app='compliance'
                                                                             to={`/reports/${report.id}`}
                                                                             className='ins-c-compliance__policy-link
-                                                                            pf-v5-c-button pf-m-link pf-m-inline'
+                                                                            pf-v6-c-button pf-m-link pf-m-inline'
                                                                             id={ `compliance-link-${index + 1}` }
                                                                         >
                                                                             {report.title}
@@ -114,7 +115,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                 </DataListItem>
                                             )}
                                         </DataList>
-                                        <InsightsLink app='compliance' to='/reports' className='pf-v5-c-button pf-m-link pf-m-inline'>
+                                        <InsightsLink app='compliance' to='/reports' className='pf-v6-c-button pf-m-link pf-m-inline'>
                                             {complianceFetchStatus === 'fulfilled' && Array.isArray(complianceSummary.data) &&
                                                 complianceSummary.data.length - 3 >= 1 &&
                                                 `${complianceSummary.data.length - 3} more reports`
@@ -129,7 +130,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
                                                 {intl.formatMessage(messages.complianceEmptyStateBody)}
                                             </EmptyStateBody>
                                             <EmptyStateActions>
-                                                <InsightsLink app='compliance' to='/scappolicies/new' className='pf-v5-c-button pf-m-link'>
+                                                <InsightsLink app='compliance' to='/scappolicies/new' className='pf-v6-c-button pf-m-link'>
                                                     {intl.formatMessage(messages.complianceEmptyStateAction1)}
                                                 </InsightsLink>
                                                 <Button

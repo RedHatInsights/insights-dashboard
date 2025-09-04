@@ -8,7 +8,7 @@ import {
     List,
     ListItem,
     PageSection,
-    TextContent,
+    Content,
     Title,
     Grid,
     GridItem,
@@ -57,7 +57,7 @@ const ZeroState = () => {
                 <GridItem>
                     <Flex direction={ { default: 'column' } }>
                         <FlexItem>
-                            <Title headingLevel='h1' size='2xl'>
+                            <Title headingLevel='h1' size='2xl' className='pf-v6-u-text-color-inverse'>
                                 {intl.formatMessage(messages.noSystemsTitle)}
                             </Title>
                         </FlexItem>
@@ -79,7 +79,7 @@ const ZeroState = () => {
                             </InsightsLink>
                         </FlexItem>
                         <FlexItem>
-                            <Button
+                            <Button icon={<ArrowRightIcon />}
                                 className='pf-m-plain'
                                 component='a'
                                 variant='secondary'
@@ -87,22 +87,21 @@ const ZeroState = () => {
                                 rel='noreferrer'
                                 href='https://www.redhat.com/en/technologies/management/insights'>
                                 {intl.formatMessage(messages.learnmoreRHI)}&nbsp;&nbsp;&nbsp;
-                                <ArrowRightIcon />
                             </Button>
                         </FlexItem>
                     </Flex>
                 </GridItem>
             </Grid>
         </MarketingBanner>
-        <PageSection isWidthLimited>
+        <PageSection hasBodyWrapper isWidthLimited>
             <Grid lg={ 6 } hasGutter>
                 <GridItem>
                     <Card style={ { height: '100%' } }>
                         <CardHeader>
-                            <TextContent>
+                            <Content>
                                 <Title headingLevel='h2'>{intl.formatMessage(messages.zslblTitle)}</Title>
                                 <p>{intl.formatMessage(messages.zslblBody)}</p>
-                            </TextContent>
+                            </Content>
                         </CardHeader>
                         <CardBody>
                             <IconList>
@@ -118,10 +117,10 @@ const ZeroState = () => {
                 <GridItem>
                     <Card style={ { height: '100%' } }>
                         <CardHeader>
-                            <TextContent>
+                            <Content>
                                 <Title headingLevel='h2'>{intl.formatMessage(messages.zsrblTitle)}</Title>
                                 <p>{intl.formatMessage(messages.zsrblBody)}</p>
-                            </TextContent>
+                            </Content>
                         </CardHeader>
                         <CardBody>
                             <IconList>
@@ -147,7 +146,7 @@ const ZeroState = () => {
             } }>
             <Flex direction={ { default: 'column' } }>
                 <FlexItem spacer={ { default: 'spacerLg' } }>
-                    <Title headingLevel='h3' size='lg'>
+                    <Title headingLevel='h3' size='lg' className='pf-v6-u-text-color-inverse'>
                         {intl.formatMessage(messages.dataPrivacyAndControlsTitle)}
                     </Title>
                 </FlexItem>
@@ -161,6 +160,7 @@ const ZeroState = () => {
                     <Button
                         component='a'
                         target='_blank'
+                        style={{ color: 'white' }}
                         rel='noreferrer'
                         href={ `./security/insights` }>
                         {intl.formatMessage(messages.securityRedirect)}
@@ -168,17 +168,17 @@ const ZeroState = () => {
                 </FlexItem>
             </Flex>
         </MarketingBanner>
-        <PageSection isWidthLimited>
+        <PageSection hasBodyWrapper isWidthLimited>
             <Flex direction={ { default: 'column' } }>
                 <FlexItem spacer={ { default: 'spacerXl' } }>
-                    <TextContent>
+                    <Content>
                         <Title headingLevel='h3'>
                             {intl.formatMessage(messages.insightsandsatellite)}
                         </Title>
                         <div className='insd-c-width-limiter' style={ { '--insd-c-width-limiter--MaxWidth': '900px' } }>
                             <p>{intl.formatMessage(messages.satellite)}</p>
                         </div>
-                    </TextContent>
+                    </Content>
                 </FlexItem>
                 <FlexItem>
                     <Grid hasGutter>
@@ -186,7 +186,7 @@ const ZeroState = () => {
                             <img src={ ImgInsSmartMgmt } alt='Insights Satellite' />
                         </GridItem>
                         <GridItem md={ 6 } lg={ 7 }>
-                            <div className='insd-c-width-limiter pf-v5-u-pt-lg-on-lg' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
+                            <div className='insd-c-width-limiter pf-v6-u-pt-lg-on-lg' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
                                 <List>
                                     <ListItem>{intl.formatMessage(messages.rhm1)}</ListItem>
                                     <ListItem>{intl.formatMessage(messages.rhm2)}</ListItem>
@@ -194,11 +194,11 @@ const ZeroState = () => {
                                 </List>
                             </div>
                         </GridItem>
-                        <GridItem md={ 6 } lg={ 7 } className='pf-v5-u-pl-lg'>
+                        <GridItem md={ 6 } lg={ 7 } className='pf-v6-u-pl-lg'>
                             <Flex>
                                 <FlexItem>
                                     <Button
-                                        className='pf-m-secondary'
+                                        variant='secondary'
                                         component='a'
                                         target='_blank'
                                         rel='noreferrer'
@@ -208,7 +208,7 @@ const ZeroState = () => {
                                 </FlexItem>
                                 <FlexItem>
                                     <Button
-                                        className='pf-m-secondary'
+                                        variant='secondary'
                                         component='a'
                                         target='_blank'
                                         rel='noreferrer'

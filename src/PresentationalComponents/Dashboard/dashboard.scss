@@ -1,28 +1,24 @@
-@import "~@patternfly/patternfly/sass-utilities/_all";
-@import "~@patternfly/patternfly/utilities/Text/text";
-@import "~@patternfly/patternfly/utilities/Display/display";
-@import "~@patternfly/patternfly/utilities/Accessibility/accessibility";
-@import "~@patternfly/patternfly/utilities/Spacing/spacing";
+@use "~@patternfly/patternfly/sass-utilities/scss-variables.scss" as *;
 
 // All buttons should be text-align left and font-size 14px
-.pf-v5-c-button.pf-m-link {
+.pf-v6-c-button.pf-m-link {
   text-align: left;
   font-size: 14px;
 }
 
 .insd-c-dashboard-data-list__pie-chart {
-  > .pf-v5-c-chart > svg {
+  > .pf-v6-c-chart > svg {
     max-width: #{pf-size-prem(80px)};
 
-    @media screen and (min-width: $pf-v5-global--breakpoint--md) {
+    @media screen and (min-width: $pf-v6-global--breakpoint--md) {
       max-width: #{pf-size-prem(80px)};
     }
   }
 }
 
 .insd-c-dashboard__card {
-  .pf-v5-c-chart {
-    @media screen and (min-width: $pf-v5-global--breakpoint--lg) {
+  .pf-v6-c-chart {
+    @media screen and (min-width: $pf-v6-global--breakpoint--lg) {
       width: 80px;
       height: 80px;
     }
@@ -30,20 +26,20 @@
 }
 
 .insd-c-dashboard__card-chart-container {
-  --insd-c-dashboard__card-chart-container--item--spacer: var(--pf-v5-global--spacer--lg);
+  --insd-c-dashboard__card-chart-container--item--spacer: var(--pf-t--global--spacer--lg);
   --insd-c-dashboard__card-chart-container--item--FlexDirection: column;
-
-  @media screen and (min-width: $pf-v5-global--breakpoint--sm) {
-    --insd-c-dashboard__card-chart-container--item--FlexDirection: row;
-  }
 
   display: flex;
   align-items: center;
   flex-direction: var(--insd-c-dashboard__card-chart-container--item--FlexDirection);
   row-gap: var(--insd-c-dashboard__card-chart-container--item--spacer);
 
+  @media screen and (min-width: $pf-v6-global--breakpoint--sm) {
+    --insd-c-dashboard__card-chart-container--item--FlexDirection: row;
+  }
+
   > * {
-    @media screen and (min-width: $pf-v5-global--breakpoint--sm) {
+    @media screen and (min-width: $pf-v6-global--breakpoint--sm) {
       margin-right: var(--insd-c-dashboard__card-chart-container--item--spacer);
       margin-bottom: 0;
     }
@@ -66,12 +62,12 @@
   align-self: stretch;
   justify-content: center;
 
-  @media screen and (min-width: $pf-v5-global--breakpoint--sm) {
+  @media screen and (min-width: $pf-v6-global--breakpoint--sm) {
     align-self: center;
     justify-content: flex-start;
   }
 
-  > .pf-v5-c-table {
+  > .pf-v6-c-table {
     width: Min(32ch, 100%);
   }
 }
@@ -80,55 +76,55 @@
   display: -webkit-box; /* Not needed if autoprefixing */
   display: -ms-flexbox; /* Not needed if autoprefixing */
   display: flex;
-  margin-left: calc(var(--pf-v5-global--spacer--lg) * -1); /* gutter size offset */
-  margin-bottom: calc(var(--pf-v5-global--spacer--lg) * -1); /* gutter size offset */
+  margin-left: calc(var(--pf-t--global--spacer--lg) * -1); /* gutter size offset */
+  margin-bottom: calc(var(--pf-t--global--spacer--lg) * -1); /* gutter size offset */
   width: auto;
 }
 
-.pf-v5-c-card {
-  --pf-v5-c-card--child--PaddingRight: var(--pf-v5-global--spacer--xl);
-  --pf-v5-c-card--child--PaddingLeft: var(--pf-v5-global--spacer--xl);
+.pf-v6-c-card {
+  --pf-v6-c-card--child--PaddingRight: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-card--child--PaddingLeft: var(--pf-t--global--spacer--xl);
 }
 
 .ins-l-masonry_column {
-  padding-left: var(--pf-v5-global--spacer--lg); /* gutter size */
+  padding-left: var(--pf-t--global--spacer--lg); /* gutter size */
   background-clip: padding-box;
-  .pf-v5-c-card {
-    margin-bottom: var(--pf-v5-global--spacer--lg);
+  .pf-v6-c-card {
+    margin-bottom: var(--pf-t--global--spacer--lg);
 
-    .pf-v5-c-card {
+    .pf-v6-c-card {
       margin-bottom: 0;
     }
   }
 }
 
-.pf-v5-c-drawer__content {
+.pf-v6-c-drawer__content {
   > div {
     display: contents;
   }
 }
 
-.pf-v5-c-page__sidebar {
+.pf-v6-c-page__sidebar {
   display: none;
 }
 
 .insd-c-dashboard-card-parent {
   > *:last-child,
-  .pf-v5-c-card__expandable-content,
-  .pf-v5-c-card__expandable-content .pf-v5-c-card__body {
+  .pf-v6-c-card__expandable-content,
+  .pf-v6-c-card__expandable-content .pf-v6-c-card__body {
     flex: 1;
   }
 
-  .pf-v5-c-card__expandable-content {
+  .pf-v6-c-card__expandable-content {
     display: flex;
     flex-direction: column;
   }
 }
 
-.pf-v5-c-page__main-section {
-  --pf-v5-c-page--section--m-limit-width--MaxWidth: 1920px;
+.pf-v6-c-page__main-section {
+  --pf-v6-c-page--section--m-limit-width--MaxWidth: 1920px;
 }
 
-.pf-v5-l-grid {
-  --pf-v5-l-grid--m-gutter--GridGap: var(--pf-v5-global--spacer--lg);
+.pf-v6-l-grid {
+  --pf-v6-l-grid--m-gutter--GridGap: var(--pf-t--global--spacer--lg);
 }

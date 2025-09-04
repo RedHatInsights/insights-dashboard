@@ -1,4 +1,4 @@
-import { Text, TextContent, TextVariants, Title } from '@patternfly/react-core';
+import { Content, ContentVariants, Title } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { GridItem } from '@patternfly/react-core';
 import { ArrowRightIcon } from '@patternfly/react-icons';
@@ -11,19 +11,19 @@ const AppSectionItems = ({ app }) => {
 
     return (
         <GridItem md={ 4 }>
-            <TextContent>
-                <Text component={TextVariants.h3}>
+            <Content>
+                <Content component={ContentVariants.h3}>
                     {app.title}
-                </Text>
-                <Text>
+                </Content>
+                <Content component="p">
                     {intl.formatMessage(app.description)}
-                </Text>
+                </Content>
                 <Title headingLevel='h4'>
-                    <Link to={app.link} className='pf-v5-c-button pf-m-link pf-m-inline pf-m-display-lg'>
+                    <Link to={app.link} className='pf-v6-c-button pf-m-link pf-m-inline pf-m-display-lg'>
                         Get started <ArrowRightIcon />
                     </Link>
                 </Title>
-            </TextContent>
+            </Content>
         </GridItem>
     );
 };

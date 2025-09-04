@@ -1,5 +1,5 @@
 .insd-c-dashboard__card--header-subtitle {
-    font-size: var(--pf-v5-global--FontSize--sm);
+    font-size: var(--pf-t--global--font--size--sm);
 }
 
 .insd-c-dashboard__card--header.insd-m-padding-small {
@@ -12,31 +12,31 @@
 
     &.insd-m-horizontal {
         flex-direction: row;
-        padding-top: var(--pf-v5-global--spacer--lg);
+        padding-top: var(--pf-t--global--spacer--lg);
         align-items: flex-end;
     }
 
     > .insd-c-dashboard__number-description {
         &:not(:first-child) {
-            padding-left: var(--pf-v5-global--spacer--md);
+            padding-left: var(--pf-t--global--spacer--md);
         }
     }
 
-    .pf-v5-c-progress + .pf-v5-c-progress {
-        padding-top: var(--pf-v5-global--spacer--md);
+    .pf-v6-c-progress + .pf-v6-c-progress {
+        padding-top: var(--pf-t--global--spacer--md);
     }
 
-    > .pf-v5-c-progress + .pf-v5-c-progress {
-        margin-top: var(--pf-v5-global--spacer--xs);
+    > .pf-v6-c-progress + .pf-v6-c-progress {
+        margin-top: var(--pf-t--global--spacer--xs);
     }
 }
 
-.pf-v5-c-card.insd-m-short-header .insd-c-dashboard__card--header {
-    --pf-v5-c-card__title--not--last-child--PaddingBottom: 6px;
+.pf-v6-c-card.insd-m-short-header .insd-c-dashboard__card--header {
+    --pf-v6-c-card__title--not--last-child--PaddingBottom: 6px;
 }
 
-.pf-v5-c-card__body .pf-v5-c-card {
-    --pf-v5-c-card--child--PaddingRight: calc(var(--pf-v5-c-card--child--PaddingRight) * -1);
-    --pf-v5-c-card--child--PaddingLeft: calc(var(--pf-v5-c-card--child--PaddingLeft) * -1);
-    --pf-v5-c-card--BoxShadow: none;
+.pf-v6-c-card__body .pf-v6-c-card {
+    --pf-v6-c-card--child--PaddingRight: calc(var(--pf-v6-c-card--child--PaddingRight) * -1);
+    --pf-v6-c-card--child--PaddingLeft: calc(var(--pf-v6-c-card--child--PaddingLeft) * -1);
+    --pf-v6-c-card--BoxShadow: none;
 }

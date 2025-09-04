@@ -7,6 +7,13 @@ import { init } from './Store';
 import Api from './Utilities/Api';
 import { IntlProvider } from '@redhat-cloud-services/frontend-components-translations';
 import '@testing-library/jest-dom';
+import mockChrome from '../config/mockChrome';
+
+jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
+    __esModule: true,
+    default: () => mockChrome,
+    useChrome: () => mockChrome
+}));
 
 jest.mock('./Utilities/Api', () => ({
     ...jest.requireActual('./Utilities/Api'),
@@ -50,7 +57,6 @@ describe('App', () => {
             expect(screen.getByLabelText('Dashboard page')).toBeVisible()
         );
     });
-
     it('Should show loading page unless API request to check registered systems finish', async () =>  {
         Api.get.mockImplementation(() => new Promise((resolve) => {
             setTimeout(() => {

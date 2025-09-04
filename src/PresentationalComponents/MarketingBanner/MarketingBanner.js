@@ -16,7 +16,7 @@ const MarketingBanner = ({ className, hasGraphic, graphicRight, dark1000, fullBl
         { [`insd-m-full-bleed`]: fullBleed }
     );
 
-    return <PageSection
+    return <PageSection hasBodyWrapper
         className={ MarketingBannerSectionClasses }
         style={ style }
         isWidthLimited>

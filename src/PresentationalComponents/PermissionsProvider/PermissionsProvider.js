@@ -51,7 +51,7 @@ const PermissionsProvider = ({ children }) => {
                 setArePermissionReady(true);
             }
         );
-    }, []);
+    }, [chrome]);
 
     return arePermissionsReady ? (
         <PermissionContext.Provider

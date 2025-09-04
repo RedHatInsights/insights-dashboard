@@ -167,16 +167,6 @@ export default defineMessages({
         description: 'Vulnerabilities - latest vulnerabilities',
         defaultMessage: '{totalLatest}'
     },
-    deniedStateTitle: {
-        id: 'deniedStateTitle',
-        description: 'Denied state title',
-        defaultMessage: 'You do not have access to {appName}'
-    },
-    deniedStateBody: {
-        id: 'deniedStateBody',
-        description: 'Denied access body',
-        defaultMessage: 'Contact your organization administrator(s) for more information'
-    },
     complianceEmptyStateTitle: {
         id: 'complianceEmptyStateTitle',
         description: 'Compliance - empty state title',
@@ -323,13 +313,6 @@ export default defineMessages({
         description: 'Not a member',
         defaultMessage: 'Don\'t have a RHEL subscription? Start a trial.'
     },
-    noSystemsDescription: {
-        id: 'noSystemsDescription',
-        description: 'Register systems to use Insights',
-        defaultMessage: 'With predictive analytics, avoid problems and unplanned\
-                        downtime in your Red Hat environment. Insights is\
-                        included with your Red Hat Enterprise Linux subscription.'
-    },
     noSystemsInstall: {
         id: 'noSystemsInstall',
         description: 'Install the client',
@@ -419,16 +402,6 @@ export default defineMessages({
         id: 'filterNotApplicable',
         description: 'Filter not applicable',
         defaultMessage: 'Filter not applicable'
-    },
-    insightsForSap: {
-        id: 'insightsForSap',
-        description: 'Insights for SAP',
-        defaultMessage: 'Insights for SAP'
-    },
-    providesAdditionalSAPworkload: {
-        id: 'providesAdditionalSAPworkload',
-        description: 'Insights provides additional SAP',
-        defaultMessage: `Insights provides additional SAP workload-focused enhancements to provide a curated view of the health across the SAP Landscape on Red Hat Enterprise Linux. This functionality further enables Insights detection and remediation capabilities for workload optimization, performance, stability, compliance & security. <break></break> Insights has not detected any hosts running a SAP workload. To take advantage of these features, please install the Insights-client on an RHEL host running SAP & these systems will be automatically profiled.`
     },
     learnmore: {
         id: 'learnmore',
