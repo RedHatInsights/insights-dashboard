@@ -485,13 +485,13 @@ const IMAGES_ZERO_STATE = {
     ]
 };
 
-const REMEDIATIONS_ZERO_STATE = {
+const REMEDIATION_PLANS_ZERO_STATE = {
     header: {
         description:
       `Use remediation guidance provided by Red Hat Insights services to take manual actions or create playbooks for resolution at scale.`,
         bulletPoints: [
-            'Download playbooks or execute directly to remediate risk',
-            'Execute remediations playbooks directly via Red Hat Satellite or remote host configuration (rhc)'
+            'Download remediation plan playbooks or execute directly to remediate risk',
+            'Execute remediation plan playbooks directly via Red Hat Satellite or remote host configuration (rhc)'
         ],
         commands: [
             { plainText: ' 1. Register your host' },
@@ -531,6 +531,7 @@ const REMEDIATIONS_ZERO_STATE = {
             link: '/insights/patch'
         }
     ],
+    documentationTitleText: 'Documentation',
     documentation: [
         {
             title: 'Red Hat Insights Remediations Guide',
@@ -538,6 +539,8 @@ const REMEDIATIONS_ZERO_STATE = {
         }
     ]
 };
+// TODO: Remove after https://github.com/RedHatInsights/insights-remediations-frontend/pull/603 is merged
+const REMEDIATIONS_ZERO_STATE = REMEDIATION_PLANS_ZERO_STATE;
 
 const INVENTORY_ZERO_STATE = {
     header: {
@@ -649,6 +652,7 @@ export default {
     RESOURCE_OPTIMIZATION_ZERO_STATE,
     VULNERABILITY_ZERO_STATE,
     IMAGES_ZERO_STATE,
+    REMEDIATION_PLANS_ZERO_STATE,
     REMEDIATIONS_ZERO_STATE,
     INVENTORY_ZERO_STATE,
     TASKS_ZERO_STATE

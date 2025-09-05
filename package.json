@@ -22,7 +22,7 @@
     "nightly": "npm run ci:verify",
     "postinstall": "ts-patch install",
     "server:ctr": "node src/server/generateServerKey.js",
-    "start": "fec dev",
+    "start": "fec static",
     "start:proxy": "PROXY=true fec dev",
     "test": "jest --passWithNoTests",
     "test:coverage": "curl -sSL 'https://raw.githubusercontent.com/RedHatInsights/insights-interact-tools/refs/heads/main/scripts/coverage.sh' | bash",
