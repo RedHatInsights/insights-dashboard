@@ -539,8 +539,6 @@ const REMEDIATION_PLANS_ZERO_STATE = {
         }
     ]
 };
-// TODO: Remove after https://github.com/RedHatInsights/insights-remediations-frontend/pull/603 is merged
-const REMEDIATIONS_ZERO_STATE = REMEDIATION_PLANS_ZERO_STATE;
 
 const INVENTORY_ZERO_STATE = {
     header: {
@@ -653,7 +651,6 @@ export default {
     VULNERABILITY_ZERO_STATE,
     IMAGES_ZERO_STATE,
     REMEDIATION_PLANS_ZERO_STATE,
-    REMEDIATIONS_ZERO_STATE,
     INVENTORY_ZERO_STATE,
     TASKS_ZERO_STATE
 };
