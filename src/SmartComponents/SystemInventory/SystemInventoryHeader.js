@@ -27,6 +27,7 @@ import { usePermissions } from '@redhat-cloud-services/frontend-components-utili
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 import { Link } from 'react-router-dom';
 import { useBatchInventoryFetch } from '../../Utilities/useBatchInventoryFetch';
+import { useFeatureFlag } from '../../Utilities/Hooks';
 
 /**
  * System inventory card for showing system inventory and status.
@@ -34,6 +35,7 @@ import { useBatchInventoryFetch } from '../../Utilities/useBatchInventoryFetch';
 const SystemInventoryHeader = ({
     selectedTags, workloads, SID
 }) => {
+    const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
 
     const { hasAccess } = usePermissions('inventory', [
         'inventory:*:*',
@@ -74,7 +76,9 @@ const SystemInventoryHeader = ({
                                         data={inventorySummary?.total.toLocaleString() || 0 }
                                         dataSize="lg"
                                         linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
-                                            { count: inventorySummary?.total || 0 }
+                                            { count: inventorySummary?.total || 0,
+                                                productName: isLightspeedEnabled ? 'the insights-client' : 'Insights'
+                                            }
                                         ) }
                                         app='inventory'
                                         link='/?source=puptoo'
