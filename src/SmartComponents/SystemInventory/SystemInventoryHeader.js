@@ -77,7 +77,7 @@ const SystemInventoryHeader = ({
                                         dataSize="lg"
                                         linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
                                             { count: inventorySummary?.total || 0,
-                                                productName: isLightspeedEnabled ? 'Red Hat Lightspeed' : 'Insights'
+                                                productName: isLightspeedEnabled ? 'the insights-client' : 'Insights'
                                             }
                                         ) }
                                         app='inventory'
