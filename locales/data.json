@@ -34,7 +34,7 @@
     "enhancementAdvisories": "{count, plural, one {enhancement} other {enhancements}}",
     "systemsAffected": "{count, plural, one {# system} other {# systems}} affected",
     "patchTitle": "Patch",
-    "systemInventoryDescription": "{count, plural, one {System} other {Systems}} registered with Insights",
+    "systemInventoryDescription": "{count, plural, one {System} other {Systems}} registered with {productName}",
     "systemInventoryStaleWarning": "{count, plural, one {# system} other {# systems}} to be removed",
     "systemInventoryStale": "{count, plural, one {# stale system} other {# stale systems}}",
     "systemInventoryPercentageData": "{count}% of total systems",
