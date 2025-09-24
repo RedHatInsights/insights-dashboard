@@ -308,6 +308,11 @@ export default defineMessages({
         description: 'Get started using Insights',
         defaultMessage: 'Get started with Insights by registering your systems with us.'
     },
+    getStartedLightSpeed: {
+        id: 'getStartedLightSpeed',
+        description: 'Get started using Red Hat Lightspeed',
+        defaultMessage: 'Get started with Red Hat Lightspeed by registering your systems with us.'
+    },
     notMember: {
         id: 'notMember',
         description: 'Not a member',

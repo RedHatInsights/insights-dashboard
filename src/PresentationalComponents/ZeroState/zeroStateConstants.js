@@ -1,7 +1,34 @@
 /* eslint-disable max-len */
 import messages from '../../Messages';
+import { useFeatureFlag } from '../../Utilities/Hooks';
 
-const ADVISOR_ZERO_STATE = {
+export const useInsightsBrandName = () => {
+    const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
+    return   isLightspeedEnabled ? 'Red Hat Lightspeed' : 'Insights';
+};
+
+export const getFullBrandName = (brandName) => {
+    // If brandName already includes "Red Hat", return as is
+    if (brandName.includes('Red Hat')) {
+        return brandName;
+    }
+
+    // Otherwise, add "Red Hat" prefix
+    return `Red Hat ${brandName}`;
+};
+
+// Helper function to get just the product name (without Red Hat prefix)
+export const getProductName = (brandName) => {
+    // If brandName includes "Red Hat", remove it
+    if (brandName.includes('Red Hat')) {
+        return brandName.replace('Red Hat ', '');
+    }
+
+    // Otherwise, return as is
+    return brandName;
+};
+
+const getAdvisorZeroState = () => ({
     header: {
         description:
       `Using Red Hat’s expertise, analyze your RHEL hosts to identify and resolve risks to your environment's availability, performance, and stability.`,
@@ -60,9 +87,9 @@ const ADVISOR_ZERO_STATE = {
             link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
-};
+});
 
-const COMPLIANCE_ZERO_STATE = {
+const getComplianceZeroState = (brandName = 'Insights') => ({
     header: {
         description:
       'Monitor regulatory compliance policies of registered RHEL systems you must adhere to via OpenSCAP.',
@@ -123,7 +150,7 @@ const COMPLIANCE_ZERO_STATE = {
             link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/generating_compliance_service_reports'
         },
         {
-            title: 'Insights Compliance - Supported configurations',
+            title: `${brandName} Compliance - Supported configurations`,
             link: 'https://access.redhat.com/articles/6644131'
         },
         {
@@ -135,9 +162,9 @@ const COMPLIANCE_ZERO_STATE = {
             link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
-};
+});
 
-const INSIGHTS_ZERO_STATE = {
+const getInsightsZeroState = () => ({
     header: {
         description: messages.insightsDescription,
         //An array like this would be passed into the app
@@ -159,11 +186,11 @@ const INSIGHTS_ZERO_STATE = {
     },
     otherApps: [],
     documentation: []
-};
+});
 
-const CONTENT_MANAGEMENT_ZERO_STATE = {
+const getContentManagementZeroState = (brandName = 'Insights') => ({
     header: {
-        description: 'Red Hat Insights gives you the information to confidently update your RHEL systems with Red Hat product advisories and packages.',
+        description: `${getFullBrandName(brandName)} gives you the information to confidently update your RHEL systems with Red Hat product advisories and packages.`,
         commands: [
             { plainText: ' 1. Register your host' },
             {
@@ -216,9 +243,9 @@ const CONTENT_MANAGEMENT_ZERO_STATE = {
             link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
-};
+});
 
-const POLICIES_ZERO_STATE = {
+const getPoliciesZeroState = () => ({
     header: {
         description:
       'Policies allow users to create and manage rule conditions to evaluate against system configuration and get automatically alerted whenever they trigger. It assists in operational management with simple tasks such as:',
@@ -277,9 +304,9 @@ const POLICIES_ZERO_STATE = {
             link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
-};
+});
 
-const MALWARE_ZERO_STATE = {
+const getMalwareZeroState = () => ({
     header: {
         description: 'The malware detection service monitors your RHEL hosts for known malware signatures to indicate potential threats you can proactively address with your information security team.',
         commands: [
@@ -329,16 +356,16 @@ const MALWARE_ZERO_STATE = {
             link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_reporting_malware_signatures_on_rhel_systems'
         }
     ]
-};
+});
 
-const RESOURCE_OPTIMIZATION_ZERO_STATE = {
+const getResourceOptimizationZeroState = (brandName = 'Insights') => ({
     header: {
         description:
       'Resource Optimization enables users to assess and monitor their public RHEL cloud usage and provides guidance for opportunities for optimization.',
         commands: [
             {
                 plainText:
-          ' 1. Install & configure Performance Co-Pilot with use for Insights'
+          ` 1. Install & configure Performance Co-Pilot with use for ${getProductName(brandName)}`
             },
             {
                 instructions: 'Download Ansible Playbook',
@@ -390,9 +417,9 @@ const RESOURCE_OPTIMIZATION_ZERO_STATE = {
             link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
-};
+});
 
-const VULNERABILITY_ZERO_STATE = {
+const getVulnerabilityZeroState = () => ({
     header: {
         description:
       'Understand the security exposure of your registered RHEL systems and take appropriate steps to protect your organization.',
@@ -451,8 +478,8 @@ const VULNERABILITY_ZERO_STATE = {
             link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
         }
     ]
-};
-const IMAGES_ZERO_STATE = {
+});
+const getImagesZeroState = () => ({
     header: {
         description:
       `Create customized images optimized for your target environment and save time by uploading to multiple target environments in a single build.`,
@@ -483,12 +510,12 @@ const IMAGES_ZERO_STATE = {
             link: 'https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/creating_customized_images_by_using_insights_image_builder'
         }
     ]
-};
+});
 
-const REMEDIATION_PLANS_ZERO_STATE = {
+const getRemediationPlansZeroState = (brandName = 'Insights') => ({
     header: {
         description:
-      `Use remediation guidance provided by Red Hat Insights services to take manual actions or create playbooks for resolution at scale.`,
+      `Use remediation guidance provided by ${getFullBrandName(brandName)} services to take manual actions or create playbooks for resolution at scale.`,
         bulletPoints: [
             'Download remediation plan playbooks or execute directly to remediate risk',
             'Execute remediation plan playbooks directly via Red Hat Satellite or remote host configuration (rhc)'
@@ -510,7 +537,7 @@ const REMEDIATION_PLANS_ZERO_STATE = {
             { plainText: ' 2. For RHEL 8 and 9 hosts, install and connect with remote host configuration (rhc)' },
             { singleClipboardCommand: 'dnf -y install rhc' },
             { singleClipboardCommand: 'rhc connect' },
-            { plainText: ' 3. Once registered, view the analysis of that host in one of the Red Hat Insights applications to select items for remediation.  ' }
+            { plainText: ` 3. Once registered, view the analysis of that host in one of the ${getFullBrandName(brandName)} applications to select items for remediation.  ` }
 
         ]
     },
@@ -534,15 +561,13 @@ const REMEDIATION_PLANS_ZERO_STATE = {
     documentationTitleText: 'Documentation',
     documentation: [
         {
-            title: 'Red Hat Insights Remediations Guide',
+            title: `${getFullBrandName(brandName)} Remediations Guide`,
             link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/red_hat_insights_remediations_guide/index'
         }
     ]
-};
-// TODO: Remove after https://github.com/RedHatInsights/insights-remediations-frontend/pull/603 is merged
-const REMEDIATIONS_ZERO_STATE = REMEDIATION_PLANS_ZERO_STATE;
+});
 
-const INVENTORY_ZERO_STATE = {
+const getInventoryZeroState = (brandName = 'Insights') => ({
     header: {
         description:
       `Track and manage RHEL systems owned by your organization, and get discovered information and findings about your resources in a one-stop inventory.`,
@@ -586,7 +611,7 @@ const INVENTORY_ZERO_STATE = {
     ],
     documentation: [
         {
-            title: 'Getting Started with Red Hat Insights',
+            title: `Getting Started with ${getFullBrandName(brandName)}`,
             link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/getting_started_with_red_hat_insights'
         },
         {
@@ -594,11 +619,11 @@ const INVENTORY_ZERO_STATE = {
             link: 'https://console.redhat.com/docs/api/inventory'
         }
     ]
-};
+});
 
-const TASKS_ZERO_STATE = {
+const getTasksZeroState = (brandName = 'Insights') => ({
     header: {
-        description: 'Perform simple analyses on your Insights-connected hosts through the Red Hat Hybrid Cloud Console.',
+        description: `Perform simple analyses on your ${getProductName(brandName)}-connected hosts through the Red Hat Hybrid Cloud Console.`,
         commands: [
             { plainText: ' 1. Register your host' },
             {
@@ -610,12 +635,12 @@ const TASKS_ZERO_STATE = {
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/red_hat_insights_remediations_guide/host-communication-with-insights_red-hat-insights-remediation-guide',
                 partOne: '2. Follow',
-                anchorText: 'Enabling communication with Insights',
+                anchorText: `Enabling communication with ${getProductName(brandName)}`,
                 partTwo: ' to enable remote execution of playbooks.'
             }
         ],
         bulletPoints: [
-            'Use Insights Tasks to run a pre-upgrade analysis on your RHEL 7 or RHEL 8 hosts to identify and remediate known issues.'
+            `Use ${getProductName(brandName)} Tasks to run a pre-upgrade analysis on your RHEL 7 or RHEL 8 hosts to identify and remediate known issues.`
         ]
     },
     otherApps: [
@@ -636,24 +661,27 @@ const TASKS_ZERO_STATE = {
             link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems'
         },
         {
-            title: 'Take the unknowns out of RHEL upgrades with Red Hat Insights',
+            title: `Take the unknowns out of RHEL upgrades with ${getFullBrandName(brandName)}`,
             link: 'https://www.redhat.com/en/blog/take-unknowns-out-rhel-upgrades-red-hat-insights'
         }
     ]
-};
+});
 
-export default {
-    ADVISOR_ZERO_STATE,
-    COMPLIANCE_ZERO_STATE,
-    INSIGHTS_ZERO_STATE,
-    CONTENT_MANAGEMENT_ZERO_STATE,
-    POLICIES_ZERO_STATE,
-    MALWARE_ZERO_STATE,
-    RESOURCE_OPTIMIZATION_ZERO_STATE,
-    VULNERABILITY_ZERO_STATE,
-    IMAGES_ZERO_STATE,
-    REMEDIATION_PLANS_ZERO_STATE,
-    REMEDIATIONS_ZERO_STATE,
-    INVENTORY_ZERO_STATE,
-    TASKS_ZERO_STATE
-};
+// Function to get all zero state constants with dynamic brand name
+export const getZeroStateConstants = (brandName = 'Insights') => ({
+    ADVISOR_ZERO_STATE: getAdvisorZeroState(brandName),
+    COMPLIANCE_ZERO_STATE: getComplianceZeroState(brandName),
+    INSIGHTS_ZERO_STATE: getInsightsZeroState(brandName),
+    CONTENT_MANAGEMENT_ZERO_STATE: getContentManagementZeroState(brandName),
+    POLICIES_ZERO_STATE: getPoliciesZeroState(brandName),
+    MALWARE_ZERO_STATE: getMalwareZeroState(brandName),
+    RESOURCE_OPTIMIZATION_ZERO_STATE: getResourceOptimizationZeroState(brandName),
+    VULNERABILITY_ZERO_STATE: getVulnerabilityZeroState(brandName),
+    IMAGES_ZERO_STATE: getImagesZeroState(brandName),
+    REMEDIATION_PLANS_ZERO_STATE: getRemediationPlansZeroState(brandName),
+    INVENTORY_ZERO_STATE: getInventoryZeroState(brandName),
+    TASKS_ZERO_STATE: getTasksZeroState(brandName)
+});
+
+// Backward compatibility - default export with 'Insights' brand name
+export default getZeroStateConstants('Insights');

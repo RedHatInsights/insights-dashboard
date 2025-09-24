@@ -3,9 +3,10 @@ import propTypes from 'prop-types';
 import { Grid } from '@patternfly/react-core';
 import React from 'react';
 import AppSectionItems from './AppSectionItems';
-import zeroStateConstants from './zeroStateConstants';
+import { getZeroStateConstants } from './zeroStateConstants';
 
-const AppSection = ({ appName }) => {
+const AppSection = ({ appName, brandName }) => {
+    const zeroStateConstants = getZeroStateConstants(brandName);
     const appSectionList = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].otherApps;
 
     return (
@@ -29,7 +30,8 @@ const AppSection = ({ appName }) => {
 };
 
 AppSection.propTypes = {
-    appName: propTypes.string
+    appName: propTypes.string,
+    brandName: propTypes.string
 };
 
 export default AppSection;

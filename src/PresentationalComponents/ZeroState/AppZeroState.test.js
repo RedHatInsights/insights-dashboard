@@ -5,6 +5,7 @@ import AppZeroState from './AppZeroState';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 import { createAppNamesList } from './zeroStateHelpers';
+import { useFeatureFlag } from '../../Utilities/Hooks';
 
 jest.mock('@redhat-cloud-services/frontend-components-utilities/interceptors', () => ({
     __esModule: true,
@@ -14,11 +15,15 @@ jest.mock('@redhat-cloud-services/frontend-components-utilities/interceptors', (
     }))
 }));
 
+jest.mock('../../Utilities/Hooks', () => ({
+    __esModule: true,
+    useFeatureFlag: jest.fn(() => false) // Default to false (Insights)
+}));
+
 const appNames = createAppNamesList();
 const randomApp = appNames[Math.floor(Math.random() * appNames.length)];
 
 describe('AppZeroState component', () => {
-
     it('renders zero state if there ARE children but NO systems', async () => {
         render(
             <MemoryRouter initialEntries={['/some-path']}>
@@ -140,6 +145,46 @@ describe('AppZeroState component', () => {
         const zeroStateBanner = screen.queryByLabelText('ZeroStateBanner');
         expect(zeroStateBanner).not.toBeInTheDocument();
         mockedGet.mockRestore();
+    });
+
+    it('renders with Red Hat Lightspeed branding when feature flag is enabled', async () => {
+        const mockedUseFeatureFlag = jest.spyOn({ useFeatureFlag }, 'useFeatureFlag')
+        .mockReturnValue(true);
+
+        render(
+            <MemoryRouter initialEntries={['/some-path']}>
+                <Routes>
+                    <Route path="/some-path" element={
+                        <AppZeroState app={randomApp} customFetchResults={false} />
+                    } />
+                </Routes>
+            </MemoryRouter>
+        );
+
+        const zeroStateBanner = await screen.findByLabelText('ZeroStateBanner');
+        expect(zeroStateBanner).toBeInTheDocument();
+
+        mockedUseFeatureFlag.mockRestore();
+    });
+
+    it('renders with Insights branding when feature flag is disabled', async () => {
+        const mockedUseFeatureFlag = jest.spyOn({ useFeatureFlag }, 'useFeatureFlag')
+        .mockReturnValue(false);
+
+        render(
+            <MemoryRouter initialEntries={['/some-path']}>
+                <Routes>
+                    <Route path="/some-path" element={
+                        <AppZeroState app={randomApp} customFetchResults={false} />
+                    } />
+                </Routes>
+            </MemoryRouter>
+        );
+
+        const zeroStateBanner = await screen.findByLabelText('ZeroStateBanner');
+        expect(zeroStateBanner).toBeInTheDocument();
+
+        mockedUseFeatureFlag.mockRestore();
     });
 
 });
