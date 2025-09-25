@@ -148,8 +148,8 @@ describe('AppZeroState component', () => {
     });
 
     it('renders with Red Hat Lightspeed branding when feature flag is enabled', async () => {
-        const mockedUseFeatureFlag = jest.spyOn({ useFeatureFlag }, 'useFeatureFlag')
-        .mockReturnValue(true);
+        // Override the module-level mock for this test
+        useFeatureFlag.mockReturnValue(true);
 
         render(
             <MemoryRouter initialEntries={['/some-path']}>
@@ -164,12 +164,13 @@ describe('AppZeroState component', () => {
         const zeroStateBanner = await screen.findByLabelText('ZeroStateBanner');
         expect(zeroStateBanner).toBeInTheDocument();
 
-        mockedUseFeatureFlag.mockRestore();
+        // Reset to default mock behavior
+        useFeatureFlag.mockReturnValue(false);
     });
 
     it('renders with Insights branding when feature flag is disabled', async () => {
-        const mockedUseFeatureFlag = jest.spyOn({ useFeatureFlag }, 'useFeatureFlag')
-        .mockReturnValue(false);
+        // Ensure the mock returns false (this is the default, but being explicit)
+        useFeatureFlag.mockReturnValue(false);
 
         render(
             <MemoryRouter initialEntries={['/some-path']}>
@@ -183,8 +184,6 @@ describe('AppZeroState component', () => {
 
         const zeroStateBanner = await screen.findByLabelText('ZeroStateBanner');
         expect(zeroStateBanner).toBeInTheDocument();
-
-        mockedUseFeatureFlag.mockRestore();
     });
 
 });

@@ -7,25 +7,12 @@ export const useInsightsBrandName = () => {
     return   isLightspeedEnabled ? 'Red Hat Lightspeed' : 'Insights';
 };
 
-export const getFullBrandName = (brandName) => {
-    // If brandName already includes "Red Hat", return as is
-    if (brandName.includes('Red Hat')) {
+export const formatBrandName = (brandName, includeRedHat = true) => {
+    if (brandName === 'Red Hat Lightspeed') {
         return brandName;
+    } else {
+        return includeRedHat ? 'Red Hat ' + brandName : brandName;
     }
-
-    // Otherwise, add "Red Hat" prefix
-    return `Red Hat ${brandName}`;
-};
-
-// Helper function to get just the product name (without Red Hat prefix)
-export const getProductName = (brandName) => {
-    // If brandName includes "Red Hat", remove it
-    if (brandName.includes('Red Hat')) {
-        return brandName.replace('Red Hat ', '');
-    }
-
-    // Otherwise, return as is
-    return brandName;
 };
 
 const getAdvisorZeroState = () => ({
@@ -190,7 +177,7 @@ const getInsightsZeroState = () => ({
 
 const getContentManagementZeroState = (brandName = 'Insights') => ({
     header: {
-        description: `${getFullBrandName(brandName)} gives you the information to confidently update your RHEL systems with Red Hat product advisories and packages.`,
+        description: `${formatBrandName(brandName, true)} gives you the information to confidently update your RHEL systems with Red Hat product advisories and packages.`,
         commands: [
             { plainText: ' 1. Register your host' },
             {
@@ -365,7 +352,7 @@ const getResourceOptimizationZeroState = (brandName = 'Insights') => ({
         commands: [
             {
                 plainText:
-          ` 1. Install & configure Performance Co-Pilot with use for ${getProductName(brandName)}`
+          ` 1. Install & configure Performance Co-Pilot with use for ${formatBrandName(brandName, false)}`
             },
             {
                 instructions: 'Download Ansible Playbook',
@@ -515,7 +502,7 @@ const getImagesZeroState = () => ({
 const getRemediationPlansZeroState = (brandName = 'Insights') => ({
     header: {
         description:
-      `Use remediation guidance provided by ${getFullBrandName(brandName)} services to take manual actions or create playbooks for resolution at scale.`,
+      `Use remediation guidance provided by ${formatBrandName(brandName, true)} services to take manual actions or create playbooks for resolution at scale.`,
         bulletPoints: [
             'Download remediation plan playbooks or execute directly to remediate risk',
             'Execute remediation plan playbooks directly via Red Hat Satellite or remote host configuration (rhc)'
@@ -537,7 +524,7 @@ const getRemediationPlansZeroState = (brandName = 'Insights') => ({
             { plainText: ' 2. For RHEL 8 and 9 hosts, install and connect with remote host configuration (rhc)' },
             { singleClipboardCommand: 'dnf -y install rhc' },
             { singleClipboardCommand: 'rhc connect' },
-            { plainText: ` 3. Once registered, view the analysis of that host in one of the ${getFullBrandName(brandName)} applications to select items for remediation.  ` }
+            { plainText: ` 3. Once registered, view the analysis of that host in one of the ${formatBrandName(brandName, true)} applications to select items for remediation.  ` }
 
         ]
     },
@@ -561,7 +548,7 @@ const getRemediationPlansZeroState = (brandName = 'Insights') => ({
     documentationTitleText: 'Documentation',
     documentation: [
         {
-            title: `${getFullBrandName(brandName)} Remediations Guide`,
+            title: `${formatBrandName(brandName, true)} Remediations Guide`,
             link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/red_hat_insights_remediations_guide/index'
         }
     ]
@@ -611,7 +598,7 @@ const getInventoryZeroState = (brandName = 'Insights') => ({
     ],
     documentation: [
         {
-            title: `Getting Started with ${getFullBrandName(brandName)}`,
+            title: `Getting Started with ${formatBrandName(brandName, true)}`,
             link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/getting_started_with_red_hat_insights'
         },
         {
@@ -623,7 +610,7 @@ const getInventoryZeroState = (brandName = 'Insights') => ({
 
 const getTasksZeroState = (brandName = 'Insights') => ({
     header: {
-        description: `Perform simple analyses on your ${getProductName(brandName)}-connected hosts through the Red Hat Hybrid Cloud Console.`,
+        description: `Perform simple analyses on your ${formatBrandName(brandName, false)}-connected hosts through the Red Hat Hybrid Cloud Console.`,
         commands: [
             { plainText: ' 1. Register your host' },
             {
@@ -635,12 +622,12 @@ const getTasksZeroState = (brandName = 'Insights') => ({
             {
                 linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/red_hat_insights_remediations_guide/host-communication-with-insights_red-hat-insights-remediation-guide',
                 partOne: '2. Follow',
-                anchorText: `Enabling communication with ${getProductName(brandName)}`,
+                anchorText: `Enabling communication with ${formatBrandName(brandName, false)}`,
                 partTwo: ' to enable remote execution of playbooks.'
             }
         ],
         bulletPoints: [
-            `Use ${getProductName(brandName)} Tasks to run a pre-upgrade analysis on your RHEL 7 or RHEL 8 hosts to identify and remediate known issues.`
+            `Use ${formatBrandName(brandName, false)} Tasks to run a pre-upgrade analysis on your RHEL 7 or RHEL 8 hosts to identify and remediate known issues.`
         ]
     },
     otherApps: [
@@ -661,7 +648,7 @@ const getTasksZeroState = (brandName = 'Insights') => ({
             link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems'
         },
         {
-            title: `Take the unknowns out of RHEL upgrades with ${getFullBrandName(brandName)}`,
+            title: `Take the unknowns out of RHEL upgrades with ${formatBrandName(brandName, true)}`,
             link: 'https://www.redhat.com/en/blog/take-unknowns-out-rhel-upgrades-red-hat-insights'
         }
     ]

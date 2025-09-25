@@ -28,11 +28,13 @@ import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 import { useFlag } from '@unleash/proxy-client-react';
+import { useFeatureFlag } from '../../Utilities/Hooks';
 
 const ZeroState = () => {
     const intl = useIntl();
     const isItLess = useFlag('insights-dashboard-itless');
     const { hideGlobalFilter } = useChrome();
+    const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
 
     useEffect(() => {
         hideGlobalFilter?.();
@@ -58,7 +60,8 @@ const ZeroState = () => {
                     <Flex direction={ { default: 'column' } }>
                         <FlexItem>
                             <Title headingLevel='h1' size='2xl' className='pf-v6-u-text-color-inverse'>
-                                {intl.formatMessage(messages.noSystemsTitle)}
+                                {isLightspeedEnabled ? intl.formatMessage(messages.noSystemsTitleLightspeed) :
+                                    intl.formatMessage(messages.noSystemsTitle)}
                             </Title>
                         </FlexItem>
                         <FlexItem spacer={ { default: 'spacer2xl' } }>
@@ -86,7 +89,8 @@ const ZeroState = () => {
                                 target='_blank'
                                 rel='noreferrer'
                                 href='https://www.redhat.com/en/technologies/management/insights'>
-                                {intl.formatMessage(messages.learnmoreRHI)}&nbsp;&nbsp;&nbsp;
+                                {isLightspeedEnabled ? intl.formatMessage(messages.learnmoreLightspeed) :
+                                    intl.formatMessage(messages.learnmoreRHI)}&nbsp;&nbsp;&nbsp;
                             </Button>
                         </FlexItem>
                     </Flex>
@@ -147,13 +151,15 @@ const ZeroState = () => {
             <Flex direction={ { default: 'column' } }>
                 <FlexItem spacer={ { default: 'spacerLg' } }>
                     <Title headingLevel='h3' size='lg' className='pf-v6-u-text-color-inverse'>
-                        {intl.formatMessage(messages.dataPrivacyAndControlsTitle)}
+                        { isLightspeedEnabled ? intl.formatMessage(messages.dataPrivacyAndControlsTitleLightspeed) :
+                            intl.formatMessage(messages.dataPrivacyAndControlsTitle)}
                     </Title>
                 </FlexItem>
                 <FlexItem spacer={ { default: 'spacerXl' } }>
                     <p className='insd-c-width-limiter ins-c-text--black-400'
                         style={ { '--insd-c-width-limiter--MaxWidth': '70ch' } }>
-                        {intl.formatMessage(messages.dataPrivacyAndControls)}
+                        { isLightspeedEnabled ? intl.formatMessage(messages.dataPrivacyAndControlsLightspeed) :
+                            intl.formatMessage(messages.dataPrivacyAndControls)}
                     </p>
                 </FlexItem>
                 <FlexItem>
@@ -173,10 +179,12 @@ const ZeroState = () => {
                 <FlexItem spacer={ { default: 'spacerXl' } }>
                     <Content>
                         <Title headingLevel='h3'>
-                            {intl.formatMessage(messages.insightsandsatellite)}
+                            {isLightspeedEnabled ? intl.formatMessage(messages.lightspeedandsatellite) :
+                                intl.formatMessage(messages.insightsandsatellite)}
                         </Title>
                         <div className='insd-c-width-limiter' style={ { '--insd-c-width-limiter--MaxWidth': '900px' } }>
-                            <p>{intl.formatMessage(messages.satellite)}</p>
+                            <p>{isLightspeedEnabled ? intl.formatMessage(messages.satellitelightspeed) :
+                                intl.formatMessage(messages.satellite)}</p>
                         </div>
                     </Content>
                 </FlexItem>

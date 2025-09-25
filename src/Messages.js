@@ -303,6 +303,11 @@ export default defineMessages({
         description: 'No systems',
         defaultMessage: 'Get started with Insights'
     },
+    noSystemsTitleLightspeed: {
+        id: 'noSystemsTitleSatellite',
+        description: 'No systems',
+        defaultMessage: 'Get started with Red Hat Lightspeed'
+    },
     getStartedInsights: {
         id: 'getStartedInsights',
         description: 'Get started using Insights',
@@ -428,6 +433,11 @@ export default defineMessages({
         description: 'Learn more about Insights',
         defaultMessage: 'Learn more about Insights'
     },
+    learnmoreLightspeed: {
+        id: 'learnmoreLightspeed',
+        description: 'Learn more about Red Hat Lightspeed',
+        defaultMessage: 'Learn more about Red Hat Lightspeed'
+    },
     insightsDescription: 'Single, consistent management solution across on-premise, hybrid cloud, and public cloud. Included with Red Hat Enterprise Linux subscription. Single, consistent management solution across on-premise, hybrid cloud, and public cloud.',
     contactsales: {
         id: 'contactsales',
@@ -439,10 +449,20 @@ export default defineMessages({
         description: 'satellite subscription',
         defaultMessage: 'Satellite subscription enables push-button remediation of issues identified by Insights. Any issues identified by Insights are accompanied by remediation instructions, and with Satellite, remediation is available at scale.'
     },
+    satellitelightspeed: {
+        id: 'satellite',
+        description: 'satellite subscription',
+        defaultMessage: 'Satellite subscription enables push-button remediation of issues identified by Red Hat Lightspeed. Any issues identified by Red Hat Lightspeed are accompanied by remediation instructions, and with Satellite, remediation is available at scale.'
+    },
     insightsandsatellite: {
         id: 'insightsandsatellite',
         description: 'Insights and Satellite',
         defaultMessage: 'Insights and Satellite'
+    },
+    lightspeedandsatellite: {
+        id: 'lightspeedandsatellite',
+        description: 'Red Hat Lightspeed and Satellite',
+        defaultMessage: 'Red Hat Lightspeed and Satellite'
     },
     rhm1: {
         id: 'rhm1',
@@ -469,10 +489,20 @@ export default defineMessages({
         description: 'Data privacy body',
         defaultMessage: 'Red Hat Insights provides a mechanism for users to obtain actionable intelligence regarding suggested improvements to deployed Red Hat software. This document covers the security measures Red Hat puts in place to provide secure transmission, processing, and analysis of this data by those tools.'
     },
+    dataPrivacyAndControlsLightspeed: {
+        id: 'dataPrivacyAndControlsLightspeed',
+        description: 'Data privacy body',
+        defaultMessage: 'Red Hat Lightspeed provides a mechanism for users to obtain actionable intelligence regarding suggested improvements to deployed Red Hat software. This document covers the security measures Red Hat puts in place to provide secure transmission, processing, and analysis of this data by those tools.'
+    },
     dataPrivacyAndControlsTitle: {
         id: 'dataPrivacyAndControlsTitle',
         description: 'Data privacy and controls title',
         defaultMessage: 'Data privacy and controls in Insights'
+    },
+    dataPrivacyAndControlsTitleLightspeed: {
+        id: 'dataPrivacyAndControlsTitleLightspeed',
+        description: 'Data privacy and controls title',
+        defaultMessage: 'Data privacy and controls in Red Hat Lightspeed'
     },
     zslblTitle: {
         id: 'zslblTitle',

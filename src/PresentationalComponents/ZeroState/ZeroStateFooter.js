@@ -8,7 +8,7 @@ import {
     GridItem
 } from '@patternfly/react-core';
 import React from 'react';
-import { getZeroStateConstants, getProductName } from './zeroStateConstants';
+import { getZeroStateConstants, formatBrandName } from './zeroStateConstants';
 import propTypes from 'prop-types';
 
 const ZeroStateFooter = ({
@@ -43,7 +43,7 @@ const ZeroStateFooter = ({
                     <GridItem >
                         <Flex direction={{ default: 'column' }} spacer={{ default: 'spacerSm' }}>
                             <FlexItem>
-                                <Title headingLevel='h3' size='lg'>Learn about {getProductName(brandName)}</Title>
+                                <Title headingLevel='h3' size='lg'>Learn about {formatBrandName(brandName, false)}</Title>
                             </FlexItem>
                             <FlexItem>
                                 <a
@@ -61,7 +61,7 @@ const ZeroStateFooter = ({
                                 <a
                                     target='_blank'
                                     rel='noreferrer' href={'https://www.redhat.com/en/technologies/management/insights/data-application-security'} >
-                                Data privacy and controls in {getProductName(brandName)}
+                                Data privacy and controls in {formatBrandName(brandName, false)}
                                 </a>
                             </FlexItem>
                             <FlexItem>
