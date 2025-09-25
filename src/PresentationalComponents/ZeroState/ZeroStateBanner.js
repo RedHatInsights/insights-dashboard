@@ -18,16 +18,18 @@ import { useIntl } from 'react-intl';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import registerSystemsList from '../RegisterSystemList';
 import propTypes from 'prop-types';
-import zeroStateConstants from './zeroStateConstants';
+import { getZeroStateConstants } from './zeroStateConstants';
 
 const ZeroStateBanner = ({
     appName,
+    brandName,
     customInstructions,
     customButton,
     customText,
     customTitle,
     appId
 }) => {
+    const zeroStateConstants = getZeroStateConstants(brandName);
     const description = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.description;
     const commands = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.commands;
     const bulletPoints = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.bulletPoints;
@@ -100,7 +102,8 @@ const ZeroStateBanner = ({
                                 </FlexItem>
                                 <FlexItem>
                                     <div  style={{ maxWidth: '600px', color: '#151515', textAlign: 'center' }}>
-                                        <p>{customText ? customText : intl.formatMessage(messages.getStartedInsights)}</p>
+                                        <p>{customText ? customText : (brandName === 'Red Hat Lightspeed' ?
+                                            intl.formatMessage(messages.getStartedLightSpeed) : intl.formatMessage(messages.getStartedInsights))}</p>
                                     </div>
                                 </FlexItem>
                                 <FlexItem>
@@ -132,6 +135,7 @@ export default ZeroStateBanner;
 
 ZeroStateBanner.propTypes = {
     appName: propTypes.string,
+    brandName: propTypes.string,
     description: propTypes.object,
     commands: propTypes.array,
     bulletPoints: propTypes.array,
