@@ -117,7 +117,7 @@
     "react-masonry-css": "^1.0.16",
     "stylelint": "^13.13.1",
     "stylelint-config-recommended-scss": "^4.3.0",
-    "stylelint-scss": "^3.20.1",
+    "stylelint-scss": "^6.0.0",
     "ts-patch": "^3.1.2",
     "typescript": "^5.3.3"
   },
