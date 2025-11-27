@@ -32,7 +32,7 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 
-const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSummary, selectedTags, workloads, SID }) => {
+const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSummary, selectedTags, workloads }) => {
     useEffect(() => {
         fetchCompliance();
     }, [fetchCompliance]);
@@ -65,7 +65,7 @@ const ComplianceCard = ({ fetchCompliance, complianceFetchStatus, complianceSumm
             }
             body={
                 <TemplateCardBody>
-                    {supportsGlobalFilter(selectedTags, workloads, SID) ?
+                    {supportsGlobalFilter(selectedTags, workloads) ?
                         <React.Fragment>
                             {complianceFetchStatus === 'fulfilled' &&
                                 (Array.isArray(complianceSummary.data) &&
@@ -166,16 +166,14 @@ ComplianceCard.propTypes = {
     complianceFetchStatus: PropTypes.string,
     intl: PropTypes.any,
     selectedTags: PropTypes.array,
-    workloads: workloadsPropType,
-    SID: PropTypes.arrayOf(PropTypes.string)
+    workloads: workloadsPropType
 };
 
 const mapStateToProps = ({ DashboardStore }) => ({
     complianceSummary: DashboardStore.complianceSummary,
     complianceFetchStatus: DashboardStore.complianceFetchStatus,
     selectedTags: DashboardStore.selectedTags,
-    workloads: DashboardStore.workloads,
-    SID: DashboardStore.SID
+    workloads: DashboardStore.workloads
 });
 
 const mapDispatchToProps = dispatch => ({

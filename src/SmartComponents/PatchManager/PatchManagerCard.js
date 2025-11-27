@@ -27,7 +27,7 @@ import { Flex, Spinner } from '@patternfly/react-core';
 const PatchManagerCard = ({
     systems, systemsStatus, fetchSystems,
     advisories, advisoriesStatus, fetchAdvisories,
-    selectedTags, workloads, SID
+    selectedTags, workloads
 }) => {
     const intl = useIntl();
     const isLoaded = [systemsStatus, advisoriesStatus].every(item => item === 'fulfilled');
@@ -55,10 +55,10 @@ const PatchManagerCard = ({
     ];
 
     useEffect(() => {
-        const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
+        const options = { ...globalFilters(workloads), ...selectedTags?.length > 0 && { tags: selectedTags } };
         fetchSystems(options);
         fetchAdvisories(options);
-    }, [fetchSystems, fetchAdvisories, workloads, SID, selectedTags]);
+    }, [fetchSystems, fetchAdvisories, workloads, selectedTags]);
 
     if (systemsStatus === 'rejected') {
         return (
@@ -119,8 +119,7 @@ PatchManagerCard.propTypes = {
     advisoriesStatus: PropTypes.string,
     fetchAdvisories: PropTypes.func,
     selectedTags: PropTypes.arrayOf(PropTypes.string),
-    workloads: workloadsPropType,
-    SID: PropTypes.arrayOf(PropTypes.string)
+    workloads: workloadsPropType
 };
 
 export default connect(
@@ -130,8 +129,7 @@ export default connect(
         advisories: DashboardStore.patchmanAdvisories,
         advisoriesStatus: DashboardStore.patchmanAdvisoriesStatus,
         selectedTags: DashboardStore.selectedTags,
-        workloads: DashboardStore.workloads,
-        SID: DashboardStore.SID
+        workloads: DashboardStore.workloads
     }),
     dispatch => ({
         fetchSystems: (options) => dispatch(patchmanFetchSystems(options)),
