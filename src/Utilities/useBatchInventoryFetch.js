@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { INVENTORY_FETCH_URL, INVENTORY_STALE_FETCH_URL, INVENTORY_WARNING_FETCH_URL } from '../AppConstants';
 import { globalFilters } from './Common';
 
-export const useBatchInventoryFetch = (workloads, SID, selectedTags, hasAccess) => {
+export const useBatchInventoryFetch = (workloads, selectedTags, hasAccess) => {
     const axios = useAxiosWithPlatformInterceptors();
     const mounted = useRef(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +13,7 @@ export const useBatchInventoryFetch = (workloads, SID, selectedTags, hasAccess) 
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        const params = { ...globalFilters(workloads, SID) };
+        const params = { ...globalFilters(workloads) };
         const tags = `${selectedTags?.length > 0 ? `&tags=${selectedTags?.join('&tags=')}` : ''}`;
         mounted.current = true;
         const fetchData = async () => {
@@ -45,7 +45,7 @@ export const useBatchInventoryFetch = (workloads, SID, selectedTags, hasAccess) 
         return () => {
             mounted.current = false;
         };
-    }, [workloads, SID, selectedTags, hasAccess, axios]);
+    }, [workloads, selectedTags, hasAccess, axios]);
 
     return [
         isLoading,

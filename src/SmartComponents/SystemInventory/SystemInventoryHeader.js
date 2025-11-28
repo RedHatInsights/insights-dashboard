@@ -33,7 +33,7 @@ import { useFeatureFlag } from '../../Utilities/Hooks';
  * System inventory card for showing system inventory and status.
  */
 const SystemInventoryHeader = ({
-    selectedTags, workloads, SID
+    selectedTags, workloads
 }) => {
     const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
 
@@ -49,7 +49,7 @@ const SystemInventoryHeader = ({
         inventorySummary,
         inventoryWarningSummary,
         inventoryStaleSum,
-        error] = useBatchInventoryFetch(workloads, SID, selectedTags, hasAccess);
+        error] = useBatchInventoryFetch(workloads, selectedTags, hasAccess);
 
     const intl = useIntl();
 
@@ -166,14 +166,12 @@ const SystemInventoryHeader = ({
 SystemInventoryHeader.propTypes = {
     intl: PropTypes.any,
     selectedTags: PropTypes.arrayOf(PropTypes.string),
-    workloads: workloadsPropType,
-    SID: PropTypes.arrayOf(PropTypes.string)
+    workloads: workloadsPropType
 };
 
 export default connect(
     ({ DashboardStore }) => ({
         selectedTags: DashboardStore.selectedTags,
-        workloads: DashboardStore.workloads,
-        SID: DashboardStore.SID
+        workloads: DashboardStore.workloads
     })
 )(SystemInventoryHeader);

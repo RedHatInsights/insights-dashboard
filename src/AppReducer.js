@@ -37,8 +37,7 @@ const initialState = Immutable({
     rosIsConfigured: {},
     rosIsConfiguredFetchStatus: '',
     selectedTags: [],
-    workloads: {},
-    SID: {}
+    workloads: {}
 });
 
 export const DashboardStore = (state = initialState, action) => {
@@ -52,11 +51,6 @@ export const DashboardStore = (state = initialState, action) => {
         case ActionTypes.WORKLOADS_SET:
             return Immutable.merge(state, {
                 workloads: action.payload
-            });
-
-        case ActionTypes.SID_SET:
-            return Immutable.merge(state, {
-                SID: action.payload
             });
 
         // COMPLIANCE

@@ -28,19 +28,18 @@ const workloadsPropType = (props, propName, componentName) => {
     return error;
 };
 
-const globalFilters = (workloads, SID) => generateFilter({
+const globalFilters = (workloads) => generateFilter({
     system_profile: {
         ...workloads?.SAP?.isSelected && { sap_system: true },
         ...workloads?.['Ansible Automation Platform']?.isSelected
             && { ansible: 'not_nil' },
         ...workloads?.['Microsoft SQL']?.isSelected
-            && { mssql: 'not_nil' },
-        ...SID?.length > 0 && { sap_sids: SID }
+            && { mssql: 'not_nil' }
     }
 }, undefined, { arrayEnhancer: 'contains' });
 
-const supportsGlobalFilter = (selectedTags, workloads, SID) => workloads === undefined ||
+const supportsGlobalFilter = (selectedTags, workloads) => workloads === undefined ||
     !Object.values(workloads).map(value => value.isSelected).reduce((res, cur) => res || cur, false) &&
-    selectedTags.length === 0 && Object.entries(SID).length === 0;
+    selectedTags.length === 0;
 
 export { capitalize, workloadsPropType, globalFilters, supportsGlobalFilter };
