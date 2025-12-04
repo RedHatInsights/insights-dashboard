@@ -77,7 +77,7 @@ const PatchManagerCard = ({
         body={<TemplateCardBody>
             {!isLoaded ? <Spinner /> :
                 <Flex direction={{ default: 'column' }}>
-                    <InsightsLink app='patch' to='/systems' className='pf-v6-c-button pf-m-link pf-m-inline'>
+                    <InsightsLink app='patch' to='/systems?filter[stale]=false' className='pf-v6-c-button pf-m-link pf-m-inline'>
                         <span>{intl.formatMessage(messages.systemsAffected, { count: systems })}</span>
                     </InsightsLink>
                     <div className="insd-c-dashboard__card-chart-container">
