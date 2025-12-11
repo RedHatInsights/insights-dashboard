@@ -393,7 +393,7 @@ const getResourceOptimizationZeroState = (brandName = 'Insights') => ({
     documentation: [
         {
             title: 'Assessing and Monitoring RHEL Resource Optimization',
-            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_rhel_resource_optimization_with_red_hat_lightspeed_hat_enterprise_linux'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_rhel_resource_optimization_with_red_hat_lightspeed/index'
         },
         {
             title: 'Resource Optimization APIs',
