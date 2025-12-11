@@ -126,7 +126,7 @@ const CentOsCard = () => {
                                         iconPosition="end"
                                         target='_blank'
                                         // eslint-disable-next-line max-len
-                                        href="https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/converting_from_a_linux_distribution_to_rhel_using_the_convert2rhel_utility_in_red_hat_insights/preparation-for-a-rhel-conversion-using-insights_converting-from-a-linux-distribution-to-rhel-in-insights"
+                                        href="https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/converting_from_a_linux_distribution_to_rhel_using_the_convert2rhel_utility_in_red_hat_lightspeed/preparation-for-a-rhel-conversion-using-lightspeed_converting-from-a-linux-distribution-to-rhel-in-lightspeed"
                                     >
                                         Prepare CentOS systems to convert via Insights
                                     </Button>

@@ -28,7 +28,7 @@ const getAdvisorZeroState = () => ({
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/client_configuration_guide_for_red_hat_lightspeed/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -59,11 +59,11 @@ const getAdvisorZeroState = () => ({
     documentation: [
         {
             title: 'Assessing RHEL Configuration Issues',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_rhel_configuration_issues_using_the_red_hat_insights_advisor_service/index'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_rhel_configuration_issues_by_using_the_red_hat_lightspeed_advisor_service'
         },
         {
             title: 'Generating Advisor Service Reports',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/generating_advisor_service_reports/index'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/generating_advisor_service_reports/index'
         },
         {
             title: 'Advisor APIs',
@@ -94,7 +94,7 @@ const getComplianceZeroState = (brandName = 'Insights') => ({
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/client_configuration_guide_for_red_hat_lightspeed/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -130,11 +130,11 @@ const getComplianceZeroState = (brandName = 'Insights') => ({
     documentation: [
         {
             title: 'Assessing and Monitoring Security Policy Compliance',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index'
         },
         {
             title: 'Generating Compliance Service Reports',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/generating_compliance_service_reports'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/generating_compliance_service_reports/index'
         },
         {
             title: `${brandName} Compliance - Supported configurations`,
@@ -187,7 +187,7 @@ const getContentManagementZeroState = (brandName = 'Insights') => ({
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/client_configuration_guide_for_red_hat_lightspeed/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -219,7 +219,7 @@ const getContentManagementZeroState = (brandName = 'Insights') => ({
     documentation: [
         {
             title: 'System Patching Using Ansible Playbooks',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/system_patching_using_remediation_playbooks/index'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/managing_system_content_and_patch_updates_on_rhel_systems/patch-service-overview#patching-using-playbooks_patch-service-overview'
         },
         {
             title: 'Patch APIs',
@@ -245,7 +245,7 @@ const getPoliciesZeroState = () => ({
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/client_configuration_guide_for_red_hat_lightspeed/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -280,7 +280,7 @@ const getPoliciesZeroState = () => ({
     documentation: [
         {
             title: 'Monitoring and Reacting to Configuration Changes',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/monitoring_and_reacting_to_configuration_changes_using_policies'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/monitoring_and_reacting_to_configuration_changes_by_using_policies/index'
         },
         {
             title: 'Policies APIs',
@@ -308,7 +308,7 @@ const getMalwareZeroState = () => ({
                 singleClipboardCommand: 'insights-client --register'
             },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/client_configuration_guide_for_red_hat_lightspeed/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -340,7 +340,7 @@ const getMalwareZeroState = () => ({
     documentation: [
         {
             title: 'Assessing and Reporting Malware Signatures',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_reporting_malware_signatures_on_rhel_systems'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_reporting_malware_signatures_on_rhel_systems/index'
         }
     ]
 });
@@ -356,10 +356,10 @@ const getResourceOptimizationZeroState = (brandName = 'Insights') => ({
             },
             {
                 instructions: 'Download Ansible Playbook',
-                link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux/assembly-ros-install#installing_resource_optimization_when_ansible_is_already_installed'
+                link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_rhel_resource_optimization_with_red_hat_lightspeed/assembly-ros-install#proc-installing-ros_assembly-ros-install'
             },
             { plainText: 'or' },
-            { instructions: 'Complete the manual install', link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux/assembly-ros-install#installing_resource_optimization_without_installing_or_using_ansible' },
+            { instructions: 'Complete the manual install', link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_rhel_resource_optimization_with_red_hat_lightspeed/assembly-ros-install#proc-installing-ros_assembly-ros-install' },
             { plainText: '2. Register your host' },
             {
                 instructions: 'RHEL 7, 8 and 9:',
@@ -368,7 +368,7 @@ const getResourceOptimizationZeroState = (brandName = 'Insights') => ({
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/client_configuration_guide_for_red_hat_lightspeed/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -393,7 +393,7 @@ const getResourceOptimizationZeroState = (brandName = 'Insights') => ({
     documentation: [
         {
             title: 'Assessing and Monitoring RHEL Resource Optimization',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_rhel_resource_optimization_with_red_hat_lightspeed_hat_enterprise_linux'
         },
         {
             title: 'Resource Optimization APIs',
@@ -419,7 +419,7 @@ const getVulnerabilityZeroState = () => ({
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/client_configuration_guide_for_red_hat_lightspeed/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -450,11 +450,11 @@ const getVulnerabilityZeroState = () => ({
     documentation: [
         {
             title: 'Assessing and Monitoring Security Vulnerabilities',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems/index'
         },
         {
             title: 'Generating Vulnerability Service Reports',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/generating_vulnerability_service_reports'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/generating_vulnerability_service_reports/index'
         },
         {
             title: 'Vulnerability APIs',
@@ -516,7 +516,7 @@ const getRemediationPlansZeroState = (brandName = 'Insights') => ({
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/client_configuration_guide_for_red_hat_lightspeed/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -549,7 +549,7 @@ const getRemediationPlansZeroState = (brandName = 'Insights') => ({
     documentation: [
         {
             title: `${formatBrandName(brandName, true)} Remediations Guide`,
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/red_hat_insights_remediations_guide/index'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/red_hat_lightspeed_remediations_guide/index'
         }
     ]
 });
@@ -567,7 +567,7 @@ const getInventoryZeroState = (brandName = 'Insights') => ({
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/client_configuration_guide_for_red_hat_insights/index',
+                linkWithinText: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/client_configuration_guide_for_red_hat_lightspeed/index',
                 partOne: 'Need help? Some systems from different sources require some additional steps. View the',
                 anchorText: 'Client Configuration Guide',
                 partTwo: ' for more details.'
@@ -599,7 +599,7 @@ const getInventoryZeroState = (brandName = 'Insights') => ({
     documentation: [
         {
             title: `Getting Started with ${formatBrandName(brandName, true)}`,
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/getting_started_with_red_hat_insights'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/getting_started_with_red_hat_lightspeed'
         },
         {
             title: 'Inventory API',
@@ -620,7 +620,7 @@ const getTasksZeroState = (brandName = 'Insights') => ({
             { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
             { singleClipboardCommand: 'insights-client --register' },
             {
-                linkWithinText: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/red_hat_insights_remediations_guide/host-communication-with-insights_red-hat-insights-remediation-guide',
+                linkWithinText: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/red_hat_lightspeed_remediations_guide/host-communication-with-red-hat-lightspeed_red-hat-lightspeed-remediation-guide',
                 partOne: '2. Follow',
                 anchorText: `Enabling communication with ${formatBrandName(brandName, false)}`,
                 partTwo: ' to enable remote execution of playbooks.'
@@ -645,7 +645,7 @@ const getTasksZeroState = (brandName = 'Insights') => ({
     documentation: [
         {
             title: 'Remote Host Configuration and Management',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems'
+            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems/index'
         },
         {
             title: `Take the unknowns out of RHEL upgrades with ${formatBrandName(brandName, true)}`,
