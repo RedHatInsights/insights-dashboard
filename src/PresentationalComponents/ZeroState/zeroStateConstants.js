@@ -112,11 +112,6 @@ const getComplianceZeroState = (brandName = 'Insights') => ({
     },
     otherApps: [
         {
-            title: 'Policies',
-            description: messages.policiesZeroState,
-            link: '/insights/policies'
-        },
-        {
             title: 'Vulnerability',
             description: messages.vulnerabilityZeroState,
             link: '/insights/vulnerability'
@@ -224,67 +219,6 @@ const getContentManagementZeroState = (brandName = 'Insights') => ({
         {
             title: 'Patch APIs',
             link: 'https://console.redhat.com/docs/api/patch/v3'
-        },
-        {
-            title: 'Configuring notifications & Integration',
-            link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index'
-        }
-    ]
-});
-
-const getPoliciesZeroState = () => ({
-    header: {
-        description:
-      'Policies allow users to create and manage rule conditions to evaluate against system configuration and get automatically alerted whenever they trigger. It assists in operational management with simple tasks such as:',
-        commands: [
-            { plainText: ' 1. Register your host' },
-            {
-                instructions: 'RHEL 7, 8 and 9:',
-                command: 'subscription-manager register'
-            },
-            { singleClipboardCommand: 'yum -y install insights-client # necessary for some versions of RHEL 7 and 8' },
-            { singleClipboardCommand: 'insights-client --register' },
-            {
-                linkWithinText: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/client_configuration_guide_for_red_hat_lightspeed/index',
-                partOne: 'Need help? Some systems from different sources require some additional steps. View the',
-                anchorText: 'Client Configuration Guide',
-                partTwo: ' for more details.'
-            },
-            { plainText: ' 2. Create condition(s) based on system facts or tags via the policy creation wizard.' }
-        ],
-        bulletPoints: [
-            'Raising an alert when some conditions are met on system configuration',
-            'Emailing a team when security packages are out of date on a system',
-            'Notifying on Slack when system resources are configured above thresholds',
-            'Creating an issue in external ticketing systems when policies are breached',
-            'Triggering actions on system inventory automatically'
-        ]
-    },
-    otherApps: [
-        {
-            title: 'Compliance',
-            description: messages.complianceZeroState,
-            link: '/insights/compliance'
-        },
-        {
-            title: 'Advisor',
-            description: messages.advisorZeroState,
-            link: '/insights/advisor'
-        },
-        {
-            title: 'Resource Optimization',
-            description: messages.resourceOptimizationZeroState,
-            link: '/insights/ros'
-        }
-    ],
-    documentation: [
-        {
-            title: 'Monitoring and Reacting to Configuration Changes',
-            link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/monitoring_and_reacting_to_configuration_changes_by_using_policies/index'
-        },
-        {
-            title: 'Policies APIs',
-            link: 'https://console.redhat.com/docs/api/policies'
         },
         {
             title: 'Configuring notifications & Integration',
@@ -660,7 +594,6 @@ export const getZeroStateConstants = (brandName = 'Insights') => ({
     COMPLIANCE_ZERO_STATE: getComplianceZeroState(brandName),
     INSIGHTS_ZERO_STATE: getInsightsZeroState(brandName),
     CONTENT_MANAGEMENT_ZERO_STATE: getContentManagementZeroState(brandName),
-    POLICIES_ZERO_STATE: getPoliciesZeroState(brandName),
     MALWARE_ZERO_STATE: getMalwareZeroState(brandName),
     RESOURCE_OPTIMIZATION_ZERO_STATE: getResourceOptimizationZeroState(brandName),
     VULNERABILITY_ZERO_STATE: getVulnerabilityZeroState(brandName),

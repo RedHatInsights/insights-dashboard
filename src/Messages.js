@@ -639,11 +639,6 @@ export default defineMessages({
         description: 'Advisor card header 3',
         defaultMessage: 'Recommendations by category'
     },
-    policiesCardHeader: {
-        id: 'policiesCardHeader',
-        description: 'Policies card header',
-        defaultMessage: 'Policies'
-    },
     remediationsCardHeader: {
         id: 'remediationsCardHeader',
         description: 'Remediations card header',
@@ -660,11 +655,6 @@ export default defineMessages({
         id: 'advisorCardCTA',
         description: 'Advisor card CTA',
         defaultMessage: 'View incidents'
-    },
-    policiesCardCTA: {
-        id: 'policiesCardCTA',
-        description: 'Policies CTA',
-        defaultMessage: 'View all policies'
     },
     rosCardConfigureSystemsCTA: {
         id: 'rosCardConfigureSystemsCTA',
@@ -770,11 +760,6 @@ export default defineMessages({
         id: 'patchZeroState',
         description: 'Zero state description for Patch app',
         defaultMessage: 'The patch service gives you the information you need to confidently update your RHEL systems with Red Hat product advisories and packages.'
-    },
-    policiesZeroState: {
-        id: 'policiesZeroState',
-        description: 'Zero state description for Policies app',
-        defaultMessage: 'Policies allow users to create and manage rule conditions to evaluate against system configuration and get automatically alerted whenever they trigger.'
     },
     malwareZeroState: {
         id: 'malwaretZeroState',
