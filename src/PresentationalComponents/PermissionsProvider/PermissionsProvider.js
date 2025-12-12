@@ -8,7 +8,6 @@ export const PermissionContext = createContext();
 const PermissionsProvider = ({ children }) => {
     const chrome = useChrome();
     const [permissions, setPermissions] = useState({
-        customPolicies: false,
         compliance: false,
         advisor: false,
         remediations: false,
@@ -26,7 +25,6 @@ const PermissionsProvider = ({ children }) => {
                 const permissionList = dashboardPermissions.length && dashboardPermissions.map(permissions => permissions.permission);
                 if (permissionList.length) {
                     setPermissions({
-                        customPolicies: permissionList.includes('custom-policies:*:*'),
                         compliance: permissionList.includes('compliance:*:*'),
                         advisor: permissionList.includes('insights:*:*') || (
                             (permissionList.includes('inventory:*:read') || permissionList.includes('inventory:hosts:read')) &&
@@ -56,7 +54,6 @@ const PermissionsProvider = ({ children }) => {
     return arePermissionsReady ? (
         <PermissionContext.Provider
             value={ {
-                customPolicies: permissions.customPolicies,
                 compliance: permissions.compliance,
                 advisor: permissions.advisor,
                 remediations: permissions.remediations,
