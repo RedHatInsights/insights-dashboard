@@ -17,7 +17,7 @@ import {
 } from '@patternfly/react-core';
 import React, { useEffect, useMemo, useState } from 'react';
 import { SEVERITY_MAP } from '../../AppConstants';
-import { capitalize, globalFilters } from '../../Utilities/Common';
+import { capitalize, globalFilters, decodeTags } from '../../Utilities/Common';
 import {
     t_global_text_color_disabled,
     chart_color_blue_100,
@@ -76,7 +76,7 @@ const Advisor = () => {
         const advisorFetchStatsRecs = options => dispatch(AppActions.advisorFetchStatsRecs(options));
         const advisorFetchStatsSystems = options => dispatch(AppActions.advisorFetchStatsSystems(options));
         const advisorFetchIncidents = options => dispatch(AppActions.advisorFetchIncidents(options));
-        const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: selectedTags } };
+        const options = { ...globalFilters(workloads, SID), ...selectedTags?.length > 0 && { tags: decodeTags(selectedTags) } };
         advisorFetchStatsRecs(options);
         advisorFetchStatsSystems(options);
         advisorFetchIncidents(options);

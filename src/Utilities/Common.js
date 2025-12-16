@@ -42,4 +42,6 @@ const supportsGlobalFilter = (selectedTags, workloads) => workloads === undefine
     !Object.values(workloads).map(value => value.isSelected).reduce((res, cur) => res || cur, false) &&
     selectedTags.length === 0;
 
-export { capitalize, workloadsPropType, globalFilters, supportsGlobalFilter };
+const decodeTags = (tags) => tags?.map(tag => decodeURIComponent(tag));
+
+export { capitalize, workloadsPropType, globalFilters, supportsGlobalFilter, decodeTags };
