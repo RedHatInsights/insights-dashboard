@@ -38,3 +38,4 @@ The app uses containerized builds which are configured in [`app-interface`](http
 | :---------- | :--------------------------------| :----------
 | stage       | https://console.stage.redhat.com | master branch
 | production  | https://console.redhat.com       | up to the commit configured in `app-interface`
+
