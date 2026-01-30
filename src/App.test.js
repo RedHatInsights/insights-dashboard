@@ -34,6 +34,11 @@ jest.mock('./PresentationalComponents/ZeroState/ZeroState', () => ({
 })
 );
 
+jest.mock('./Utilities/Hooks', () => ({
+    __esModule: true,
+    useFeatureFlag: jest.fn(() => false) // Default to false (RBAC v1 path)
+}));
+
 const renderDashboard = () => {
     render(<BrowserRouter>
         <IntlProvider>

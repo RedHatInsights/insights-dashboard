@@ -2,11 +2,13 @@ import React, { useState, createContext, useEffect } from 'react';
 import propTypes from 'prop-types';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import PageLoading from '../PageLoading/PageLoading';
+import { useFeatureFlag } from '../../Utilities/Hooks';
+import { useKesselWorkspaces } from '../../Utilities/useKesselWorkspaces';
 
 export const PermissionContext = createContext();
 
-const PermissionsProvider = ({ children }) => {
-    const chrome = useChrome();
+// RBAC v1 permission checking (legacy)
+const useRbacV1Permissions = (chrome) => {
     const [permissions, setPermissions] = useState({
         compliance: false,
         advisor: false,
@@ -51,9 +53,50 @@ const PermissionsProvider = ({ children }) => {
         );
     }, [chrome]);
 
+    return { permissions, arePermissionsReady };
+};
+
+// Kessel v2 permission checking
+const useKesselPermissions = () => {
+    const { data: workspaces, isLoading: workspacesLoading } = useKesselWorkspaces({
+        enabled: true
+    });
+
+    // Check if user has view permission on any workspace for each service
+    // For dashboard, we just need to know if user can access the service at all
+    const hasAnyWorkspace = workspaces && workspaces.length > 0;
+
+    return {
+        permissions: {
+            // For MVP: if user has any workspaces, show all cards
+            // Individual services will handle their own workspace filtering
+            compliance: hasAnyWorkspace,
+            advisor: hasAnyWorkspace,
+            remediations: hasAnyWorkspace,
+            patch: hasAnyWorkspace,
+            vulnerability: hasAnyWorkspace,
+            subscriptions: hasAnyWorkspace,
+            ros: hasAnyWorkspace,
+            notifications: hasAnyWorkspace
+        },
+        arePermissionsReady: !workspacesLoading
+    };
+};
+
+const PermissionsProvider = ({ children }) => {
+    const chrome = useChrome();
+    const isKesselEnabled = useFeatureFlag('hbi.kessel-migration');
+
+    // Call both hooks unconditionally (Rules of Hooks)
+    const rbacV1Result = useRbacV1Permissions(chrome);
+    const kesselResult = useKesselPermissions();
+
+    // Use Kessel or RBAC v1 based on feature flag
+    const { permissions, arePermissionsReady } = isKesselEnabled ? kesselResult : rbacV1Result;
+
     return arePermissionsReady ? (
         <PermissionContext.Provider
-            value={ {
+            value={{
                 compliance: permissions.compliance,
                 advisor: permissions.advisor,
                 remediations: permissions.remediations,
@@ -62,7 +105,7 @@ const PermissionsProvider = ({ children }) => {
                 subscriptions: permissions.subscriptions,
                 ros: permissions.ros,
                 notifications: permissions.notifications
-            } }>
+            }}>
             {children}
         </PermissionContext.Provider>
     ) : <PageLoading />;
