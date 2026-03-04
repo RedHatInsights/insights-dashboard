@@ -1,9 +1,8 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import PageLoading from '../PageLoading/PageLoading';
-
-export const PermissionContext = createContext();
+import { PermissionContext } from '../../PermissionContext';
 
 const PermissionsProvider = ({ children }) => {
     const chrome = useChrome();

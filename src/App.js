@@ -11,8 +11,13 @@ import PageLoading from './PresentationalComponents/PageLoading/PageLoading';
 import { DashboardRoutes } from './DashboardRoutes';
 import PermissionsProvider from './PresentationalComponents/PermissionsProvider/PermissionsProvider';
 import ZeroState from './PresentationalComponents/ZeroState/ZeroState';
+import { useFeatureFlag } from './Utilities/Hooks';
+import { AccessCheck } from '@project-kessel/react-kessel-access-check';
+import { KESSEL_API_BASE_URL } from './AppConstants';
+import PermissionsProviderKessel from './PresentationalComponents/PermissionsProvider/PermissionsProviderKessel';
 
 const App = (props) => {
+    const isKesselEnabled = useFeatureFlag('insights-dashboard.kessel_enabled');
     const chrome = useChrome();
     const dispatch = useDispatch();
     const [hasSystems, setHasSystems] = useState(false);
@@ -40,12 +45,24 @@ const App = (props) => {
         });
     }, [chrome, dispatch]);
 
-    return systemsLoading ? <PageLoading />
-        : (
+    const content = hasSystems ? <DashboardRoutes childProps={ props } /> : <ZeroState/>;
+
+    return (
+        systemsLoading ? <PageLoading /> : (isKesselEnabled ? (
+            <AccessCheck.Provider
+                baseUrl={window.location.origin}
+                apiPath={KESSEL_API_BASE_URL}
+            >
+                <PermissionsProviderKessel>
+                    {content}
+                </PermissionsProviderKessel>
+            </AccessCheck.Provider>
+        ) : (
             <PermissionsProvider>
-                {hasSystems ? <DashboardRoutes childProps={ props } /> : <ZeroState/>}
+                {content}
             </PermissionsProvider>
-        );
+        )
+        ));
 };
 
 export default App;

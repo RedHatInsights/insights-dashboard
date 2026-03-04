@@ -71,3 +71,4 @@ export const ROS_IS_CONFIGURED_FETCH_URL = `${BASE_URL}${ROS_BASE}/is_configured
 // Workloads Constants
 export const SAP_FETCH_URL = `${BASE_URL}/inventory/v1/system_profile/sap_system`;
 
+export const KESSEL_API_BASE_URL = '/api/kessel/v1beta2';
