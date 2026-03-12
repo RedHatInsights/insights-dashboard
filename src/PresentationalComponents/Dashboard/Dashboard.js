@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Grid, GridItem } from '@patternfly/react-core';
 import { PageSection, Title } from '@patternfly/react-core';
 import Masonry from 'react-masonry-css';
-import { PermissionContext } from '../PermissionsProvider/PermissionsProvider';
+import { PermissionContext } from '../../PermissionContext';
 import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';

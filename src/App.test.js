@@ -8,6 +8,7 @@ import Api from './Utilities/Api';
 import { IntlProvider } from '@redhat-cloud-services/frontend-components-translations';
 import '@testing-library/jest-dom';
 import mockChrome from '../config/mockChrome';
+import { useFeatureFlag } from './Utilities/Hooks';
 
 jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
     __esModule: true,
@@ -33,6 +34,7 @@ jest.mock('./PresentationalComponents/ZeroState/ZeroState', () => ({
     default: jest.fn(() => (<div aria-label="Zero state banner"></div>))
 })
 );
+jest.mock('./Utilities/Hooks');
 
 const renderDashboard = () => {
     render(<BrowserRouter>
@@ -43,21 +45,25 @@ const renderDashboard = () => {
 };
 
 jest.useFakeTimers();
-describe('App', () => {
-    it('Should render zero state when there is no registered systems', async () =>  {
+describe.each([false, true])('App (useFeatureFlag: %s)', (useFeatureFlagValue) => {
+    beforeEach(() => {
+        useFeatureFlag.mockReturnValue(useFeatureFlagValue);
+    });
+    it('Should render zero state when there is no registered systems', async () => {
+        Api.get.mockImplementation(() => Promise.resolve({ data: { total: 0 } }));
         renderDashboard();
         await waitFor(() =>
             expect(screen.getByLabelText('Zero state banner')).toBeVisible()
         );
     });
-    it('Should render Dashboard page when there is one or more registered systems', async () =>  {
+    it('Should render Dashboard page when there is one or more registered systems', async () => {
         Api.get.mockReturnValue(Promise.resolve({ data: { total: 10 } }));
         renderDashboard();
         await waitFor(() =>
             expect(screen.getByLabelText('Dashboard page')).toBeVisible()
         );
     });
-    it('Should show loading page unless API request to check registered systems finish', async () =>  {
+    it('Should show loading page unless API request to check registered systems finish', async () => {
         Api.get.mockImplementation(() => new Promise((resolve) => {
             setTimeout(() => {
                 resolve({ data: { total: 10 } });
