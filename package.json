@@ -62,7 +62,7 @@
     "@patternfly/react-icons": "^6.3.1",
     "@patternfly/react-table": "^6.3.1",
     "@patternfly/react-tokens": "^6.3.1",
-    "@redhat-cloud-services/frontend-components": "^7.0.3",
+    "@redhat-cloud-services/frontend-components": "^7.0.44",
     "@redhat-cloud-services/frontend-components-notifications": "^6.1.5",
     "@redhat-cloud-services/frontend-components-translations": "^4.0.10",
     "@redhat-cloud-services/frontend-components-utilities": "^7.0.3",
