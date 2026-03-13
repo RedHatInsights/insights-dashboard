@@ -24,7 +24,10 @@ const workloadsPropType = (props, propName, componentName) => {
     }
 
     const values = Object.values(prop);
-    const foundIncorrect = values.findIndex((value) => value !== null && value !== undefined && value.isSelected !== undefined && typeof value.isSelected !== 'boolean');
+    const foundIncorrect = values.findIndex(
+        (value) => value !== null && value !== undefined &&
+        value.isSelected !== undefined && typeof value.isSelected !== 'boolean'
+    );
     if (foundIncorrect !== -1) {
         error = new Error(`\`${componentName}\` requires isSelected as boolean prop in \`${propName}.${keys?.[foundIncorrect]}\`.`);
     }
