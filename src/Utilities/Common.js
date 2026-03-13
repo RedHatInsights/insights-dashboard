@@ -10,7 +10,7 @@ const workloadsPropType = (props, propName, componentName) => {
         error = new Error(`\`${componentName}\` only accepts object as \`${propName}\` prop.`);
     }
 
-    if (prop === null || prop === undefined || typeof prop !== 'object') {
+    if  (!prop || typeof prop !== 'object') {
         return error;
     }
 
@@ -24,10 +24,7 @@ const workloadsPropType = (props, propName, componentName) => {
     }
 
     const values = Object.values(prop);
-    const foundIncorrect = values.findIndex(
-        (value) => value !== null && value !== undefined &&
-        value.isSelected !== undefined && typeof value.isSelected !== 'boolean'
-    );
+    const foundIncorrect = values.findIndex(value => typeof value?.isSelected !== 'boolean');
     if (foundIncorrect !== -1) {
         error = new Error(`\`${componentName}\` requires isSelected as boolean prop in \`${propName}.${keys?.[foundIncorrect]}\`.`);
     }
@@ -45,9 +42,8 @@ const globalFilters = (workloads) => generateFilter({
     }
 }, undefined, { arrayEnhancer: 'contains' });
 
-const supportsGlobalFilter = (selectedTags, workloads) => workloads === null || workloads === undefined ||
-    !Object.values(workloads).map(value => value?.isSelected).reduce((res, cur) => res || cur, false) &&
-    selectedTags.length === 0;
+const supportsGlobalFilter = (selectedTags, workloads) => !Object.values(workloads || {}).map(value =>
+    value?.isSelected).reduce((res, cur) => res || cur, false) && selectedTags.length === 0;
 
 const decodeTags = (tags) => tags?.map(tag => decodeURIComponent(tag));
 
