@@ -29,7 +29,7 @@ const CentOsCard = () => {
                 const response = await axios.get(INVENTORY_CENTOS_FETCH_URL);
 
                 setTotalCentOsHosts(response.total);
-            } catch (error) {
+            } catch {
                 setTotalCentOsHosts(0);
             }
 
