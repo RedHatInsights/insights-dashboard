@@ -167,16 +167,6 @@ export default defineMessages({
         description: 'Vulnerabilities - latest vulnerabilities',
         defaultMessage: '{totalLatest}'
     },
-    deniedStateTitle: {
-        id: 'deniedStateTitle',
-        description: 'Denied state title',
-        defaultMessage: 'You do not have access to {appName}'
-    },
-    deniedStateBody: {
-        id: 'deniedStateBody',
-        description: 'Denied access body',
-        defaultMessage: 'Contact your organization administrator(s) for more information'
-    },
     complianceEmptyStateTitle: {
         id: 'complianceEmptyStateTitle',
         description: 'Compliance - empty state title',
@@ -313,22 +303,25 @@ export default defineMessages({
         description: 'No systems',
         defaultMessage: 'Get started with Insights'
     },
+    noSystemsTitleLightspeed: {
+        id: 'noSystemsTitleSatellite',
+        description: 'No systems',
+        defaultMessage: 'Get started with Red Hat Lightspeed'
+    },
     getStartedInsights: {
         id: 'getStartedInsights',
         description: 'Get started using Insights',
         defaultMessage: 'Get started with Insights by registering your systems with us.'
     },
+    getStartedLightSpeed: {
+        id: 'getStartedLightSpeed',
+        description: 'Get started using Red Hat Lightspeed',
+        defaultMessage: 'Get started with Red Hat Lightspeed by registering your systems with us.'
+    },
     notMember: {
         id: 'notMember',
         description: 'Not a member',
         defaultMessage: 'Don\'t have a RHEL subscription? Start a trial.'
-    },
-    noSystemsDescription: {
-        id: 'noSystemsDescription',
-        description: 'Register systems to use Insights',
-        defaultMessage: 'With predictive analytics, avoid problems and unplanned\
-                        downtime in your Red Hat environment. Insights is\
-                        included with your Red Hat Enterprise Linux subscription.'
     },
     noSystemsInstall: {
         id: 'noSystemsInstall',
@@ -420,16 +413,6 @@ export default defineMessages({
         description: 'Filter not applicable',
         defaultMessage: 'Filter not applicable'
     },
-    insightsForSap: {
-        id: 'insightsForSap',
-        description: 'Insights for SAP',
-        defaultMessage: 'Insights for SAP'
-    },
-    providesAdditionalSAPworkload: {
-        id: 'providesAdditionalSAPworkload',
-        description: 'Insights provides additional SAP',
-        defaultMessage: `Insights provides additional SAP workload-focused enhancements to provide a curated view of the health across the SAP Landscape on Red Hat Enterprise Linux. This functionality further enables Insights detection and remediation capabilities for workload optimization, performance, stability, compliance & security. <break></break> Insights has not detected any hosts running a SAP workload. To take advantage of these features, please install the Insights-client on an RHEL host running SAP & these systems will be automatically profiled.`
-    },
     learnmore: {
         id: 'learnmore',
         description: 'learnmore',
@@ -450,6 +433,11 @@ export default defineMessages({
         description: 'Learn more about Insights',
         defaultMessage: 'Learn more about Insights'
     },
+    learnmoreLightspeed: {
+        id: 'learnmoreLightspeed',
+        description: 'Learn more about Red Hat Lightspeed',
+        defaultMessage: 'Learn more about Red Hat Lightspeed'
+    },
     insightsDescription: 'Single, consistent management solution across on-premise, hybrid cloud, and public cloud. Included with Red Hat Enterprise Linux subscription. Single, consistent management solution across on-premise, hybrid cloud, and public cloud.',
     contactsales: {
         id: 'contactsales',
@@ -461,10 +449,20 @@ export default defineMessages({
         description: 'satellite subscription',
         defaultMessage: 'Satellite subscription enables push-button remediation of issues identified by Insights. Any issues identified by Insights are accompanied by remediation instructions, and with Satellite, remediation is available at scale.'
     },
+    satellitelightspeed: {
+        id: 'satellite',
+        description: 'satellite subscription',
+        defaultMessage: 'Satellite subscription enables push-button remediation of issues identified by Red Hat Lightspeed. Any issues identified by Red Hat Lightspeed are accompanied by remediation instructions, and with Satellite, remediation is available at scale.'
+    },
     insightsandsatellite: {
         id: 'insightsandsatellite',
         description: 'Insights and Satellite',
         defaultMessage: 'Insights and Satellite'
+    },
+    lightspeedandsatellite: {
+        id: 'lightspeedandsatellite',
+        description: 'Red Hat Lightspeed and Satellite',
+        defaultMessage: 'Red Hat Lightspeed and Satellite'
     },
     rhm1: {
         id: 'rhm1',
@@ -491,10 +489,20 @@ export default defineMessages({
         description: 'Data privacy body',
         defaultMessage: 'Red Hat Insights provides a mechanism for users to obtain actionable intelligence regarding suggested improvements to deployed Red Hat software. This document covers the security measures Red Hat puts in place to provide secure transmission, processing, and analysis of this data by those tools.'
     },
+    dataPrivacyAndControlsLightspeed: {
+        id: 'dataPrivacyAndControlsLightspeed',
+        description: 'Data privacy body',
+        defaultMessage: 'Red Hat Lightspeed provides a mechanism for users to obtain actionable intelligence regarding suggested improvements to deployed Red Hat software. This document covers the security measures Red Hat puts in place to provide secure transmission, processing, and analysis of this data by those tools.'
+    },
     dataPrivacyAndControlsTitle: {
         id: 'dataPrivacyAndControlsTitle',
         description: 'Data privacy and controls title',
         defaultMessage: 'Data privacy and controls in Insights'
+    },
+    dataPrivacyAndControlsTitleLightspeed: {
+        id: 'dataPrivacyAndControlsTitleLightspeed',
+        description: 'Data privacy and controls title',
+        defaultMessage: 'Data privacy and controls in Red Hat Lightspeed'
     },
     zslblTitle: {
         id: 'zslblTitle',
@@ -631,11 +639,6 @@ export default defineMessages({
         description: 'Advisor card header 3',
         defaultMessage: 'Recommendations by category'
     },
-    policiesCardHeader: {
-        id: 'policiesCardHeader',
-        description: 'Policies card header',
-        defaultMessage: 'Policies'
-    },
     remediationsCardHeader: {
         id: 'remediationsCardHeader',
         description: 'Remediations card header',
@@ -652,11 +655,6 @@ export default defineMessages({
         id: 'advisorCardCTA',
         description: 'Advisor card CTA',
         defaultMessage: 'View incidents'
-    },
-    policiesCardCTA: {
-        id: 'policiesCardCTA',
-        description: 'Policies CTA',
-        defaultMessage: 'View all policies'
     },
     rosCardConfigureSystemsCTA: {
         id: 'rosCardConfigureSystemsCTA',
@@ -762,11 +760,6 @@ export default defineMessages({
         id: 'patchZeroState',
         description: 'Zero state description for Patch app',
         defaultMessage: 'The patch service gives you the information you need to confidently update your RHEL systems with Red Hat product advisories and packages.'
-    },
-    policiesZeroState: {
-        id: 'policiesZeroState',
-        description: 'Zero state description for Policies app',
-        defaultMessage: 'Policies allow users to create and manage rule conditions to evaluate against system configuration and get automatically alerted whenever they trigger.'
     },
     malwareZeroState: {
         id: 'malwaretZeroState',

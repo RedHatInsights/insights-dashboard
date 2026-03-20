@@ -1,13 +1,13 @@
 // Pie chart overrides in the Patch card
 .ins-c-patch__chart {
 
-    .pf-v5-c-chart {
-        margin-right: var(--pf-v5-global--spacer--md);
-        top: var(--pf-v5-global--spacer--sm);
+    .pf-v6-c-chart {
+        margin-right: var(--pf-t--global--spacer--md);
+        top: var(--pf-t--global--spacer--sm);
     }
 }
 
-.insd-c-pie-chart__legend .pf-v5-c-chart {
-    top: var(--pf-v5-global--spacer--sm);
-    left: var(--pf-v5-global--spacer--md);
+.insd-c-pie-chart__legend .pf-v6-c-chart {
+    top: var(--pf-t--global--spacer--sm);
+    left: var(--pf-t--global--spacer--md);
 }

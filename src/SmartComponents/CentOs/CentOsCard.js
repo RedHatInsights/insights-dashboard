@@ -5,8 +5,7 @@ import {
     Flex,
     FlexItem,
     Spinner,
-    Text,
-    TextContent,
+    Content,
     Title
 } from '@patternfly/react-core';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
@@ -38,7 +37,7 @@ const CentOsCard = () => {
         };
 
         getCentOsCount();
-    }, []);
+    }, [axios]);
 
     return (
         <ExpandableCardTemplate
@@ -68,11 +67,11 @@ const CentOsCard = () => {
                                     <Title headingLevel="h3" size="2xl">
                                         {totalCentOsHosts} CentOS systems
                                     </Title>
-                                    <Text component="p" style={{ textAlign: 'center' }}>
+                                    <Content component="p" style={{ textAlign: 'center' }}>
                                         Detected on your system and ready for pre-conversion
                                         analysis and conversion to RHEL.
-                                    </Text>
-                                    <Text component="p" style={{ textAlign: 'center' }}>
+                                    </Content>
+                                    <Content component="p" style={{ textAlign: 'center' }}>
                                         <a
                                             href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux/centos-migration"
                                             target="_blank"
@@ -82,7 +81,7 @@ const CentOsCard = () => {
                                         </a>{' '}
                                         about migrating your CentOS Linux systems to RHEL, whether
                                         on-premise or in the cloud
-                                    </Text>
+                                    </Content>
                                     <FlexItem>
                                         <Button
                                             variant="secondary"
@@ -99,13 +98,13 @@ const CentOsCard = () => {
                         {(!isLoading && !hasCentOsHosts) && (
                             <>
                                 <FlexItem>
-                                    <TextContent>
-                                        <Text component="p">
+                                    <Content>
+                                        <Content component="p">
                                             On June 30, 2024, CentOS Linux 7 will reach End of Life
                                             (EOL), and those systems will stop receiving updates,
                                             security patches, and new features.
-                                        </Text>
-                                        <Text component="p">
+                                        </Content>
+                                        <Content component="p">
                                             Red Hat can help.{' '}
                                             <a
                                                 href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux/centos-migration"
@@ -116,8 +115,8 @@ const CentOsCard = () => {
                                             </a>{' '}
                                             about migrating your CentOS Linux systems to RHEL, whether
                                             on-premise or in the cloud
-                                        </Text>
-                                    </TextContent>
+                                        </Content>
+                                    </Content>
                                 </FlexItem>
                                 <FlexItem>
                                     <Button
@@ -127,7 +126,7 @@ const CentOsCard = () => {
                                         iconPosition="end"
                                         target='_blank'
                                         // eslint-disable-next-line max-len
-                                        href="https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/converting_from_a_linux_distribution_to_rhel_using_the_convert2rhel_utility_in_red_hat_insights/preparation-for-a-rhel-conversion-using-insights_converting-from-a-linux-distribution-to-rhel-in-insights"
+                                        href="https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/converting_from_a_linux_distribution_to_rhel_using_the_convert2rhel_utility_in_red_hat_lightspeed/preparation-for-a-rhel-conversion-using-lightspeed_converting-from-a-linux-distribution-to-rhel-in-lightspeed"
                                     >
                                         Prepare CentOS systems to convert via Insights
                                     </Button>

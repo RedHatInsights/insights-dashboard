@@ -1,11 +1,11 @@
 .insd-c-remediation__status-icon--passed {
-    color: var(--pf-v5-global--success-color--200);
+    color: var(--pf-t--global--color--status--success--default);
 }
 .insd-c-remediation__status-icon--failed {
-    color: var(--pf-v5-global--danger-color--100);
+    color: var(--pf-t--global--color--status--danger--default);
 }
 .insd-c-remediation__status-icon--running {
-    color: var(--pf-v5-global--default-color--300);
+    color: var(--pf-t--global--color--status--custom--default	);
 }
 .insd-c-remediation__status-text {
     text-transform: capitalize;

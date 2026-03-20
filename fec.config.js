@@ -61,4 +61,5 @@ module.exports = {
       './RootApp': resolve(__dirname, './src/AppEntry.js'),
     },
   },
+  frontendCRDPath: 'frontend.yaml',
 };

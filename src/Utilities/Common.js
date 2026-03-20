@@ -10,6 +10,10 @@ const workloadsPropType = (props, propName, componentName) => {
         error = new Error(`\`${componentName}\` only accepts object as \`${propName}\` prop.`);
     }
 
+    if  (!prop || typeof prop !== 'object') {
+        return error;
+    }
+
     const keys = Object.keys(prop);
     if (keys.some((key) => !SAP_KEYS.includes(key))) {
         error = new Error(`\`${componentName}\` accepts either SAP or All workloads as \`${propName}.\` prop.`);
@@ -20,7 +24,7 @@ const workloadsPropType = (props, propName, componentName) => {
     }
 
     const values = Object.values(prop);
-    const foundIncorrect = values.findIndex(({ isSelected }) => isSelected !== undefined && typeof isSelected !== 'boolean');
+    const foundIncorrect = values.findIndex(value => typeof value?.isSelected !== 'boolean');
     if (foundIncorrect !== -1) {
         error = new Error(`\`${componentName}\` requires isSelected as boolean prop in \`${propName}.${keys?.[foundIncorrect]}\`.`);
     }
@@ -28,19 +32,19 @@ const workloadsPropType = (props, propName, componentName) => {
     return error;
 };
 
-const globalFilters = (workloads, SID) => generateFilter({
+const globalFilters = (workloads) => generateFilter({
     system_profile: {
         ...workloads?.SAP?.isSelected && { sap_system: true },
         ...workloads?.['Ansible Automation Platform']?.isSelected
             && { ansible: 'not_nil' },
         ...workloads?.['Microsoft SQL']?.isSelected
-            && { mssql: 'not_nil' },
-        ...SID?.length > 0 && { sap_sids: SID }
+            && { mssql: 'not_nil' }
     }
 }, undefined, { arrayEnhancer: 'contains' });
 
-const supportsGlobalFilter = (selectedTags, workloads, SID) => workloads === undefined ||
-    !Object.values(workloads).map(value => value.isSelected).reduce((res, cur) => res || cur, false) &&
-    selectedTags.length === 0 && Object.entries(SID).length === 0;
+const supportsGlobalFilter = (selectedTags, workloads) => !Object.values(workloads || {}).map(value =>
+    value?.isSelected).reduce((res, cur) => res || cur, false) && selectedTags.length === 0;
 
-export { capitalize, workloadsPropType, globalFilters, supportsGlobalFilter };
+const decodeTags = (tags) => tags?.map(tag => decodeURIComponent(tag));
+
+export { capitalize, workloadsPropType, globalFilters, supportsGlobalFilter, decodeTags };

@@ -3,14 +3,13 @@
         text-align: left;
     }
 
-    .pf-v5-c-button.pf-m-link {
-        font-size: var(--pf-v5-global--FontSize--sm);
+    .pf-v6-c-button.pf-m-link {
+        font-size: var(--pf-t--global--font--size--sm);
         padding-left: 0;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        line-height: var(--pf-v5-global--FontSize--sm);
+        line-height: var(--pf-t--global--font--size--sm);
         text-align: left;
     }
 }
-

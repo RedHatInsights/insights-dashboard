@@ -26,15 +26,16 @@ import { useIntl } from 'react-intl';
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook/RBACHook';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 import { Link } from 'react-router-dom';
-import { EdgeDevicesWarning } from './EdgeDevicesWarning';
 import { useBatchInventoryFetch } from '../../Utilities/useBatchInventoryFetch';
+import { useFeatureFlag } from '../../Utilities/Hooks';
 
 /**
  * System inventory card for showing system inventory and status.
  */
 const SystemInventoryHeader = ({
-    selectedTags, workloads, SID
+    selectedTags, workloads
 }) => {
+    const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
 
     const { hasAccess } = usePermissions('inventory', [
         'inventory:*:*',
@@ -48,7 +49,7 @@ const SystemInventoryHeader = ({
         inventorySummary,
         inventoryWarningSummary,
         inventoryStaleSum,
-        error] = useBatchInventoryFetch(workloads, SID, selectedTags, hasAccess);
+        error] = useBatchInventoryFetch(workloads, selectedTags, hasAccess);
 
     const intl = useIntl();
 
@@ -63,7 +64,6 @@ const SystemInventoryHeader = ({
                     description={ <div>{intl.formatMessage(messages.systemInventoryNoAccess)}</div> }
                 /> :
                 <React.Fragment>
-                    <EdgeDevicesWarning />
                     {!error ?
                         <Flex spaceItems={ { md: 'spaceItemsXl' } }
                             alignItems={ { md: 'alignItemsCenter' } }
@@ -76,7 +76,9 @@ const SystemInventoryHeader = ({
                                         data={inventorySummary?.total.toLocaleString() || 0 }
                                         dataSize="lg"
                                         linkDescription={ intl.formatMessage(messages.systemInventoryDescription,
-                                            { count: inventorySummary?.total || 0 }
+                                            { count: inventorySummary?.total || 0,
+                                                productName: isLightspeedEnabled ? 'the insights-client' : 'Insights'
+                                            }
                                         ) }
                                         app='inventory'
                                         link='/?source=puptoo'
@@ -105,7 +107,7 @@ const SystemInventoryHeader = ({
                                             : <InsightsLink
                                                 app='inventory'
                                                 to='/?status=stale&source=puptoo'
-                                                className="pf-v5-c-button pf-m-link pf-m-inline">
+                                                className="pf-v6-c-button pf-m-link pf-m-inline">
                                                 <IconInline
                                                     message={ intl.formatMessage(messages.systemInventoryStale,
                                                         { count: inventoryStaleSum?.total || 0 }
@@ -122,7 +124,7 @@ const SystemInventoryHeader = ({
                                             : <InsightsLink
                                                 app='inventory'
                                                 to='/?status=stale_warning&source=puptoo'
-                                                className="pf-v5-c-button pf-m-link pf-m-inline">
+                                                className="pf-v6-c-button pf-m-link pf-m-inline">
                                                 <IconInline
                                                     message={ intl.formatMessage(messages.systemInventoryStaleWarning,
                                                         { count: inventoryWarningSummary?.total || 0 }
@@ -137,7 +139,7 @@ const SystemInventoryHeader = ({
                                 <FlexItem align={{ md: 'alignRight' }}>
                                     <Link to="/settings/integrations?category=Communications">
                                         <Button
-                                            className='pf-v5-u-mr-sm pf-v5-u-font-size-md'
+                                            className='pf-v6-u-mr-sm pf-v6-u-font-size-md'
                                             variant='secondary'
                                             size='sm'
                                         >
@@ -162,19 +164,14 @@ const SystemInventoryHeader = ({
 };
 
 SystemInventoryHeader.propTypes = {
-    fetchEdgeTotal: PropTypes.func,
-    edgeTotalSummary: PropTypes.object,
-    edgeTotalFetchStatus: PropTypes.string,
     intl: PropTypes.any,
     selectedTags: PropTypes.arrayOf(PropTypes.string),
-    workloads: workloadsPropType,
-    SID: PropTypes.arrayOf(PropTypes.string)
+    workloads: workloadsPropType
 };
 
 export default connect(
     ({ DashboardStore }) => ({
         selectedTags: DashboardStore.selectedTags,
-        workloads: DashboardStore.workloads,
-        SID: DashboardStore.SID
+        workloads: DashboardStore.workloads
     })
 )(SystemInventoryHeader);

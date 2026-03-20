@@ -60,11 +60,11 @@ const RunStatus = ({ id, name, index, playbook_runs: playbookRuns }) => {
         </div>
         <div className="insd-c-remediation__timestamp">
             {name.length > 65 ? <Tooltip content={ name }>
-                <InsightsLink app='remediations' to={ `/${id}` } className="pf-v5-c-button pf-m-inline pf-m-link" id={ `remediation-link-${index}` }>
+                <InsightsLink app='remediations' to={ `/${id}` } className="pf-v6-c-button pf-m-inline pf-m-link" id={ `remediation-link-${index}` }>
                     {name}
                 </InsightsLink>
             </Tooltip> :
-                <InsightsLink app='remediations' to={ `/${id}` } className="pf-v5-c-button pf-m-inline pf-m-link" id={ `remediation-link-${index}` }>
+                <InsightsLink app='remediations' to={ `/${id}` } className="pf-v6-c-button pf-m-inline pf-m-link" id={ `remediation-link-${index}` }>
                     {name}
                 </InsightsLink>
             }

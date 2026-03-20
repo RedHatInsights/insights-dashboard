@@ -5,7 +5,6 @@ export const UI_BASE = '/insights';
 export const UI_BASE_OPENSHIFT = '/openshift';
 export const SELECTED_TAGS_SET = 'SELECTED_TAGS_SET';
 export const WORKLOADS_SET = 'WORKLOADS_SET';
-export const SID_SET = 'SID_SET';
 export const SEVERITY_MAP = {
     critical: 4,
     important: 3,
@@ -49,21 +48,15 @@ export const SUBSCRIPTIONS_UTILIZED_CAPACITY_FETCH_URL = `${BASE_URL}/rhsm-subsc
 // Inventory Constants
 export const INVENTORY_BASE = '/inventory/v1';
 const INVENTORY_PER_PAGE = 'per_page=1';
-const INVENTORY_CONVENTIONAL_FILTER = 'filter[system_profile][host_type]=nil';
 export const INVENTORY_TOTAL_FETCH = 'INVENTORY_TOTAL_FETCH';
 export const INVENTORY_TOTAL_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?${INVENTORY_PER_PAGE}`;
 export const INVENTORY_FETCH = 'INVENTORY_FETCH';
-export const INVENTORY_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?registered_with=puptoo&${INVENTORY_CONVENTIONAL_FILTER}&${INVENTORY_PER_PAGE}`;
+export const INVENTORY_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?registered_with=puptoo&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_STALE_FETCH = 'INVENTORY_STALE_FETCH';
-export const INVENTORY_STALE_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale&registered_with=puptoo&${INVENTORY_CONVENTIONAL_FILTER}&${INVENTORY_PER_PAGE}`;
+export const INVENTORY_STALE_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale&registered_with=puptoo&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_WARNING_FETCH = 'INVENTORY_WARNING_FETCH';
-export const INVENTORY_WARNING_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale_warning&registered_with=puptoo&${INVENTORY_CONVENTIONAL_FILTER}&${INVENTORY_PER_PAGE}`;
+export const INVENTORY_WARNING_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale_warning&registered_with=puptoo&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_CENTOS_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?per_page=1&page=1&filter[system_profile][operating_system][CentOS Linux][version][gte]=0`;
-
-// Edge constants
-export const EDGE_BASE = '/edge/v1';
-export const EDGE_TOTAL_FETCH = 'EDGE_TOTAL_FETCH';
-export const EDGE_TOTAL_FETCH_URL = `${BASE_URL}${EDGE_BASE}/devices/devicesview?limit=1&offset=0`;
 
 // Remediations App Constants
 const REMEDIATIONS_BASE = '/remediations/v1';
@@ -78,3 +71,4 @@ export const ROS_IS_CONFIGURED_FETCH_URL = `${BASE_URL}${ROS_BASE}/is_configured
 // Workloads Constants
 export const SAP_FETCH_URL = `${BASE_URL}/inventory/v1/system_profile/sap_system`;
 
+export const KESSEL_API_BASE_URL = '/api/kessel/v1beta2';

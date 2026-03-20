@@ -6,6 +6,7 @@ import propTypes from 'prop-types';
 import { IntlProvider } from '@redhat-cloud-services/frontend-components-translations';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 import { createAppNamesList } from './zeroStateHelpers';
+import { useInsightsBrandName } from './zeroStateConstants';
 
 const standardApiReq = '/api/inventory/v1/hosts?page=1&per_page=1';
 
@@ -23,6 +24,7 @@ const AppZeroState = ({
     const axios = useAxiosWithPlatformInterceptors();
     const [hasSystems, setHasSystems] = useState(true);
     const mounted = useRef(false);
+    const brandName = useInsightsBrandName();
     useEffect(() => {
         mounted.current = true;
         const fetchData =  async () => {
@@ -58,6 +60,7 @@ const AppZeroState = ({
                 <>
                     <ZeroStateBanner
                         appName={app}
+                        brandName={brandName}
                         customInstructions={customInstructions}
                         customButton={customButton}
                         customText={customText}
@@ -65,8 +68,8 @@ const AppZeroState = ({
                         appId={appId}
                     />
                     {customSection && customSection}
-                    <AppSection appName={app} />
-                    <ZeroStateFooter appName={app} />
+                    <AppSection appName={app} brandName={brandName} />
+                    <ZeroStateFooter appName={app} brandName={brandName} />
                 </>
             )}
         </IntlProvider>

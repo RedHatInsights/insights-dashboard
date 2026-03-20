@@ -8,7 +8,7 @@ import {
     List,
     ListItem,
     PageSection,
-    TextContent,
+    Content,
     Title,
     Grid,
     GridItem,
@@ -27,10 +27,14 @@ import { useIntl } from 'react-intl';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
+import { useFlag } from '@unleash/proxy-client-react';
+import { useFeatureFlag } from '../../Utilities/Hooks';
 
 const ZeroState = () => {
     const intl = useIntl();
+    const isItLess = useFlag('insights-dashboard-itless');
     const { hideGlobalFilter } = useChrome();
+    const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
 
     useEffect(() => {
         hideGlobalFilter?.();
@@ -55,8 +59,9 @@ const ZeroState = () => {
                 <GridItem>
                     <Flex direction={ { default: 'column' } }>
                         <FlexItem>
-                            <Title headingLevel='h1' size='2xl'>
-                                {intl.formatMessage(messages.noSystemsTitle)}
+                            <Title headingLevel='h1' size='2xl' className='pf-v6-u-text-color-inverse'>
+                                {isLightspeedEnabled ? intl.formatMessage(messages.noSystemsTitleLightspeed) :
+                                    intl.formatMessage(messages.noSystemsTitle)}
                             </Title>
                         </FlexItem>
                         <FlexItem spacer={ { default: 'spacer2xl' } }>
@@ -71,36 +76,36 @@ const ZeroState = () => {
                                     component='a'
                                     variant='primary'
                                     style={{ color: 'white' }}
-                                    href={ `${UI_BASE}/registration` }>
+                                    href={ isItLess ? `${UI_BASE}/satellite` : `${UI_BASE}/registration` }>
                                     {intl.formatMessage(messages.registerYourSystems)}
                                 </Button>
                             </InsightsLink>
                         </FlexItem>
                         <FlexItem>
-                            <Button
+                            <Button icon={<ArrowRightIcon />}
                                 className='pf-m-plain'
                                 component='a'
                                 variant='secondary'
                                 target='_blank'
                                 rel='noreferrer'
                                 href='https://www.redhat.com/en/technologies/management/insights'>
-                                {intl.formatMessage(messages.learnmoreRHI)}&nbsp;&nbsp;&nbsp;
-                                <ArrowRightIcon />
+                                {isLightspeedEnabled ? intl.formatMessage(messages.learnmoreLightspeed) :
+                                    intl.formatMessage(messages.learnmoreRHI)}&nbsp;&nbsp;&nbsp;
                             </Button>
                         </FlexItem>
                     </Flex>
                 </GridItem>
             </Grid>
         </MarketingBanner>
-        <PageSection isWidthLimited>
+        <PageSection hasBodyWrapper isWidthLimited>
             <Grid lg={ 6 } hasGutter>
                 <GridItem>
                     <Card style={ { height: '100%' } }>
                         <CardHeader>
-                            <TextContent>
+                            <Content>
                                 <Title headingLevel='h2'>{intl.formatMessage(messages.zslblTitle)}</Title>
                                 <p>{intl.formatMessage(messages.zslblBody)}</p>
-                            </TextContent>
+                            </Content>
                         </CardHeader>
                         <CardBody>
                             <IconList>
@@ -116,10 +121,10 @@ const ZeroState = () => {
                 <GridItem>
                     <Card style={ { height: '100%' } }>
                         <CardHeader>
-                            <TextContent>
+                            <Content>
                                 <Title headingLevel='h2'>{intl.formatMessage(messages.zsrblTitle)}</Title>
                                 <p>{intl.formatMessage(messages.zsrblBody)}</p>
-                            </TextContent>
+                            </Content>
                         </CardHeader>
                         <CardBody>
                             <IconList>
@@ -145,20 +150,23 @@ const ZeroState = () => {
             } }>
             <Flex direction={ { default: 'column' } }>
                 <FlexItem spacer={ { default: 'spacerLg' } }>
-                    <Title headingLevel='h3' size='lg'>
-                        {intl.formatMessage(messages.dataPrivacyAndControlsTitle)}
+                    <Title headingLevel='h3' size='lg' className='pf-v6-u-text-color-inverse'>
+                        { isLightspeedEnabled ? intl.formatMessage(messages.dataPrivacyAndControlsTitleLightspeed) :
+                            intl.formatMessage(messages.dataPrivacyAndControlsTitle)}
                     </Title>
                 </FlexItem>
                 <FlexItem spacer={ { default: 'spacerXl' } }>
                     <p className='insd-c-width-limiter ins-c-text--black-400'
                         style={ { '--insd-c-width-limiter--MaxWidth': '70ch' } }>
-                        {intl.formatMessage(messages.dataPrivacyAndControls)}
+                        { isLightspeedEnabled ? intl.formatMessage(messages.dataPrivacyAndControlsLightspeed) :
+                            intl.formatMessage(messages.dataPrivacyAndControls)}
                     </p>
                 </FlexItem>
                 <FlexItem>
                     <Button
                         component='a'
                         target='_blank'
+                        style={{ color: 'white' }}
                         rel='noreferrer'
                         href={ `./security/insights` }>
                         {intl.formatMessage(messages.securityRedirect)}
@@ -166,17 +174,19 @@ const ZeroState = () => {
                 </FlexItem>
             </Flex>
         </MarketingBanner>
-        <PageSection isWidthLimited>
+        <PageSection hasBodyWrapper isWidthLimited>
             <Flex direction={ { default: 'column' } }>
                 <FlexItem spacer={ { default: 'spacerXl' } }>
-                    <TextContent>
+                    <Content>
                         <Title headingLevel='h3'>
-                            {intl.formatMessage(messages.insightsandsatellite)}
+                            {isLightspeedEnabled ? intl.formatMessage(messages.lightspeedandsatellite) :
+                                intl.formatMessage(messages.insightsandsatellite)}
                         </Title>
                         <div className='insd-c-width-limiter' style={ { '--insd-c-width-limiter--MaxWidth': '900px' } }>
-                            <p>{intl.formatMessage(messages.satellite)}</p>
+                            <p>{isLightspeedEnabled ? intl.formatMessage(messages.satellitelightspeed) :
+                                intl.formatMessage(messages.satellite)}</p>
                         </div>
-                    </TextContent>
+                    </Content>
                 </FlexItem>
                 <FlexItem>
                     <Grid hasGutter>
@@ -184,7 +194,7 @@ const ZeroState = () => {
                             <img src={ ImgInsSmartMgmt } alt='Insights Satellite' />
                         </GridItem>
                         <GridItem md={ 6 } lg={ 7 }>
-                            <div className='insd-c-width-limiter pf-v5-u-pt-lg-on-lg' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
+                            <div className='insd-c-width-limiter pf-v6-u-pt-lg-on-lg' style={ { '--insd-c-width-limiter--MaxWidth': '600px' } }>
                                 <List>
                                     <ListItem>{intl.formatMessage(messages.rhm1)}</ListItem>
                                     <ListItem>{intl.formatMessage(messages.rhm2)}</ListItem>
@@ -192,11 +202,11 @@ const ZeroState = () => {
                                 </List>
                             </div>
                         </GridItem>
-                        <GridItem md={ 6 } lg={ 7 } className='pf-v5-u-pl-lg'>
+                        <GridItem md={ 6 } lg={ 7 } className='pf-v6-u-pl-lg'>
                             <Flex>
                                 <FlexItem>
                                     <Button
-                                        className='pf-m-secondary'
+                                        variant='secondary'
                                         component='a'
                                         target='_blank'
                                         rel='noreferrer'
@@ -206,7 +216,7 @@ const ZeroState = () => {
                                 </FlexItem>
                                 <FlexItem>
                                     <Button
-                                        className='pf-m-secondary'
+                                        variant='secondary'
                                         component='a'
                                         target='_blank'
                                         rel='noreferrer'

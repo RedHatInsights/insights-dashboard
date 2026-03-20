@@ -3,6 +3,7 @@ import './NewRules.scss';
 import {
     Button,
     ButtonVariant,
+    Content,
     DataList,
     DataListCell,
     DataListItem,
@@ -13,8 +14,6 @@ import {
     DescriptionListGroup,
     DescriptionListTerm,
     Icon,
-    Text,
-    TextContent,
     Title
 } from '@patternfly/react-core/dist/esm/components';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
@@ -45,25 +44,28 @@ const NewRules = () => {
                         <DataListCell key='primary content'>
                             <Flex spaceItems={{ default: 'spaceItemsMd' }} alignItems={{ default: 'alignItemsCenter' }}
                                 flexWrap={{ default: 'nowrap' }}>
-                                <ExclamationTriangleIcon className='pf-v5-u-font-size-xl pf-v5-u-warning-color-100' />
-                                <span id='collapse-all-text' className='pf-v5-u-font-weight-bold'>{intl.formatMessage(messages.latestCritical)}</span>
+                                <ExclamationTriangleIcon
+                                    fill="var(--pf-t--global--icon--color--status--warning--default)"
+                                    className='pf-v6-u-font-size-xl'
+                                />
+                                <span id='collapse-all-text' className='pf-v6-u-font-weight-bold'>{intl.formatMessage(messages.latestCritical)}</span>
                             </Flex>
                         </DataListCell>
                     ]}
                 />
-                <div className='pf-v5-c-data-list__item-control'>
-                    <div className='pf-v5-c-data-list__toggle'
+                <div className='pf-v6-c-data-list__item-control'>
+                    <div className='pf-v6-c-data-list__toggle'
                         onClick={() => { localStorage.setItem('dashboard_expanded_cta', `${!isExpanded}`); setIsExpanded(!isExpanded); }}
                         id={`data-list-toggle`}
                         aria-controls={`data-list-item`}>
                         <Button id={`data-list-item-toggle`} variant={ButtonVariant.plain} aria-expanded={isExpanded}
                             type='button'
                             className='pf-m-link'>
-                            <span className='pf-v5-c-data-list__toggle-text pf-v5-c-button pf-m-inline pf-m-link'>
+                            <span className='pf-v6-c-data-list__toggle-text pf-v6-c-button pf-m-inline pf-m-link'>
                                 {isExpanded && intl.formatMessage(messages.collapseAll)}
                                 {!isExpanded && intl.formatMessage(messages.expand)}
                             </span>
-                            <div className='pf-v5-c-data-list__toggle-icon'>
+                            <div className='pf-v6-c-data-list__toggle-icon'>
                                 <AngleRightIcon />
                             </div>
                         </Button>
@@ -85,7 +87,7 @@ const NewRules = () => {
                         flexWrap={{ default: 'nowrap' }}>
                         <Flex direction={{ default: 'column' }} flex={{ md: 'flex_3' }}>
                             <FlexItem spacer={{ default: 'spacerXs' }}>
-                                <Title headingLevel='h4' size='xl' className='pf-v5-u-font-weight-lights'>
+                                <Title headingLevel='h4' size='xl' className='pf-v6-u-font-weight-lights'>
                                     <span>
                                         {capitalize(intl.formatMessage({
                                             id: 'itemTitle',
@@ -94,7 +96,7 @@ const NewRules = () => {
                                         }))}</span>
                                 </Title>
                             </FlexItem>
-                            <TextContent className='insd-c-width-limiter'
+                            <Content className='insd-c-width-limiter'
                                 style={{
                                     '--insd-c-width-limiter--MaxWidth-on-lg': '50ch',
                                     '--insd-c-width-limiter--MinWidth-on-lg': '50ch',
@@ -107,7 +109,7 @@ const NewRules = () => {
                                         description: `itemDescription-${index}`,
                                         defaultMessage: item.description
                                     }))}</div>
-                            </TextContent>
+                            </Content>
                             <DescriptionList>
                                 <DescriptionListGroup>
                                     <DescriptionListTerm>Associated CVEs</DescriptionListTerm>
@@ -124,19 +126,19 @@ const NewRules = () => {
                             </Flex>
                         </Flex>
                         <Flex flex={{ default: 'flex_2' }} alignItems={{ default: 'alignItemsCenter' }}>
-                            <TextContent>
-                                <Text component="h4" className="pf-v5-u-mb-xs">
+                            <Content>
+                                <Content component="h4" className="pf-v6-u-mb-xs">
                                     <Icon
                                         style={{ verticalAlign: -1 }}
-                                        color="var(--pf-v5-global--danger-color--100)"
-                                        className="pf-v5-u-mr-sm"
+                                        color="var(--pf-t--temp--dev--tbd)"/* CODEMODS: original v6 color was --pf-v6-global--danger-color--100 */
+                                        className="pf-v6-u-mr-sm"
                                     >
                                         <ExclamationCircleIcon/>
                                     </Icon>
                                     {intl.formatMessage(messages.systemsExposed, { count: item.systems_affected })}
-                                </Text>
+                                </Content>
                                 {intl.formatMessage(messages.systemsExposedDescription)}
-                            </TextContent>
+                            </Content>
                         </Flex>
                     </Flex>
                 } />

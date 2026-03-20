@@ -8,23 +8,29 @@ import {
     GridItem
 } from '@patternfly/react-core';
 import React from 'react';
-import zeroStateConstants from './zeroStateConstants';
+import { getZeroStateConstants, formatBrandName } from './zeroStateConstants';
 import propTypes from 'prop-types';
 
 const ZeroStateFooter = ({
     appName,
-    documentation = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].documentation
+    brandName,
+    documentation
 }) => {
+    const zeroStateConstants = getZeroStateConstants(brandName);
+    const actualDocumentation = documentation || zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].documentation;
+    // Prefer an explicit documentationTitleText from constants when available
+    const configuredTitle = zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`]?.documentationTitleText;
+    const documentationTitleText = configuredTitle || appName.replace('_', ' ') + ' documentation';
     return (
-        <PageSection className='footer' isWidthLimited>
+        <PageSection hasBodyWrapper className='footer' isWidthLimited>
             <Card>
-                <Grid lg={ 4 } hasGutter className='pf-v5-u-p-xl'>
+                <Grid lg={ 4 } hasGutter className='pf-v6-u-p-xl'>
                     <GridItem>
                         <Flex direction={{ default: 'column' }}>
                             <FlexItem>
-                                <Title headingLevel='h3' size='lg'>{appName.replace('_', ' ')} documentation</Title>
+                                <Title headingLevel='h3' size='lg'>{documentationTitleText}</Title>
                             </FlexItem>
-                            {documentation.map(item => (
+                            {actualDocumentation.map(item => (
                                 <FlexItem key={item.title} >
                                     <a
                                         target='_blank'
@@ -37,7 +43,7 @@ const ZeroStateFooter = ({
                     <GridItem >
                         <Flex direction={{ default: 'column' }} spacer={{ default: 'spacerSm' }}>
                             <FlexItem>
-                                <Title headingLevel='h3' size='lg'>Learn about Insights</Title>
+                                <Title headingLevel='h3' size='lg'>Learn about {formatBrandName(brandName, false)}</Title>
                             </FlexItem>
                             <FlexItem>
                                 <a
@@ -49,13 +55,13 @@ const ZeroStateFooter = ({
                                 <a
                                     target='_blank'
                                     rel='noreferrer'
-                                    href={'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest'}>Product documentation</a>
+                                    href={'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest'}>Product documentation</a>
                             </FlexItem>
                             <FlexItem>
                                 <a
                                     target='_blank'
                                     rel='noreferrer' href={'https://www.redhat.com/en/technologies/management/insights/data-application-security'} >
-                                Data privacy and controls in Insights
+                                Data privacy and controls in {formatBrandName(brandName, false)}
                                 </a>
                             </FlexItem>
                             <FlexItem>
@@ -112,5 +118,6 @@ export default ZeroStateFooter;
 
 ZeroStateFooter.propTypes = {
     appName: propTypes.string,
+    brandName: propTypes.string,
     documentation: propTypes.array
 };

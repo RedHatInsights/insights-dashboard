@@ -77,11 +77,6 @@ export const fetchInventoryWarningSummary = (options) => ({
     payload: fetchData(ActionTypes.INVENTORY_WARNING_FETCH_URL, {}, options)
 });
 
-export const fetchEdgeTotal = (options) => ({
-    type: ActionTypes.EDGE_TOTAL_FETCH,
-    payload: fetchData(ActionTypes.EDGE_TOTAL_FETCH_URL, {}, options)
-});
-
 export const fetchRemediations = (options) => ({
     type: ActionTypes.REMEDIATIONS_FETCH,
     payload: fetchData(ActionTypes.REMEDIATIONS_FETCH_URL, {}, options)
@@ -99,10 +94,5 @@ export const setSelectedTags = (tags) => ({
 
 export const setWorkloads = (data) => ({
     type: ActionTypes.WORKLOADS_SET,
-    payload: data
-});
-
-export const setSIDs = (data) => ({
-    type: ActionTypes.SID_SET,
     payload: data
 });
