@@ -1,6 +1,3 @@
 {
-  "extends": "stylelint-config-recommended-scss",
-  "rules":{
-    "function-calc-no-invalid": null
-  }
+  "extends": "stylelint-config-recommended-scss"
 }
