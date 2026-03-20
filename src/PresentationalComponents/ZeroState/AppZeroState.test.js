@@ -9,10 +9,7 @@ import { useFeatureFlag } from '../../Utilities/Hooks';
 
 jest.mock('@redhat-cloud-services/frontend-components-utilities/interceptors', () => ({
     __esModule: true,
-    useAxiosWithPlatformInterceptors: jest.fn(() => ({
-        get: jest.fn()
-
-    }))
+    useAxiosWithPlatformInterceptors: jest.fn()
 }));
 
 jest.mock('../../Utilities/Hooks', () => ({
@@ -24,6 +21,12 @@ const appNames = createAppNamesList();
 const randomApp = appNames[Math.floor(Math.random() * appNames.length)];
 
 describe('AppZeroState component', () => {
+    let mockGet;
+
+    beforeEach(() => {
+        mockGet = jest.fn();
+        useAxiosWithPlatformInterceptors.mockReturnValue({ get: mockGet });
+    });
     it('renders zero state if there ARE children but NO systems', async () => {
         render(
             <MemoryRouter initialEntries={['/some-path']}>
@@ -102,8 +105,7 @@ describe('AppZeroState component', () => {
     });
 
     it('DOES render zero state when there are no systems in default request', async () => {
-        const mockedGet = jest.spyOn(useAxiosWithPlatformInterceptors(), 'get')
-        .mockResolvedValue({ total: 0 });
+        mockGet.mockResolvedValue({ total: 0 });
 
         render(
             <MemoryRouter initialEntries={['/some-path']}>
@@ -117,13 +119,10 @@ describe('AppZeroState component', () => {
 
         const zeroStateBanner = await screen.findByLabelText('ZeroStateBanner');
         expect(zeroStateBanner).toBeInTheDocument();
-
-        mockedGet.mockRestore();
     });
 
     it('DOES NOT render zero state when there ARE systems in default request', async () => {
-        const mockedGet = jest.spyOn(useAxiosWithPlatformInterceptors(), 'get')
-        .mockResolvedValue({ total: 1 });
+        mockGet.mockResolvedValue({ total: 1 });
 
         render(
             <MemoryRouter initialEntries={['/some-path']}>
@@ -144,7 +143,6 @@ describe('AppZeroState component', () => {
 
         const zeroStateBanner = screen.queryByLabelText('ZeroStateBanner');
         expect(zeroStateBanner).not.toBeInTheDocument();
-        mockedGet.mockRestore();
     });
 
     it('renders with Red Hat Lightspeed branding when feature flag is enabled', async () => {
