@@ -1,9 +1,9 @@
 import './FailState.scss';
 
 import {
-    EmptyState,
-    EmptyStateBody,
-    EmptyStateVariant
+  EmptyState,
+  EmptyStateBody,
+  EmptyStateVariant,
 } from '@patternfly/react-core/dist/esm/components/EmptyState';
 
 import PropTypes from 'prop-types';
@@ -13,24 +13,30 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 
 const FailState = ({ appName, isSmall }) => {
+  const intl = useIntl();
 
-    const intl = useIntl();
-
-    return (
-        <EmptyState
-            variant={ EmptyStateVariant.full }
-            className={ `insd-c-dashboard__error-state ${ isSmall && 'insd-c-dashboard__error-state--isSmall' }` }>
-            { isSmall
-                ? <EmptyStateBody>{intl.formatMessage(messages.errorStateTitle, { appName })}</EmptyStateBody>
-                : <Title headingLevel="h2" size="md"> {intl.formatMessage(messages.errorStateTitle, { appName })} </Title>
-            }
-        </EmptyState>
-    );
+  return (
+    <EmptyState
+      variant={EmptyStateVariant.full}
+      className={`insd-c-dashboard__error-state ${isSmall && 'insd-c-dashboard__error-state--isSmall'}`}
+    >
+      {isSmall ? (
+        <EmptyStateBody>
+          {intl.formatMessage(messages.errorStateTitle, { appName })}
+        </EmptyStateBody>
+      ) : (
+        <Title headingLevel="h2" size="md">
+          {' '}
+          {intl.formatMessage(messages.errorStateTitle, { appName })}{' '}
+        </Title>
+      )}
+    </EmptyState>
+  );
 };
 
 FailState.propTypes = {
-    appName: PropTypes.string.isRequired,
-    isSmall: PropTypes.bool
+  appName: PropTypes.string.isRequired,
+  isSmall: PropTypes.bool,
 };
 
 export default FailState;

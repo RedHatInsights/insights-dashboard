@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import App from './App';
 import IntlProvider from '@redhat-cloud-services/frontend-components-translations/Provider';
@@ -10,11 +9,11 @@ const store = init().getStore();
 const locale = navigator.language.slice(0, 2);
 
 const AppEntry = () => (
-    <IntlProvider locale={ locale } messages={ messages }>
-        <Provider store={ store }>
-            <App />
-        </Provider>
-    </IntlProvider>
+  <IntlProvider locale={locale} messages={messages}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </IntlProvider>
 );
 
 export default AppEntry;

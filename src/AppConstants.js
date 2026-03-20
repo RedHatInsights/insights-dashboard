@@ -1,15 +1,13 @@
-/* eslint-disable max-len */
-
 const BASE_URL = '/api';
 export const UI_BASE = '/insights';
 export const UI_BASE_OPENSHIFT = '/openshift';
 export const SELECTED_TAGS_SET = 'SELECTED_TAGS_SET';
 export const WORKLOADS_SET = 'WORKLOADS_SET';
 export const SEVERITY_MAP = {
-    critical: 4,
-    important: 3,
-    moderate: 2,
-    low: 1
+  critical: 4,
+  important: 3,
+  moderate: 2,
+  low: 1,
 };
 
 // Compliance App Constants
@@ -19,7 +17,7 @@ export const COMPLIANCE_FETCH_URL = `${BASE_URL}/compliance/v2/reports?filter=wi
 // Vulnerability App Constants
 const VULN_BASE = '/vulnerability/v1';
 export const VULNERABILITIES_FETCH = 'VULNERABILITIES_FETCH';
-export const VULNERABILITIES_FETCH_URL = (`${BASE_URL}${VULN_BASE}/dashboard`);
+export const VULNERABILITIES_FETCH_URL = `${BASE_URL}${VULN_BASE}/dashboard`;
 export const VULNERABILITIES_CVES_URL = `${BASE_URL}/vulnerability/v1/vulnerabilities/cves`;
 
 // Advisor App Constants
@@ -40,8 +38,10 @@ export const PATCHMAN_ADVISORIES_FETCH_URL = `${BASE_URL}/${PATCHMAN_ID}/${PATCH
 export const PATCHMAN_ADVISORIES_FETCH = 'PATCHMAN_ADVISORIES_FETCH';
 
 // Subscriptions Utilized Constants
-export const SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH = 'SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH';
-export const SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH = 'SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH';
+export const SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH =
+  'SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH';
+export const SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH =
+  'SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH';
 export const SUBSCRIPTIONS_UTILIZED_REPORT_FETCH_URL = `${BASE_URL}/rhsm-subscriptions/v1/tally/products/`;
 export const SUBSCRIPTIONS_UTILIZED_CAPACITY_FETCH_URL = `${BASE_URL}/rhsm-subscriptions/v1/capacity/products/`;
 

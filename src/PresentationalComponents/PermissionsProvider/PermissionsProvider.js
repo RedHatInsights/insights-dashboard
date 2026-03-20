@@ -5,69 +5,79 @@ import PageLoading from '../PageLoading/PageLoading';
 import { PermissionContext } from '../../PermissionContext';
 
 const PermissionsProvider = ({ children }) => {
-    const chrome = useChrome();
-    const [permissions, setPermissions] = useState({
-        compliance: false,
-        advisor: false,
-        remediations: false,
-        patch: false,
-        vulnerability: false,
-        subscriptions: false,
-        ros: false,
-        notifications: false
+  const chrome = useChrome();
+  const [permissions, setPermissions] = useState({
+    compliance: false,
+    advisor: false,
+    remediations: false,
+    patch: false,
+    vulnerability: false,
+    subscriptions: false,
+    ros: false,
+    notifications: false,
+  });
+  const [arePermissionsReady, setArePermissionReady] = useState(false);
+
+  useEffect(() => {
+    chrome.getUserPermissions('', true).then((dashboardPermissions) => {
+      const permissionList =
+        dashboardPermissions.length &&
+        dashboardPermissions.map((permissions) => permissions.permission);
+      if (permissionList.length) {
+        setPermissions({
+          compliance: permissionList.includes('compliance:*:*'),
+          advisor:
+            permissionList.includes('insights:*:*') ||
+            ((permissionList.includes('inventory:*:read') ||
+              permissionList.includes('inventory:hosts:read')) &&
+              (permissionList.includes('advisor:*:*') ||
+                permissionList.includes('advisor:*:read'))),
+          remediations:
+            permissionList.includes('remediations:*:*') ||
+            permissionList.includes('remediations:remediation:*') ||
+            permissionList.includes('remediations:remediation:read') ||
+            permissionList.includes('remediations:*:read'),
+          patch: permissionList.includes('patch:*:*'),
+          vulnerability:
+            permissionList.includes('vulnerability:*:*') ||
+            permissionList.includes('vulnerability:vulnerability_results:read'),
+          subscriptions:
+            permissionList.includes('subscriptions:*:*') ||
+            permissionList.includes('subscriptions:reports:read'),
+          ros:
+            permissionList.includes('ros:*:*') ||
+            permissionList.includes('ros:*:read'),
+          notifications:
+            permissionList.includes('notifications:*:*') ||
+            permissionList.includes('notifications:events:read'),
+        });
+      }
+
+      setArePermissionReady(true);
     });
-    const [arePermissionsReady, setArePermissionReady] = useState(false);
+  }, [chrome]);
 
-    useEffect(() => {
-        chrome.getUserPermissions('', true).then(
-            dashboardPermissions => {
-                const permissionList = dashboardPermissions.length && dashboardPermissions.map(permissions => permissions.permission);
-                if (permissionList.length) {
-                    setPermissions({
-                        compliance: permissionList.includes('compliance:*:*'),
-                        advisor: permissionList.includes('insights:*:*') || (
-                            (permissionList.includes('inventory:*:read') || permissionList.includes('inventory:hosts:read')) &&
-                            (permissionList.includes('advisor:*:*') || permissionList.includes('advisor:*:read'))
-                        ),
-                        remediations: permissionList.includes('remediations:*:*') ||
-                            permissionList.includes('remediations:remediation:*') ||
-                            permissionList.includes('remediations:remediation:read') ||
-                            permissionList.includes('remediations:*:read'),
-                        patch: permissionList.includes('patch:*:*'),
-                        vulnerability: permissionList.includes('vulnerability:*:*') ||
-                            permissionList.includes('vulnerability:vulnerability_results:read'),
-                        subscriptions: permissionList.includes('subscriptions:*:*') ||
-                            permissionList.includes('subscriptions:reports:read'),
-                        ros: permissionList.includes('ros:*:*') ||
-                            permissionList.includes('ros:*:read'),
-                        notifications: permissionList.includes('notifications:*:*') ||
-                            permissionList.includes('notifications:events:read')
-                    });
-                }
-
-                setArePermissionReady(true);
-            }
-        );
-    }, [chrome]);
-
-    return arePermissionsReady ? (
-        <PermissionContext.Provider
-            value={ {
-                compliance: permissions.compliance,
-                advisor: permissions.advisor,
-                remediations: permissions.remediations,
-                patch: permissions.patch,
-                vulnerability: permissions.vulnerability,
-                subscriptions: permissions.subscriptions,
-                ros: permissions.ros,
-                notifications: permissions.notifications
-            } }>
-            {children}
-        </PermissionContext.Provider>
-    ) : <PageLoading />;
+  return arePermissionsReady ? (
+    <PermissionContext.Provider
+      value={{
+        compliance: permissions.compliance,
+        advisor: permissions.advisor,
+        remediations: permissions.remediations,
+        patch: permissions.patch,
+        vulnerability: permissions.vulnerability,
+        subscriptions: permissions.subscriptions,
+        ros: permissions.ros,
+        notifications: permissions.notifications,
+      }}
+    >
+      {children}
+    </PermissionContext.Provider>
+  ) : (
+    <PageLoading />
+  );
 };
 
 PermissionsProvider.propTypes = {
-    children: propTypes.element
+  children: propTypes.element,
 };
 export default PermissionsProvider;
