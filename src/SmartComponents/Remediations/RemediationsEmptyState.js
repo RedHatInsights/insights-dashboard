@@ -8,18 +8,21 @@ import { useIntl } from 'react-intl';
 import { EmptyState, EmptyStateVariant } from '@patternfly/react-core';
 
 export const RemediationsEmptyState = () => {
+  const intl = useIntl();
 
-    const intl = useIntl();
-
-    return (
-        <EmptyState  headingLevel='h6'   titleText={<>{ intl.formatMessage(messages.remediationsNoDataTitle)}</>} variant={ EmptyStateVariant.sm }>
-            <EmptyStateBody>
-                { intl.formatMessage(messages.remediationsNoDataBody)}
-            </EmptyStateBody>
-        </EmptyState>
-    );
+  return (
+    <EmptyState
+      headingLevel="h6"
+      titleText={<>{intl.formatMessage(messages.remediationsNoDataTitle)}</>}
+      variant={EmptyStateVariant.sm}
+    >
+      <EmptyStateBody>
+        {intl.formatMessage(messages.remediationsNoDataBody)}
+      </EmptyStateBody>
+    </EmptyState>
+  );
 };
 
 RemediationsEmptyState.propTypes = {
-    intl: PropTypes.any
+  intl: PropTypes.any,
 };

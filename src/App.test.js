@@ -11,70 +11,79 @@ import mockChrome from '../config/mockChrome';
 import { useFeatureFlag } from './Utilities/Hooks';
 
 jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
-    __esModule: true,
-    default: () => mockChrome,
-    useChrome: () => mockChrome
+  __esModule: true,
+  default: () => mockChrome,
+  useChrome: () => mockChrome,
 }));
 
 jest.mock('./Utilities/Api', () => ({
-    ...jest.requireActual('./Utilities/Api'),
-    get: jest.fn(() => Promise.resolve({
-        data: { total: 0 }
-    }))
-})
-);
+  ...jest.requireActual('./Utilities/Api'),
+  get: jest.fn(() =>
+    Promise.resolve({
+      data: { total: 0 },
+    }),
+  ),
+}));
 
 jest.mock('./DashboardRoutes', () => ({
-    ...jest.requireActual('./DashboardRoutes'),
-    DashboardRoutes: jest.fn(() => (<div aria-label="Dashboard page"></div>))
-})
-);
+  ...jest.requireActual('./DashboardRoutes'),
+  DashboardRoutes: jest.fn(() => <div aria-label="Dashboard page"></div>),
+}));
 jest.mock('./PresentationalComponents/ZeroState/ZeroState', () => ({
-    __esModule: true,
-    default: jest.fn(() => (<div aria-label="Zero state banner"></div>))
-})
-);
+  __esModule: true,
+  default: jest.fn(() => <div aria-label="Zero state banner"></div>),
+}));
 jest.mock('./Utilities/Hooks');
 
 const renderDashboard = () => {
-    render(<BrowserRouter>
-        <IntlProvider>
-            <Provider store={init().getStore()}><App /></Provider>
-        </IntlProvider>
-    </BrowserRouter>);
+  render(
+    <BrowserRouter>
+      <IntlProvider>
+        <Provider store={init().getStore()}>
+          <App />
+        </Provider>
+      </IntlProvider>
+    </BrowserRouter>,
+  );
 };
 
 jest.useFakeTimers();
-describe.each([false, true])('App (useFeatureFlag: %s)', (useFeatureFlagValue) => {
+describe.each([false, true])(
+  'App (useFeatureFlag: %s)',
+  (useFeatureFlagValue) => {
     beforeEach(() => {
-        useFeatureFlag.mockReturnValue(useFeatureFlagValue);
+      useFeatureFlag.mockReturnValue(useFeatureFlagValue);
     });
     it('Should render zero state when there is no registered systems', async () => {
-        Api.get.mockImplementation(() => Promise.resolve({ data: { total: 0 } }));
-        renderDashboard();
-        await waitFor(() =>
-            expect(screen.getByLabelText('Zero state banner')).toBeVisible()
-        );
+      Api.get.mockImplementation(() => Promise.resolve({ data: { total: 0 } }));
+      renderDashboard();
+      await waitFor(() =>
+        expect(screen.getByLabelText('Zero state banner')).toBeVisible(),
+      );
     });
     it('Should render Dashboard page when there is one or more registered systems', async () => {
-        Api.get.mockReturnValue(Promise.resolve({ data: { total: 10 } }));
-        renderDashboard();
-        await waitFor(() =>
-            expect(screen.getByLabelText('Dashboard page')).toBeVisible()
-        );
+      Api.get.mockReturnValue(Promise.resolve({ data: { total: 10 } }));
+      renderDashboard();
+      await waitFor(() =>
+        expect(screen.getByLabelText('Dashboard page')).toBeVisible(),
+      );
     });
     it('Should show loading page unless API request to check registered systems finish', async () => {
-        Api.get.mockImplementation(() => new Promise((resolve) => {
+      Api.get.mockImplementation(
+        () =>
+          new Promise((resolve) => {
             setTimeout(() => {
-                resolve({ data: { total: 10 } });
+              resolve({ data: { total: 10 } });
             }, 1000);
-        }));
-        renderDashboard();
-        expect(screen.getByText('Loading')).toBeVisible();
+          }),
+      );
+      renderDashboard();
+      expect(screen.getByText('Loading')).toBeVisible();
 
-        jest.advanceTimersByTime(1000);
-        await waitFor(() =>
-            expect(screen.getByLabelText('Dashboard page')).toBeVisible()
-        );
+      jest.advanceTimersByTime(1000);
+      await waitFor(() =>
+        expect(screen.getByLabelText('Dashboard page')).toBeVisible(),
+      );
     });
-});
+  },
+);

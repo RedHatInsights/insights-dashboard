@@ -5,7 +5,6 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import jestDom from 'eslint-plugin-jest-dom';
 import testingLibrary from 'eslint-plugin-testing-library';
 
-/** Mirrors compliance-frontend where it applies; dashboard has no TanStack Query / TS / JSDoc stack. */
 export default defineConfig([
     globalIgnores([
         'coverage/**',
