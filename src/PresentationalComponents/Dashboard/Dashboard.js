@@ -21,70 +21,70 @@ import RemediationsCard from '../../SmartComponents/Remediations/RemediationsCar
 import './dashboard.scss';
 
 const Dashboard = () => {
-    const permission = useContext(PermissionContext);
-    const intl = useIntl();
-    const newRules = useSelector(({ DashboardStore }) => DashboardStore.vulnerabilities.recent_rules);
-    const chrome = useChrome();
-    const breakpointColumnsObj = {
-        default: 2,
-        992: 1
-    };
-    useEffect(()=>{
-        chrome.updateDocumentTitle(`Dashboard | RHEL`);
-    }, [chrome]);
+  const permission = useContext(PermissionContext);
+  const intl = useIntl();
+  const newRules = useSelector(
+    ({ DashboardStore }) => DashboardStore.vulnerabilities.recent_rules,
+  );
+  const chrome = useChrome();
+  const breakpointColumnsObj = {
+    default: 2,
+    992: 1,
+  };
+  useEffect(() => {
+    chrome.updateDocumentTitle(`Dashboard | RHEL`);
+  }, [chrome]);
 
-    return (<React.Fragment>
-        <PageSection hasBodyWrapper isWidthLimited  className="insd-c-dashboard-header">
-            <Title headingLevel="h1" size="2xl" className="pf-v6-u-screen-reader">
-                {intl.formatMessage(messages.dashboardTitle)}
-            </Title>
-            <SystemInventoryHeader/>
-        </PageSection>
-        <PageSection hasBodyWrapper isFilled={true} isWidthLimited>
-            <Grid hasGutter>
-                {newRules?.length > 0 && permission.vulnerability && <GridItem>
-                    <NewRules />
-                </GridItem> }
+  return (
+    <React.Fragment>
+      <PageSection
+        hasBodyWrapper
+        isWidthLimited
+        className="insd-c-dashboard-header"
+      >
+        <Title headingLevel="h1" size="2xl" className="pf-v6-u-screen-reader">
+          {intl.formatMessage(messages.dashboardTitle)}
+        </Title>
+        <SystemInventoryHeader />
+      </PageSection>
+      <PageSection hasBodyWrapper isFilled={true} isWidthLimited>
+        <Grid hasGutter>
+          {newRules?.length > 0 && permission.vulnerability && (
+            <GridItem>
+              <NewRules />
+            </GridItem>
+          )}
 
-                <Masonry
-                    breakpointCols={breakpointColumnsObj}
-                    className="ins-l-masonry"
-                    columnClassName="ins-l-masonry_column"
-                >
-                    {permission.vulnerability &&
-                        <VulnerabilityCard />
-                    }
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="ins-l-masonry"
+            columnClassName="ins-l-masonry_column"
+          >
+            {permission.vulnerability && <VulnerabilityCard />}
 
-                    {permission.advisor &&
-                        <AdvisorCard />
-                    }
+            {permission.advisor && <AdvisorCard />}
 
-                    {permission.compliance &&
-                        <ComplianceCard />
-                    }
+            {permission.compliance && <ComplianceCard />}
 
-                    <CentOsCard />
+            <CentOsCard />
 
-                    {permission.remediations &&
-                        <RemediationsCard />
-                    }
+            {permission.remediations && <RemediationsCard />}
 
-                    {permission.patch &&
-                        <PatchManagerCard />
-                    }
+            {permission.patch && <PatchManagerCard />}
 
-                    {permission.ros &&
-                        <ResourceOptimizationCard/>
-                    }
-                </Masonry>
-            </Grid>
-        </PageSection>
-    </React.Fragment>);
-
+            {permission.ros && <ResourceOptimizationCard />}
+          </Masonry>
+        </Grid>
+      </PageSection>
+    </React.Fragment>
+  );
 };
 
 Dashboard.propTypes = {
-    workloads: workloadsPropType
+  workloads: workloadsPropType,
 };
 
-export default connect(({ DashboardStore }) => ({ workloads: DashboardStore.workloads }), null)(Dashboard);
+export default connect(
+  ({ DashboardStore }) => ({ workloads: DashboardStore.workloads }),
+  null,
+)(Dashboard);

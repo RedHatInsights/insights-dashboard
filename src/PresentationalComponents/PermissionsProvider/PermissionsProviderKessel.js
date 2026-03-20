@@ -5,21 +5,21 @@ import { useDashboardKesselPermissions } from '../../Utilities/hooks/useDashboar
 import { PermissionContext } from '../../PermissionContext';
 
 const PermissionsProviderKessel = ({ children }) => {
-    const { permissions, isLoading } = useDashboardKesselPermissions();
+  const { permissions, isLoading } = useDashboardKesselPermissions();
 
-    if (isLoading) {
-        return <PageLoading />;
-    }
+  if (isLoading) {
+    return <PageLoading />;
+  }
 
-    return (
-        <PermissionContext.Provider value={permissions}>
-            {children}
-        </PermissionContext.Provider>
-    );
+  return (
+    <PermissionContext.Provider value={permissions}>
+      {children}
+    </PermissionContext.Provider>
+  );
 };
 
 PermissionsProviderKessel.propTypes = {
-    children: propTypes.element
+  children: propTypes.element,
 };
 
 export default PermissionsProviderKessel;
