@@ -14,7 +14,7 @@ export default defineConfig([
     ]),
     fecPlugin,
     pluginCypress.configs.recommended,
-    reactHooks.configs['recommended-latest'],
+    reactHooks.configs.flat['recommended-latest'],
     testingLibrary.configs['flat/react'],
     jestDom.configs['flat/recommended'],
     {
