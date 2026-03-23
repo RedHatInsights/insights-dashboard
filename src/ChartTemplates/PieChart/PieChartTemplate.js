@@ -9,6 +9,24 @@ import {
 import React from 'react';
 import propTypes from 'prop-types';
 
+function PieChartLegendLabel({ ariaTitle, legendClick, index, ...rest }) {
+  return (
+    <a
+      id={`${ariaTitle.toLowerCase().replace(/\s/g, '-')}-legend-${index + 1}`}
+      href={legendClick[index]}
+      className="pf-v6-c-button pf-m-link pf-m-inline"
+    >
+      <ChartLabel {...rest} />
+    </a>
+  );
+}
+
+PieChartLegendLabel.propTypes = {
+  ariaTitle: propTypes.string.isRequired,
+  legendClick: propTypes.any.isRequired,
+  index: propTypes.number,
+};
+
 export const PieChart = ({
   ariaDesc,
   ariaTitle,
@@ -25,17 +43,6 @@ export const PieChart = ({
   legendHeight,
   legendClick,
 }) => {
-  // eslint-disable-next-line react/prop-types
-  const LegendLabel = ({ index, ...rest }) => (
-    <a
-      id={`${ariaTitle.toLowerCase().replace(/\s/g, '-')}-legend-${index + 1}`}
-      href={legendClick[index]}
-      className="pf-v6-c-button pf-m-link pf-m-inline"
-    >
-      <ChartLabel {...rest} />
-    </a>
-  );
-
   return (
     <div className="insd-c-pie-chart__row">
       <div style={{ width, height, position: 'relative' }}>
@@ -80,7 +87,14 @@ export const PieChart = ({
             data={legendData}
             rowGutter={{ top: -5, bottom: -5 }}
             orientation={legendOrientation}
-            labelComponent={legendClick && <LegendLabel />}
+            labelComponent={
+              legendClick ? (
+                <PieChartLegendLabel
+                  ariaTitle={ariaTitle}
+                  legendClick={legendClick}
+                />
+              ) : undefined
+            }
           />
         </div>
       )}
