@@ -1,9 +1,13 @@
 import { renderHook } from '@testing-library/react';
 import { useDashboardKesselPermissions } from './useDashboardKesselPermissions';
-import { useFetchDefaultWorkspaceId } from './useKesselWorkspaces';
+import { useFetchDefaultWorkspaceId } from './useKesselDefaultWorkspaceId';
+import { useKesselWorkspaceIds } from './useKesselWorkspaceIds';
 import { useSelfAccessCheck } from '@project-kessel/react-kessel-access-check';
 
-jest.mock('./useKesselWorkspaces');
+jest.mock('./useKesselDefaultWorkspaceId', () => ({
+  useFetchDefaultWorkspaceId: jest.fn(),
+}));
+jest.mock('./useKesselWorkspaceIds');
 jest.mock('@project-kessel/react-kessel-access-check');
 
 const FALLBACK_PERMISSIONS = {
@@ -19,6 +23,11 @@ const FALLBACK_PERMISSIONS = {
 
 describe('useDashboardKesselPermissions', () => {
   beforeEach(() => {
+    useKesselWorkspaceIds.mockReturnValue({
+      workspaceIds: [],
+      isLoading: false,
+      error: false,
+    });
     useFetchDefaultWorkspaceId.mockReturnValue({
       workspaceId: 'workspace-123',
       isLoading: false,
@@ -34,14 +43,14 @@ describe('useDashboardKesselPermissions', () => {
       error: null,
     });
   });
-  it('should return the loading state', () => {
+  it('should return fallback permissions while default workspace is still loading', () => {
     useFetchDefaultWorkspaceId.mockReturnValue({
       workspaceId: null,
       isLoading: true,
       error: null,
     });
     const { result } = renderHook(() => useDashboardKesselPermissions());
-    expect(result.current.isLoading).toBe(true);
+    expect(result.current.isLoading).toBe(false);
     expect(result.current.permissions).toStrictEqual(FALLBACK_PERMISSIONS);
   });
   it('should return the fallback permissions when the workspace is not found', () => {
@@ -119,5 +128,41 @@ describe('useDashboardKesselPermissions', () => {
     const { result } = renderHook(() => useDashboardKesselPermissions());
     expect(result.current.permissions.compliance).toBe(true);
     expect(result.current.permissions.advisor).toBe(false);
+  });
+  it('should set host-centric permissions true when allowed on any workspace', () => {
+    useKesselWorkspaceIds.mockReturnValue({
+      workspaceIds: ['ws-a', 'ws-b'],
+      isLoading: false,
+      error: false,
+    });
+    useSelfAccessCheck.mockImplementation((params) => {
+      const resourceCount = params?.resources?.length ?? 0;
+      if (resourceCount <= 4) {
+        return {
+          data: [{ relation: 'compliance_report_view', allowed: true }],
+          loading: false,
+          error: null,
+        };
+      }
+      return {
+        data: [
+          {
+            allowed: false,
+            relation: 'advisor_recommendation_results_view',
+            resource: { relation: 'advisor_recommendation_results_view' },
+          },
+          {
+            allowed: true,
+            relation: 'advisor_recommendation_results_view',
+            resource: { relation: 'advisor_recommendation_results_view' },
+          },
+        ],
+        loading: false,
+        error: null,
+      };
+    });
+    const { result } = renderHook(() => useDashboardKesselPermissions());
+    expect(result.current.permissions.compliance).toBe(true);
+    expect(result.current.permissions.advisor).toBe(true);
   });
 });
