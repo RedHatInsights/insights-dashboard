@@ -78,7 +78,7 @@ export const useDashboardKesselPermissions = () => {
   } = useSelfAccessCheck(hostCentricCheckParams);
 
   const permissions = useMemo(() => {
-    if ((workspaceLoading, workspacesLoading)) {
+    if (workspaceLoading || workspacesLoading) {
       return FALLBACK_PERMISSIONS;
     }
 

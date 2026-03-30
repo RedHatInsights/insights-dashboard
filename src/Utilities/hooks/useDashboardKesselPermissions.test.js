@@ -24,7 +24,7 @@ const FALLBACK_PERMISSIONS = {
 describe('useDashboardKesselPermissions', () => {
   beforeEach(() => {
     useKesselWorkspaceIds.mockReturnValue({
-      workspaceIds: [],
+      workspaceIds: ['workspace-list-1'],
       isLoading: false,
       error: false,
     });
@@ -50,7 +50,17 @@ describe('useDashboardKesselPermissions', () => {
       error: null,
     });
     const { result } = renderHook(() => useDashboardKesselPermissions());
-    expect(result.current.isLoading).toBe(false);
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.permissions).toStrictEqual(FALLBACK_PERMISSIONS);
+  });
+  it('should return fallback permissions while workspace ids are still loading', () => {
+    useKesselWorkspaceIds.mockReturnValue({
+      workspaceIds: undefined,
+      isLoading: true,
+      error: false,
+    });
+    const { result } = renderHook(() => useDashboardKesselPermissions());
+    expect(result.current.isLoading).toBe(true);
     expect(result.current.permissions).toStrictEqual(FALLBACK_PERMISSIONS);
   });
   it('should return the fallback permissions when the workspace is not found', () => {
@@ -58,6 +68,16 @@ describe('useDashboardKesselPermissions', () => {
       workspaceId: null,
       isLoading: false,
       error: null,
+    });
+    const { result } = renderHook(() => useDashboardKesselPermissions());
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.permissions).toStrictEqual(FALLBACK_PERMISSIONS);
+  });
+  it('should return the fallback permissions when no workspace ids are available', () => {
+    useKesselWorkspaceIds.mockReturnValue({
+      workspaceIds: [],
+      isLoading: false,
+      error: false,
     });
     const { result } = renderHook(() => useDashboardKesselPermissions());
     expect(result.current.isLoading).toBe(false);
@@ -81,6 +101,7 @@ describe('useDashboardKesselPermissions', () => {
     });
     const { result } = renderHook(() => useDashboardKesselPermissions());
     expect(result.current.permissions).toStrictEqual(FALLBACK_PERMISSIONS);
+    expect(result.current.isLoading).toBe(false);
   });
   it('should return the fallback permissions when self access check loading state is true', () => {
     useSelfAccessCheck.mockReturnValue({
