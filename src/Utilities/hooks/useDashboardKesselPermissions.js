@@ -1,17 +1,21 @@
 import { useMemo } from 'react';
 import { getKesselAccessCheckParams } from '@redhat-cloud-services/frontend-components-utilities/kesselPermissions';
 import { useSelfAccessCheck } from '@project-kessel/react-kessel-access-check';
-import { useFetchDefaultWorkspaceId } from './useKesselWorkspaces';
+import { useFetchDefaultWorkspaceId } from './useKesselDefaultWorkspaceId';
+import { useKesselWorkspaceIds } from './useKesselWorkspaceIds';
 
-export const DASHBOARD_KESSEL_RELATIONS = [
+const DASHBOARD_KESSEL_RELATIONS = [
   'compliance_report_view',
-  'advisor_recommendation_results_view',
   'remediations_view_remediation',
+  'subscriptions_report_view',
+  'notifications_events_view',
+];
+
+const DASHBOARD_HOST_CENTRIC_KESSEL_RELATIONS = [
+  'advisor_recommendation_results_view',
   'patch_system_view',
   'vulnerability_vulnerability_results_view',
-  'subscriptions_report_view',
   'ros_read_analysis',
-  'notifications_events_view',
 ];
 
 const FALLBACK_PERMISSIONS = {
@@ -45,44 +49,95 @@ export const useDashboardKesselPermissions = () => {
     isLoading: workspaceLoading,
     error: workspaceError,
   } = useFetchDefaultWorkspaceId();
+  const {
+    workspaceIds,
+    isLoading: workspacesLoading,
+    error: workspacesError,
+  } = useKesselWorkspaceIds();
 
   const checkParams = useMemo(() => {
-    if (!workspaceId) {
-      return null;
-    }
-
     return getKesselAccessCheckParams({
       requiredPermissions: DASHBOARD_KESSEL_RELATIONS,
       resourceIdOrIds: workspaceId,
     });
   }, [workspaceId]);
 
-  const { data, loading, error } = useSelfAccessCheck(
-    checkParams ?? { resources: [] },
-  );
+  const hostCentricCheckParams = useMemo(() => {
+    return getKesselAccessCheckParams({
+      requiredPermissions: DASHBOARD_HOST_CENTRIC_KESSEL_RELATIONS,
+      resourceIdOrIds: workspaceIds,
+    });
+  }, [workspaceIds]);
+
+  const { data, loading, error } = useSelfAccessCheck(checkParams);
+
+  const {
+    data: hostCentricData,
+    loading: hostCentricLoading,
+    error: hostCentricError,
+  } = useSelfAccessCheck(hostCentricCheckParams);
 
   const permissions = useMemo(() => {
-    if (workspaceLoading) {
-      return FALLBACK_PERMISSIONS;
-    }
-
-    if (!workspaceId || workspaceError || error) {
-      return FALLBACK_PERMISSIONS;
-    }
-
     const permissions = { ...FALLBACK_PERMISSIONS };
-    const items = data ?? [];
-    items.forEach((item) => {
-      const relation = item.relation ?? item.resource?.relation;
-      const key = permissionKeyFromRelation(relation);
-      if (key) {
-        permissions[key] = item.allowed === true;
-      }
-    });
-    return permissions;
-  }, [workspaceId, workspaceLoading, workspaceError, data, error]);
 
-  const isLoading = workspaceLoading || (workspaceId !== null && loading);
+    if (!workspaceLoading && workspaceId && !workspaceError && !error) {
+      const items = data ?? [];
+      items.forEach((item) => {
+        const relation = item.relation ?? item.resource?.relation;
+        const key = permissionKeyFromRelation(relation);
+        if (key) {
+          permissions[key] = item.allowed === true;
+        }
+      });
+    }
+
+    if (
+      !workspacesLoading &&
+      !hostCentricLoading &&
+      workspaceIds?.length &&
+      !workspacesError &&
+      !hostCentricError
+    ) {
+      const hostCentricItems = hostCentricData ?? [];
+      const pendingRelations = new Set(DASHBOARD_HOST_CENTRIC_KESSEL_RELATIONS);
+      for (
+        let i = 0;
+        i < hostCentricItems.length && pendingRelations.size > 0;
+        i += 1
+      ) {
+        const item = hostCentricItems[i];
+        if (item.allowed !== true) {
+          continue;
+        }
+        const relation = item.relation ?? item.resource?.relation;
+        if (!pendingRelations.has(relation)) {
+          continue;
+        }
+        const key = permissionKeyFromRelation(relation);
+        if (key) {
+          permissions[key] = true;
+          pendingRelations.delete(relation);
+        }
+      }
+    }
+
+    return permissions;
+  }, [
+    workspaceId,
+    workspaceIds,
+    workspaceLoading,
+    workspacesLoading,
+    workspaceError,
+    workspacesError,
+    data,
+    error,
+    hostCentricData,
+    hostCentricLoading,
+    hostCentricError,
+  ]);
+
+  const isLoading =
+    workspaceLoading || workspacesLoading || loading || hostCentricLoading;
 
   return { permissions, isLoading };
 };
