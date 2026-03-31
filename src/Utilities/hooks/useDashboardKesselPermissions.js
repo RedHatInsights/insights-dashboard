@@ -93,17 +93,19 @@ export const useDashboardKesselPermissions = () => {
 
     if (
       !workspacesLoading &&
+      !hostCentricLoading &&
       workspaceIds?.length &&
       !workspacesError &&
       !hostCentricError
     ) {
+      const hostCentricItems = hostCentricData ?? [];
       const pendingRelations = new Set(DASHBOARD_HOST_CENTRIC_KESSEL_RELATIONS);
       for (
         let i = 0;
-        i < hostCentricData.length && pendingRelations.size > 0;
+        i < hostCentricItems.length && pendingRelations.size > 0;
         i += 1
       ) {
-        const item = hostCentricData[i];
+        const item = hostCentricItems[i];
         if (item.allowed !== true) {
           continue;
         }
@@ -130,6 +132,7 @@ export const useDashboardKesselPermissions = () => {
     data,
     error,
     hostCentricData,
+    hostCentricLoading,
     hostCentricError,
   ]);
 
