@@ -78,32 +78,25 @@ export const useDashboardKesselPermissions = () => {
   } = useSelfAccessCheck(hostCentricCheckParams);
 
   const permissions = useMemo(() => {
-    if (workspaceLoading || workspacesLoading) {
-      return FALLBACK_PERMISSIONS;
+    const permissions = { ...FALLBACK_PERMISSIONS };
+
+    if (!workspaceLoading && workspaceId && !workspaceError && !error) {
+      const items = data ?? [];
+      items.forEach((item) => {
+        const relation = item.relation ?? item.resource?.relation;
+        const key = permissionKeyFromRelation(relation);
+        if (key) {
+          permissions[key] = item.allowed === true;
+        }
+      });
     }
 
     if (
-      !workspaceId ||
-      !workspaceIds?.length ||
-      workspaceError ||
-      workspacesError ||
-      error ||
-      hostCentricError
+      !workspacesLoading &&
+      workspaceIds?.length &&
+      !workspacesError &&
+      !hostCentricError
     ) {
-      return FALLBACK_PERMISSIONS;
-    }
-
-    const permissions = { ...FALLBACK_PERMISSIONS };
-    const items = data ?? [];
-    items.forEach((item) => {
-      const relation = item.relation ?? item.resource?.relation;
-      const key = permissionKeyFromRelation(relation);
-      if (key) {
-        permissions[key] = item.allowed === true;
-      }
-    });
-
-    if (!hostCentricError && Array.isArray(hostCentricData)) {
       const pendingRelations = new Set(DASHBOARD_HOST_CENTRIC_KESSEL_RELATIONS);
       for (
         let i = 0;
