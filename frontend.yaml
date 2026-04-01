@@ -19,6 +19,18 @@ objects:
         paths:
           - /apps/dashboard
       feoConfigEnabled: true
+      widgetRegistry:
+        - scope: landing
+          module: ./RhelWidget
+          featureFlag: widget.rhel.enable
+          config:
+            icon: RhelIcon
+            title: Red Hat Enterprise Linux
+          defaults:
+            w: 1
+            h: 4
+            maxH: 10
+            minH: 1
       module:
         manifestLocation: /apps/dashboard/fed-mods.json
         modules:
