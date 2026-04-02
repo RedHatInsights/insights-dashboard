@@ -59,6 +59,10 @@ module.exports = {
         './src/PresentationalComponents/ZeroState/ZeroStateFooter.js'
       ),
       './RootApp': resolve(__dirname, './src/AppEntry.js'),
+      './RhelWidget': resolve(
+        __dirname,
+        './src/components/Widgets/rhel-widget.tsx'
+      ),
     },
   },
   frontendCRDPath: 'frontend.yaml',
