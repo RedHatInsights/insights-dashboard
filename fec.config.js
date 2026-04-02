@@ -61,7 +61,7 @@ module.exports = {
       './RootApp': resolve(__dirname, './src/AppEntry.js'),
       './RhelWidget': resolve(
         __dirname,
-        './src/components/Widgets/rhel-widget.tsx'
+        './src/PresentationalComponents/Widgets/rhel-widget.tsx'
       ),
     },
   },
