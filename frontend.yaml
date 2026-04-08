@@ -41,6 +41,14 @@ objects:
             - Insights
             - Lightspeed
             - RHEL
+      bundleSegments:
+        - segmentId: dashboard-insights
+          bundleId: insights
+          position: 100
+          navItems: 
+            - id: dashboard-page
+              title: Dashboard
+              href: /insights/dashboard
       module:
         manifestLocation: /apps/dashboard/fed-mods.json
         modules:
