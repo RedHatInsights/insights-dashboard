@@ -31,6 +31,16 @@ objects:
             h: 4
             maxH: 10
             minH: 1
+      searchEntries:
+        - id: dashboard-insights
+          title: Dashboard
+          href: /insights/dashboard
+          description: View details about your Red Hat Enterprise Linux systems.
+          alt_title:
+            - Dashboard
+            - Insights
+            - Lightspeed
+            - RHEL
       module:
         manifestLocation: /apps/dashboard/fed-mods.json
         modules:
