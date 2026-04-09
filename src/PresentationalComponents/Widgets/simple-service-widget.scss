@@ -1,0 +1,12 @@
+// non-scrollable widgets using flex
+.landing-rhel, [class*="landing-landing-./RhelWidget"] {
+  display: flex; 
+  overflow: hidden;
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
