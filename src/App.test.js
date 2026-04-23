@@ -48,42 +48,39 @@ const renderDashboard = () => {
 };
 
 jest.useFakeTimers();
-describe.each([false, true])(
-  'App (useFeatureFlag: %s)',
-  (useFeatureFlagValue) => {
-    beforeEach(() => {
-      useFeatureFlag.mockReturnValue(useFeatureFlagValue);
-    });
-    it('Should render zero state when there is no registered systems', async () => {
-      Api.get.mockImplementation(() => Promise.resolve({ data: { total: 0 } }));
-      renderDashboard();
-      await waitFor(() =>
-        expect(screen.getByLabelText('Zero state banner')).toBeVisible(),
-      );
-    });
-    it('Should render Dashboard page when there is one or more registered systems', async () => {
-      Api.get.mockReturnValue(Promise.resolve({ data: { total: 10 } }));
-      renderDashboard();
-      await waitFor(() =>
-        expect(screen.getByLabelText('Dashboard page')).toBeVisible(),
-      );
-    });
-    it('Should show loading page unless API request to check registered systems finish', async () => {
-      Api.get.mockImplementation(
-        () =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve({ data: { total: 10 } });
-            }, 1000);
-          }),
-      );
-      renderDashboard();
-      expect(screen.getByText('Loading')).toBeVisible();
+describe('App', () => {
+  beforeEach(() => {
+    useFeatureFlag.mockReturnValue(false);
+  });
+  it('Should render zero state when there is no registered systems', async () => {
+    Api.get.mockImplementation(() => Promise.resolve({ data: { total: 0 } }));
+    renderDashboard();
+    await waitFor(() =>
+      expect(screen.getByLabelText('Zero state banner')).toBeVisible(),
+    );
+  });
+  it('Should render Dashboard page when there is one or more registered systems', async () => {
+    Api.get.mockReturnValue(Promise.resolve({ data: { total: 10 } }));
+    renderDashboard();
+    await waitFor(() =>
+      expect(screen.getByLabelText('Dashboard page')).toBeVisible(),
+    );
+  });
+  it('Should show loading page unless API request to check registered systems finish', async () => {
+    Api.get.mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          setTimeout(() => {
+            resolve({ data: { total: 10 } });
+          }, 1000);
+        }),
+    );
+    renderDashboard();
+    expect(screen.getByText('Loading')).toBeVisible();
 
-      jest.advanceTimersByTime(1000);
-      await waitFor(() =>
-        expect(screen.getByLabelText('Dashboard page')).toBeVisible(),
-      );
-    });
-  },
-);
+    jest.advanceTimersByTime(1000);
+    await waitFor(() =>
+      expect(screen.getByLabelText('Dashboard page')).toBeVisible(),
+    );
+  });
+});

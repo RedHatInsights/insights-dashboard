@@ -101,6 +101,9 @@ $ins-c-marketing-banner--breakpoint-map: build-breakpoint-map();
   }
 
   &[class*="pf-m-dark-"].pf-v6-c-page__main-section {
+    .insd-c-marketing-banner__title {
+      color: var(--pf-t--color--white);
+    }
     .pf-v6-c-button.pf-m-secondary {
       color: var(--pf-t--color--white);
     }
