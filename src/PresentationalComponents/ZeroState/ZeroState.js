@@ -28,13 +28,11 @@ import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 import { useFlag } from '@unleash/proxy-client-react';
-import { useFeatureFlag } from '../../Utilities/Hooks';
 
 const ZeroState = () => {
   const intl = useIntl();
   const isItLess = useFlag('insights-dashboard-itless');
   const { hideGlobalFilter } = useChrome();
-  const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
 
   useEffect(() => {
     hideGlobalFilter?.();
@@ -64,11 +62,9 @@ const ZeroState = () => {
                 <Title
                   headingLevel="h1"
                   size="2xl"
-                  className="pf-v6-u-text-color-inverse"
+                  className="insd-c-marketing-banner__title"
                 >
-                  {isLightspeedEnabled
-                    ? intl.formatMessage(messages.noSystemsTitleLightspeed)
-                    : intl.formatMessage(messages.noSystemsTitle)}
+                  {intl.formatMessage(messages.noSystemsTitleLightspeed)}
                 </Title>
               </FlexItem>
               <FlexItem spacer={{ default: 'spacer2xl' }}>
@@ -87,7 +83,6 @@ const ZeroState = () => {
                     size="lg"
                     component="a"
                     variant="primary"
-                    style={{ color: 'white' }}
                     href={
                       isItLess
                         ? `${UI_BASE}/satellite`
@@ -108,9 +103,7 @@ const ZeroState = () => {
                   rel="noreferrer"
                   href="https://www.redhat.com/en/technologies/management/insights"
                 >
-                  {isLightspeedEnabled
-                    ? intl.formatMessage(messages.learnmoreLightspeed)
-                    : intl.formatMessage(messages.learnmoreRHI)}
+                  {intl.formatMessage(messages.learnmoreLightspeed)}
                   &nbsp;&nbsp;&nbsp;
                 </Button>
               </FlexItem>
@@ -199,13 +192,11 @@ const ZeroState = () => {
             <Title
               headingLevel="h3"
               size="lg"
-              className="pf-v6-u-text-color-inverse"
+              className="insd-c-marketing-banner__title"
             >
-              {isLightspeedEnabled
-                ? intl.formatMessage(
-                    messages.dataPrivacyAndControlsTitleLightspeed,
-                  )
-                : intl.formatMessage(messages.dataPrivacyAndControlsTitle)}
+              {intl.formatMessage(
+                messages.dataPrivacyAndControlsTitleLightspeed,
+              )}
             </Title>
           </FlexItem>
           <FlexItem spacer={{ default: 'spacerXl' }}>
@@ -213,16 +204,13 @@ const ZeroState = () => {
               className="insd-c-width-limiter ins-c-text--black-400"
               style={{ '--insd-c-width-limiter--MaxWidth': '70ch' }}
             >
-              {isLightspeedEnabled
-                ? intl.formatMessage(messages.dataPrivacyAndControlsLightspeed)
-                : intl.formatMessage(messages.dataPrivacyAndControls)}
+              {intl.formatMessage(messages.dataPrivacyAndControlsLightspeed)}
             </p>
           </FlexItem>
           <FlexItem>
             <Button
               component="a"
               target="_blank"
-              style={{ color: 'white' }}
               rel="noreferrer"
               href={`./security/insights`}
             >
@@ -236,19 +224,13 @@ const ZeroState = () => {
           <FlexItem spacer={{ default: 'spacerXl' }}>
             <Content>
               <Title headingLevel="h3">
-                {isLightspeedEnabled
-                  ? intl.formatMessage(messages.lightspeedandsatellite)
-                  : intl.formatMessage(messages.insightsandsatellite)}
+                {intl.formatMessage(messages.lightspeedandsatellite)}
               </Title>
               <div
                 className="insd-c-width-limiter"
                 style={{ '--insd-c-width-limiter--MaxWidth': '900px' }}
               >
-                <p>
-                  {isLightspeedEnabled
-                    ? intl.formatMessage(messages.satellitelightspeed)
-                    : intl.formatMessage(messages.satellite)}
-                </p>
+                <p>{intl.formatMessage(messages.satellitelightspeed)}</p>
               </div>
             </Content>
           </FlexItem>

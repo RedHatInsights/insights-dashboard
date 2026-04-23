@@ -5,7 +5,6 @@ import AppZeroState from './AppZeroState';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 import { createAppNamesList } from './zeroStateHelpers';
-import { useFeatureFlag } from '../../Utilities/Hooks';
 
 jest.mock(
   '@redhat-cloud-services/frontend-components-utilities/interceptors',
@@ -14,11 +13,6 @@ jest.mock(
     useAxiosWithPlatformInterceptors: jest.fn(),
   }),
 );
-
-jest.mock('../../Utilities/Hooks', () => ({
-  __esModule: true,
-  useFeatureFlag: jest.fn(() => false), // Default to false (Insights)
-}));
 
 const appNames = createAppNamesList();
 const randomApp = appNames[Math.floor(Math.random() * appNames.length)];
@@ -168,34 +162,7 @@ describe('AppZeroState component', () => {
     expect(zeroStateBanner).not.toBeInTheDocument();
   });
 
-  it('renders with Red Hat Lightspeed branding when feature flag is enabled', async () => {
-    // Override the module-level mock for this test
-    useFeatureFlag.mockReturnValue(true);
-
-    render(
-      <MemoryRouter initialEntries={['/some-path']}>
-        <Routes>
-          <Route
-            path="/some-path"
-            element={
-              <AppZeroState app={randomApp} customFetchResults={false} />
-            }
-          />
-        </Routes>
-      </MemoryRouter>,
-    );
-
-    const zeroStateBanner = await screen.findByLabelText('ZeroStateBanner');
-    expect(zeroStateBanner).toBeInTheDocument();
-
-    // Reset to default mock behavior
-    useFeatureFlag.mockReturnValue(false);
-  });
-
-  it('renders with Insights branding when feature flag is disabled', async () => {
-    // Ensure the mock returns false (this is the default, but being explicit)
-    useFeatureFlag.mockReturnValue(false);
-
+  it('renders zero state with Red Hat Lightspeed branding', async () => {
     render(
       <MemoryRouter initialEntries={['/some-path']}>
         <Routes>
