@@ -35,7 +35,13 @@ const registerSystemsList = (item) => {
   item.linkWithinText ? (
     <React.Fragment>
       <p className="pf-v6-u-pl-md">
-        {item.partOne} <a href={item.linkWithinText}>{item.anchorText}</a>{' '}
+        {item.partOne}{' '}
+        <a
+          style={{ color: 'var(--pf-t--color--blue--50)' }}
+          href={item.linkWithinText}
+        >
+          {item.anchorText}
+        </a>{' '}
         {item.partTwo}
       </p>
     </React.Fragment>
