@@ -13,7 +13,6 @@ import { useIntl } from 'react-intl';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 import { Link } from 'react-router-dom';
 import { useBatchInventoryFetch } from '../../Utilities/useBatchInventoryFetch';
-import { useFeatureFlag } from '../../Utilities/Hooks';
 
 const accessLoadingSkeleton = (
   <Flex
@@ -55,7 +54,6 @@ const SystemInventoryHeaderContent = ({
   hasInventoryHostRead,
   isInventoryHostReadLoading,
 }) => {
-  const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
   const mayFetch = !isInventoryHostReadLoading && hasInventoryHostRead === true;
 
   const [
@@ -105,9 +103,7 @@ const SystemInventoryHeaderContent = ({
                   messages.systemInventoryDescription,
                   {
                     count: inventorySummary?.total || 0,
-                    productName: isLightspeedEnabled
-                      ? 'the insights-client'
-                      : 'Insights',
+                    productName: 'the insights-client',
                   },
                 )}
                 app="inventory"

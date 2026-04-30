@@ -1,13 +1,24 @@
-import { Card, PageSection, Title } from '@patternfly/react-core';
+import {
+  Card,
+  Content,
+  Flex,
+  FlexItem,
+  Grid,
+  GridItem,
+  PageSection,
+  Title,
+} from '@patternfly/react-core';
 import '../ZeroState/_zero-state.scss';
-
-import { Flex, FlexItem, Grid, GridItem } from '@patternfly/react-core';
 import React from 'react';
-import { getZeroStateConstants, formatBrandName } from './zeroStateConstants';
+import {
+  getZeroStateConstants,
+  formatBrandName,
+  ZERO_STATE_BRAND_NAME,
+} from './zeroStateConstants';
 import propTypes from 'prop-types';
 
-const ZeroStateFooter = ({ appName, brandName, documentation }) => {
-  const zeroStateConstants = getZeroStateConstants(brandName);
+const ZeroStateFooter = ({ appName, documentation }) => {
+  const zeroStateConstants = getZeroStateConstants();
   const actualDocumentation =
     documentation ||
     zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].documentation;
@@ -22,123 +33,129 @@ const ZeroStateFooter = ({ appName, brandName, documentation }) => {
       <Card>
         <Grid lg={4} hasGutter className="pf-v6-u-p-xl">
           <GridItem>
-            <Flex direction={{ default: 'column' }}>
-              <FlexItem>
-                <Title headingLevel="h3" size="lg">
-                  {documentationTitleText}
-                </Title>
-              </FlexItem>
-              {actualDocumentation.map((item) => (
-                <FlexItem key={item.title}>
-                  <a target="_blank" rel="noreferrer" href={item.link}>
-                    {item.title}
+            <Content>
+              <Flex direction={{ default: 'column' }}>
+                <FlexItem>
+                  <Title headingLevel="h3" size="lg">
+                    {documentationTitleText}
+                  </Title>
+                </FlexItem>
+                {actualDocumentation.map((item) => (
+                  <FlexItem key={item.title}>
+                    <a target="_blank" rel="noreferrer" href={item.link}>
+                      {item.title}
+                    </a>
+                  </FlexItem>
+                ))}
+              </Flex>
+            </Content>
+          </GridItem>
+          <GridItem>
+            <Content>
+              <Flex
+                direction={{ default: 'column' }}
+                spacer={{ default: 'spacerSm' }}
+              >
+                <FlexItem>
+                  <Title headingLevel="h3" size="lg">
+                    Learn about {formatBrandName(ZERO_STATE_BRAND_NAME, false)}
+                  </Title>
+                </FlexItem>
+                <FlexItem>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={
+                      'https://www.redhat.com/en/technologies/management/insights'
+                    }
+                  >
+                    Product page
                   </a>
                 </FlexItem>
-              ))}
-            </Flex>
+                <FlexItem>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={
+                      'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest'
+                    }
+                  >
+                    Product documentation
+                  </a>
+                </FlexItem>
+                <FlexItem>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={
+                      'https://www.redhat.com/en/technologies/management/insights/data-application-security'
+                    }
+                  >
+                    Data privacy and controls in{' '}
+                    {formatBrandName(ZERO_STATE_BRAND_NAME, false)}
+                  </a>
+                </FlexItem>
+                <FlexItem>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={'https://console.redhat.com/docs/api'}
+                  >
+                    APIs
+                  </a>
+                </FlexItem>
+                <FlexItem>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={
+                      'https://www.redhat.com/en/blog/channel/red-hat-insights'
+                    }
+                  >
+                    Blog
+                  </a>
+                </FlexItem>
+              </Flex>
+            </Content>
           </GridItem>
           <GridItem>
-            <Flex
-              direction={{ default: 'column' }}
-              spacer={{ default: 'spacerSm' }}
-            >
-              <FlexItem>
-                <Title headingLevel="h3" size="lg">
-                  Learn about {formatBrandName(brandName, false)}
-                </Title>
-              </FlexItem>
-              <FlexItem>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={
-                    'https://www.redhat.com/en/technologies/management/insights'
-                  }
-                >
-                  Product page
-                </a>
-              </FlexItem>
-              <FlexItem>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={
-                    'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest'
-                  }
-                >
-                  Product documentation
-                </a>
-              </FlexItem>
-              <FlexItem>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={
-                    'https://www.redhat.com/en/technologies/management/insights/data-application-security'
-                  }
-                >
-                  Data privacy and controls in{' '}
-                  {formatBrandName(brandName, false)}
-                </a>
-              </FlexItem>
-              <FlexItem>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={'https://console.redhat.com/docs/api'}
-                >
-                  APIs
-                </a>
-              </FlexItem>
-              <FlexItem>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={
-                    'https://www.redhat.com/en/blog/channel/red-hat-insights'
-                  }
-                >
-                  Blog
-                </a>
-              </FlexItem>
-            </Flex>
-          </GridItem>
-          <GridItem>
-            <Flex direction={{ default: 'column' }}>
-              <FlexItem>
-                <Title headingLevel="h3" size="lg">
-                  Other bundles
-                </Title>
-              </FlexItem>
-              <FlexItem>
-                <a target="_blank" rel="noreferrer" href="/openshift">
-                  OpenShift
-                </a>
-              </FlexItem>
-              <FlexItem>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href="/application-services/overview"
-                >
-                  Application and Data Services
-                </a>
-              </FlexItem>
-              <FlexItem>
-                <a target="_blank" rel="noreferrer" href="/edge">
-                  Edge Management
-                </a>
-              </FlexItem>
-              <FlexItem>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href="/ansible/ansible-dashboard"
-                >
-                  Ansible Automation Platform
-                </a>
-              </FlexItem>
-            </Flex>
+            <Content>
+              <Flex direction={{ default: 'column' }}>
+                <FlexItem>
+                  <Title headingLevel="h3" size="lg">
+                    Other bundles
+                  </Title>
+                </FlexItem>
+                <FlexItem>
+                  <a target="_blank" rel="noreferrer" href="/openshift">
+                    OpenShift
+                  </a>
+                </FlexItem>
+                <FlexItem>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="/application-services/overview"
+                  >
+                    Application and Data Services
+                  </a>
+                </FlexItem>
+                <FlexItem>
+                  <a target="_blank" rel="noreferrer" href="/edge">
+                    Edge Management
+                  </a>
+                </FlexItem>
+                <FlexItem>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="/ansible/ansible-dashboard"
+                  >
+                    Ansible Automation Platform
+                  </a>
+                </FlexItem>
+              </Flex>
+            </Content>
           </GridItem>
         </Grid>
       </Card>
@@ -150,6 +167,5 @@ export default ZeroStateFooter;
 
 ZeroStateFooter.propTypes = {
   appName: propTypes.string,
-  brandName: propTypes.string,
   documentation: propTypes.array,
 };

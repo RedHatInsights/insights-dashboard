@@ -11,8 +11,8 @@ import React from 'react';
 import AppSectionItems from './AppSectionItems';
 import { getZeroStateConstants } from './zeroStateConstants';
 
-const AppSection = ({ appName, brandName }) => {
-  const zeroStateConstants = getZeroStateConstants(brandName);
+const AppSection = ({ appName }) => {
+  const zeroStateConstants = getZeroStateConstants();
   const appSectionList =
     zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].otherApps;
 
@@ -36,7 +36,6 @@ const AppSection = ({ appName, brandName }) => {
 
 AppSection.propTypes = {
   appName: propTypes.string,
-  brandName: propTypes.string,
 };
 
 export default AppSection;

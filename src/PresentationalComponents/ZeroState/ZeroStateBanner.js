@@ -22,14 +22,13 @@ import { getZeroStateConstants } from './zeroStateConstants';
 
 const ZeroStateBanner = ({
   appName,
-  brandName,
   customInstructions,
   customButton,
   customText,
   customTitle,
   appId,
 }) => {
-  const zeroStateConstants = getZeroStateConstants(brandName);
+  const zeroStateConstants = getZeroStateConstants();
   const description =
     zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header
       .description;
@@ -100,8 +99,12 @@ const ZeroStateBanner = ({
                 direction={{ default: 'column' }}
                 style={{ color: '#151515' }}
               >
-                <a className="pf-v6-u-pb-sm" onClick={updateRegisterButton}>
-                  Go Back
+                <a
+                  style={{ color: 'var(--pf-t--color--blue--50)' }}
+                  className="pf-v6-u-pb-sm"
+                  onClick={updateRegisterButton}
+                >
+                  Go back
                 </a>
                 {commands.map((item) => registerSystemsList(item))}
               </Flex>
@@ -137,9 +140,7 @@ const ZeroStateBanner = ({
                     <p>
                       {customText
                         ? customText
-                        : brandName === 'Red Hat Lightspeed'
-                          ? intl.formatMessage(messages.getStartedLightSpeed)
-                          : intl.formatMessage(messages.getStartedInsights)}
+                        : intl.formatMessage(messages.getStartedLightSpeed)}
                     </p>
                   </div>
                 </FlexItem>
@@ -151,6 +152,10 @@ const ZeroStateBanner = ({
                       id={appId}
                       onClick={updateRegisterButton}
                       className="pf-v6-u-p-md pf-v6-u-font-size-md"
+                      style={{
+                        backgroundColor: 'var(--pf-t--color--blue--50)',
+                        color: 'var(--pf-t--color--white)',
+                      }}
                     >
                       {' '}
                       Register your systems
@@ -159,6 +164,7 @@ const ZeroStateBanner = ({
                 </FlexItem>
                 <FlexItem>
                   <a
+                    style={{ color: 'var(--pf-t--color--blue--50)' }}
                     target="_blank"
                     rel="noreferrer"
                     href="https://www.redhat.com/en/products/trials?products=rhel"
@@ -179,7 +185,6 @@ export default ZeroStateBanner;
 
 ZeroStateBanner.propTypes = {
   appName: propTypes.string,
-  brandName: propTypes.string,
   description: propTypes.object,
   commands: propTypes.array,
   bulletPoints: propTypes.array,
