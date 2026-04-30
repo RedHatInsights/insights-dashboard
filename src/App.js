@@ -15,9 +15,11 @@ import { useFeatureFlag } from './Utilities/Hooks';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import { KESSEL_API_BASE_URL } from './AppConstants';
 import PermissionsProviderKessel from './PresentationalComponents/PermissionsProvider/PermissionsProviderKessel';
+import { useFlagsStatus } from '@unleash/proxy-client-react';
 
 const App = (props) => {
   const isKesselEnabled = useFeatureFlag('insights-dashboard.kessel_enabled');
+  const { flagsReady } = useFlagsStatus();
   const chrome = useChrome();
   const dispatch = useDispatch();
   const [hasSystems, setHasSystems] = useState(false);
@@ -57,7 +59,7 @@ const App = (props) => {
     <ZeroState />
   );
 
-  return systemsLoading ? (
+  return systemsLoading || !flagsReady ? (
     <PageLoading />
   ) : isKesselEnabled ? (
     <AccessCheck.Provider

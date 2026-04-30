@@ -16,6 +16,11 @@ jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
   useChrome: () => mockChrome,
 }));
 
+jest.mock('@unleash/proxy-client-react', () => ({
+  __esModule: true,
+  useFlagsStatus: () => ({ flagsReady: true }),
+}));
+
 jest.mock('./Utilities/Api', () => ({
   ...jest.requireActual('./Utilities/Api'),
   get: jest.fn(() =>
