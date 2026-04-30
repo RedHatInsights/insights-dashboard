@@ -99,8 +99,12 @@ const ZeroStateBanner = ({
                 direction={{ default: 'column' }}
                 style={{ color: '#151515' }}
               >
-                <a className="pf-v6-u-pb-sm" onClick={updateRegisterButton}>
-                  Go Back
+                <a
+                  style={{ color: 'var(--pf-t--color--blue--50)' }}
+                  className="pf-v6-u-pb-sm"
+                  onClick={updateRegisterButton}
+                >
+                  Go back
                 </a>
                 {commands.map((item) => registerSystemsList(item))}
               </Flex>
