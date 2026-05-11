@@ -98,7 +98,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^15.0.7",
     "@testing-library/user-event": "^14.6.1",
-    "axios": "^1.15.0",
+    "axios": "^1.16.0",
     "babel-jest": "^30.4.1",
     "babel-plugin-istanbul": "^8.0.0",
     "css-loader": "^6.11.0",
