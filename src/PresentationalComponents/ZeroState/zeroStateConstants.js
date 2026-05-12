@@ -147,7 +147,7 @@ const getComplianceZeroState = () => ({
     },
     {
       title: 'Compliance APIs',
-      link: 'https://console.redhat.com/docs/api/compliance',
+      link: 'https://console.redhat.com/docs/api/compliance/v2',
     },
     {
       title: 'Configuring notifications & integration',
