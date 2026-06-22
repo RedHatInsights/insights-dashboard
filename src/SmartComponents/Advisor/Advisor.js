@@ -14,7 +14,7 @@ import {
   Tooltip,
   TooltipPosition,
 } from '@patternfly/react-core';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { SEVERITY_MAP } from '../../AppConstants';
 import { capitalize, globalFilters, decodeTags } from '../../Utilities/Common';
 import {
@@ -40,16 +40,15 @@ import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 
+const CHART_COLORS = [
+  chart_color_blue_100.value,
+  chart_color_blue_200.value,
+  chart_color_blue_300.value,
+  chart_color_blue_400.value,
+];
+
 const Advisor = () => {
-  const colors = [
-    chart_color_blue_100.value,
-    chart_color_blue_200.value,
-    chart_color_blue_300.value,
-    chart_color_blue_400.value,
-  ];
   const intl = useIntl();
-  const [categoryData, setCategoryData] = useState([]);
-  const [colorScale, setColorScale] = useState();
   const dispatch = useDispatch();
   const recStats = useSelector(
     ({ DashboardStore }) => DashboardStore.advisorStatsRecs,
@@ -76,11 +75,6 @@ const Advisor = () => {
   }${workloads?.SAP ? '&sap_system=true' : ''}`;
   const totalRiskUrl = (risk) =>
     `/recommendations?sort=-total_risk&total_risk=${risk}${urlRest}`;
-  const pieLegendData = categoryData.map((item) => ({
-    name: `${item.y} ${item.x} `,
-    fill: `${item.fill}`,
-    url: `/recommendations?sort=-category&category=${item.value}${urlRest}`,
-  }));
   const iconTooltip = (text) => (
     <Tooltip
       key={text}
@@ -138,55 +132,68 @@ const Advisor = () => {
     [intl, total_risk],
   );
 
-  useEffect(() => {
-    if (recStatsStatus === 'fulfilled') {
-      const categoryCount =
-        category.Stability +
-        category.Availability +
-        category.Performance +
-        category.Security;
-
-      setCategoryData([
-        {
-          x: intl.formatMessage(messages.availability, {
-            count: category.Availability,
-          }),
-          y: category.Availability,
-          fill: colors[0],
-          value: 1,
-        },
-        {
-          x: intl.formatMessage(messages.stability, {
-            count: category.Stability,
-          }),
-          y: category.Stability,
-          fill: colors[1],
-          value: 3,
-        },
-        {
-          x: intl.formatMessage(messages.performance, {
-            count: category.Performance,
-          }),
-          y: category.Performance,
-          fill: colors[2],
-          value: 4,
-        },
-        {
-          x: intl.formatMessage(messages.security, {
-            count: category.Security,
-          }),
-          y: category.Security,
-          fill: colors[3],
-          value: 2,
-        },
-      ]);
-
-      setColorScale(
-        categoryCount === 0 ? [t_global_text_color_disabled.value] : colors,
-      );
+  const categoryData = useMemo(() => {
+    if (recStatsStatus !== 'fulfilled') {
+      return [];
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [recStats, recStatsStatus]);
+
+    return [
+      {
+        x: intl.formatMessage(messages.availability, {
+          count: category.Availability,
+        }),
+        y: category.Availability,
+        fill: CHART_COLORS[0],
+        value: 1,
+      },
+      {
+        x: intl.formatMessage(messages.stability, {
+          count: category.Stability,
+        }),
+        y: category.Stability,
+        fill: CHART_COLORS[1],
+        value: 3,
+      },
+      {
+        x: intl.formatMessage(messages.performance, {
+          count: category.Performance,
+        }),
+        y: category.Performance,
+        fill: CHART_COLORS[2],
+        value: 4,
+      },
+      {
+        x: intl.formatMessage(messages.security, {
+          count: category.Security,
+        }),
+        y: category.Security,
+        fill: CHART_COLORS[3],
+        value: 2,
+      },
+    ];
+  }, [recStatsStatus, category, intl]);
+
+  const colorScale = useMemo(() => {
+    if (recStatsStatus !== 'fulfilled') {
+      return undefined;
+    }
+
+    const categoryCount =
+      category.Stability +
+      category.Availability +
+      category.Performance +
+      category.Security;
+
+    return categoryCount === 0
+      ? [t_global_text_color_disabled.value]
+      : CHART_COLORS;
+  }, [recStatsStatus, category]);
+
+  const pieLegendData = categoryData.map((item) => ({
+    name: `${item.y} ${item.x} `,
+    fill: `${item.fill}`,
+    url: `/recommendations?sort=-category&category=${item.value}${urlRest}`,
+  }));
 
   return (
     <CompoundCard className="insd-c-dashboard-card-parent insd-c-dashboard__card--compound--Advisor">
