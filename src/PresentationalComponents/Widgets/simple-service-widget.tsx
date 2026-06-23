@@ -17,33 +17,37 @@ interface SimpleServiceWidgetProps {
   isExternal?: boolean;
 }
 
-export const SimpleServiceWidget: React.FunctionComponent<
-  SimpleServiceWidgetProps
-> = (props) => {
+export const SimpleServiceWidget = ({
+  id,
+  body,
+  linkTitle,
+  url,
+  isExternal,
+}: SimpleServiceWidgetProps): JSX.Element => {
   return (
     <Card isPlain>
       <>
         <CardBody className="pf-v6-u-p-md pf-v6-u-pb-0">
           <Content
-            key={props.id}
+            key={id}
             className="pf-v6-u-display-flex pf-v6-u-flex-direction-column"
           >
             <Content component="p" className="pf-v6-u-flex-grow-1">
-              {props.body}{' '}
+              {body}{' '}
             </Content>
           </Content>
         </CardBody>
         <CardFooter className="pf-v6-u-p-md">
-          {props.isExternal ? (
-            <a href={props.url}>
-              {props.linkTitle}
+          {isExternal ? (
+            <a href={url}>
+              {linkTitle}
               <Icon className="pf-v6-u-ml-sm" isInline>
                 <ExternalLinkAltIcon />
               </Icon>
             </a>
           ) : (
-            <Link to={props.url}>
-              {props.linkTitle}
+            <Link to={url}>
+              {linkTitle}
               <Icon className="pf-v6-u-ml-sm" isInline>
                 <ArrowRightIcon />
               </Icon>
