@@ -182,7 +182,9 @@ const getInsightsZeroState = () => ({
 
 const getContentManagementZeroState = () => ({
   header: {
-    description: `${formatBrandName(ZERO_STATE_BRAND_NAME, true)} gives you the information to confidently update your RHEL systems with Red Hat product advisories and packages.`,
+    title: 'Content lifecycle management',
+    description:
+      'Manage system content and patch updates by creating content templates that control which advisories and package versions are applied to your RHEL systems.',
     commands: [
       { plainText: ' 1. Register your host' },
       {
@@ -204,9 +206,8 @@ const getContentManagementZeroState = () => ({
       },
     ],
     bulletPoints: [
-      'View and report on Red Hat product advisories that impact your RHEL environment and apply patches with Ansible Remediation.',
-      'Inspect the packages and versions deployed across your RHEL environment.',
-      'Add custom repositories and use that content to build customized RHEL images.',
+      'Create templates with repository snapshots to control exactly when updates are applied and to ensure identical patch levels across all your assigned systems.',
+      'Integrate custom content: Manage external repositories and your own RPMs alongside Red Hat sources.',
     ],
   },
   otherApps: [

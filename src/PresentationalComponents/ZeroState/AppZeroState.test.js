@@ -162,6 +162,30 @@ describe('AppZeroState component', () => {
     expect(zeroStateBanner).not.toBeInTheDocument();
   });
 
+  it('renders content management banner title from zero state constants', async () => {
+    render(
+      <MemoryRouter initialEntries={['/some-path']}>
+        <Routes>
+          <Route
+            path="/some-path"
+            element={
+              <AppZeroState
+                app="Content_management"
+                customFetchResults={false}
+              />
+            }
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect(
+      await screen.findByRole('heading', {
+        name: 'Content lifecycle management',
+      }),
+    ).toBeInTheDocument();
+  });
+
   it('renders zero state with Red Hat Lightspeed branding', async () => {
     render(
       <MemoryRouter initialEntries={['/some-path']}>

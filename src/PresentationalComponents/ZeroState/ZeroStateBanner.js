@@ -29,14 +29,12 @@ const ZeroStateBanner = ({
   appId,
 }) => {
   const zeroStateConstants = getZeroStateConstants();
-  const description =
-    zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header
-      .description;
-  const commands =
-    zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header.commands;
-  const bulletPoints =
-    zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header
-      .bulletPoints;
+  const header =
+    zeroStateConstants[`${appName.toUpperCase()}_ZERO_STATE`].header;
+  const description = header.description;
+  const commands = header.commands;
+  const bulletPoints = header.bulletPoints;
+  const bannerTitle = header.title ?? appName.replace('_', ' ');
   const intl = useIntl();
   const { hideGlobalFilter } = useChrome();
 
@@ -69,7 +67,7 @@ const ZeroStateBanner = ({
             <Flex direction={{ default: 'column' }}>
               <FlexItem>
                 <Title headingLevel="h1" size="4xl">
-                  {appName.replace('_', ' ')}
+                  {bannerTitle}
                 </Title>
               </FlexItem>
               <FlexItem spacer={{ default: 'spacerXl' }}>
