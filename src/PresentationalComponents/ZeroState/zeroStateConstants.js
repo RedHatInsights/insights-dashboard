@@ -185,26 +185,6 @@ const getContentManagementZeroState = () => ({
     title: 'Content lifecycle management',
     description:
       'Manage system content and patch updates by creating content templates that control which advisories and package versions are applied to your RHEL systems.',
-    commands: [
-      { plainText: ' 1. Register your host' },
-      {
-        instructions: 'RHEL 7, 8 and 9:',
-        command: 'subscription-manager register',
-      },
-      {
-        singleClipboardCommand:
-          'yum -y install insights-client # necessary for some versions of RHEL 7 and 8',
-      },
-      { singleClipboardCommand: 'insights-client --register' },
-      {
-        linkWithinText:
-          'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/client_configuration_guide_for_red_hat_lightspeed/index',
-        partOne:
-          'Need help? Some systems from different sources require some additional steps. View the',
-        anchorText: 'Client Configuration Guide',
-        partTwo: ' for more details.',
-      },
-    ],
     bulletPoints: [
       'Create templates with repository snapshots to control exactly when updates are applied and to ensure identical patch levels across all your assigned systems.',
       'Integrate custom content: Manage external repositories and your own RPMs alongside Red Hat sources.',
