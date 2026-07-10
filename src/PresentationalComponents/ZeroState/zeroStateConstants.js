@@ -188,7 +188,7 @@ const getContentManagementZeroState = () => ({
     commands: [
       { plainText: ' 1. Register your host' },
       {
-        instructions: 'RHEL 7, 8 and 9:',
+        instructions: 'RHEL 7, 8, 9, and 10:',
         command: 'subscription-manager register',
       },
       {
