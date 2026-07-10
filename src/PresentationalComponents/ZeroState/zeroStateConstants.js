@@ -250,7 +250,7 @@ const getMalwareZeroState = () => ({
     commands: [
       { plainText: ' 1. Register your host' },
       {
-        instructions: 'RHEL 8 and 9:',
+        instructions: 'RHEL 8, 9, and 10:',
         command: 'subscription-manager register',
       },
       {
@@ -323,7 +323,7 @@ const getResourceOptimizationZeroState = () => ({
       },
       { plainText: '2. Register your host' },
       {
-        instructions: 'RHEL 7, 8 and 9:',
+        instructions: 'RHEL 7, 8, 9, and 10:',
         command: 'subscription-manager register',
       },
       {
@@ -379,7 +379,7 @@ const getVulnerabilityZeroState = () => ({
     commands: [
       { plainText: ' 1. Register your host' },
       {
-        instructions: 'RHEL 7, 8 and 9:',
+        instructions: 'RHEL 7, 8, 9, and 10:',
         command: 'subscription-manager register',
       },
       {
@@ -482,7 +482,7 @@ const getRemediationPlansZeroState = () => ({
     commands: [
       { plainText: ' 1. Register your host' },
       {
-        instructions: 'RHEL 7, 8 and 9:',
+        instructions: 'RHEL 7, 8, 9, and 10:',
         command: 'subscription-manager register',
       },
       {
@@ -541,7 +541,7 @@ const getInventoryZeroState = () => ({
     commands: [
       { plainText: ' 1. Register your host' },
       {
-        instructions: 'RHEL 7, 8 and 9:',
+        instructions: 'RHEL 7, 8, 9, and 10:',
         command: 'subscription-manager register',
       },
       {
@@ -599,7 +599,7 @@ const getTasksZeroState = () => ({
     commands: [
       { plainText: ' 1. Register your host' },
       {
-        instructions: 'RHEL 7, 8 and 9:',
+        instructions: 'RHEL 7, 8, 9, and 10:',
         command: 'subscription-manager register',
       },
       {
@@ -616,7 +616,7 @@ const getTasksZeroState = () => ({
       },
     ],
     bulletPoints: [
-      `Use ${formatBrandName(ZERO_STATE_BRAND_NAME, false)} Tasks to run a pre-upgrade analysis on your RHEL 7 or RHEL 8 hosts to identify and remediate known issues.`,
+      `Use ${formatBrandName(ZERO_STATE_BRAND_NAME, false)} Tasks to run a pre-upgrade analysis on your RHEL hosts to identify and remediate known issues.`,
     ],
   },
   otherApps: [
