@@ -55,7 +55,7 @@
     "testEnvironment": "jsdom"
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.2",
+    "@babel/runtime": "^8.0.0",
     "@patternfly/patternfly": "^6.5.2",
     "@patternfly/react-charts": "^8.4.1",
     "@patternfly/react-core": "^6.5.1",
@@ -82,12 +82,12 @@
     "victory": "^37.3.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.7",
-    "@babel/eslint-parser": "^7.28.6",
-    "@babel/eslint-plugin": "^7.27.1",
-    "@babel/plugin-transform-runtime": "^7.29.0",
-    "@babel/preset-env": "^7.29.5",
-    "@babel/preset-react": "^7.28.5",
+    "@babel/core": "^8.0.1",
+    "@babel/eslint-parser": "^8.0.1",
+    "@babel/eslint-plugin": "^8.0.1",
+    "@babel/plugin-transform-runtime": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "@babel/preset-react": "^8.0.1",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@cypress/code-coverage": "^4.0.3",
