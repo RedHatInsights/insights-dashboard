@@ -21,12 +21,14 @@ import React, { useState } from 'react';
 
 import AngleRightIcon from '@patternfly/react-icons/dist/esm/icons/angle-right-icon';
 import { DataListItemTemplate } from '../../PresentationalComponents/Template/DataListItemTemplate';
-import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
 import { capitalize } from '../../Utilities/Common';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
-import { ExclamationCircleIcon } from '@patternfly/react-icons';
+import {
+  RhUiErrorFillIcon,
+  RhUiWarningFillIcon,
+} from '@patternfly/react-icons';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 
 const NewRules = () => {
@@ -54,10 +56,9 @@ const NewRules = () => {
                   alignItems={{ default: 'alignItemsCenter' }}
                   flexWrap={{ default: 'nowrap' }}
                 >
-                  <ExclamationTriangleIcon
-                    fill="var(--pf-t--global--icon--color--status--warning--default)"
-                    className="pf-v6-u-font-size-xl"
-                  />
+                  <Icon status="warning" size="lg">
+                    <RhUiWarningFillIcon />
+                  </Icon>
                   <span
                     id="collapse-all-text"
                     className="pf-v6-u-font-weight-bold"
@@ -183,11 +184,11 @@ const NewRules = () => {
                   <Content>
                     <Content component="h4" className="pf-v6-u-mb-xs">
                       <Icon
+                        status="danger"
                         style={{ verticalAlign: -1 }}
-                        color="var(--pf-t--temp--dev--tbd)" /* CODEMODS: original v6 color was --pf-v6-global--danger-color--100 */
                         className="pf-v6-u-mr-sm"
                       >
-                        <ExclamationCircleIcon />
+                        <RhUiErrorFillIcon />
                       </Icon>
                       {intl.formatMessage(messages.systemsExposed, {
                         count: item.systems_affected,

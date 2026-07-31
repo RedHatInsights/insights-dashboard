@@ -1,0 +1,10 @@
+.insd-c-info-icon {
+  --pf-v6-c-icon__content--Color: var(--pf-t--global--icon--color--subtle);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible,
+  &.insd-m-expanded {
+    --pf-v6-c-icon__content--Color: var(--pf-t--global--icon--color--regular);
+  }
+}

@@ -1,5 +1,3 @@
-import './Advisor.scss';
-
 import * as AppActions from '../../AppActions';
 
 import {
@@ -10,9 +8,8 @@ import {
   FlexItem,
   Skeleton,
   Spinner,
+  Icon,
   Title,
-  Tooltip,
-  TooltipPosition,
 } from '@patternfly/react-core';
 import React, { useEffect, useMemo } from 'react';
 import { SEVERITY_MAP } from '../../AppConstants';
@@ -28,11 +25,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CompoundCard } from '../../PresentationalComponents/Template/CompoundCard';
-import { ExclamationCircleIcon } from '@patternfly/react-icons';
+import { RhUiErrorFillIcon } from '@patternfly/react-icons';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import FailState from '../../PresentationalComponents/FailState/FailState';
+import HelpIconPopover from '../../PresentationalComponents/HelpIconPopover/HelpIconPopover';
 import { INCIDENT_URL } from './Constants';
-import InfoIcon from '../../Icons/InfoIcon';
 import Loading from '../../PresentationalComponents/Loading/Loading';
 import { PieChart } from '../../ChartTemplates/PieChart/PieChartTemplate';
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
@@ -75,17 +72,6 @@ const Advisor = () => {
   }${workloads?.SAP ? '&sap_system=true' : ''}`;
   const totalRiskUrl = (risk) =>
     `/recommendations?sort=-total_risk&total_risk=${risk}${urlRest}`;
-  const iconTooltip = (text) => (
-    <Tooltip
-      key={text}
-      position={TooltipPosition.top}
-      content={<div>{text}</div>}
-    >
-      <span aria-label="Action" className="insd-c-info-icon">
-        <InfoIcon />
-      </span>
-    </Tooltip>
-  );
   const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
 
   useEffect(() => {
@@ -224,16 +210,19 @@ const Advisor = () => {
                 >
                   <FlexItem>
                     <Flex
-                      alignItems={{ default: 'alignItemsFlexCenter' }}
+                      alignItems={{ default: 'alignItemsCenter' }}
                       justifyContent={{ default: 'justifyContentCenter' }}
                     >
                       {advisorIncidentsStatus === 'fulfilled' ? (
                         <React.Fragment>
                           {advisorIncidents?.meta?.count > 0 && (
-                            <ExclamationCircleIcon
-                              fill="var(--pf-t--global--icon--color--status--danger--default)"
-                              className="pf-v6-u-font-size-xl pf-u-mr-sm"
-                            />
+                            <Icon
+                              status="danger"
+                              size="heading_2xl"
+                              className="pf-v6-u-mr-sm"
+                            >
+                              <RhUiErrorFillIcon />
+                            </Icon>
                           )}
                           <span className="pf-v6-u-font-size-2xl pf-v6-u-text-align-center pf-v6-u-font-weight-normal">
                             {intl.formatMessage(messages.incidents, {
@@ -269,15 +258,19 @@ const Advisor = () => {
             isPlain
             className="insd-m-toggle-right-on-md"
             title={
-              <Flex flexWrap={{ default: 'nowrap' }}>
-                <Title headingLevel="h3">
+              <Flex
+                flexWrap={{ default: 'nowrap' }}
+                alignItems={{ default: 'alignItemsCenter' }}
+              >
+                <Title headingLevel="h3" className="pf-v6-u-mr-sm">
                   {intl.formatMessage(messages.advisorCardHeader2)}
                 </Title>
-                {iconTooltip(
-                  intl.formatMessage(messages.totalRiskDef, {
+                <HelpIconPopover
+                  headerContent={intl.formatMessage(messages.totalRisk)}
+                  bodyContent={intl.formatMessage(messages.totalRiskDef, {
                     strong: (str) => <strong>{str}</strong>,
-                  }),
-                )}
+                  })}
+                />
               </Flex>
             }
             isExpanded={JSON.parse(

@@ -1,7 +1,7 @@
 import './App.scss';
 
 import React, { useEffect, useState } from 'react';
-import { useDispatch, batch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setSelectedTags, setWorkloads } from './AppActions';
 
 import API from './Utilities/Api';
@@ -34,10 +34,8 @@ const App = (props) => {
           false,
           true,
         );
-        batch(() => {
-          dispatch(setWorkloads(workloads));
-          dispatch(setSelectedTags(selectedTags));
-        });
+        dispatch(setWorkloads(workloads));
+        dispatch(setSelectedTags(selectedTags));
       });
     }
 
