@@ -19,18 +19,6 @@ const initialState = Immutable({
   patchmanSecurity: '',
   patchmanBugs: '',
   patchmanEnhancements: '',
-  subscriptionsUtilizedProductOne: [],
-  subscriptionsUtilizedProductOneFetchStatus: '',
-  subscriptionsUtilizedProductTwo: [],
-  subscriptionsUtilizedProductTwoFetchStatus: '',
-  inventorySummary: {},
-  inventoryFetchStatus: '',
-  inventoryStaleSummary: {},
-  inventoryStaleFetchStatus: '',
-  inventoryWarningSummary: {},
-  inventoryWarningFetchStatus: '',
-  inventoryTotalSummary: {},
-  inventoryTotalFetchStatus: '',
   remediations: {},
   remediationsFetchStatus: '',
   rosIsConfigured: {},
@@ -125,75 +113,6 @@ export const DashboardStore = (state = initialState, action) => {
       });
     case `${ActionTypes.PATCHMAN_ADVISORIES_FETCH}_REJECTED`:
       return state.set('patchmanAdvisoriesStatus', 'rejected');
-
-    // SubsUtilized Product One
-    case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH}_PENDING`:
-      return state.set('subscriptionsUtilizedProductOneFetchStatus', 'pending');
-    case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH}_FULFILLED`:
-      return Immutable.merge(state, {
-        subscriptionsUtilizedProductOne: action.payload,
-        subscriptionsUtilizedProductOneFetchStatus: 'fulfilled',
-      });
-    case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_ONE_FETCH}_REJECTED`:
-      return Immutable.merge(state, {
-        subscriptionsUtilizedProductOne: action.payload.response,
-        subscriptionsUtilizedProductOneFetchStatus: 'rejected',
-      });
-
-    // SubsUtilized Product Two
-    case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH}_PENDING`:
-      return state.set('subscriptionsUtilizedProductTwoFetchStatus', 'pending');
-    case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH}_FULFILLED`:
-      return Immutable.merge(state, {
-        subscriptionsUtilizedProductTwo: action.payload,
-        subscriptionsUtilizedProductTwoFetchStatus: 'fulfilled',
-      });
-    case `${ActionTypes.SUBSCRIPTIONS_UTILIZED_PRODUCT_TWO_FETCH}_REJECTED`:
-      return Immutable.merge(state, {
-        subscriptionsUtilizedProductTwo: action.payload.response,
-        subscriptionsUtilizedProductTwoFetchStatus: 'rejected',
-      });
-
-    // Inventory
-    case `${ActionTypes.INVENTORY_FETCH}_PENDING`:
-      return state.set('inventoryFetchStatus', 'pending');
-    case `${ActionTypes.INVENTORY_FETCH}_FULFILLED`:
-      return Immutable.merge(state, {
-        inventorySummary: action.payload,
-        inventoryFetchStatus: 'fulfilled',
-      });
-    case `${ActionTypes.INVENTORY_FETCH}_REJECTED`:
-      return state.set('inventoryFetchStatus', 'rejected');
-
-    case `${ActionTypes.INVENTORY_STALE_FETCH}_PENDING`:
-      return state.set('inventoryStaleFetchStatus', 'pending');
-    case `${ActionTypes.INVENTORY_STALE_FETCH}_FULFILLED`:
-      return Immutable.merge(state, {
-        inventoryStaleSummary: action.payload,
-        inventoryStaleFetchStatus: 'fulfilled',
-      });
-    case `${ActionTypes.INVENTORY_STALE_FETCH}_REJECTED`:
-      return state.set('inventoryStaleFetchStatus', 'rejected');
-
-    case `${ActionTypes.INVENTORY_WARNING_FETCH}_PENDING`:
-      return state.set('inventoryWarningFetchStatus', 'pending');
-    case `${ActionTypes.INVENTORY_WARNING_FETCH}_FULFILLED`:
-      return Immutable.merge(state, {
-        inventoryWarningSummary: action.payload,
-        inventoryWarningFetchStatus: 'fulfilled',
-      });
-    case `${ActionTypes.INVENTORY_WARNING_FETCH}_REJECTED`:
-      return state.set('inventoryWarningFetchStatus', 'rejected');
-
-    case `${ActionTypes.INVENTORY_TOTAL_FETCH}_PENDING`:
-      return state.set('inventoryTotalFetchStatus', 'pending');
-    case `${ActionTypes.INVENTORY_TOTAL_FETCH}_FULFILLED`:
-      return Immutable.merge(state, {
-        inventoryTotalSummary: action.payload,
-        inventoryTotalFetchStatus: 'fulfilled',
-      });
-    case `${ActionTypes.INVENTORY_TOTAL_FETCH}_REJECTED`:
-      return state.set('inventoryTotalFetchStatus', 'rejected');
 
     // REMEDIATIONS
     case `${ActionTypes.REMEDIATIONS_FETCH}_PENDING`:

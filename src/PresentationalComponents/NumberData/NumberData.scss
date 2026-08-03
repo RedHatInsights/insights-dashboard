@@ -8,35 +8,6 @@
 }
 
 .insd-c-dashboard__number-data--md {
-    font-size: var(-pf-t--global--font--size--lg);
+    font-size: var(--pf-t--global--font--size--lg);
     line-height: var(--pf-t--global--font--size--lg);
-}
-
-.insd-c-dashboard__number-data--number-percentage {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-
-    > * {
-        color: #000;
-    }
-}
-
-.insd-c-dashboard__number-percentage {
-    display: flex;
-    align-items: baseline;
-    margin-left: var(--pf-t--global--spacer--sm);
-    font-size: var(--pf-t--global--font--size--sm);
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 100%;
-
-    span {
-        display: inline-block;
-        max-width: 85%;
-        margin-right: var(--pf-t--global--spacer--sm);
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
 }

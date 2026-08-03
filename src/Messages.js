@@ -11,68 +11,6 @@ export default defineMessages({
     description: 'New rules date title',
     defaultMessage: 'Newly released security rule',
   },
-  subscriptionsUtilizedTitle: {
-    id: 'subscriptionsUtilizedTitle',
-    description: 'Title of the subscriptions utilized card',
-    defaultMessage: 'Subscriptions utilization summary',
-  },
-  subscriptionsTitle: {
-    id: 'subscriptionsTitle',
-    description: 'Title of the subscriptions utilized card',
-    defaultMessage: 'Subscriptions',
-  },
-  subscriptionsUtilizedLearnMore: {
-    id: 'subscriptionsUtilizedLearnMore',
-    description: 'Subscriptions utilized card - learn more description',
-    defaultMessage:
-      'Activate Subscriptions to monitor your subscription utilization.',
-  },
-  subscriptionsUtilizedLearnMoreAction: {
-    id: 'subscriptionsUtilizedLearnMoreAction',
-    description: 'Subscriptions utilized card - learn more action',
-    defaultMessage: 'Learn about Subscriptions',
-  },
-  subscriptionsUtilizedNoProductData: {
-    id: 'subscriptionsUtilizedNoProductData',
-    description: 'Subscriptions utilized card - no data',
-    defaultMessage: 'No data available',
-  },
-  subscriptionsUtilizedProductOneTitle: {
-    id: 'subscriptionsUtilizedProductOneTitle',
-    description: 'Subscriptions utilized card - product one title',
-    defaultMessage: 'OpenShift',
-  },
-  subscriptionsUtilizedProductOneReport: {
-    id: 'subscriptionsUtilizedProductOneDesc',
-    description: 'Subscriptions utilized card - product one report total',
-    defaultMessage: 'OpenShift cores: {totalReport}',
-  },
-  subscriptionsUtilizedProductTwoTitle: {
-    id: 'subscriptionsUtilizedProductTwoTitle',
-    description: 'Subscriptions utilized card - product two title',
-    defaultMessage: 'Red Hat Enterprise Linux',
-  },
-  subscriptionsUtilizedProductTwoReport: {
-    id: 'subscriptionsUtilizedProductTwoTitleDesc',
-    description: 'Subscriptions utilized card - product two report total',
-    defaultMessage: 'RHEL sockets: {totalReport}',
-  },
-  subscriptionsUtilizedProductCapacity: {
-    id: 'subscriptionsUtilizedProductCapacity',
-    description: 'Subscriptions utilized card - product capacity',
-    defaultMessage: 'Subscription threshold: {totalCapacity}',
-  },
-  subscriptionsUtilizedProductDate: {
-    id: 'subscriptionsUtilizedProductDate',
-    description: 'Subscriptions utilized card - product date',
-    defaultMessage: 'Data from: {formattedDate}',
-  },
-  recsImpactingSystems: {
-    id: 'recsImpactingSystems',
-    description: 'Advisor - recs impacting systems',
-    defaultMessage:
-      '{totalRecs, plural, one {# Recommendation} other {# Recommendations}}  impacting {systems, plural, one {# system} other {# systems}}',
-  },
   incidents: {
     id: 'incidents',
     description: 'Advisor - incidents ',
@@ -124,11 +62,6 @@ export default defineMessages({
     description: 'Compliance card header',
     defaultMessage: 'Compliance',
   },
-  lastxdays: {
-    id: 'lastxdays',
-    description: 'Last x days label where x is a predefined value',
-    defaultMessage: 'Last {days} days',
-  },
   cvesImpactingSystems: {
     id: 'cvesImpactingSystems',
     description: 'Vulnerability - cve impacting link',
@@ -162,16 +95,6 @@ export default defineMessages({
     id: 'vulnerabilityCardKnownExploitsCTAText',
     description: 'Vulnerability card known exploits cta text',
     defaultMessage: 'View known exploits',
-  },
-  vulnerabilityLearnMore: {
-    id: 'vulnerabilityLearnMore',
-    description: 'Vulnerability - learn more link',
-    defaultMessage: 'Learn about CVSS Scores',
-  },
-  latestVulnerabilitiesTotal: {
-    id: 'latestVulnerabilitiesTotal',
-    description: 'Vulnerabilities - latest vulnerabilities',
-    defaultMessage: '{totalLatest}',
   },
   complianceEmptyStateTitle: {
     id: 'complianceEmptyStateTitle',
@@ -226,12 +149,6 @@ export default defineMessages({
     defaultMessage:
       '{count, plural, one {System} other {Systems}} running insights-client',
   },
-  systemInventoryUnregisteredDescription: {
-    id: 'systemInventoryUnregisteredDescription',
-    description: 'System unregistered - description',
-    defaultMessage:
-      '{count, plural, one {System} other {Systems}} unregistered',
-  },
   systemInventoryStaleWarning: {
     id: 'systemInventoryStaleWarning',
     description: 'System inventory - stale warning',
@@ -248,28 +165,6 @@ export default defineMessages({
     id: 'systemInventoryCTA',
     description: 'System inventory - cta',
     defaultMessage: 'Register systems',
-  },
-  systemInventoryPercentageData: {
-    id: 'systemInventoryPercentageData',
-    description: 'System Inventory - percentage data',
-    defaultMessage: '{count}% of total systems',
-  },
-  systemInventoryTitle: {
-    id: 'systemInventoryTitle',
-    description: 'System Inventory - title',
-    defaultMessage: 'Insights system inventory',
-  },
-  startUsiningInisghts: {
-    id: 'startUsiningInisghts',
-    description: 'Start using insights now',
-    defaultMessage: 'Start using Insights now',
-  },
-  systemInventoryNotUsingClient: {
-    id: 'systemInventoryNotUsingClient',
-    description: 'Number of systems not running insights client',
-    defaultMessage:
-      '{count, plural, one {# additional system} other {# additional systems}} not running insights-client\
-        are not taking advantage of Insights capabilities.',
   },
   systemInventoryNoAccess: {
     id: 'systemInventoryNoAccess',
@@ -291,11 +186,6 @@ export default defineMessages({
     id: 'remediationsPlaybookNoActivity',
     description: 'Remediations playbook - no activity',
     defaultMessage: 'No activity',
-  },
-  remediationsPlaybookFailure: {
-    id: 'remediationsNoActivity',
-    description: 'Remediations playbook - failed getting data',
-    defaultMessage: 'Failure',
   },
   remediationsNoDataTitle: {
     id: 'remediationsNoDataTitle',
@@ -330,50 +220,10 @@ export default defineMessages({
     description: 'Not a member',
     defaultMessage: "Don't have a RHEL subscription? Start a trial.",
   },
-  noSystemsInstall: {
-    id: 'noSystemsInstall',
-    description: 'Install the client',
-    defaultMessage: 'Install the client on the RHEL system',
-  },
-  noSystemsRegister: {
-    id: 'noSystemsRegister',
-    description: 'Register systems',
-    defaultMessage: 'Register the system to Insights',
-  },
-  noSystemsLink: {
-    id: 'noSystemsLink',
-    description: 'Getting started documentation',
-    defaultMessage: 'Getting started documentation',
-  },
-  advisorChartDescription: {
-    id: 'advisorChartDescription',
-    description: 'Advisor chart description',
-    defaultMessage: 'This chart shows recommendations effecting your system',
-  },
   registerYourSystems: {
     id: 'registerYourSystems',
     description: 'Register your systems',
     defaultMessage: 'Register your systems',
-  },
-  recommendations: {
-    id: 'recommendations',
-    description: 'Recommendations',
-    defaultMessage: 'recommendations',
-  },
-  inAdvisor: {
-    id: 'inAdvisor',
-    description: 'in Advisor',
-    defaultMessage: 'in Advisor',
-  },
-  totalRisk: {
-    id: 'totalRisk',
-    description: 'Total risk',
-    defaultMessage: 'Total risk',
-  },
-  category: {
-    id: 'category',
-    description: 'Category',
-    defaultMessage: 'Category',
   },
   availability: {
     id: 'availability',
@@ -401,10 +251,10 @@ export default defineMessages({
     defaultMessage:
       'A value derived from the <strong>likelihood</strong> that the condition will negatively affect your infrastructure, and the <strong>impact</strong> on system operation if that were to happen',
   },
-  dashboardFiltration: {
-    id: 'dashboardFiltration',
-    description: 'Dashboard filtration temporarily unavailable',
-    defaultMessage: 'Dashboard filtration temporarily unavailable',
+  totalRisk: {
+    id: 'totalRisk',
+    description: 'Total risk popover title',
+    defaultMessage: 'Total risk',
   },
   functionalityNotSupported: {
     id: 'functionalityNotSupported',
@@ -427,11 +277,6 @@ export default defineMessages({
     id: 'learnmore',
     description: 'learnmore',
     defaultMessage: 'Learn more',
-  },
-  more: {
-    id: 'more',
-    description: 'more',
-    defaultMessage: 'more',
   },
   singleConsistent: {
     id: 'singleConsistent',
@@ -576,23 +421,6 @@ export default defineMessages({
       'Implement predictable processes. Shift teams to more predictable processes for continuous security visibility.',
   },
 
-  zssampleTitleL: {
-    id: 'zssampleTitleL',
-    description: 'zero state sample title left',
-    defaultMessage:
-      'Latest security vulnerabilities affecting RHEL infrastructures',
-  },
-  zssampleTitleR: {
-    id: 'zssampleTitleR',
-    description: 'zero state sample title right',
-    defaultMessage: 'CVSS Base Score',
-  },
-  zssampleActionButton: {
-    id: 'zssampleActionButton',
-    description: 'zero state sample call to action button',
-    defaultMessage:
-      'Register systems to find issues across your infrastructure',
-  },
   rosSystemsNotConfiguredMessage: {
     id: 'rosSystemsNotConfiguredMessage',
     description: 'no systems configured with resource optimization message',
@@ -620,13 +448,6 @@ export default defineMessages({
     id: 'totalSystems',
     description: 'Resource Optimization - total Systems',
     defaultMessage: 'Total systems',
-  },
-
-  // Card headers
-  footerTitle: {
-    id: 'footerTitle',
-    description: 'Footer section title',
-    defaultMessage: 'Setup additional services',
   },
 
   // Card headers
@@ -675,33 +496,6 @@ export default defineMessages({
     defaultMessage:
       'Problematic conditions that cause an issue have been actively detected on your systems.',
   },
-  complianceAppBlockHeader: {
-    id: 'complianceAppBlockHeader',
-    description: 'compliance app block header',
-    defaultMessage: 'Compliance',
-  },
-  remediationsAppBlockHeader: {
-    id: 'remediationsAppBlockHeader',
-    description: 'Remediations app block header',
-    defaultMessage: 'Remediations',
-  },
-  complianceAppBlockBody: {
-    id: 'complianceAppBlockBody',
-    description: 'compliance app block body',
-    defaultMessage:
-      'Easily identify and manage security compliance issues in the RHEL infrastructure.',
-  },
-  remediationsAppBlockBody: {
-    id: 'remediationsAppBlockBody',
-    description: 'Remediations app block body',
-    defaultMessage:
-      'Fully automate resolution procedures tailored to each system. Either remediate issues manually or create Ansible Playbooks.',
-  },
-  viewDetails: {
-    id: 'viewDetails',
-    description: 'View details',
-    defaultMessage: 'View details',
-  },
   moreAbout: {
     id: 'moreAbout',
     description: "More about Red Hat's response",
@@ -743,6 +537,11 @@ export default defineMessages({
     description: 'exploitedCveTooltip',
     defaultMessage:
       'These CVEs are identified with a "Known Exploit" flag because Red Hat has determined that there are known examples of exploits for this particular CVEs. It does not reflect your environment. CVEs with this label should be addressed with higher priority.',
+  },
+  knownExploits: {
+    id: 'knownExploits',
+    description: 'Known exploits popover title',
+    defaultMessage: 'Known exploits',
   },
 
   configureIntegrations: {
@@ -794,12 +593,6 @@ export default defineMessages({
     defaultMessage:
       'Understand the security exposure of your registered RHEL systems and take appropriate steps to protect your organization.',
   },
-  imagesZeroState: {
-    id: 'ImagesZeroState',
-    description: 'Zero state description for Images app',
-    defaultMessage:
-      'Red Hat Image Builder enables you to create customized images optimized for your target environment. Save time by uploading to multiple target environments in a single build.',
-  },
   activationKeyZeroState: {
     id: 'activationKeyZeroState',
     description: 'Zero state description for Activation Key app',
@@ -817,12 +610,5 @@ export default defineMessages({
     description: 'Zero state description for Remediations app',
     defaultMessage:
       'Receive guidance to remediate risk, and act on those recommendations directly with automatically generated Ansible remediations.',
-  },
-
-  edgeWarning: {
-    id: 'edgeWarning',
-    description: 'Warning text for edge devices',
-    defaultMessage:
-      'Immutable (OSTree) systems are not included in the inventory totals.',
   },
 });

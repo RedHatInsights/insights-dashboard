@@ -166,7 +166,7 @@ describe('Advisor component renders', () => {
   });
 
   it('Check that tooltips display the correct text.', () => {
-    cy.get('span[aria-label="Action"]').trigger('mouseenter');
+    cy.get('span[aria-label="More information"]').click();
     cy.contains(
       messages.totalRiskDef.defaultMessage.replace(/<\/?[^>]+(>|$)/g, ''),
     ).should('be.visible');

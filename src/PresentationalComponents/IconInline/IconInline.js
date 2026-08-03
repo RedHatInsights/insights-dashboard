@@ -1,24 +1,32 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import InfoIcon from '../../Icons/InfoIcon';
-import WarningIcon from '../../Icons/WarningIcon';
-import CriticalIcon from '../../Icons/CriticalIcon';
+import { Icon } from '@patternfly/react-core';
+import {
+  RhUiErrorFillIcon,
+  RhUiInformationFillIcon,
+  RhUiWarningFillIcon,
+} from '@patternfly/react-icons';
 import './IconInline.scss';
 
-const checkState = {
-  warning: WarningIcon,
-  info: InfoIcon,
-  critical: CriticalIcon,
+const stateIcons = {
+  warning: { status: 'warning', Component: RhUiWarningFillIcon },
+  info: { status: 'info', Component: RhUiInformationFillIcon },
+  critical: { status: 'danger', Component: RhUiErrorFillIcon },
 };
 
 export const IconInline = ({ message, state, systemInventory }) => {
-  const Icon = checkState[state] || React.Fragment;
+  const iconConfig = stateIcons[state];
+  const StatusIcon = iconConfig?.Component;
 
   return (
     <div
       className={`insd-c-dashboard__info-inline ${systemInventory ? ' insd-m-padding-top' : ''}`}
     >
-      <Icon aria-hidden="true" />
+      {StatusIcon && (
+        <Icon status={iconConfig.status} aria-hidden="true">
+          <StatusIcon />
+        </Icon>
+      )}
       <p>{message}</p>
     </div>
   );

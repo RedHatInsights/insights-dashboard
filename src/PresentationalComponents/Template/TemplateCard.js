@@ -1,13 +1,11 @@
 import './TemplateCard.scss';
 import { DownloadIcon } from '@patternfly/react-icons';
-import IconInline from '../IconInline/IconInline';
 import React from 'react';
 import propTypes from 'prop-types';
 import {
   Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   CardTitle,
   Title,
@@ -27,32 +25,12 @@ TemplateCard.propTypes = {
   children: propTypes.any,
 };
 
-export const TemplateCardHead = ({ children, ...props }) => (
-  <CardHeader {...props}>{children}</CardHeader>
-);
-
-TemplateCardHead.propTypes = {
-  children: propTypes.any,
-};
-
-export const TemplateCardActions = ({
-  children,
-  iconInlineMessage,
-  iconInlineState,
-  ...props
-}) => (
-  <div {...props}>
-    {iconInlineMessage && (
-      <IconInline message={iconInlineMessage} state={iconInlineState} />
-    )}
-    {children}
-  </div>
+export const TemplateCardActions = ({ children, ...props }) => (
+  <div {...props}>{children}</div>
 );
 
 TemplateCardActions.propTypes = {
   children: propTypes.any,
-  iconInlineMessage: propTypes.string,
-  iconInlineState: propTypes.string,
 };
 
 export const TemplateCardHeader = ({
@@ -101,15 +79,5 @@ export const TemplateCardBody = ({
 
 TemplateCardBody.propTypes = {
   isHorizontalLayout: propTypes.any,
-  children: propTypes.any,
-};
-
-export const TemplateCardFooter = ({ children, ...props }) => (
-  <CardFooter className="insd-c-dashboard__card--footer" {...props}>
-    {children}
-  </CardFooter>
-);
-
-TemplateCardFooter.propTypes = {
   children: propTypes.any,
 };

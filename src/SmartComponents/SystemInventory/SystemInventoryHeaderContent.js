@@ -167,16 +167,12 @@ const SystemInventoryHeaderContent = ({
             </Flex>
             <FlexItem align={{ md: 'alignRight' }}>
               <Link to="/settings/integrations?category=Communications">
-                <Button
-                  className="pf-v6-u-mr-sm pf-v6-u-font-size-md"
-                  variant="secondary"
-                  size="sm"
-                >
+                <Button className="pf-v6-u-mr-sm" variant="secondary" size="sm">
                   {intl.formatMessage(messages.configureIntegrations)}
                 </Button>
               </Link>
               <InsightsLink app="registration" to="/">
-                <Button variant="primary">
+                <Button variant="primary" size="sm">
                   {intl.formatMessage(messages.systemInventoryCTA)}
                 </Button>
               </InsightsLink>
