@@ -12,7 +12,7 @@ export async function fetchAllWorkspaces(baseUrl) {
     const { data: body } = await axios.get(
       `${baseUrl}${RBAC_WORKSPACE_API_PATH}`,
       {
-        params: { limit, offset },
+        params: { limit, offset, with_ancestry: true },
       },
     );
 
