@@ -1,6 +1,8 @@
 import messages from '../../Messages';
 
 export const ZERO_STATE_BRAND_NAME = 'Red Hat Lightspeed';
+const NOTIFICATION_CONFIGURATION_LINK =
+  'https://docs.redhat.com/en/documentation/red_hat_hybrid_cloud_console/1-latest/html/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index';
 
 export const formatBrandName = (brandName, includeRedHat = true) => {
   if (brandName === 'Red Hat Lightspeed') {
@@ -70,7 +72,7 @@ const getAdvisorZeroState = () => ({
     },
     {
       title: 'Configuring notifications & Integration',
-      link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index',
+      link: NOTIFICATION_CONFIGURATION_LINK,
     },
   ],
 });
@@ -151,7 +153,7 @@ const getComplianceZeroState = () => ({
     },
     {
       title: 'Configuring notifications & integration',
-      link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index',
+      link: NOTIFICATION_CONFIGURATION_LINK,
     },
   ],
 });
@@ -238,7 +240,7 @@ const getContentManagementZeroState = () => ({
     },
     {
       title: 'Configuring notifications & Integration',
-      link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index',
+      link: NOTIFICATION_CONFIGURATION_LINK,
     },
   ],
 });
@@ -367,7 +369,7 @@ const getResourceOptimizationZeroState = () => ({
     },
     {
       title: 'Configuring notifications & Integration',
-      link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index',
+      link: NOTIFICATION_CONFIGURATION_LINK,
     },
   ],
 });
@@ -433,7 +435,7 @@ const getVulnerabilityZeroState = () => ({
     },
     {
       title: 'Configuring notifications & Integration',
-      link: 'https://access.redhat.com/documentation/en-us/red_hat_hybrid_cloud_console/1-latest/html-single/configuring_notifications_on_the_red_hat_hybrid_cloud_console/index',
+      link: NOTIFICATION_CONFIGURATION_LINK,
     },
   ],
 });
@@ -467,7 +469,7 @@ const getImagesZeroState = () => ({
   documentation: [
     {
       title: 'Creating customized Images with Image Builder',
-      link: 'https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/creating_customized_images_by_using_insights_image_builder',
+      link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/deploying_and_managing_rhel_systems_in_hybrid_clouds/assembly_managing-rhel-images-in-the-red-hat-hybrid-cloud-console_host-management-services',
     },
   ],
 });
@@ -609,7 +611,7 @@ const getTasksZeroState = () => ({
       { singleClipboardCommand: 'insights-client --register' },
       {
         linkWithinText:
-          'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/red_hat_lightspeed_remediations_guide/host-communication-with-red-hat-lightspeed_red-hat-lightspeed-remediation-guide',
+          'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/red_hat_lightspeed_remediations_guide/enabling-host-communication-with-lightspeed_red-hat-lightspeed-remediation-guide',
         partOne: '2. Follow',
         anchorText: `Enabling communication with ${formatBrandName(ZERO_STATE_BRAND_NAME, false)}`,
         partTwo: ' to enable remote execution of playbooks.',
