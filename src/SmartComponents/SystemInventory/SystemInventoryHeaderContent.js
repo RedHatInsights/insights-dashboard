@@ -13,6 +13,8 @@ import { useIntl } from 'react-intl';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink/InsightsLink';
 import { Link } from 'react-router-dom';
 import { useBatchInventoryFetch } from '../../Utilities/useBatchInventoryFetch';
+import { useInventoryViewsFeatureFlag } from '../../Utilities/hooks/useInventoryViewsFeatureFlag';
+import { INVENTORY_ALL_SYSTEMS_VIEW_PARAM } from '../../AppConstants';
 
 const accessLoadingSkeleton = (
   <Flex
@@ -66,6 +68,11 @@ const SystemInventoryHeaderContent = ({
 
   const intl = useIntl();
 
+  const isInventoryViewsEnabled = useInventoryViewsFeatureFlag();
+  const viewParam = isInventoryViewsEnabled
+    ? `&${INVENTORY_ALL_SYSTEMS_VIEW_PARAM}`
+    : '';
+
   if (isInventoryHostReadLoading) {
     return <React.Fragment>{accessLoadingSkeleton}</React.Fragment>;
   }
@@ -107,7 +114,7 @@ const SystemInventoryHeaderContent = ({
                   },
                 )}
                 app="inventory"
-                link="/?source=puptoo"
+                link={`/?source=puptoo${viewParam}`}
               />
             )}
           </Flex>
@@ -130,7 +137,7 @@ const SystemInventoryHeaderContent = ({
                 ) : (
                   <InsightsLink
                     app="inventory"
-                    to="/?status=stale&source=puptoo"
+                    to={`/?status=stale&source=puptoo${viewParam}`}
                     className="pf-v6-c-button pf-m-link pf-m-inline"
                   >
                     <IconInline
@@ -150,7 +157,7 @@ const SystemInventoryHeaderContent = ({
                 ) : (
                   <InsightsLink
                     app="inventory"
-                    to="/?status=stale_warning&source=puptoo"
+                    to={`/?status=stale_warning&source=puptoo${viewParam}`}
                     className="pf-v6-c-button pf-m-link pf-m-inline"
                   >
                     <IconInline
