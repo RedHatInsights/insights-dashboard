@@ -13,7 +13,7 @@ import {
 } from '@patternfly/react-core';
 import React, { useEffect, useMemo } from 'react';
 import { SEVERITY_MAP } from '../../AppConstants';
-import { capitalize, globalFilters, decodeTags } from '../../Utilities/Common';
+import { capitalize } from '../../Utilities/Common';
 import {
   t_global_text_color_disabled,
   chart_color_blue_100,
@@ -59,17 +59,7 @@ const Advisor = () => {
   const advisorIncidentsStatus = useSelector(
     ({ DashboardStore }) => DashboardStore.advisorIncidentsStatus,
   );
-  const selectedTags = useSelector(
-    ({ DashboardStore }) => DashboardStore.selectedTags,
-  );
-  const workloads = useSelector(
-    ({ DashboardStore }) => DashboardStore.workloads,
-  );
-  const SID = useSelector(({ DashboardStore }) => DashboardStore.SID);
-
-  const urlRest = `&reports_shown=true&impacting=true&offset=0&limit=10${
-    selectedTags?.length ? `&tags=${selectedTags?.join()}` : ''
-  }${workloads?.SAP ? '&sap_system=true' : ''}`;
+  const urlRest = '&reports_shown=true&impacting=true&offset=0&limit=10';
   const totalRiskUrl = (risk) =>
     `/recommendations?sort=-total_risk&total_risk=${risk}${urlRest}`;
   const pieChartPadding = { bottom: 0, left: 0, right: 0, top: 0 };
@@ -81,14 +71,10 @@ const Advisor = () => {
       dispatch(AppActions.advisorFetchStatsSystems(options));
     const advisorFetchIncidents = (options) =>
       dispatch(AppActions.advisorFetchIncidents(options));
-    const options = {
-      ...globalFilters(workloads, SID),
-      ...(selectedTags?.length > 0 && { tags: decodeTags(selectedTags) }),
-    };
-    advisorFetchStatsRecs(options);
-    advisorFetchStatsSystems(options);
-    advisorFetchIncidents(options);
-  }, [selectedTags, workloads, SID, dispatch]);
+    advisorFetchStatsRecs();
+    advisorFetchStatsSystems();
+    advisorFetchIncidents();
+  }, [dispatch]);
 
   const { total_risk, category } = recStats;
 

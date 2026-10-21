@@ -1,7 +1,6 @@
 import './SystemInventoryHeader.scss';
 import { Flex, FlexItem } from '@patternfly/react-core/dist/esm/layouts';
 import React from 'react';
-import { workloadsPropType } from '../../Utilities/Common';
 import { Button, Skeleton } from '@patternfly/react-core/dist/esm/components';
 import FailState from '../../PresentationalComponents/FailState/FailState';
 import { IconInline } from '../../PresentationalComponents/IconInline/IconInline';
@@ -51,8 +50,6 @@ const accessLoadingSkeleton = (
 );
 
 const SystemInventoryHeaderContent = ({
-  selectedTags,
-  workloads,
   hasInventoryHostRead,
   isInventoryHostReadLoading,
 }) => {
@@ -64,7 +61,7 @@ const SystemInventoryHeaderContent = ({
     inventoryWarningSummary,
     inventoryStaleSum,
     error,
-  ] = useBatchInventoryFetch(workloads, selectedTags, mayFetch);
+  ] = useBatchInventoryFetch(mayFetch);
 
   const intl = useIntl();
 
@@ -194,8 +191,6 @@ const SystemInventoryHeaderContent = ({
 };
 
 SystemInventoryHeaderContent.propTypes = {
-  selectedTags: PropTypes.arrayOf(PropTypes.string),
-  workloads: workloadsPropType,
   hasInventoryHostRead: PropTypes.bool.isRequired,
   isInventoryHostReadLoading: PropTypes.bool.isRequired,
 };

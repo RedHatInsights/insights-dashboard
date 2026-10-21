@@ -6,11 +6,7 @@ import {
   TemplateCardBody,
   TemplateCardHeader,
 } from '../../PresentationalComponents/Template/TemplateCard';
-import {
-  capitalize,
-  globalFilters,
-  workloadsPropType,
-} from '../../Utilities/Common';
+import { capitalize } from '../../Utilities/Common';
 import {
   patchmanFetchAdvisories,
   patchmanFetchSystems,
@@ -42,8 +38,6 @@ const PatchManagerCard = ({
   advisories,
   advisoriesStatus,
   fetchAdvisories,
-  selectedTags,
-  workloads,
 }) => {
   const intl = useIntl();
   const isLoaded = [systemsStatus, advisoriesStatus].every(
@@ -85,13 +79,9 @@ const PatchManagerCard = ({
   ];
 
   useEffect(() => {
-    const options = {
-      ...globalFilters(workloads),
-      ...(selectedTags?.length > 0 && { tags: selectedTags }),
-    };
-    fetchSystems(options);
-    fetchAdvisories(options);
-  }, [fetchSystems, fetchAdvisories, workloads, selectedTags]);
+    fetchSystems();
+    fetchAdvisories();
+  }, [fetchSystems, fetchAdvisories]);
 
   if (systemsStatus === 'rejected') {
     return (
@@ -194,8 +184,6 @@ PatchManagerCard.propTypes = {
   advisories: PropTypes.any,
   advisoriesStatus: PropTypes.string,
   fetchAdvisories: PropTypes.func,
-  selectedTags: PropTypes.arrayOf(PropTypes.string),
-  workloads: workloadsPropType,
 };
 
 export default connect(
@@ -204,8 +192,6 @@ export default connect(
     systemsStatus: DashboardStore.patchmanSystemsStatus,
     advisories: DashboardStore.patchmanAdvisories,
     advisoriesStatus: DashboardStore.patchmanAdvisoriesStatus,
-    selectedTags: DashboardStore.selectedTags,
-    workloads: DashboardStore.workloads,
   }),
   (dispatch) => ({
     fetchSystems: (options) => dispatch(patchmanFetchSystems(options)),

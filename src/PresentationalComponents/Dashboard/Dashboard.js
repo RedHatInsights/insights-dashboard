@@ -3,11 +3,9 @@ import { Grid, GridItem } from '@patternfly/react-core';
 import { PageSection, Title } from '@patternfly/react-core';
 import Masonry from 'react-masonry-css';
 import { PermissionContext } from '../../PermissionContext';
-import { connect } from 'react-redux';
 import messages from '../../Messages';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
-import { workloadsPropType } from '../../Utilities/Common';
 import ResourceOptimizationCard from '../../SmartComponents/ResourceOptimization/ResourceOptimizationCard';
 import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
 import { CentOsCard } from '../../SmartComponents/CentOs';
@@ -80,11 +78,4 @@ const Dashboard = () => {
   );
 };
 
-Dashboard.propTypes = {
-  workloads: workloadsPropType,
-};
-
-export default connect(
-  ({ DashboardStore }) => ({ workloads: DashboardStore.workloads }),
-  null,
-)(Dashboard);
+export default Dashboard;
