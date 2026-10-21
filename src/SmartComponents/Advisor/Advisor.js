@@ -171,7 +171,8 @@ const Advisor = () => {
     <CompoundCard className="insd-c-dashboard-card-parent insd-c-dashboard__card--compound--Advisor">
       {advisorIncidentsStatus === 'pending' ||
         (recStatsStatus === 'pending' && <Loading />)}
-      {advisorIncidentsStatus === 'rejected' ? (
+      {advisorIncidentsStatus === 'rejected' ||
+      recStatsStatus === 'rejected' ? (
         <TemplateCardBody>
           <FailState appName="Advisor" />
         </TemplateCardBody>
