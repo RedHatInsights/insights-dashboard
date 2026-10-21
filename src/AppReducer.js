@@ -23,23 +23,10 @@ const initialState = Immutable({
   remediationsFetchStatus: '',
   rosIsConfigured: {},
   rosIsConfiguredFetchStatus: '',
-  selectedTags: [],
-  workloads: {},
 });
 
 export const DashboardStore = (state = initialState, action) => {
   switch (action.type) {
-    // GLOBAL
-    case ActionTypes.SELECTED_TAGS_SET:
-      return Immutable.merge(state, {
-        selectedTags: action.payload,
-      });
-
-    case ActionTypes.WORKLOADS_SET:
-      return Immutable.merge(state, {
-        workloads: action.payload,
-      });
-
     // COMPLIANCE
     case `${ActionTypes.COMPLIANCE_FETCH}_PENDING`:
       return state.set('complianceFetchStatus', 'pending');

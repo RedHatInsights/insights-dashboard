@@ -1,7 +1,5 @@
 const BASE_URL = '/api';
 export const UI_BASE = '/insights';
-export const SELECTED_TAGS_SET = 'SELECTED_TAGS_SET';
-export const WORKLOADS_SET = 'WORKLOADS_SET';
 export const SEVERITY_MAP = {
   critical: 4,
   important: 3,

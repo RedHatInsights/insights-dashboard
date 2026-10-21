@@ -1,8 +1,6 @@
 import './App.scss';
 
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setSelectedTags, setWorkloads } from './AppActions';
 
 import API from './Utilities/Api';
 import { INVENTORY_TOTAL_FETCH_URL } from './AppConstants';
@@ -21,24 +19,10 @@ const App = (props) => {
   const isKesselEnabled = useFeatureFlag('insights-dashboard.kessel_enabled');
   const { flagsReady } = useFlagsStatus();
   const chrome = useChrome();
-  const dispatch = useDispatch();
   const [hasSystems, setHasSystems] = useState(false);
   const [systemsLoading, setSystemsLoading] = useState(true);
 
   useEffect(() => {
-    chrome?.globalFilterScope?.('insights');
-    if (chrome?.globalFilterScope) {
-      chrome.on('GLOBAL_FILTER_UPDATE', ({ data }) => {
-        const [workloads, , selectedTags] = chrome.mapGlobalFilter(
-          data,
-          false,
-          true,
-        );
-        dispatch(setWorkloads(workloads));
-        dispatch(setSelectedTags(selectedTags));
-      });
-    }
-
     API.get(`${INVENTORY_TOTAL_FETCH_URL}`)
       .then(({ data }) => {
         setHasSystems(data?.total > 0);
@@ -49,7 +33,7 @@ const App = (props) => {
         chrome.hideGlobalFilter();
         setSystemsLoading(false);
       });
-  }, [chrome, dispatch]);
+  }, [chrome]);
 
   const content = hasSystems ? (
     <DashboardRoutes childProps={props} />

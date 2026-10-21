@@ -256,23 +256,6 @@ export default defineMessages({
     description: 'Total risk popover title',
     defaultMessage: 'Total risk',
   },
-  functionalityNotSupported: {
-    id: 'functionalityNotSupported',
-    description: 'This functionality is not supported within',
-    defaultMessage:
-      'This functionality is not supported within {appname}. Remove all filters to show dashboard results.',
-  },
-  filteredResultsInApp: {
-    id: 'filteredResultsInApp',
-    description: 'Filtered results are available directly',
-    defaultMessage:
-      'Filtered results are available directly within the {appname} application.',
-  },
-  filterNotApplicable: {
-    id: 'filterNotApplicable',
-    description: 'Filter not applicable',
-    defaultMessage: 'Filter not applicable',
-  },
   learnmore: {
     id: 'learnmore',
     description: 'learnmore',
