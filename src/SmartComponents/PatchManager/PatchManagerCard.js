@@ -40,9 +40,9 @@ const PatchManagerCard = ({
   fetchAdvisories,
 }) => {
   const intl = useIntl();
-  const isLoaded = [systemsStatus, advisoriesStatus].every(
-    (item) => item === 'fulfilled',
-  );
+  const statuses = [systemsStatus, advisoriesStatus];
+  const isLoaded = statuses.every((item) => item === 'fulfilled');
+  const hasFailed = statuses.some((item) => item === 'rejected');
   const {
     security,
     bugfix: bugs,
@@ -83,7 +83,7 @@ const PatchManagerCard = ({
     fetchAdvisories();
   }, [fetchSystems, fetchAdvisories]);
 
-  if (systemsStatus === 'rejected') {
+  if (hasFailed) {
     return (
       <TemplateCard
         appName="PatchManager"
