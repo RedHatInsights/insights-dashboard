@@ -34,6 +34,10 @@ jest.mock('./DashboardRoutes', () => ({
   ...jest.requireActual('./DashboardRoutes'),
   DashboardRoutes: jest.fn(() => <div aria-label="Dashboard page"></div>),
 }));
+jest.mock('./SmartComponents/WidgetDashboard/WidgetDashboard', () => ({
+  __esModule: true,
+  default: jest.fn(() => <div aria-label="Widget dashboard"></div>),
+}));
 jest.mock('./PresentationalComponents/ZeroState/ZeroState', () => ({
   __esModule: true,
   default: jest.fn(() => <div aria-label="Zero state banner"></div>),
@@ -70,6 +74,17 @@ describe('App', () => {
     await waitFor(() =>
       expect(screen.getByLabelText('Dashboard page')).toBeVisible(),
     );
+  });
+  it('Should render the widget dashboard when widget_revamp feature flag is enabled', async () => {
+    useFeatureFlag.mockImplementation(
+      (flag) => flag === 'insights-dashboard.widget_revamp',
+    );
+    Api.get.mockReturnValue(Promise.resolve({ data: { total: 10 } }));
+    renderDashboard();
+    await waitFor(() =>
+      expect(screen.getByLabelText('Widget dashboard')).toBeVisible(),
+    );
+    expect(screen.queryByLabelText('Dashboard page')).not.toBeInTheDocument();
   });
   it('Should show loading page unless API request to check registered systems finish', async () => {
     Api.get.mockImplementation(
