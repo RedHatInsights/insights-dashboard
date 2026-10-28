@@ -6,6 +6,68 @@ export default defineMessages({
     description: 'Title of the dashboard',
     defaultMessage: 'Dashboard',
   },
+  widgetRevampTitle: {
+    id: 'widgetRevampTitle',
+    description: 'Title of the widget dashboard placeholder',
+    defaultMessage: 'New RHEL dashboard',
+  },
+  widgetRevampBody: {
+    id: 'widgetRevampBody',
+    description: 'Body of the widget dashboard placeholder',
+    defaultMessage:
+      'The customizable widget dashboard is under construction. The legacy dashboard returns when this feature flag is disabled.',
+  },
+  widgetStateEmptyTitle: {
+    id: 'widgetStateEmptyTitle',
+    description: 'Title of the widget empty state',
+    defaultMessage: 'No data yet',
+  },
+  widgetStateEmptyBody: {
+    id: 'widgetStateEmptyBody',
+    description: 'Body of the widget empty state',
+    defaultMessage: 'Data will appear here once there is something to show.',
+  },
+  widgetStateErrorTitle: {
+    id: 'widgetStateErrorTitle',
+    description: 'Title of the widget error state',
+    defaultMessage: 'Something went wrong',
+  },
+  widgetStateErrorHelp: {
+    id: 'widgetStateErrorHelp',
+    description: 'Link text of the widget error state',
+    defaultMessage: 'Get help',
+  },
+  widgetStateAccessDeniedTitle: {
+    id: 'widgetStateAccessDeniedTitle',
+    description: 'Title of the widget access denied state',
+    defaultMessage: 'Contact your administrator to access this service',
+  },
+  widgetStateAccessDeniedBody: {
+    id: 'widgetStateAccessDeniedBody',
+    description: 'Body of the widget access denied state',
+    defaultMessage:
+      'You do not have permission to view this data. An organization administrator can grant you access.',
+  },
+  widgetStateAccessDeniedLearnMore: {
+    id: 'widgetStateAccessDeniedLearnMore',
+    description: 'Link text of the widget access denied state',
+    defaultMessage: 'Learn more',
+  },
+  testWidgetSystems: {
+    id: 'testWidgetSystems',
+    description: 'System count shown by the spike test widget',
+    defaultMessage: '{total, plural, one {# system} other {# systems}}',
+  },
+  testWidgetSubtitle: {
+    id: 'testWidgetSubtitle',
+    description: 'Subtitle shown by the spike test widget',
+    defaultMessage: 'Live from the inventory API via chrome.auth.getToken()',
+  },
+  testWidgetEmpty: {
+    id: 'testWidgetEmpty',
+    description: 'Empty state body of the spike test widget',
+    defaultMessage: 'No systems registered yet.',
+  },
   newRulesDateTitle: {
     id: 'newRulesDateTitle',
     description: 'New rules date title',
