@@ -10,6 +10,7 @@ import { DashboardRoutes } from './DashboardRoutes';
 import PermissionsProvider from './PresentationalComponents/PermissionsProvider/PermissionsProvider';
 import ZeroState from './PresentationalComponents/ZeroState/ZeroState';
 import { useFeatureFlag } from './Utilities/Hooks';
+import WidgetDashboard from './SmartComponents/WidgetDashboard/WidgetDashboard';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import { KESSEL_API_BASE_URL } from './AppConstants';
 import PermissionsProviderKessel from './PresentationalComponents/PermissionsProvider/PermissionsProviderKessel';
@@ -17,6 +18,7 @@ import { useFlagsStatus } from '@unleash/proxy-client-react';
 
 const App = (props) => {
   const isKesselEnabled = useFeatureFlag('insights-dashboard.kessel_enabled');
+  const isWidgetRevamp = useFeatureFlag('insights-dashboard.widget_revamp');
   const { flagsReady } = useFlagsStatus();
   const chrome = useChrome();
   const [hasSystems, setHasSystems] = useState(false);
@@ -36,7 +38,11 @@ const App = (props) => {
   }, [chrome]);
 
   const content = hasSystems ? (
-    <DashboardRoutes childProps={props} />
+    isWidgetRevamp ? (
+      <WidgetDashboard />
+    ) : (
+      <DashboardRoutes childProps={props} />
+    )
   ) : (
     <ZeroState />
   );
