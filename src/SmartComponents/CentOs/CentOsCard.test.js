@@ -1,8 +1,6 @@
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
-import useInsightsNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import React from 'react';
 import CentOsCard from './CentOsCard';
 
@@ -13,9 +11,6 @@ jest.mock(
       get: () => new Promise(() => {}),
     })),
   }),
-);
-jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
 );
 
 describe('CentOsCard', () => {
@@ -88,23 +83,23 @@ describe('CentOsCard', () => {
     );
   });
 
-  it('shows pre-conversion task button', async () => {
-    const navigateFn = jest.fn();
-    useInsightsNavigate.mockReturnValue(navigateFn);
+  it('shows pre-conversion task button as external link', async () => {
+    useAxiosWithPlatformInterceptors.mockReturnValue({
+      get: () => ({ total: 5 }),
+    });
     render(<CentOsCard />);
 
     await waitFor(() => {
-      screen.getByRole('button', {
+      const link = screen.getByRole('link', {
         name: /start converting centos systems/i,
       });
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute(
+        'href',
+        'https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/converting_from_a_linux_distribution_to_rhel_using_the_convert2rhel_utility/index',
+      );
+      expect(link).toHaveAttribute('target', '_blank');
+      expect(link).toHaveAttribute('rel', 'noreferrer');
     });
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: /start converting centos systems/i,
-      }),
-    );
-    expect(navigateFn).toHaveBeenCalledWith(
-      '/available/convert-to-rhel-analysis',
-    );
   });
 });

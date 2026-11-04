@@ -9,7 +9,6 @@ import {
   Title,
 } from '@patternfly/react-core';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
-import useInsightsNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { INVENTORY_CENTOS_FETCH_URL } from '../../AppConstants';
 import { ExpandableCardTemplate } from '../../PresentationalComponents/Template/ExpandableCardTemplate';
 import { TemplateCardBody } from '../../PresentationalComponents/Template/TemplateCard';
@@ -18,7 +17,6 @@ import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 
 const CentOsCard = () => {
   const axios = useAxiosWithPlatformInterceptors();
-  const navigate = useInsightsNavigate('tasks');
   const [totalCentOsHosts, setTotalCentOsHosts] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const hasCentOsHosts = totalCentOsHosts !== null && totalCentOsHosts > 0;
@@ -41,7 +39,6 @@ const CentOsCard = () => {
 
   return (
     <ExpandableCardTemplate
-      appName="tasks"
       className="centos-warning insd-m-toggle-right-on-md"
       isExpanded={JSON.parse(
         localStorage.getItem('dashboard_expanded_centos') || 'true',
@@ -89,9 +86,12 @@ const CentOsCard = () => {
                   <FlexItem>
                     <Button
                       variant="secondary"
-                      onClick={() =>
-                        navigate('/available/convert-to-rhel-analysis')
-                      }
+                      component="a"
+                      icon={<ExternalLinkAltIcon />}
+                      iconPosition="end"
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/converting_from_a_linux_distribution_to_rhel_using_the_convert2rhel_utility/index"
                     >
                       Start converting CentOS systems
                     </Button>
@@ -129,9 +129,10 @@ const CentOsCard = () => {
                     icon={<ExternalLinkAltIcon />}
                     iconPosition="end"
                     target="_blank"
-                    href="https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/converting_from_a_linux_distribution_to_rhel_using_the_convert2rhel_utility_in_red_hat_lightspeed/preparation-for-a-rhel-conversion-using-lightspeed_converting-from-a-linux-distribution-to-rhel-in-lightspeed"
+                    rel="noreferrer"
+                    href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/converting_from_a_linux_distribution_to_rhel_using_the_convert2rhel_utility/index"
                   >
-                    Prepare CentOS systems to convert via Insights
+                    Start converting CentOS systems
                   </Button>
                 </FlexItem>
               </>
