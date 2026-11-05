@@ -8,7 +8,6 @@ import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import ResourceOptimizationCard from '../../SmartComponents/ResourceOptimization/ResourceOptimizationCard';
 import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
-import { CentOsCard } from '../../SmartComponents/CentOs';
 import AdvisorCard from '../../SmartComponents/Advisor/Advisor';
 import ComplianceCard from '../../SmartComponents/Compliance/ComplianceCard';
 import VulnerabilityCard from '../../SmartComponents/Vulnerability/VulnerabilityCard';
@@ -63,8 +62,6 @@ const Dashboard = () => {
             {permission.advisor && <AdvisorCard />}
 
             {permission.compliance && <ComplianceCard />}
-
-            <CentOsCard />
 
             {permission.remediations && <RemediationsCard />}
 

@@ -40,7 +40,6 @@ export const INVENTORY_TOTAL_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?${I
 export const INVENTORY_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?registered_with=puptoo&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_STALE_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale&registered_with=puptoo&${INVENTORY_PER_PAGE}`;
 export const INVENTORY_WARNING_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?staleness=stale_warning&registered_with=puptoo&${INVENTORY_PER_PAGE}`;
-export const INVENTORY_CENTOS_FETCH_URL = `${BASE_URL}${INVENTORY_BASE}/hosts?per_page=1&page=1&filter[system_profile][operating_system][CentOS Linux][version][gte]=0`;
 export const INVENTORY_ALL_SYSTEMS_VIEW_PARAM = 'view_id=all-systems';
 
 // Remediations App Constants
