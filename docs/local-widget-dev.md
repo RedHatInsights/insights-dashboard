@@ -104,7 +104,27 @@ A newly registered widget appears in the grid once the change deploys.
 
 ## Local development
 
-The local widget dev workflow (one-command stack, running the grid against
-local widget code) is documented with the embedded-grid work in
-[RHINENG-32999](https://redhat.atlassian.net/browse/RHINENG-32999) — where
-`/insights/dashboard` behind the feature flag becomes the development surface.
+The embedded grid runs against stage with a single command — no local
+backend, database, Unleash, or proxy stack is needed. Everything except your
+local widget code (chrome, SSO, the widget-layout backend, and the widget
+registry) comes from the real environment.
+
+### Running the one-command stack
+
+```bash
+npm run start:proxy
+```
+
+Pick `stage` from the interactive menu. The dev server starts on
+`https://stage.foo.redhat.com:1337`, then open:
+
+```
+https://stage.foo.redhat.com:1337/insights/dashboard
+```
+
+### Enabling the feature flag
+
+The grid embed is gated by `insights-dashboard.widget_revamp`, which is off
+by default. Enable it for your org in the
+[stage Unleash console](https://insights-stage.unleash.devshift.net/) before
+loading the page.

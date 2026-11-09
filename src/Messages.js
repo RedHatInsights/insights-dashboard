@@ -6,17 +6,6 @@ export default defineMessages({
     description: 'Title of the dashboard',
     defaultMessage: 'Dashboard',
   },
-  widgetRevampTitle: {
-    id: 'widgetRevampTitle',
-    description: 'Title of the widget dashboard placeholder',
-    defaultMessage: 'New RHEL dashboard',
-  },
-  widgetRevampBody: {
-    id: 'widgetRevampBody',
-    description: 'Body of the widget dashboard placeholder',
-    defaultMessage:
-      'The customizable widget dashboard is under construction. The legacy dashboard returns when this feature flag is disabled.',
-  },
   widgetStateEmptyTitle: {
     id: 'widgetStateEmptyTitle',
     description: 'Title of the widget empty state',
