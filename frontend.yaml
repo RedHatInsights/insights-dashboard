@@ -31,6 +31,23 @@ objects:
             h: 4
             maxH: 10
             minH: 1
+      # RHINENG-32999: starter base template for the widget revamp dashboard
+      # (layoutType "dashboard-insightsDashboard"). Placeholder layout until
+      # the real Day-0 default dashboard lands in RHINENG-33013 — uses the
+      # only currently registered RHEL widget. Widget IDs are compound
+      # "<scope>-<module>" keys resolved against the FEO widget registry.
+      baseWidgetLayouts:
+        - name: insightsDashboard
+          displayName: Insights Dashboard
+          templateConfig:
+            sm:
+              - { w: 1, h: 4, cx: 0, cy: 0, i: 'landing-./RhelWidget' }
+            md:
+              - { w: 1, h: 4, cx: 0, cy: 0, i: 'landing-./RhelWidget' }
+            lg:
+              - { w: 1, h: 4, cx: 0, cy: 0, i: 'landing-./RhelWidget' }
+            xl:
+              - { w: 1, h: 4, cx: 0, cy: 0, i: 'landing-./RhelWidget' }
       searchEntries:
         - id: dashboard-insights
           title: Dashboard
