@@ -2,13 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 import type { AxiosInstance } from 'axios';
 
-/**
- * HCC widget data states (RHINENG-32997).
- *
- * Maps 1:1 to the designed widget states. "Access Denied" is NOT a data
- * state — it comes from the widget mapping's `permissions` config, checked
- * by the grid before the widget renders.
- */
 export type WidgetDataState = 'loading' | 'default' | 'empty' | 'error';
 
 export interface UseWidgetDataResult<T> {
@@ -19,12 +12,7 @@ export interface UseWidgetDataResult<T> {
 }
 
 export interface UseWidgetDataOptions<T> {
-  /**
-   * Predicate distinguishing an "empty" result (no data) from default
-   * content. Defaults to null/undefined, empty array, or empty object.
-   */
   isEmpty?: (data: T) => boolean;
-  /** Skip fetching entirely while false. Default: true */
   enabled?: boolean;
 }
 
@@ -34,39 +22,16 @@ const defaultIsEmpty = <T>(data: T): boolean =>
   (typeof data === 'object' && Object.keys(data as object).length === 0);
 
 interface FetchResult<T> {
-  /** The requestKey this result belongs to */
   key: string;
+  epoch: number;
   data?: T;
   error?: Error;
 }
 
 /**
- * HCC widget data hook — self-contained fetching for dashboard widgets.
- *
- * The widget-layout grid host provides NO Redux store, so every widget
- * fetches its own data through the platform axios instance
- * (`useAxiosWithPlatformInterceptors`): platform auth, response unwrapping,
- * 401/logout, 500 and error normalization are all handled by the
- * interceptors — widgets never touch tokens manually.
- *
- * Render the returned state machine with `<WidgetStates>`:
- *
- *   const { data, state, refetch } = useWidgetData(fetchSystems);
- *   return <WidgetStates state={state}>{`You have ${data} systems`}</WidgetStates>;
- *
- * Implementation note: the state machine is DERIVED during render from a
- * request key (enabled + refetch counter + deps) — state is only ever set
- * from async continuations, never synchronously within an effect body
- * (react-hooks/set-state-in-effect). A key change makes the derived state
- * 'loading' immediately, with no extra render pass.
- *
- * @param fetcher async function receiving the platform axios instance; it
- *                builds the request and returns parsed data. NOTE: the
- *                platform interceptors unwrap AxiosResponse — the resolved
- *                value is the JSON payload (type it with an assertion, as
- *                insights-inventory-frontend's API layer does)
+ * @param fetcher builds the request via the platform axios instance
  * @param options optional `isEmpty` predicate and `enabled` gate
- * @param deps    extra values that should trigger a refetch when changed
+ * @param deps    extra values triggering a refetch when changed
  *                (compared structurally via JSON — use primitives)
  */
 export const useWidgetData = <T>(
@@ -81,6 +46,13 @@ export const useWidgetData = <T>(
 
   const requestKey = JSON.stringify([enabled, reloadCounter, deps]);
 
+  const [keyEpoch, setKeyEpoch] = useState(0);
+  const [prevRequestKey, setPrevRequestKey] = useState(requestKey);
+  if (prevRequestKey !== requestKey) {
+    setPrevRequestKey(requestKey);
+    setKeyEpoch((epoch) => epoch + 1);
+  }
+
   useEffect(() => {
     if (!enabled) {
       return;
@@ -92,12 +64,13 @@ export const useWidgetData = <T>(
       try {
         const data = await fetcher(api);
         if (!cancelled) {
-          setResult({ key: requestKey, data });
+          setResult({ key: requestKey, epoch: keyEpoch, data });
         }
       } catch (e) {
         if (!cancelled) {
           setResult({
             key: requestKey,
+            epoch: keyEpoch,
             error: e instanceof Error ? e : new Error(String(e)),
           });
         }
@@ -112,19 +85,18 @@ export const useWidgetData = <T>(
 
   const refetch = useCallback(() => setReloadCounter((c) => c + 1), []);
 
-  // Derived state machine: a result only counts when it belongs to the
-  // current request key — anything else (or nothing yet) means loading.
-  const current = enabled && result?.key === requestKey ? result : undefined;
+  const current =
+    enabled && result?.key === requestKey && result?.epoch === keyEpoch
+      ? result
+      : undefined;
 
-  const state: WidgetDataState = !enabled
-    ? 'default'
-    : !current
-      ? 'loading'
-      : current.error
-        ? 'error'
-        : isEmpty(current.data as T)
-          ? 'empty'
-          : 'default';
+  const state: WidgetDataState = !current
+    ? 'loading'
+    : current.error
+      ? 'error'
+      : isEmpty(current.data as T)
+        ? 'empty'
+        : 'default';
 
   return { data: current?.data, state, error: current?.error, refetch };
 };
