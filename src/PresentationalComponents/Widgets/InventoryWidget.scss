@@ -1,0 +1,36 @@
+.insd-c-inventory-widget {
+    // the widget must never scroll — content is sized for its default
+    // two-column footprint and wraps when narrowed
+    overflow: hidden;
+
+    &__count {
+        font-weight: 600;
+        color: var(--pf-t--global--text--color--regular);
+    }
+
+    &__label {
+        font-weight: 600;
+        color: var(--pf-t--global--text--color--regular);
+    }
+
+    &__stats {
+        padding-block-start: var(--pf-t--global--spacer--xs);
+    }
+
+    &__empty-message {
+        color: var(--pf-t--global--text--color--regular);
+    }
+
+    .pf-v6-c-button.insd-c-inventory-widget__pill {
+        border-radius: 999px;
+        padding-inline: var(--pf-t--global--spacer--lg);
+
+        &.insd-c-inventory-widget__pill--outline {
+            border: solid 1px #e0e0e0;
+        }
+
+        &.insd-c-inventory-widget__pill--emphasis {
+            border: solid 1px var(--pf-t--global--color--brand--default);
+        }
+    }
+}

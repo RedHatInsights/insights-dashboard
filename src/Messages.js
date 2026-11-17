@@ -26,6 +26,11 @@ export default defineMessages({
     description: 'Link text of the widget error state',
     defaultMessage: 'Get help',
   },
+  widgetStateErrorRetry: {
+    id: 'widgetStateErrorRetry',
+    description: 'Retry button of the widget error state',
+    defaultMessage: 'Try again',
+  },
   widgetStateAccessDeniedTitle: {
     id: 'widgetStateAccessDeniedTitle',
     description: 'Title of the widget access denied state',
@@ -222,6 +227,35 @@ export default defineMessages({
     description: 'User has no access to read inventory systems',
     defaultMessage:
       'Your organization administrator must grant you inventory access to view your systems.',
+  },
+  inventoryWidgetTotalSystems: {
+    id: 'inventoryWidgetTotalSystems',
+    description: 'Inventory widget - total systems label',
+    defaultMessage: 'Total systems',
+  },
+  inventoryWidgetNotRegistered: {
+    id: 'inventoryWidgetNotRegistered',
+    description:
+      'Inventory widget - systems not registered to the insights-client',
+    defaultMessage:
+      '{count, plural, one {# system} other {# systems}} not registered to the insights-client',
+  },
+  inventoryWidgetEmpty: {
+    id: 'inventoryWidgetEmpty',
+    description: 'Inventory widget - empty state body',
+    defaultMessage:
+      'To start using Red Hat Lightspeed, register your systems with the insights-client.',
+  },
+  inventoryWidgetConfigureIntegrations: {
+    id: 'inventoryWidgetConfigureIntegrations',
+    description: 'Inventory widget - configure integrations CTA label',
+    defaultMessage: 'Configure integrations',
+  },
+  inventoryWidgetDefaultWorkspace: {
+    id: 'inventoryWidgetDefaultWorkspace',
+    description:
+      'Inventory widget - workspace chip label when no workspace filter is applied',
+    defaultMessage: 'Default',
   },
   remediationsTotal: {
     id: 'remediationsTotal',

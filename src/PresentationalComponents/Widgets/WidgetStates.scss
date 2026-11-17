@@ -1,0 +1,17 @@
+.insd-c-widget-state__cta {
+    border: solid 1px var(--pf-t--global--color--brand--default);
+    border-radius: 999px;
+    padding-inline: var(--pf-t--global--spacer--lg);
+}
+
+.insd-c-widget-state {
+    .pf-v6-c-empty-state {
+        --pf-v6-c-empty-state--PaddingBlockStart: 0;
+        --pf-v6-c-empty-state--PaddingBlockEnd: 0;
+        --pf-v6-c-empty-state--PaddingInlineStart: 0;
+        --pf-v6-c-empty-state--PaddingInlineEnd: 0;
+        --pf-v6-c-empty-state__icon--FontSize: var(--pf-t--global--icon--size--xl);
+        --pf-v6-c-empty-state__icon--MarginBlockEnd: var(--pf-t--global--spacer--sm);
+        --pf-v6-c-empty-state__body--MarginBlockStart: var(--pf-t--global--spacer--sm);
+    }
+}
