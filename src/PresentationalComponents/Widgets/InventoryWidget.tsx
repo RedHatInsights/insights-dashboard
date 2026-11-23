@@ -39,6 +39,17 @@ const InventoryInsightsLink = InsightsLink as unknown as (
   props: InventoryInsightsLinkProps,
 ) => JSX.Element;
 
+/**
+ * PF Button's component prop forwards link props (to, app) to the
+ * rendered link, but its typings don't allow them — widen for that use.
+ */
+type LinkButtonProps = React.ComponentProps<typeof Button> & {
+  to: string;
+  app?: string;
+};
+
+const LinkButton = Button as unknown as (props: LinkButtonProps) => JSX.Element;
+
 const INVENTORY_HOST_READ_PERMISSIONS = ['inventory:hosts:read'];
 
 interface InventoryWidgetContentProps {
@@ -104,7 +115,7 @@ const InventoryWidgetContent = ({
                 gap={{ default: 'gapSm' }}
               >
                 <FlexItem>
-                  <div className="insd-c-inventory-widget__count">
+                  <div className="insd-c-inventory-widget__count pf-v6-u-font-weight-bold">
                     <NumberData
                       data={(data?.total ?? 0).toLocaleString()}
                       dataSize="xl"
@@ -124,7 +135,7 @@ const InventoryWidgetContent = ({
                   </Label>
                 </FlexItem>
               </Flex>
-              <div className="insd-c-inventory-widget__label">
+              <div className="insd-c-inventory-widget__label pf-v6-u-font-weight-bold">
                 {intl.formatMessage(messages.inventoryWidgetTotalSystems)}
               </div>
             </FlexItem>
@@ -133,7 +144,7 @@ const InventoryWidgetContent = ({
                 <Flex
                   direction={{ default: 'column' }}
                   gap={{ default: 'gapSm' }}
-                  className="insd-c-inventory-widget__stats"
+                  className="insd-c-inventory-widget__stats pf-v6-u-pt-xs"
                 >
                   <FlexItem>
                     <InventoryInsightsLink
@@ -193,40 +204,33 @@ const InventoryWidgetContent = ({
           </Flex>
           {isEmpty && (
             <FlexItem>
-              <p className="insd-c-inventory-widget__empty-message">
-                {intl.formatMessage(messages.inventoryWidgetEmpty)}
-              </p>
+              <p>{intl.formatMessage(messages.inventoryWidgetEmpty)}</p>
             </FlexItem>
           )}
           <FlexItem className="pf-v6-u-mt-auto">
             <Flex gap={{ default: 'gapSm' }}>
               <FlexItem>
-                <InventoryInsightsLink app="registration" to="/">
-                  {isEmpty ? (
-                    <Button variant="primary">
-                      {intl.formatMessage(messages.systemInventoryCTA)}
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="link"
-                      className="insd-c-inventory-widget__pill insd-c-inventory-widget__pill--emphasis"
-                    >
-                      {intl.formatMessage(messages.systemInventoryCTA)}
-                    </Button>
-                  )}
-                </InventoryInsightsLink>
+                {/* variants per the Figma: secondary/tertiary in the
+                    default state, primary/secondary in the empty state */}
+                <LinkButton
+                  variant={isEmpty ? 'primary' : 'secondary'}
+                  component={InventoryInsightsLink}
+                  app="registration"
+                  to="/"
+                >
+                  {intl.formatMessage(messages.systemInventoryCTA)}
+                </LinkButton>
               </FlexItem>
               <FlexItem>
-                <Link to="/settings/integrations?category=Communications">
-                  <Button
-                    variant="link"
-                    className="insd-c-inventory-widget__pill insd-c-inventory-widget__pill--outline"
-                  >
-                    {intl.formatMessage(
-                      messages.inventoryWidgetConfigureIntegrations,
-                    )}
-                  </Button>
-                </Link>
+                <LinkButton
+                  variant={isEmpty ? 'secondary' : 'tertiary'}
+                  component={Link}
+                  to="/settings/integrations?category=Communications"
+                >
+                  {intl.formatMessage(
+                    messages.inventoryWidgetConfigureIntegrations,
+                  )}
+                </LinkButton>
               </FlexItem>
             </Flex>
           </FlexItem>

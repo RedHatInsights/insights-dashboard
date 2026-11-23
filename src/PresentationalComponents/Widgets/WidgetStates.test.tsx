@@ -68,7 +68,7 @@ describe('WidgetStates', () => {
     ).toBeVisible();
   });
 
-  it('should render the error state with a Get help pill CTA', () => {
+  it('should render the error state with a Get help secondary button CTA', () => {
     renderStates(<WidgetStates state="error" />);
 
     expect(screen.getByText('Something went wrong')).toBeVisible();
@@ -76,7 +76,6 @@ describe('WidgetStates', () => {
 
     const cta = screen.getByRole('link', { name: 'Get help' });
     expect(cta).toHaveAttribute('href', 'https://access.redhat.com/support');
-    expect(cta).toHaveClass('insd-c-widget-state__cta');
   });
 
   it('should render a retry button wired to onRetry in the error state', () => {
@@ -98,7 +97,7 @@ describe('WidgetStates', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('should render the access denied state with a lock icon and Learn more pill CTA', () => {
+  it('should render the access denied state with a lock icon and Learn more secondary button CTA', () => {
     renderStates(<WidgetStates state="access-denied" />);
 
     expect(
@@ -111,6 +110,5 @@ describe('WidgetStates', () => {
       'href',
       'https://docs.redhat.com/en/red-hat-insights',
     );
-    expect(cta).toHaveClass('insd-c-widget-state__cta');
   });
 });

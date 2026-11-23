@@ -47,12 +47,11 @@ const StateCtaRow = ({ children }: { children: React.ReactNode }) => (
 
 const StateCtaLink = ({ href, label }: { href: string; label: string }) => (
   <Button
-    variant="link"
+    variant="secondary"
     component="a"
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="insd-c-widget-state__cta"
   >
     {label}
   </Button>
@@ -109,11 +108,7 @@ const WidgetStates = ({
           </FlexItem>
           <StateCtaRow>
             {onRetry && (
-              <Button
-                variant="link"
-                onClick={onRetry}
-                className="insd-c-widget-state__cta"
-              >
+              <Button variant="secondary" onClick={onRetry}>
                 {intl.formatMessage(messages.widgetStateErrorRetry)}
               </Button>
             )}

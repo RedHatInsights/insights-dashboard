@@ -1,9 +1,8 @@
-.insd-c-widget-state__cta {
-    border: solid 1px var(--pf-t--global--color--brand--default);
-    border-radius: 999px;
-    padding-inline: var(--pf-t--global--spacer--lg);
-}
-
+// PatternFly's EmptyStateVariant.sm only shrinks the max-width — the
+// xl padding and icon size don't fit a ~176px widget tile body, and the
+// component offers no props for them. Overriding the component's own
+// CSS custom properties from this wrapper class is the sanctioned PF
+// mechanism; all values are PF tokens.
 .insd-c-widget-state {
     .pf-v6-c-empty-state {
         --pf-v6-c-empty-state--PaddingBlockStart: 0;

@@ -84,7 +84,13 @@ const injectLocalWidgetRegistry = (buffer) => {
     // only this app's own modules resolve to the local dev server
     .filter((entry) => entry.scope === 'dashboard')
     .forEach((entry) => {
-      json.data[entry.module] = {
+      // key by scope-module: the grid resolves tile IDs by splitting on
+      // '#' and looks up `scalprumWidgetMapping[<scope>-<module>]`, so a
+      // bare module key would never match the base-template tiles (and
+      // drawer-added tiles would carry an ID the deployed registry
+      // doesn't know). The module field stays bare — federation loads
+      // the export by it.
+      json.data[`${entry.scope}-${entry.module}`] = {
         scope: entry.scope,
         module: entry.module,
         config: entry.config,

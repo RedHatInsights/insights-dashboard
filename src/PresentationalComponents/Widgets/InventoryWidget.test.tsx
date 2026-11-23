@@ -148,16 +148,13 @@ describe('InventoryWidget', () => {
     );
 
     expect(
-      screen.getByRole('button', { name: 'Register systems' }),
+      screen.getByRole('link', { name: 'Register systems' }),
     ).toBeVisible();
     expect(
-      screen.getByRole('button', { name: 'Configure integrations' }),
+      screen.getByRole('link', { name: 'Configure integrations' }),
     ).toBeVisible();
-    const [firstCta, secondCta] = screen
-      .getAllByRole('button')
-      .map((button) => button.textContent);
-    expect(firstCta).toBe('Register systems');
-    expect(secondCta).toBe('Configure integrations');
+    // single-element CTAs: no nested <button> inside the links
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 
   it('should link the stat links to the filtered inventory views', async () => {
@@ -247,8 +244,11 @@ describe('InventoryWidget', () => {
     ).toBeVisible();
     expect(screen.queryByText('43 stale systems')).not.toBeInTheDocument();
     expect(
-      screen.getByRole('button', { name: 'Register systems' }),
-    ).not.toHaveClass('insd-c-inventory-widget__pill');
+      screen.getByRole('link', { name: 'Register systems' }),
+    ).toBeVisible();
+    expect(
+      screen.getByRole('link', { name: 'Configure integrations' }),
+    ).toBeVisible();
   });
 
   it('should render the access-denied state without fetching when RBAC v1 denies inventory:hosts:read', async () => {
