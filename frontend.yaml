@@ -31,6 +31,20 @@ objects:
             h: 4
             maxH: 10
             minH: 1
+        # RHINENG-33886: Inventory (Systems) widget per the Figma "Proposed
+        # Systems redesign" — exposed from this app's federated module
+        # (scope "dashboard", the fec moduleName; see docs/local-widget-dev.md).
+        - scope: dashboard
+          module: ./InventoryWidget
+          featureFlag: insights-dashboard.widget_revamp
+          config:
+            title: Inventory
+          defaults:
+            # Per the Figma design the widget body is 762px wide — two grid
+            # columns (2 x 372 + 10 gutter) — with the stat links to the
+            # right of the count; 4 rows x 56px + 3 x 10 = 254px tall.
+            w: 2
+            h: 4
       # RHINENG-32999: starter base template for the widget revamp dashboard
       # (layoutType "dashboard-insightsDashboard"). Placeholder layout until
       # the real Day-0 default dashboard lands in RHINENG-33013 — uses the
@@ -42,12 +56,16 @@ objects:
           templateConfig:
             sm:
               - { w: 1, h: 4, cx: 0, cy: 0, i: 'landing-./RhelWidget' }
+              - { w: 1, h: 4, cx: 0, cy: 4, i: 'dashboard-./InventoryWidget' }
             md:
               - { w: 1, h: 4, cx: 0, cy: 0, i: 'landing-./RhelWidget' }
+              - { w: 2, h: 4, cx: 0, cy: 4, i: 'dashboard-./InventoryWidget' }
             lg:
               - { w: 1, h: 4, cx: 0, cy: 0, i: 'landing-./RhelWidget' }
+              - { w: 2, h: 4, cx: 0, cy: 4, i: 'dashboard-./InventoryWidget' }
             xl:
               - { w: 1, h: 4, cx: 0, cy: 0, i: 'landing-./RhelWidget' }
+              - { w: 2, h: 4, cx: 0, cy: 4, i: 'dashboard-./InventoryWidget' }
       searchEntries:
         - id: dashboard-insights
           title: Dashboard
